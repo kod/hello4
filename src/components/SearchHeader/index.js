@@ -1,13 +1,9 @@
 import React from 'react';
-import { Icon } from 'antd';
 import { formatMessage } from 'umi/locale';
 
 import { HEADER_BACKGROUND_COLOR, BORDER_COLOR } from '@/styles/variables';
 import { SIDEINTERVAL, WINDOW_WIDTH, WINDOW_HEIGHT } from '@/common/constants';
-
-const MyIcon = Icon.createFromIconfontCN({
-  scriptUrl: '//at.alicdn.com/t/font_892500_zm8h4hneka.js', // 在 iconfont.cn 上生成
-});
+import CustomIcon from '@/components/CustomIcon';
 
 const STATUSBAR_HEIGHT = 0;
 
@@ -61,14 +57,14 @@ export default ({
   <div style={styles.headerContainer}>
     <div style={styles.headerMiddle} onClick={middleOnPress}>
       <div style={styles.headerMiddleMain}>
-        <MyIcon type="search" style={styles.headerMiddleIcon} />
+        <CustomIcon type="search" style={styles.headerMiddleIcon} />
         <div style={styles.headerMiddleText}>{text}</div>
       </div>
     </div>
     {headerRight ? (
       { headerRight }
     ) : (
-      // <MyIcon type="qrcode" style={styles.headerIcon} onClick={leftOnPress} />
+      // <CustomIcon type="qrcode" style={styles.headerIcon} onClick={leftOnPress} />
       <span style={styles.headerIcon}>{formatMessage({ id: 'login' })}</span>
     )}
   </div>

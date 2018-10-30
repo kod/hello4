@@ -32,6 +32,7 @@
     "reselect": "^4.0.0"
   },
   "devDependencies": {
+    "@babel/polyfill": "^7.0.0",
     "babel-eslint": "^10.0.1",
     "eslint": "^5.4.0",
     "eslint-config-airbnb": "^17.0.0",
@@ -44,9 +45,10 @@
     "eslint-plugin-markdown": "^1.0.0-beta.6",
     "eslint-plugin-prettier": "^3.0.0",
     "eslint-plugin-react": "^7.11.1",
+    "intl": "^1.2.5",
     "prettier": "^1.14.3",
     "prettier-eslint": "^8.8.2",
-    "umi": "^2.1.2",
+    "umi": "^2.2.2",
     "umi-plugin-react": "^1.1.1"
   }
 }

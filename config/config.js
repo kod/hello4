@@ -8,6 +8,9 @@ export default {
       {
         antd: true,
         dva: true,
+        targets: {
+          ie: 11,
+        },
         locale: {
           enable: true, // default false
           default: 'zh-CN', // default zh-CN
@@ -16,7 +19,7 @@ export default {
         ...(!process.env.TEST && os.platform() === 'darwin'
           ? {
               dll: {
-                include: ['dva', 'dva/router', 'dva/saga', 'dva/fetch'],
+                include: ['dva', 'dva/router', 'dva/saga'],
                 exclude: ['@babel/runtime'],
               },
               hardSource: true,

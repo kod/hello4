@@ -13,6 +13,9 @@ import SearchHeader from '@/components/SearchHeader';
 import * as getAdverstTopInfoActionCreators from '@/common/actions/getAdverstTopInfo';
 import { addEventListener } from '@/utils';
 
+// global.Intl = require('intl');
+// window.Intl = require('intl');
+
 @connect(
   state => {
     const { getAdverstTopInfo } = state;
