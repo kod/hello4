@@ -9,7 +9,13 @@ export const IS_PROMPT_FIRSTPAY = true; // 没有选择首付时是否提示选�
 export const MIN_FIRSTPAY_RATE = 0.1; // 最低首付比: 0, 0.1, 0.2, 0.3, 0.4, 0.5
 
 // namespace -start-
-export const GETADVERSTTOPINFO = 'getAdverstTopInfo';
+export const GETADVERSTTOPINFO_NAMESPACE = 'getAdverstTopInfo';
+export const ERROR_NAMESPACE = 'error';
+export const LOGIN_NAMESPACE = 'login';
+export const USERCERTIFICATEINFO_NAMESPACE = 'userCertificateInfo';
+export const CART_NAMESPACE = 'cart';
+export const CARDQUERY_NAMESPACE = 'cardQuery';
+export const QUERYORDERLIST_NAMESPACE = 'queryOrderList';
 // namespace -end-
 
 export const DOMAIN = 'https://buyoo.vn';
@@ -71,9 +77,9 @@ export const SHAREID_REGEX = /userID=([A-Z0-9]+)/;
 export const PRIVATE_URL_REGEX = /(.*)\?/;
 export const INVITATION_CODE_REGEX = /₫ ([A-Z0-9]+) ₫/; // 邀请码
 
-// export const WINDOW_WIDTH = Math.floor(Dimensions.get('window').width);
-// export const WINDOW_HEIGHT = Math.floor(Dimensions.get('window').height);
-// export const SIDEINTERVAL = Math.floor(Dimensions.get('window').width) * 0.04;
+export const WINDOW_WIDTH = document.documentElement.clientWidth;
+export const WINDOW_HEIGHT = document.documentElement.clientHeight;
+export const SIDEINTERVAL = WINDOW_WIDTH * 0.04;
 
 // export const APPBAR_HEIGHT = Platform.OS === 'ios' ? 44 : 44;
 // export const STATUSBAR_HEIGHT =

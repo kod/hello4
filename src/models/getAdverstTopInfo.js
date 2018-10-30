@@ -1,9 +1,15 @@
 import moment from 'moment';
 import buyoo from '@/services/api';
-// import { getAuthUserFunid, getAuthUser } from '@/common/selectors';
+
 import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
-import { GETADVERSTTOPINFO } from '@/common/constants';
+import { GETADVERSTTOPINFO_NAMESPACE } from '@/common/constants';
 import { GET_ADVERST_TOP_INFO } from '@/common/constants/actionTypes';
+import {
+  getAdverstTopInfoFetchSuccess,
+  getAdverstTopInfoFetchFailure,
+} from '@/common/actions/getAdverstTopInfo';
+import { addError } from '@/common/actions/error';
+import { getAuthUserFunid, getAuthUser } from '@/common/selectors';
 
 const initState = {
   loading: false,
@@ -13,17 +19,15 @@ const initState = {
 };
 
 export default {
-  namespace: GETADVERSTTOPINFO,
+  namespace: GETADVERSTTOPINFO_NAMESPACE,
 
   state: initState,
 
   effects: {
-    *[GET_ADVERST_TOP_INFO.REQUEST](_, { apply }) {
+    *[GET_ADVERST_TOP_INFO.REQUEST](_, { apply, put, select }) {
       try {
-        // const authUser = '';
-        const funid = '';
-        // const authUser = yield select(getAuthUser) || '';
-        // const funid = authUser ? yield select(getAuthUserFunid) : '';
+        const authUser = yield select(getAuthUser) || '';
+        const funid = authUser ? yield select(getAuthUserFunid) : '';
         const Key = 'commodityKey';
         const appId = '3';
         const method = 'fun.adverst.top';
@@ -68,29 +72,33 @@ export default {
             currentpage,
           },
         ]);
-        console.log(response);
 
-        // if (response.code !== 10000) {
-        //   yield put(getAdverstTopInfoFetchFailure());
-        //   yield put(addError(`msg: ${response.msg}; code: ${response.code}`));
-        // } else {
-        //   yield put(getAdverstTopInfoFetchSuccess(response.result));
-        // }
+        if (response.code !== 10000) {
+          yield put(getAdverstTopInfoFetchFailure());
+          yield put(addError(`msg: ${response.msg}; code: ${response.code}`));
+        } else {
+          yield put(getAdverstTopInfoFetchSuccess(response.result));
+          // dispatchEvent('tcy', {
+          //   title: 'cccc',
+          //   params: {
+          //     a: 'haha',
+          //   },
+          // });
+        }
       } catch (err) {
-        console.log(err);
         // yield put(getAdverstTopInfoFetchFailure());
-        // yield put(addError(typeof err === 'string' ? err : err.toString()));
+        yield put(addError(typeof err === 'string' ? err : err.toString()));
       }
     },
   },
 
   reducers: {
-    clear() {
+    [GET_ADVERST_TOP_INFO.CLEAR]() {
       return {
         ...initState,
       };
     },
-    success(
+    [GET_ADVERST_TOP_INFO.SUCCESS](
       state,
       {
         payload: { items },
@@ -103,7 +111,7 @@ export default {
         items,
       };
     },
-    failure(state) {
+    [GET_ADVERST_TOP_INFO.FAILURE](state) {
       return {
         ...state,
         loading: false,
