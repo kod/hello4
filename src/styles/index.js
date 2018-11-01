@@ -1,12 +1,11 @@
-import { StyleSheet } from 'react-native';
 import { HEADER_BACKGROUND_COLOR } from './variables';
 import {
   WINDOW_HEIGHT,
   APPBAR_HEIGHT,
   STATUSBAR_HEIGHT,
-} from '../common/constants';
+} from '@/common/constants';
 
-const globalStyles = StyleSheet.create({
+const globalStyles = {
   container: {
     flex: 1,
   },
@@ -28,6 +27,6 @@ const globalStyles = StyleSheet.create({
     height: WINDOW_HEIGHT - APPBAR_HEIGHT - STATUSBAR_HEIGHT + 1,
     backgroundColor: '#fff',
   },
-});
+};
 
 export default globalStyles;

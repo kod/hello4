@@ -1,8 +1,10 @@
 import React from 'react';
 import { TabBar } from 'antd-mobile';
+import { formatMessage } from 'umi/locale';
 import { WINDOW_HEIGHT } from '@/common/constants';
 import Home from '@/pages/home/home';
 import CustomIcon from '@/components/CustomIcon';
+// import Loader from '@/components/Loader';
 
 class Index extends React.Component {
   constructor(props) {
@@ -37,6 +39,7 @@ class Index extends React.Component {
 
     return (
       <div>
+        {/* <Loader /> */}
         <TabBar
           unselectedTintColor="#949494"
           tintColor="#33A3F4"
@@ -44,8 +47,8 @@ class Index extends React.Component {
           hidden={hidden}
         >
           <TabBar.Item
-            title="Life"
-            key="Life"
+            title={formatMessage({ id: 'home' })}
+            key="Home"
             icon={<CustomIcon type="home" style={styles.icon} />}
             selectedIcon={<CustomIcon type="home" style={styles.icon} />}
             selected={tabBarIndex === 0}
@@ -64,8 +67,8 @@ class Index extends React.Component {
           <TabBar.Item
             icon={<CustomIcon type="classify" style={styles.icon} />}
             selectedIcon={<CustomIcon type="classify" style={styles.icon} />}
-            title="Koubei"
-            key="Koubei"
+            title={formatMessage({ id: 'categories' })}
+            key="Categories"
             // badge="new"
             selected={tabBarIndex === 1}
             onPress={() => {
@@ -82,8 +85,8 @@ class Index extends React.Component {
           <TabBar.Item
             icon={<CustomIcon type="cart" style={styles.icon} />}
             selectedIcon={<CustomIcon type="cart" style={styles.icon} />}
-            title="Friend"
-            key="Friend"
+            title={formatMessage({ id: 'cart' })}
+            key="Cart"
             // dot
             selected={tabBarIndex === 2}
             onPress={() => {
@@ -99,8 +102,8 @@ class Index extends React.Component {
           <TabBar.Item
             icon={<CustomIcon type="user" style={styles.icon} />}
             selectedIcon={<CustomIcon type="user" style={styles.icon} />}
-            title="My"
-            key="my"
+            title={formatMessage({ id: 'me' })}
+            key="Me"
             selected={tabBarIndex === 3}
             onPress={() => {
               this.setState({

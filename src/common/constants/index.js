@@ -16,6 +16,11 @@ export const USERCERTIFICATEINFO_NAMESPACE = 'userCertificateInfo';
 export const CART_NAMESPACE = 'cart';
 export const CARDQUERY_NAMESPACE = 'cardQuery';
 export const QUERYORDERLIST_NAMESPACE = 'queryOrderList';
+export const GETSQUARESINFO_NAMESPACE = 'getSquaresInfo';
+export const GETNEWESTINFO_NAMESPACE = 'getNewestInfo';
+export const BANNERSWIPER_NAMESPACE = 'bannerSwiper';
+export const ADVERSTINFO_NAMESPACE = 'adverstInfo';
+export const INITADVERSTCOMMON_NAMESPACE = 'initAdverstCommon';
 // namespace -end-
 
 export const DOMAIN = 'https://buyoo.vn';
@@ -37,7 +42,7 @@ export const FUNCARD_HELP_APPLY = `${DOMAIN}/html/aboutFunCard.html#Cach-thuc-da
 export const FUNCARD_HELP_STAGE = `${DOMAIN}/html/aboutFunCard.html#Huong-dan-mua-hang-bang-Buyoo-Fun-Card`; // 如何分期
 export const FUNCARD_HELP_REPAY = `${DOMAIN}/html/aboutFunCard.html#Thanh-toan-no-hang-thang-the-Buyoo-Fun-Card-nhu-the-nao`; // 如何还款
 
-export const ICON_SCRIPTURL = '//at.alicdn.com/t/font_892500_3zfkdbf9oh1.js';
+export const ICON_SCRIPTURL = '//at.alicdn.com/t/font_892500_afw6ylgqd4r.js';
 
 export const STUDENT_CARD_POSITIVE_IMAGE =
   'https://oss.buyoo.vn/usercollect/1/20180917153943_QB7.png'; // 学生证正面

@@ -2,15 +2,18 @@ import React from 'react';
 
 import { WINDOW_WIDTH } from '@/common/constants';
 
-const styles = StyleSheet.create({
+const styles = {
   nav1: {
+    display: 'flex',
     flexDirection: 'row',
     backgroundColor: '#fff',
     flexWrap: 'wrap',
   },
   nav1Item: {
-    width: WINDOW_WIDTH / 5,
+    display: 'flex',
+    flexDirection: 'column',
     alignItems: 'center',
+    width: WINDOW_WIDTH / 5,
     paddingTop: 10,
     paddingBottom: 10,
   },
@@ -24,7 +27,7 @@ const styles = StyleSheet.create({
     color: '#666',
     textAlign: 'center',
   },
-});
+};
 
 export default ({
   data,
@@ -35,18 +38,24 @@ export default ({
   i18n,
   ...restProps
 }) => (
-  <div style={[styles.nav1, style]} {...restProps}>
+  <div
+    style={{
+      ...styles.nav1,
+      ...style,
+    }}
+    {...restProps}
+  >
     {data.map(val => (
       <div
-        style={[
-          styles.nav1Item,
-          val.styleItem,
-          {
+        style={{
+          ...styles.nav1Item,
+          ...val.styleItem,
+          ...{
             width:
               WINDOW_WIDTH /
               (data.length > 5 ? data.length * 0.5 : data.length),
           },
-        ]}
+        }}
         key={val.id}
         onPress={() =>
           onPress({ linkUrl: val.linkUrl, navigation, isAuthUser, i18n })
@@ -54,10 +63,12 @@ export default ({
       >
         <img
           alt=""
-          style={[styles.nav1ItemImg, val.styleImg]}
-          src={{ uri: val.iconUrl }}
+          style={{ ...styles.nav1ItemImg, ...val.styleImg }}
+          src={val.iconUrl}
         />
-        <span style={[styles.nav1ItemText, val.styleText]}>{val.name}</span>
+        <div style={{ ...styles.nav1ItemText, ...val.styleText }}>
+          {val.name}
+        </div>
       </div>
     ))}
   </div>

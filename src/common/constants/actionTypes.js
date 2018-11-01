@@ -83,6 +83,12 @@ export const GET_NEWEST_INFO = defineAction(
   // appNamespace,
 );
 
+export const INIT_ADVERST_COMMON = defineAction(
+  'INIT_ADVERST_COMMON',
+  [REQUEST, SUCCESS, FAILURE, CLEAR],
+  // appNamespace,
+);
+
 export const NEW_COMPUTER = defineAction(
   'NEW_COMPUTER',
   [REQUEST, SUCCESS, FAILURE, CLEAR],
