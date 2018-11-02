@@ -21,6 +21,9 @@ export const GETNEWESTINFO_NAMESPACE = 'getNewestInfo';
 export const BANNERSWIPER_NAMESPACE = 'bannerSwiper';
 export const ADVERSTINFO_NAMESPACE = 'adverstInfo';
 export const INITADVERSTCOMMON_NAMESPACE = 'initAdverstCommon';
+export const GETMENU_NAMESPACE = 'getMenu';
+export const GETUSERINFOBYID_NAMESPACE = 'getUserInfoById';
+export const CERTIFIEDINFORMATION_NAMESPACE = 'certifiedInformation';
 // namespace -end-
 
 export const DOMAIN = 'https://buyoo.vn';
@@ -42,7 +45,7 @@ export const FUNCARD_HELP_APPLY = `${DOMAIN}/html/aboutFunCard.html#Cach-thuc-da
 export const FUNCARD_HELP_STAGE = `${DOMAIN}/html/aboutFunCard.html#Huong-dan-mua-hang-bang-Buyoo-Fun-Card`; // 如何分期
 export const FUNCARD_HELP_REPAY = `${DOMAIN}/html/aboutFunCard.html#Thanh-toan-no-hang-thang-the-Buyoo-Fun-Card-nhu-the-nao`; // 如何还款
 
-export const ICON_SCRIPTURL = '//at.alicdn.com/t/font_892500_afw6ylgqd4r.js';
+export const ICON_SCRIPTURL = '//at.alicdn.com/t/font_892500_uso8xr29fel.js';
 
 export const STUDENT_CARD_POSITIVE_IMAGE =
   'https://oss.buyoo.vn/usercollect/1/20180917153943_QB7.png'; // 学生证正面
@@ -88,9 +91,8 @@ export const WINDOW_WIDTH = document.documentElement.clientWidth;
 export const WINDOW_HEIGHT = document.documentElement.clientHeight;
 export const SIDEINTERVAL = WINDOW_WIDTH * 0.04;
 
-// export const APPBAR_HEIGHT = Platform.OS === 'ios' ? 44 : 44;
-// export const STATUSBAR_HEIGHT =
-//   Platform.OS === 'ios' ? 20 : StatusBar.currentHeight;
+export const APPBAR_HEIGHT = 0;
+export const STATUSBAR_HEIGHT = 0;
 
 export const FIRST_PAYMENT_RATE = [0, 0.1, 0.2, 0.3, 0.4, 0.5]; // 首付比例
 export const REPAYMENT_MONTH = [3, 6, 9, 12]; // 分期数

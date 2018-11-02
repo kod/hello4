@@ -2,9 +2,11 @@ import React from 'react';
 import { TabBar } from 'antd-mobile';
 import { formatMessage } from 'umi/locale';
 import { WINDOW_HEIGHT } from '@/common/constants';
-import Home from '@/pages/home/home';
+import Home from '@/pages/Home/Home';
+import Categories from '@/pages/Home/Categories';
+import Cart from '@/pages/Home/Cart';
+import Me from '@/pages/Home/Me';
 import CustomIcon from '@/components/CustomIcon';
-// import Loader from '@/components/Loader';
 
 class Index extends React.Component {
   constructor(props) {
@@ -13,14 +15,6 @@ class Index extends React.Component {
       tabBarIndex: 0,
       hidden: false,
     };
-  }
-
-  renderContent(pageText) {
-    return (
-      <div>
-        111
-      </div>
-    );
   }
 
   render() {
@@ -79,7 +73,7 @@ class Index extends React.Component {
             data-seed="logId1"
           >
             <div style={styles.wrap}>
-              {this.renderContent('Koubei')}
+              <Categories />
             </div>
           </TabBar.Item>
           <TabBar.Item
@@ -96,7 +90,7 @@ class Index extends React.Component {
             }}
           >
             <div style={styles.wrap}>
-              {this.renderContent('Koubei')}
+              <Cart />
             </div>
           </TabBar.Item>
           <TabBar.Item
@@ -111,9 +105,7 @@ class Index extends React.Component {
               });
             }}
           >
-            <div style={styles.wrap}>
-              {this.renderContent('Koubei')}
-            </div>
+            <div style={styles.wrap}>{<Me />}</div>
           </TabBar.Item>
         </TabBar>
       </div>

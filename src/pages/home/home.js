@@ -2,8 +2,6 @@ import React, { PureComponent } from 'react';
 import { connect } from 'dva';
 import { formatMessage, getLocale } from 'umi/locale';
 
-// import { GET_ADVERST_TOP_INFO } from '@/common/constants/actionTypes';
-// import { GETADVERSTTOPINFO_NAMESPACE } from '@/common/constants';
 import SwiperFlatList from '@/components/SwiperFlatList';
 import SearchHeader from '@/components/SearchHeader';
 import * as getAdverstTopInfoActionCreators from '@/common/actions/getAdverstTopInfo';
@@ -15,11 +13,10 @@ import * as initAdverstCommonActionCreators from '@/common/actions/initAdverstCo
 import { addEventListener } from '@/utils';
 import NavImg1 from '@/components/NavImg1';
 import SeparateBar from '@/components/SeparateBar';
-import { RED_COLOR, BORDER_COLOR } from '@/styles/variables';
+import { RED_COLOR } from '@/styles/variables';
 import { SIDEINTERVAL } from '@/common/constants';
 import ProductItem5 from '@/components/ProductItem5';
 import PhoneAdBaner from '@/components/PhoneAdBaner';
-import FloorTitle from '@/components/FloorTitle';
 import ProductItem4 from '@/components/ProductItem4';
 import ProductItem6 from '@/components/ProductItem6';
 

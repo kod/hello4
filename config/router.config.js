@@ -1,6 +1,6 @@
 export default [
   {
     path: '/',
-    component: './home/index',
+    component: './Home/Index',
   },
 ];

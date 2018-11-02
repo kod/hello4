@@ -35,7 +35,6 @@ export default ({
   onPress,
   navigation,
   isAuthUser,
-  i18n,
   ...restProps
 }) => (
   <div
@@ -58,7 +57,7 @@ export default ({
         }}
         key={val.id}
         onPress={() =>
-          onPress({ linkUrl: val.linkUrl, navigation, isAuthUser, i18n })
+          onPress({ linkUrl: val.linkUrl, navigation, isAuthUser })
         }
       >
         <img
