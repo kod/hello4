@@ -24,6 +24,8 @@ export const INITADVERSTCOMMON_NAMESPACE = 'initAdverstCommon';
 export const GETMENU_NAMESPACE = 'getMenu';
 export const GETUSERINFOBYID_NAMESPACE = 'getUserInfoById';
 export const CERTIFIEDINFORMATION_NAMESPACE = 'certifiedInformation';
+export const OTP_NAMESPACE = 'otp';
+export const REGISTER_NAMESPACE = 'register';
 // namespace -end-
 
 export const DOMAIN = 'https://buyoo.vn';
@@ -45,7 +47,7 @@ export const FUNCARD_HELP_APPLY = `${DOMAIN}/html/aboutFunCard.html#Cach-thuc-da
 export const FUNCARD_HELP_STAGE = `${DOMAIN}/html/aboutFunCard.html#Huong-dan-mua-hang-bang-Buyoo-Fun-Card`; // 如何分期
 export const FUNCARD_HELP_REPAY = `${DOMAIN}/html/aboutFunCard.html#Thanh-toan-no-hang-thang-the-Buyoo-Fun-Card-nhu-the-nao`; // 如何还款
 
-export const ICON_SCRIPTURL = '//at.alicdn.com/t/font_892500_uso8xr29fel.js';
+export const ICON_SCRIPTURL = '//at.alicdn.com/t/font_892500_0viqey7qtx2g.js';
 
 export const STUDENT_CARD_POSITIVE_IMAGE =
   'https://oss.buyoo.vn/usercollect/1/20180917153943_QB7.png'; // 学生证正面
@@ -69,8 +71,7 @@ export const CREDIT_PAYWAY = 1;
 export const INTERNET_BANK_PAYWAY = 2;
 export const OFFLINE_PAYWAY = 5;
 
-export const PHONE_EXPR = /^0?[0-9]{9}|0?[0-9]{10}$/; // 手机号
-// export const PHONE_EXPR = /^0?9[0-9]{8}|0?1[0-9]{9}$/; // 手机号
+export const PHONE_EXPR = /^(0?[0-9]{9}|0?[0-9]{10})$/; // 手机号
 export const EMAIL_EXPR = /^[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?$/; // 邮箱
 export const NAME_EXPR = /^.*\s.*$/; // 越南姓名
 export const IDENTIFICATION_EXPR = /^(\d{9}|\d{12})$/; // 越南身份证

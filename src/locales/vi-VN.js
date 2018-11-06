@@ -89,6 +89,7 @@ export default {
   helpingCenter: 'Trung tâm hỗ trợ',
   search: 'Tìm kiếm',
   phoneNumberAlreadyRegistered: 'Số điện thoại đã được đăng ký',
+  emailAlreadyRegistered: 'Email đã được đăng ký',
   actualName: 'Họ và tên',
   pleaseEnterYourActualName: 'Vui lòng nhập họ tên chính xác',
   idCard: 'Căn cước công dân',

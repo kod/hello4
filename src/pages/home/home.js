@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'dva';
 import { formatMessage, getLocale } from 'umi/locale';
+import router from 'umi/router';
 
 import SwiperFlatList from '@/components/SwiperFlatList';
 import SearchHeader from '@/components/SearchHeader';
@@ -10,7 +11,7 @@ import * as getNewestInfoActionCreators from '@/common/actions/getNewestInfo';
 import * as bannerSwiperActionCreators from '@/common/actions/bannerSwiper';
 import * as adverstInfoActionCreators from '@/common/actions/adverstInfo';
 import * as initAdverstCommonActionCreators from '@/common/actions/initAdverstCommon';
-import { addEventListener } from '@/utils';
+import { addEventListener, dispatchEvent } from '@/utils';
 import NavImg1 from '@/components/NavImg1';
 import SeparateBar from '@/components/SeparateBar';
 import { RED_COLOR } from '@/styles/variables';
@@ -29,6 +30,7 @@ import ProductItem6 from '@/components/ProductItem6';
       bannerSwiper,
       adverstInfo,
       initAdverstCommon,
+      login,
     } = state;
 
     return {
@@ -38,6 +40,7 @@ import ProductItem6 from '@/components/ProductItem6';
       initAdverstCommonItems: initAdverstCommon.items,
       bannerSwiper: bannerSwiper.one || {},
       adverstInfo: adverstInfo || {},
+      isAuthUser: !!login.user,
     };
   },
   {
@@ -50,14 +53,6 @@ import ProductItem6 from '@/components/ProductItem6';
   },
 )
 class Index extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      // data: ['1', '2', '3'],
-      // imgHeight: 176,
-    };
-  }
-
   componentDidMount() {
     const {
       getAdverstTopInfoFetch,
@@ -90,6 +85,17 @@ class Index extends PureComponent {
     });
   }
 
+  handleRightOnPress() {
+    const { isAuthUser } = this.props;
+    if (isAuthUser) {
+      dispatchEvent('TabBarTabBarIndex', {
+        index: 3,
+      });
+    } else {
+      router.push('/Login');
+    }
+  }
+
   render() {
     // const { imgHeight } = this.state;
     const {
@@ -114,7 +120,10 @@ class Index extends PureComponent {
 
     return (
       <div>
-        <SearchHeader text={formatMessage({ id: 'search' })} />
+        <SearchHeader
+          text={formatMessage({ id: 'search' })}
+          rightOnPress={() => this.handleRightOnPress()}
+        />
 
         <SwiperFlatList data={getAdverstTopInfoItems} />
 
@@ -140,13 +149,6 @@ class Index extends PureComponent {
         <SeparateBar />
 
         <ProductItem6 data={initAdverstCommonItems} />
-
-        {/* <FloorTitle
-          title={`- ${formatMessage({ id: 'featuredEvents' })} -`}
-          textMore={formatMessage({ id: 'more' })}
-          isMore={false}
-          style={{ borderBottomColor: BORDER_COLOR, borderBottomWidth: 1 }}
-        /> */}
 
         <ProductItem4 data={adverstInfoList} />
       </div>

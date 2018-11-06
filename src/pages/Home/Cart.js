@@ -108,7 +108,7 @@ class Index extends PureComponent {
     };
 
     return (
-      <div style={stylesX.headerRight} onPress={() => onPressHandle()}>
+      <div style={stylesX.headerRight} onClick={() => onPressHandle()}>
         <div style={stylesX.headerRightText}>
           {isEdit
             ? formatMessage({ id: 'save' })
@@ -192,7 +192,7 @@ class Index extends PureComponent {
                   <div
                     style={stylesX.rightItemSubItem}
                     key={val1.image}
-                    onPress={() => {
+                    onClick={() => {
                       // navigate(SCREENS.CateList, {
                       //   parent_id: val1.parentId,
                       //   sub_classfy_id: val1.id,
@@ -220,7 +220,7 @@ class Index extends PureComponent {
                   <div
                     style={stylesX.rightItemSubItem}
                     key={val1.imageUrl}
-                    onPress={() => {
+                    onClick={() => {
                       // navigate(SCREENS.CateList, {
                       //   parent_id: val1.parentId,
                       //   classfy_id: val1.id,
@@ -339,6 +339,7 @@ class Index extends PureComponent {
         position: 'relative',
         flexDirection: 'row',
         borderBottomColor: BORDER_COLOR,
+        borderBottomStyle: 'solid',
         borderBottomWidth: 1,
         zIndex: 100,
       },
@@ -428,7 +429,7 @@ class Index extends PureComponent {
           <div style={styles.overview}>
             <div
               style={styles.overviewSelectAll}
-              onPress={() => this.onPressSelectAllHandle()}
+              onClick={() => this.onPressSelectAllHandle()}
             >
               <div style={styles.overviewIconWrap}>
                 {isEdit ? (
@@ -458,7 +459,7 @@ class Index extends PureComponent {
             </div>
             <div
               style={styles.overviewSubmit}
-              onPress={() => this.onPressSubmitHandle()}
+              onClick={() => this.onPressSubmitHandle()}
             >
               <div
                 style={{

@@ -56,7 +56,7 @@ export default ({
         delayPressIn={0}
         style={{ ...styles.cellItem1, ...styleItem }}
         key={key}
-        onPress={() => val.func()}
+        onClick={() => val.func()}
       >
         {!!val.iconName && (
           <CustomIcon style={styles.cellItem1Icon} name={val.iconName} />

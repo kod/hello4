@@ -45,7 +45,7 @@ export default ({ data, style, ...restProps }) => (
         <div
           style={styles.item}
           key={key}
-          onPress={() => {
+          onClick={() => {
             // navigate(SCREENS.ProductDetail, { brandId: val.brandId, groupon });
           }}
         >

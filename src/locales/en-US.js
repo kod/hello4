@@ -89,6 +89,7 @@ export default {
   helpingCenter: 'Helping center',
   search: 'Search',
   phoneNumberAlreadyRegistered: 'Phone number is already registered',
+  emailAlreadyRegistered: 'Email is already registered',
   actualName: 'Actual name',
   pleaseEnterYourActualName: 'Please enter correct name',
   idCard: 'ID card',

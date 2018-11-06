@@ -28,7 +28,7 @@ export default {
 
   effects: {
     *[LOGIN.REQUEST](action, { apply, put }) {
-      const { msisdn, password = '', otp = '', screen = '' } = action.payload;
+      const { mail, password = '', otp = '', screen = '' } = action.payload;
       try {
         const Key = 'userKey';
         const provider = '3';
@@ -41,8 +41,8 @@ export default {
               value: provider,
             },
             {
-              key: 'msisdn',
-              value: msisdn,
+              key: 'mail',
+              value: mail,
             },
             {
               key: 'password',
@@ -63,7 +63,7 @@ export default {
         const response = yield apply(buyoo, buyoo.login, [
           {
             provider,
-            msisdn,
+            mail,
             password,
             otp,
             appid,

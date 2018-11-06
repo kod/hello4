@@ -69,7 +69,7 @@ export default ({ groupon = false, data, style, ...restProps }) => (
       <div
         style={styles.item}
         key={key}
-        onPress={() => {
+        onClick={() => {
           console.log(groupon);
           // navigate(SCREENS.ProductDetail, { brandId: val.brandId, groupon })
         }}

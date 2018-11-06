@@ -36,7 +36,7 @@ export default ({ groupon = false, data, style, ...restProps }) => (
         style={styles.touchable}
         key={key}
         backgroundColor="transparent"
-        onPress={() => {
+        onClick={() => {
           console.log(groupon);
           // navigate(SCREENS.ProductDetail, { brandId: val.brandId, groupon })
         }}

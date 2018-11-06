@@ -1,5 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
+import router from 'umi/router';
 
 import { SIDEINTERVAL, WINDOW_WIDTH } from '@/common/constants';
 import CustomIcon from '@/components/CustomIcon';
@@ -56,14 +57,11 @@ class BYHeader extends React.PureComponent {
   };
 
   handleOnPressBackButton = () => {
-    const {
-      onPressBackButton,
-      navigation: { goBack },
-    } = this.props;
+    const { onPressBackButton } = this.props;
     if (onPressBackButton) {
       onPressBackButton();
     } else {
-      goBack();
+      router.go(-1);
     }
   };
 
@@ -72,6 +70,7 @@ class BYHeader extends React.PureComponent {
   renderHeaderTitle = () => {
     const stylesX = {
       container: {
+        display: 'flex',
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
@@ -114,7 +113,7 @@ class BYHeader extends React.PureComponent {
       >
         <div
           style={styles.subContainer}
-          onPress={() => this.handleOnPressBackButton()}
+          onClick={() => this.handleOnPressBackButton()}
         >
           {showBackButton ? (
             <CustomIcon type="left" style={styles.headerBack} />

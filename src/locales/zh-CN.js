@@ -89,6 +89,7 @@ export default {
   helpingCenter: '帮助中心',
   search: '搜索',
   phoneNumberAlreadyRegistered: '手机号已注册',
+  emailAlreadyRegistered: '邮箱已注册',
   actualName: '姓名',
   pleaseEnterYourActualName: '请输入你的正确的姓名',
   idCard: '身份证',

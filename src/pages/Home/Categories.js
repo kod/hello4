@@ -137,7 +137,7 @@ class Index extends PureComponent {
                   <div
                     style={stylesX.rightItemSubItem}
                     key={val1.image}
-                    onPress={() => {
+                    onClick={() => {
                       // navigate(SCREENS.CateList, {
                       //   parent_id: val1.parentId,
                       //   sub_classfy_id: val1.id,
@@ -165,7 +165,7 @@ class Index extends PureComponent {
                   <div
                     style={stylesX.rightItemSubItem}
                     key={val1.imageUrl}
-                    onPress={() => {
+                    onClick={() => {
                       // navigate(SCREENS.CateList, {
                       //   parent_id: val1.parentId,
                       //   classfy_id: val1.id,

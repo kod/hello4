@@ -26,6 +26,7 @@ const styles = {
     position: 'relative',
     flexDirection: 'row',
     borderBottomColor: BORDER_COLOR,
+    borderBottomStyle: 'solid',
     borderBottomWidth: 1,
     zIndex: 100,
   },
@@ -117,7 +118,7 @@ class CartItem extends React.Component {
     };
 
     return (
-      <div style={stylesX.container} onPress={() => onPressHandle()}>
+      <div style={stylesX.container} onClick={() => onPressHandle()}>
         {selected ? (
           <CustomIcon type="roundcheckfill" style={stylesX.iconSelected} />
         ) : (
@@ -203,7 +204,7 @@ class CartItem extends React.Component {
       <div style={stylesX.container}>
         <div style={stylesX.number}>
           <div
-            onPress={() => onChangeTextHandle(parseInt(quantity, 10) - 1, id)}
+            onClick={() => onChangeTextHandle(parseInt(quantity, 10) - 1, id)}
           >
             <CustomIcon
               type="minus"
@@ -221,7 +222,7 @@ class CartItem extends React.Component {
             editable={false}
           />
           <div
-            onPress={() => onChangeTextHandle(parseInt(quantity, 10) + 1, id)}
+            onClick={() => onChangeTextHandle(parseInt(quantity, 10) + 1, id)}
           >
             <CustomIcon
               type="plus"
@@ -271,7 +272,7 @@ class CartItem extends React.Component {
             <div
               style={{ ...styles.item, ...styleItem }}
               key={details[products[val].detail].iconUrl}
-              onPress={() =>
+              onClick={() =>
                 navigate(SCREENS.ProductDetail, {
                   brandId: details[products[val].detail].brandId,
                 })

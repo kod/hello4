@@ -19,11 +19,11 @@ export function loginFetchFailure() {
   };
 }
 
-export function loginFetch({ msisdn, password, otp, screen }) {
+export function loginFetch({ mail, password, otp, screen }) {
   return {
     type: `${LOGIN_NAMESPACE}/${LOGIN.REQUEST}`,
     payload: {
-      msisdn,
+      mail,
       password,
       otp,
       screen,

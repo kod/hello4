@@ -44,15 +44,37 @@ const styles = {
     paddingLeft: WINDOW_HEIGHT * 0.02,
     paddingRight: WINDOW_HEIGHT * 0.02,
     color: '#999',
+    fontSize: 20,
+  },
+  headerLogin: {
+    height: 40,
+    lineHeight: '40px',
+    paddingLeft: WINDOW_HEIGHT * 0.02,
+    paddingRight: WINDOW_HEIGHT * 0.02,
+    color: '#999',
     fontSize: 14,
   },
+};
+
+const headerRightItem = (isLogin, rightPress) => {
+  if (isLogin) {
+    return (
+      <CustomIcon type="user1" style={styles.headerIcon} onClick={rightPress} />
+    );
+  }
+  return (
+    <span style={styles.headerLogin} onClick={rightPress}>
+      {formatMessage({ id: 'login' })}
+    </span>
+  );
 };
 
 export default ({
   text,
   headerRight,
+  isLogin = false,
   middleOnPress = () => {},
-  // leftOnPress = () => {},
+  rightOnPress = () => {},
 }) => (
   <div style={styles.headerContainer}>
     <div style={styles.headerMiddle} onClick={middleOnPress}>
@@ -61,11 +83,6 @@ export default ({
         <div style={styles.headerMiddleText}>{text}</div>
       </div>
     </div>
-    {headerRight ? (
-      { headerRight }
-    ) : (
-      // <CustomIcon type="qrcode" style={styles.headerIcon} onClick={leftOnPress} />
-      <span style={styles.headerIcon}>{formatMessage({ id: 'login' })}</span>
-    )}
+    {headerRight ? { headerRight } : headerRightItem(isLogin, rightOnPress)}
   </div>
 );

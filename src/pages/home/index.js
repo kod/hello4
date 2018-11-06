@@ -7,6 +7,7 @@ import Categories from '@/pages/Home/Categories';
 import Cart from '@/pages/Home/Cart';
 import Me from '@/pages/Home/Me';
 import CustomIcon from '@/components/CustomIcon';
+import { addEventListener, removeEventListener } from '@/utils';
 
 class Index extends React.Component {
   constructor(props) {
@@ -15,6 +16,21 @@ class Index extends React.Component {
       tabBarIndex: 0,
       hidden: false,
     };
+    this.tabBarTabBarIndexHandle = this.tabBarTabBarIndexHandle.bind(this);
+  }
+
+  componentDidMount() {
+    addEventListener('TabBarTabBarIndex', this.tabBarTabBarIndexHandle);
+  }
+
+  componentWillUnmount() {
+    removeEventListener('TabBarTabBarIndex', this.tabBarTabBarIndexHandle);
+  }
+
+  tabBarTabBarIndexHandle(ret) {
+    this.setState({
+      tabBarIndex: ret.index,
+    });
   }
 
   render() {

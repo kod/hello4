@@ -15,7 +15,6 @@ const defaultObject = {};
 export const getAuth = state => state.login;
 export const getAuthUser = state => state.login.user;
 export const getAuthUserFunid = state => state.login.user.result;
-export const getAuthUserMsisdn = state => state.login.user.msisdn;
 export const getLang = state => state.i18n.lang;
 export const getCart = state => state.cart;
 export const getCartItems = state => state.cart.items;

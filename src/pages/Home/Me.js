@@ -177,7 +177,7 @@ class Index extends PureComponent {
           <div
             style={styles.nav1Item}
             key={val.text}
-            onPress={() => this.handleOnPressOrderNav(key + 1)}
+            onClick={() => this.handleOnPressOrderNav(key + 1)}
           >
             <CustomIcon
               type={val.iconName}
@@ -323,7 +323,7 @@ class Index extends PureComponent {
         <div style={styles.header}>
           <div
             style={styles.headerIcon}
-            onPress={() => this.handleOnPressUser()}
+            onClick={() => this.handleOnPressUser()}
           >
             <img
               alt=""

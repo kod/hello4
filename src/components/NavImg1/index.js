@@ -56,7 +56,7 @@ export default ({
           },
         }}
         key={val.id}
-        onPress={() =>
+        onClick={() =>
           onPress({ linkUrl: val.linkUrl, navigation, isAuthUser })
         }
       >
