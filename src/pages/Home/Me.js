@@ -50,6 +50,7 @@ class Index extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {};
+    console.log(this.props);
   }
 
   componentDidMount() {
@@ -60,7 +61,9 @@ class Index extends PureComponent {
       getUserInfoByIdFetch,
     } = this.props;
 
+    console.log(authUser);
     if (authUser) {
+      console.log('cardQueryFetchcardQueryFetchcardQueryFetch');
       cardQueryFetch();
       userCertificateInfoFetch();
       getUserInfoByIdFetch();
@@ -207,12 +210,10 @@ class Index extends PureComponent {
     } = this.props;
 
     const headerIconImgSource =
-      authUser && certUser.headimage
-        ? { uri: certUser.headimage }
-        : aioru09230fPng;
+      authUser && certUser ? { uri: certUser.headimage } : aioru09230fPng;
 
     const username = authUser
-      ? certUser.username
+      ? certUser
       : formatMessage({ id: 'loginRegister' });
     const phone = authUser ? authUser.msisdn : '';
 
@@ -284,6 +285,8 @@ class Index extends PureComponent {
         paddingTop: STATUSBAR_HEIGHT,
       },
       headerIcon: {
+        display: 'flex',
+        flexDirection: 'column',
         alignItems: 'center',
         paddingTop: 40,
         paddingBottom: 30,

@@ -6,32 +6,30 @@ import BYHeader from '@/components/BYHeader';
 import NavSidesText from '@/components/NavSidesText';
 import Form from './Form';
 
-class Index extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     tabBarIndex: 0,
-  //     hidden: false,
-  //   };
-  // }
+// class Index extends React.Component {
+//   render() {
+//     return (
+//       <div>
+//         <BYHeader title={formatMessage({ id: 'register' })} />
+//         <Form />
+//         <NavSidesText
+//           textLeft={formatMessage({ id: 'alreadyHaveAnAccount' })}
+//           navigateLeft={() => router.go(-1)}
+//         />
+//         <div style={{ flex: 1 }} />
+//       </div>
+//     );
+//   }
+// }
 
-  cc() {
-    console.log(this);
-  }
-
-  render() {
-    return (
-      <div>
-        <BYHeader title={formatMessage({ id: 'register' })} />
-        <Form />
-        <NavSidesText
-          textLeft={formatMessage({ id: 'alreadyHaveAnAccount' })}
-          navigateLeft={() => router.go(-1)}
-        />
-        <div style={{ flex: 1 }} />
-      </div>
-    );
-  }
-}
-
-export default Index;
+export default () => (
+  <div>
+    <BYHeader title={formatMessage({ id: 'register' })} />
+    <Form />
+    <NavSidesText
+      textLeft={formatMessage({ id: 'alreadyHaveAnAccount' })}
+      navigateLeft={() => router.go(-1)}
+    />
+    <div style={{ flex: 1 }} />
+  </div>
+);

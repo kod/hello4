@@ -45,6 +45,7 @@ export default ({
         type={type}
         style={{ ...styles.componentInput, ...styleInput }}
         {...getFieldProps(name, {
+          initialValue: 'mmmmmmmm',
           rules: [
             {
               type: 'string',

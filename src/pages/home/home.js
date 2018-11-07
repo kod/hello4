@@ -97,7 +97,6 @@ class Index extends PureComponent {
   }
 
   render() {
-    // const { imgHeight } = this.state;
     const {
       getAdverstTopInfoItems,
       getSquaresInfoItems,
@@ -105,6 +104,7 @@ class Index extends PureComponent {
       bannerSwiper,
       adverstInfo,
       initAdverstCommonItems,
+      isAuthUser,
     } = this.props;
     const styles = {
       hotTittle: {
@@ -123,6 +123,7 @@ class Index extends PureComponent {
         <SearchHeader
           text={formatMessage({ id: 'search' })}
           rightOnPress={() => this.handleRightOnPress()}
+          isLogin={isAuthUser}
         />
 
         <SwiperFlatList data={getAdverstTopInfoItems} />

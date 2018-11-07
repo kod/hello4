@@ -18,7 +18,7 @@ const initState = {
   loading: false,
   loaded: false,
   refreshing: false,
-  certUser: {},
+  certUser: null,
 };
 
 export default {

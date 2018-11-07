@@ -5,29 +5,31 @@ import { connect } from 'dva';
 
 import BYHeader from '@/components/BYHeader';
 import { Modal } from 'antd-mobile';
-import { REGISTER_NAMESPACE, SCREENS } from '@/common/constants';
-import { REGISTER } from '@/common/constants/actionTypes';
-import Loader from '@/components/Loader';
-import { addEventListener, removeEventListener } from '@/utils';
 import Form from './Form';
+import { CHANGEPASSWORD_NAMESPACE, SCREENS } from '@/common/constants';
+import { CHANGE_PASSWORD } from '@/common/constants/actionTypes';
+import Loader from '@/components/Loader';
+import { removeEventListener, addEventListener } from '@/utils';
 
 @connect(
   state => {
     const { loading } = state;
     return {
-      registerLoading:
-        loading.effects[`${REGISTER_NAMESPACE}/${REGISTER.REQUEST}`],
+      changePasswordLoading:
+        loading.effects[
+          `${CHANGEPASSWORD_NAMESPACE}/${CHANGE_PASSWORD.REQUEST}`
+        ],
     };
   },
   {},
 )
 class Index extends React.Component {
   componentDidMount() {
-    addEventListener(SCREENS.RegisterStepTwo, this.addEventListenerHandle);
+    addEventListener(SCREENS.ForgotPasswordTwo, this.addEventListenerHandle);
   }
 
   componentWillUnmount() {
-    removeEventListener(SCREENS.RegisterStepTwo, this.addEventListenerHandle);
+    removeEventListener(SCREENS.ForgotPasswordTwo, this.addEventListenerHandle);
   }
 
   addEventListenerHandle = ret => {
@@ -43,13 +45,13 @@ class Index extends React.Component {
 
   render() {
     const {
-      registerLoading,
+      changePasswordLoading,
       location: { query = {} },
     } = this.props;
     return (
       <div>
-        <BYHeader title={formatMessage({ id: 'register' })} />
-        {registerLoading && <Loader />}
+        <BYHeader title={formatMessage({ id: 'forgetPassword' })} />
+        {changePasswordLoading && <Loader />}
         <Form query={query} />
       </div>
     );

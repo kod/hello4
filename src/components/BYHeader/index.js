@@ -36,6 +36,8 @@ const styles = {
     paddingLeft: WINDOW_WIDTH * 0.03,
     paddingRight: SIDEINTERVAL,
     fontSize: 15,
+    paddingTop: 10,
+    paddingBottom: 10,
     color: '#333',
   },
   headerLine: {
@@ -68,13 +70,14 @@ class BYHeader extends React.PureComponent {
   renderHeaderLeft = () => <div />;
 
   renderHeaderTitle = () => {
+    const { headerRight } = this.props;
     const stylesX = {
       container: {
         display: 'flex',
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        paddingRight: 40,
+        paddingRight: headerRight ? 0 : 40,
         flexDirection: 'row',
       },
       title: {

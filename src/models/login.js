@@ -102,7 +102,7 @@ export default {
         yield put(addError(typeof err === 'string' ? err : err.toString()));
       }
     },
-    *[LOGIN.SUCCESS](action, { call, put }) {
+    *[LOGIN.SUCCESS](action, { put }) {
       const { screen } = action.payload;
       try {
         yield put(userCertificateInfoFetch());
@@ -110,8 +110,7 @@ export default {
         yield put(cartRequest());
         yield put(cardQueryFetch());
 
-        yield call(dispatchEvent(screen));
-        // yield apply(DeviceEventEmitter, DeviceEventEmitter.emit, [screen]);
+        dispatchEvent(screen);
       } catch (err) {
         console.warn(err);
       }

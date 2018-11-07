@@ -8,7 +8,8 @@ import NavSidesText from '@/components/NavSidesText';
 import Form from './Form';
 import Loader from '@/components/Loader';
 import { LOGIN } from '@/common/constants/actionTypes';
-import { LOGIN_NAMESPACE } from '@/common/constants';
+import { LOGIN_NAMESPACE, SCREENS } from '@/common/constants';
+import { addEventListener, removeEventListener } from '@/utils';
 
 @connect(
   state => {
@@ -20,6 +21,19 @@ import { LOGIN_NAMESPACE } from '@/common/constants';
   {},
 )
 class Index extends React.Component {
+  componentDidMount() {
+    addEventListener(SCREENS.Login, this.addEventListenerHandle);
+  }
+
+  componentWillUnmount() {
+    removeEventListener(SCREENS.Login, this.addEventListenerHandle);
+  }
+
+  addEventListenerHandle = ret => {
+    console.log(ret);
+    router.go(-1);
+  };
+
   render() {
     const { loginLoading } = this.props;
     return (
@@ -33,6 +47,7 @@ class Index extends React.Component {
           textLeft={formatMessage({ id: 'register' })}
           textRight={formatMessage({ id: 'forgetPassword' })}
           navigateLeft={() => router.push('/RegisterStepOne')}
+          navigateRight={() => router.push('/ForgotPasswordOne')}
         />
         <div style={{ flex: 1 }} />
       </div>
