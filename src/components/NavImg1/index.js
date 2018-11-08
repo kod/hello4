@@ -56,9 +56,10 @@ export default ({
           },
         }}
         key={val.id}
-        onClick={() =>
-          onPress({ linkUrl: val.linkUrl, navigation, isAuthUser })
-        }
+        onClick={() => {
+          console.log('onClick');
+          // onPress({ linkUrl: val.linkUrl, navigation, isAuthUser })
+        }}
       >
         <img
           alt=""

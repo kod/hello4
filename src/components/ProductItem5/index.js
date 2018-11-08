@@ -8,6 +8,7 @@ import {
 } from '@/common/constants';
 import { RED_COLOR } from '@/styles/variables';
 import priceFormat from '@/utils/priceFormat';
+import router from 'umi/router';
 
 const itemIntervalWidth = SIDEINTERVAL;
 const itemWidth = parseInt(
@@ -82,8 +83,9 @@ export default ({ groupon = false, data, style, ...restProps }) => (
           style={styles.item}
           key={key}
           onClick={() => {
-            console.log(groupon);
-            // navigate(SCREENS.ProductDetail, { brandId: val.brandId, groupon });
+            router.push(
+              `/ProductDetail?brandId=${val.brandId}&groupon=${groupon}`,
+            );
           }}
         >
           <img

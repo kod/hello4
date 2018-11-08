@@ -27,4 +27,8 @@ export default [
     path: '/ForgotPasswordTwo',
     component: './ForgotPasswordTwo/Index',
   },
+  {
+    path: '/OrderWrite',
+    component: './OrderWrite/Index',
+  },
 ];

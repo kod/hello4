@@ -8,6 +8,7 @@ import Cart from '@/pages/Home/Cart';
 import Me from '@/pages/Home/Me';
 import CustomIcon from '@/components/CustomIcon';
 import { addEventListener, removeEventListener } from '@/utils';
+// import ModalRoot from '@/containers/ModalRoot';
 
 class Index extends React.Component {
   constructor(props) {
@@ -49,7 +50,7 @@ class Index extends React.Component {
 
     return (
       <div>
-        {/* <Loader /> */}
+        {/* <ModalRoot /> */}
         <TabBar
           unselectedTintColor="#949494"
           tintColor="#33A3F4"

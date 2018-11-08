@@ -26,3 +26,12 @@ export function dispatchEvent(type, params = {}) {
     }),
   );
 }
+
+export const addressJoin = item =>
+  item.address +
+  (item.division4thName ? ', ' : '') +
+  item.division4thName +
+  (item.division3rdName ? ', ' : '') +
+  item.division3rdName +
+  (item.division2ndName ? ', ' : '') +
+  item.division2ndName;

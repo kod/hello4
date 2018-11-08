@@ -1,7 +1,7 @@
 import {
   QUERY_ORDER_LIST,
   QUERY_ORDER_LIST_INDEX,
-} from '../constants/actionTypes';
+} from '@/common/constants/actionTypes';
 import { QUERYORDERLIST_NAMESPACE } from '@/common/constants';
 
 export function queryOrderListFetchSuccess(params) {

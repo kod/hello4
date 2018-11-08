@@ -1,4 +1,4 @@
-import { REGISTER } from '../constants/actionTypes';
+import { REGISTER } from '@/common/constants/actionTypes';
 import { REGISTER_NAMESPACE } from '@/common/constants';
 
 export function registerFetchSuccess() {

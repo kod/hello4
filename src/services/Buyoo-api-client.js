@@ -1,19 +1,19 @@
-import { DEBUG, IS_SHOW_LOG } from '../common/constants';
+import { API_DEBUG, IS_SHOW_LOG } from '../common/constants';
 
 const axios = require('axios');
 const qs = require('qs');
 
 const TIMEOUT = 30 * 1000;
 
-const BASE_URL = DEBUG ? 'http://buyoo.club' : '';
+const BASE_URL = API_DEBUG ? 'http://buyoo.club' : '';
 
-const PORT_80 = DEBUG ? ':8180' : 'https://uc.buyoo.vn';
-// const PORT_81 = DEBUG ? ':8181' : 'https://payment.buyoo.vn';
-const PORT_83 = DEBUG ? ':8183' : 'https://trade.buyoo.vn';
-const PORT_84 = DEBUG ? ':8184' : 'https://settlement.buyoo.vn';
-const PORT_85 = DEBUG ? ':8185' : 'https://commodity.buyoo.vn';
-const PORT_86 = DEBUG ? ':8186' : 'https://risk.buyoo.vn';
-const PORT_87 = DEBUG ? ':8187' : 'https://market.buyoo.vn';
+const PORT_80 = API_DEBUG ? ':8180' : 'https://uc.buyoo.vn';
+// const PORT_81 = API_DEBUG ? ':8181' : 'https://payment.buyoo.vn';
+const PORT_83 = API_DEBUG ? ':8183' : 'https://trade.buyoo.vn';
+const PORT_84 = API_DEBUG ? ':8184' : 'https://settlement.buyoo.vn';
+const PORT_85 = API_DEBUG ? ':8185' : 'https://commodity.buyoo.vn';
+const PORT_86 = API_DEBUG ? ':8186' : 'https://risk.buyoo.vn';
+const PORT_87 = API_DEBUG ? ':8187' : 'https://market.buyoo.vn';
 
 function callApi(url, options) {
   const finalUrl = /^https?:\/\//i.test(url) ? url : BASE_URL + url;

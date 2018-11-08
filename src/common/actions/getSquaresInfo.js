@@ -1,4 +1,4 @@
-import { GET_SQUARES_INFO } from '../constants/actionTypes';
+import { GET_SQUARES_INFO } from '@/common/constants/actionTypes';
 import { GETSQUARESINFO_NAMESPACE } from '@/common/constants';
 
 export function getSquaresInfoFetchSuccess({

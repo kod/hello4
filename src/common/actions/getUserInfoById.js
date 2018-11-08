@@ -1,4 +1,4 @@
-import { GET_USERINFO_BYID } from '../constants/actionTypes';
+import { GET_USERINFO_BYID } from '@/common/constants/actionTypes';
 import { GETUSERINFOBYID_NAMESPACE } from '@/common/constants';
 
 export function getUserInfoByIdFetchSuccess(item) {

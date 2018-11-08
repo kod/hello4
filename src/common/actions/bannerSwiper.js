@@ -1,4 +1,4 @@
-import { BANNER_SWIPER } from '../constants/actionTypes';
+import { BANNER_SWIPER } from '@/common/constants/actionTypes';
 import { BANNERSWIPER_NAMESPACE } from '@/common/constants';
 
 export function bannerSwiperFetchSuccess(swiperId, items) {

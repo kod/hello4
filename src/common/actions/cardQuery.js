@@ -1,4 +1,4 @@
-import { CARD_QUERY } from '../constants/actionTypes';
+import { CARD_QUERY } from '@/common/constants/actionTypes';
 import { CARDQUERY_NAMESPACE } from '@/common/constants';
 
 export function cardQueryFetchSuccess(item) {

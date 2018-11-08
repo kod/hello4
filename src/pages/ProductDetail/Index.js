@@ -1,12 +1,143 @@
 import React from 'react';
 import { formatMessage } from 'umi/locale';
+import { connect } from 'dva';
+import router from 'umi/router';
 
 import CustomIcon from '@/components/CustomIcon';
-import BYHeader from '@/components/BYHeader';
-import { SIDEINTERVAL, WINDOW_HEIGHT, WINDOW_WIDTH } from '@/common/constants';
-import { BORDER_COLOR, PRIMARY_COLOR, RED_COLOR } from '@/styles/variables';
+// import BYHeader from '@/components/BYHeader';
+import {
+  SIDEINTERVAL,
+  WINDOW_HEIGHT,
+  WINDOW_WIDTH,
+  SCREENS,
+} from '@/common/constants';
+import {
+  BORDER_COLOR,
+  PRIMARY_COLOR,
+  RED_COLOR,
+  FONT_COLOR_FIFTH,
+} from '@/styles/variables';
+import ProductDetailMain from './ProductDetailMain';
 
+import * as collectionActionCreators from '@/common/actions/collection';
+import ProductDetailComment from './ProductDetailComment';
+import { addEventListener, removeEventListener } from '@/utils';
+import { getIsCollection } from '@/common/selectors';
+
+@connect(
+  (state, props) => {
+    const { login, productDetailInfo } = state;
+    const {
+      location: { query = {} },
+    } = props;
+
+    return {
+      ...productDetailInfo.item,
+      query,
+      isAuthUser: !!login.user,
+      isCollection: getIsCollection(state, props),
+    };
+  },
+  {
+    ...collectionActionCreators,
+  },
+)
 class Index extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isShowProductDetailComment: false,
+    };
+  }
+
+  componentDidMount() {
+    const { isAuthUser, collectionFetch } = this.props;
+
+    if (isAuthUser) {
+      collectionFetch();
+    }
+    addEventListener(SCREENS.ProductDetail, this.addEventListenerHandle);
+  }
+
+  componentWillUnmount() {
+    removeEventListener(SCREENS.ProductDetail, this.addEventListenerHandle);
+  }
+
+  addEventListenerHandle = () => {
+    const { isShowProductDetailComment } = this.state;
+    this.setState({
+      isShowProductDetailComment: !isShowProductDetailComment,
+    });
+  };
+
+  handleOnPressAddCart = () => {
+    const { id, name, isAuthUser, cartAddRequest } = this.props;
+    if (!isAuthUser) return router.push('/Login');
+
+    if (!id) return false;
+
+    const param = [
+      {
+        quantity: 1,
+        subject: name,
+        itemId: id,
+      },
+    ];
+
+    return cartAddRequest(JSON.stringify(param));
+  };
+
+  handleOnPressBuy() {
+    const { numbers, isAuthUser } = this.props;
+    if (!isAuthUser) return router.push('/Login');
+    if (!(numbers > 0)) return false;
+    return router.push(`/OrderWrite?groupon=false`);
+    // return navigate(SCREENS.OrderWrite, {
+    //   groupon,
+    // });
+  }
+
+  handleToggleService() {
+    const { isAuthUser, funid, brandId, typeId, name } = this.props;
+    let linkStr = 'http://m.me/Buyoo.vn?ref=';
+    let funIdStr = '';
+    let typeID = 0;
+    if (undefined !== typeId) {
+      typeID = typeId;
+    }
+    if (isAuthUser) {
+      funIdStr = funid;
+    }
+    let shareName = '';
+    if (undefined !== name) {
+      shareName = name;
+    }
+    const param = {
+      brand_id: brandId,
+      fun_id: funIdStr,
+      type_id: typeID,
+      name: shareName,
+    };
+    linkStr += JSON.stringify(param);
+    console.log(linkStr);
+    window.location.href = linkStr;
+  }
+
+  handleToggleCollection() {
+    const {
+      collectionAddFetch,
+      collectionRemoveFetch,
+      isCollection,
+      isAuthUser,
+      brandId,
+    } = this.props;
+    if (!isAuthUser) return router.push(`/login`);
+    return isCollection
+      ? collectionRemoveFetch(brandId.toString())
+      : collectionAddFetch(brandId.toString());
+  }
+
   renderHeaderRight = () => {
     const styles = {
       container: {
@@ -27,21 +158,20 @@ class Index extends React.Component {
   };
 
   render() {
-    const { numbers, isCollection } = this.props;
+    const { isShowProductDetailComment } = this.state;
+    const { numbers, isCollection, query } = this.props;
 
     const styles = {
       container: {
+        position: 'relative',
         display: 'flex',
         flexDirection: 'column',
         height: WINDOW_HEIGHT,
       },
       main: {
-        flex: 10,
+        flex: 1,
+        overflowY: 'auto',
       },
-      // container: {
-      //   flex: 1,
-      //   position: 'relative',
-      // },
       operate: {
         display: 'flex',
         flexDirection: 'row',
@@ -69,7 +199,7 @@ class Index extends React.Component {
         color: PRIMARY_COLOR,
       },
       favoriteItem: {
-        fontSize: 18,
+        fontSize: 16,
       },
       favoriteIconActive: {
         color: PRIMARY_COLOR,
@@ -128,21 +258,59 @@ class Index extends React.Component {
       disable: {
         opacity: 0.5,
       },
+      back: {
+        position: 'absolute',
+        top: SIDEINTERVAL / 2,
+        left: SIDEINTERVAL / 2,
+        zIndex: 99,
+        backgroundColor: 'rgba(0,0,0,.4)',
+        height: '30px',
+        width: '30px',
+        borderRadius: '15px',
+      },
+      backIcon: {
+        height: '20px',
+        width: '20px',
+        marginTop: '5px',
+        marginBottom: '5px',
+        marginLeft: '5px',
+        marginRight: '5px',
+        fontSize: 20,
+        color: FONT_COLOR_FIFTH,
+      },
+      productDetailComment: {
+        positoin: 'absolute',
+        zIndex: 199,
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0,
+      },
     };
 
     return (
       <div style={styles.container}>
-        <BYHeader
+        {/* <BYHeader
           title={formatMessage({ id: 'details' })}
-          // headerTitle={this.renderheaderTitle()}
           headerRight={this.renderHeaderRight()}
-        />
-        <div style={styles.main}>1</div>
+        /> */}
+        <div style={styles.back} onClick={() => router.go(-1)}>
+          <CustomIcon type="left" style={styles.backIcon} />
+        </div>
+        {isShowProductDetailComment && (
+          <div style={styles.productDetailComment}>
+            <ProductDetailComment />
+          </div>
+        )}
+
+        <div style={styles.main}>
+          <ProductDetailMain query={query} />
+        </div>
         <div style={styles.operate}>
           <div style={styles.operateIcon}>
-            <div
+            {/* <div
               style={styles.operateIconItem}
-              onPress={() => this.handleToggleShare()}
+              onClick={() => this.handleToggleShare()}
             >
               <CustomIcon
                 type="share"
@@ -159,10 +327,10 @@ class Index extends React.Component {
               >
                 {formatMessage({ id: 'share' })}
               </div>
-            </div>
+            </div> */}
             <div
               style={styles.operateIconItem}
-              onPress={() => this.handleToggleCollection()}
+              onClick={() => this.handleToggleCollection()}
             >
               {isCollection ? (
                 <CustomIcon
@@ -186,7 +354,7 @@ class Index extends React.Component {
             </div>
             <div
               style={styles.operateIconItem}
-              onPress={() => this.handleToggleService()}
+              onClick={() => this.handleToggleService()}
             >
               <CustomIcon type="service" style={styles.operateIconItemIcon} />
 
@@ -197,7 +365,7 @@ class Index extends React.Component {
           </div>
           <div
             style={styles.operateLeft}
-            onPress={() => this.handleOnPressAddCart()}
+            onClick={() => this.handleOnPressAddCart()}
           >
             {formatMessage({ id: 'addToCart' })}
           </div>
@@ -206,7 +374,7 @@ class Index extends React.Component {
               ...styles.operateRight,
               ...(!(numbers > 0) && styles.disable),
             }}
-            onPress={() => this.handleOnPressBuy()}
+            onClick={() => this.handleOnPressBuy()}
           >
             {numbers > 0
               ? formatMessage({ id: 'buy' })

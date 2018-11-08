@@ -1,4 +1,4 @@
-import { OTP } from '../constants/actionTypes';
+import { OTP } from '@/common/constants/actionTypes';
 import { OTP_NAMESPACE } from '@/common/constants';
 
 export function otpFetchSuccess() {

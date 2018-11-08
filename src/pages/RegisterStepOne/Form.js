@@ -56,26 +56,6 @@ class LoginForm extends React.Component {
           type="text"
           required={false}
         /> */}
-
-        {/* <Field
-            name="inviterno"
-            component={InvitationInput}
-            style={{
-              flex: 1,
-              paddingLeft: SIDEINTERVAL,
-              paddingTop: 10,
-              paddingBottom: 10,
-              backgroundColor: '#E0E3EF',
-              marginBottom: 75,
-            }}
-            placeholder={`${i18n.pleaseEnterInvitationCode}`}
-            // placeholder={`${i18n.pleaseEnterInvitationCode}(${
-            //   i18n.selectFill
-            // })`}
-            placeholderTextColor="#6D7592"
-            editable={inviterno === ''}
-          /> */}
-
         <BYButton
           text={formatMessage({ id: 'nextStep' })}
           style={{ marginBottom: 20 }}
