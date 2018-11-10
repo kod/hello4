@@ -37,15 +37,18 @@ export default ({
   type = 'text',
   name,
   pattern,
+  value,
+  initialValue = '',
   required = true,
 }) => (
   <div style={{ ...styles.componentWrap, ...styleWrap }}>
     <div style={{ ...styles.component, ...style }}>
       <input
         type={type}
+        value={value}
         style={{ ...styles.componentInput, ...styleInput }}
         {...getFieldProps(name, {
-          initialValue: 'mmmmmmmm',
+          initialValue,
           rules: [
             {
               type: 'string',

@@ -120,7 +120,6 @@ class Index extends React.Component {
       name: shareName,
     };
     linkStr += JSON.stringify(param);
-    console.log(linkStr);
     window.location.href = linkStr;
   }
 

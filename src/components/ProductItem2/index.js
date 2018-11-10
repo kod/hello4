@@ -135,15 +135,15 @@ class ProductItem2 extends React.Component {
     } = this.props;
 
     return (
-      <div style={[styles.itemWrap, style]} {...restProps}>
+      <div style={{ ...styles.itemWrap, ...style }} {...restProps}>
         {data &&
           data.map((val, key) => (
             <div
-              style={[styles.item, styleItem]}
+              style={{ ...styles.item, ...styleItem }}
               key={key}
               onPress={() => this.onPressHandle(val)}
             >
-              <div style={[styles.itemLeft, styleItemLeft]}>
+              <div style={{ ...styles.itemLeft, ...styleItemLeft }}>
                 <img
                   alt=""
                   style={styles.itemImage}

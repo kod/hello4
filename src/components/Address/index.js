@@ -7,6 +7,7 @@ import CustomIcon from '../CustomIcon';
 
 const styles = {
   address: {
+    display: 'flex',
     flexDirection: 'row',
     paddingTop: 10,
     paddingBottom: 10,
@@ -19,9 +20,10 @@ const styles = {
   addressTips: {
     flex: 1,
     height: 40,
-    lineHeight: 40,
+    lineHeight: '40px',
   },
   addressTop: {
+    display: 'flex',
     flexDirection: 'row',
     marginBottom: 5,
   },
@@ -39,6 +41,7 @@ const styles = {
     color: '#333',
   },
   addressRight: {
+    display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
   },
@@ -71,12 +74,7 @@ export default ({ addressSelectedItem, onPress, i18n, ...restProps }) => (
     )}
     <div style={styles.addressRight}>
       <CustomIcon type="location" style={styles.addressPin} />
-
-      {/* <Ionicons name="ios-pin-outline" style={styles.addressPin} /> */}
-      {onPress && (
-        <CustomIcon type="right" style={styles.addressForward} />
-        // <Ionicons name="ios-arrow-forward" style={styles.addressForward} />
-      )}
+      {onPress && <CustomIcon type="right" style={styles.addressForward} />}
     </div>
   </div>
 );

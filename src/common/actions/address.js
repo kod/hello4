@@ -1,8 +1,6 @@
 import {
   ADDRESS,
-  ADDRESS_ADD,
   ADDRESS_REMOVE,
-  ADDRESS_MODIFY,
   ADDRESS_SELECT,
 } from '../constants/actionTypes';
 import { ADDRESS_NAMESPACE } from '@/common/constants';
@@ -40,31 +38,6 @@ export function addressClear() {
   };
 }
 
-export function addressAddSuccess(screen) {
-  return {
-    type: `${ADDRESS_NAMESPACE}/${ADDRESS_ADD.SUCCESS}`,
-    payload: {
-      screen,
-    },
-  };
-}
-
-export function addressAddFailure() {
-  return {
-    type: `${ADDRESS_NAMESPACE}/${ADDRESS_ADD.FAILURE}`,
-    payload: {},
-  };
-}
-
-export function addressAddFetch(params) {
-  return {
-    type: `${ADDRESS_NAMESPACE}/${ADDRESS_ADD.REQUEST}`,
-    payload: {
-      ...params,
-    },
-  };
-}
-
 export function addressRemoveSuccess() {
   return {
     type: `${ADDRESS_NAMESPACE}/${ADDRESS_REMOVE.SUCCESS}`,
@@ -84,38 +57,6 @@ export function addressRemoveFetch(adds) {
     type: `${ADDRESS_NAMESPACE}/${ADDRESS_REMOVE.REQUEST}`,
     payload: {
       adds,
-    },
-  };
-}
-
-export function addressModifyClear() {
-  return {
-    type: `${ADDRESS_NAMESPACE}/${ADDRESS_MODIFY.CLEAR}`,
-    payload: {},
-  };
-}
-
-export function addressModifySuccess() {
-  return {
-    type: `${ADDRESS_NAMESPACE}/${ADDRESS_MODIFY.SUCCESS}`,
-    payload: {},
-  };
-}
-
-export function addressModifyFailure() {
-  return {
-    type: `${ADDRESS_NAMESPACE}/${ADDRESS_MODIFY.FAILURE}`,
-    payload: {},
-  };
-}
-
-export function addressModifyFetch(item) {
-  return {
-    type: `${ADDRESS_NAMESPACE}/${ADDRESS_MODIFY.REQUEST}`,
-    payload: {
-      ...item,
-      addrid: item.id,
-      // isdefault: 'Y',
     },
   };
 }

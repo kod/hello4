@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'dva';
 import { formatMessage } from 'umi/locale';
+import router from 'umi/router';
+import qs from 'qs';
 
 import * as queryOrderListActionCreators from '@/common/actions/queryOrderList';
 import * as cardQueryActionCreators from '@/common/actions/cardQuery';
@@ -12,6 +14,7 @@ import {
   WINDOW_WIDTH,
   // SCREENS,
   STATUSBAR_HEIGHT,
+  SCREENS,
 } from '@/common/constants';
 import { PRIMARY_COLOR, RED_COLOR } from '@/styles/variables';
 import NavBar1 from '@/components/NavBar1';
@@ -49,8 +52,8 @@ const aioru09230fPng =
 class Index extends PureComponent {
   constructor(props) {
     super(props);
-    this.state = {};
-    console.log(this.props);
+    this.handleOnNavBar1Callback = this.handleOnNavBar1Callback.bind(this);
+    // this.didFocusAddListener = this.didFocusAddListener.bind(this)
   }
 
   componentDidMount() {
@@ -61,9 +64,7 @@ class Index extends PureComponent {
       getUserInfoByIdFetch,
     } = this.props;
 
-    console.log(authUser);
     if (authUser) {
-      console.log('cardQueryFetchcardQueryFetchcardQueryFetch');
       cardQueryFetch();
       userCertificateInfoFetch();
       getUserInfoByIdFetch();
@@ -93,20 +94,49 @@ class Index extends PureComponent {
     }
   }
 
+  handleOnNavBar1Callback(screens) {
+    const { authUser } = this.props;
+
+    switch (screens) {
+      case SCREENS.AboutAs:
+      case SCREENS.Settings:
+      case SCREENS.Invite:
+        router.push(`/${screens}`);
+        break;
+
+      default:
+        if (authUser) {
+          router.push(`/${screens}`);
+        } else {
+          router.push(`/${SCREENS.Login}`);
+        }
+        break;
+    }
+  }
+
   handleOnPressOrderNav(index) {
-    const {
-      // queryOrderListIndexFetch,
-      // navigation: { navigate },
-      authUser,
-    } = this.props;
-    console.log(index);
+    const { authUser } = this.props;
     // await queryOrderListIndexFetch({
     //   scrollTabIndex: index,
     // });
     if (authUser) {
-      // navigate(SCREENS.Order, { index });
+      router.push(
+        `/${SCREENS.Order}?${qs.stringify({
+          index,
+        })}`,
+      );
     } else {
-      // navigate(SCREENS.Login);
+      router.push(`/${SCREENS.Login}`);
+    }
+  }
+
+  handleOnPressUser() {
+    const { authUser } = this.props;
+
+    if (authUser) {
+      router.push(`/${SCREENS.Settings}`);
+    } else {
+      router.push(`/${SCREENS.Login}`);
     }
   }
 
@@ -200,14 +230,7 @@ class Index extends PureComponent {
   }
 
   render() {
-    const {
-      // navigation: { navigate },
-      certUser,
-      authUser,
-      getUserInfoByIdUserType,
-      // initPassword,
-      // status,
-    } = this.props;
+    const { certUser, authUser, getUserInfoByIdUserType } = this.props;
 
     const headerIconImgSource =
       authUser && certUser ? { uri: certUser.headimage } : aioru09230fPng;
@@ -225,40 +248,34 @@ class Index extends PureComponent {
       },
     ];
     const renderCellItem1List2 = [
-      // {
-      //   name: formatMessage({ id: 'cart' }),
-      //   navigate: /* SCREENS.Cart */ '',
-      //   func: () => this.handleOnNavBar1Callback(/* SCREENS.Cart */),
-      //   tips: '',
-      // },
       {
         name: formatMessage({ id: 'inviteFriends' }),
-        func: () => this.handleOnNavBar1Callback(/* SCREENS.Invite */),
+        func: () => this.handleOnNavBar1Callback(SCREENS.Invite),
         tips: '',
       },
       {
         name: formatMessage({ id: 'myCollection' }),
-        func: () => this.handleOnNavBar1Callback(/* SCREENS.MyCollection */),
+        func: () => this.handleOnNavBar1Callback(SCREENS.MyCollection),
         tips: '',
       },
       {
         name: formatMessage({ id: 'myCoupon' }),
-        func: () => this.handleOnNavBar1Callback(/* SCREENS.CouponMy */),
+        func: () => this.handleOnNavBar1Callback(SCREENS.CouponMy),
         tips: '',
       },
       {
         name: formatMessage({ id: 'securityCenter' }),
-        func: () => this.handleOnNavBar1Callback(/* SCREENS.SecurityCenter */),
+        func: () => this.handleOnNavBar1Callback(SCREENS.SecurityCenter),
         tips: '',
       },
       {
         name: formatMessage({ id: 'shippingAddress' }),
-        func: () => this.handleOnNavBar1Callback(/* SCREENS.Address */),
+        func: () => this.handleOnNavBar1Callback(SCREENS.Address),
         tips: '',
       },
       {
         name: formatMessage({ id: 'settings' }),
-        func: () => this.handleOnNavBar1Callback(/* SCREENS.Settings */),
+        func: () => this.handleOnNavBar1Callback(SCREENS.Settings),
         tips: '',
       },
     ];
@@ -266,8 +283,8 @@ class Index extends PureComponent {
     if (getUserInfoByIdUserType === 2) {
       renderCellItem1List2.unshift({
         name: formatMessage({ id: 'myBill' }),
-        navigate: /* SCREENS.BillMy */ '',
-        func: () => this.handleOnNavBar1Callback(/* SCREENS.BillMy */),
+        navigate: SCREENS.BillMy,
+        func: () => this.handleOnNavBar1Callback(SCREENS.BillMy),
         tips: '',
       });
     }

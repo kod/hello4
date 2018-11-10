@@ -36,6 +36,9 @@ export const ADDRESS_NAMESPACE = 'address';
 export const ORDERCREATE_NAMESPACE = 'orderCreate';
 export const COUPONSELECT_NAMESPACE = 'couponSelect';
 export const ORDERPAY_NAMESPACE = 'orderPay';
+export const CITYINFOS_NAMESPACE = 'cityInfos';
+export const USERADDADDR_NAMESPACE = 'userAddAddr';
+export const ADDRESSMODIFY_NAMESPACE = 'addressModify';
 // namespace -end-
 
 export const DOMAIN = 'https://buyoo.vn';
@@ -57,7 +60,7 @@ export const FUNCARD_HELP_APPLY = `${DOMAIN}/html/aboutFunCard.html#Cach-thuc-da
 export const FUNCARD_HELP_STAGE = `${DOMAIN}/html/aboutFunCard.html#Huong-dan-mua-hang-bang-Buyoo-Fun-Card`; // 如何分期
 export const FUNCARD_HELP_REPAY = `${DOMAIN}/html/aboutFunCard.html#Thanh-toan-no-hang-thang-the-Buyoo-Fun-Card-nhu-the-nao`; // 如何还款
 
-export const ICON_SCRIPTURL = '//at.alicdn.com/t/font_892500_82wp1p0xnor.js';
+export const ICON_SCRIPTURL = '//at.alicdn.com/t/font_892500_x59iug3vna.js';
 
 export const STUDENT_CARD_POSITIVE_IMAGE =
   'https://oss.buyoo.vn/usercollect/1/20180917153943_QB7.png'; // 学生证正面

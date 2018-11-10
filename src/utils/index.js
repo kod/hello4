@@ -35,3 +35,17 @@ export const addressJoin = item =>
   item.division3rdName +
   (item.division2ndName ? ', ' : '') +
   item.division2ndName;
+
+/* 防止重复提交
+- 需在当前组件state里添加submitfreeze字段(boolean)
+- 需在当前组件componentWillUnmount方法里添加clearTimeout(this.setTimeoutId);
+*/
+export const submitDuplicateFreeze = (submitfreeze, self, callback) => {
+  if (submitfreeze === false) {
+    callback();
+    self.setState({ submitfreeze: true });
+    self.setTimeoutId = setTimeout(() => {
+      self.setState({ submitfreeze: false });
+    }, 2000);
+  }
+};

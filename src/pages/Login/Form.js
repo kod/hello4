@@ -38,8 +38,6 @@ class LoginForm extends React.Component {
       } else {
         Toast.info(error[Object.keys(error)[0]].errors[0].message, 1);
       }
-      console.log(error);
-      console.log(value);
     });
   };
 

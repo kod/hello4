@@ -4,6 +4,7 @@ import { formatMessage } from 'umi/locale';
 import BYHeader from '@/components/BYHeader';
 import { getAddressSelectedItem } from '@/common/selectors';
 import router from 'umi/router';
+import qs from 'qs';
 
 import Loader from '@/components/Loader';
 import SeparateBar from '@/components/SeparateBar';
@@ -16,18 +17,15 @@ import * as orderCreateActionCreators from '@/common/actions/orderCreate';
 import * as couponSelectActionCreators from '@/common/actions/couponSelect';
 import * as modalActionCreators from '@/common/actions/modal';
 import { addEventListener, removeEventListener } from '@/utils';
-import { SCREENS, SIDEINTERVAL, MONETARY } from '@/common/constants';
+import {
+  SCREENS,
+  SIDEINTERVAL,
+  MONETARY,
+  WINDOW_HEIGHT,
+} from '@/common/constants';
 import { Modal } from 'antd-mobile';
 import priceFormat from '@/utils/priceFormat';
 import { BORDER_COLOR, RED_COLOR, PRIMARY_COLOR } from '@/styles/variables';
-
-const styles = {
-  container: {
-    flex: 1,
-    position: 'relative',
-    backgroundColor: '#fff',
-  },
-};
 
 @connect(
   (state, props) => {
@@ -159,27 +157,18 @@ class OrderWrite extends React.Component {
   };
 
   handleOnPressAddress() {
-    const {
-      isAuthUser,
-      navigation: { navigate },
-    } = this.props;
+    const { isAuthUser } = this.props;
 
     if (!isAuthUser) return router.push('/Login');
 
-    router.push('/Address');
-    return navigate(SCREENS.Address, { isSelect: true });
+    return router.push('/Address?isSelect=true');
+    // return navigate(SCREENS.Address, { isSelect: true });
   }
 
   handleOnPressCoupon() {
-    const {
-      isCart,
-      cartProducts,
-      isAuthUser,
-      detailItem,
-      navigation: { navigate },
-    } = this.props;
+    const { isCart, cartProducts, isAuthUser, detailItem } = this.props;
 
-    if (!isAuthUser) return navigate(SCREENS.Login);
+    if (!isAuthUser) return router.push('/Login');
 
     let products; // 请求judgeVoucher接口所需参数
 
@@ -194,9 +183,14 @@ class OrderWrite extends React.Component {
       ];
     }
 
-    return navigate(SCREENS.CouponSelect, {
-      products: JSON.stringify(products),
-    });
+    return router.push(
+      `/CouponSelect?${qs.stringify({
+        products: JSON.stringify(products),
+      })}`,
+    );
+    // navigate(SCREENS.CouponSelect, {
+    //   products: JSON.stringify(products),
+    // });
   }
 
   handleOnPressSubmit() {
@@ -207,11 +201,10 @@ class OrderWrite extends React.Component {
       cartAdverstInfo,
       isCart,
       orderCreateFetch,
-      navigation: { navigate },
       groupon,
     } = this.props;
 
-    if (!isAuthUser) return navigate(SCREENS.Login);
+    if (!isAuthUser) return router.push('/Login');
 
     const getGoodsdetail = () => {
       if (isCart) {
@@ -360,6 +353,7 @@ class OrderWrite extends React.Component {
   renderBottom() {
     const stylesX = {
       nav: {
+        display: 'flex',
         flexDirection: 'row',
         borderTopWidth: 1,
         borderTopColor: BORDER_COLOR,
@@ -373,12 +367,12 @@ class OrderWrite extends React.Component {
         paddingLeft: SIDEINTERVAL,
         fontWeight: '700',
         height: 50,
-        lineHeight: 50,
+        lineHeight: '50px',
       },
       navRight: {
         flex: 1,
         height: 50,
-        lineHeight: 50,
+        lineHeight: '50px',
         textAlign: 'center',
         color: '#fff',
         backgroundColor: PRIMARY_COLOR,
@@ -404,7 +398,6 @@ class OrderWrite extends React.Component {
 
   renderContent() {
     const {
-      // navigation: { navigate },
       isCart,
       cartAdverstInfo,
       addressSelectedItem,
@@ -416,6 +409,7 @@ class OrderWrite extends React.Component {
       addressLoaded,
       getUserInfoByIdLoaded,
     } = this.props;
+
     const adverstInfo = isCart
       ? cartAdverstInfo
       : [
@@ -431,16 +425,28 @@ class OrderWrite extends React.Component {
           },
         ];
 
+    const styles = {
+      container: {
+        display: 'flex',
+        flexDirection: 'column',
+        height: WINDOW_HEIGHT - 45,
+      },
+      main: {
+        flex: 1,
+        overflowX: 'auto',
+      },
+    };
+
     if (addressLoaded === false || getUserInfoByIdLoaded === false)
       return <Loader />;
 
     return (
       <div style={styles.container}>
         {(getUserInfoById.loading || orderCreate.loading) && <Loader />}
-        <div>
+        <div style={styles.main}>
           <Address
             addressSelectedItem={addressSelectedItem}
-            onPress={() => this.handleOnPressAddress()}
+            onClick={() => this.handleOnPressAddress()}
           />
           <SeparateBar />
           <ProductItem2
@@ -465,6 +471,13 @@ class OrderWrite extends React.Component {
   }
 
   render() {
+    const styles = {
+      container: {
+        flex: 1,
+        position: 'relative',
+        backgroundColor: '#fff',
+      },
+    };
     return (
       <div style={styles.container}>
         <BYHeader title={formatMessage({ id: 'fillOrder' })} />

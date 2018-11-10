@@ -31,4 +31,16 @@ export default [
     path: '/OrderWrite',
     component: './OrderWrite/Index',
   },
+  {
+    path: '/Address',
+    component: './Address/Index',
+  },
+  {
+    path: '/AddressModify',
+    component: './AddressModify/Index',
+  },
+  {
+    path: '/AddressAdd',
+    component: './AddressAdd/Index',
+  },
 ];

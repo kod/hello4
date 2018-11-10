@@ -78,9 +78,7 @@ class Index extends PureComponent {
     initAdverstCommonFetch(1, 3);
 
     // setLocale('zh-CN');
-    console.log(getLocale());
     addEventListener('tcy', ret => {
-      console.log('=============');
       console.log(ret);
     });
   }

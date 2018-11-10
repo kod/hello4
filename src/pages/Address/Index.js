@@ -1,86 +1,50 @@
+/* eslint-disable react/no-array-index-key */
 import React from 'react';
 import { connect } from 'dva';
-import { formatMessage } from 'umi/locale';
 import BYHeader from '@/components/BYHeader';
-import { getAddressSelectedItem } from '@/common/selectors';
-import router from 'umi/router';
+import { formatMessage } from 'umi/locale';
+import qs from 'qs';
 
 import Loader from '@/components/Loader';
-import SeparateBar from '@/components/SeparateBar';
-import Address from '@/components/Address';
-import ProductItem2 from '@/components/ProductItem2';
-import NavBar2 from '@/components/NavBar2';
+import router from 'umi/router';
+
 import * as addressActionCreators from '@/common/actions/address';
 import * as getUserInfoByIdActionCreators from '@/common/actions/getUserInfoById';
 import * as orderCreateActionCreators from '@/common/actions/orderCreate';
 import * as couponSelectActionCreators from '@/common/actions/couponSelect';
 import * as modalActionCreators from '@/common/actions/modal';
-import { addEventListener, removeEventListener } from '@/utils';
-import { SCREENS, SIDEINTERVAL, MONETARY } from '@/common/constants';
+import { PRIMARY_COLOR, BORDER_COLOR } from '@/styles/variables';
+import {
+  SIDEINTERVAL,
+  WINDOW_WIDTH,
+  SCREENS,
+  ADDRESS_NAMESPACE,
+  WINDOW_HEIGHT,
+} from '@/common/constants';
 import { Modal } from 'antd-mobile';
-import priceFormat from '@/utils/priceFormat';
-import { BORDER_COLOR, RED_COLOR, PRIMARY_COLOR } from '@/styles/variables';
+import EmptyState from '@/components/EmptyState';
 
-const styles = {
-  container: {
-    flex: 1,
-    position: 'relative',
-    backgroundColor: '#fff',
-  },
-};
+import CustomIcon from '@/components/CustomIcon';
+import { ADDRESS } from '@/common/constants/actionTypes';
+import MustLogin from '@/components/MustLogin';
+
+const afiasifsdhfsPng =
+  'https://oss.buyoo.vn/usercollect/1/20181109084840_7R8.png';
 
 @connect(
-  (state, props) => {
-    const {
-      address,
-      getUserInfoById,
-      // mergeGetDetail,
-      orderCreate,
-      productDetailInfo,
-      couponSelect,
-    } = state;
-    const {
-      location: { query = {} },
-    } = props;
-    const { groupon, mergeMasterInfo, isCart, products, adverstInfo } = query;
+  state => {
+    const { address, loading, login } = state;
+
     // const {
-    //   navigation: {
-    //     state: {
-    //       params: {
-    //         groupon,
-    //         mergeMasterInfo,
-    //         isCart,
-    //         products,
-    //         adverstInfo,
-    //         // adverstInfo,
-    //       },
-    //     },
-    //   },
+
     // } = props;
-    // const groupon = props.navigation.state.params.groupon;
-    // const mergeMasterInfo = props.navigation.state.params.mergeMasterInfo;
-    const detailItem = productDetailInfo.item;
-    // const isCart = props.navigation.state.params.isCart;
-    // const cartProducts = props.navigation.state.params.products;
-    // const cartAdverstInfo = props.navigation.state.params.adverstInfo;
+
     return {
-      couponSelectItem: couponSelect.item,
-      groupon,
-      mergeMasterInfo,
-      isCart,
-      cartProducts: products,
-      cartAdverstInfo: adverstInfo,
-      detailItem,
-      orderCreate,
-      addressSelectedItem: getAddressSelectedItem(state, props),
-      addressItems: address.items,
-      addressLoaded: address.loaded,
-      addressSelectedId: address.addressSelectedId,
-      funid: state.login.user ? state.login.user.result : null,
-      isAuthUser: !!state.login.user,
-      getUserInfoById,
-      getUserInfoByIdLoaded: getUserInfoById.loaded,
-      userType: getUserInfoById.item.userType || null,
+      authUser: login.user,
+      items: address.items,
+      loading: loading.effects[`${ADDRESS_NAMESPACE}/${ADDRESS.REQUEST}`],
+      loaded: address.loaded,
+      refreshing: address.refreshing,
     };
   },
   {
@@ -91,387 +55,287 @@ const styles = {
     ...modalActionCreators,
   },
 )
-class OrderWrite extends React.Component {
+class Address extends React.Component {
   componentDidMount() {
-    const { addressFetch, getUserInfoByIdFetch } = this.props;
-
-    addressFetch();
-    getUserInfoByIdFetch();
-
-    addEventListener(SCREENS.OrderWrite, this.addEventListenerHandle);
-
-    // this.orderWriteCallBack = DeviceEventEmitter.addListener(
-    //   SCREENS.OrderWrite,
-    //   ({ type = '', params = {} }) => {
-    //     let resetAction = null;
-    //     const { navigation } = this.props;
-    //     switch (type) {
-    //       case 'orderCreateSuccess':
-    //         resetAction = NavigationActions.reset({
-    //           index: 2,
-    //           actions: [
-    //             NavigationActions.navigate({ routeName: SCREENS.Index }),
-    //             NavigationActions.navigate({
-    //               routeName: SCREENS.OrderDetail,
-    //               params,
-    //             }),
-    //             NavigationActions.navigate({ routeName: SCREENS.Pay, params }),
-    //           ],
-    //         });
-
-    //         navigation.dispatch(resetAction);
-    //         break;
-
-    //       default:
-    //         break;
-    //     }
-    //   },
-    // );
-  }
-
-  componentWillUnmount() {
-    removeEventListener(SCREENS.OrderWrite, this.addEventListenerHandle);
-  }
-
-  addEventListenerHandle = ({ type = '', params = {} }) => {
-    // const resetAction = null;
-    // const { navigation } = this.props;
-    switch (type) {
-      case 'orderCreateSuccess':
-        router.push(`/Pay?params=${params}`);
-        // resetAction = NavigationActions.reset({
-        //   index: 2,
-        //   actions: [
-        //     NavigationActions.navigate({ routeName: SCREENS.Index }),
-        //     NavigationActions.navigate({
-        //       routeName: SCREENS.OrderDetail,
-        //       params,
-        //     }),
-        //     NavigationActions.navigate({ routeName: SCREENS.Pay, params }),
-        //   ],
-        // });
-        // navigation.dispatch(resetAction);
-        break;
-
-      default:
-        break;
+    const { authUser, addressFetch } = this.props;
+    if (authUser) {
+      addressFetch();
     }
-  };
-
-  handleOnPressAddress() {
-    const {
-      isAuthUser,
-      navigation: { navigate },
-    } = this.props;
-
-    if (!isAuthUser) return router.push('/Login');
-
-    router.push('/Address');
-    return navigate(SCREENS.Address, { isSelect: true });
   }
 
-  handleOnPressCoupon() {
-    const {
-      isCart,
-      cartProducts,
-      isAuthUser,
-      detailItem,
-      navigation: { navigate },
-    } = this.props;
+  editAddress = item =>
+    item.address +
+    (item.division4thName ? ', ' : '') +
+    item.division4thName +
+    (item.division3rdName ? ', ' : '') +
+    item.division3rdName +
+    (item.division2ndName ? ', ' : '') +
+    item.division2ndName;
 
-    if (!isAuthUser) return navigate(SCREENS.Login);
-
-    let products; // 请求judgeVoucher接口所需参数
-
-    if (isCart) {
-      products = cartProducts;
-    } else {
-      products = [
-        {
-          id: detailItem.id,
-          amount: detailItem.price * detailItem.productDetailNumber,
-        },
-      ];
-    }
-
-    return navigate(SCREENS.CouponSelect, {
-      products: JSON.stringify(products),
+  handleOnPressAddressDefault(item) {
+    const { addressModifyFetch } = this.props;
+    if (item.isdefault === 'Y') return false;
+    return addressModifyFetch({
+      ...item,
+      isdefault: 'Y',
     });
   }
 
-  handleOnPressSubmit() {
-    const {
-      addressSelectedId,
-      isAuthUser,
-      detailItem,
-      cartAdverstInfo,
-      isCart,
-      orderCreateFetch,
-      navigation: { navigate },
-      groupon,
-    } = this.props;
-
-    if (!isAuthUser) return navigate(SCREENS.Login);
-
-    const getGoodsdetail = () => {
-      if (isCart) {
-        return cartAdverstInfo.map(val => {
-          // val.number = val.number
-          val.rechargeaccount = '';
-          val.rechargecode = '';
-          val.repaymentamount = 0;
-          return {
-            number: val.number,
-            cartitemid: val.cartitemid,
-            productid: val.productid,
-            rechargeaccount: '',
-            rechargecode: '',
-            repaymentamount: 0,
-          };
-        });
-      }
-      return [
-        {
-          number: detailItem.productDetailNumber,
-          cartitemid: 0,
-          productid: detailItem.id,
-          rechargeaccount: '',
-          rechargecode: '',
-          repaymentamount: 0,
+  handleOnPressAddressDel(id) {
+    const { addressRemoveFetch } = this.props;
+    Modal.alert('', formatMessage({ id: 'confirmDelete' }), [
+      {
+        text: formatMessage({ id: 'cancel' }),
+      },
+      {
+        text: formatMessage({ id: 'confirm' }),
+        style: 'default',
+        onPress: () => {
+          addressRemoveFetch(id);
         },
-      ];
-    };
-
-    const getSubject = () => {
-      let result = '';
-      if (isCart) {
-        result = cartAdverstInfo.map(val => val.name).join('_');
-      } else {
-        result = detailItem.name;
-      }
-      return result;
-    };
-
-    const getCoupondetail = () => {
-      const {
-        couponSelectItem,
-        // couponSelectItem,
-      } = this.props;
-
-      if (!couponSelectItem.id) return '';
-      return JSON.stringify({
-        couponcard: couponSelectItem.cardno,
-        couponpassword: couponSelectItem.pincode,
-        couponbrandid: couponSelectItem.brandId,
-        coupontypeid: couponSelectItem.typeId,
-        couponproductid: couponSelectItem.productId,
-        coupontype: couponSelectItem.voucherType,
-        couponvalue: couponSelectItem.voucherValue,
-      });
-    };
-
-    const getObject = () => {
-      let result;
-      if (groupon) {
-        result = {
-          screen: SCREENS.OrderWrite,
-          ordertype: isCart ? '3' : '2',
-          addrid: addressSelectedId.toString(),
-          goodsdetail: '',
-          mergedetail: JSON.stringify({
-            mergeorderid: '',
-            mergemasterid: '',
-            mergename: '',
-            mergepersonnum: '',
-            mergeheadimage: '',
-            mergedesc: '',
-            mergeusername: '',
-          }),
-          coupondetail: getCoupondetail(),
-          subject: getSubject(isCart),
-        };
-      } else {
-        result = {
-          screen: SCREENS.OrderWrite,
-          ordertype: isCart ? '3' : '2',
-          addrid: addressSelectedId.toString(),
-          goodsdetail: JSON.stringify(getGoodsdetail()),
-          mergedetail: '',
-          coupondetail: getCoupondetail(),
-          subject: getSubject(isCart),
-        };
-      }
-      return result;
-    };
-
-    if (addressSelectedId === 0) {
-      Modal.alert('', formatMessage({ id: 'pleaseSelectourShippingAddress' }), [
-        { text: formatMessage({ id: 'confirm' }), style: 'default' },
-      ]);
-      return false;
-    }
-
-    return orderCreateFetch(getObject());
+      },
+    ]);
   }
 
-  calcMoney() {
+  handleOnPressItem(item) {
     const {
-      isCart,
-      cartAdverstInfo,
-      detailItem: { price, productDetailNumber },
-      couponSelectItem,
+      addressSelectFetch,
+      navigation: { goBack, state },
     } = this.props;
-    let money = 0;
-
-    if (isCart) {
-      // money
-      if (cartAdverstInfo.length === 1) {
-        money = cartAdverstInfo[0].price * cartAdverstInfo[0].number;
-      } else {
-        money = cartAdverstInfo.reduce((a, b, index) => {
-          let result;
-          if (index === 1) {
-            const aTotalMoney = a.price * a.number;
-            const bTotalMoney = b.price * b.number;
-            result = aTotalMoney + bTotalMoney;
-          } else {
-            const bTotalMoney = b.price * b.number;
-            result = a + bTotalMoney;
-          }
-          return result;
-        });
-      }
-    } else {
-      money = productDetailNumber * price;
+    const isSelect = state.params ? state.params.isSelect : false;
+    if (isSelect) {
+      addressSelectFetch(item.id);
+      goBack();
     }
-
-    if (couponSelectItem.id) {
-      if (couponSelectItem.voucherType === 0) {
-        // 打折券
-        money *= couponSelectItem.voucherValue * 0.01;
-      } else {
-        money -= couponSelectItem.voucherValue;
-      }
-    }
-
-    return priceFormat(money);
   }
 
-  renderBottom() {
-    const stylesX = {
-      nav: {
-        flexDirection: 'row',
-        borderTopWidth: 1,
-        borderTopColor: BORDER_COLOR,
+  renderMainContent() {
+    const {
+      items,
+      loading,
+      loaded,
+      refreshing,
+      location: { query = {} },
+    } = this.props;
+
+    const styles = {
+      container: {
+        height: WINDOW_HEIGHT - 45,
       },
-      navLeft: {
-        flex: 2,
+      containerMain: {
+        height: WINDOW_HEIGHT - 45 - 50,
+        overflowY: 'auto',
       },
-      navLeftBottom: {
-        color: RED_COLOR,
-        fontSize: 18,
-        paddingLeft: SIDEINTERVAL,
-        fontWeight: '700',
+      wrap: {},
+      add: {
         height: 50,
-        lineHeight: 50,
-      },
-      navRight: {
-        flex: 1,
-        height: 50,
-        lineHeight: 50,
+        lineHeight: '50px',
         textAlign: 'center',
-        color: '#fff',
         backgroundColor: PRIMARY_COLOR,
+        color: '#fff',
+      },
+      item: {
+        paddingLeft: SIDEINTERVAL,
+      },
+      main: {
+        marginTop: 25,
+        paddingBottom: 25,
+        borderBottomWidth: 1,
+        borderBottomColor: BORDER_COLOR,
+      },
+      namePhone: {
+        display: 'flex',
+        flexDirection: 'row',
+        marginBottom: 10,
+      },
+      name: {
+        color: '#333',
+        marginRight: 15,
+        fontWeight: '700',
+      },
+      phone: {
+        color: '#333',
+        fontWeight: '700',
+      },
+      address: {
+        color: '#999',
+        paddingRight: SIDEINTERVAL,
+        marginBottom: 20,
+        fontSize: 14,
+        lineHeight: `${14 + 14 * 0.618}px`,
+      },
+      operate: {
+        display: 'flex',
+        flexDirection: 'row',
+      },
+      operateLeft: {
+        display: 'flex',
+        flexDirection: 'row',
+        flex: 1,
+      },
+      selectIcon: {
+        fontSize: 18,
+        color: '#666',
+        marginRight: WINDOW_WIDTH * 0.02,
+        paddingTop: 1,
+      },
+      selectText: {
+        color: '#666',
+      },
+      operateRight: {
+        display: 'flex',
+        flexDirection: 'row',
+        paddingRight: SIDEINTERVAL,
+      },
+      editIcon: {
+        fontSize: 24,
+        color: '#666',
+        paddingLeft: WINDOW_WIDTH * 0.02,
+        paddingRight: WINDOW_WIDTH * 0.02,
+      },
+      trashIcon: {
+        fontSize: 24,
+        color: '#666',
+        paddingLeft: WINDOW_WIDTH * 0.02,
+        paddingRight: WINDOW_WIDTH * 0.02,
+      },
+      selected: {
+        color: PRIMARY_COLOR,
       },
     };
 
-    return (
-      <div style={stylesX.nav}>
-        <div style={stylesX.navLeft}>
-          <div style={stylesX.navLeftBottom}>
-            {`${this.calcMoney()} ${MONETARY}`}
-          </div>
-        </div>
-        <div
-          style={stylesX.navRight}
-          onPress={() => this.handleOnPressSubmit()}
-        >
-          {formatMessage({ id: 'submitOrder' })}
-        </div>
-      </div>
-    );
-  }
-
-  renderContent() {
-    const {
-      // navigation: { navigate },
-      isCart,
-      cartAdverstInfo,
-      addressSelectedItem,
-      detailItem,
-      getUserInfoById,
-      orderCreate,
-      couponSelectItem,
-      // openModal,
-      addressLoaded,
-      getUserInfoByIdLoaded,
-    } = this.props;
-    const adverstInfo = isCart
-      ? cartAdverstInfo
-      : [
-          {
-            brandId: detailItem.brandId,
-            propertiesIds: detailItem.propertiesIds,
-            imageUrl:
-              detailItem.imageUrls[0] && detailItem.imageUrls[0].imageUrl,
-            name: detailItem.name,
-            price: detailItem.price,
-            number: detailItem.productDetailNumber,
-            isOnPress: false,
-          },
-        ];
-
-    if (addressLoaded === false || getUserInfoByIdLoaded === false)
-      return <Loader />;
+    const isSelect = query.isSelect ? query.isSelect : false;
 
     return (
       <div style={styles.container}>
-        {(getUserInfoById.loading || orderCreate.loading) && <Loader />}
-        <div>
-          <Address
-            addressSelectedItem={addressSelectedItem}
-            onPress={() => this.handleOnPressAddress()}
+        {loaded === true && items.length === 0 ? (
+          <EmptyState
+            source={afiasifsdhfsPng}
+            text={formatMessage({ id: 'pleaseAddYourShippingAddress' })}
           />
-          <SeparateBar />
-          <ProductItem2
-            data={adverstInfo}
-            stylePricePrice={{ color: '#666' }}
-            isShowNumber
-          />
-          <SeparateBar />
-          <NavBar2
-            onPress={() => this.handleOnPressCoupon()}
-            valueLeft={formatMessage({ id: 'useVoucher' })}
-            valueMiddle={
-              couponSelectItem.id
-                ? couponSelectItem.voucherName
-                : formatMessage({ id: 'canNotUseVoucher' })
-            }
-          />
+        ) : (
+          <div style={styles.containerMain}>
+            {loading && !refreshing && <Loader />}
+            {items.map((val, key) => (
+              <div
+                style={styles.item}
+                key={key}
+                onPress={() => this.handleOnPressItem(val)}
+              >
+                <div style={styles.main}>
+                  <div style={styles.namePhone}>
+                    <div style={styles.name}>{val.username}</div>
+                    <div style={styles.phone}>{val.msisdn}</div>
+                  </div>
+                  <div style={styles.address}>{this.editAddress(val)}</div>
+                  {!isSelect && (
+                    <div style={styles.operate}>
+                      <div
+                        style={styles.operateLeft}
+                        backgroundColor="transparent"
+                        onPress={() => this.handleOnPressAddressDefault(val)}
+                      >
+                        <CustomIcon
+                          type="radioboxfill"
+                          style={{
+                            ...styles.selectIcon,
+                            ...(val.isdefault === 'Y' && styles.selected),
+                          }}
+                        />
+                        <div
+                          style={{
+                            ...styles.selectText,
+                            ...(val.isdefault === 'Y' && styles.selected),
+                          }}
+                        >
+                          {formatMessage({ id: 'defaultAddress' })}
+                        </div>
+                      </div>
+                      <div style={styles.operateRight}>
+                        <CustomIcon
+                          style={styles.editIcon}
+                          type="edit_light"
+                          onClick={
+                            () =>
+                              router.push(
+                                `/${SCREENS.AddressModify}?${qs.stringify({
+                                  id: val.id,
+                                  msisdn: val.msisdn,
+                                  address: val.address,
+                                  username: val.username,
+                                  isdefault: val.isdefault,
+                                  division2nd: val.division2nd,
+                                  division3rd: val.division3rd,
+                                  division4th: val.division4th,
+                                  division2ndName: val.division2ndName,
+                                  division3rdName: val.division3rdName,
+                                  division4thName: val.division4thName,
+                                })}`,
+                              )
+                            // navigate(SCREENS.AddressModify, {
+                            //   id: val.id,
+                            //   msisdn: val.msisdn,
+                            //   address: val.address,
+                            //   username: val.username,
+                            //   isdefault: val.isdefault,
+                            //   division2nd: val.division2nd,
+                            //   division3rd: val.division3rd,
+                            //   division4th: val.division4th,
+                            //   division2ndName: val.division2ndName,
+                            //   division3rdName: val.division3rdName,
+                            //   division4thName: val.division4thName,
+                            // })
+                          }
+                        />
+                        <CustomIcon
+                          type="delete_light"
+                          style={styles.trashIcon}
+                          onClick={() => this.handleOnPressAddressDel(val.id)}
+                        />
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+        <div
+          style={styles.add}
+          onClick={() => router.push(`/${SCREENS.AddressAdd}`)}
+        >
+          {formatMessage({ id: 'addAddress' })}
         </div>
-        {this.renderBottom()}
       </div>
     );
   }
 
   render() {
+    const { authUser } = this.props;
+
+    const styles = {
+      container: {
+        display: 'flex',
+        flexDirection: 'column',
+        height: WINDOW_HEIGHT,
+        backgroundColor: '#fff',
+      },
+    };
     return (
       <div style={styles.container}>
-        <BYHeader title={formatMessage({ id: 'fillOrder' })} />
-        {this.renderContent()}
+        <BYHeader />
+        <MustLogin
+          Modal={Modal}
+          visible={!authUser}
+          formatMessage={formatMessage}
+          router={router}
+          SCREENS={SCREENS}
+        />
+
+        {this.renderMainContent()}
       </div>
     );
   }
 }
 
-export default OrderWrite;
+export default Address;

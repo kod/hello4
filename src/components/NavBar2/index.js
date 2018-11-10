@@ -9,6 +9,7 @@ const styles = {
     paddingLeft: SIDEINTERVAL,
   },
   componentMain: {
+    display: 'flex',
     flexDirection: 'row',
     height: 45,
     alignItems: 'center',
@@ -50,21 +51,28 @@ export default ({
   isShowBorderBottom = false,
   ...restProps
 }) => (
-  <div delayPressIn={0} style={[styles.component, style]} {...restProps}>
+  <div
+    delayPressIn={0}
+    style={{ ...styles.component, ...style }}
+    {...restProps}
+  >
     <div
-      style={[
-        styles.componentMain,
-        isShowBorderBottom && styles.componentBorderBottom,
-      ]}
+      style={{
+        ...styles.componentMain,
+        ...(isShowBorderBottom && styles.componentBorderBottom),
+      }}
     >
       {isShowLeft && (
-        <div style={[styles.componentLeft, styleLeft]}>{valueLeft}</div>
+        <div style={{ ...styles.componentLeft, ...styleLeft }}>{valueLeft}</div>
       )}
       {isShowMiddle &&
         (componentMiddle ? (
           { componentMiddle }
         ) : (
-          <div style={[styles.componentMiddle, styleMiddle]} numberOfLines={1}>
+          <div
+            style={{ ...styles.componentMiddle, ...styleMiddle }}
+            numberOfLines={1}
+          >
             {valueMiddle}
           </div>
         ))}
@@ -74,10 +82,6 @@ export default ({
             type="right"
             style={{ ...styles.componentRight, ...styleRight }}
           />
-          // <Ionicons
-          //   name="ios-arrow-forward"
-          //   style={[styles.componentRight, styleRight]}
-          // />
         ))}
     </div>
   </div>

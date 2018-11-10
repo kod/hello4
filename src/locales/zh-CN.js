@@ -253,7 +253,7 @@ export default {
   evaluation: '评论',
   received: '已领取',
   haveFinished: '已领完',
-  addAddress: '提交地址',
+  addAddress: '添加地址',
   minimumRepaymentAmount: '还款金额不能小于MINIMUM_PAYMENT_AMOUNT',
   repaymentAmountEqualOrLess: '还款金额，请等于AAA或小于BBB',
   transactionComplete: '交易完成',
@@ -349,4 +349,5 @@ export default {
   balance: '余额',
   pleaseSelectFirstPaymentRate: '请选择首付比例',
   shareProduct2: '，保证正品，超便宜，快来买一件吧',
+  pleaseLogIn: '请登录',
 };

@@ -363,4 +363,5 @@ export default {
   pleaseSelectFirstPaymentRate: 'Vui lòng chọn Sử dụng trả trước',
   shareProduct2:
     ', bảo đảm hàng chính hãng, siêu rẻ, mau mau mua 1 món hàng thôi',
+  pleaseLogIn: 'Vui lòng đăng nhập',
 };

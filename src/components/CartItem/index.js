@@ -1,21 +1,18 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
 import { formatMessage } from 'umi/locale';
+import router from 'umi/router';
 
 import { BORDER_COLOR, RED_COLOR, PRIMARY_COLOR } from '@/styles/variables';
 import {
   WINDOW_WIDTH,
   SIDEINTERVAL,
-  SCREENS,
   CARMAXNUMBER,
   OSS_IMAGE_QUALITY,
   MONETARY,
 } from '@/common/constants';
 import CustomIcon from '@/components/CustomIcon';
 import priceFormat from '@/utils/priceFormat';
-
-// const itemIntervalWidth = SIDEINTERVAL;
-// const itemWidth = (WINDOW_WIDTH - itemIntervalWidth * 3) / 2;
 
 const styles = {
   itemWrap: {
@@ -260,7 +257,7 @@ class CartItem extends React.Component {
       itemLeft,
       itemRight,
       cartNumberRequest,
-      navigation: { navigate },
+      // navigation: { navigate },
       ...restProps
     } = this.props;
     const { items, products, details, isEdit } = data;
@@ -272,10 +269,16 @@ class CartItem extends React.Component {
             <div
               style={{ ...styles.item, ...styleItem }}
               key={details[products[val].detail].iconUrl}
-              onClick={() =>
-                navigate(SCREENS.ProductDetail, {
-                  brandId: details[products[val].detail].brandId,
-                })
+              onClick={
+                () =>
+                  router.push(
+                    `/ProductDetail?brandId=${
+                      details[products[val].detail].brandId
+                    }&groupon=false`,
+                  )
+                // navigate(SCREENS.ProductDetail, {
+                //   brandId: details[products[val].detail].brandId,
+                // })
               }
             >
               {/* {products[val].status !== 1 && (

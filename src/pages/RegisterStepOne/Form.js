@@ -21,13 +21,10 @@ class LoginForm extends React.Component {
       if (error === null) {
         // 提交
         const { mail } = value;
-        console.log(mail);
         router.push(`/RegisterStepTwo?mail=${mail}`);
       } else {
         Toast.info(error[Object.keys(error)[0]].errors[0].message, 1);
       }
-      console.log(error);
-      console.log(value);
     });
   };
 

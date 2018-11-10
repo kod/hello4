@@ -357,4 +357,5 @@ export default {
   balance: 'Balance',
   pleaseSelectFirstPaymentRate: 'Please select firstPayment rate',
   shareProduct2: ' on buyoo.vn, perfect quality, 100%% licensed, buy one',
+  pleaseLogIn: 'Please log in',
 };

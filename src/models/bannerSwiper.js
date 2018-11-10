@@ -59,7 +59,6 @@ export default {
         let signType = '';
         let encrypt = '';
 
-        console.log(swiperId);
         switch (swiperId) {
           case 'one':
             method = 'fun.adverst.query';

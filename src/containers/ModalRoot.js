@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'dva';
 import { MODAL_TYPES } from '../common/constants';
-// import AddressAddModal from './AddressAddModal';
+import AddressAddModal from './AddressAddModal';
 import ParamsSelectModal from './ParamsSelectModal';
 // import LoaderModal from './LoaderModal';
 // import ActionSheetModal from './ActionSheetModal';
@@ -12,7 +12,7 @@ import ParamsSelectModal from './ParamsSelectModal';
 // import StagingDetailsModal from './StagingDetailsModal';
 
 const MODAL_COMPONENTS = {
-  // [MODAL_TYPES.ADDRESSADD]: AddressAddModal,
+  [MODAL_TYPES.ADDRESSADD]: AddressAddModal,
   [MODAL_TYPES.PARAMSSELECT]: ParamsSelectModal,
   // [MODAL_TYPES.LOADER]: LoaderModal,
   // [MODAL_TYPES.ACTIONSHEET]: ActionSheetModal,

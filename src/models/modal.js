@@ -3,7 +3,7 @@ import { MODAL } from '@/common/constants/actionTypes';
 
 const initState = {
   modalType: null,
-  modalProps: {},
+  modalProps: null,
 };
 
 export default {
