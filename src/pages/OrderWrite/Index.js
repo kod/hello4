@@ -138,7 +138,7 @@ class OrderWrite extends React.Component {
           });
         } else {
           // 线上付款，转跳付款页面
-          router.push(`/Pay?${qs.stringify(params)}`);
+          router.push(`/${SCREENS.Pay}?${qs.stringify(params)}`);
         }
         break;
 

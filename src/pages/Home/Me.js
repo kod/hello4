@@ -243,7 +243,7 @@ class Index extends PureComponent {
     const renderCellItem1List1 = [
       {
         name: formatMessage({ id: 'orders' }),
-        func: () => this.handleOnNavBar1Callback(/* SCREENS.Order */),
+        func: () => this.handleOnNavBar1Callback(SCREENS.Order),
         tips: '',
       },
     ];

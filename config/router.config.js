@@ -51,4 +51,8 @@ export default [
     path: '/Pay',
     component: './Pay/Index',
   },
+  {
+    path: '/Order',
+    component: './Order/Index',
+  },
 ];

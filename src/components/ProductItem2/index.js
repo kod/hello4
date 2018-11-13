@@ -119,7 +119,6 @@ class ProductItem2 extends React.Component {
 
   render() {
     const {
-      i18n,
       data,
       style,
       styleItem,

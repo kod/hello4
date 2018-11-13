@@ -13,7 +13,6 @@ import * as queryOrderActionCreators from '@/common/actions/queryOrder';
 import * as modalActionCreators from '@/common/actions/modal';
 import {
   MONETARY,
-  MODAL_TYPES,
   SCREENS,
   INTERNET_BANK_PAYWAY,
   OFFLINE_PAYWAY,

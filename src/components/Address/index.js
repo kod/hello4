@@ -57,7 +57,7 @@ const styles = {
   },
 };
 
-export default ({ addressSelectedItem, onPress, i18n, ...restProps }) => (
+export default ({ addressSelectedItem, onPress, ...restProps }) => (
   <div style={styles.address} onPress={onPress} {...restProps}>
     {addressSelectedItem.id > 0 ? (
       <div style={styles.addressLeft}>
