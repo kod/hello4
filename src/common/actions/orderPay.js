@@ -1,4 +1,4 @@
-import { ORDER_PAY } from '../constants/actionTypes';
+import { ORDER_PAY } from '@/common/constants/actionTypes';
 import { ORDERPAY_NAMESPACE } from '@/common/constants';
 
 export function orderPayFetchSuccess({ ret, screen, payvalue, pop }) {

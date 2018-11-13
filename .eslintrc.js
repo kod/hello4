@@ -60,6 +60,9 @@ module.exports = {
         "jest": true,
         "jasmine": true,
     },
+    "ecmaFeatures": {
+        "jsx": true,
+    },
     "globals": {
         "APP_TYPE": true,
     },

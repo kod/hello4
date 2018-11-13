@@ -1,4 +1,4 @@
-import { ADDRESS_ADD } from '../constants/actionTypes';
+import { ADDRESS_ADD } from '@/common/constants/actionTypes';
 import { USERADDADDR_NAMESPACE } from '@/common/constants';
 
 export function addressAddSuccess(screen) {

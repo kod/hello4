@@ -140,7 +140,7 @@ export default {
         switch (screen) {
           case SCREENS.OrderWrite:
             dispatchEvent(screen, {
-              type: 'orderCreateSuccess',
+              method: 'orderCreateSuccess',
               params: {
                 tradeNo,
                 orderNo,

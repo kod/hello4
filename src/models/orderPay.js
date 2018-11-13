@@ -107,11 +107,7 @@ export default {
         if (payway === INTERNET_BANK_PAYWAY) {
           yield put(orderPayFetchFailure());
 
-          // NavigatorService.navigate(SCREENS.WebView, {
-          //   source: buyoo.orderPayInternetBank(options[0]),
-          //   from: SCREENS.Pay,
-          //   pop,
-          // });
+          console.log(buyoo.orderPayInternetBank(options[0]));
           window.location.href = buyoo.orderPayInternetBank(options[0]);
           return false;
         }
@@ -152,8 +148,14 @@ export default {
     *[ORDER_PAY.SUCCESS](action) {
       try {
         const { screen, pop, ret, payvalue } = action.payload;
-        yield 1;
-        dispatchEvent(screen, { ret, payvalue, pop });
+        yield dispatchEvent(screen, {
+          method: 'orderPay',
+          params: {
+            ret,
+            payvalue,
+            pop,
+          },
+        });
         // yield apply(DeviceEventEmitter, DeviceEventEmitter.emit, [
         //   screen,
         //   { ret, payvalue, pop },

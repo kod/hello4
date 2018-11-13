@@ -3,13 +3,8 @@ import React from 'react';
 import { WINDOW_WIDTH, WINDOW_HEIGHT } from '@/common/constants';
 
 const styles = {
-  // wrap: {
-  //   display: 'flex',
-  //   flex: 1,
-  //   justifyContent: 'center',
-  //   alignItems: 'center',
-  // },
   empty: {
+    height: '100%',
     display: 'flex',
     flexDirection: 'column',
     flex: 1,

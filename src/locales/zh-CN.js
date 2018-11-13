@@ -281,6 +281,7 @@ export default {
   fillOrder: '填写订单',
   pleaseSelectShippingAddress: '请选择您的收货地址',
   submitOrder: '提交订单',
+  submitOrderSuccessfully: '提交订单成功',
   paymentCollectingShop: '线下支付',
   onlinePay: '在线支付',
   remainTime1: '剩余: $days$天$hours$小时$minutes$分',
@@ -350,4 +351,5 @@ export default {
   pleaseSelectFirstPaymentRate: '请选择首付比例',
   shareProduct2: '，保证正品，超便宜，快来买一件吧',
   pleaseLogIn: '请登录',
+  paymentOnDelivery: '货到付款',
 };

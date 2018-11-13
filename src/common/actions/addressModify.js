@@ -1,4 +1,4 @@
-import { ADDRESS_MODIFY } from '../constants/actionTypes';
+import { ADDRESS_MODIFY } from '@/common/constants/actionTypes';
 import { ADDRESSMODIFY_NAMESPACE } from '@/common/constants';
 
 export function addressModifyClear() {

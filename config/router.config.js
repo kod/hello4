@@ -43,4 +43,12 @@ export default [
     path: '/AddressAdd',
     component: './AddressAdd/Index',
   },
+  {
+    path: '/CouponMy',
+    component: './CouponMy/Index',
+  },
+  {
+    path: '/Pay',
+    component: './Pay/Index',
+  },
 ];

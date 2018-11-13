@@ -2,7 +2,7 @@ import {
   ADDRESS,
   ADDRESS_REMOVE,
   ADDRESS_SELECT,
-} from '../constants/actionTypes';
+} from '@/common/constants/actionTypes';
 import { ADDRESS_NAMESPACE } from '@/common/constants';
 
 export function addressFetchSuccess(items, addressSelectedId) {

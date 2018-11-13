@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'dva';
 import { formatMessage } from 'umi/locale';
+import { Modal, ActionSheet } from 'antd-mobile';
 import BYHeader from '@/components/BYHeader';
 import { getAddressSelectedItem } from '@/common/selectors';
 import router from 'umi/router';
@@ -14,56 +15,62 @@ import NavBar2 from '@/components/NavBar2';
 import * as addressActionCreators from '@/common/actions/address';
 import * as getUserInfoByIdActionCreators from '@/common/actions/getUserInfoById';
 import * as orderCreateActionCreators from '@/common/actions/orderCreate';
+import * as orderPayActionCreators from '@/common/actions/orderPay';
 import * as couponSelectActionCreators from '@/common/actions/couponSelect';
 import * as modalActionCreators from '@/common/actions/modal';
-import { addEventListener, removeEventListener } from '@/utils';
+import {
+  addEventListener,
+  removeEventListener,
+  orderWritePayWayArray,
+  payWayToText,
+} from '@/utils';
 import {
   SCREENS,
   SIDEINTERVAL,
   MONETARY,
   WINDOW_HEIGHT,
+  ONLINE_PAYWAY,
+  ONDELIVERY_PAYWAY,
+  ORDERCREATE_NAMESPACE,
+  GETUSERINFOBYID_NAMESPACE,
+  ORDERPAY_NAMESPACE,
 } from '@/common/constants';
-import { Modal } from 'antd-mobile';
 import priceFormat from '@/utils/priceFormat';
 import { BORDER_COLOR, RED_COLOR, PRIMARY_COLOR } from '@/styles/variables';
+import MustLogin from '@/components/MustLogin';
+import {
+  ORDER_CREATE,
+  GET_USERINFO_BYID,
+  ORDER_PAY,
+} from '@/common/constants/actionTypes';
 
 @connect(
   (state, props) => {
     const {
       address,
       getUserInfoById,
-      // mergeGetDetail,
       orderCreate,
       productDetailInfo,
       couponSelect,
+      login,
+      loading,
     } = state;
     const {
       location: { query = {} },
     } = props;
-    const { groupon, mergeMasterInfo, isCart, products, adverstInfo } = query;
-    // const {
-    //   navigation: {
-    //     state: {
-    //       params: {
-    //         groupon,
-    //         mergeMasterInfo,
-    //         isCart,
-    //         products,
-    //         adverstInfo,
-    //         // adverstInfo,
-    //       },
-    //     },
-    //   },
-    // } = props;
-    // const groupon = props.navigation.state.params.groupon;
-    // const mergeMasterInfo = props.navigation.state.params.mergeMasterInfo;
+    const { mergeMasterInfo, isCart, products, adverstInfo } = query;
     const detailItem = productDetailInfo.item;
-    // const isCart = props.navigation.state.params.isCart;
-    // const cartProducts = props.navigation.state.params.products;
-    // const cartAdverstInfo = props.navigation.state.params.adverstInfo;
     return {
+      orderCreateLoading:
+        loading.effects[`${ORDERCREATE_NAMESPACE}/${ORDER_CREATE.REQUEST}`],
+      getUserInfoByIdLoading:
+        loading.effects[
+          `${GETUSERINFOBYID_NAMESPACE}/${GET_USERINFO_BYID.REQUEST}`
+        ],
+      orderpayLoading:
+        loading.effects[`${ORDERPAY_NAMESPACE}/${ORDER_PAY.REQUEST}`],
       couponSelectItem: couponSelect.item,
-      groupon,
+      groupon: false,
       mergeMasterInfo,
       isCart,
       cartProducts: products,
@@ -72,10 +79,9 @@ import { BORDER_COLOR, RED_COLOR, PRIMARY_COLOR } from '@/styles/variables';
       orderCreate,
       addressSelectedItem: getAddressSelectedItem(state, props),
       addressItems: address.items,
-      addressLoaded: address.loaded,
       addressSelectedId: address.addressSelectedId,
       funid: state.login.user ? state.login.user.result : null,
-      isAuthUser: !!state.login.user,
+      authUser: login.user,
       getUserInfoById,
       getUserInfoByIdLoaded: getUserInfoById.loaded,
       userType: getUserInfoById.item.userType || null,
@@ -85,11 +91,21 @@ import { BORDER_COLOR, RED_COLOR, PRIMARY_COLOR } from '@/styles/variables';
     ...addressActionCreators,
     ...getUserInfoByIdActionCreators,
     ...orderCreateActionCreators,
+    ...orderPayActionCreators,
     ...couponSelectActionCreators,
     ...modalActionCreators,
   },
 )
 class OrderWrite extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      payWayButtons: orderWritePayWayArray(),
+      payWayIndex: ONLINE_PAYWAY,
+    };
+  }
+
   componentDidMount() {
     const { addressFetch, getUserInfoByIdFetch } = this.props;
 
@@ -97,58 +113,47 @@ class OrderWrite extends React.Component {
     getUserInfoByIdFetch();
 
     addEventListener(SCREENS.OrderWrite, this.addEventListenerHandle);
-
-    // this.orderWriteCallBack = DeviceEventEmitter.addListener(
-    //   SCREENS.OrderWrite,
-    //   ({ type = '', params = {} }) => {
-    //     let resetAction = null;
-    //     const { navigation } = this.props;
-    //     switch (type) {
-    //       case 'orderCreateSuccess':
-    //         resetAction = NavigationActions.reset({
-    //           index: 2,
-    //           actions: [
-    //             NavigationActions.navigate({ routeName: SCREENS.Index }),
-    //             NavigationActions.navigate({
-    //               routeName: SCREENS.OrderDetail,
-    //               params,
-    //             }),
-    //             NavigationActions.navigate({ routeName: SCREENS.Pay, params }),
-    //           ],
-    //         });
-
-    //         navigation.dispatch(resetAction);
-    //         break;
-
-    //       default:
-    //         break;
-    //     }
-    //   },
-    // );
   }
 
   componentWillUnmount() {
     removeEventListener(SCREENS.OrderWrite, this.addEventListenerHandle);
   }
 
-  addEventListenerHandle = ({ type = '', params = {} }) => {
-    // const resetAction = null;
-    // const { navigation } = this.props;
-    switch (type) {
+  addEventListenerHandle = ({ method, params = {} }) => {
+    const { payWayIndex } = this.state;
+    const { orderPayFetch } = this.props;
+    switch (method) {
       case 'orderCreateSuccess':
-        router.push(`/Pay?params=${params}`);
-        // resetAction = NavigationActions.reset({
-        //   index: 2,
-        //   actions: [
-        //     NavigationActions.navigate({ routeName: SCREENS.Index }),
-        //     NavigationActions.navigate({
-        //       routeName: SCREENS.OrderDetail,
-        //       params,
-        //     }),
-        //     NavigationActions.navigate({ routeName: SCREENS.Pay, params }),
-        //   ],
-        // });
-        // navigation.dispatch(resetAction);
+        if (payWayIndex === ONDELIVERY_PAYWAY) {
+          // 货到付款，自动下单
+          orderPayFetch({
+            orderno: params.orderNo,
+            tradeno: params.tradeNo,
+            payway: ONDELIVERY_PAYWAY,
+            paypassword: '',
+            payrate: 100,
+            repaymentmonth: 0,
+            payvalue: 0,
+            screen: SCREENS.OrderWrite,
+          });
+        } else {
+          // 线上付款，转跳付款页面
+          router.push(`/Pay?${qs.stringify(params)}`);
+        }
+        break;
+
+      case 'orderPay':
+        console.log('orderPay');
+        // （货到付款）提交订单成功
+        Modal.alert('', formatMessage({ id: 'submitOrderSuccessfully' }), [
+          {
+            text: formatMessage({ id: 'confirm' }),
+            style: 'default',
+            onPress: () => {
+              // TODO 转跳到订单详情
+            },
+          },
+        ]);
         break;
 
       default:
@@ -156,19 +161,42 @@ class OrderWrite extends React.Component {
     }
   };
 
-  handleOnPressAddress() {
-    const { isAuthUser } = this.props;
+  showActionSheet = () => {
+    const { payWayButtons } = this.state;
 
-    if (!isAuthUser) return router.push('/Login');
+    const BUTTONS = [
+      ...payWayButtons.map(val => val.value),
+      formatMessage({ id: 'cancel' }),
+    ];
+    ActionSheet.showActionSheetWithOptions(
+      {
+        options: BUTTONS,
+        cancelButtonIndex: BUTTONS.length - 1,
+        message: formatMessage({ id: 'paymentMethod' }),
+        maskClosable: true,
+      },
+      buttonIndex => {
+        if (buttonIndex !== payWayButtons.length) {
+          this.setState({
+            payWayIndex: payWayButtons[buttonIndex].key,
+          });
+        }
+      },
+    );
+  };
+
+  handleOnPressAddress() {
+    const { authUser } = this.props;
+
+    if (!authUser) return router.push('/Login');
 
     return router.push('/Address?isSelect=true');
-    // return navigate(SCREENS.Address, { isSelect: true });
   }
 
   handleOnPressCoupon() {
-    const { isCart, cartProducts, isAuthUser, detailItem } = this.props;
+    const { isCart, cartProducts, authUser, detailItem } = this.props;
 
-    if (!isAuthUser) return router.push('/Login');
+    if (!authUser) return router.push('/Login');
 
     let products; // 请求judgeVoucher接口所需参数
 
@@ -188,15 +216,12 @@ class OrderWrite extends React.Component {
         products: JSON.stringify(products),
       })}`,
     );
-    // navigate(SCREENS.CouponSelect, {
-    //   products: JSON.stringify(products),
-    // });
   }
 
   handleOnPressSubmit() {
     const {
       addressSelectedId,
-      isAuthUser,
+      authUser,
       detailItem,
       cartAdverstInfo,
       isCart,
@@ -204,12 +229,11 @@ class OrderWrite extends React.Component {
       groupon,
     } = this.props;
 
-    if (!isAuthUser) return router.push('/Login');
+    if (!authUser) return router.push('/Login');
 
     const getGoodsdetail = () => {
       if (isCart) {
         return cartAdverstInfo.map(val => {
-          // val.number = val.number
           val.rechargeaccount = '';
           val.rechargecode = '';
           val.repaymentamount = 0;
@@ -388,7 +412,7 @@ class OrderWrite extends React.Component {
         </div>
         <div
           style={stylesX.navRight}
-          onPress={() => this.handleOnPressSubmit()}
+          onClick={() => this.handleOnPressSubmit()}
         >
           {formatMessage({ id: 'submitOrder' })}
         </div>
@@ -397,15 +421,17 @@ class OrderWrite extends React.Component {
   }
 
   renderContent() {
+    const { payWayIndex } = this.state;
+
     const {
       isCart,
       cartAdverstInfo,
       addressSelectedItem,
       detailItem,
-      getUserInfoById,
-      orderCreate,
+      getUserInfoByIdLoading,
+      orderpayLoading,
+      orderCreateLoading,
       couponSelectItem,
-      // openModal,
       addressLoaded,
       getUserInfoByIdLoaded,
     } = this.props;
@@ -442,7 +468,9 @@ class OrderWrite extends React.Component {
 
     return (
       <div style={styles.container}>
-        {(getUserInfoById.loading || orderCreate.loading) && <Loader />}
+        {(getUserInfoByIdLoading || orderCreateLoading || orderpayLoading) && (
+          <Loader />
+        )}
         <div style={styles.main}>
           <Address
             addressSelectedItem={addressSelectedItem}
@@ -455,6 +483,11 @@ class OrderWrite extends React.Component {
             isShowNumber
           />
           <SeparateBar />
+          <NavBar2
+            onClick={() => this.showActionSheet()}
+            valueLeft={formatMessage({ id: 'paymentMethod' })}
+            valueMiddle={payWayToText(payWayIndex)}
+          />
           <NavBar2
             onPress={() => this.handleOnPressCoupon()}
             valueLeft={formatMessage({ id: 'useVoucher' })}
@@ -471,6 +504,7 @@ class OrderWrite extends React.Component {
   }
 
   render() {
+    const { authUser } = this.props;
     const styles = {
       container: {
         flex: 1,
@@ -481,6 +515,13 @@ class OrderWrite extends React.Component {
     return (
       <div style={styles.container}>
         <BYHeader title={formatMessage({ id: 'fillOrder' })} />
+        <MustLogin
+          Modal={Modal}
+          visible={!authUser}
+          formatMessage={formatMessage}
+          router={router}
+          SCREENS={SCREENS}
+        />
         {this.renderContent()}
       </div>
     );

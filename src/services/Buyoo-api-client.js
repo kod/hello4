@@ -309,7 +309,7 @@ class ReactStore {
     return this.requestUrl(`${PORT_83}/fun/trade/orderCancel`, options);
   }
 
-  static orderPayInternetBank(o) {
+  orderPayInternetBank(o) {
     const options = o;
     if (!options) {
       return Promise.reject(new Error('fields required'));
@@ -326,7 +326,7 @@ class ReactStore {
     return `${BASE_URL}${PORT_83}/fun/trade/order/pay?${queryString}`;
   }
 
-  static payNormalOrderInternetBank(o) {
+  payNormalOrderInternetBank(o) {
     const options = o;
     if (!options) {
       return Promise.reject(new Error('fields required'));

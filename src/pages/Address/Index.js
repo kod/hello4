@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'dva';
 import BYHeader from '@/components/BYHeader';
 import { formatMessage } from 'umi/locale';
-import qs from 'qs';
+// import qs from 'qs';
 
 import Loader from '@/components/Loader';
 import router from 'umi/router';
@@ -24,7 +24,7 @@ import {
 import { Modal } from 'antd-mobile';
 import EmptyState from '@/components/EmptyState';
 
-import CustomIcon from '@/components/CustomIcon';
+// import CustomIcon from '@/components/CustomIcon';
 import { ADDRESS } from '@/common/constants/actionTypes';
 import MustLogin from '@/components/MustLogin';
 
@@ -98,15 +98,11 @@ class Address extends React.Component {
   }
 
   handleOnPressItem(item) {
-    const {
-      addressSelectFetch,
-      navigation: { goBack, state },
-    } = this.props;
-    const isSelect = state.params ? state.params.isSelect : false;
-    if (isSelect) {
-      addressSelectFetch(item.id);
-      goBack();
-    }
+    const { addressSelectFetch } = this.props;
+    console.log('item.iditem.iditem.iditem.id');
+    console.log(item.id);
+    addressSelectFetch(item.id);
+    router.go(-1);
   }
 
   renderMainContent() {
@@ -115,7 +111,7 @@ class Address extends React.Component {
       loading,
       loaded,
       refreshing,
-      location: { query = {} },
+      // location: { query = {} },
     } = this.props;
 
     const styles = {
@@ -204,7 +200,7 @@ class Address extends React.Component {
       },
     };
 
-    const isSelect = query.isSelect ? query.isSelect : false;
+    // const isSelect = query.isSelect ? query.isSelect : false;
 
     return (
       <div style={styles.container}>
@@ -220,7 +216,7 @@ class Address extends React.Component {
               <div
                 style={styles.item}
                 key={key}
-                onPress={() => this.handleOnPressItem(val)}
+                onClick={() => this.handleOnPressItem(val)}
               >
                 <div style={styles.main}>
                   <div style={styles.namePhone}>
@@ -228,12 +224,12 @@ class Address extends React.Component {
                     <div style={styles.phone}>{val.msisdn}</div>
                   </div>
                   <div style={styles.address}>{this.editAddress(val)}</div>
-                  {!isSelect && (
+                  {/* {!isSelect && (
                     <div style={styles.operate}>
                       <div
                         style={styles.operateLeft}
                         backgroundColor="transparent"
-                        onPress={() => this.handleOnPressAddressDefault(val)}
+                        onClick={() => this.handleOnPressAddressDefault(val)}
                       >
                         <CustomIcon
                           type="radioboxfill"
@@ -294,7 +290,7 @@ class Address extends React.Component {
                         />
                       </div>
                     </div>
-                  )}
+                  )} */}
                 </div>
               </div>
             ))}

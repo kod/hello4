@@ -4,7 +4,7 @@ import {
   PRODUCT_DETAIL_SELECT,
   PRODUCT_DETAIL_NUMBER,
   PRODUCT_DETAIL_OPACITY,
-} from '../constants/actionTypes';
+} from '@/common/constants/actionTypes';
 import { PRODUCTDETAILINFO_NAMESPACE } from '@/common/constants';
 
 export function productDetailInfoFetchSuccess({

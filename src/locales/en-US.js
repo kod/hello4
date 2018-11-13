@@ -287,6 +287,7 @@ export default {
   fillOrder: 'Fill Order',
   pleaseSelectShippingAddress: 'Please select your shipping address',
   submitOrder: 'Submit Order',
+  submitOrderSuccessfully: 'Submit order successfully',
   paymentCollectingShop: 'Payment at the collecting shop',
   onlinePay: 'Online pay',
   remainTime1: 'remains: $days$days $hours$:$minutes$',
@@ -358,4 +359,5 @@ export default {
   pleaseSelectFirstPaymentRate: 'Please select firstPayment rate',
   shareProduct2: ' on buyoo.vn, perfect quality, 100%% licensed, buy one',
   pleaseLogIn: 'Please log in',
+  paymentOnDelivery: 'Payment on delivery',
 };

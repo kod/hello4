@@ -39,6 +39,11 @@ export const ORDERPAY_NAMESPACE = 'orderPay';
 export const CITYINFOS_NAMESPACE = 'cityInfos';
 export const USERADDADDR_NAMESPACE = 'userAddAddr';
 export const ADDRESSMODIFY_NAMESPACE = 'addressModify';
+export const GETVOUCHERLIST_NAMESPACE = 'getVoucherList';
+export const GETVOUCHER_NAMESPACE = 'getVoucher';
+export const RECEIVEVOUCHER_NAMESPACE = 'receiveVoucher';
+export const QUERYORDER_NAMESPACE = 'queryOrder';
+export const RETURNMONEY_NAMESPACE = 'returnMoney';
 // namespace -end-
 
 export const DOMAIN = 'https://buyoo.vn';
@@ -83,6 +88,8 @@ export const HANDHELD_IDENTITY_CARD_IMAGE =
 export const CREDIT_PAYWAY = 1;
 export const INTERNET_BANK_PAYWAY = 2;
 export const OFFLINE_PAYWAY = 5;
+export const ONDELIVERY_PAYWAY = 6;
+export const ONLINE_PAYWAY = 9;
 
 export const PHONE_EXPR = /^(0?[0-9]{9}|0?[0-9]{10})$/; // 手机号
 export const EMAIL_EXPR = /^[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?$/; // 邮箱

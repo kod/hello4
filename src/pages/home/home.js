@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'dva';
-import { formatMessage, getLocale } from 'umi/locale';
+import { formatMessage } from 'umi/locale';
 import router from 'umi/router';
 
 import SwiperFlatList from '@/components/SwiperFlatList';

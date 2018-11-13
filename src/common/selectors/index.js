@@ -185,6 +185,9 @@ export const makegetSchoolName = () =>
 export const getAddressSelectedItem = createSelector(
   [getAddressItems, getAddressSelectedId],
   (addressItems, addressSelectedId) => {
+    console.log('getAddressSelectedItemgetAddressSelectedItem');
+    console.log(addressItems);
+    console.log(addressSelectedId);
     if (addressItems.length === 0 || addressSelectedId === 0)
       return defaultObject;
     for (let index = 0; index < addressItems.length; index += 1) {

@@ -1,4 +1,4 @@
-import { ORDER_CREATE } from '../constants/actionTypes';
+import { ORDER_CREATE } from '@/common/constants/actionTypes';
 import { ORDERCREATE_NAMESPACE } from '@/common/constants';
 
 export function orderCreateFetchSuccess(params) {

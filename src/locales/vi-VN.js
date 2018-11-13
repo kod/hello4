@@ -291,6 +291,7 @@ export default {
   fillOrder: 'Nhập đơn hàng',
   pleaseSelectShippingAddress: 'Vui lòng chọn địa chỉ nhận hàng của bạn',
   submitOrder: 'Gửi đơn hàng',
+  submitOrderSuccessfully: 'Gửi đơn đặt hàng thành công',
   paymentCollectingShop: 'Thanh toán cửa hàng tiện ích',
   onlinePay: 'Thanh toán trực tuyến',
   remainTime1: 'Còn: $days$ngày $hours$giờ $minutes$phút',
@@ -364,4 +365,5 @@ export default {
   shareProduct2:
     ', bảo đảm hàng chính hãng, siêu rẻ, mau mau mua 1 món hàng thôi',
   pleaseLogIn: 'Vui lòng đăng nhập',
+  paymentOnDelivery: 'Thanh toán khi nhận hàng',
 };

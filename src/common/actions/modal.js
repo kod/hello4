@@ -1,4 +1,4 @@
-import { MODAL } from '../constants/actionTypes';
+import { MODAL } from '@/common/constants/actionTypes';
 import { MODAL_NAMESPACE } from '@/common/constants';
 
 export function openModal(modalType, modalProps) {
