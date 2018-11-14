@@ -55,4 +55,8 @@ export default [
     path: '/Order',
     component: './Order/Index',
   },
+  {
+    path: '/OrderDetail',
+    component: './OrderDetail/Index',
+  },
 ];

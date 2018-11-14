@@ -2,11 +2,15 @@
 import React from 'react';
 import { connect } from 'dva';
 import { PullToRefresh } from 'antd-mobile';
+import qs from 'qs';
+import router from 'umi/router';
+
 import {
   WINDOW_HEIGHT,
   SIDEINTERVAL,
   WINDOW_WIDTH,
   MONETARY,
+  SCREENS,
 } from '@/common/constants';
 import { formatMessage } from 'umi/locale';
 
@@ -94,7 +98,6 @@ class Scrollable extends React.Component {
 
     this.state = {
       refreshing: false,
-      down: true,
     };
   }
 
@@ -110,6 +113,63 @@ class Scrollable extends React.Component {
     });
   }
 
+  handleOnPressOperate = (operateText, val) => {
+    switch (operateText) {
+      case formatMessage({ id: 'payment' }):
+        router.push(
+          `/${SCREENS.Pay}?${qs.stringify({
+            tradeNo: val.tradeNo,
+            orderNo: val.orderNo,
+          })}`,
+        );
+        break;
+
+      case formatMessage({ id: 'evaluation' }):
+        router.push(
+          `/${SCREENS.Evalution}?${qs.stringify({
+            tradeNo: val.tradeNo,
+            orderNo: val.orderNo,
+            brandId: val.goodList[0].brandId,
+          })}`,
+        );
+
+        break;
+
+      case formatMessage({ id: 'viewPaymentCode' }):
+        router.push(
+          `/${SCREENS.PaymentCode}?${qs.stringify({
+            orderNo: val.orderNo,
+            tradeNo: val.tradeNo,
+            payway: val.payWay,
+            payrate: val.payRate,
+            repaymentmonth: val.repaymentMonth,
+            totalAmount: val.totalAmount,
+          })}`,
+        );
+
+        break;
+
+      default:
+        router.push(
+          `/${SCREENS.OrderDetail}?${qs.stringify({
+            tradeNo: val.tradeNo,
+            orderNo: val.orderNo,
+          })}`,
+        );
+
+        break;
+    }
+  };
+
+  handleOnPressGoods = val => {
+    router.push(
+      `/${SCREENS.OrderDetail}?${qs.stringify({
+        tradeNo: val.tradeNo,
+        orderNo: val.orderNo,
+      })}`,
+    );
+  };
+
   render() {
     const { refreshing } = this.state;
     const { queryOrderListItem, itemKey } = this.props;
@@ -118,11 +178,13 @@ class Scrollable extends React.Component {
     const { items } = module;
     if (items.length === 0 && module.loading === false)
       return (
-        <EmptyState
-          source={ouhrigdfnjsoeijehrJpg}
-          text={formatMessage({ id: 'noData' })}
-          style={{ paddingTop: WINDOW_HEIGHT * 0.1 }}
-        />
+        <div style={{ height: WINDOW_HEIGHT - 45 - 45 }}>
+          <EmptyState
+            source={ouhrigdfnjsoeijehrJpg}
+            text={formatMessage({ id: 'noData' })}
+            style={{ paddingTop: WINDOW_HEIGHT * 0.1 }}
+          />
+        </div>
       );
     return (
       <div>
@@ -150,7 +212,7 @@ class Scrollable extends React.Component {
                 stylePricePrice={{ color: '#666' }}
                 stylePricePeriods={{ color: '#666' }}
                 isShowNumber
-                onPress={() => this.handleOnPressGoods(val)}
+                onClick={() => this.handleOnPressGoods(val)}
               />
               <div style={stylesScrollable.totalPrice}>
                 <div style={stylesScrollable.payText}>
@@ -165,7 +227,7 @@ class Scrollable extends React.Component {
                   (val1, index1) => (
                     <div
                       style={stylesScrollable.payButton}
-                      onPress={() => this.handleOnPressOperate(val1, val)}
+                      onClick={() => this.handleOnPressOperate(val1, val)}
                       key={index1}
                     >
                       {val1}

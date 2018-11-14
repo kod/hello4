@@ -1,7 +1,10 @@
 import React from 'react';
 import { connect } from 'dva';
 import BYHeader from '@/components/BYHeader';
-import { formatMessage, setLocale } from 'umi/locale';
+import {
+  formatMessage,
+  // setLocale
+} from 'umi/locale';
 
 import router from 'umi/router';
 
@@ -15,10 +18,17 @@ import MustLogin from '@/components/MustLogin';
 import OrderTabNavigator from './OrderTabNavigator';
 
 @connect(
-  state => {
+  (state, props) => {
     const { queryOrderList, login } = state;
 
+    const {
+      location: {
+        query: { index },
+      },
+    } = props;
+
     return {
+      initialPage: index,
       authUser: login.user,
       queryOrderListItem: queryOrderList.item,
       scrollTabIndex: queryOrderList.scrollTabIndex,
@@ -32,11 +42,12 @@ import OrderTabNavigator from './OrderTabNavigator';
 )
 class CouponMy extends React.Component {
   componentDidMount() {
-    setLocale('vi-VN');
+    // setLocale('zh-CN');
   }
 
   render() {
     const {
+      initialPage,
       authUser,
       couponMyPastLength,
       couponMyUnusedLength,
@@ -83,6 +94,7 @@ class CouponMy extends React.Component {
         />
         <OrderTabNavigator
           tabs={tabs}
+          initialPage={initialPage}
           couponMyPast={couponMyPastLength}
           couponMyUnused={couponMyUnusedLength}
           couponMyUsed={couponMyUsedLength}

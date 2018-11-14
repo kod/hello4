@@ -1,7 +1,10 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
 
-import { WINDOW_WIDTH, OSS_IMAGE_QUALITY } from '@/common/constants';
+import qs from 'qs';
+import router from 'umi/router';
+
+import { WINDOW_WIDTH, OSS_IMAGE_QUALITY, SCREENS } from '@/common/constants';
 
 const styles = {
   nav1: {
@@ -37,7 +40,13 @@ export default ({ groupon = false, data, style, ...restProps }) => (
         key={key}
         backgroundColor="transparent"
         onClick={() => {
-          console.log(groupon);
+          router.push(
+            `/${SCREENS.ProductDetail}?${qs.stringify({
+              brandId: val.brandId,
+              groupon,
+            })}`,
+          );
+
           // navigate(SCREENS.ProductDetail, { brandId: val.brandId, groupon })
         }}
       >

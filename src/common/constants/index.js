@@ -44,6 +44,7 @@ export const GETVOUCHER_NAMESPACE = 'getVoucher';
 export const RECEIVEVOUCHER_NAMESPACE = 'receiveVoucher';
 export const QUERYORDER_NAMESPACE = 'queryOrder';
 export const RETURNMONEY_NAMESPACE = 'returnMoney';
+export const ORDERCANCEL_NAMESPACE = 'orderCancel';
 // namespace -end-
 
 export const DOMAIN = 'https://buyoo.vn';

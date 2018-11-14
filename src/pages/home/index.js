@@ -14,7 +14,7 @@ class Index extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tabBarIndex: 3,
+      tabBarIndex: 0,
       hidden: false,
     };
     this.tabBarTabBarIndexHandle = this.tabBarTabBarIndexHandle.bind(this);

@@ -4,11 +4,11 @@ import React from 'react';
 import { Tabs } from 'antd-mobile';
 import Scrollable from './Scrollable';
 
-export default ({ tabs }) => (
+export default ({ tabs, initialPage = 0 }) => (
   <Tabs
     tabs={tabs}
-    initialPage={0}
-    prerenderingSiblingsNumber={0}
+    initialPage={parseInt(initialPage, 10)}
+    prerenderingSiblingsNumber={1}
     tabBarPosition="top"
     renderTabBar={props => (
       <Tabs.DefaultTabBar
