@@ -201,14 +201,29 @@ class ProductDetailMain extends React.Component {
       imagesDescItem: {
         width: WINDOW_WIDTH,
       },
+      carousel: {
+        height: WINDOW_WIDTH,
+        width: WINDOW_WIDTH,
+      },
     };
 
     return (
       <div style={styles.container}>
         <ModalRoot />
         <div style={styles.statusbarPlaceholder}>
-          {imageUrls &&
-            imageUrls.length > 0 && <SwiperFlatList data={imageUrls} />}
+          <div style={styles.carousel}>
+            {imageUrls &&
+              imageUrls.length > 0 && (
+                <SwiperFlatList
+                  data={imageUrls}
+                  styleImg={{
+                    display: 'block',
+                    width: WINDOW_WIDTH,
+                    minHeight: WINDOW_WIDTH,
+                  }}
+                />
+              )}
+          </div>
           <div style={styles.product}>
             <div style={styles.productTitle}>{name}</div>
             <div style={styles.productPrice}>
@@ -234,7 +249,6 @@ class ProductDetailMain extends React.Component {
               <div
                 style={styles.specDesc}
                 onClick={() => {
-                  console.log('onPress');
                   openModal(MODAL_TYPES.PARAMSSELECT, {
                     productDetailNumber,
                     imageUrls,

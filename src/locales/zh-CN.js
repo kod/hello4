@@ -249,6 +249,7 @@ export default {
   used: '已使用',
   expired: '已过期',
   waitingForDelivery: '待发货',
+  inDelivery: '发货中',
   view: '查看',
   evaluation: '评论',
   received: '已领取',

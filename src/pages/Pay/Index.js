@@ -3,10 +3,11 @@ import React from 'react';
 import { connect } from 'dva';
 import { formatMessage } from 'umi/locale';
 import { Modal, ActionSheet } from 'antd-mobile';
+import qs from 'qs';
+import router from 'umi/router';
 
 import BYHeader from '@/components/BYHeader';
 import Loader from '@/components/Loader';
-import router from 'umi/router';
 
 import * as orderPayActionCreators from '@/common/actions/orderPay';
 import * as queryOrderActionCreators from '@/common/actions/queryOrder';
@@ -69,7 +70,7 @@ class Pay extends React.Component {
       payWayButtons: payWayArray(),
       payWayIndex: INTERNET_BANK_PAYWAY,
     };
-    this.actionSheetCallback = this.actionSheetCallback.bind(this);
+    // this.actionSheetCallback = this.actionSheetCallback.bind(this);
   }
 
   componentDidMount() {
@@ -105,8 +106,12 @@ class Pay extends React.Component {
             text: formatMessage({ id: 'confirm' }),
             style: 'default',
             onPress: () => {
-              // router.go(params.pop);
-              // TODO 跳转到订单详情
+              router.push(
+                `/${SCREENS.OrderDetail}?${qs.stringify({
+                  tradeNo: params.tradeNo,
+                  orderNo: params.orderNo,
+                })}`,
+              );
             },
           },
         ]);
@@ -140,13 +145,13 @@ class Pay extends React.Component {
     );
   };
 
-  actionSheetCallback(ret) {
-    const { payWayButtons } = this.state;
-    if (ret.buttonIndex === -1) return false;
-    return this.setState({
-      payWayIndex: payWayButtons[ret.buttonIndex].key,
-    });
-  }
+  // actionSheetCallback(ret) {
+  //   const { payWayButtons } = this.state;
+  //   if (ret.buttonIndex === -1) return false;
+  //   return this.setState({
+  //     payWayIndex: payWayButtons[ret.buttonIndex].key,
+  //   });
+  // }
 
   handleOnPressToggleModal(key, val) {
     const {

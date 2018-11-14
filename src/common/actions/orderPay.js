@@ -1,7 +1,14 @@
 import { ORDER_PAY } from '@/common/constants/actionTypes';
 import { ORDERPAY_NAMESPACE } from '@/common/constants';
 
-export function orderPayFetchSuccess({ ret, screen, payvalue, pop }) {
+export function orderPayFetchSuccess({
+  ret,
+  screen,
+  payvalue,
+  pop,
+  orderno,
+  tradeno,
+}) {
   return {
     type: `${ORDERPAY_NAMESPACE}/${ORDER_PAY.SUCCESS}`,
     payload: {
@@ -9,6 +16,8 @@ export function orderPayFetchSuccess({ ret, screen, payvalue, pop }) {
       screen,
       payvalue,
       pop,
+      tradeno,
+      orderno,
     },
   };
 }

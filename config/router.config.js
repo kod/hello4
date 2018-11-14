@@ -59,4 +59,8 @@ export default [
     path: '/OrderDetail',
     component: './OrderDetail/Index',
   },
+  {
+    path: '/Evalution',
+    component: './Evalution/Index',
+  },
 ];

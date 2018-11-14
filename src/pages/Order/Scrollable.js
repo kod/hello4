@@ -199,10 +199,11 @@ class Scrollable extends React.Component {
           direction="down"
           refreshing={refreshing}
           onRefresh={() => {
+            this.onRefresh();
             this.setState({ refreshing: true });
             setTimeout(() => {
               this.setState({ refreshing: false });
-            }, 3000);
+            }, 1400);
           }}
         >
           {items.map(val => (

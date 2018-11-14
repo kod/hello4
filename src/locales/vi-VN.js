@@ -256,6 +256,7 @@ export default {
   used: 'Đã sử dụng',
   expired: 'Hết hạn',
   waitingForDelivery: 'Chờ giao hàng',
+  inDelivery: 'Đang giao hàng',
   view: 'Xem lại',
   evaluation: 'Đánh giá',
   received: 'Đã nhận',

@@ -296,7 +296,10 @@ export default {
         loading: false,
         loaded: true,
         items: action.payload.items,
-        addressSelectedId: action.payload.addressSelectedId,
+        addressSelectedId:
+          state.addressSelectedId === 0
+            ? action.payload.addressSelectedId
+            : state.addressSelectedId,
       };
     },
     [ADDRESS.FAILURE](state) {

@@ -122,6 +122,8 @@ class OrderWrite extends React.Component {
   addEventListenerHandle = ({ method, params = {} }) => {
     const { payWayIndex } = this.state;
     const { orderPayFetch } = this.props;
+    console.log(method);
+    console.log(params);
     switch (method) {
       case 'orderCreateSuccess':
         if (payWayIndex === ONDELIVERY_PAYWAY) {
@@ -143,14 +145,20 @@ class OrderWrite extends React.Component {
         break;
 
       case 'orderPay':
-        console.log('orderPay');
         // （货到付款）提交订单成功
         Modal.alert('', formatMessage({ id: 'submitOrderSuccessfully' }), [
           {
             text: formatMessage({ id: 'confirm' }),
             style: 'default',
             onPress: () => {
-              // TODO 转跳到订单详情
+              router.push(
+                `/${SCREENS.OrderDetail}?${qs.stringify({
+                  tradeNo: params.tradeno,
+                  orderNo: params.orderno,
+                })}`,
+              );
+
+              console.log('（货到付款）提交订单成功');
             },
           },
         ]);

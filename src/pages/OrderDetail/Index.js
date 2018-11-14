@@ -41,7 +41,7 @@ const styles = {
   },
   main: {
     overflowX: 'auto',
-    height: WINDOW_HEIGHT - 45 - 45,
+    height: WINDOW_HEIGHT - 45 - 55,
   },
   totalPrice: {
     height: 40,
@@ -249,7 +249,7 @@ class OrderDetail extends React.Component {
   handleOnPressCancel() {
     const { orderCancelFetch, orderNo, tradeNo } = this.props;
 
-    Modal.alert('', formatMessage({ id: 'confirm' }), [
+    Modal.alert('', formatMessage({ id: 'confirmDelete' }), [
       {
         text: formatMessage({ id: 'cancel' }),
       },
@@ -334,7 +334,7 @@ class OrderDetail extends React.Component {
         {tradeStatus === '10000' && (
           <div
             style={stylesX.navCancel}
-            onPress={() => this.handleOnPressCancel()}
+            onClick={() => this.handleOnPressCancel()}
           >
             {formatMessage({ id: 'cancelOrder' })}
           </div>
@@ -342,7 +342,7 @@ class OrderDetail extends React.Component {
         {tradeStatus === '10000' && (
           <div
             style={stylesX.navRight}
-            onPress={() =>
+            onClick={() =>
               payWay === 5
                 ? router.push(
                     `/${SCREENS.PaymentCode}?${qs.stringify({
@@ -445,7 +445,7 @@ class OrderDetail extends React.Component {
                   <div style={stylesX.cardItemCopy}>
                     <div
                       style={stylesX.cardItemCopyText}
-                      onPress={() => this.handleOnPressCopy(val.cardCode)}
+                      onClick={() => this.handleOnPressCopy(val.cardCode)}
                     >
                       {formatMessage({ id: 'copy' })}
                     </div>
@@ -459,7 +459,7 @@ class OrderDetail extends React.Component {
                   <div style={stylesX.cardItemCopy}>
                     <div
                       style={stylesX.cardItemCopyText}
-                      onPress={() => this.handleOnPressCopy(val.cardPassword)}
+                      onClick={() => this.handleOnPressCopy(val.cardPassword)}
                     >
                       {formatMessage({ id: 'copy' })}
                     </div>
@@ -508,7 +508,7 @@ class OrderDetail extends React.Component {
           <div style={stylesX.orderNoLeft}>{orderNo}</div>
           {/* <SmallButton
             text={formatMessage({ id: 'copy' })}
-            onPress={() => this.handleOnPressCopy(orderNo)}
+            onClick={() => this.handleOnPressCopy(orderNo)}
           /> */}
         </div>
       </div>
@@ -603,7 +603,7 @@ class OrderDetail extends React.Component {
             />
           )}
           <NavBar2
-            // onPress={() => this.handleOnPressToggleBottomSheet()}
+            // onClick={() => this.handleOnPressToggleBottomSheet()}
             valueLeft={formatMessage({ id: 'couponValue' })}
             valueMiddle={couponValue}
             isShowRight={false}

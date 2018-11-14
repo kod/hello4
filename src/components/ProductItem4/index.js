@@ -1,5 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
+import router from 'umi/router';
 
 import {
   SIDEINTERVAL,
@@ -70,8 +71,9 @@ export default ({ groupon = false, data, style, ...restProps }) => (
         style={styles.item}
         key={key}
         onClick={() => {
-          console.log(groupon);
-          // navigate(SCREENS.ProductDetail, { brandId: val.brandId, groupon })
+          router.push(
+            `/ProductDetail?brandId=${val.brandId}&groupon=${groupon}`,
+          );
         }}
       >
         <img

@@ -34,6 +34,7 @@ const styles = {
     marginLeft: 15,
     paddingTop: 15,
     paddingBottom: 10,
+    border: 0,
   },
 };
 

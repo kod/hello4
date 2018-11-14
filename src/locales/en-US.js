@@ -253,6 +253,7 @@ export default {
   used: 'Used',
   expired: 'Expired',
   waitingForDelivery: 'Waiting for delivery',
+  inDelivery: 'In delivery',
   view: 'View',
   evaluation: 'Evaluation',
   received: 'Received',

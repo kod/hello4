@@ -136,6 +136,8 @@ export default {
               screen,
               payvalue,
               pop,
+              tradeno,
+              orderno,
             }),
           );
         }
@@ -147,13 +149,15 @@ export default {
     },
     *[ORDER_PAY.SUCCESS](action) {
       try {
-        const { screen, pop, ret, payvalue } = action.payload;
+        const { screen, pop, ret, payvalue, orderno, tradeno } = action.payload;
         yield dispatchEvent(screen, {
           method: 'orderPay',
           params: {
             ret,
             payvalue,
             pop,
+            orderno,
+            tradeno,
           },
         });
         // yield apply(DeviceEventEmitter, DeviceEventEmitter.emit, [

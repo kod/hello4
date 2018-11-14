@@ -105,7 +105,7 @@ export const tradeStatusCodes = (code = 10000) => {
     20001: formatMessage({ id: 'endTransactionNonRefundable' }), // '交易结束，不可退款'
     20002: formatMessage({ id: 'transactionRejectedFullRefund' }), // '交易拒绝, 全额退款'
     20003: formatMessage({ id: 'paymentOvertimeClosed' }), // '交易支付超时, 订单退回'
-    30000: formatMessage({ id: 'waitingForDelivery' }), // 等待发货
+    30000: formatMessage({ id: 'inDelivery' }), // 等待发货
     30001: formatMessage({ id: 'pendingEvaluation' }), // '已收货,未评价'
     30002: formatMessage({ id: 'transactionComplete' }), // '已收货,已评价'
     30003: formatMessage({ id: 'waitingForTheOrder' }), // '等待拼单'
