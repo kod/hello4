@@ -9,7 +9,8 @@ export default {
         antd: true,
         dva: true,
         locale: {
-          enable: true, // default false
+          // enable: true, // default false
+          antd: true,
           default: 'vi-VN',
           baseNavigator: true, // default true, when it is true, will use `navigator.language` overwrite default
         },
