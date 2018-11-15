@@ -16,6 +16,10 @@ export default {
           default: 'zh-CN', // default zh-CN
           baseNavigator: true, // default true, when it is true, will use `navigator.language` overwrite default
         },
+        dynamicImport: {
+          webpackChunkName: true,
+        },
+        chunks: ['vendors', 'umi'],
         ...(!process.env.TEST && os.platform() === 'darwin'
           ? {
               dll: {
@@ -28,6 +32,23 @@ export default {
       },
     ],
   ],
+  // chainWebpack(config) {
+  //   config.optimization.splitChunks({
+  //     cacheGroups: {
+  //       vendors: {
+  //         name: 'vendors',
+  //         chunks: 'all',
+  //         test: /[\\/]node_modules[\\/](react|react-dom|react-router|react-router-dom)[\\/]/,
+  //       },
+  //       commons: {
+  //         name: 'commons',
+  //         chunks: 'async',
+  //         minChunks: 2,
+  //         minSize: 0,
+  //       },
+  //     },
+  //   });
+  // },
   // 路由配置
   routes: pageRoutes,
 };
