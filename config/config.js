@@ -8,9 +8,6 @@ export default {
       {
         antd: true,
         dva: true,
-        targets: {
-          ie: 11,
-        },
         locale: {
           enable: true, // default false
           default: 'vi-VN',
@@ -18,6 +15,7 @@ export default {
         },
         dynamicImport: {
           webpackChunkName: true,
+          loadingComponent: './components/PageLoading/index',
         },
         chunks: ['vendors', 'umi'],
         ...(!process.env.TEST && os.platform() === 'darwin'
@@ -32,6 +30,10 @@ export default {
       },
     ],
   ],
+  targets: {
+    ie: 9,
+  },
+  hash: true,
   // chainWebpack(config) {
   //   config.optimization.splitChunks({
   //     cacheGroups: {

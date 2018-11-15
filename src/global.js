@@ -1,4 +1,4 @@
-import '@babel/polyfill';
+// import '@babel/polyfill';
 
-global.Intl = require('intl');
-window.Intl = require('intl');
+// global.Intl = require('intl');
+// window.Intl = require('intl');
