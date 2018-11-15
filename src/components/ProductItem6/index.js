@@ -1,33 +1,12 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
-import {
-  SIDEINTERVAL,
-  WINDOW_WIDTH,
-  MONETARY,
-  OSS_IMAGE_QUALITY,
-  WINDOW_HEIGHT,
-} from '@/common/constants';
-import { RED_COLOR } from '@/styles/variables';
-import priceFormat from '@/utils/priceFormat';
+import { WINDOW_WIDTH, OSS_IMAGE_QUALITY } from '@/common/constants';
 import ProductItem4 from '../ProductItem4';
 import SeparateBar from '../SeparateBar';
 
-const itemIntervalWidth = SIDEINTERVAL;
-const itemWidth = parseInt(
-  (WINDOW_WIDTH - itemIntervalWidth * 4) / 3 - WINDOW_WIDTH * 0.03,
-  10,
-);
-
 const styles = {
-  itemWrap: {
-    // overflowX: 'auto',
-    // height: 'auto',
-    // paddingLeft: SIDEINTERVAL,
-    // marginBottom: 5,
-  },
-  itemMain: {
-    // width: WINDOW_WIDTH,
-  },
+  itemWrap: {},
+  itemMain: {},
   item: {},
   itemImg: {
     width: WINDOW_WIDTH,
