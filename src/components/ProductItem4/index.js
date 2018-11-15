@@ -21,6 +21,7 @@ const styles = {
     flexWrap: 'wrap',
     paddingLeft: SIDEINTERVAL,
     marginBottom: 5,
+    backgroundColor: '#fff',
   },
   item: {
     width: itemWidth,
