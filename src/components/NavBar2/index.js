@@ -29,6 +29,10 @@ const styles = {
     color: '#333',
     textAlign: 'right',
     paddingRight: 5,
+
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis',
   },
   componentRight: {
     color: '#666',
@@ -69,10 +73,7 @@ export default ({
         (componentMiddle ? (
           { componentMiddle }
         ) : (
-          <div
-            style={{ ...styles.componentMiddle, ...styleMiddle }}
-            numberOfLines={1}
-          >
+          <div style={{ ...styles.componentMiddle, ...styleMiddle }}>
             {valueMiddle}
           </div>
         ))}

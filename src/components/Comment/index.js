@@ -57,6 +57,10 @@ const styles = {
     lineHeight: '22.65px',
     marginBottom: WINDOW_WIDTH * 0.03,
     paddingRight: SIDEINTERVAL,
+
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis',
   },
   componentimageWrap: {
     display: 'flex',
@@ -105,9 +109,7 @@ export default ({ data, styleWrap, style, ...restProps }) => (
             </div>
             <div style={styles.componentTime}>{val.updateTime}</div>
           </div>
-          <div style={styles.componentDesc} numberOfLines={3}>
-            {val.content}
-          </div>
+          <div style={styles.componentDesc}>{val.content}</div>
           <div style={styles.componentimageWrap}>
             {val.imageUrls.length > 0 &&
               val.imageUrls.map((val1, key1) => (

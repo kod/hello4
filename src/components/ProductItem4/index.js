@@ -44,6 +44,11 @@ const styles = {
     lineHeight: `${10 * 1.5}px`,
     // height: 30,
     marginBottom: 3,
+
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis',
+
     // backgroundColor: '#f00',
   },
   itemOrgPrice: {
@@ -83,9 +88,7 @@ export default ({ groupon = false, data, style, ...restProps }) => (
             val.imageUrl
           }?x-oss-process=image/quality,Q_${OSS_IMAGE_QUALITY}`}
         />
-        <div numberOfLines={2} style={styles.itemText}>
-          {val.name}
-        </div>
+        <div style={styles.itemText}>{val.name}</div>
         <div style={styles.itemPrice}>
           {`${priceFormat(val.price)} ${MONETARY}`}
         </div>

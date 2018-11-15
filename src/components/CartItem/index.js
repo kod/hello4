@@ -62,6 +62,10 @@ const styles = {
     color: '#333',
     marginBottom: 6,
     lineHeight: '18px',
+
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis',
   },
   itemPrice: {
     fontSize: 11,
@@ -298,9 +302,7 @@ class CartItem extends React.Component {
                 />
               </div>
               <div style={styles.itemRight}>
-                <div style={styles.itemTitle} numberOfLines={1}>
-                  {products[val].subject}
-                </div>
+                <div style={styles.itemTitle}>{products[val].subject}</div>
                 {/* <Text style={styles.itemPrice}>
                   {`${priceFormat(details[products[val].detail].price)} ${MONETARY}`}
                 </Text> */}

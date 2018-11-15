@@ -28,6 +28,10 @@ const styles = {
     flex: 1,
     fontSize: 14,
     color: '#666',
+
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis',
   },
   cellItem1Middle: {
     flex: 2,
@@ -35,6 +39,10 @@ const styles = {
     color: '#ccc',
     textAlign: 'right',
     paddingRight: 5,
+
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis',
   },
   cellItem1Right: {
     color: '#ccc',
@@ -68,15 +76,10 @@ export default ({
             src={val.iconImg}
           />
         )}
-        <div
-          style={{ ...styles.cellItem1Left, ...styleItemLeft }}
-          numberOfLines={1}
-        >
+        <div style={{ ...styles.cellItem1Left, ...styleItemLeft }}>
           {val.name}
         </div>
-        <div style={styles.cellItem1Middle} numberOfLines={1}>
-          {val.tips}
-        </div>
+        <div style={styles.cellItem1Middle}>{val.tips}</div>
         <CustomIcon type="right" style={styles.cellItem1Right} />
       </div>
     ))}

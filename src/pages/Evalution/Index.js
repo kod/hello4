@@ -351,16 +351,6 @@ class Evalution extends React.Component {
               rows={3}
               count={100}
             />
-            {/* <BYTextInput
-              style={stylesX.textInput}
-              placeholder={formatMessage({ id: 'pleaseEnterYourComment' })}
-              placeholderTextColor="#ccc"
-              onChangeText={val => this.setState({ textValue: val })}
-              value={textValue}
-              maxLength={150}
-              numberOfLines={3}
-              multiline
-            /> */}
             <ImagePicker
               files={images.map((val, key) => ({
                 url: val,
