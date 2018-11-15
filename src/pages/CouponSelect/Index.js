@@ -179,7 +179,7 @@ class CouponSelect extends React.Component {
     const { i18n } = this.props;
 
     return (
-      <div style={stylesX.container} backgroundColor="transparent">
+      <div style={stylesX.container}>
         <div style={stylesX.title}>{i18n.chooseCoupon}</div>
       </div>
     );

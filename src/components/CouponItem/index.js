@@ -40,63 +40,60 @@ export default ({
   ...restProps
 }) => (
   <div style={styles.container} {...restProps}>
-    {data.map(
-      (val, key) =>
-        val.voucherType === 1 ? (
-          <div
-            style={{
-              ...styles.item,
-              ...(isCouponCenter && val.status !== 1 && styles.itemDisable),
-            }}
-            key={key}
-            onPress={() => onPress && onPress(val)}
-            backgroundColor="transparent"
-          >
-            <img alt="" style={styles.image} src={couponBluePng} />
-            <div style={styles.bottom}>
-              <div style={styles.left}>
-                <div style={styles.price}>
-                  {`${priceFormat(val.voucherValue)} ${MONETARY}`}
-                </div>
-                <div style={styles.text1}>{val.voucherName}</div>
-                <div style={styles.text2}>{val.voucherDesc}</div>
+    {data.map((val, key) =>
+      val.voucherType === 1 ? (
+        <div
+          style={{
+            ...styles.item,
+            ...(isCouponCenter && val.status !== 1 && styles.itemDisable),
+          }}
+          key={key}
+          onPress={() => onPress && onPress(val)}
+          // backgroundColor="transparent"
+        >
+          <img alt="" style={styles.image} src={couponBluePng} />
+          <div style={styles.bottom}>
+            <div style={styles.left}>
+              <div style={styles.price}>
+                {`${priceFormat(val.voucherValue)} ${MONETARY}`}
               </div>
-              {onPress && <CustomIcon type="right" style={styles.arrow} />}
-              <div style={styles.date}>
-                {`${moment(val.startTime).format('DD/MM/YYYY')}-${moment(
-                  val.expireTime,
-                ).format('DD/MM/YYYY')}`}
-              </div>
+              <div style={styles.text1}>{val.voucherName}</div>
+              <div style={styles.text2}>{val.voucherDesc}</div>
+            </div>
+            {onPress && <CustomIcon type="right" style={styles.arrow} />}
+            <div style={styles.date}>
+              {`${moment(val.startTime).format('DD/MM/YYYY')}-${moment(
+                val.expireTime,
+              ).format('DD/MM/YYYY')}`}
             </div>
           </div>
-        ) : (
-          <div
-            style={{
-              ...styles.item,
-              ...(isCouponCenter && val.status !== 1 && styles.itemDisable),
-            }}
-            key={key}
-            onPress={() => onPress && onPress(val)}
-            backgroundColor="transparent"
-          >
-            <img alt="" style={styles.image} src={couponRedPng} />
-            <div style={{ ...styles.bottom, ...styles.bottomRed }}>
-              <div style={styles.left}>
-                <div style={styles.price}>
-                  {`${100 - val.voucherValue}% OFF`}
-                </div>
-                <div style={styles.text1}>{val.voucherName}</div>
-                <div style={styles.text2}>{val.voucherDesc}</div>
-              </div>
-              {onPress && <CustomIcon type="right" style={styles.arrow} />}
-              <div style={styles.date}>
-                {`${moment(val.startTime).format('DD/MM/YYYY')}-${moment(
-                  val.expireTime,
-                ).format('DD/MM/YYYY')}`}
-              </div>
+        </div>
+      ) : (
+        <div
+          style={{
+            ...styles.item,
+            ...(isCouponCenter && val.status !== 1 && styles.itemDisable),
+          }}
+          key={key}
+          onPress={() => onPress && onPress(val)}
+          // backgroundColor="transparent"
+        >
+          <img alt="" style={styles.image} src={couponRedPng} />
+          <div style={{ ...styles.bottom, ...styles.bottomRed }}>
+            <div style={styles.left}>
+              <div style={styles.price}>{`${100 - val.voucherValue}% OFF`}</div>
+              <div style={styles.text1}>{val.voucherName}</div>
+              <div style={styles.text2}>{val.voucherDesc}</div>
+            </div>
+            {onPress && <CustomIcon type="right" style={styles.arrow} />}
+            <div style={styles.date}>
+              {`${moment(val.startTime).format('DD/MM/YYYY')}-${moment(
+                val.expireTime,
+              ).format('DD/MM/YYYY')}`}
             </div>
           </div>
-        ),
+        </div>
+      ),
     )}
   </div>
 );

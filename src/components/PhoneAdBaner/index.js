@@ -38,7 +38,7 @@ export default ({ groupon = false, data, style, ...restProps }) => (
       <div
         style={styles.touchable}
         key={key}
-        backgroundColor="transparent"
+        // backgroundColor="transparent"
         onClick={() => {
           router.push(
             `/${SCREENS.ProductDetail}?${qs.stringify({

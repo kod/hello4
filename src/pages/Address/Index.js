@@ -228,7 +228,6 @@ class Address extends React.Component {
                     <div style={styles.operate}>
                       <div
                         style={styles.operateLeft}
-                        backgroundColor="transparent"
                         onClick={() => this.handleOnPressAddressDefault(val)}
                       >
                         <CustomIcon
