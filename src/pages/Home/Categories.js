@@ -44,6 +44,7 @@ class Index extends PureComponent {
   renderHeaderTitle = () => {
     const stylesX = {
       container: {
+        width: WINDOW_WIDTH,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -131,27 +132,26 @@ class Index extends PureComponent {
         <div style={stylesX.rightItemTitle} />
         <div style={stylesX.rightItemMain}>
           {itemsList.length !== 0 &&
-            itemsList[key].map(
-              val1 =>
-                val1.status === '1' ? (
-                  <div
-                    style={stylesX.rightItemSubItem}
-                    key={val1.image}
-                    onClick={() => {
-                      // navigate(SCREENS.CateList, {
-                      //   parent_id: val1.parentId,
-                      //   sub_classfy_id: val1.id,
-                      // });
-                    }}
-                  >
-                    <img
-                      alt=""
-                      style={stylesX.rightItemSubItemImage}
-                      src={val1.image}
-                    />
-                    <div style={stylesX.rightItemSubItemText}>{val1.name}</div>
-                  </div>
-                ) : null,
+            itemsList[key].map(val1 =>
+              val1.status === '1' ? (
+                <div
+                  style={stylesX.rightItemSubItem}
+                  key={val1.image}
+                  onClick={() => {
+                    // navigate(SCREENS.CateList, {
+                    //   parent_id: val1.parentId,
+                    //   sub_classfy_id: val1.id,
+                    // });
+                  }}
+                >
+                  <img
+                    alt=""
+                    style={stylesX.rightItemSubItemImage}
+                    src={val1.image}
+                  />
+                  <div style={stylesX.rightItemSubItemText}>{val1.name}</div>
+                </div>
+              ) : null,
             )}
         </div>
         <div style={stylesX.rightItemTitle}>
@@ -159,27 +159,26 @@ class Index extends PureComponent {
         </div>
         <div style={stylesX.rightItemMain}>
           {itemsClassfy.length !== 0 &&
-            itemsClassfy[key].map(
-              val1 =>
-                val1.status === '1' ? (
-                  <div
-                    style={stylesX.rightItemSubItem}
-                    key={val1.imageUrl}
-                    onClick={() => {
-                      // navigate(SCREENS.CateList, {
-                      //   parent_id: val1.parentId,
-                      //   classfy_id: val1.id,
-                      // })
-                    }}
-                  >
-                    <img
-                      alt=""
-                      style={stylesX.rightItemSubItemImage}
-                      src={val1.imageUrl}
-                    />
-                    <div style={stylesX.rightItemSubItemText}>{val1.name}</div>
-                  </div>
-                ) : null,
+            itemsClassfy[key].map(val1 =>
+              val1.status === '1' ? (
+                <div
+                  style={stylesX.rightItemSubItem}
+                  key={val1.imageUrl}
+                  onClick={() => {
+                    // navigate(SCREENS.CateList, {
+                    //   parent_id: val1.parentId,
+                    //   classfy_id: val1.id,
+                    // })
+                  }}
+                >
+                  <img
+                    alt=""
+                    style={stylesX.rightItemSubItemImage}
+                    src={val1.imageUrl}
+                  />
+                  <div style={stylesX.rightItemSubItemText}>{val1.name}</div>
+                </div>
+              ) : null,
             )}
         </div>
       </div>
@@ -190,8 +189,10 @@ class Index extends PureComponent {
     const stylesX = {
       content: {
         display: 'flex',
-        height: WINDOW_HEIGHT - APPBAR_HEIGHT - STATUSBAR_HEIGHT - 1,
+        overflowX: 'auto',
+        height: WINDOW_HEIGHT - 45 - 50,
         flexDirection: 'row',
+        backgroundColor: '#fff',
       },
       scrollViewLeft: {
         width: WINDOW_WIDTH * 0.25,
@@ -229,12 +230,7 @@ class Index extends PureComponent {
       },
     };
 
-    const {
-      items,
-      getMenuIndexFetch,
-      itemsIndex,
-      // loading,
-    } = this.props;
+    const { items, getMenuIndexFetch, itemsIndex } = this.props;
 
     return (
       <div style={stylesX.content}>
