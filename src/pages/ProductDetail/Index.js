@@ -100,7 +100,7 @@ class Index extends React.Component {
 
   handleToggleService() {
     const { isAuthUser, funid, brandId, typeId, name } = this.props;
-    let linkStr = 'http://m.me/Buyoo.vn?ref=';
+    let linkStr = 'http://m.me/buyooshop.vip?ref=';
     let funIdStr = '';
     let typeID = 0;
     if (undefined !== typeId) {
