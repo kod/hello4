@@ -361,4 +361,5 @@ export default {
   shareProduct2: ' on buyoo.vn, perfect quality, 100%% licensed, buy one',
   pleaseLogIn: 'Please log in',
   paymentOnDelivery: 'Payment on delivery',
+  receiveServicesOffers: 'Tôi sẵn sàng nhận các dịch vụ và ưu đãi liên quan.',
 };

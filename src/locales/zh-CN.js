@@ -353,4 +353,5 @@ export default {
   shareProduct2: '，保证正品，超便宜，快来买一件吧',
   pleaseLogIn: '请登录',
   paymentOnDelivery: '货到付款',
+  receiveServicesOffers: '我愿意接收相关服务和优惠邮件',
 };

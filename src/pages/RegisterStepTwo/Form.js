@@ -1,5 +1,5 @@
 import React from 'react';
-import { List, Toast } from 'antd-mobile';
+import { List, Toast, Checkbox } from 'antd-mobile';
 import { connect } from 'dva';
 import { createForm } from 'rc-form';
 import { formatMessage } from 'umi/locale';
@@ -31,7 +31,15 @@ import ReadSeconds from '@/components/ReadSeconds';
   },
 )
 class LoginForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isReceive: true,
+    };
+  }
+
   submit = () => {
+    const { isReceive } = this.state;
     const { form, mail, registerFetch } = this.props;
     form.validateFields((error, value) => {
       if (error === null) {
@@ -42,6 +50,7 @@ class LoginForm extends React.Component {
         } else {
           // 提交
           registerFetch({
+            isReceive,
             otp,
             password,
             repassword,
@@ -55,6 +64,7 @@ class LoginForm extends React.Component {
   };
 
   render() {
+    const { isReceive } = this.state;
     const {
       form: { getFieldProps },
       mail,
@@ -86,12 +96,32 @@ class LoginForm extends React.Component {
           pattern={LOGIN_PASSWORD_EXPR}
           // inputRight={this.renderInputRight()}
           getFieldProps={getFieldProps}
-          styleWrap={{ marginBottom: 75 }}
+          // styleWrap={{ marginBottom: 75 }}
           placeholder={formatMessage({ id: 'pleaseEnterPasswordAgain' })}
           message={formatMessage({ id: 'pleaseEnter820CharactersOrNumbers' })}
           name="repassword"
           type="password"
         />
+        <div style={{ marginBottom: 75 }}>
+          <Checkbox.AgreeItem
+            checked={isReceive}
+            onChange={e => {
+              this.setState({
+                isReceive: e.target.checked,
+              });
+            }}
+          >
+            {formatMessage({ id: 'receiveServicesOffers' })}
+            {/* <a
+                onClick={e => {
+                  e.preventDefault();
+                  alert('agree it');
+                }}
+              >
+                agreement
+              </a> */}
+          </Checkbox.AgreeItem>
+        </div>
         <BYButton
           text={formatMessage({ id: 'register' })}
           style={{ marginBottom: 30 }}
