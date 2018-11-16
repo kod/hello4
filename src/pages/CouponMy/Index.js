@@ -8,17 +8,27 @@ import router from 'umi/router';
 import * as getVoucherActionCreators from '@/common/actions/getVoucher';
 import * as receiveVoucherActionCreators from '@/common/actions/receiveVoucher';
 import * as getVoucherListActionCreators from '@/common/actions/getVoucherList';
-import { SCREENS, WINDOW_HEIGHT } from '@/common/constants';
+import {
+  SCREENS,
+  WINDOW_HEIGHT,
+  GETVOUCHERLIST_NAMESPACE,
+} from '@/common/constants';
 import { Modal } from 'antd-mobile';
 
 import MustLogin from '@/components/MustLogin';
 import CouponMyTabNavigator from './CouponMyTabNavigator';
+import { GET_VOUCHER_LIST } from '@/common/constants/actionTypes';
+import Loader from '@/components/Loader';
 
 @connect(
   state => {
-    const { getVoucher, getVoucherList, login } = state;
+    const { getVoucher, getVoucherList, login, loading } = state;
 
     return {
+      loading:
+        loading.effects[
+          `${GETVOUCHERLIST_NAMESPACE}/${GET_VOUCHER_LIST.REQUEST}`
+        ],
       authUser: login.user,
       items: getVoucher.items,
       couponMyPastLength: getVoucherList.CouponMyPast.length,
@@ -52,6 +62,7 @@ class CouponMy extends React.Component {
       couponMyPastLength,
       couponMyUnusedLength,
       couponMyUsedLength,
+      loading,
     } = this.props;
 
     const styles = {
@@ -81,6 +92,7 @@ class CouponMy extends React.Component {
     return (
       <div style={styles.container}>
         <BYHeader title={formatMessage({ id: 'myCoupon' })} />
+        {loading && <Loader />}
         <MustLogin
           Modal={Modal}
           visible={!authUser}
