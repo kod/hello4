@@ -20,6 +20,7 @@ import {
   WINDOW_HEIGHT,
   CREDIT_PAYWAY,
   ORDERPAY_NAMESPACE,
+  DEBUG,
 } from '@/common/constants';
 import {
   payWayArray,
@@ -181,7 +182,7 @@ class Pay extends React.Component {
             orderno: orderNo,
             tradeno: tradeNo,
             payway: payWayIndex,
-            paypassword: 'mmmmmmmm',
+            paypassword: DEBUG ? 'mmmmmmmm' : '',
             payrate: 0,
             repaymentmonth: 0,
             payvalue: totalAmount,
