@@ -21,6 +21,7 @@
     "axios": "^0.18.0",
     "blueimp-md5": "^2.10.0",
     "classnames": "^2.2.6",
+    "compressorjs": "^1.0.1",
     "dva": "^2.4.0",
     "hash.js": "^1.1.5",
     "md5": "^2.2.1",

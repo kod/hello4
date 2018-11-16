@@ -1,6 +1,9 @@
 /* eslint-disable react/no-array-index-key */
+/* eslint-disable no-new */
 import React from 'react';
 import { connect } from 'dva';
+import Compressor from 'compressorjs';
+
 import BYHeader from '@/components/BYHeader';
 import { TextareaItem, Modal, ImagePicker } from 'antd-mobile';
 import { formatMessage } from 'umi/locale';
@@ -121,31 +124,67 @@ class Evalution extends React.Component {
     }
   };
 
-  // createResizedImageImageResizer({ uri, width, height }) {
-  //   const { collectFilesFetch } = this.props;
+  createResizedImageImageResizer = file => {
+    const { collectFilesFetch } = this.props;
 
-  //   ImageResizer.createResizedImage(uri, width * 0.5, height * 0.5, 'JPEG', 30)
-  //     .then(response => {
-  //       collectFilesFetch({
-  //         files: {
-  //           // uri: uri,
-  //           uri: response.uri,
-  //           name: response.name,
-  //         },
-  //       });
-  //     })
-  //     .catch(err => {
-  //       console.dir(err);
-  //     });
-  // }
+    new Compressor(file, {
+      quality: 0.7,
+      maxWidth: 1200,
+      maxHeight: 1200,
+      success(result) {
+        collectFilesFetch({
+          fileOrigin: result,
+        });
+      },
+      error(err) {
+        Modal.alert('', formatMessage({ id: 'failed' }), [
+          {
+            text: formatMessage({ id: 'confirm' }),
+            style: 'default',
+            onPress: () => {},
+          },
+        ]);
+
+        console.log(err.message);
+      },
+    });
+
+    // const imageCompressor = new Compressor();
+    // imageCompressor
+    //   .compress(file, {
+    //     quality: 0.7,
+    //   })
+    //   .then(result => {
+    //     console.log(result);
+    //     // Handle the compressed image file.
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //     // Handle the error
+    //   });
+
+    // new ImageCompressor(file, {
+    //   quality: 1,
+    //   success(result) {
+    //     collectFilesFetch({
+    //       fileOrigin: files[files.length - 1].file,
+    //     });
+    //   },
+    //   error(e) {
+    //     console.log(e);
+    //   },
+    // });
+  };
+
   onChange = (files, type) => {
-    const { collectFilesFetch, collectFilesRemove } = this.props;
+    const { collectFilesRemove } = this.props;
 
     switch (type) {
       case 'add':
-        collectFilesFetch({
-          fileOrigin: files[files.length - 1].file,
-        });
+        this.createResizedImageImageResizer(files[files.length - 1].file);
+        // collectFilesFetch({
+        //   fileOrigin: files[files.length - 1].file,
+        // });
         break;
 
       case 'remove':

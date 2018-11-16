@@ -26,7 +26,7 @@ export default {
         const { productid = '1', files, fileOrigin = '' } = action.payload;
         const formData = new FormData();
         if (fileOrigin) {
-          formData.append('files', fileOrigin);
+          formData.append('files', fileOrigin, fileOrigin.name);
         } else {
           formData.append('files', {
             uri: files.uri,
