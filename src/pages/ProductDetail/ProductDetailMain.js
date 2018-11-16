@@ -2,8 +2,10 @@
 import React from 'react';
 import { connect } from 'dva';
 import { formatMessage } from 'umi/locale';
-import ModalRoot from '@/containers/ModalRoot';
+import qs from 'qs';
+import router from 'umi/router';
 
+import ModalRoot from '@/containers/ModalRoot';
 import * as commentActionCreators from '@/common/actions/comment';
 import * as productDetailInfoActionCreators from '@/common/actions/productDetailInfo';
 import * as modalActionCreators from '@/common/actions/modal';
@@ -23,7 +25,7 @@ import CustomIcon from '@/components/CustomIcon';
 import { BORDER_COLOR, RED_COLOR } from '@/styles/variables';
 import Comment from '@/components/Comment';
 import SeparateBar from '@/components/SeparateBar';
-import { dispatchEvent } from '@/utils';
+import { dispatchEvent, addEventListener, removeEventListener } from '@/utils';
 
 @connect(
   (state, props) => {
@@ -33,7 +35,8 @@ import { dispatchEvent } from '@/utils';
     // } = props;
 
     const {
-      query: { brandId, propertiesIds = '' },
+      query: { brandId, propertiesIds = '', id = '' },
+      pathname,
     } = props;
 
     return {
@@ -43,8 +46,10 @@ import { dispatchEvent } from '@/utils';
       msg: productDetailInfo.msg,
       brandId,
       propertiesIds,
+      productIdVIP: id,
       comment: comment.items.detail ? comment.items.detail.slice(0, 1) : [],
       isAuthUser: !!state.login.user,
+      pathname,
     };
   },
   {
@@ -54,27 +59,63 @@ import { dispatchEvent } from '@/utils';
   },
 )
 class ProductDetailMain extends React.Component {
-  // constructor(props) {
-  //   super(props);
-
-  //   this.state = {
-  //     isShowParamsSelectModal: false,
-  //   };
-  // }
-
   componentDidMount() {
     const {
       commentFetch,
       productDetailInfoFetch,
       productDetailInfoClear,
       propertiesIds,
+      productIdVIP,
       brandId,
     } = this.props;
 
     productDetailInfoClear(brandId);
-    productDetailInfoFetch(brandId, propertiesIds);
+    productDetailInfoFetch({
+      brandId,
+      propertiesIds,
+      productIdVIP,
+      screen: 'ProductDetailMain',
+    });
     commentFetch(brandId);
+
+    addEventListener('ProductDetailMain', this.addEventListenerHandle);
   }
+
+  componentWillUnmount() {
+    removeEventListener('ProductDetailMain', this.addEventListenerHandle);
+  }
+
+  addEventListenerHandle = ({ method, params = {} }) => {
+    const { pathname, productIdVIP, brandId } = this.props;
+    switch (method) {
+      case 'productDetailInfo':
+        if (productIdVIP === '') {
+          // 设置默认id
+          router.replace(
+            `${pathname}?${qs.stringify({
+              brandId,
+              groupon: false,
+              id: params.id,
+            })}`,
+          );
+        }
+        break;
+
+      case 'productDetailSelect':
+        router.replace(
+          `${pathname}?${qs.stringify({
+            brandId,
+            groupon: false,
+            id: params.id,
+          })}`,
+        );
+
+        break;
+
+      default:
+        break;
+    }
+  };
 
   render() {
     // const { isShowParamsSelectModal } = this.state;
@@ -212,17 +253,16 @@ class ProductDetailMain extends React.Component {
         <ModalRoot />
         <div style={styles.statusbarPlaceholder}>
           <div style={styles.carousel}>
-            {imageUrls &&
-              imageUrls.length > 0 && (
-                <SwiperFlatList
-                  data={imageUrls}
-                  styleImg={{
-                    display: 'block',
-                    width: WINDOW_WIDTH,
-                    minHeight: WINDOW_WIDTH,
-                  }}
-                />
-              )}
+            {imageUrls && imageUrls.length > 0 && (
+              <SwiperFlatList
+                data={imageUrls}
+                styleImg={{
+                  display: 'block',
+                  width: WINDOW_WIDTH,
+                  minHeight: WINDOW_WIDTH,
+                }}
+              />
+            )}
           </div>
           <div style={styles.product}>
             <div style={styles.productTitle}>{name}</div>
@@ -262,11 +302,10 @@ class ProductDetailMain extends React.Component {
               >
                 {propertiesIdsObject
                   .split('-')
-                  .map(
-                    val =>
-                      propertiesObjectForId[val]
-                        ? propertiesObjectForId[val].value
-                        : '',
+                  .map(val =>
+                    propertiesObjectForId[val]
+                      ? propertiesObjectForId[val].value
+                      : '',
                   )
                   .join('  ')}
               </div>

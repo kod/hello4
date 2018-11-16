@@ -101,7 +101,11 @@ class ParamsSelectModal extends Component {
     const result = replaceProperties(findProperties(valId));
 
     if (propertiesIdsObject !== result && productDetailSort[result])
-      productDetailSelect(result, productDetailSort[result]);
+      productDetailSelect(
+        result,
+        productDetailSort[result],
+        'ProductDetailMain',
+      );
   }
 
   renderPropertiesIds() {

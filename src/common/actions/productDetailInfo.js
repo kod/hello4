@@ -16,6 +16,7 @@ export function productDetailInfoFetchSuccess({
   propertiesObject,
   propertiesObjectForId,
   productDetailSort,
+  screen,
 }) {
   return {
     type: `${PRODUCTDETAILINFO_NAMESPACE}/${PRODUCT_DETAIL_INFO.SUCCESS}`,
@@ -28,6 +29,7 @@ export function productDetailInfoFetchSuccess({
       propertiesObject,
       propertiesObjectForId,
       productDetailSort,
+      screen,
     },
   };
 }
@@ -41,12 +43,19 @@ export function productDetailInfoFetchFailure(msg) {
   };
 }
 
-export function productDetailInfoFetch(brand_id, propertiesIds) {
+export function productDetailInfoFetch({
+  brandId,
+  propertiesIds,
+  productIdVIP,
+  screen,
+}) {
   return {
     type: `${PRODUCTDETAILINFO_NAMESPACE}/${PRODUCT_DETAIL_INFO.REQUEST}`,
     payload: {
-      brand_id,
+      brand_id: brandId,
       propertiesIds,
+      productIdVIP,
+      screen,
     },
   };
 }
@@ -60,12 +69,17 @@ export function productDetailInfoClear(brand_id) {
   };
 }
 
-export function productDetailSelect(propertiesIdsObject, productDetail) {
+export function productDetailSelect(
+  propertiesIdsObject,
+  productDetail,
+  screen,
+) {
   return {
     type: `${PRODUCTDETAILINFO_NAMESPACE}/${PRODUCT_DETAIL_SELECT.REQUEST}`,
     payload: {
       propertiesIdsObject,
       productDetail,
+      screen,
     },
   };
 }

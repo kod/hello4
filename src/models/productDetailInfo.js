@@ -15,6 +15,7 @@ import {
   productDetailInfoFetchFailure,
 } from '@/common/actions/productDetailInfo';
 import { addError } from '@/common/actions/error';
+import { dispatchEvent } from '@/utils';
 
 const initState = {
   loading: false,
@@ -43,14 +44,22 @@ export default {
   effects: {
     *[PRODUCT_DETAIL_INFO.REQUEST](action, { apply, put }) {
       // 获取默认显示商品(库存不为0)
-      const getProductDetail = data => {
+      const getProductDetail = (data, productIdVIP) => {
         let productDetailResult = {};
         let propertiesIdsResult = '';
 
         Object.keys(data).forEach(val => {
-          if (propertiesIdsResult === '' && data[val].numbers > 0) {
-            productDetailResult = data[val];
-            propertiesIdsResult = val;
+          if (propertiesIdsResult === '') {
+            if (productIdVIP) {
+              if (data[val].id === parseInt(productIdVIP, 10)) {
+                // 有商品id
+                productDetailResult = data[val];
+                propertiesIdsResult = val;
+              }
+            } else if (data[val].numbers > 0) {
+              productDetailResult = data[val];
+              propertiesIdsResult = val;
+            }
           }
         });
 
@@ -102,7 +111,7 @@ export default {
         return result;
       };
 
-      const { brand_id } = action.payload;
+      const { brand_id, productIdVIP, screen } = action.payload;
 
       try {
         const Key = 'commodityKey';
@@ -162,15 +171,42 @@ export default {
             productDetailInfoFetchSuccess({
               product_detail,
               imageDesc,
-              ...getProductDetail(productDetailSort),
+              ...getProductDetail(productDetailSort, productIdVIP),
               ...makePropertiesDetail(properties_detail),
               productDetailSort,
+              screen,
             }),
           );
         }
       } catch (err) {
         yield put(productDetailInfoFetchFailure());
         yield put(addError(typeof err === 'string' ? err : err.toString()));
+      }
+    },
+    *[PRODUCT_DETAIL_INFO.SUCCESS](action) {
+      const { screen, detail } = action.payload;
+      try {
+        yield dispatchEvent(screen, {
+          method: 'productDetailInfo',
+          params: {
+            ...detail,
+          },
+        });
+      } catch (err) {
+        console.warn(err);
+      }
+    },
+    *[PRODUCT_DETAIL_SELECT.REQUEST](action) {
+      const { screen, productDetail } = action.payload;
+      try {
+        yield dispatchEvent(screen, {
+          method: 'productDetailSelect',
+          params: {
+            ...productDetail,
+          },
+        });
+      } catch (err) {
+        console.warn(err);
       }
     },
   },

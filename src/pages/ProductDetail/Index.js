@@ -28,12 +28,13 @@ import { getIsCollection } from '@/common/selectors';
   (state, props) => {
     const { login, productDetailInfo } = state;
     const {
-      location: { query = {} },
+      location: { query = {}, pathname = '' },
     } = props;
 
     return {
       ...productDetailInfo.item,
       query,
+      pathname,
       isAuthUser: !!login.user,
       isCollection: getIsCollection(state, props),
     };
@@ -158,7 +159,7 @@ class Index extends React.Component {
 
   render() {
     const { isShowProductDetailComment } = this.state;
-    const { numbers, isCollection, query } = this.props;
+    const { numbers, isCollection, query, pathname } = this.props;
 
     const styles = {
       container: {
@@ -303,7 +304,7 @@ class Index extends React.Component {
         )}
 
         <div style={styles.main}>
-          <ProductDetailMain query={query} />
+          <ProductDetailMain query={query} pathname={pathname} />
         </div>
         <div style={styles.operate}>
           <div style={styles.operateIcon}>
