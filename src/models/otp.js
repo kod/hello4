@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import buyoo from '@/services/api';
 
 import { encryptMD5 } from '@/utils/AuthEncrypt';
