@@ -33,6 +33,19 @@ import CouponMyTabNavigator from './CouponMyTabNavigator';
   },
 )
 class CouponMy extends React.Component {
+  componentDidMount() {
+    const { getVoucherListFetch } = this.props;
+    getVoucherListFetch({
+      status: 0,
+    });
+    getVoucherListFetch({
+      status: 1,
+    });
+    getVoucherListFetch({
+      status: 2,
+    });
+  }
+
   render() {
     const {
       authUser,

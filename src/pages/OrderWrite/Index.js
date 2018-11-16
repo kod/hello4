@@ -497,12 +497,10 @@ class OrderWrite extends React.Component {
             valueMiddle={payWayToText(payWayIndex)}
           />
           <NavBar2
-            onPress={() => this.handleOnPressCoupon()}
-            valueLeft={formatMessage({ id: 'useVoucher' })}
+            onClick={() => this.handleOnPressCoupon()}
+            valueLeft={formatMessage({ id: 'coupon' })}
             valueMiddle={
-              couponSelectItem.id
-                ? couponSelectItem.voucherName
-                : formatMessage({ id: 'canNotUseVoucher' })
+              couponSelectItem.id ? couponSelectItem.voucherName : ''
             }
           />
         </div>

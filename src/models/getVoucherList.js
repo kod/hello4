@@ -1,8 +1,8 @@
 import moment from 'moment';
 import buyoo from '@/services/api';
-import { Modal } from 'antd-mobile';
-import { formatMessage } from 'umi/locale';
-import router from 'umi/router';
+// import { Modal } from 'antd-mobile';
+// import { formatMessage } from 'umi/locale';
+// import router from 'umi/router';
 
 import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
 import {
@@ -14,7 +14,7 @@ import {
   getVoucherListFetchSuccess,
   getVoucherListFetchFailure,
 } from '@/common/actions/getVoucherList';
-import { getVoucherFetch } from '@/common/actions/getVoucher';
+// import { getVoucherFetch } from '@/common/actions/getVoucher';
 import { addError } from '@/common/actions/error';
 import { getAuthUserFunid } from '@/common/selectors';
 
@@ -135,22 +135,22 @@ export default {
         yield put(addError(typeof err === 'string' ? err : err.toString()));
       }
     },
-    *[GET_VOUCHER_LIST.SUCCESS](action, { put }) {
-      try {
-        yield put(getVoucherFetch());
-        Modal.alert('', formatMessage({ id: 'success' }), [
-          {
-            text: formatMessage({ id: 'confirm' }),
-            style: 'default',
-            onPress: () => {
-              router.go(-1);
-            },
-          },
-        ]);
-      } catch (err) {
-        yield put(addError(typeof err === 'string' ? err : err.toString()));
-      }
-    },
+    // *[GET_VOUCHER_LIST.SUCCESS](action, { put }) {
+    //   try {
+    //     yield put(getVoucherFetch());
+    //     Modal.alert('', formatMessage({ id: 'success' }), [
+    //       {
+    //         text: formatMessage({ id: 'confirm' }),
+    //         style: 'default',
+    //         onPress: () => {
+    //           router.go(-1);
+    //         },
+    //       },
+    //     ]);
+    //   } catch (err) {
+    //     yield put(addError(typeof err === 'string' ? err : err.toString()));
+    //   }
+    // },
   },
 
   reducers: {

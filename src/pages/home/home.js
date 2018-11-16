@@ -11,7 +11,7 @@ import * as getNewestInfoActionCreators from '@/common/actions/getNewestInfo';
 import * as bannerSwiperActionCreators from '@/common/actions/bannerSwiper';
 import * as adverstInfoActionCreators from '@/common/actions/adverstInfo';
 import * as initAdverstCommonActionCreators from '@/common/actions/initAdverstCommon';
-import { addEventListener, dispatchEvent } from '@/utils';
+import { addEventListener, dispatchEvent, analyzeUrlNavigate } from '@/utils';
 import NavImg1 from '@/components/NavImg1';
 import SeparateBar from '@/components/SeparateBar';
 import { RED_COLOR } from '@/styles/variables';
@@ -137,6 +137,7 @@ class Index extends PureComponent {
         <NavImg1
           data={getSquaresInfoItems}
           style={{ paddingTop: 5, paddingBottom: 5 }}
+          onClick={analyzeUrlNavigate}
         />
 
         <SeparateBar />

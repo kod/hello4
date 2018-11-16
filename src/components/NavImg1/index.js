@@ -32,7 +32,7 @@ const styles = {
 export default ({
   data,
   style,
-  onPress,
+  onClick,
   navigation,
   isAuthUser,
   ...restProps
@@ -57,8 +57,7 @@ export default ({
         }}
         key={val.id}
         onClick={() => {
-          console.log('onClick');
-          // onPress({ linkUrl: val.linkUrl, navigation, isAuthUser })
+          onClick({ linkUrl: val.linkUrl, navigation, isAuthUser });
         }}
       >
         <img

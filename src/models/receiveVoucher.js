@@ -1,5 +1,7 @@
 import moment from 'moment';
 import buyoo from '@/services/api';
+import { formatMessage } from 'umi/locale';
+import { Modal } from 'antd-mobile';
 
 import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
 import { RECEIVEVOUCHER_NAMESPACE } from '@/common/constants';
@@ -8,6 +10,8 @@ import {
   receiveVoucherFetchSuccess,
   receiveVoucherFetchFailure,
 } from '@/common/actions/receiveVoucher';
+import { getVoucherFetch } from '@/common//actions/getVoucher';
+
 import { addError } from '@/common/actions/error';
 import { getAuthUserFunid } from '@/common/selectors';
 
@@ -73,6 +77,32 @@ export default {
         }
       } catch (err) {
         yield put(receiveVoucherFetchFailure());
+        yield put(addError(typeof err === 'string' ? err : err.toString()));
+      }
+    },
+    *[RECEIVE_VOUCHER.SUCCESS](_, { put }) {
+      try {
+        yield put(getVoucherFetch());
+        Modal.alert('', formatMessage({ id: 'success' }), [
+          {
+            text: formatMessage({ id: 'confirm' }),
+            style: 'default',
+            onPress: () => {},
+          },
+        ]);
+
+        // Alert.alert(
+        //   '',
+        //   i18n.success,
+        //   [
+        //     {
+        //       text: i18n.confirm,
+        //       onPress: () => {},
+        //     },
+        //   ],
+        //   // { cancelable: false },
+        // );
+      } catch (err) {
         yield put(addError(typeof err === 'string' ? err : err.toString()));
       }
     },

@@ -1,12 +1,12 @@
 import React from 'react';
-import router from 'umi/router';
+// import router from 'umi/router';
 import { connect } from 'dva';
 import { formatMessage } from 'umi/locale';
-import { Modal } from 'antd-mobile';
+// import { Modal } from 'antd-mobile';
 
 import * as getVoucherListActionCreators from '@/common/actions/getVoucherList';
 import * as receiveVoucherActionCreators from '@/common/actions/receiveVoucher';
-import { SCREENS, WINDOW_HEIGHT } from '@/common/constants';
+import { WINDOW_HEIGHT } from '@/common/constants';
 import Loader from '@/components/Loader';
 import EmptyState from '@/components/EmptyState';
 import CouponItem from '@/components/CouponItem';
@@ -26,7 +26,8 @@ const styles = {
     const { getVoucherList } = state;
 
     const { routeName } = props;
-
+    console.log(routeName);
+    console.log(routeName);
     return {
       items: getVoucherList[routeName],
       loading: getVoucherList.loading,
@@ -40,35 +41,6 @@ const styles = {
   },
 )
 class CouponMyItem extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.handlerOnPress = this.handlerOnPress.bind(this);
-  }
-
-  handlerOnPress(val) {
-    const { receiveVoucherFetch, isAuthUser } = this.props;
-    if (!isAuthUser) return router.push(`/${SCREENS.Login}`);
-
-    if (val.status !== 1) {
-      const title =
-        val.status === 0
-          ? formatMessage({ id: 'received' })
-          : formatMessage({ id: 'haveFinished' });
-      Modal.alert('', title, [
-        {
-          text: formatMessage({ id: 'confirm' }),
-          style: 'default',
-        },
-      ]);
-      return false;
-    }
-
-    return receiveVoucherFetch({
-      voucherid: val.id,
-    });
-  }
-
   render() {
     const { items, loading } = this.props;
 

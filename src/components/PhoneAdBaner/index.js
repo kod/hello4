@@ -38,7 +38,6 @@ export default ({ groupon = false, data, style, ...restProps }) => (
       <div
         style={styles.touchable}
         key={key}
-        // backgroundColor="transparent"
         onClick={() => {
           router.push(
             `/${SCREENS.ProductDetail}?${qs.stringify({
@@ -46,8 +45,6 @@ export default ({ groupon = false, data, style, ...restProps }) => (
               groupon,
             })}`,
           );
-
-          // navigate(SCREENS.ProductDetail, { brandId: val.brandId, groupon })
         }}
       >
         <img

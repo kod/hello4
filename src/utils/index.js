@@ -271,16 +271,11 @@ export const submitDuplicateFreeze = (submitfreeze, self, callback) => {
 };
 
 // navigateCheckLogin
-export const navigateCheckLogin = (
-  isAuthUser,
-  navigate,
-  screensName,
-  params = {},
-) => {
+export const navigateCheckLogin = (isAuthUser, screensName, params = {}) => {
   if (isAuthUser) {
-    navigate(SCREENS[screensName], params);
+    router.push(`/${SCREENS[screensName]}?${qs.stringify(params)}`);
   } else {
-    navigate(SCREENS.Login);
+    router.push(SCREENS.Login);
   }
 };
 
@@ -290,7 +285,6 @@ export const analyzeUrlNavigate = ({
   isAuthUser = false,
   isQrCode = false,
 }) => {
-  const { navigate } = navigation;
   const htmlRegexResult = linkUrl.match(HTML_REGEX);
 
   let shareIdResult = null;
@@ -314,8 +308,6 @@ export const analyzeUrlNavigate = ({
       // );
     } else {
       router.push(`/${routeName}?${qs.stringify(params)}`);
-
-      // navigate(routeName, params);
     }
   };
 
@@ -324,16 +316,18 @@ export const analyzeUrlNavigate = ({
     classifyIdRegexResult = linkUrl.match(CLASSIFYID_REGEX);
     subClassfyIdRegexResult = linkUrl.match(SUBCLASSFYID_REGEX);
     thirdClassfyIdRegexResult = linkUrl.match(THIRDCLASSFYID_REGEX);
-    navigate(SCREENS.CateList, {
-      parent_id: brandIdRegexResult ? brandIdRegexResult[1] : '0',
-      classfy_id: classifyIdRegexResult ? classifyIdRegexResult[1] : '0',
-      sub_classfy_id: subClassfyIdRegexResult
-        ? subClassfyIdRegexResult[1]
-        : '0',
-      third_classfy_id: thirdClassfyIdRegexResult
-        ? thirdClassfyIdRegexResult[1]
-        : '0',
-    });
+    router.push(
+      `/${SCREENS.OrderDetail}?${qs.stringify({
+        parent_id: brandIdRegexResult ? brandIdRegexResult[1] : '0',
+        classfy_id: classifyIdRegexResult ? classifyIdRegexResult[1] : '0',
+        sub_classfy_id: subClassfyIdRegexResult
+          ? subClassfyIdRegexResult[1]
+          : '0',
+        third_classfy_id: thirdClassfyIdRegexResult
+          ? thirdClassfyIdRegexResult[1]
+          : '0',
+      })}`,
+    );
   };
 
   if (!htmlRegexResult) {
@@ -362,30 +356,25 @@ export const analyzeUrlNavigate = ({
           customNavigate(SCREENS.Login);
         }
 
-        // navigateCheckLogin(isAuthUser, navigate, 'Order', { index: 0 });
         break;
 
       case 'couponcenter':
         // 领券中心
-        // navigate(SCREENS.Coupon);
         customNavigate(SCREENS.Coupon);
         break;
 
       case 'prepaid':
         // 充值
-        // navigate(SCREENS.Prepaid);
         customNavigate(SCREENS.Prepaid);
         break;
 
       case 'computerPage':
         // 电脑
-        // navigate(SCREENS.Computer);
         customNavigate(SCREENS.Computer);
         break;
 
       case 'cellphoneBanner':
         // 手机
-        // navigate(SCREENS.Mobile);
         customNavigate(SCREENS.Mobile);
         break;
 
@@ -433,9 +422,6 @@ export const analyzeUrlNavigate = ({
           navigation,
           shareIdResult ? shareIdResult[1] : '',
         );
-        // customNavigate(SCREENS.RegisterStepOne, {
-        //   id: shareIdResult ? shareIdResult[1] : '',
-        // });
         break;
 
       default:

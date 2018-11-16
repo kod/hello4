@@ -1,22 +1,20 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
 import { connect } from 'dva';
-import BYHeader from '@/components/BYHeader';
 import { formatMessage } from 'umi/locale';
+import router from 'umi/router';
+import { Modal } from 'antd-mobile';
 
+import BYHeader from '@/components/BYHeader';
 import Loader from '@/components/Loader';
 
-import * as addressActionCreators from '@/common/actions/address';
-import * as getUserInfoByIdActionCreators from '@/common/actions/getUserInfoById';
-import * as orderCreateActionCreators from '@/common/actions/orderCreate';
+import * as judgeVoucherActionCreators from '@/common/actions/judgeVoucher';
 import * as couponSelectActionCreators from '@/common/actions/couponSelect';
-import * as modalActionCreators from '@/common/actions/modal';
-import { PRIMARY_COLOR, BORDER_COLOR } from '@/styles/variables';
-import { SIDEINTERVAL, WINDOW_WIDTH, SCREENS } from '@/common/constants';
-import { Modal } from 'antd-mobile';
+import { SCREENS, WINDOW_HEIGHT } from '@/common/constants';
 import EmptyState from '@/components/EmptyState';
 
-import CustomIcon from '@/components/CustomIcon';
+import CouponItem from '@/components/CouponItem';
+import MustLogin from '@/components/MustLogin';
 
 const ouhrigdfnjsoeijehrJpg =
   'https://oss.buyoo.vn/usercollect/1/20181101180309_67w.jpg';
@@ -26,108 +24,29 @@ const styles = {
     flex: 1,
     backgroundColor: '#fff',
   },
-  add: {
-    height: 50,
-    lineHeight: 50,
-    textAlign: 'center',
-    backgroundColor: PRIMARY_COLOR,
-    color: '#fff',
-  },
-  item: {
-    paddingLeft: SIDEINTERVAL,
-  },
-  main: {
-    marginTop: 25,
-    paddingBottom: 25,
-    borderBottomWidth: 1,
-    borderBottomColor: BORDER_COLOR,
-  },
-  namePhone: {
-    display: 'flex',
-    flexDirection: 'row',
-    marginBottom: 10,
-  },
-  name: {
-    color: '#333',
-    marginRight: 15,
-    fontWeight: '700',
-  },
-  phone: {
-    color: '#333',
-    fontWeight: '700',
-  },
-  address: {
-    color: '#999',
-    paddingRight: SIDEINTERVAL,
-    marginBottom: 20,
-    fontSize: 14,
-    lineHeight: 14 + 14 * 0.618,
-  },
-  operate: {
-    display: 'flex',
-    flexDirection: 'row',
-  },
-  operateLeft: {
-    display: 'flex',
-    flexDirection: 'row',
-    flex: 1,
-  },
-  selectIcon: {
-    fontSize: 18,
-    color: '#666',
-    marginRight: WINDOW_WIDTH * 0.02,
-    paddingTop: 1,
-  },
-  selectText: {
-    color: '#666',
-  },
-  operateRight: {
-    display: 'flex',
-    flexDirection: 'row',
-    paddingRight: SIDEINTERVAL,
-  },
-  editIcon: {
-    fontSize: 24,
-    color: '#666',
-    paddingLeft: WINDOW_WIDTH * 0.02,
-    paddingRight: WINDOW_WIDTH * 0.02,
-  },
-  trashIcon: {
-    fontSize: 24,
-    color: '#666',
-    paddingLeft: WINDOW_WIDTH * 0.02,
-    paddingRight: WINDOW_WIDTH * 0.02,
-  },
-  selected: {
-    color: PRIMARY_COLOR,
-  },
 };
 
 @connect(
-  state => {
+  (state, props) => {
+    const { judgeVoucher, login } = state;
+
     const {
-      address,
-      // address,
-    } = state;
-
-    // const {
-
-    // } = props;
+      location: {
+        query: { products },
+      },
+    } = props;
+    console.log(products);
 
     return {
-      isAuthUser: !!state.login.user,
-      items: address.items,
-      loading: address.loading,
-      loaded: address.loaded,
-      refreshing: address.refreshing,
+      products,
+      loading: judgeVoucher.loading,
+      items: judgeVoucher.items,
+      authUser: login.user,
     };
   },
   {
-    ...addressActionCreators,
-    ...getUserInfoByIdActionCreators,
-    ...orderCreateActionCreators,
+    ...judgeVoucherActionCreators,
     ...couponSelectActionCreators,
-    ...modalActionCreators,
   },
 )
 class CouponSelect extends React.Component {
@@ -138,78 +57,51 @@ class CouponSelect extends React.Component {
   }
 
   componentDidMount() {
-    const {
-      judgeVoucherFetch,
-      products,
-      // products,
-    } = this.props;
-    judgeVoucherFetch({
-      products,
-    });
+    const { judgeVoucherFetch, products, authUser } = this.props;
+    if (authUser) {
+      judgeVoucherFetch({
+        products,
+      });
+    }
   }
 
   handlerOnPress(val) {
-    const {
-      couponSelectFetch,
-      isAuthUser,
-      navigation: { navigate, goBack },
-    } = this.props;
-    if (!isAuthUser) return navigate(SCREENS.Login);
+    const { couponSelectFetch, authUser } = this.props;
+    if (!authUser) return router.push(SCREENS.Login);
     if (val.status === 0) return false;
     couponSelectFetch(val);
-    return goBack();
+    return router.go(-1);
   }
 
-  renderHeaderTitle = () => {
-    const stylesX = {
-      container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingRight: 40,
-        flexDirection: 'row',
-      },
-      title: {
-        fontSize: 16,
-        color: '#333',
-        marginRight: 5,
-      },
-    };
-
-    const { i18n } = this.props;
-
-    return (
-      <div style={stylesX.container}>
-        <div style={stylesX.title}>{i18n.chooseCoupon}</div>
-      </div>
-    );
-  };
-
   renderContent() {
-    const {
-      items,
-      // navigation: { navigate },
-      // i18n,
-      // loading,
-    } = this.props;
+    const { items } = this.props;
 
-    return <CouponItem data={items} onPress={this.handlerOnPress} />;
+    return <CouponItem data={items} onClick={this.handlerOnPress} />;
   }
 
   render() {
-    const { items, i18n, loading } = this.props;
+    const { items, loading, authUser } = this.props;
 
     if (loading) return <Loader />;
 
     return (
       <div style={styles.container}>
-        <BYHeader headerTitle={this.renderHeaderTitle()} />
+        <BYHeader title={formatMessage({ id: 'chooseCoupon' })} />
+        <MustLogin
+          Modal={Modal}
+          visible={!authUser}
+          formatMessage={formatMessage}
+          router={router}
+          SCREENS={SCREENS}
+        />
+
         {items.length > 0 ? (
           this.renderContent()
         ) : (
           <EmptyState
             source={ouhrigdfnjsoeijehrJpg}
-            text={i18n.temporarilyUnableReceiveVoucher}
+            text={formatMessage({ id: 'temporarilyUnableReceiveVoucher' })}
+            style={{ height: WINDOW_HEIGHT - 45 }}
             styleText={{ marginBottom: 0 }}
           />
         )}

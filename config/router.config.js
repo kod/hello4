@@ -63,4 +63,12 @@ export default [
     path: '/Evalution',
     component: './Evalution/Index',
   },
+  {
+    path: '/Coupon',
+    component: './Coupon/Index',
+  },
+  {
+    path: '/CouponSelect',
+    component: './CouponSelect/Index',
+  },
 ];
