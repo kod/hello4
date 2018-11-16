@@ -1,5 +1,5 @@
 import React from 'react';
-import { SIDEINTERVAL } from '@/common/constants';
+import { SIDEINTERVAL, DEBUG } from '@/common/constants';
 import { BORDER_COLOR } from '@/styles/variables';
 
 // const viemnamPng = 'https://oss.buyoo.vn/usercollect/1/20181105163710_k1W.png';
@@ -56,7 +56,7 @@ export default ({
         type="email"
         style={{ ...styles.componentInput, ...styleInput }}
         {...getFieldProps('mail', {
-          initialValue: 'shannon.feng@buyoo.asia',
+          initialValue: DEBUG ? 'shannon.feng@buyoo.asia' : '',
           rules: [
             {
               type: 'string',
