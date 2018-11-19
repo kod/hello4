@@ -165,6 +165,7 @@ class AddressModify extends React.Component {
       'toggleMenuBottomSheetEventListener',
       this.toggleMenuBottomSheetEventListenerHandle,
     );
+    clearTimeout(this.setTimeoutId);
   }
 
   toggleMenuBottomSheetEventListenerHandle = ret => {

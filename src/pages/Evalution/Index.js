@@ -102,6 +102,7 @@ class Evalution extends React.Component {
 
   componentWillUnmount() {
     removeEventListener(SCREENS.Evalution, this.addEventListenerHandle);
+    clearTimeout(this.setTimeoutId);
   }
 
   addEventListenerHandle = ({ method, params = {} }) => {

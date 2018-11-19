@@ -138,6 +138,7 @@ class AddressAdd extends React.Component {
       'toggleMenuBottomSheetEventListener',
       this.toggleMenuBottomSheetEventListenerHandle,
     );
+    clearTimeout(this.setTimeoutId);
   }
 
   addEventListenerHandle = () => {

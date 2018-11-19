@@ -90,12 +90,11 @@ class Pay extends React.Component {
 
   componentWillUnmount() {
     removeEventListener(SCREENS.Pay, this.addEventListenerHandle);
+    clearTimeout(this.setTimeoutId);
   }
 
   addEventListenerHandle = ({ method, params = {} }) => {
     const { orderNo, tradeNo, queryOrderFetch } = this.props;
-    console.log(method);
-    console.log(params);
     switch (method) {
       case 'orderPay':
         queryOrderFetch({
@@ -171,8 +170,6 @@ class Pay extends React.Component {
       queryOrderItem: { totalAmount, orderNo, tradeNo },
     } = this.props;
 
-    console.log(payWayIndex);
-    console.log(submitfreeze);
     switch (payWayIndex) {
       case INTERNET_BANK_PAYWAY: // 网银
       case OFFLINE_PAYWAY: // 线下支付
