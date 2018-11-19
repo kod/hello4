@@ -63,6 +63,7 @@ class Index extends React.Component {
 
   componentWillUnmount() {
     removeEventListener(SCREENS.ProductDetail, this.addEventListenerHandle);
+    clearTimeout(this.setTimeoutId);
   }
 
   addEventListenerHandle = () => {
@@ -213,7 +214,7 @@ class Index extends React.Component {
         lineHeight: `${10 * 1.618}px`,
         textAlign: 'center',
         fontSize: 10,
-        paddingTop: 5,
+        paddingTop: 8,
         paddingLeft: SIDEINTERVAL,
         paddingRight: SIDEINTERVAL,
         color: '#fff',
@@ -294,7 +295,15 @@ class Index extends React.Component {
           title={formatMessage({ id: 'details' })}
           headerRight={this.renderHeaderRight()}
         /> */}
-        <div style={styles.back} onClick={() => router.go(-1)}>
+        <div
+          style={styles.back}
+          onClick={() => {
+            router.go(-1);
+            this.setTimeoutId = setTimeout(() => {
+              router.push(`/`);
+            }, 300);
+          }}
+        >
           <CustomIcon type="left" style={styles.backIcon} />
         </div>
         {isShowProductDetailComment && (
