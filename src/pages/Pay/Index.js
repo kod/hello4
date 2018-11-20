@@ -68,7 +68,7 @@ class Pay extends React.Component {
 
     this.state = {
       submitfreeze: false,
-      payWayButtons: payWayArray(),
+      payWayButtons: payWayArray(DEBUG),
       payWayIndex: INTERNET_BANK_PAYWAY,
     };
     // this.actionSheetCallback = this.actionSheetCallback.bind(this);
@@ -108,8 +108,9 @@ class Pay extends React.Component {
             onPress: () => {
               router.push(
                 `/${SCREENS.OrderDetail}?${qs.stringify({
-                  tradeNo: params.tradeNo,
-                  orderNo: params.orderNo,
+                  tradeNo: params.tradeno,
+                  orderNo: params.orderno,
+                  from: SCREENS.Pay,
                 })}`,
               );
             },

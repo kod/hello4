@@ -233,20 +233,32 @@ export const orderWritePayWayArray = () => [
   },
 ];
 
-export const payWayArray = () => [
-  {
-    key: CREDIT_PAYWAY,
-    value: formatMessage({ id: 'funCard' }),
-  },
-  {
-    key: INTERNET_BANK_PAYWAY,
-    value: formatMessage({ id: 'internetBanking' }),
-  },
-  {
-    key: OFFLINE_PAYWAY,
-    value: formatMessage({ id: 'paymentCollectingShop' }),
-  },
-];
+export const payWayArray = DEBUG =>
+  DEBUG
+    ? [
+        {
+          key: CREDIT_PAYWAY,
+          value: formatMessage({ id: 'funCard' }),
+        },
+        {
+          key: INTERNET_BANK_PAYWAY,
+          value: formatMessage({ id: 'internetBanking' }),
+        },
+        {
+          key: OFFLINE_PAYWAY,
+          value: formatMessage({ id: 'paymentCollectingShop' }),
+        },
+      ]
+    : [
+        {
+          key: INTERNET_BANK_PAYWAY,
+          value: formatMessage({ id: 'internetBanking' }),
+        },
+        {
+          key: OFFLINE_PAYWAY,
+          value: formatMessage({ id: 'paymentCollectingShop' }),
+        },
+      ];
 
 export const judge = (boolean, trueFunc, falseFunc = () => {}) => {
   if (boolean) {
