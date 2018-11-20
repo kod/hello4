@@ -144,7 +144,7 @@ class ProductItem2 extends React.Component {
             <div
               style={{ ...styles.item, ...styleItem }}
               key={key}
-              onPress={() => this.onPressHandle(val)}
+              onClick={() => this.onPressHandle(val)}
             >
               <div style={{ ...styles.itemLeft, ...styleItemLeft }}>
                 <img
