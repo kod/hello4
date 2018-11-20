@@ -8,7 +8,7 @@ import NavSidesText from '@/components/NavSidesText';
 import Form from './Form';
 import Loader from '@/components/Loader';
 import { LOGIN } from '@/common/constants/actionTypes';
-import { LOGIN_NAMESPACE, SCREENS } from '@/common/constants';
+import { LOGIN_NAMESPACE, SCREENS, WINDOW_HEIGHT } from '@/common/constants';
 import { addEventListener, removeEventListener } from '@/utils';
 
 @connect(
@@ -36,8 +36,15 @@ class Index extends React.Component {
 
   render() {
     const { loginLoading } = this.props;
+    const styles = {
+      container: {
+        height: WINDOW_HEIGHT,
+        backgroundColor: '#fff',
+      },
+    };
+
     return (
-      <div>
+      <div style={styles.container}>
         <BYHeader title={formatMessage({ id: 'login' })} />
 
         {loginLoading && <Loader />}
