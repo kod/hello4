@@ -75,7 +75,7 @@ class Index extends React.Component {
               <Home />
             </div>
           </TabBar.Item>
-          <TabBar.Item
+          {/* <TabBar.Item
             icon={<CustomIcon type="classify" style={styles.icon} />}
             selectedIcon={<CustomIcon type="classify" style={styles.icon} />}
             title={formatMessage({ id: 'categories' })}
@@ -92,7 +92,7 @@ class Index extends React.Component {
             <div style={styles.wrap}>
               <Categories />
             </div>
-          </TabBar.Item>
+          </TabBar.Item> */}
           <TabBar.Item
             icon={<CustomIcon type="cart" style={styles.icon} />}
             selectedIcon={<CustomIcon type="cart" style={styles.icon} />}
