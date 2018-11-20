@@ -128,7 +128,7 @@ export default {
   },
 
   reducers: {
-    [LOGIN.CLEAR]() {
+    [LOGOUT.SUCCESS]() {
       return {
         ...initState,
       };

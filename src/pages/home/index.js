@@ -3,7 +3,7 @@ import { TabBar } from 'antd-mobile';
 import { formatMessage } from 'umi/locale';
 import { WINDOW_HEIGHT } from '@/common/constants';
 import Home from '@/pages/Home/Home';
-import Categories from '@/pages/Home/Categories';
+// import Categories from '@/pages/Home/Categories';
 import Cart from '@/pages/Home/Cart';
 import Me from '@/pages/Home/Me';
 import CustomIcon from '@/components/CustomIcon';

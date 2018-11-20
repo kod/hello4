@@ -1,5 +1,5 @@
-export const DEBUG = false;
-export const API_DEBUG = true;
+export const DEBUG = true;
+export const API_DEBUG = DEBUG;
 export const IS_SHOW_LOG = DEBUG;
 export const IS_I18N = DEBUG; // 是否支持多语言; 默认为越南语
 export const CARMAXNUMBER = 50;
@@ -70,7 +70,7 @@ export const FUNCARD_HELP_APPLY = `${DOMAIN}/html/aboutFunCard.html#Cach-thuc-da
 export const FUNCARD_HELP_STAGE = `${DOMAIN}/html/aboutFunCard.html#Huong-dan-mua-hang-bang-Buyoo-Fun-Card`; // 如何分期
 export const FUNCARD_HELP_REPAY = `${DOMAIN}/html/aboutFunCard.html#Thanh-toan-no-hang-thang-the-Buyoo-Fun-Card-nhu-the-nao`; // 如何还款
 
-export const ICON_SCRIPTURL = '//at.alicdn.com/t/font_892500_hztqz7j31in.js';
+export const ICON_SCRIPTURL = '//at.alicdn.com/t/font_892500_x5rzysu98nr.js';
 
 export const STUDENT_CARD_POSITIVE_IMAGE =
   'https://oss.buyoo.vn/usercollect/1/20180917153943_QB7.png'; // 学生证正面

@@ -79,4 +79,12 @@ export default [
     path: '/MyCollection',
     component: './MyCollection/Index',
   },
+  {
+    path: '/Settings',
+    component: './Settings/Index',
+  },
+  {
+    path: '/AboutAs',
+    component: './AboutAs/Index',
+  },
 ];
