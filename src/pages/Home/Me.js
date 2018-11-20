@@ -19,12 +19,13 @@ import {
 import { PRIMARY_COLOR, RED_COLOR } from '@/styles/variables';
 import NavBar1 from '@/components/NavBar1';
 import CustomIcon from '@/components/CustomIcon';
+import BYHeader from '@/components/BYHeader';
 
 const aioru09230fPng =
   'https://oss.buyoo.vn/usercollect/1/20181102094215_995.png';
 
 @connect(
-  state => {
+  (state, props) => {
     const {
       userCertificateInfo,
       login,
@@ -33,7 +34,10 @@ const aioru09230fPng =
       getUserInfoById,
     } = state;
 
+    const { location } = props;
+
     return {
+      location,
       getUserInfoByIdUserType: getUserInfoById.item.userType,
       orderItem: queryOrderList.item,
       certUser: userCertificateInfo.certUser,
@@ -230,7 +234,12 @@ class Index extends PureComponent {
   }
 
   render() {
-    const { certUser, authUser, getUserInfoByIdUserType } = this.props;
+    const {
+      certUser,
+      authUser,
+      getUserInfoByIdUserType,
+      location,
+    } = this.props;
 
     const headerIconImgSource =
       authUser && certUser ? { uri: certUser.headimage } : aioru09230fPng;
@@ -340,6 +349,8 @@ class Index extends PureComponent {
 
     return (
       <div style={styles.container}>
+        {location && <BYHeader title={formatMessage({ id: 'me' })} />}
+
         <div style={styles.header}>
           <div
             style={styles.headerIcon}

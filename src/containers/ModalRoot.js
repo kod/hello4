@@ -3,7 +3,7 @@ import { connect } from 'dva';
 import { MODAL_TYPES } from '../common/constants';
 import AddressAddModal from './AddressAddModal';
 import ParamsSelectModal from './ParamsSelectModal';
-// import LoaderModal from './LoaderModal';
+import MoreModal from './MoreModal';
 // import ActionSheetModal from './ActionSheetModal';
 // import BillSelectModal from './BillSelectModal';
 // import EnterPasswordModal from './EnterPasswordModal';
@@ -14,6 +14,7 @@ import ParamsSelectModal from './ParamsSelectModal';
 const MODAL_COMPONENTS = {
   [MODAL_TYPES.ADDRESSADD]: AddressAddModal,
   [MODAL_TYPES.PARAMSSELECT]: ParamsSelectModal,
+  [MODAL_TYPES.MORE]: MoreModal,
   // [MODAL_TYPES.LOADER]: LoaderModal,
   // [MODAL_TYPES.ACTIONSHEET]: ActionSheetModal,
   // [MODAL_TYPES.BILLSELECT]: BillSelectModal,
