@@ -4,6 +4,7 @@ import { connect } from 'dva';
 import router from 'umi/router';
 import { Modal } from 'antd-mobile';
 
+import stylesLess from './index.less';
 import CustomIcon from '@/components/CustomIcon';
 // import BYHeader from '@/components/BYHeader';
 import {
@@ -312,7 +313,7 @@ class Index extends React.Component {
     };
 
     return (
-      <div style={styles.container}>
+      <div style={styles.container} className={stylesLess.container}>
         {/* <BYHeader
           title={formatMessage({ id: 'details' })}
           headerRight={this.renderHeaderRight()}
