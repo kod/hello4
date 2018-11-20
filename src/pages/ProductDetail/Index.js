@@ -11,6 +11,7 @@ import {
   WINDOW_HEIGHT,
   WINDOW_WIDTH,
   SCREENS,
+  MESSAGE_URL,
 } from '@/common/constants';
 import {
   BORDER_COLOR,
@@ -105,7 +106,7 @@ class Index extends React.Component {
 
   handleToggleService() {
     const { authUser, funid, brandId, typeId, name } = this.props;
-    let linkStr = 'http://m.me/buyooshop.vip?ref=';
+    let linkStr = `${MESSAGE_URL}?ref=`;
     let funIdStr = '';
     let typeID = 0;
     if (undefined !== typeId) {

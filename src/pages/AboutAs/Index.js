@@ -7,11 +7,11 @@ import { formatMessage } from 'umi/locale';
 import * as collectionActionCreators from '@/common/actions/collection';
 import BYHeader from '@/components/BYHeader';
 import {
-  BUYOO,
+  BUYOOVIP,
   BUYOO_VN,
-  BUSINESS_EMAIL,
+  // BUSINESS_EMAIL,
   SERVICE_EMAIL,
-  SERVICE_PHONE,
+  // SERVICE_PHONE,
   WINDOW_HEIGHT,
   VERSION,
   SUPPORT_CENTER_URL,
@@ -38,8 +38,8 @@ const styles = {
     flexDirection: 'column',
   },
   appMsgWrap2: {
-    paddingTop: 10,
-    paddingBottom: 10,
+    paddingTop: 20,
+    paddingBottom: 20,
   },
   appMsgWrap: {
     height: 80,
@@ -96,13 +96,13 @@ class AboutAs extends React.Component {
       //     }),
       //   tips: '',
       // },
-      {
-        name: formatMessage({ id: 'businessEmail' }),
-        func: () => {
-          window.location.href = `mailto:${BUSINESS_EMAIL}`;
-        },
-        tips: BUSINESS_EMAIL,
-      },
+      // {
+      //   name: formatMessage({ id: 'businessEmail' }),
+      //   func: () => {
+      //     window.location.href = `mailto:${BUSINESS_EMAIL}`;
+      //   },
+      //   tips: BUSINESS_EMAIL,
+      // },
       {
         name: formatMessage({ id: 'serviceEmail' }),
         func: () => {
@@ -110,13 +110,13 @@ class AboutAs extends React.Component {
         },
         tips: SERVICE_EMAIL,
       },
-      {
-        name: formatMessage({ id: 'hotline' }),
-        func: () => {
-          window.location.href = `tel:${SERVICE_PHONE}`;
-        },
-        tips: SERVICE_PHONE,
-      },
+      // {
+      //   name: formatMessage({ id: 'hotline' }),
+      //   func: () => {
+      //     window.location.href = `tel:${SERVICE_PHONE}`;
+      //   },
+      //   tips: SERVICE_PHONE,
+      // },
     ];
     return (
       <div style={styles.WrapContainer}>
@@ -125,7 +125,7 @@ class AboutAs extends React.Component {
           <div style={styles.appMsgWrap2}>
             <div style={styles.appMsgWrap}>
               <img alt="" style={styles.appIcon} src={icAvatarPng} />
-              <div style={styles.appVersion}>{`${BUYOO_VN} v${VERSION}`}</div>
+              <div style={styles.appVersion}>{`${BUYOOVIP} v${VERSION}`}</div>
             </div>
           </div>
           <SeparateBar />
@@ -141,8 +141,9 @@ class AboutAs extends React.Component {
             &copy; {`${new Date().getFullYear()} - `}
             {formatMessage({ id: 'copyright' }).replace(
               'CompanyName',
-              BUYOO,
-            )} - {BUYOO_VN}
+              BUYOOVIP,
+            )}{' '}
+            - {BUYOO_VN}
           </div>
         </div>
       </div>

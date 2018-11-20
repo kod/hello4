@@ -52,14 +52,16 @@ export const JUDGEVOUCHER_NAMESPACE = 'judgeVoucher';
 // namespace -end-
 
 export const DOMAIN = 'https://buyoo.vn';
+export const MESSAGE_URL = 'http://m.me/buyooshop.vip';
 export const SHARE_URL = `${DOMAIN}/html/downloadApp.html?userID=XXX`;
 export const SUPPORT_CENTER_URL = `${DOMAIN}/html/buyIntroM.html`;
 export const HOW_TO_BUY_URL = `${DOMAIN}/html/paystepM.html`;
 export const BUSINESS_EMAIL = 'business.vn@buyoo.aisa';
-export const SERVICE_EMAIL = 'service.vn@buyoo.aisa';
+export const SERVICE_EMAIL = 'service@buyoo.vip';
 export const SERVICE_PHONE = '1900555506';
 export const BUYOO = 'Buyoo';
-export const BUYOO_VN = `${BUYOO}.vn`;
+export const BUYOOVIP = 'BuyooVip';
+export const BUYOO_VN = `${BUYOO}.vip`;
 export const ZALO = 'zalo';
 export const GOOGLE_PLUS = 'google+';
 export const FACEBOOK = 'facebook';
