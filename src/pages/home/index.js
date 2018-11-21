@@ -8,7 +8,7 @@ import Cart from '@/pages/Home/Cart';
 import Me from '@/pages/Home/Me';
 import CustomIcon from '@/components/CustomIcon';
 import { addEventListener, removeEventListener } from '@/utils';
-// import ModalRoot from '@/containers/ModalRoot';
+import stylesLess from './index.less';
 
 class Index extends React.Component {
   constructor(props) {
@@ -38,9 +38,15 @@ class Index extends React.Component {
     const { hidden, tabBarIndex } = this.state;
 
     const styles = {
-      wrap: {
+      container: {
+        position: 'relative',
+        display: 'flex',
+        flexDirection: 'column',
         height: WINDOW_HEIGHT - 50,
       },
+      // wrap: {
+      //   height: WINDOW_HEIGHT - 50,
+      // },
       icon: {
         fontSize: 16,
         width: 22,
@@ -71,7 +77,7 @@ class Index extends React.Component {
             }}
             data-seed="logId"
           >
-            <div style={styles.wrap}>
+            <div style={styles.container} className={stylesLess.container}>
               <Home />
             </div>
           </TabBar.Item>
@@ -89,7 +95,7 @@ class Index extends React.Component {
             }}
             data-seed="logId1"
           >
-            <div style={styles.wrap}>
+            <div style={styles.container} className={stylesLess.container}>
               <Categories />
             </div>
           </TabBar.Item> */}
@@ -106,7 +112,7 @@ class Index extends React.Component {
               });
             }}
           >
-            <div style={styles.wrap}>
+            <div style={styles.container} className={stylesLess.container}>
               <Cart />
             </div>
           </TabBar.Item>
@@ -122,7 +128,9 @@ class Index extends React.Component {
               });
             }}
           >
-            <div style={styles.wrap}>{<Me />}</div>
+            <div style={styles.container} className={stylesLess.container}>
+              {<Me />}
+            </div>
           </TabBar.Item>
         </TabBar>
       </div>
