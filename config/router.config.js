@@ -91,4 +91,8 @@ export default [
     path: '/PaymentCode',
     component: './PaymentCode/Index',
   },
+  {
+    path: '/Callback',
+    component: './Callback/Index',
+  },
 ];
