@@ -56,7 +56,7 @@ export default ({
         type="email"
         style={{ ...styles.componentInput, ...styleInput }}
         {...getFieldProps('mail', {
-          initialValue: DEBUG ? 'shannon.feng@buyoo.asia' : '',
+          initialValue: DEBUG ? 'q@q.q' : '',
           rules: [
             {
               type: 'string',
