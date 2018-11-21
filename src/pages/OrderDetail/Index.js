@@ -295,6 +295,10 @@ class OrderDetail extends React.Component {
         router.go(-3);
         break;
 
+      case SCREENS.OrderWrite:
+        router.go(-2);
+        break;
+
       default:
         router.go(-1);
         break;
@@ -312,6 +316,7 @@ class OrderDetail extends React.Component {
       },
       navLeft: {
         flex: 1,
+        height: 54,
       },
       navLeftTop: {
         color: RED_COLOR,

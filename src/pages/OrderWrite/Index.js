@@ -154,6 +154,7 @@ class OrderWrite extends React.Component {
                 `/${SCREENS.OrderDetail}?${qs.stringify({
                   tradeNo: params.tradeno,
                   orderNo: params.orderno,
+                  from: SCREENS.OrderWrite,
                 })}`,
               );
 
