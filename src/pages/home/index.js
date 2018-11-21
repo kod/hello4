@@ -28,7 +28,7 @@ class Index extends React.Component {
     removeEventListener('TabBarTabBarIndex', this.tabBarTabBarIndexHandle);
   }
 
-  tabBarTabBarIndexHandle(ret) {
+  tabBarTabBarIndexHandle({ detail: ret }) {
     this.setState({
       tabBarIndex: ret.index,
     });

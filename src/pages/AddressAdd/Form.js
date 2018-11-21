@@ -157,7 +157,7 @@ class AddressAdd extends React.Component {
     ]);
   };
 
-  toggleMenuBottomSheetEventListenerHandle = ret => {
+  toggleMenuBottomSheetEventListenerHandle = ({ detail: ret }) => {
     this.setState(ret);
   };
 
