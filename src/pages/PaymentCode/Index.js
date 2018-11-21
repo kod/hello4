@@ -25,7 +25,7 @@ import {
   PAYOO_STORE_MAP,
   ORDERPAY_NAMESPACE,
 } from '@/common/constants';
-import SmallButton from '@/components/SmallButton';
+// import SmallButton from '@/components/SmallButton';
 import priceFormat from '@/utils/priceFormat';
 import MustLogin from '@/components/MustLogin';
 import { ORDER_PAY } from '@/common/constants/actionTypes';
@@ -265,10 +265,10 @@ class PaymentCode extends React.Component {
           <div style={styles.row1Left}>
             {formatMessage({ id: 'payooPaymentCode' })}
           </div>
-          <SmallButton
+          {/* <SmallButton
             text={formatMessage({ id: 'copy' })}
             onClick={() => this.handleOnPressCopy(code)}
-          />
+          /> */}
         </div>
         <div style={styles.row2}>
           <div style={styles.row2Top}>{code}</div>
