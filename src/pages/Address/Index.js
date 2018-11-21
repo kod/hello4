@@ -99,20 +99,12 @@ class Address extends React.Component {
 
   handleOnPressItem(item) {
     const { addressSelectFetch } = this.props;
-    console.log('item.iditem.iditem.iditem.id');
-    console.log(item.id);
     addressSelectFetch(item.id);
     router.go(-1);
   }
 
   renderMainContent() {
-    const {
-      items,
-      loading,
-      loaded,
-      refreshing,
-      // location: { query = {} },
-    } = this.props;
+    const { items, loading, loaded, refreshing } = this.props;
 
     const styles = {
       container: {
@@ -208,6 +200,7 @@ class Address extends React.Component {
           <EmptyState
             source={afiasifsdhfsPng}
             text={formatMessage({ id: 'pleaseAddYourShippingAddress' })}
+            style={{ height: WINDOW_HEIGHT - 45 - 50 }}
           />
         ) : (
           <div style={styles.containerMain}>

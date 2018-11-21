@@ -220,7 +220,7 @@ class Index extends React.Component {
         lineHeight: `${10 * 1.618}px`,
         textAlign: 'center',
         fontSize: 10,
-        paddingTop: 8,
+        paddingTop: 10,
         paddingLeft: SIDEINTERVAL,
         paddingRight: SIDEINTERVAL,
         color: '#fff',
