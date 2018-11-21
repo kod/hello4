@@ -47,10 +47,9 @@ export function addEventListener(type, listener) {
   // TODO
   // 输入值：变量类型，变量必填
   // 返回值：e.detail 统一返回类型，系统默认为null
+
   if (type) {
-    window.addEventListener(type, e => {
-      listener(e.detail);
-    });
+    window.addEventListener(type, listener, false);
   } else {
     console.warn('type is undefined');
   }
@@ -59,7 +58,7 @@ export function addEventListener(type, listener) {
 export function removeEventListener(type, listener) {
   // TODO
   // 输入值：变量类型，变量必填
-  window.removeEventListener(type, listener);
+  window.removeEventListener(type, listener, false);
 }
 
 export function dispatchEvent(type, params = {}) {

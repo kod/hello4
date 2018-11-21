@@ -116,6 +116,9 @@ class AddressModify extends React.Component {
       division4thName: null,
       isFocus: true, // 页面是否显示在前端
     };
+    this.toggleMenuBottomSheetEventListenerHandle = this.toggleMenuBottomSheetEventListenerHandle.bind(
+      this,
+    );
   }
 
   componentDidMount() {

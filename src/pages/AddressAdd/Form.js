@@ -120,6 +120,10 @@ class AddressAdd extends React.Component {
       division3rdName: null,
       division4thName: null,
     };
+    this.addEventListenerHandle = this.addEventListenerHandle.bind(this);
+    this.toggleMenuBottomSheetEventListenerHandle = this.toggleMenuBottomSheetEventListenerHandle.bind(
+      this,
+    );
   }
 
   componentDidMount() {

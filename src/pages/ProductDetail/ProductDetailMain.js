@@ -59,6 +59,11 @@ import { dispatchEvent, addEventListener, removeEventListener } from '@/utils';
   },
 )
 class ProductDetailMain extends React.Component {
+  constructor(props) {
+    super(props);
+    this.addEventListenerHandle = this.addEventListenerHandle.bind(this);
+  }
+
   componentDidMount() {
     const {
       commentFetch,
@@ -85,7 +90,7 @@ class ProductDetailMain extends React.Component {
     removeEventListener('ProductDetailMain', this.addEventListenerHandle);
   }
 
-  addEventListenerHandle = ({ method, params = {} }) => {
+  addEventListenerHandle = ({ detail: { method, params } }) => {
     const { pathname, productIdVIP, brandId } = this.props;
     switch (method) {
       case 'productDetailInfo':

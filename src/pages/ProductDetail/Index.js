@@ -55,6 +55,7 @@ class Index extends React.Component {
     this.state = {
       isShowProductDetailComment: false,
     };
+    this.addEventListenerHandle = this.addEventListenerHandle.bind(this);
   }
 
   componentDidMount() {

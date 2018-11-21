@@ -71,7 +71,7 @@ class Pay extends React.Component {
       payWayButtons: payWayArray(DEBUG),
       payWayIndex: INTERNET_BANK_PAYWAY,
     };
-    // this.actionSheetCallback = this.actionSheetCallback.bind(this);
+    this.addEventListenerHandle = this.addEventListenerHandle.bind(this);
   }
 
   componentDidMount() {
@@ -93,7 +93,7 @@ class Pay extends React.Component {
     clearTimeout(this.setTimeoutId);
   }
 
-  addEventListenerHandle = ({ method, params = {} }) => {
+  addEventListenerHandle = ({ detail: { method, params } }) => {
     const { orderNo, tradeNo, queryOrderFetch } = this.props;
     switch (method) {
       case 'orderPay':

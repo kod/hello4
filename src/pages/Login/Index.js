@@ -21,6 +21,11 @@ import { addEventListener, removeEventListener } from '@/utils';
   {},
 )
 class Index extends React.Component {
+  constructor(props) {
+    super(props);
+    this.addEventListenerHandle = this.addEventListenerHandle.bind(this);
+  }
+
   componentDidMount() {
     addEventListener(SCREENS.Login, this.addEventListenerHandle);
   }
@@ -29,8 +34,7 @@ class Index extends React.Component {
     removeEventListener(SCREENS.Login, this.addEventListenerHandle);
   }
 
-  addEventListenerHandle = ret => {
-    console.log(ret);
+  addEventListenerHandle = () => {
     router.go(-1);
   };
 

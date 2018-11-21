@@ -80,6 +80,7 @@ class Evalution extends React.Component {
       textValue: '',
       submitfreeze: false,
     };
+    this.addEventListenerHandle = this.addEventListenerHandle.bind(this);
   }
 
   componentDidMount() {
@@ -105,7 +106,7 @@ class Evalution extends React.Component {
     clearTimeout(this.setTimeoutId);
   }
 
-  addEventListenerHandle = ({ method, params = {} }) => {
+  addEventListenerHandle = ({ detail: { method, params } }) => {
     switch (method) {
       case 'addEvaluation':
         console.log(params);
