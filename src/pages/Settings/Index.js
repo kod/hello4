@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'dva';
 import { Modal } from 'antd-mobile';
-import { formatMessage } from 'umi/locale';
+import { formatMessage, setLocale } from 'umi/locale';
 import router from 'umi/router';
 
 import BYHeader from '@/components/BYHeader';
@@ -15,7 +15,7 @@ import NavBar1 from '@/components/NavBar1';
 import { RED_COLOR } from '@/styles/variables';
 import * as loginActionCreators from '@/common/actions/login';
 
-// const personPng = 'https://oss.buyoo.vn/usercollect/1/20181120125641_E6E.png';
+const personPng = 'https://oss.buyoo.vn/usercollect/1/20181120125641_E6E.png';
 
 const aboutPng = 'https://oss.buyoo.vn/usercollect/1/20181120125848_x6L.png';
 
@@ -83,12 +83,26 @@ class Settings extends React.Component {
             func: () => router.push(`/${SCREENS.AboutAs}`),
             tips: '',
           },
-          // {
-          //   iconImg: personPng,
-          //   name: formatMessage({ id: 'language' }),
-          //   func: () => navigate(SCREENS.Language),
-          //   tips: '',
-          // },
+          {
+            iconImg: personPng,
+            name: formatMessage({ id: 'language' }),
+            func: () =>
+              Modal.operation([
+                {
+                  text: 'English',
+                  onPress: () => setLocale('en-US'),
+                },
+                {
+                  text: 'Tiếng Việt',
+                  onPress: () => setLocale('vi-VN'),
+                },
+                {
+                  text: '中文',
+                  onPress: () => setLocale('zh-CN'),
+                },
+              ]),
+            tips: '',
+          },
         ]
       : [
           // {
