@@ -16,7 +16,7 @@ import {
   SIDEINTERVAL,
   WINDOW_HEIGHT,
   STATUSBAR_HEIGHT,
-  OSS_IMAGE_QUALITY,
+  // OSS_IMAGE_QUALITY,
   SCREENS,
   MODAL_TYPES,
 } from '@/common/constants';
@@ -338,7 +338,8 @@ class ProductDetailMain extends React.Component {
                 alt=""
                 key={key}
                 style={styles.imagesDescItem}
-                src={`${val}?x-oss-process=image/quality,Q_${OSS_IMAGE_QUALITY}`}
+                src={`${val}?x-oss-process=image/format,webp`}
+                // src={`${val}?x-oss-process=image/quality,Q_${OSS_IMAGE_QUALITY}`}
               />
             ))}
           </div>
