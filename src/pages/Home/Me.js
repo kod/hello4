@@ -57,7 +57,6 @@ class Index extends PureComponent {
   constructor(props) {
     super(props);
     this.handleOnNavBar1Callback = this.handleOnNavBar1Callback.bind(this);
-    // this.didFocusAddListener = this.didFocusAddListener.bind(this)
   }
 
   componentDidMount() {
@@ -73,6 +72,8 @@ class Index extends PureComponent {
       userCertificateInfoFetch();
       getUserInfoByIdFetch();
     }
+
+    this.didFocusAddListener();
   }
 
   didFocusAddListener() {
