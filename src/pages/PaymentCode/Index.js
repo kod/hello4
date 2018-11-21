@@ -230,7 +230,7 @@ class PaymentCode extends React.Component {
     const { from } = this.props;
     switch (from) {
       case SCREENS.Pay:
-        router.go(-4);
+        router.go(-3);
         break;
 
       default:
