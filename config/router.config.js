@@ -87,4 +87,8 @@ export default [
     path: '/AboutAs',
     component: './AboutAs/Index',
   },
+  {
+    path: '/PaymentCode',
+    component: './PaymentCode/Index',
+  },
 ];

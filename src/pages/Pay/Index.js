@@ -101,21 +101,36 @@ class Pay extends React.Component {
           orderNo,
           tradeNo,
         });
-        Modal.alert('', formatMessage({ id: 'success' }), [
-          {
-            text: formatMessage({ id: 'confirm' }),
-            style: 'default',
-            onPress: () => {
-              router.push(
-                `/${SCREENS.OrderDetail}?${qs.stringify({
-                  tradeNo: params.tradeno,
-                  orderNo: params.orderno,
-                  from: SCREENS.Pay,
-                })}`,
-              );
+        if (params.payway === OFFLINE_PAYWAY) {
+          // 线下支付
+          router.push(
+            `/${SCREENS.PaymentCode}?${qs.stringify({
+              orderNo,
+              tradeNo,
+              payway: params.payway,
+              payrate: 0,
+              repaymentmonth: 0,
+              totalAmount: params.payvalue,
+              from: SCREENS.Pay,
+            })}`,
+          );
+        } else {
+          Modal.alert('', formatMessage({ id: 'success' }), [
+            {
+              text: formatMessage({ id: 'confirm' }),
+              style: 'default',
+              onPress: () => {
+                router.push(
+                  `/${SCREENS.OrderDetail}?${qs.stringify({
+                    tradeNo: params.tradeno,
+                    orderNo: params.orderno,
+                    from: SCREENS.Pay,
+                  })}`,
+                );
+              },
             },
-          },
-        ]);
+          ]);
+        }
         break;
 
       default:
