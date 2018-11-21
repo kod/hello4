@@ -8,7 +8,7 @@ import {
   WINDOW_WIDTH,
   SIDEINTERVAL,
   CARMAXNUMBER,
-  OSS_IMAGE_QUALITY,
+  // OSS_IMAGE_QUALITY,
   MONETARY,
 } from '@/common/constants';
 import CustomIcon from '@/components/CustomIcon';
@@ -298,7 +298,7 @@ class CartItem extends React.Component {
                   style={styles.itemImage}
                   src={`${
                     details[products[val].detail].iconUrl
-                  }?x-oss-process=image/quality,Q_${OSS_IMAGE_QUALITY}`}
+                  }?x-oss-process=image/format,webp`}
                 />
               </div>
               <div style={styles.itemRight}>

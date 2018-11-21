@@ -16,7 +16,7 @@ import {
   ORDERNO_REGEX,
   TRADENO_REGEX,
   SHAREID_REGEX,
-  OSS_IMAGE_QUALITY,
+  // OSS_IMAGE_QUALITY,
   ONDELIVERY_PAYWAY,
   ONLINE_PAYWAY,
 } from '@/common/constants';
@@ -473,7 +473,7 @@ export const jointWebViewImages = images => {
       break;
 
     case 1:
-      WebViewImages = `<img src="${images}?x-oss-process=image/quality,Q_${OSS_IMAGE_QUALITY}" alt="image">`;
+      WebViewImages = `<img src="${images}?x-oss-process=image/format,webp" alt="image">`;
       break;
 
     default:
@@ -481,12 +481,12 @@ export const jointWebViewImages = images => {
         let resultStr = '';
         if (index === 1) {
           if (a)
-            resultStr = `<img src="${a}?x-oss-process=image/quality,Q_${OSS_IMAGE_QUALITY}" alt="image">`;
+            resultStr = `<img src="${a}?x-oss-process=image/format,webp" alt="image">`;
           if (b)
-            resultStr += `<img src="${b}?x-oss-process=image/quality,Q_${OSS_IMAGE_QUALITY}" alt="image">`;
+            resultStr += `<img src="${b}?x-oss-process=image/format,webp" alt="image">`;
         } else {
           if (b)
-            resultStr = `<img src="${b}?x-oss-process=image/quality,Q_${OSS_IMAGE_QUALITY}" alt="image">`;
+            resultStr = `<img src="${b}?x-oss-process=image/format,webp" alt="image">`;
           resultStr = a + resultStr;
         }
         return resultStr;

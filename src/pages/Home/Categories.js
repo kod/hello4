@@ -147,7 +147,7 @@ class Index extends PureComponent {
                   <img
                     alt=""
                     style={stylesX.rightItemSubItemImage}
-                    src={val1.image}
+                    src={`${val1.image}?x-oss-process=image/format,webp`}
                   />
                   <div style={stylesX.rightItemSubItemText}>{val1.name}</div>
                 </div>
@@ -174,7 +174,7 @@ class Index extends PureComponent {
                   <img
                     alt=""
                     style={stylesX.rightItemSubItemImage}
-                    src={val1.imageUrl}
+                    src={`${val1.imageUrl}?x-oss-process=image/format,webp`}
                   />
                   <div style={stylesX.rightItemSubItemText}>{val1.name}</div>
                 </div>
@@ -242,7 +242,11 @@ class Index extends PureComponent {
                 key={val.image}
                 onClick={() => getMenuIndexFetch(key)}
               >
-                <img alt="" style={stylesX.itemImage} src={val.image} />
+                <img
+                  alt=""
+                  style={stylesX.itemImage}
+                  src={`${val.image}?x-oss-process=image/format,webp`}
+                />
 
                 <div style={stylesX.itemText}>{val.name}</div>
 

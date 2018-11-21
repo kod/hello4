@@ -402,29 +402,6 @@ class Evalution extends React.Component {
               selectable={images.length < 4}
               multiple={multiple}
             />
-            {/* <div style={stylesX.pics}>
-              {images.map((val, key) => (
-                <div style={stylesX.imageItem} key={key}>
-                  <div
-                    style={stylesX.imageItemOnLongPress}
-                    onLongPress={() => this.handleOnLongPressImgDel(key)}
-                  />
-                  <img alt="" style={stylesX.imageItemImage} src={val} />
-                </div>
-              ))}
-              <div
-                style={stylesX.selectPics}
-                // onClick={() => this.handleOnPressSelectPics()}
-              >
-                <CustomIcon type={stylesX.cameraIcon} name="camera-fill" />
-                <div style={stylesX.cameraText}>{`${images.length}/5`}</div>
-                <input
-                  type="file"
-                  accept="image/*"
-                  style={stylesX.cameraInput}
-                />
-              </div>
-            </div> */}
           </div>
           <div style={stylesX.tips}>
             {formatMessage({ id: 'yourCommentAnonymous' })}

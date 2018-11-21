@@ -98,7 +98,11 @@ export default ({ isCouponCenter = true, data, onClick, ...restProps }) => (
           key={key}
           onClick={() => onClick && onClick(val)}
         >
-          <img alt="" style={styles.image} src={couponBluePng} />
+          <img
+            alt=""
+            style={styles.image}
+            src={`${couponBluePng}?x-oss-process=image/format,webp`}
+          />
           <div style={styles.bottom}>
             <div style={styles.left}>
               <div style={styles.price}>
@@ -124,7 +128,11 @@ export default ({ isCouponCenter = true, data, onClick, ...restProps }) => (
           key={key}
           onClick={() => onClick && onClick(val)}
         >
-          <img alt="" style={styles.image} src={couponRedPng} />
+          <img
+            alt=""
+            style={styles.image}
+            src={`${couponRedPng}?x-oss-process=image/format,webp`}
+          />
           <div style={{ ...styles.bottom, ...styles.bottomRed }}>
             <div style={styles.left}>
               <div style={styles.price}>{`${100 - val.voucherValue}% OFF`}</div>

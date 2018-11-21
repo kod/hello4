@@ -288,7 +288,12 @@ class PaymentCode extends React.Component {
         </div>
         <div style={styles.row3}>
           {images.map((val, key) => (
-            <img alt="" style={styles.row3Image} src={val} key={key} />
+            <img
+              alt=""
+              style={styles.row3Image}
+              src={`${val}?x-oss-process=image/format,webp`}
+              key={key}
+            />
 
             // <Image style={styles.row3Image} source={val} key={key} />
           ))}

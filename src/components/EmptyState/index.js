@@ -33,7 +33,11 @@ export default ({
 }) => (
   // <div style={styles.wrap}>
   <div style={{ ...styles.empty, ...style }} {...restProps}>
-    <img alt="" style={{ ...styles.emptyImg, ...styleImage }} src={source} />
+    <img
+      alt=""
+      style={{ ...styles.emptyImg, ...styleImage }}
+      src={`${source}?x-oss-process=image/format,webp`}
+    />
     <div style={{ ...styles.emptyText, ...styleText }}>{text}</div>
   </div>
   // </div>

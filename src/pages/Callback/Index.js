@@ -91,7 +91,11 @@ class Address extends React.Component {
     return (
       <div style={styles.container}>
         <div style={styles.main}>
-          <img alt="" style={styles.image} src={errorJson[msg].icon} />
+          <img
+            alt=""
+            style={styles.image}
+            src={`${errorJson[msg].icon}?x-oss-process=image/format,webp`}
+          />
           <div style={styles.text}>{errorJson[msg].text}</div>
           <BYButton
             text={formatMessage({ id: 'confirm' })}

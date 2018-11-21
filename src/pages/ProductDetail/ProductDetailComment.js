@@ -67,7 +67,7 @@ class ProductDetailComment extends React.Component {
             <img
               alt=""
               style={styles.emptyCommentImage}
-              src={emptycommentPng}
+              src={`${emptycommentPng}?x-oss-process=image/format,webp`}
             />
             {/* <Image style={styles.emptyCommentImage} source={emptycommentPng} /> */}
             <div style={styles.emptyCommentText}>

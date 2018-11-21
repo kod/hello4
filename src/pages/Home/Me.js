@@ -360,7 +360,7 @@ class Index extends PureComponent {
             <img
               alt=""
               style={styles.headerIconImg}
-              src={headerIconImgSource}
+              src={`${headerIconImgSource}?x-oss-process=image/format,webp`}
             />
 
             <div style={styles.headerIconText}>{username || phone}</div>

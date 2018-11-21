@@ -124,7 +124,11 @@ class AboutAs extends React.Component {
         <div style={styles.main}>
           <div style={styles.appMsgWrap2}>
             <div style={styles.appMsgWrap}>
-              <img alt="" style={styles.appIcon} src={icAvatarPng} />
+              <img
+                alt=""
+                style={styles.appIcon}
+                src={`${icAvatarPng}?x-oss-process=image/format,webp`}
+              />
               <div style={styles.appVersion}>{`${BUYOOVIP} v${VERSION}`}</div>
             </div>
           </div>

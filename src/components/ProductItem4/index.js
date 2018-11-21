@@ -4,7 +4,7 @@ import router from 'umi/router';
 
 import {
   SIDEINTERVAL,
-  OSS_IMAGE_QUALITY,
+  // OSS_IMAGE_QUALITY,
   MONETARY,
   WINDOW_WIDTH,
 } from '@/common/constants';
@@ -85,9 +85,7 @@ export default ({ groupon = false, data, style, ...restProps }) => (
         <img
           alt=""
           style={{ ...styles.itemImg }}
-          src={`${
-            val.imageUrl
-          }?x-oss-process=image/quality,Q_${OSS_IMAGE_QUALITY}`}
+          src={`${val.imageUrl}?x-oss-process=image/format,webp`}
         />
         <div style={styles.itemText}>{val.name}</div>
         <div style={styles.itemPrice}>

@@ -150,7 +150,8 @@ class ProductItem2 extends React.Component {
                 <img
                   alt=""
                   style={styles.itemImage}
-                  src={`${val.imageUrl}?x-oss-process=image/resize,w_240,h_240`}
+                  src={`${val.imageUrl}?x-oss-process=image/format,webp`}
+                  // src={`${val.imageUrl}?x-oss-process=image/resize,w_240,h_240`}
                 />
               </div>
               <div style={styles.itemRight}>
