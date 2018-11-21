@@ -78,7 +78,7 @@ class LoginForm extends React.Component {
           placeholder={formatMessage({ id: 'pleaseEnterSMSVerificationCode' })}
           message={formatMessage({ id: 'pleaseEnterSMSVerificationCode' })}
           name="otp"
-          type="text"
+          type="number"
         />
         <InputRight
           pattern={LOGIN_PASSWORD_EXPR}
@@ -102,7 +102,7 @@ class LoginForm extends React.Component {
           name="repassword"
           type="password"
         />
-        <div style={{ marginBottom: 75 }}>
+        <div style={{ marginBottom: 50 }}>
           <Checkbox.AgreeItem
             checked={isReceive}
             onChange={e => {
