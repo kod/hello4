@@ -23,14 +23,19 @@ import {
   MODAL_TYPES,
   WINDOW_HEIGHT,
 } from '@/common/constants';
-import { tradeStatusCodes, payWayToText } from '@/utils';
+import {
+  tradeStatusCodes,
+  payWayToText,
+  addEventListener,
+  removeEventListener,
+} from '@/utils';
 import SeparateBar from '@/components/SeparateBar';
 import ProductItem2 from '@/components/ProductItem2';
 import priceFormat from '@/utils/priceFormat';
 import NavBar2 from '@/components/NavBar2';
 import MustLogin from '@/components/MustLogin';
 import Loader from '@/components/Loader';
-import SmallButton from '@/components/SmallButton';
+// import SmallButton from '@/components/SmallButton';
 import Address from '@/components/Address';
 import { getAddressSelectedItem } from '@/common/selectors';
 
@@ -103,11 +108,11 @@ const styles = {
     const { address, queryOrder, getUserInfoById, orderPay, login } = state;
     const {
       location: {
-        query: { orderNo, tradeNo },
+        query: { orderNo, tradeNo, from = '' },
+        pathname: locationPathname,
+        search: locationSearch,
       },
     } = props;
-    console.log(props);
-    console.log(queryOrder);
 
     return {
       loading: orderPay.loading,
@@ -115,6 +120,9 @@ const styles = {
       addressItems: address.items,
       authUser: login.user,
       queryOrderItem: queryOrder.item,
+      locationPathname,
+      locationSearch,
+      from,
       orderNo,
       tradeNo,
       getUserInfoById,
@@ -138,6 +146,7 @@ class OrderDetail extends React.Component {
     this.state = {
       payWayIndex: 0,
     };
+    this.addEventListenerPopstate = this.addEventListenerPopstate.bind(this);
   }
 
   componentDidMount() {
@@ -148,7 +157,14 @@ class OrderDetail extends React.Component {
       queryOrderFetch,
       queryOrderClear,
       getUserInfoByIdFetch,
+      locationPathname,
+      locationSearch,
     } = this.props;
+
+    router.push(`${locationPathname}${locationSearch}#123`);
+
+    addEventListener('popstate', this.addEventListenerPopstate);
+
     queryOrderClear();
 
     // 1分钟请求一次，刷新订单信息
@@ -195,7 +211,12 @@ class OrderDetail extends React.Component {
 
   componentWillUnmount() {
     clearInterval(this.setIntervalId);
+    removeEventListener('popstate', this.addEventListenerPopstate);
   }
+
+  addEventListenerPopstate = () => {
+    this.handleOnPressBack();
+  };
 
   makeRemainTimeText = val => {
     let result = '';
@@ -265,6 +286,19 @@ class OrderDetail extends React.Component {
         },
       },
     ]);
+  }
+
+  handleOnPressBack() {
+    const { from } = this.props;
+    switch (from) {
+      case SCREENS.Pay:
+        router.go(-4);
+        break;
+
+      default:
+        router.go(-1);
+        break;
+    }
   }
 
   renderBottom() {
@@ -626,7 +660,10 @@ class OrderDetail extends React.Component {
     const { authUser } = this.props;
     return (
       <div style={styles.container}>
-        <BYHeader title={formatMessage({ id: 'details' })} />
+        <BYHeader
+          title={formatMessage({ id: 'details' })}
+          // onPressBackButton={() => this.handleOnPressBack()}
+        />
         <MustLogin
           Modal={Modal}
           visible={!authUser}
