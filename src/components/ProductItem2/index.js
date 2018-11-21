@@ -99,10 +99,10 @@ class ProductItem2 extends React.Component {
     const {
       // navigation: { navigate, goBack },
       isPress = true,
-      onPress,
+      clickProps,
     } = this.props;
-    if (onPress) {
-      onPress();
+    if (clickProps) {
+      clickProps();
     } else if (val.isOnPress === false) {
       router.go(-1);
       // goBack(null);
