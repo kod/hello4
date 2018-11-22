@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import moment from 'moment';
+import dayjs from 'dayjs';
 import buyoo from '@/services/api';
 
 import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
@@ -42,7 +42,7 @@ export default {
         const appId = '3';
         const method = 'fun.commodity.menu';
         const charset = 'utf-8';
-        const timestamp = moment().format('YYYY-MM-DD HH:mm:ss');
+        const timestamp = dayjs().format('YYYY-MM-DD HH:mm:ss');
         const version = '2.0';
 
         const signType = signTypeMD5(appId, method, charset, Key, true);

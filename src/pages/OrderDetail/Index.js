@@ -1,6 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { connect } from 'dva';
 import BYHeader from '@/components/BYHeader';
 import { formatMessage } from 'umi/locale';
@@ -505,7 +505,7 @@ class OrderDetail extends React.Component {
                   </div>
                 </div>
                 <div style={stylesX.cardItemTime}>
-                  {`${formatMessage({ id: 'usefulDate' })}: ${moment().format(
+                  {`${formatMessage({ id: 'usefulDate' })}: ${dayjs().format(
                     'DD-MM-YYYY',
                   )}`}
                 </div>
@@ -649,7 +649,7 @@ class OrderDetail extends React.Component {
           />
           <NavBar2
             valueLeft={formatMessage({ id: 'orderTime' })}
-            valueMiddle={`${moment(createTime).format('DD-MM-YYYY HH:mm:ss')}`}
+            valueMiddle={`${dayjs(createTime).format('DD-MM-YYYY HH:mm:ss')}`}
             isShowRight={false}
           />
           {this.renderOrderNo()}
