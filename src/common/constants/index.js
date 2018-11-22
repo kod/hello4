@@ -1,5 +1,5 @@
-export const DEBUG = true;
-export const API_DEBUG = DEBUG;
+export const DEBUG = false;
+export const API_DEBUG = true;
 export const IS_SHOW_LOG = DEBUG;
 export const IS_I18N = DEBUG; // 是否支持多语言; 默认为越南语
 export const CARMAXNUMBER = 50;
