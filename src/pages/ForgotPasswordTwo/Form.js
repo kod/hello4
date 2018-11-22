@@ -57,7 +57,7 @@ class LoginForm extends React.Component {
           placeholder={formatMessage({ id: 'pleaseEnterSMSVerificationCode' })}
           message={formatMessage({ id: 'pleaseEnterSMSVerificationCode' })}
           name="otp"
-          type="text"
+          type="number"
         />
         <InputRight
           pattern={LOGIN_PASSWORD_EXPR}

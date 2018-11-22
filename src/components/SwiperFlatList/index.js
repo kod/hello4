@@ -24,7 +24,7 @@ export default class SwiperFlatList extends PureComponent {
             style={styleA}
           >
             <img
-              src={val.imageUrl}
+              src={`${val.imageUrl}?x-oss-process=image/format,webp`}
               alt=""
               className={styles.img}
               style={styleImg}

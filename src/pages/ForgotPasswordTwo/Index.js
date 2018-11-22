@@ -6,7 +6,11 @@ import { connect } from 'dva';
 import BYHeader from '@/components/BYHeader';
 import { Modal } from 'antd-mobile';
 import Form from './Form';
-import { CHANGEPASSWORD_NAMESPACE, SCREENS } from '@/common/constants';
+import {
+  CHANGEPASSWORD_NAMESPACE,
+  SCREENS,
+  WINDOW_HEIGHT,
+} from '@/common/constants';
 import { CHANGE_PASSWORD } from '@/common/constants/actionTypes';
 import Loader from '@/components/Loader';
 import { removeEventListener, addEventListener } from '@/utils';
@@ -24,6 +28,11 @@ import { removeEventListener, addEventListener } from '@/utils';
   {},
 )
 class Index extends React.Component {
+  constructor(props) {
+    super(props);
+    this.addEventListenerHandle = this.addEventListenerHandle.bind(this);
+  }
+
   componentDidMount() {
     addEventListener(SCREENS.ForgotPasswordTwo, this.addEventListenerHandle);
   }
@@ -32,8 +41,7 @@ class Index extends React.Component {
     removeEventListener(SCREENS.ForgotPasswordTwo, this.addEventListenerHandle);
   }
 
-  addEventListenerHandle = ret => {
-    console.log(ret);
+  addEventListenerHandle = () => {
     Modal.alert('', formatMessage({ id: 'success' }), [
       {
         text: formatMessage({ id: 'confirm' }),
@@ -48,8 +56,16 @@ class Index extends React.Component {
       changePasswordLoading,
       location: { query = {} },
     } = this.props;
+
+    const styles = {
+      container: {
+        height: WINDOW_HEIGHT,
+        backgroundColor: '#fff',
+      },
+    };
+
     return (
-      <div>
+      <div style={styles.container}>
         <BYHeader title={formatMessage({ id: 'forgetPassword' })} />
         {changePasswordLoading && <Loader />}
         <Form query={query} />

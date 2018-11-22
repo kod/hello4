@@ -4,7 +4,7 @@ import {
   SIDEINTERVAL,
   WINDOW_WIDTH,
   MONETARY,
-  OSS_IMAGE_QUALITY,
+  // OSS_IMAGE_QUALITY,
 } from '@/common/constants';
 import { RED_COLOR } from '@/styles/variables';
 import priceFormat from '@/utils/priceFormat';
@@ -91,9 +91,7 @@ export default ({ groupon = false, data, style, ...restProps }) => (
           <img
             alt=""
             style={styles.itemImg}
-            src={`${
-              val.imageUrl
-            }?x-oss-process=image/quality,Q_${OSS_IMAGE_QUALITY}`}
+            src={`${val.imageUrl}?x-oss-process=image/format,webp`}
           />
 
           <div style={styles.itemText}>{val.name}</div>

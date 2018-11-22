@@ -6,8 +6,9 @@ export function orderPayFetchSuccess({
   screen,
   payvalue,
   pop,
-  orderno,
   tradeno,
+  orderno,
+  payway,
 }) {
   return {
     type: `${ORDERPAY_NAMESPACE}/${ORDER_PAY.SUCCESS}`,
@@ -18,6 +19,7 @@ export function orderPayFetchSuccess({
       pop,
       tradeno,
       orderno,
+      payway,
     },
   };
 }

@@ -11,7 +11,7 @@ import * as getNewestInfoActionCreators from '@/common/actions/getNewestInfo';
 import * as bannerSwiperActionCreators from '@/common/actions/bannerSwiper';
 import * as adverstInfoActionCreators from '@/common/actions/adverstInfo';
 import * as initAdverstCommonActionCreators from '@/common/actions/initAdverstCommon';
-import { addEventListener, dispatchEvent, analyzeUrlNavigate } from '@/utils';
+import { dispatchEvent, analyzeUrlNavigate } from '@/utils';
 import NavImg1 from '@/components/NavImg1';
 import SeparateBar from '@/components/SeparateBar';
 import { RED_COLOR } from '@/styles/variables';
@@ -78,10 +78,6 @@ class Index extends PureComponent {
     initAdverstCommonFetch(1, 3);
 
     // setLocale('zh-CN');
-    addEventListener('tcy', ret => {
-      console.log(ret);
-      console.log(ret);
-    });
   }
 
   handleRightOnPress() {

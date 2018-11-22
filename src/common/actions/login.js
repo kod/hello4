@@ -33,6 +33,6 @@ export function loginFetch({ mail, password, otp, screen }) {
 
 export function logout() {
   return {
-    type: LOGOUT.SUCCESS,
+    type: `${LOGIN_NAMESPACE}/${LOGOUT.SUCCESS}`,
   };
 }

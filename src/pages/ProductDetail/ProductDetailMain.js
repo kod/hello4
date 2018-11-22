@@ -16,7 +16,7 @@ import {
   SIDEINTERVAL,
   WINDOW_HEIGHT,
   STATUSBAR_HEIGHT,
-  OSS_IMAGE_QUALITY,
+  // OSS_IMAGE_QUALITY,
   SCREENS,
   MODAL_TYPES,
 } from '@/common/constants';
@@ -59,6 +59,11 @@ import { dispatchEvent, addEventListener, removeEventListener } from '@/utils';
   },
 )
 class ProductDetailMain extends React.Component {
+  constructor(props) {
+    super(props);
+    this.addEventListenerHandle = this.addEventListenerHandle.bind(this);
+  }
+
   componentDidMount() {
     const {
       commentFetch,
@@ -85,7 +90,7 @@ class ProductDetailMain extends React.Component {
     removeEventListener('ProductDetailMain', this.addEventListenerHandle);
   }
 
-  addEventListenerHandle = ({ method, params = {} }) => {
+  addEventListenerHandle = ({ detail: { method, params } }) => {
     const { pathname, productIdVIP, brandId } = this.props;
     switch (method) {
       case 'productDetailInfo':
@@ -333,7 +338,8 @@ class ProductDetailMain extends React.Component {
                 alt=""
                 key={key}
                 style={styles.imagesDescItem}
-                src={`${val}?x-oss-process=image/quality,Q_${OSS_IMAGE_QUALITY}`}
+                src={`${val}?x-oss-process=image/format,webp`}
+                // src={`${val}?x-oss-process=image/quality,Q_${OSS_IMAGE_QUALITY}`}
               />
             ))}
           </div>

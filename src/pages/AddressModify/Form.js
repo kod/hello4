@@ -116,6 +116,9 @@ class AddressModify extends React.Component {
       division4thName: null,
       isFocus: true, // 页面是否显示在前端
     };
+    this.toggleMenuBottomSheetEventListenerHandle = this.toggleMenuBottomSheetEventListenerHandle.bind(
+      this,
+    );
   }
 
   componentDidMount() {
@@ -165,9 +168,10 @@ class AddressModify extends React.Component {
       'toggleMenuBottomSheetEventListener',
       this.toggleMenuBottomSheetEventListenerHandle,
     );
+    clearTimeout(this.setTimeoutId);
   }
 
-  toggleMenuBottomSheetEventListenerHandle = ret => {
+  toggleMenuBottomSheetEventListenerHandle = ({ detail: ret }) => {
     this.setState(ret);
   };
 

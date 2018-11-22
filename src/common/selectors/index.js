@@ -135,23 +135,26 @@ export const makegetProductDetailItem = () => {
 
 export const makegetProductDetailColorVersionList = () => {
   const getProductDetailInfo = makegetProductDetailInfo();
-  return createSelector([getProductDetailInfo], productDetailInfo => {
-    const result = {
-      product_color: [],
-      product_version: [],
-    };
-    const { properties_detail } = productDetailInfo;
-    if (!properties_detail) return result;
+  return createSelector(
+    [getProductDetailInfo],
+    productDetailInfo => {
+      const result = {
+        product_color: [],
+        product_version: [],
+      };
+      const { properties_detail } = productDetailInfo;
+      if (!properties_detail) return result;
 
-    properties_detail.forEach(val => {
-      if (val.image) {
-        result.product_color.push(val);
-      } else {
-        result.product_version.push(val);
-      }
-    });
-    return result;
-  });
+      properties_detail.forEach(val => {
+        if (val.image) {
+          result.product_color.push(val);
+        } else {
+          result.product_version.push(val);
+        }
+      });
+      return result;
+    },
+  );
 };
 
 export const getIsCollection = createSelector(
@@ -185,9 +188,6 @@ export const makegetSchoolName = () =>
 export const getAddressSelectedItem = createSelector(
   [getAddressItems, getAddressSelectedId],
   (addressItems, addressSelectedId) => {
-    console.log('getAddressSelectedItemgetAddressSelectedItem');
-    console.log(addressItems);
-    console.log(addressSelectedId);
     if (addressItems.length === 0 || addressSelectedId === 0)
       return defaultObject;
     for (let index = 0; index < addressItems.length; index += 1) {

@@ -63,7 +63,7 @@ export default ({
         <img
           alt=""
           style={{ ...styles.nav1ItemImg, ...val.styleImg }}
-          src={val.iconUrl}
+          src={`${val.iconUrl}?x-oss-process=image/format,webp`}
         />
         <div style={{ ...styles.nav1ItemText, ...val.styleText }}>
           {val.name}

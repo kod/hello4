@@ -104,6 +104,7 @@ class OrderWrite extends React.Component {
       payWayButtons: orderWritePayWayArray(),
       payWayIndex: ONLINE_PAYWAY,
     };
+    this.addEventListenerHandle = this.addEventListenerHandle.bind(this);
   }
 
   componentDidMount() {
@@ -119,11 +120,9 @@ class OrderWrite extends React.Component {
     removeEventListener(SCREENS.OrderWrite, this.addEventListenerHandle);
   }
 
-  addEventListenerHandle = ({ method, params = {} }) => {
+  addEventListenerHandle = ({ detail: { method, params } }) => {
     const { payWayIndex } = this.state;
     const { orderPayFetch } = this.props;
-    console.log(method);
-    console.log(params);
     switch (method) {
       case 'orderCreateSuccess':
         if (payWayIndex === ONDELIVERY_PAYWAY) {
@@ -155,6 +154,7 @@ class OrderWrite extends React.Component {
                 `/${SCREENS.OrderDetail}?${qs.stringify({
                   tradeNo: params.tradeno,
                   orderNo: params.orderno,
+                  from: SCREENS.OrderWrite,
                 })}`,
               );
 

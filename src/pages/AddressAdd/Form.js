@@ -120,6 +120,10 @@ class AddressAdd extends React.Component {
       division3rdName: null,
       division4thName: null,
     };
+    this.addEventListenerHandle = this.addEventListenerHandle.bind(this);
+    this.toggleMenuBottomSheetEventListenerHandle = this.toggleMenuBottomSheetEventListenerHandle.bind(
+      this,
+    );
   }
 
   componentDidMount() {
@@ -138,6 +142,7 @@ class AddressAdd extends React.Component {
       'toggleMenuBottomSheetEventListener',
       this.toggleMenuBottomSheetEventListenerHandle,
     );
+    clearTimeout(this.setTimeoutId);
   }
 
   addEventListenerHandle = () => {
@@ -152,7 +157,7 @@ class AddressAdd extends React.Component {
     ]);
   };
 
-  toggleMenuBottomSheetEventListenerHandle = ret => {
+  toggleMenuBottomSheetEventListenerHandle = ({ detail: ret }) => {
     this.setState(ret);
   };
 

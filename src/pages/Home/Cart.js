@@ -186,27 +186,26 @@ class Index extends PureComponent {
         <div style={stylesX.rightItemTitle} />
         <div style={stylesX.rightItemMain}>
           {itemsList.length !== 0 &&
-            itemsList[key].map(
-              val1 =>
-                val1.status === '1' ? (
-                  <div
-                    style={stylesX.rightItemSubItem}
-                    key={val1.image}
-                    onClick={() => {
-                      // navigate(SCREENS.CateList, {
-                      //   parent_id: val1.parentId,
-                      //   sub_classfy_id: val1.id,
-                      // });
-                    }}
-                  >
-                    <img
-                      alt=""
-                      style={stylesX.rightItemSubItemImage}
-                      src={val1.image}
-                    />
-                    <div style={stylesX.rightItemSubItemText}>{val1.name}</div>
-                  </div>
-                ) : null,
+            itemsList[key].map(val1 =>
+              val1.status === '1' ? (
+                <div
+                  style={stylesX.rightItemSubItem}
+                  key={val1.image}
+                  onClick={() => {
+                    // navigate(SCREENS.CateList, {
+                    //   parent_id: val1.parentId,
+                    //   sub_classfy_id: val1.id,
+                    // });
+                  }}
+                >
+                  <img
+                    alt=""
+                    style={stylesX.rightItemSubItemImage}
+                    src={`${val1.image}?x-oss-process=image/format,webp`}
+                  />
+                  <div style={stylesX.rightItemSubItemText}>{val1.name}</div>
+                </div>
+              ) : null,
             )}
         </div>
         <div style={stylesX.rightItemTitle}>
@@ -214,27 +213,26 @@ class Index extends PureComponent {
         </div>
         <div style={stylesX.rightItemMain}>
           {itemsClassfy.length !== 0 &&
-            itemsClassfy[key].map(
-              val1 =>
-                val1.status === '1' ? (
-                  <div
-                    style={stylesX.rightItemSubItem}
-                    key={val1.imageUrl}
-                    onClick={() => {
-                      // navigate(SCREENS.CateList, {
-                      //   parent_id: val1.parentId,
-                      //   classfy_id: val1.id,
-                      // })
-                    }}
-                  >
-                    <img
-                      alt=""
-                      style={stylesX.rightItemSubItemImage}
-                      src={val1.imageUrl}
-                    />
-                    <div style={stylesX.rightItemSubItemText}>{val1.name}</div>
-                  </div>
-                ) : null,
+            itemsClassfy[key].map(val1 =>
+              val1.status === '1' ? (
+                <div
+                  style={stylesX.rightItemSubItem}
+                  key={val1.imageUrl}
+                  onClick={() => {
+                    // navigate(SCREENS.CateList, {
+                    //   parent_id: val1.parentId,
+                    //   classfy_id: val1.id,
+                    // })
+                  }}
+                >
+                  <img
+                    alt=""
+                    style={stylesX.rightItemSubItemImage}
+                    src={`${val1.imageUrl}?x-oss-process=image/format,webp`}
+                  />
+                  <div style={stylesX.rightItemSubItemText}>{val1.name}</div>
+                </div>
+              ) : null,
             )}
         </div>
       </div>
@@ -301,7 +299,11 @@ class Index extends PureComponent {
                 key={val.image}
                 onClick={() => getMenuIndexFetch(key)}
               >
-                <img alt="" style={stylesX.itemImage} src={val.image} />
+                <img
+                  alt=""
+                  style={stylesX.itemImage}
+                  src={`${val.image}?x-oss-process=image/format,webp`}
+                />
 
                 <div style={stylesX.itemText}>{val.name}</div>
 
@@ -474,14 +476,13 @@ class Index extends PureComponent {
             </div>
           </div>
         )}
-        {!loading &&
-          isEmptyCart && (
-            <EmptyState
-              source={ouhrigdfnjsoeijehrJpg}
-              text={formatMessage({ id: 'noData' })}
-              styleText={{ marginBottom: 0 }}
-            />
-          )}
+        {!loading && isEmptyCart && (
+          <EmptyState
+            source={ouhrigdfnjsoeijehrJpg}
+            text={formatMessage({ id: 'noData' })}
+            styleText={{ marginBottom: 0 }}
+          />
+        )}
       </div>
     );
   }

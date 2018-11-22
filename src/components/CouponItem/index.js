@@ -1,6 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
-import moment from 'moment';
+import dayjs from 'dayjs';
 
 import { PRIMARY_COLOR, RED_COLOR } from '@/styles/variables';
 import { SIDEINTERVAL, MONETARY, WINDOW_WIDTH } from '@/common/constants';
@@ -98,7 +98,11 @@ export default ({ isCouponCenter = true, data, onClick, ...restProps }) => (
           key={key}
           onClick={() => onClick && onClick(val)}
         >
-          <img alt="" style={styles.image} src={couponBluePng} />
+          <img
+            alt=""
+            style={styles.image}
+            src={`${couponBluePng}?x-oss-process=image/format,webp`}
+          />
           <div style={styles.bottom}>
             <div style={styles.left}>
               <div style={styles.price}>
@@ -109,7 +113,7 @@ export default ({ isCouponCenter = true, data, onClick, ...restProps }) => (
             </div>
             {onClick && <CustomIcon type="right" style={styles.arrow} />}
             <div style={styles.date}>
-              {`${moment(val.startTime).format('DD/MM/YYYY')}-${moment(
+              {`${dayjs(val.startTime).format('DD/MM/YYYY')}-${dayjs(
                 val.expireTime,
               ).format('DD/MM/YYYY')}`}
             </div>
@@ -124,7 +128,11 @@ export default ({ isCouponCenter = true, data, onClick, ...restProps }) => (
           key={key}
           onClick={() => onClick && onClick(val)}
         >
-          <img alt="" style={styles.image} src={couponRedPng} />
+          <img
+            alt=""
+            style={styles.image}
+            src={`${couponRedPng}?x-oss-process=image/format,webp`}
+          />
           <div style={{ ...styles.bottom, ...styles.bottomRed }}>
             <div style={styles.left}>
               <div style={styles.price}>{`${100 - val.voucherValue}% OFF`}</div>
@@ -133,7 +141,7 @@ export default ({ isCouponCenter = true, data, onClick, ...restProps }) => (
             </div>
             {onClick && <CustomIcon type="right" style={styles.arrow} />}
             <div style={styles.date}>
-              {`${moment(val.startTime).format('DD/MM/YYYY')}-${moment(
+              {`${dayjs(val.startTime).format('DD/MM/YYYY')}-${dayjs(
                 val.expireTime,
               ).format('DD/MM/YYYY')}`}
             </div>

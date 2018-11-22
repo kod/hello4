@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { normalize } from 'normalizr';
 import { Modal } from 'antd-mobile';
 import { formatMessage } from 'umi/locale';
@@ -68,7 +68,7 @@ export default {
         const appId = '3';
         const method = 'fun.cart.query';
         const charset = 'utf-8';
-        const timestamp = moment().format('YYYY-MM-DD HH:mm:ss');
+        const timestamp = dayjs().format('YYYY-MM-DD HH:mm:ss');
         const version = '2.0';
 
         const signType = signTypeMD5(appId, method, charset, Key, true);
@@ -144,7 +144,7 @@ export default {
         const appId = '3';
         const method = 'fun.cart.change';
         const charset = 'utf-8';
-        const timestamp = moment().format('YYYY-MM-DD HH:mm:ss');
+        const timestamp = dayjs().format('YYYY-MM-DD HH:mm:ss');
         const version = '2.0';
 
         const signType = signTypeMD5(appId, method, charset, Key, true);
@@ -209,7 +209,7 @@ export default {
         const appId = '3';
         const method = 'fun.cart.remove';
         const charset = 'utf-8';
-        const timestamp = moment().format('YYYY-MM-DD HH:mm:ss');
+        const timestamp = dayjs().format('YYYY-MM-DD HH:mm:ss');
         const version = '2.0';
 
         const signType = signTypeMD5(appId, method, charset, Key, true);
@@ -307,7 +307,7 @@ export default {
         const appId = '3';
         const method = 'fun.cart.gate';
         const charset = 'utf-8';
-        const timestamp = moment().format('YYYY-MM-DD HH:mm:ss');
+        const timestamp = dayjs().format('YYYY-MM-DD HH:mm:ss');
         const version = '2.0';
 
         const signType = signTypeMD5(appId, method, charset, Key, true);

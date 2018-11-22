@@ -8,7 +8,7 @@ export const OSS_IMAGE_QUALITY = 70; // 图片压缩比例；1-100；100：不�
 export const LINE_HEIGHT_RATIO = 1.618; // 行高
 export const IS_PROMPT_FIRSTPAY = true; // 没有选择首付时是否提示选择首付
 export const MIN_FIRSTPAY_RATE = 0.1; // 最低首付比: 0, 0.1, 0.2, 0.3, 0.4, 0.5
-export const VERSION = '1.0.0-rc.1';
+export const VERSION = 'v1.1.0-beta';
 
 // namespace -start-
 export const GETADVERSTTOPINFO_NAMESPACE = 'getAdverstTopInfo';
@@ -52,14 +52,16 @@ export const JUDGEVOUCHER_NAMESPACE = 'judgeVoucher';
 // namespace -end-
 
 export const DOMAIN = 'https://buyoo.vn';
+export const MESSAGE_URL = 'http://m.me/buyooshop.vip';
 export const SHARE_URL = `${DOMAIN}/html/downloadApp.html?userID=XXX`;
 export const SUPPORT_CENTER_URL = `${DOMAIN}/html/buyIntroM.html`;
 export const HOW_TO_BUY_URL = `${DOMAIN}/html/paystepM.html`;
 export const BUSINESS_EMAIL = 'business.vn@buyoo.aisa';
-export const SERVICE_EMAIL = 'service.vn@buyoo.aisa';
+export const SERVICE_EMAIL = 'service@buyoo.vip';
 export const SERVICE_PHONE = '1900555506';
 export const BUYOO = 'Buyoo';
-export const BUYOO_VN = `${BUYOO}.vn`;
+export const BUYOOVIP = 'BuyooVip';
+export const BUYOO_VN = `${BUYOO}.vip`;
 export const ZALO = 'zalo';
 export const GOOGLE_PLUS = 'google+';
 export const FACEBOOK = 'facebook';
@@ -70,7 +72,7 @@ export const FUNCARD_HELP_APPLY = `${DOMAIN}/html/aboutFunCard.html#Cach-thuc-da
 export const FUNCARD_HELP_STAGE = `${DOMAIN}/html/aboutFunCard.html#Huong-dan-mua-hang-bang-Buyoo-Fun-Card`; // 如何分期
 export const FUNCARD_HELP_REPAY = `${DOMAIN}/html/aboutFunCard.html#Thanh-toan-no-hang-thang-the-Buyoo-Fun-Card-nhu-the-nao`; // 如何还款
 
-export const ICON_SCRIPTURL = '//at.alicdn.com/t/font_892500_hztqz7j31in.js';
+export const ICON_SCRIPTURL = '//at.alicdn.com/t/font_892500_x5rzysu98nr.js';
 
 export const STUDENT_CARD_POSITIVE_IMAGE =
   'https://oss.buyoo.vn/usercollect/1/20180917153943_QB7.png'; // 学生证正面

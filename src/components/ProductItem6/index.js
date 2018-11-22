@@ -1,6 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
-import { WINDOW_WIDTH, OSS_IMAGE_QUALITY } from '@/common/constants';
+import { WINDOW_WIDTH } from '@/common/constants';
 import ProductItem4 from '../ProductItem4';
 import SeparateBar from '../SeparateBar';
 
@@ -31,9 +31,7 @@ export default ({ data, style, ...restProps }) => (
           <img
             alt=""
             style={styles.itemImg}
-            src={`${
-              val.top.imageUrl
-            }?x-oss-process=image/quality,Q_${OSS_IMAGE_QUALITY}`}
+            src={`${val.top.imageUrl}?x-oss-process=image/format,webp`}
           />
           <ProductItem4 data={val.bottom} />
           <SeparateBar />

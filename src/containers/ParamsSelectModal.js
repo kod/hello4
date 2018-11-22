@@ -321,7 +321,11 @@ class ParamsSelectModal extends Component {
         </div>
         <div style={styles.paramInfo}>
           {imageUrls[0] && (
-            <img alt="" style={styles.paramImage} src={imageUrls[0].imageUrl} />
+            <img
+              alt=""
+              style={styles.paramImage}
+              src={`${imageUrls[0].imageUrl}?x-oss-process=image/format,webp`}
+            />
           )}
           <div style={styles.paramInfoLeft}>
             <div style={styles.paramPrice}>{`${priceFormat(

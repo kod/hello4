@@ -117,10 +117,11 @@ export default ({ data, styleWrap, style, ...restProps }) => (
                   alt=""
                   key={key1}
                   style={styles.componentimageItem}
-                  src={`${val1}?x-oss-process=image/resize,w_${parseInt(
-                    imageItemWidth,
-                    10,
-                  ) * 2}`}
+                  src={`${val1}?x-oss-process=image/format,webp`}
+                  // src={`${val1}?x-oss-process=image/resize,w_${parseInt(
+                  //   imageItemWidth,
+                  //   10,
+                  // ) * 2}`}
                 />
               ))}
           </div>

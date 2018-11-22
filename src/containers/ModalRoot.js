@@ -3,7 +3,6 @@ import { connect } from 'dva';
 import { MODAL_TYPES } from '../common/constants';
 import AddressAddModal from './AddressAddModal';
 import ParamsSelectModal from './ParamsSelectModal';
-// import LoaderModal from './LoaderModal';
 // import ActionSheetModal from './ActionSheetModal';
 // import BillSelectModal from './BillSelectModal';
 // import EnterPasswordModal from './EnterPasswordModal';

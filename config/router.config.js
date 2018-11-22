@@ -4,7 +4,11 @@ export default [
     component: './Home/Index',
   },
   {
-    path: '/login',
+    path: '/Me',
+    component: './Home/Me',
+  },
+  {
+    path: '/Login',
     component: './Login/Index',
   },
   {
@@ -70,5 +74,25 @@ export default [
   {
     path: '/CouponSelect',
     component: './CouponSelect/Index',
+  },
+  {
+    path: '/MyCollection',
+    component: './MyCollection/Index',
+  },
+  {
+    path: '/Settings',
+    component: './Settings/Index',
+  },
+  {
+    path: '/AboutAs',
+    component: './AboutAs/Index',
+  },
+  {
+    path: '/PaymentCode',
+    component: './PaymentCode/Index',
+  },
+  {
+    path: '/Callback',
+    component: './Callback/Index',
   },
 ];

@@ -68,10 +68,10 @@ class Pay extends React.Component {
 
     this.state = {
       submitfreeze: false,
-      payWayButtons: payWayArray(),
+      payWayButtons: payWayArray(DEBUG),
       payWayIndex: INTERNET_BANK_PAYWAY,
     };
-    // this.actionSheetCallback = this.actionSheetCallback.bind(this);
+    this.addEventListenerHandle = this.addEventListenerHandle.bind(this);
   }
 
   componentDidMount() {
@@ -90,32 +90,47 @@ class Pay extends React.Component {
 
   componentWillUnmount() {
     removeEventListener(SCREENS.Pay, this.addEventListenerHandle);
+    clearTimeout(this.setTimeoutId);
   }
 
-  addEventListenerHandle = ({ method, params = {} }) => {
+  addEventListenerHandle = ({ detail: { method, params } }) => {
     const { orderNo, tradeNo, queryOrderFetch } = this.props;
-    console.log(method);
-    console.log(params);
     switch (method) {
       case 'orderPay':
         queryOrderFetch({
           orderNo,
           tradeNo,
         });
-        Modal.alert('', formatMessage({ id: 'success' }), [
-          {
-            text: formatMessage({ id: 'confirm' }),
-            style: 'default',
-            onPress: () => {
-              router.push(
-                `/${SCREENS.OrderDetail}?${qs.stringify({
-                  tradeNo: params.tradeNo,
-                  orderNo: params.orderNo,
-                })}`,
-              );
+        if (params.payway === OFFLINE_PAYWAY) {
+          // 线下支付
+          router.push(
+            `/${SCREENS.PaymentCode}?${qs.stringify({
+              orderNo,
+              tradeNo,
+              payway: params.payway,
+              payrate: 0,
+              repaymentmonth: 0,
+              totalAmount: params.payvalue,
+              from: SCREENS.Pay,
+            })}`,
+          );
+        } else {
+          Modal.alert('', formatMessage({ id: 'success' }), [
+            {
+              text: formatMessage({ id: 'confirm' }),
+              style: 'default',
+              onPress: () => {
+                router.push(
+                  `/${SCREENS.OrderDetail}?${qs.stringify({
+                    tradeNo: params.tradeno,
+                    orderNo: params.orderno,
+                    from: SCREENS.Pay,
+                  })}`,
+                );
+              },
             },
-          },
-        ]);
+          ]);
+        }
         break;
 
       default:
@@ -171,8 +186,6 @@ class Pay extends React.Component {
       queryOrderItem: { totalAmount, orderNo, tradeNo },
     } = this.props;
 
-    console.log(payWayIndex);
-    console.log(submitfreeze);
     switch (payWayIndex) {
       case INTERNET_BANK_PAYWAY: // 网银
       case OFFLINE_PAYWAY: // 线下支付

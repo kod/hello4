@@ -1,4 +1,4 @@
-import moment from 'moment';
+import dayjs from 'dayjs';
 import buyoo from '@/services/api';
 
 import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
@@ -32,7 +32,7 @@ export default {
         const appId = '3';
         const method = 'fun.adverst.top';
         const charset = 'utf-8';
-        const timestamp = moment().format('YYYY-MM-DD HH:mm:ss');
+        const timestamp = dayjs().format('YYYY-MM-DD HH:mm:ss');
         const version = '1.0';
 
         const pagesize = '14';

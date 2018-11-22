@@ -22,6 +22,11 @@ import Form from './Form';
   {},
 )
 class Index extends React.Component {
+  constructor(props) {
+    super(props);
+    this.addEventListenerHandle = this.addEventListenerHandle.bind(this);
+  }
+
   componentDidMount() {
     addEventListener(SCREENS.RegisterStepTwo, this.addEventListenerHandle);
   }
@@ -30,8 +35,7 @@ class Index extends React.Component {
     removeEventListener(SCREENS.RegisterStepTwo, this.addEventListenerHandle);
   }
 
-  addEventListenerHandle = ret => {
-    console.log(ret);
+  addEventListenerHandle = () => {
     Modal.alert('', formatMessage({ id: 'success' }), [
       {
         text: formatMessage({ id: 'confirm' }),

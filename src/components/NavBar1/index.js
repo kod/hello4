@@ -73,7 +73,7 @@ export default ({
           <img
             alt=""
             style={{ ...styles.cellItem1IconImg, ...styleIconImg }}
-            src={val.iconImg}
+            src={`${val.iconImg}?x-oss-process=image/format,webp`}
           />
         )}
         <div style={{ ...styles.cellItem1Left, ...styleItemLeft }}>

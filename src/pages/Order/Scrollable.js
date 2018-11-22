@@ -213,7 +213,7 @@ class Scrollable extends React.Component {
                 stylePricePrice={{ color: '#666' }}
                 stylePricePeriods={{ color: '#666' }}
                 isShowNumber
-                onClick={() => this.handleOnPressGoods(val)}
+                clickProps={() => this.handleOnPressGoods(val)}
               />
               <div style={stylesScrollable.totalPrice}>
                 <div style={stylesScrollable.payText}>
