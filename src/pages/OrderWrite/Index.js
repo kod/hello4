@@ -158,7 +158,7 @@ class OrderWrite extends React.Component {
                 })}`,
               );
 
-              console.log('（货到付款）提交订单成功');
+              // console.log('（货到付款）提交订单成功');
             },
           },
         ]);

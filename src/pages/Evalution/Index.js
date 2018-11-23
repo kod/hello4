@@ -109,7 +109,6 @@ class Evalution extends React.Component {
   addEventListenerHandle = ({ detail: { method, params } }) => {
     switch (method) {
       case 'addEvaluation':
-        console.log(params);
         Modal.alert('', formatMessage({ id: 'success' }), [
           {
             text: formatMessage({ id: 'confirm' }),
@@ -398,7 +397,7 @@ class Evalution extends React.Component {
                 id: key,
               }))}
               onChange={this.onChange}
-              onImageClick={(index, fs) => console.log(index, fs)}
+              // onImageClick={(index, fs) => console.log(index, fs)}
               selectable={images.length < 4}
               multiple={multiple}
             />

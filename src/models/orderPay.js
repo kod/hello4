@@ -107,7 +107,7 @@ export default {
         if (payway === INTERNET_BANK_PAYWAY) {
           yield put(orderPayFetchFailure());
 
-          console.log(buyoo.orderPayInternetBank(options[0]));
+          // console.log(buyoo.orderPayInternetBank(options[0]));
           window.location.href = buyoo.orderPayInternetBank(options[0]);
           return false;
         }

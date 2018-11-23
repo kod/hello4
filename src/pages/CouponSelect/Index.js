@@ -35,7 +35,6 @@ const styles = {
         query: { products },
       },
     } = props;
-    console.log(products);
 
     return {
       products,

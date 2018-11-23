@@ -10,14 +10,7 @@ export default class SwiperFlatList extends PureComponent {
     const { data, styleA, styleImg } = this.props;
 
     return (
-      <Carousel
-        autoplay
-        // autoplayInterval={}
-        infinite
-        // beforeChange={(from, to) => console.log(`slide from ${from} to ${to}`)}
-        // afterChange={index => console.log('slide to', index)}
-        // {...restProps}
-      >
+      <Carousel autoplay infinite>
         {data.map(val => (
           <a
             key={val.id}

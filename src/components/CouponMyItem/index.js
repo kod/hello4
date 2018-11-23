@@ -26,8 +26,6 @@ const styles = {
     const { getVoucherList } = state;
 
     const { routeName } = props;
-    console.log(routeName);
-    console.log(routeName);
     return {
       items: getVoucherList[routeName],
       loading: getVoucherList.loading,
