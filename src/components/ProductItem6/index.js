@@ -1,8 +1,9 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
-import { WINDOW_WIDTH } from '@/common/constants';
+import { WINDOW_WIDTH, IS_IOS, OSS_IMAGE_QUALITY } from '@/common/constants';
 import ProductItem4 from '../ProductItem4';
 import SeparateBar from '../SeparateBar';
+import { xOssProcess } from '@/utils';
 
 const styles = {
   itemWrap: {},
@@ -31,7 +32,10 @@ export default ({ data, style, ...restProps }) => (
           <img
             alt=""
             style={styles.itemImg}
-            src={`${val.top.imageUrl}?x-oss-process=image/format,webp`}
+            src={`${val.top.imageUrl}?${xOssProcess(
+              IS_IOS,
+              OSS_IMAGE_QUALITY,
+            )}`}
           />
           <ProductItem4 data={val.bottom} />
           <SeparateBar />

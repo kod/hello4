@@ -4,7 +4,13 @@ import React from 'react';
 import qs from 'qs';
 import router from 'umi/router';
 
-import { WINDOW_WIDTH, SCREENS } from '@/common/constants';
+import {
+  WINDOW_WIDTH,
+  SCREENS,
+  IS_IOS,
+  OSS_IMAGE_QUALITY,
+} from '@/common/constants';
+import { xOssProcess } from '@/utils';
 
 const styles = {
   nav1: {
@@ -50,7 +56,7 @@ export default ({ groupon = false, data, style, ...restProps }) => (
         <img
           alt=""
           style={{ ...styles.nav1ItemImg }}
-          src={`${val.imageUrl}?x-oss-process=image/format,webp`}
+          src={`${val.imageUrl}?${xOssProcess(IS_IOS, OSS_IMAGE_QUALITY)}`}
         />
       </div>
     ))}

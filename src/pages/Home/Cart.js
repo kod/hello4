@@ -11,6 +11,8 @@ import {
   WINDOW_WIDTH,
   SIDEINTERVAL,
   MONETARY,
+  IS_IOS,
+  OSS_IMAGE_QUALITY,
 } from '@/common/constants';
 import { BORDER_COLOR, PRIMARY_COLOR, RED_COLOR } from '@/styles/variables';
 import CartItem from '@/components/CartItem';
@@ -18,6 +20,7 @@ import CustomIcon from '@/components/CustomIcon';
 import priceFormat from '@/utils/priceFormat';
 import EmptyState from '@/components/EmptyState';
 import { getCartTotalMoney } from '@/common/selectors';
+import { xOssProcess } from '@/utils';
 
 const ouhrigdfnjsoeijehrJpg =
   'https://oss.buyoo.vn/usercollect/1/20181101180309_67w.jpg';
@@ -201,7 +204,10 @@ class Index extends PureComponent {
                   <img
                     alt=""
                     style={stylesX.rightItemSubItemImage}
-                    src={`${val1.image}?x-oss-process=image/format,webp`}
+                    src={`${val1.image}?${xOssProcess(
+                      IS_IOS,
+                      OSS_IMAGE_QUALITY,
+                    )}`}
                   />
                   <div style={stylesX.rightItemSubItemText}>{val1.name}</div>
                 </div>
@@ -228,7 +234,10 @@ class Index extends PureComponent {
                   <img
                     alt=""
                     style={stylesX.rightItemSubItemImage}
-                    src={`${val1.imageUrl}?x-oss-process=image/format,webp`}
+                    src={`${val1.imageUrl}?${xOssProcess(
+                      IS_IOS,
+                      OSS_IMAGE_QUALITY,
+                    )}`}
                   />
                   <div style={stylesX.rightItemSubItemText}>{val1.name}</div>
                 </div>
@@ -302,7 +311,7 @@ class Index extends PureComponent {
                 <img
                   alt=""
                   style={stylesX.itemImage}
-                  src={`${val.image}?x-oss-process=image/format,webp`}
+                  src={`${val.image}?${xOssProcess(IS_IOS, OSS_IMAGE_QUALITY)}`}
                 />
 
                 <div style={stylesX.itemText}>{val.name}</div>

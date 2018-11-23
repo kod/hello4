@@ -15,11 +15,14 @@ import {
   // SCREENS,
   STATUSBAR_HEIGHT,
   SCREENS,
+  IS_IOS,
+  OSS_IMAGE_QUALITY,
 } from '@/common/constants';
 import { PRIMARY_COLOR, RED_COLOR } from '@/styles/variables';
 import NavBar1 from '@/components/NavBar1';
 import CustomIcon from '@/components/CustomIcon';
 import BYHeader from '@/components/BYHeader';
+import { xOssProcess } from '@/utils';
 
 const aioru09230fPng =
   'https://oss.buyoo.vn/usercollect/1/20181102094215_995.png';
@@ -360,7 +363,10 @@ class Index extends PureComponent {
             <img
               alt=""
               style={styles.headerIconImg}
-              src={`${headerIconImgSource}?x-oss-process=image/format,webp`}
+              src={`${headerIconImgSource}?${xOssProcess(
+                IS_IOS,
+                OSS_IMAGE_QUALITY,
+              )}`}
             />
 
             <div style={styles.headerIconText}>{username || phone}</div>

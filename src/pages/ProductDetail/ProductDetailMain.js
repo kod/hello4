@@ -19,13 +19,20 @@ import {
   // OSS_IMAGE_QUALITY,
   SCREENS,
   MODAL_TYPES,
+  IS_IOS,
+  OSS_IMAGE_QUALITY,
 } from '@/common/constants';
 import priceFormat from '@/utils/priceFormat';
 import CustomIcon from '@/components/CustomIcon';
 import { BORDER_COLOR, RED_COLOR } from '@/styles/variables';
 import Comment from '@/components/Comment';
 import SeparateBar from '@/components/SeparateBar';
-import { dispatchEvent, addEventListener, removeEventListener } from '@/utils';
+import {
+  dispatchEvent,
+  addEventListener,
+  removeEventListener,
+  xOssProcess,
+} from '@/utils';
 
 @connect(
   (state, props) => {
@@ -338,7 +345,7 @@ class ProductDetailMain extends React.Component {
                 alt=""
                 key={key}
                 style={styles.imagesDescItem}
-                src={`${val}?x-oss-process=image/format,webp`}
+                src={`${val}?${xOssProcess(IS_IOS, OSS_IMAGE_QUALITY)}`}
                 // src={`${val}?x-oss-process=image/quality,Q_${OSS_IMAGE_QUALITY}`}
               />
             ))}

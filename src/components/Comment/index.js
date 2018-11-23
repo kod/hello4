@@ -1,8 +1,14 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
-import { SIDEINTERVAL, WINDOW_WIDTH } from '@/common/constants';
+import {
+  SIDEINTERVAL,
+  WINDOW_WIDTH,
+  IS_IOS,
+  OSS_IMAGE_QUALITY,
+} from '@/common/constants';
 import { BORDER_COLOR, PRIMARY_COLOR } from '@/styles/variables';
 import CustomIcon from '@/components/CustomIcon';
+import { xOssProcess } from '@/utils';
 
 const imageItemWidth = (WINDOW_WIDTH - SIDEINTERVAL * 4) / 3;
 
@@ -117,7 +123,7 @@ export default ({ data, styleWrap, style, ...restProps }) => (
                   alt=""
                   key={key1}
                   style={styles.componentimageItem}
-                  src={`${val1}?x-oss-process=image/format,webp`}
+                  src={`${val1}?${xOssProcess(IS_IOS, OSS_IMAGE_QUALITY)}`}
                   // src={`${val1}?x-oss-process=image/resize,w_${parseInt(
                   //   imageItemWidth,
                   //   10,

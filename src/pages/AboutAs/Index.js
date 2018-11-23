@@ -15,9 +15,12 @@ import {
   WINDOW_HEIGHT,
   VERSION,
   SUPPORT_CENTER_URL,
+  IS_IOS,
+  OSS_IMAGE_QUALITY,
 } from '@/common/constants';
 import NavBar1 from '@/components/NavBar1';
 import SeparateBar from '@/components/SeparateBar';
+import { xOssProcess } from '@/utils';
 
 const icAvatarPng = 'https://oss.buyoo.vn/usercollect/1/20181120125848_x6L.png';
 
@@ -127,7 +130,7 @@ class AboutAs extends React.Component {
               <img
                 alt=""
                 style={styles.appIcon}
-                src={`${icAvatarPng}?x-oss-process=image/format,webp`}
+                src={`${icAvatarPng}?${xOssProcess(IS_IOS, OSS_IMAGE_QUALITY)}`}
               />
               <div style={styles.appVersion}>{`${BUYOOVIP} v${VERSION}`}</div>
             </div>

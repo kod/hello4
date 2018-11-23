@@ -4,11 +4,14 @@ import {
   SIDEINTERVAL,
   WINDOW_WIDTH,
   MONETARY,
+  IS_IOS,
+  OSS_IMAGE_QUALITY,
   // OSS_IMAGE_QUALITY,
 } from '@/common/constants';
 import { RED_COLOR } from '@/styles/variables';
 import priceFormat from '@/utils/priceFormat';
 import router from 'umi/router';
+import { xOssProcess } from '@/utils';
 
 const itemIntervalWidth = SIDEINTERVAL;
 const itemWidth = parseInt(
@@ -91,7 +94,7 @@ export default ({ groupon = false, data, style, ...restProps }) => (
           <img
             alt=""
             style={styles.itemImg}
-            src={`${val.imageUrl}?x-oss-process=image/format,webp`}
+            src={`${val.imageUrl}?${xOssProcess(IS_IOS, OSS_IMAGE_QUALITY)}`}
           />
 
           <div style={styles.itemText}>{val.name}</div>

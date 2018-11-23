@@ -2,12 +2,18 @@ import React from 'react';
 import { connect } from 'dva';
 import { formatMessage } from 'umi/locale';
 
-import { WINDOW_WIDTH, WINDOW_HEIGHT, SCREENS } from '@/common/constants';
+import {
+  WINDOW_WIDTH,
+  WINDOW_HEIGHT,
+  SCREENS,
+  IS_IOS,
+  OSS_IMAGE_QUALITY,
+} from '@/common/constants';
 
 import * as collectionActionCreators from '@/common/actions/collection';
 import Comment from '@/components/Comment';
 import BYHeader from '@/components/BYHeader';
-import { dispatchEvent } from '@/utils';
+import { dispatchEvent, xOssProcess } from '@/utils';
 
 const emptycommentPng =
   'https://oss.buyoo.vn/usercollect/1/20181107170628_nI0.png';
@@ -67,7 +73,10 @@ class ProductDetailComment extends React.Component {
             <img
               alt=""
               style={styles.emptyCommentImage}
-              src={`${emptycommentPng}?x-oss-process=image/format,webp`}
+              src={`${emptycommentPng}?${xOssProcess(
+                IS_IOS,
+                OSS_IMAGE_QUALITY,
+              )}`}
             />
             {/* <Image style={styles.emptyCommentImage} source={emptycommentPng} /> */}
             <div style={styles.emptyCommentText}>

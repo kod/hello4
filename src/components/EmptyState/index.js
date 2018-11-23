@@ -1,6 +1,12 @@
 import React from 'react';
 
-import { WINDOW_WIDTH, WINDOW_HEIGHT } from '@/common/constants';
+import {
+  WINDOW_WIDTH,
+  WINDOW_HEIGHT,
+  IS_IOS,
+  OSS_IMAGE_QUALITY,
+} from '@/common/constants';
+import { xOssProcess } from '@/utils';
 
 const styles = {
   empty: {
@@ -36,7 +42,7 @@ export default ({
     <img
       alt=""
       style={{ ...styles.emptyImg, ...styleImage }}
-      src={`${source}?x-oss-process=image/format,webp`}
+      src={`${source}?${xOssProcess(IS_IOS, OSS_IMAGE_QUALITY)}`}
     />
     <div style={{ ...styles.emptyText, ...styleText }}>{text}</div>
   </div>

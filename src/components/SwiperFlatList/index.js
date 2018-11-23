@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 import { Carousel } from 'antd-mobile';
 
 import styles from './index.less';
+import { OSS_IMAGE_QUALITY, IS_IOS } from '@/common/constants';
+import { xOssProcess } from '@/utils';
 
 export default class SwiperFlatList extends PureComponent {
   render() {
@@ -24,7 +26,7 @@ export default class SwiperFlatList extends PureComponent {
             style={styleA}
           >
             <img
-              src={`${val.imageUrl}?x-oss-process=image/format,webp`}
+              src={`${val.imageUrl}?${xOssProcess(IS_IOS, OSS_IMAGE_QUALITY)}`}
               alt=""
               className={styles.img}
               style={styleImg}

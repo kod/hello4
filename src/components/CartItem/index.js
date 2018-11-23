@@ -8,11 +8,13 @@ import {
   WINDOW_WIDTH,
   SIDEINTERVAL,
   CARMAXNUMBER,
-  // OSS_IMAGE_QUALITY,
   MONETARY,
+  IS_IOS,
+  OSS_IMAGE_QUALITY,
 } from '@/common/constants';
 import CustomIcon from '@/components/CustomIcon';
 import priceFormat from '@/utils/priceFormat';
+import { xOssProcess } from '@/utils';
 
 const styles = {
   itemWrap: {
@@ -296,9 +298,10 @@ class CartItem extends React.Component {
                 <img
                   alt=""
                   style={styles.itemImage}
-                  src={`${
-                    details[products[val].detail].iconUrl
-                  }?x-oss-process=image/format,webp`}
+                  src={`${details[products[val].detail].iconUrl}?${xOssProcess(
+                    IS_IOS,
+                    OSS_IMAGE_QUALITY,
+                  )}`}
                 />
               </div>
               <div style={styles.itemRight}>

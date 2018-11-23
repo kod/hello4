@@ -8,6 +8,7 @@ export const OSS_IMAGE_QUALITY = 70; // 图片压缩比例；1-100；100：不�
 export const LINE_HEIGHT_RATIO = 1.618; // 行高
 export const IS_PROMPT_FIRSTPAY = true; // 没有选择首付时是否提示选择首付
 export const MIN_FIRSTPAY_RATE = 0.1; // 最低首付比: 0, 0.1, 0.2, 0.3, 0.4, 0.5
+export const IS_IOS = /iP(ad|hone|od)/.test(navigator.userAgent);
 export const VERSION = 'v1.1.0-beta';
 
 // namespace -start-

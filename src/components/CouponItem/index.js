@@ -3,9 +3,16 @@ import React from 'react';
 import dayjs from 'dayjs';
 
 import { PRIMARY_COLOR, RED_COLOR } from '@/styles/variables';
-import { SIDEINTERVAL, MONETARY, WINDOW_WIDTH } from '@/common/constants';
+import {
+  SIDEINTERVAL,
+  MONETARY,
+  WINDOW_WIDTH,
+  IS_IOS,
+  OSS_IMAGE_QUALITY,
+} from '@/common/constants';
 import priceFormat from '@/utils/priceFormat';
 import CustomIcon from '@/components/CustomIcon';
+import { xOssProcess } from '@/utils';
 
 const couponBluePng =
   'https://oss.buyoo.vn/usercollect/1/20181109100835_r2M.png';
@@ -101,7 +108,7 @@ export default ({ isCouponCenter = true, data, onClick, ...restProps }) => (
           <img
             alt=""
             style={styles.image}
-            src={`${couponBluePng}?x-oss-process=image/format,webp`}
+            src={`${couponBluePng}?${xOssProcess(IS_IOS, OSS_IMAGE_QUALITY)}`}
           />
           <div style={styles.bottom}>
             <div style={styles.left}>
@@ -131,7 +138,7 @@ export default ({ isCouponCenter = true, data, onClick, ...restProps }) => (
           <img
             alt=""
             style={styles.image}
-            src={`${couponRedPng}?x-oss-process=image/format,webp`}
+            src={`${couponRedPng}?${xOssProcess(IS_IOS, OSS_IMAGE_QUALITY)}`}
           />
           <div style={{ ...styles.bottom, ...styles.bottomRed }}>
             <div style={styles.left}>

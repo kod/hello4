@@ -4,10 +4,16 @@ import { connect } from 'dva';
 import router from 'umi/router';
 
 import { BORDER_COLOR, RED_COLOR } from '@/styles/variables';
-import { SIDEINTERVAL, MONETARY } from '@/common/constants';
+import {
+  SIDEINTERVAL,
+  MONETARY,
+  IS_IOS,
+  OSS_IMAGE_QUALITY,
+} from '@/common/constants';
 import priceFormat from '@/utils/priceFormat';
 
 import * as cartActionCreators from '@/common/actions/cart';
+import { xOssProcess } from '@/utils';
 
 const styles = {
   itemWrap: {
@@ -150,7 +156,10 @@ class ProductItem2 extends React.Component {
                 <img
                   alt=""
                   style={styles.itemImage}
-                  src={`${val.imageUrl}?x-oss-process=image/format,webp`}
+                  src={`${val.imageUrl}?${xOssProcess(
+                    IS_IOS,
+                    OSS_IMAGE_QUALITY,
+                  )}`}
                   // src={`${val.imageUrl}?x-oss-process=image/resize,w_240,h_240`}
                 />
               </div>

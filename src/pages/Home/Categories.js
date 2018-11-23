@@ -10,8 +10,11 @@ import {
   STATUSBAR_HEIGHT,
   WINDOW_WIDTH,
   SIDEINTERVAL,
+  OSS_IMAGE_QUALITY,
+  IS_IOS,
 } from '@/common/constants';
 import { BORDER_COLOR, PRIMARY_COLOR } from '@/styles/variables';
+import { xOssProcess } from '@/utils';
 
 @connect(
   state => {
@@ -147,7 +150,10 @@ class Index extends PureComponent {
                   <img
                     alt=""
                     style={stylesX.rightItemSubItemImage}
-                    src={`${val1.image}?x-oss-process=image/format,webp`}
+                    src={`${val1.image}?${xOssProcess(
+                      IS_IOS,
+                      OSS_IMAGE_QUALITY,
+                    )}`}
                   />
                   <div style={stylesX.rightItemSubItemText}>{val1.name}</div>
                 </div>
@@ -174,7 +180,10 @@ class Index extends PureComponent {
                   <img
                     alt=""
                     style={stylesX.rightItemSubItemImage}
-                    src={`${val1.imageUrl}?x-oss-process=image/format,webp`}
+                    src={`${val1.imageUrl}?${xOssProcess(
+                      IS_IOS,
+                      OSS_IMAGE_QUALITY,
+                    )}`}
                   />
                   <div style={stylesX.rightItemSubItemText}>{val1.name}</div>
                 </div>
@@ -245,7 +254,7 @@ class Index extends PureComponent {
                 <img
                   alt=""
                   style={stylesX.itemImage}
-                  src={`${val.image}?x-oss-process=image/format,webp`}
+                  src={`${val.image}?${xOssProcess(IS_IOS, OSS_IMAGE_QUALITY)}`}
                 />
 
                 <div style={stylesX.itemText}>{val.name}</div>

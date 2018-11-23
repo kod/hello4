@@ -1,8 +1,9 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
 
-import { SIDEINTERVAL } from '@/common/constants';
+import { SIDEINTERVAL, IS_IOS, OSS_IMAGE_QUALITY } from '@/common/constants';
 import CustomIcon from '@/components/CustomIcon';
+import { xOssProcess } from '@/utils';
 
 const styles = {
   cellItem1Wrap: {
@@ -73,7 +74,7 @@ export default ({
           <img
             alt=""
             style={{ ...styles.cellItem1IconImg, ...styleIconImg }}
-            src={`${val.iconImg}?x-oss-process=image/format,webp`}
+            src={`${val.iconImg}?${xOssProcess(IS_IOS, OSS_IMAGE_QUALITY)}`}
           />
         )}
         <div style={{ ...styles.cellItem1Left, ...styleItemLeft }}>

@@ -5,8 +5,15 @@ import BYHeader from '@/components/BYHeader';
 import { formatMessage } from 'umi/locale';
 import router from 'umi/router';
 
-import { WINDOW_HEIGHT, SCREENS, WINDOW_WIDTH } from '@/common/constants';
+import {
+  WINDOW_HEIGHT,
+  SCREENS,
+  WINDOW_WIDTH,
+  IS_IOS,
+  OSS_IMAGE_QUALITY,
+} from '@/common/constants';
 import BYButton from '@/components/BYButton';
+import { xOssProcess } from '@/utils';
 
 @connect(
   (state, props) => {
@@ -94,7 +101,10 @@ class Address extends React.Component {
           <img
             alt=""
             style={styles.image}
-            src={`${errorJson[msg].icon}?x-oss-process=image/format,webp`}
+            src={`${errorJson[msg].icon}?${xOssProcess(
+              IS_IOS,
+              OSS_IMAGE_QUALITY,
+            )}`}
           />
           <div style={styles.text}>{errorJson[msg].text}</div>
           <BYButton

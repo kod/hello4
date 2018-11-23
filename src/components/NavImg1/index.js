@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { WINDOW_WIDTH } from '@/common/constants';
+import { WINDOW_WIDTH, IS_IOS, OSS_IMAGE_QUALITY } from '@/common/constants';
+import { xOssProcess } from '@/utils';
 
 const styles = {
   nav1: {
@@ -63,7 +64,7 @@ export default ({
         <img
           alt=""
           style={{ ...styles.nav1ItemImg, ...val.styleImg }}
-          src={`${val.iconUrl}?x-oss-process=image/format,webp`}
+          src={`${val.iconUrl}?${xOssProcess(IS_IOS, OSS_IMAGE_QUALITY)}`}
         />
         <div style={{ ...styles.nav1ItemText, ...val.styleText }}>
           {val.name}

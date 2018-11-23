@@ -7,9 +7,12 @@ import {
   // OSS_IMAGE_QUALITY,
   MONETARY,
   WINDOW_WIDTH,
+  IS_IOS,
+  OSS_IMAGE_QUALITY,
 } from '@/common/constants';
 import priceFormat from '@/utils/priceFormat';
 import { RED_COLOR } from '@/styles/variables';
+import { xOssProcess } from '@/utils';
 
 const itemIntervalWidth = SIDEINTERVAL;
 const itemWidth = (WINDOW_WIDTH - itemIntervalWidth * 4) / 3;
@@ -85,7 +88,7 @@ export default ({ groupon = false, data, style, ...restProps }) => (
         <img
           alt=""
           style={{ ...styles.itemImg }}
-          src={`${val.imageUrl}?x-oss-process=image/format,webp`}
+          src={`${val.imageUrl}?${xOssProcess(IS_IOS, OSS_IMAGE_QUALITY)}`}
         />
         <div style={styles.itemText}>{val.name}</div>
         <div style={styles.itemPrice}>

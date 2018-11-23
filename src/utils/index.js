@@ -16,9 +16,10 @@ import {
   ORDERNO_REGEX,
   TRADENO_REGEX,
   SHAREID_REGEX,
-  // OSS_IMAGE_QUALITY,
   ONDELIVERY_PAYWAY,
   ONLINE_PAYWAY,
+  IS_IOS,
+  OSS_IMAGE_QUALITY,
 } from '@/common/constants';
 
 const invitationCodeNavigate = (navigation, id) => {
@@ -42,6 +43,11 @@ const invitationCodeNavigate = (navigation, id) => {
   //   }),
   // );
 };
+
+export const xOssProcess = (isIos, ossImageQuality) =>
+  isIos
+    ? `x-oss-process=image/quality,Q_${ossImageQuality}`
+    : `x-oss-process=image/format,webp/quality,Q_${ossImageQuality}`;
 
 export function addEventListener(type, listener) {
   // TODO
@@ -473,7 +479,10 @@ export const jointWebViewImages = images => {
       break;
 
     case 1:
-      WebViewImages = `<img src="${images}?x-oss-process=image/format,webp" alt="image">`;
+      WebViewImages = `<img src="${images}?${xOssProcess(
+        IS_IOS,
+        OSS_IMAGE_QUALITY,
+      )}" alt="image">`;
       break;
 
     default:
@@ -481,12 +490,21 @@ export const jointWebViewImages = images => {
         let resultStr = '';
         if (index === 1) {
           if (a)
-            resultStr = `<img src="${a}?x-oss-process=image/format,webp" alt="image">`;
+            resultStr = `<img src="${a}?${xOssProcess(
+              IS_IOS,
+              OSS_IMAGE_QUALITY,
+            )}" alt="image">`;
           if (b)
-            resultStr += `<img src="${b}?x-oss-process=image/format,webp" alt="image">`;
+            resultStr += `<img src="${b}?${xOssProcess(
+              IS_IOS,
+              OSS_IMAGE_QUALITY,
+            )}" alt="image">`;
         } else {
           if (b)
-            resultStr = `<img src="${b}?x-oss-process=image/format,webp" alt="image">`;
+            resultStr = `<img src="${b}?${xOssProcess(
+              IS_IOS,
+              OSS_IMAGE_QUALITY,
+            )}" alt="image">`;
           resultStr = a + resultStr;
         }
         return resultStr;

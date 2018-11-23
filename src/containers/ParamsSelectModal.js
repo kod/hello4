@@ -4,12 +4,19 @@ import { connect } from 'dva';
 import { formatMessage } from 'umi/locale';
 
 import { BORDER_COLOR, PRIMARY_COLOR, RED_COLOR } from '../styles/variables';
-import { WINDOW_WIDTH, SIDEINTERVAL, MONETARY } from '../common/constants';
+import {
+  WINDOW_WIDTH,
+  SIDEINTERVAL,
+  MONETARY,
+  IS_IOS,
+  OSS_IMAGE_QUALITY,
+} from '../common/constants';
 
 import priceFormat from '@/utils/priceFormat';
 import CustomIcon from '@/components/CustomIcon';
 import * as modalActionCreators from '../common/actions/modal';
 import * as productDetailInfoActionCreators from '../common/actions/productDetailInfo';
+import { xOssProcess } from '@/utils';
 
 @connect(
   (state, props) => {
@@ -324,7 +331,10 @@ class ParamsSelectModal extends Component {
             <img
               alt=""
               style={styles.paramImage}
-              src={`${imageUrls[0].imageUrl}?x-oss-process=image/format,webp`}
+              src={`${imageUrls[0].imageUrl}?${xOssProcess(
+                IS_IOS,
+                OSS_IMAGE_QUALITY,
+              )}`}
             />
           )}
           <div style={styles.paramInfoLeft}>
