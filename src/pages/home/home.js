@@ -11,15 +11,16 @@ import * as getNewestInfoActionCreators from '@/common/actions/getNewestInfo';
 import * as bannerSwiperActionCreators from '@/common/actions/bannerSwiper';
 import * as adverstInfoActionCreators from '@/common/actions/adverstInfo';
 import * as initAdverstCommonActionCreators from '@/common/actions/initAdverstCommon';
-import { dispatchEvent, analyzeUrlNavigate } from '@/utils';
+import { dispatchEvent, analyzeUrlNavigate, b } from '@/utils';
 import NavImg1 from '@/components/NavImg1';
 import SeparateBar from '@/components/SeparateBar';
 import { RED_COLOR } from '@/styles/variables';
-import { SIDEINTERVAL, WINDOW_WIDTH } from '@/common/constants';
+import { SIDEINTERVAL, WINDOW_WIDTH, BUYOO } from '@/common/constants';
 import ProductItem5 from '@/components/ProductItem5';
 import PhoneAdBaner from '@/components/PhoneAdBaner';
 import ProductItem4 from '@/components/ProductItem4';
 import ProductItem6 from '@/components/ProductItem6';
+import { o } from '@/utils/AuthEncrypt';
 
 @connect(
   state => {
@@ -30,7 +31,6 @@ import ProductItem6 from '@/components/ProductItem6';
       bannerSwiper,
       adverstInfo,
       initAdverstCommon,
-      login,
     } = state;
 
     return {
@@ -40,7 +40,7 @@ import ProductItem6 from '@/components/ProductItem6';
       initAdverstCommonItems: initAdverstCommon.items,
       bannerSwiper: bannerSwiper.one || {},
       adverstInfo: adverstInfo || {},
-      isAuthUser: !!login.user,
+      authUser: o(b, BUYOO),
     };
   },
   {
@@ -77,12 +77,16 @@ class Index extends PureComponent {
     });
     initAdverstCommonFetch(1, 3);
 
+    setInterval(() => {
+      console.log(o(b, BUYOO));
+    }, 5000);
+
     // setLocale('zh-CN');
   }
 
   handleRightOnPress() {
-    const { isAuthUser } = this.props;
-    if (isAuthUser) {
+    const { authUser } = this.props;
+    if (authUser) {
       dispatchEvent('TabBarTabBarIndex', {
         index: 3,
       });
@@ -99,7 +103,7 @@ class Index extends PureComponent {
       bannerSwiper,
       adverstInfo,
       initAdverstCommonItems,
-      isAuthUser,
+      authUser,
     } = this.props;
     const styles = {
       hotTittle: {
@@ -118,43 +122,59 @@ class Index extends PureComponent {
         <SearchHeader
           text={formatMessage({ id: 'search' })}
           rightOnPress={() => this.handleRightOnPress()}
-          isLogin={isAuthUser}
+          isLogin={authUser}
         />
 
-        <SwiperFlatList
-          data={getAdverstTopInfoItems}
-          styleImg={{
-            display: 'block',
-            width: WINDOW_WIDTH,
-            minHeight: WINDOW_WIDTH * 0.35583333,
-          }}
-        />
+        {getAdverstTopInfoItems.length > 0 && (
+          <SwiperFlatList
+            data={getAdverstTopInfoItems}
+            styleImg={{
+              display: 'block',
+              width: WINDOW_WIDTH,
+              minHeight: WINDOW_WIDTH * 0.35583333,
+            }}
+          />
+        )}
 
-        <NavImg1
-          data={getSquaresInfoItems}
-          style={{ paddingTop: 5, paddingBottom: 5 }}
-          onClick={analyzeUrlNavigate}
-        />
+        {getSquaresInfoItems.length > 0 && (
+          <NavImg1
+            data={getSquaresInfoItems}
+            style={{ paddingTop: 5, paddingBottom: 5 }}
+            onClick={analyzeUrlNavigate}
+          />
+        )}
 
-        <SeparateBar />
+        {getNewestInfoItems.length > 0 && (
+          <div>
+            <SeparateBar />
+            <div style={styles.hotTittle}>
+              {formatMessage({ id: 'hotNewProduct' })}
+            </div>
 
-        <div style={styles.hotTittle}>
-          {formatMessage({ id: 'hotNewProduct' })}
-        </div>
+            <ProductItem5
+              data={getNewestInfoItems}
+              style={{ backgroundColor: '#fff' }}
+            />
+          </div>
+        )}
 
-        <ProductItem5
-          data={getNewestInfoItems}
-          style={{ backgroundColor: '#fff' }}
-        />
-        <SeparateBar />
+        {bannerSwiperList.length > 0 && (
+          <div>
+            <SeparateBar />
 
-        <PhoneAdBaner data={bannerSwiperList} />
+            <PhoneAdBaner data={bannerSwiperList} />
+          </div>
+        )}
 
-        <SeparateBar />
+        {initAdverstCommonItems.length > 0 && (
+          <div>
+            <SeparateBar />
 
-        <ProductItem6 data={initAdverstCommonItems} />
+            <ProductItem6 data={initAdverstCommonItems} />
+          </div>
+        )}
 
-        <ProductItem4 data={adverstInfoList} />
+        {adverstInfoList.length > 0 && <ProductItem4 data={adverstInfoList} />}
       </div>
     );
   }
