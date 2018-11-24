@@ -14,6 +14,7 @@ import {
   addEventListener,
   removeEventListener,
   submitDuplicateFreeze,
+  b,
 } from '@/utils';
 
 import * as collectFilesActionCreators from '@/common/actions/collectFiles';
@@ -26,12 +27,14 @@ import {
   SCREENS,
   COLLECTFILES_NAMESPACE,
   ADDEVALUATION_NAMESPACE,
+  BUYOO,
 } from '@/common/constants';
 
 import MustLogin from '@/components/MustLogin';
 import BYButton from '@/components/BYButton';
 import CustomIcon from '@/components/CustomIcon';
 import { COLLECT_FILES, ADD_EVALUATION } from '@/common/constants/actionTypes';
+import { o } from '@/utils/AuthEncrypt';
 
 const styles = {
   container: {
@@ -42,7 +45,7 @@ const styles = {
 
 @connect(
   (state, props) => {
-    const { collectFiles, login, loading } = state;
+    const { collectFiles, loading } = state;
 
     const {
       location: {
@@ -51,7 +54,7 @@ const styles = {
     } = props;
 
     return {
-      authUser: login.user,
+      authUser: o(b, BUYOO),
       collectFiles,
       orderNo,
       tradeNo,
@@ -106,7 +109,7 @@ class Evalution extends React.Component {
     clearTimeout(this.setTimeoutId);
   }
 
-  addEventListenerHandle = ({ detail: { method, params } }) => {
+  addEventListenerHandle = ({ detail: { method } }) => {
     switch (method) {
       case 'addEvaluation':
         Modal.alert('', formatMessage({ id: 'success' }), [

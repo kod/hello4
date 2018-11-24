@@ -1,22 +1,19 @@
 import dayjs from 'dayjs';
 import buyoo from '@/services/api';
-// import { Modal } from 'antd-mobile';
-// import { formatMessage } from 'umi/locale';
-// import router from 'umi/router';
 
-import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
+import { encryptMD5, signTypeMD5, o } from '@/utils/AuthEncrypt';
 import {
   GETVOUCHERLIST_NAMESPACE,
   COUPONMY_TABNAVIGATOR_MAP,
+  BUYOO,
 } from '@/common/constants';
 import { GET_VOUCHER_LIST } from '@/common/constants/actionTypes';
 import {
   getVoucherListFetchSuccess,
   getVoucherListFetchFailure,
 } from '@/common/actions/getVoucherList';
-// import { getVoucherFetch } from '@/common/actions/getVoucher';
 import { addError } from '@/common/actions/error';
-import { getAuthUserFunid } from '@/common/selectors';
+import { b } from '@/utils';
 
 const initState = {
   loading: false,
@@ -33,9 +30,9 @@ export default {
   state: initState,
 
   effects: {
-    *[GET_VOUCHER_LIST.REQUEST](action, { apply, put, select }) {
+    *[GET_VOUCHER_LIST.REQUEST](action, { apply, put }) {
       try {
-        const funid = yield select(getAuthUserFunid);
+        const funid = o(b, BUYOO).result;
         const {
           vouchertype = '',
           typeid = '',

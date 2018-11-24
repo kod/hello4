@@ -13,6 +13,7 @@ import {
   WINDOW_WIDTH,
   SCREENS,
   MESSAGE_URL,
+  BUYOO,
 } from '@/common/constants';
 import {
   BORDER_COLOR,
@@ -25,12 +26,13 @@ import ProductDetailMain from './ProductDetailMain';
 import * as collectionActionCreators from '@/common/actions/collection';
 import * as modalActionCreators from '@/common/actions/modal';
 import ProductDetailComment from './ProductDetailComment';
-import { addEventListener, removeEventListener } from '@/utils';
+import { addEventListener, removeEventListener, b } from '@/utils';
 import { getIsCollection } from '@/common/selectors';
+import { o } from '@/utils/AuthEncrypt';
 
 @connect(
   (state, props) => {
-    const { login, productDetailInfo } = state;
+    const { productDetailInfo } = state;
     const {
       location: { query = {}, pathname = '' },
     } = props;
@@ -39,7 +41,7 @@ import { getIsCollection } from '@/common/selectors';
       ...productDetailInfo.item,
       query,
       pathname,
-      authUser: login.user,
+      authUser: o(b, BUYOO),
       isCollection: getIsCollection(state, props),
     };
   },

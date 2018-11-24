@@ -1,15 +1,15 @@
 import dayjs from 'dayjs';
 import buyoo from '@/services/api';
 
-import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
-import { JUDGEVOUCHER_NAMESPACE } from '@/common/constants';
+import { encryptMD5, signTypeMD5, o } from '@/utils/AuthEncrypt';
+import { JUDGEVOUCHER_NAMESPACE, BUYOO } from '@/common/constants';
 import { JUDGE_VOUCHER } from '@/common/constants/actionTypes';
 import {
   judgeVoucherFetchSuccess,
   judgeVoucherFetchFailure,
 } from '@/common/actions/judgeVoucher';
 import { addError } from '@/common/actions/error';
-import { getAuthUserFunid } from '@/common/selectors';
+import { b } from '@/utils';
 
 const initState = {
   loading: false,
@@ -24,9 +24,9 @@ export default {
   state: initState,
 
   effects: {
-    *[JUDGE_VOUCHER.REQUEST](action, { apply, put, select }) {
+    *[JUDGE_VOUCHER.REQUEST](action, { apply, put }) {
       try {
-        const funid = yield select(getAuthUserFunid);
+        const funid = o(b, BUYOO).result;
         const {
           products = '',
           currentpage = 1,

@@ -1,15 +1,15 @@
 import dayjs from 'dayjs';
 import buyoo from '@/services/api';
 
-import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
-import { GETVOUCHER_NAMESPACE } from '@/common/constants';
+import { encryptMD5, signTypeMD5, o } from '@/utils/AuthEncrypt';
+import { GETVOUCHER_NAMESPACE, BUYOO } from '@/common/constants';
 import { GET_VOUCHER } from '@/common/constants/actionTypes';
 import {
   getVoucherFetchSuccess,
   getVoucherFetchFailure,
 } from '@/common/actions/getVoucher';
 import { addError } from '@/common/actions/error';
-import { getAuthUser, getAuthUserFunid } from '@/common/selectors';
+import { b } from '@/utils';
 
 const initState = {
   loading: false,
@@ -24,10 +24,10 @@ export default {
   state: initState,
 
   effects: {
-    *[GET_VOUCHER.REQUEST](action, { apply, put, select }) {
+    *[GET_VOUCHER.REQUEST](action, { apply, put }) {
       try {
-        const authUser = yield select(getAuthUser) || '';
-        const funid = authUser ? yield select(getAuthUserFunid) : '';
+        const authUser = o(b, BUYOO);
+        const funid = authUser ? o(b, BUYOO).result : '';
 
         const {
           vouchertype = '',

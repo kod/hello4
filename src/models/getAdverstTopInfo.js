@@ -1,15 +1,15 @@
 import dayjs from 'dayjs';
 import buyoo from '@/services/api';
 
-import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
-import { GETADVERSTTOPINFO_NAMESPACE } from '@/common/constants';
+import { encryptMD5, signTypeMD5, o } from '@/utils/AuthEncrypt';
+import { GETADVERSTTOPINFO_NAMESPACE, BUYOO } from '@/common/constants';
 import { GET_ADVERST_TOP_INFO } from '@/common/constants/actionTypes';
 import {
   getAdverstTopInfoFetchSuccess,
   getAdverstTopInfoFetchFailure,
 } from '@/common/actions/getAdverstTopInfo';
 import { addError } from '@/common/actions/error';
-import { getAuthUserFunid, getAuthUser } from '@/common/selectors';
+import { b } from '@/utils';
 
 const initState = {
   loading: false,
@@ -24,10 +24,11 @@ export default {
   state: initState,
 
   effects: {
-    *[GET_ADVERST_TOP_INFO.REQUEST](_, { apply, put, select }) {
+    *[GET_ADVERST_TOP_INFO.REQUEST](_, { apply, put }) {
       try {
-        const authUser = yield select(getAuthUser) || '';
-        const funid = authUser ? yield select(getAuthUserFunid) : '';
+        const authUser = o(b, BUYOO);
+
+        const funid = authUser ? o(b, BUYOO).result : '';
         const Key = 'commodityKey';
         const appId = '3';
         const method = 'fun.adverst.top';

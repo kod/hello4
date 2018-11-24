@@ -34,7 +34,6 @@ import { xOssProcess } from '@/utils';
       brandId: brandIdUsed,
       groupon: false,
       isMaster: false,
-      isAuthUser: !!state.login.user,
       modalProps,
     };
   },

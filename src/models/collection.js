@@ -2,8 +2,8 @@
 import dayjs from 'dayjs';
 import buyoo from '@/services/api';
 
-import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
-import { COLLECTION_NAMESPACE } from '@/common/constants';
+import { encryptMD5, signTypeMD5, o } from '@/utils/AuthEncrypt';
+import { COLLECTION_NAMESPACE, BUYOO } from '@/common/constants';
 import {
   COLLECTION,
   COLLECTION_ADD,
@@ -19,7 +19,7 @@ import {
   collectionRemoveFetchFailure,
 } from '@/common/actions/collection';
 import { addError } from '@/common/actions/error';
-import { getAuthUserFunid, getAuthUserMsisdn } from '@/common/selectors';
+import { b } from '@/utils';
 
 const initState = {
   loading: false,
@@ -34,10 +34,10 @@ export default {
   state: initState,
 
   effects: {
-    *[COLLECTION.REQUEST](action, { apply, put, select }) {
+    *[COLLECTION.REQUEST](action, { apply, put }) {
       try {
-        const funid = yield select(getAuthUserFunid);
-        const msisdn = yield select(getAuthUserMsisdn);
+        const funid = o(b, BUYOO).result;
+        const { msisdn } = o(b, BUYOO);
         const pagesize = 100;
         const currentpage = 1;
 
@@ -108,9 +108,9 @@ export default {
         yield put(addError(typeof err === 'string' ? err : err.toString()));
       }
     },
-    *[COLLECTION_ADD.REQUEST](action, { apply, put, select }) {
+    *[COLLECTION_ADD.REQUEST](action, { apply, put }) {
       try {
-        const funid = yield select(getAuthUserFunid);
+        const funid = o(b, BUYOO).result;
         const brandids = action.payload.brandIds;
 
         const Key = 'userKey';
@@ -161,11 +161,11 @@ export default {
         yield put(addError(typeof err === 'string' ? err : err.toString()));
       }
     },
-    *[COLLECTION_REMOVE.REQUEST](action, { apply, put, select }) {
+    *[COLLECTION_REMOVE.REQUEST](action, { apply, put }) {
       const { brand_id: brandId } = action.payload;
       try {
-        const funid = yield select(getAuthUserFunid);
-        const msisdn = yield select(getAuthUserMsisdn);
+        const funid = o(b, BUYOO).result;
+        const { msisdn } = o(b, BUYOO);
 
         const Key = 'userKey';
         const appId = '3';

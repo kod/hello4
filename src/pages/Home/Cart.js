@@ -27,12 +27,11 @@ const ouhrigdfnjsoeijehrJpg =
 
 @connect(
   (state, props) => {
-    const { login, cart } = state;
+    const { cart } = state;
 
     return {
       cart,
       totalMoney: getCartTotalMoney(state, props),
-      isAuthUser: !!login.user,
       loading: cart.loading,
       allSelected: cart.allSelected,
       allSelectedDel: cart.allSelectedDel,

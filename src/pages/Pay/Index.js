@@ -21,6 +21,7 @@ import {
   CREDIT_PAYWAY,
   ORDERPAY_NAMESPACE,
   DEBUG,
+  BUYOO,
 } from '@/common/constants';
 import {
   payWayArray,
@@ -28,6 +29,7 @@ import {
   removeEventListener,
   submitDuplicateFreeze,
   payWayToText,
+  b,
 } from '@/utils';
 import priceFormat from '@/utils/priceFormat';
 import NavBar2 from '@/components/NavBar2';
@@ -35,10 +37,11 @@ import SeparateBar from '@/components/SeparateBar';
 import BYButton from '@/components/BYButton';
 import MustLogin from '@/components/MustLogin';
 import { ORDER_PAY } from '@/common/constants/actionTypes';
+import { o } from '@/utils/AuthEncrypt';
 
 @connect(
   (state, props) => {
-    const { login, queryOrder, loading } = state;
+    const { queryOrder, loading } = state;
 
     const {
       location: {
@@ -47,7 +50,7 @@ import { ORDER_PAY } from '@/common/constants/actionTypes';
     } = props;
 
     return {
-      authUser: login.user,
+      authUser: o(b, BUYOO),
       orderNo,
       tradeNo,
       queryOrderItem: queryOrder.item,

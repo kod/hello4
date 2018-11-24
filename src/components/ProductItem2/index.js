@@ -90,12 +90,7 @@ const styles = {
 };
 
 @connect(
-  state => {
-    const { login } = state;
-    return {
-      authUser: login.user,
-    };
-  },
+  () => {},
   {
     ...cartActionCreators,
   },

@@ -1,15 +1,15 @@
 import dayjs from 'dayjs';
 import buyoo from '@/services/api';
 
-import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
-import { CARDQUERY_NAMESPACE } from '@/common/constants';
+import { encryptMD5, signTypeMD5, o } from '@/utils/AuthEncrypt';
+import { CARDQUERY_NAMESPACE, BUYOO } from '@/common/constants';
 import { CARD_QUERY } from '@/common/constants/actionTypes';
 import {
   cardQueryFetchSuccess,
   cardQueryFetchFailure,
 } from '@/common/actions/cardQuery';
 import { addError } from '@/common/actions/error';
-import { getAuthUserFunid } from '@/common/selectors';
+import { b } from '@/utils';
 
 const initState = {
   loading: false,
@@ -24,9 +24,9 @@ export default {
   state: initState,
 
   effects: {
-    *[CARD_QUERY.REQUEST](_, { apply, put, select }) {
+    *[CARD_QUERY.REQUEST](_, { apply, put }) {
       try {
-        const funid = yield select(getAuthUserFunid);
+        const funid = o(b, BUYOO).result;
 
         const Key = 'userKey';
         const appId = '3';

@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 import React from 'react';
 import { connect } from 'dva';
 import { formatMessage } from 'umi/locale';
@@ -23,6 +24,7 @@ import {
   removeEventListener,
   orderWritePayWayArray,
   payWayToText,
+  b,
 } from '@/utils';
 import {
   SCREENS,
@@ -34,6 +36,7 @@ import {
   ORDERCREATE_NAMESPACE,
   GETUSERINFOBYID_NAMESPACE,
   ORDERPAY_NAMESPACE,
+  BUYOO,
 } from '@/common/constants';
 import priceFormat from '@/utils/priceFormat';
 import { BORDER_COLOR, RED_COLOR, PRIMARY_COLOR } from '@/styles/variables';
@@ -43,6 +46,7 @@ import {
   GET_USERINFO_BYID,
   ORDER_PAY,
 } from '@/common/constants/actionTypes';
+import { o } from '@/utils/AuthEncrypt';
 
 @connect(
   (state, props) => {
@@ -52,7 +56,6 @@ import {
       orderCreate,
       productDetailInfo,
       couponSelect,
-      login,
       loading,
     } = state;
     const {
@@ -80,8 +83,7 @@ import {
       addressSelectedItem: getAddressSelectedItem(state, props),
       addressItems: address.items,
       addressSelectedId: address.addressSelectedId,
-      funid: state.login.user ? state.login.user.result : null,
-      authUser: login.user,
+      authUser: o(b, BUYOO),
       getUserInfoById,
       getUserInfoByIdLoaded: getUserInfoById.loaded,
       userType: getUserInfoById.item.userType || null,

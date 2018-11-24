@@ -55,7 +55,6 @@ import {
       propertiesIds,
       productIdVIP: id,
       comment: comment.items.detail ? comment.items.detail.slice(0, 1) : [],
-      isAuthUser: !!state.login.user,
       pathname,
     };
   },

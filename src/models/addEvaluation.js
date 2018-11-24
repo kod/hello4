@@ -2,16 +2,15 @@
 import dayjs from 'dayjs';
 import buyoo from '@/services/api';
 
-import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
-import { ADDEVALUATION_NAMESPACE } from '@/common/constants';
+import { encryptMD5, signTypeMD5, o } from '@/utils/AuthEncrypt';
+import { ADDEVALUATION_NAMESPACE, BUYOO } from '@/common/constants';
 import { ADD_EVALUATION } from '@/common/constants/actionTypes';
 import {
   addEvaluationFetchSuccess,
   addEvaluationFetchFailure,
 } from '@/common/actions/addEvaluation';
 import { addError } from '@/common/actions/error';
-import { getAuthUserMsisdn, getAuthUserFunid } from '@/common/selectors';
-import { dispatchEvent } from '@/utils';
+import { dispatchEvent, b } from '@/utils';
 
 const initState = {
   loading: false,
@@ -25,9 +24,9 @@ export default {
   state: initState,
 
   effects: {
-    *[ADD_EVALUATION.REQUEST](action, { apply, put, select }) {
-      const msisdn = yield select(getAuthUserMsisdn);
-      const funid = yield select(getAuthUserFunid);
+    *[ADD_EVALUATION.REQUEST](action, { apply, put }) {
+      const { msisdn } = o(b, BUYOO);
+      const funid = o(b, BUYOO).result;
 
       try {
         const { trade_no, order_no, comments, screen } = action.payload;

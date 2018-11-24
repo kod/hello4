@@ -288,8 +288,8 @@ export const submitDuplicateFreeze = (submitfreeze, self, callback) => {
 };
 
 // navigateCheckLogin
-export const navigateCheckLogin = (isAuthUser, screensName, params = {}) => {
-  if (isAuthUser) {
+export const navigateCheckLogin = (authUser, screensName, params = {}) => {
+  if (authUser) {
     router.push(`/${SCREENS[screensName]}?${qs.stringify(params)}`);
   } else {
     router.push(SCREENS.Login);
@@ -299,7 +299,7 @@ export const navigateCheckLogin = (isAuthUser, screensName, params = {}) => {
 export const analyzeUrlNavigate = ({
   linkUrl,
   navigation,
-  isAuthUser = false,
+  authUser = false,
   isQrCode = false,
 }) => {
   const htmlRegexResult = linkUrl.match(HTML_REGEX);
@@ -367,7 +367,7 @@ export const analyzeUrlNavigate = ({
 
       case 'order':
         // 我的订单
-        if (isAuthUser) {
+        if (authUser) {
           customNavigate(SCREENS.Order, { index: 0 });
         } else {
           customNavigate(SCREENS.Login);
@@ -590,3 +590,6 @@ export const capitalizeTool = () => {
     perCapitalize,
   };
 };
+
+export const a = (k, v) => sessionStorage.setItem(k, v);
+export const b = c => sessionStorage.getItem(c);

@@ -2,16 +2,19 @@ import dayjs from 'dayjs';
 import buyoo from '@/services/api';
 import { formatMessage } from 'umi/locale';
 
-import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
-import { ORDERPAY_NAMESPACE, INTERNET_BANK_PAYWAY } from '@/common/constants';
+import { encryptMD5, signTypeMD5, o } from '@/utils/AuthEncrypt';
+import {
+  ORDERPAY_NAMESPACE,
+  INTERNET_BANK_PAYWAY,
+  BUYOO,
+} from '@/common/constants';
 import { ORDER_PAY } from '@/common/constants/actionTypes';
 import {
   orderPayFetchSuccess,
   orderPayFetchFailure,
 } from '@/common/actions/orderPay';
 import { addError } from '@/common/actions/error';
-import { getAuthUserFunid } from '@/common/selectors';
-import { dispatchEvent } from '@/utils';
+import { dispatchEvent, b } from '@/utils';
 
 const initState = {
   loading: false,
@@ -26,7 +29,7 @@ export default {
   state: initState,
 
   effects: {
-    *[ORDER_PAY.REQUEST](action, { apply, put, select }) {
+    *[ORDER_PAY.REQUEST](action, { apply, put }) {
       try {
         const {
           screen = '',
@@ -39,7 +42,7 @@ export default {
           payvalue = 0,
           pop = 1, // 返回层级
         } = action.payload;
-        const funid = yield select(getAuthUserFunid);
+        const funid = o(b, BUYOO).result;
 
         const Key = 'tradeKey';
         const appId = '3';

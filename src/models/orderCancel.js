@@ -1,15 +1,15 @@
 import dayjs from 'dayjs';
 import buyoo from '@/services/api';
 
-import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
-import { ORDERCANCEL_NAMESPACE } from '@/common/constants';
+import { encryptMD5, signTypeMD5, o } from '@/utils/AuthEncrypt';
+import { ORDERCANCEL_NAMESPACE, BUYOO } from '@/common/constants';
 import { ORDER_CANCEL } from '@/common/constants/actionTypes';
 import {
   orderCancelFetchSuccess,
   orderCancelFetchFailure,
 } from '@/common/actions/orderCancel';
 import { addError } from '@/common/actions/error';
-import { getAuthUserFunid } from '@/common/selectors';
+import { b } from '@/utils';
 
 const initState = {
   loading: false,
@@ -23,10 +23,10 @@ export default {
   state: initState,
 
   effects: {
-    *[ORDER_CANCEL.REQUEST](action, { apply, put, select }) {
+    *[ORDER_CANCEL.REQUEST](action, { apply, put }) {
       try {
         const { tradeno, orderno, status } = action.payload;
-        const funid = yield select(getAuthUserFunid);
+        const funid = o(b, BUYOO).result;
 
         const Key = 'tradeKey';
         const appId = '3';

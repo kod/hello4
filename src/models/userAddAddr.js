@@ -2,8 +2,8 @@
 import dayjs from 'dayjs';
 import buyoo from '@/services/api';
 
-import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
-import { USERADDADDR_NAMESPACE } from '@/common/constants';
+import { encryptMD5, signTypeMD5, o } from '@/utils/AuthEncrypt';
+import { USERADDADDR_NAMESPACE, BUYOO } from '@/common/constants';
 import { ADDRESS_ADD } from '@/common/constants/actionTypes';
 import {
   addressFetch,
@@ -15,8 +15,7 @@ import {
   addressAddFailure,
 } from '@/common/actions/userAddAddr';
 import { addError } from '@/common/actions/error';
-import { getAuthUserFunid } from '@/common/selectors';
-import { dispatchEvent } from '@/utils';
+import { dispatchEvent, b } from '@/utils';
 
 const initState = {
   loading: false,
@@ -32,9 +31,9 @@ export default {
   state: initState,
 
   effects: {
-    *[ADDRESS_ADD.REQUEST](action, { apply, put, select }) {
+    *[ADDRESS_ADD.REQUEST](action, { apply, put }) {
       try {
-        const funid = yield select(getAuthUserFunid);
+        const funid = o(b, BUYOO).result;
 
         const {
           msisdn,

@@ -1,7 +1,8 @@
 import { formatMessage } from 'umi/locale';
+import md5 from 'blueimp-md5';
 import buyoo from '@/services/api';
 import { encryptMD5 } from '@/utils/AuthEncrypt';
-import { LOGIN_NAMESPACE } from '@/common/constants';
+import { LOGIN_NAMESPACE, BUYOO } from '@/common/constants';
 import { LOGIN, LOGOUT } from '@/common/constants/actionTypes';
 import { addError } from '@/common/actions/error';
 import { loginFetchSuccess, loginFetchFailure } from '@/common/actions/login';
@@ -12,7 +13,7 @@ import {
 import { cartRequest, cartClear } from '@/common/actions/cart';
 import { cardQueryFetch, cardQueryClear } from '@/common/actions/cardQuery';
 import { queryOrderListClear } from '@/common/actions/queryOrderList';
-import { dispatchEvent } from '@/utils';
+import { dispatchEvent, a } from '@/utils';
 
 const initState = {
   loading: false,
@@ -103,20 +104,26 @@ export default {
       }
     },
     *[LOGIN.SUCCESS](action, { put }) {
-      const { screen } = action.payload;
+      const { user, screen } = action.payload;
       try {
         yield put(userCertificateInfoFetch());
 
         yield put(cartRequest());
         yield put(cardQueryFetch());
 
-        dispatchEvent(screen);
+        const b = 'p';
+        const c = new Date();
+        const d = JSON.stringify(user);
+        a(md5(`${BUYOO}vi${b}`), d);
+        a(md5(`${BUYOO}vXi${b}`), md5(`a${d}aa${c.getDay()}`).toString());
+        if (screen) dispatchEvent(screen);
       } catch (err) {
         console.warn(err);
       }
     },
     *[LOGOUT.SUCCESS](action, { put }) {
       try {
+        sessionStorage.clear();
         yield put(cartClear());
         yield put(cardQueryClear());
         yield put(queryOrderListClear());

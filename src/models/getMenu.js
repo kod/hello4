@@ -2,15 +2,15 @@
 import dayjs from 'dayjs';
 import buyoo from '@/services/api';
 
-import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
-import { GETMENU_NAMESPACE } from '@/common/constants';
+import { encryptMD5, signTypeMD5, o } from '@/utils/AuthEncrypt';
+import { GETMENU_NAMESPACE, BUYOO } from '@/common/constants';
 import { GET_MENU, GET_MENU_INDEX } from '@/common/constants/actionTypes';
 import {
   getMenuFetchSuccess,
   getMenuFetchFailure,
 } from '@/common/actions/getMenu';
 import { addError } from '@/common/actions/error';
-import { getAuthUserFunid, getAuthUser } from '@/common/selectors';
+import { b } from '@/utils';
 
 const initState = {
   loading: false,
@@ -28,10 +28,10 @@ export default {
   state: initState,
 
   effects: {
-    *[GET_MENU.REQUEST](action, { apply, put, select }) {
+    *[GET_MENU.REQUEST](action, { apply, put }) {
       try {
-        const authUser = yield select(getAuthUser) || '';
-        const funid = authUser ? yield select(getAuthUserFunid) : '';
+        const authUser = o(b, BUYOO);
+        const funid = authUser ? o(b, BUYOO).result : '';
         const {
           typeid = 0,
           subclassfyid = 0,

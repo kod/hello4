@@ -1,3 +1,4 @@
+/* eslint-disable arrow-body-style */
 import React from 'react';
 import { connect } from 'dva';
 import { Modal } from 'antd-mobile';
@@ -10,10 +11,13 @@ import {
   SIDEINTERVAL,
   IS_I18N,
   WINDOW_HEIGHT,
+  BUYOO,
 } from '@/common/constants';
 import NavBar1 from '@/components/NavBar1';
 import { RED_COLOR } from '@/styles/variables';
 import * as loginActionCreators from '@/common/actions/login';
+import { o } from '@/utils/AuthEncrypt';
+import { b } from '@/utils';
 
 const personPng = 'https://oss.buyoo.vn/usercollect/1/20181120125641_E6E.png';
 
@@ -43,11 +47,9 @@ const styles = {
 };
 
 @connect(
-  state => {
-    const { login } = state;
-
+  () => {
     return {
-      authUser: login.user,
+      authUser: o(b, BUYOO),
     };
   },
   {

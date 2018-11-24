@@ -11,16 +11,18 @@ import {
   WINDOW_WIDTH,
   MONETARY,
   SCREENS,
+  BUYOO,
 } from '@/common/constants';
 import { formatMessage } from 'umi/locale';
 
 import * as queryOrderListActionCreators from '@/common/actions/queryOrderList';
 import { BORDER_COLOR, PRIMARY_COLOR } from '@/styles/variables';
 import ProductItem2 from '@/components/ProductItem2';
-import { tradeStatusCodes, operateForTradeStatusCodes } from '@/utils';
+import { tradeStatusCodes, operateForTradeStatusCodes, b } from '@/utils';
 import priceFormat from '@/utils/priceFormat';
 import SeparateBar from '@/components/SeparateBar';
 import EmptyState from '@/components/EmptyState';
+import { o } from '@/utils/AuthEncrypt';
 
 const ouhrigdfnjsoeijehrJpg =
   'https://oss.buyoo.vn/usercollect/1/20181101180309_67w.jpg';
@@ -81,10 +83,10 @@ const stylesScrollable = {
 
 @connect(
   state => {
-    const { login, queryOrderList } = state;
+    const { queryOrderList } = state;
 
     return {
-      authUser: login.user,
+      authUser: o(b, BUYOO),
       queryOrderListItem: queryOrderList.item,
     };
   },

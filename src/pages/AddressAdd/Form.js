@@ -15,6 +15,7 @@ import {
   MODAL_TYPES,
   SCREENS,
   USERADDADDR_NAMESPACE,
+  BUYOO,
 } from '@/common/constants';
 import { PRIMARY_COLOR } from '@/styles/variables';
 
@@ -27,11 +28,13 @@ import {
   submitDuplicateFreeze,
   addEventListener,
   removeEventListener,
+  b,
 } from '@/utils';
 import InputRight from '@/components/InputRight';
 import BYButton from '@/components/BYButton';
 import MustLogin from '@/components/MustLogin';
 import { ADDRESS_ADD } from '@/common/constants/actionTypes';
+import { o } from '@/utils/AuthEncrypt';
 
 const styles = {
   container: {
@@ -87,7 +90,7 @@ const styles = {
 
 @connect(
   state => {
-    const { cityInfos, addressModify, login, loading } = state;
+    const { cityInfos, addressModify, loading } = state;
 
     return {
       loading:
@@ -97,7 +100,7 @@ const styles = {
       division2ndItems: cityInfos.division2nd,
       division3rdItems: cityInfos.division3rd,
       division4thItems: cityInfos.division4th,
-      authUser: login.user,
+      authUser: o(b, BUYOO),
     };
   },
   {

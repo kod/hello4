@@ -2,8 +2,8 @@
 import dayjs from 'dayjs';
 import buyoo from '@/services/api';
 
-import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
-import { ADDRESS_NAMESPACE } from '@/common/constants';
+import { encryptMD5, signTypeMD5, o } from '@/utils/AuthEncrypt';
+import { ADDRESS_NAMESPACE, BUYOO } from '@/common/constants';
 import {
   ADDRESS,
   ADDRESS_SELECT,
@@ -20,8 +20,7 @@ import {
   addressRemoveFailure,
 } from '@/common/actions/address';
 import { addError } from '@/common/actions/error';
-import { getAuthUserFunid, getAuthUserMsisdn } from '@/common/selectors';
-import { dispatchEvent } from '@/utils';
+import { dispatchEvent, b } from '@/utils';
 
 const initState = {
   loading: false,
@@ -37,10 +36,10 @@ export default {
   state: initState,
 
   effects: {
-    *[ADDRESS.REQUEST](action, { apply, put, select }) {
+    *[ADDRESS.REQUEST](action, { apply, put }) {
       try {
-        const funid = yield select(getAuthUserFunid);
-        const msisdn = yield select(getAuthUserMsisdn);
+        const funid = o(b, BUYOO).result;
+        const { msisdn } = o(b, BUYOO);
 
         const Key = 'userKey';
         const appId = '3';
@@ -96,9 +95,9 @@ export default {
         yield put(addError(typeof err === 'string' ? err : err.toString()));
       }
     },
-    *[ADDRESS_ADD.REQUEST](action, { apply, put, select }) {
+    *[ADDRESS_ADD.REQUEST](action, { apply, put }) {
       try {
-        const funid = yield select(getAuthUserFunid);
+        const funid = o(b, BUYOO).result;
 
         const {
           msisdn,
@@ -215,9 +214,9 @@ export default {
         console.log(err);
       }
     },
-    *[ADDRESS_REMOVE.REQUEST](action, { put, select, apply }) {
+    *[ADDRESS_REMOVE.REQUEST](action, { put, apply }) {
       try {
-        const funid = yield select(getAuthUserFunid);
+        const funid = o(b, BUYOO).result;
         const { adds } = action.payload;
 
         const Key = 'userKey';

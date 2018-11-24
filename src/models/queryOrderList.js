@@ -1,8 +1,8 @@
 import dayjs from 'dayjs';
 import buyoo from '@/services/api';
 
-import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
-import { QUERYORDERLIST_NAMESPACE } from '@/common/constants';
+import { encryptMD5, signTypeMD5, o } from '@/utils/AuthEncrypt';
+import { QUERYORDERLIST_NAMESPACE, BUYOO } from '@/common/constants';
 import {
   QUERY_ORDER_LIST,
   QUERY_ORDER_LIST_INDEX,
@@ -12,7 +12,7 @@ import {
   queryOrderListFetchFailure,
 } from '@/common/actions/queryOrderList';
 import { addError } from '@/common/actions/error';
-import { getAuthUser, getAuthUserFunid } from '@/common/selectors';
+import { b } from '@/utils';
 
 const initState = {
   scrollTabIndex: 0,
@@ -55,13 +55,12 @@ export default {
   state: initState,
 
   effects: {
-    *[QUERY_ORDER_LIST.REQUEST](action, { apply, put, select }) {
+    *[QUERY_ORDER_LIST.REQUEST](action, { apply, put }) {
       try {
         const { page = 1, index = 0, status, rows = 100 } = action.payload;
-        // const scrollTabIndex =  yield select(getQueryOrderListScrollTabIndex);
-        const authUser = yield select(getAuthUser);
+        const authUser = o(b, BUYOO);
 
-        const funid = authUser ? yield select(getAuthUserFunid) : '';
+        const funid = authUser ? o(b, BUYOO).result : '';
 
         const Key = 'tradeKey';
         const appId = '3';

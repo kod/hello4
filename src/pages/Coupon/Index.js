@@ -16,11 +16,14 @@ import {
   RECEIVEVOUCHER_NAMESPACE,
   GETVOUCHER_NAMESPACE,
   WINDOW_HEIGHT,
+  BUYOO,
 } from '@/common/constants';
 import EmptyState from '@/components/EmptyState';
 
 import CouponItem from '@/components/CouponItem';
 import { RECEIVE_VOUCHER, GET_VOUCHER } from '@/common/constants/actionTypes';
+import { o } from '@/utils/AuthEncrypt';
+import { b } from '@/utils';
 
 const ouhrigdfnjsoeijehrJpg =
   'https://oss.buyoo.vn/usercollect/1/20181101180309_67w.jpg';
@@ -34,7 +37,7 @@ const styles = {
 
 @connect(
   state => {
-    const { getVoucher, loading, login } = state;
+    const { getVoucher, loading } = state;
 
     return {
       receiveVoucherLoading:
@@ -44,7 +47,7 @@ const styles = {
       loading:
         loading.effects[`${GETVOUCHER_NAMESPACE}/${GET_VOUCHER.REQUEST}`],
       items: getVoucher.items,
-      authUser: login.user,
+      authUser: o(b, BUYOO),
     };
   },
   {

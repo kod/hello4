@@ -22,12 +22,14 @@ import {
   SCREENS,
   MODAL_TYPES,
   WINDOW_HEIGHT,
+  BUYOO,
 } from '@/common/constants';
 import {
   tradeStatusCodes,
   payWayToText,
   addEventListener,
   removeEventListener,
+  b,
 } from '@/utils';
 import SeparateBar from '@/components/SeparateBar';
 import ProductItem2 from '@/components/ProductItem2';
@@ -38,6 +40,7 @@ import Loader from '@/components/Loader';
 // import SmallButton from '@/components/SmallButton';
 import Address from '@/components/Address';
 import { getAddressSelectedItem } from '@/common/selectors';
+import { o } from '@/utils/AuthEncrypt';
 
 const styles = {
   container: {
@@ -105,7 +108,7 @@ const styles = {
 
 @connect(
   (state, props) => {
-    const { address, queryOrder, getUserInfoById, orderPay, login } = state;
+    const { address, queryOrder, getUserInfoById, orderPay } = state;
     const {
       location: {
         query: { orderNo, tradeNo, from = '' },
@@ -118,7 +121,7 @@ const styles = {
       loading: orderPay.loading,
       addressSelectedItem: getAddressSelectedItem(state, props),
       addressItems: address.items,
-      authUser: login.user,
+      authUser: o(b, BUYOO),
       queryOrderItem: queryOrder.item,
       locationPathname,
       locationSearch,

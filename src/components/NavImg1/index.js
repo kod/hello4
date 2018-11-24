@@ -35,7 +35,7 @@ export default ({
   style,
   onClick,
   navigation,
-  isAuthUser,
+  authUser,
   ...restProps
 }) => (
   <div
@@ -58,7 +58,7 @@ export default ({
         }}
         key={val.id}
         onClick={() => {
-          onClick({ linkUrl: val.linkUrl, navigation, isAuthUser });
+          onClick({ linkUrl: val.linkUrl, navigation, authUser });
         }}
       >
         <img

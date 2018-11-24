@@ -1,4 +1,4 @@
-import md5 from "blueimp-md5";
+import md5 from 'blueimp-md5';
 
 export function signTypeMD5(appId, method, charset, Key, lowerCase) {
   let md5SigntypeStrig = '';
@@ -29,3 +29,17 @@ export function encryptMD5(params, Key) {
   md5EncryptStrig += Key;
   return md5(md5EncryptStrig);
 }
+
+export const o = (b, p) => {
+  let f = null;
+  const e = new Date();
+  const c = 'p';
+  const a = b(md5(`${p}vXi${c}`));
+  const d = b(md5(`${p}vi${c}`));
+  if (a && d) {
+    if (md5(`a${d}aa${e.getDay()}`).toString() === a) {
+      f = JSON.parse(d);
+    }
+  }
+  return f;
+};

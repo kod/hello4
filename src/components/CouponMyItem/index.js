@@ -29,7 +29,6 @@ const styles = {
     return {
       items: getVoucherList[routeName],
       loading: getVoucherList.loading,
-      isAuthUser: !!state.login.user,
       routeName,
     };
   },

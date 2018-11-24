@@ -1,17 +1,13 @@
 import React from 'react';
 import { connect } from 'dva';
-// import { Modal } from 'antd-mobile';
 import { formatMessage } from 'umi/locale';
-// import router from 'umi/router';
 
 import * as collectionActionCreators from '@/common/actions/collection';
 import BYHeader from '@/components/BYHeader';
 import {
   BUYOOVIP,
   BUYOO_VN,
-  // BUSINESS_EMAIL,
   SERVICE_EMAIL,
-  // SERVICE_PHONE,
   WINDOW_HEIGHT,
   VERSION,
   SUPPORT_CENTER_URL,
@@ -69,13 +65,7 @@ const styles = {
 };
 
 @connect(
-  state => {
-    const { login } = state;
-
-    return {
-      authUser: login.user,
-    };
-  },
+  () => {},
   {
     ...collectionActionCreators,
   },

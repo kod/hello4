@@ -3,7 +3,6 @@ import React from 'react';
 import { connect } from 'dva';
 import BYHeader from '@/components/BYHeader';
 import { formatMessage } from 'umi/locale';
-// import qs from 'qs';
 
 import Loader from '@/components/Loader';
 import router from 'umi/router';
@@ -20,27 +19,25 @@ import {
   SCREENS,
   ADDRESS_NAMESPACE,
   WINDOW_HEIGHT,
+  BUYOO,
 } from '@/common/constants';
 import { Modal } from 'antd-mobile';
 import EmptyState from '@/components/EmptyState';
 
-// import CustomIcon from '@/components/CustomIcon';
 import { ADDRESS } from '@/common/constants/actionTypes';
 import MustLogin from '@/components/MustLogin';
+import { o } from '@/utils/AuthEncrypt';
+import { b } from '@/utils';
 
 const afiasifsdhfsPng =
   'https://oss.buyoo.vn/usercollect/1/20181109084840_7R8.png';
 
 @connect(
   state => {
-    const { address, loading, login } = state;
-
-    // const {
-
-    // } = props;
+    const { address, loading } = state;
 
     return {
-      authUser: login.user,
+      authUser: o(b, BUYOO),
       items: address.items,
       loading: loading.effects[`${ADDRESS_NAMESPACE}/${ADDRESS.REQUEST}`],
       loaded: address.loaded,

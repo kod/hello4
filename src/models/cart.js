@@ -1,4 +1,4 @@
-/* eslint-disable camelcase */
+/* eslint-disable camelcase, no-shadow  */
 import dayjs from 'dayjs';
 import { normalize } from 'normalizr';
 import { Modal } from 'antd-mobile';
@@ -6,8 +6,8 @@ import { formatMessage } from 'umi/locale';
 
 import buyoo from '@/services/api';
 
-import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
-import { CART_NAMESPACE } from '@/common/constants';
+import { encryptMD5, signTypeMD5, o } from '@/utils/AuthEncrypt';
+import { CART_NAMESPACE, BUYOO } from '@/common/constants';
 import Schemas from '@/common/constants/schemas';
 import {
   CART,
@@ -40,7 +40,7 @@ import {
   cartSelectAllFailure,
 } from '@/common/actions/cart';
 import { addError } from '@/common/actions/error';
-import { getAuthUserFunid } from '@/common/selectors';
+import { b } from '@/utils';
 
 const initState = {
   loading: false,
@@ -61,9 +61,9 @@ export default {
   state: initState,
 
   effects: {
-    *[CART.REQUEST](action, { apply, put, select }) {
+    *[CART.REQUEST](action, { apply, put }) {
       try {
-        const funid = yield select(getAuthUserFunid);
+        const funid = o(b, BUYOO).result;
         const Key = 'commodityKey';
         const appId = '3';
         const method = 'fun.cart.query';
@@ -131,14 +131,14 @@ export default {
         yield put(addError(typeof err === 'string' ? err : err.toString()));
       }
     },
-    *[CART_NUMBER.REQUEST](action, { apply, put, select }) {
+    *[CART_NUMBER.REQUEST](action, { apply, put }) {
       const {
         cartitemid,
         quetity,
         // quetity,
       } = action.payload;
       try {
-        const funid = yield select(getAuthUserFunid);
+        const funid = o(b, BUYOO).result;
 
         const Key = 'commodityKey';
         const appId = '3';
@@ -200,9 +200,9 @@ export default {
         yield put(addError(typeof err === 'string' ? err : err.toString()));
       }
     },
-    *[CART_DELETE.REQUEST](action, { apply, put, select }) {
+    *[CART_DELETE.REQUEST](action, { apply, put }) {
       try {
-        const funid = yield select(getAuthUserFunid);
+        const funid = o(b, BUYOO).result;
         const { cartitemids, orderno = '' } = action.payload;
 
         const Key = 'commodityKey';
@@ -298,9 +298,9 @@ export default {
         yield put(addError(typeof err === 'string' ? err : err.toString()));
       }
     },
-    *[CART_ADD.REQUEST](action, { put, select, apply }) {
+    *[CART_ADD.REQUEST](action, { put, apply }) {
       try {
-        const funid = yield select(getAuthUserFunid);
+        const funid = o(b, BUYOO).result;
         const { cartitems } = action.payload;
 
         const Key = 'commodityKey';

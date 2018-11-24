@@ -2,8 +2,8 @@ import dayjs from 'dayjs';
 
 import buyoo from '@/services/api';
 
-import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
-import { USERCERTIFICATEINFO_NAMESPACE } from '@/common/constants';
+import { encryptMD5, signTypeMD5, o } from '@/utils/AuthEncrypt';
+import { USERCERTIFICATEINFO_NAMESPACE, BUYOO } from '@/common/constants';
 import { USER_CERTIFICATE_INFO } from '@/common/constants/actionTypes';
 import {
   userCertificateInfoFetchSuccess,
@@ -12,7 +12,7 @@ import {
 import { certifiedInformationFetchSuccess } from '@/common/actions/certifiedInformation';
 
 import { addError } from '@/common/actions/error';
-import { getAuthUserFunid } from '@/common/selectors';
+import { b } from '@/utils';
 
 const initState = {
   loading: false,
@@ -27,9 +27,9 @@ export default {
   state: initState,
 
   effects: {
-    *[USER_CERTIFICATE_INFO.REQUEST](action, { apply, put, select }) {
+    *[USER_CERTIFICATE_INFO.REQUEST](action, { apply, put }) {
       try {
-        const funid = yield select(getAuthUserFunid);
+        const funid = o(b, BUYOO).result;
 
         const Key = 'userKey';
         const appId = '3';

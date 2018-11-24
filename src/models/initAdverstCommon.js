@@ -2,15 +2,15 @@
 import dayjs from 'dayjs';
 import buyoo from '@/services/api';
 
-import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
-import { INITADVERSTCOMMON_NAMESPACE } from '@/common/constants';
+import { encryptMD5, signTypeMD5, o } from '@/utils/AuthEncrypt';
+import { INITADVERSTCOMMON_NAMESPACE, BUYOO } from '@/common/constants';
 import { INIT_ADVERST_COMMON } from '@/common/constants/actionTypes';
 import {
   initAdverstCommonFetchSuccess,
   initAdverstCommonFetchFailure,
 } from '@/common/actions/initAdverstCommon';
 import { addError } from '@/common/actions/error';
-import { getAuthUserFunid, getAuthUser } from '@/common/selectors';
+import { b } from '@/utils';
 
 const initState = {
   loading: false,
@@ -27,10 +27,10 @@ export default {
   state: initState,
 
   effects: {
-    *[INIT_ADVERST_COMMON.REQUEST](action, { apply, put, select }) {
+    *[INIT_ADVERST_COMMON.REQUEST](action, { apply, put }) {
       const { pagesize, currentpage } = action.payload;
-      const authUser = yield select(getAuthUser) || '';
-      const funid = authUser ? yield select(getAuthUserFunid) : '';
+      const authUser = o(b, BUYOO);
+      const funid = authUser ? o(b, BUYOO).result : '';
 
       try {
         const Key = 'commodityKey';

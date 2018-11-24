@@ -3,8 +3,8 @@ import buyoo from '@/services/api';
 import { formatMessage } from 'umi/locale';
 import { Modal } from 'antd-mobile';
 
-import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
-import { RECEIVEVOUCHER_NAMESPACE } from '@/common/constants';
+import { encryptMD5, signTypeMD5, o } from '@/utils/AuthEncrypt';
+import { RECEIVEVOUCHER_NAMESPACE, BUYOO } from '@/common/constants';
 import { RECEIVE_VOUCHER } from '@/common/constants/actionTypes';
 import {
   receiveVoucherFetchSuccess,
@@ -13,7 +13,7 @@ import {
 import { getVoucherFetch } from '@/common//actions/getVoucher';
 
 import { addError } from '@/common/actions/error';
-import { getAuthUserFunid } from '@/common/selectors';
+import { b } from '@/utils';
 
 const initState = {
   loading: false,
@@ -27,10 +27,10 @@ export default {
   state: initState,
 
   effects: {
-    *[RECEIVE_VOUCHER.REQUEST](action, { apply, put, select }) {
+    *[RECEIVE_VOUCHER.REQUEST](action, { apply, put }) {
       try {
         const { voucherid } = action.payload;
-        const funid = yield select(getAuthUserFunid);
+        const funid = o(b, BUYOO).result;
 
         const Key = 'userKey';
         const appId = '3';

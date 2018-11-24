@@ -11,15 +11,17 @@ import router from 'umi/router';
 import * as getVoucherActionCreators from '@/common/actions/getVoucher';
 import * as receiveVoucherActionCreators from '@/common/actions/receiveVoucher';
 import * as getVoucherListActionCreators from '@/common/actions/getVoucherList';
-import { SCREENS, WINDOW_HEIGHT } from '@/common/constants';
+import { SCREENS, WINDOW_HEIGHT, BUYOO } from '@/common/constants';
 import { Modal } from 'antd-mobile';
 
 import MustLogin from '@/components/MustLogin';
 import OrderTabNavigator from './OrderTabNavigator';
+import { o } from '@/utils/AuthEncrypt';
+import { b } from '@/utils';
 
 @connect(
   (state, props) => {
-    const { queryOrderList, login } = state;
+    const { queryOrderList } = state;
 
     const {
       location: {
@@ -29,7 +31,7 @@ import OrderTabNavigator from './OrderTabNavigator';
 
     return {
       initialPage: index,
-      authUser: login.user,
+      authUser: o(b, BUYOO),
       queryOrderListItem: queryOrderList.item,
       scrollTabIndex: queryOrderList.scrollTabIndex,
     };

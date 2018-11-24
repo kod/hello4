@@ -1,14 +1,14 @@
 import buyoo from '@/services/api';
 
-import { encryptMD5 } from '@/utils/AuthEncrypt';
-import { GETUSERINFOBYID_NAMESPACE } from '@/common/constants';
+import { encryptMD5, o } from '@/utils/AuthEncrypt';
+import { GETUSERINFOBYID_NAMESPACE, BUYOO } from '@/common/constants';
 import { GET_USERINFO_BYID } from '@/common/constants/actionTypes';
 import {
   getUserInfoByIdFetchSuccess,
   getUserInfoByIdFetchFailure,
 } from '@/common/actions/getUserInfoById';
 import { addError } from '@/common/actions/error';
-import { getAuthUserFunid } from '@/common/selectors';
+import { b } from '@/utils';
 
 const initState = {
   loading: false,
@@ -23,9 +23,9 @@ export default {
   state: initState,
 
   effects: {
-    *[GET_USERINFO_BYID.REQUEST](action, { apply, put, select }) {
+    *[GET_USERINFO_BYID.REQUEST](action, { apply, put }) {
       try {
-        const funid = yield select(getAuthUserFunid);
+        const funid = o(b, BUYOO).result;
 
         const Key = 'userKey';
         const provider = '3';

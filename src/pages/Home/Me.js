@@ -17,12 +17,14 @@ import {
   SCREENS,
   IS_IOS,
   OSS_IMAGE_QUALITY,
+  BUYOO,
 } from '@/common/constants';
 import { PRIMARY_COLOR, RED_COLOR } from '@/styles/variables';
 import NavBar1 from '@/components/NavBar1';
 import CustomIcon from '@/components/CustomIcon';
 import BYHeader from '@/components/BYHeader';
-import { xOssProcess } from '@/utils';
+import { xOssProcess, b } from '@/utils';
+import { o } from '@/utils/AuthEncrypt';
 
 const aioru09230fPng =
   'https://oss.buyoo.vn/usercollect/1/20181102094215_995.png';
@@ -31,7 +33,6 @@ const aioru09230fPng =
   (state, props) => {
     const {
       userCertificateInfo,
-      login,
       queryOrderList,
       cardQuery,
       getUserInfoById,
@@ -44,7 +45,7 @@ const aioru09230fPng =
       getUserInfoByIdUserType: getUserInfoById.item.userType,
       orderItem: queryOrderList.item,
       certUser: userCertificateInfo.certUser,
-      authUser: login.user,
+      authUser: o(b, BUYOO),
       initPassword: cardQuery.item.initPassword,
       status: cardQuery.item.status,
     };
