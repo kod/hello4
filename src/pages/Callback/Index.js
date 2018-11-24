@@ -121,8 +121,6 @@ class Address extends React.Component {
   }
 
   render() {
-    // const { authUser } = this.props;
-
     const styles = {
       container: {
         display: 'flex',
@@ -134,13 +132,6 @@ class Address extends React.Component {
     return (
       <div style={styles.container}>
         <BYHeader />
-        {/* <MustLogin
-          Modal={Modal}
-          visible={!authUser}
-          formatMessage={formatMessage}
-          router={router}
-          SCREENS={SCREENS}
-        /> */}
 
         {this.renderMainContent()}
       </div>

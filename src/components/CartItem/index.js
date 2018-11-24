@@ -91,11 +91,6 @@ const styles = {
 };
 
 class CartItem extends React.Component {
-  // componentDidMount() {
-  //   // const { cartNumberRequest, authUser } = this.props;
-  //   // authUser && cartNumberRequest(authUser.result, 297, 4);
-  // }
-
   renderCartItemLeft = (id, selected) => {
     const { isEdit } = this.props;
     const stylesX = {
@@ -330,15 +325,3 @@ class CartItem extends React.Component {
 }
 
 export default CartItem;
-
-// export default connectLocalization(
-//   connect(
-//     state => ({
-//       authUser: state.login.user,
-//       isEdit: state.cart.isEdit,
-//     }),
-//     {
-//       ...cartActionCreators,
-//     },
-//   )(CartItem),
-// );
