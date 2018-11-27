@@ -75,8 +75,8 @@ class LoginForm extends React.Component {
           inputRight={<ReadSeconds mail={mail} />}
           getFieldProps={getFieldProps}
           // styleWrap={{ marginBottom: 75 }}
-          placeholder={formatMessage({ id: 'pleaseEnterSMSVerificationCode' })}
-          message={formatMessage({ id: 'pleaseEnterSMSVerificationCode' })}
+          placeholder={formatMessage({ id: 'pleaseEnterVerificationCode' })}
+          message={formatMessage({ id: 'pleaseEnterVerificationCode' })}
           name="otp"
           type="number"
         />
