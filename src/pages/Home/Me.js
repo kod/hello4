@@ -262,11 +262,11 @@ class Index extends PureComponent {
       },
     ];
     const renderCellItem1List2 = [
-      {
-        name: formatMessage({ id: 'inviteFriends' }),
-        func: () => this.handleOnNavBar1Callback(SCREENS.Invite),
-        tips: '',
-      },
+      // {
+      //   name: formatMessage({ id: 'inviteFriends' }),
+      //   func: () => this.handleOnNavBar1Callback(SCREENS.Invite),
+      //   tips: '',
+      // },
       {
         name: formatMessage({ id: 'myCollection' }),
         func: () => this.handleOnNavBar1Callback(SCREENS.MyCollection),
@@ -277,11 +277,11 @@ class Index extends PureComponent {
         func: () => this.handleOnNavBar1Callback(SCREENS.CouponMy),
         tips: '',
       },
-      {
-        name: formatMessage({ id: 'securityCenter' }),
-        func: () => this.handleOnNavBar1Callback(SCREENS.SecurityCenter),
-        tips: '',
-      },
+      // {
+      //   name: formatMessage({ id: 'securityCenter' }),
+      //   func: () => this.handleOnNavBar1Callback(SCREENS.SecurityCenter),
+      //   tips: '',
+      // },
       {
         name: formatMessage({ id: 'shippingAddress' }),
         func: () => this.handleOnNavBar1Callback(SCREENS.Address),

@@ -41,28 +41,6 @@ class LoginForm extends React.Component {
     });
   };
 
-  // renderInputRight = () => (
-  //   <div
-  //     style={{ marginRight: SIDEINTERVAL }}
-  //     onClick={() => {
-  //       // navigate(SCREENS.ForgotPasswordOne)
-  //     }}
-  //   >
-  //     <div
-  //       style={{
-  //         marginLeft: 0,
-  //         color: '#666',
-  //         fontSize: 11,
-  //         borderBottomColor: '#666',
-  //         borderBottomStyle: 'solid',
-  //         borderBottomWidth: 1,
-  //       }}
-  //     >
-  //       {`${formatMessage({ id: 'forgetPassword' })}?`}
-  //     </div>
-  //   </div>
-  // );
-
   render() {
     const {
       form: { getFieldProps },

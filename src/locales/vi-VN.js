@@ -366,5 +366,6 @@ export default {
     ', bảo đảm hàng chính hãng, siêu rẻ, mau mau mua 1 món hàng thôi',
   pleaseLogIn: 'Vui lòng đăng nhập',
   paymentOnDelivery: 'Thanh toán khi nhận hàng',
+  changePassword: 'Thay đổi mật khẩu',
   receiveServicesOffers: 'Tôi sẵn sàng nhận các dịch vụ và ưu đãi liên quan.',
 };

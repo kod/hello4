@@ -66,7 +66,7 @@ class Index extends React.Component {
 
     return (
       <div style={styles.container}>
-        <BYHeader title={formatMessage({ id: 'forgetPassword' })} />
+        <BYHeader title={query.title} />
         {changePasswordLoading && <Loader />}
         <Form query={query} />
       </div>

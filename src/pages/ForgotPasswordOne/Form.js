@@ -3,18 +3,25 @@ import { List, Toast } from 'antd-mobile';
 import { createForm } from 'rc-form';
 import { formatMessage } from 'umi/locale';
 import router from 'umi/router';
+import qs from 'qs';
+
 import BYButton from '@/components/BYButton';
 import { EMAIL_EXPR } from '@/common/constants';
 import InputCountry from '@/components/InputCountry';
 
 class LoginForm extends React.Component {
   submit = () => {
-    const { form } = this.props;
+    const { form, title } = this.props;
     form.validateFields((error, value) => {
       if (error === null) {
         // 提交
         const { mail } = value;
-        router.push(`/ForgotPasswordTwo?mail=${mail}`);
+        router.push(
+          `/ForgotPasswordTwo?${qs.stringify({
+            mail,
+            title,
+          })}`,
+        );
       } else {
         Toast.info(error[Object.keys(error)[0]].errors[0].message, 1);
       }

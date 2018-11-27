@@ -2,6 +2,7 @@ import React from 'react';
 import { formatMessage } from 'umi/locale';
 import router from 'umi/router';
 import { connect } from 'dva';
+import qs from 'qs';
 
 import BYHeader from '@/components/BYHeader';
 import NavSidesText from '@/components/NavSidesText';
@@ -58,7 +59,13 @@ class Index extends React.Component {
           textLeft={formatMessage({ id: 'register' })}
           textRight={formatMessage({ id: 'forgetPassword' })}
           navigateLeft={() => router.push('/RegisterStepOne')}
-          navigateRight={() => router.push('/ForgotPasswordOne')}
+          navigateRight={() =>
+            router.push(
+              `/${SCREENS.ForgotPasswordOne}?${qs.stringify({
+                title: formatMessage({ id: 'forgetPassword' }),
+              })}`,
+            )
+          }
         />
         <div style={{ flex: 1 }} />
       </div>

@@ -4,6 +4,7 @@ import { connect } from 'dva';
 import { Modal } from 'antd-mobile';
 import { formatMessage, setLocale } from 'umi/locale';
 import router from 'umi/router';
+import qs from 'qs';
 
 import BYHeader from '@/components/BYHeader';
 import {
@@ -19,9 +20,9 @@ import * as loginActionCreators from '@/common/actions/login';
 import { o } from '@/utils/AuthEncrypt';
 import { b } from '@/utils';
 
-const personPng = 'https://oss.buyoo.vn/usercollect/1/20181120125641_E6E.png';
+// const personPng = 'https://oss.buyoo.vn/usercollect/1/20181120125641_E6E.png';
 
-const aboutPng = 'https://oss.buyoo.vn/usercollect/1/20181120125848_x6L.png';
+// const aboutPng = 'https://oss.buyoo.vn/usercollect/1/20181120125848_x6L.png';
 
 const styles = {
   container: {
@@ -80,13 +81,13 @@ class Settings extends React.Component {
     const navBar1List = IS_I18N
       ? [
           {
-            iconImg: aboutPng,
+            // iconImg: aboutPng,
             name: formatMessage({ id: 'aboutAs' }),
             func: () => router.push(`/${SCREENS.AboutAs}`),
             tips: '',
           },
           {
-            iconImg: personPng,
+            // iconImg: personPng,
             name: formatMessage({ id: 'language' }),
             func: () =>
               Modal.operation([
@@ -107,37 +108,23 @@ class Settings extends React.Component {
           },
         ]
       : [
-          // {
-          //   iconImg: personPng,
-          //   name: formatMessage({ id: 'personalInformation' }),
-          //   navigate: SCREENS.Login,
-          //   tips: '',
-          // },
-          // {
-          //   iconImg: osindfaofisPng,
-          //   name: formatMessage({ id: 'securityCenter' }),
-          //   navigate: SCREENS.SecurityCenter,
-          //   callback: () =>
-          //   tips: '',
-          // },
-          // {
-          //   iconImg: ufifhiufaisfudPng,
-          //   name: formatMessage({ id: 'clearCache' }),
-          //   navigate: SCREENS.Login,
-          //   tips: '',
-          // },
           {
-            iconImg: aboutPng,
+            // iconImg: aboutPng,
             name: formatMessage({ id: 'aboutAs' }),
             func: () => router.push(`/${SCREENS.AboutAs}`),
             tips: '',
           },
-          // {
-          //   iconImg: personPng,
-          //   name: formatMessage({ id: 'language' }),
-          //   func: () => navigate(SCREENS.Language),
-          //   tips: '',
-          // },
+          {
+            // iconImg: aboutPng,
+            name: formatMessage({ id: 'changePassword' }),
+            func: () =>
+              router.push(
+                `/${SCREENS.ForgotPasswordOne}?${qs.stringify({
+                  title: formatMessage({ id: 'changePassword' }),
+                })}`,
+              ),
+            tips: '',
+          },
         ];
 
     return (
