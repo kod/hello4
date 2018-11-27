@@ -77,10 +77,6 @@ class Index extends PureComponent {
     });
     initAdverstCommonFetch(1, 3);
 
-    setInterval(() => {
-      console.log(o(b, BUYOO));
-    }, 5000);
-
     // setLocale('zh-CN');
   }
 
