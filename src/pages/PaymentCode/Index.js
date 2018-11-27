@@ -33,42 +33,24 @@ import { ORDER_PAY } from '@/common/constants/actionTypes';
 import { addEventListener, removeEventListener, b } from '@/utils';
 import { o } from '@/utils/AuthEncrypt';
 
-const icStore1 =
-  'https://oss.buyoo.vn/usercollect/1/20181121153540_gOd.jpg?x-oss-process=image/format,webp';
-const icStore2 =
-  'https://oss.buyoo.vn/usercollect/1/20181121153705_f57.jpg?x-oss-process=image/format,webp';
-const icStore3 =
-  'https://oss.buyoo.vn/usercollect/1/20181121153738_5u9.jpg?x-oss-process=image/format,webp';
-const icStore4 =
-  'https://oss.buyoo.vn/usercollect/1/20181121153758_74g.jpg?x-oss-process=image/format,webp';
-const icStore5 =
-  'https://oss.buyoo.vn/usercollect/1/20181121153818_JD3.jpg?x-oss-process=image/format,webp';
-const icStore6 =
-  'https://oss.buyoo.vn/usercollect/1/20181121153849_c4D.jpg?x-oss-process=image/format,webp';
-const icStore7 =
-  'https://oss.buyoo.vn/usercollect/1/20181121153908_968.jpg?x-oss-process=image/format,webp';
-const icStore8 =
-  'https://oss.buyoo.vn/usercollect/1/20181121153929_4k1.jpg?x-oss-process=image/format,webp';
-const icStore9 =
-  'https://oss.buyoo.vn/usercollect/1/20181121153948_212.jpg?x-oss-process=image/format,webp';
-const icStore10 =
-  'https://oss.buyoo.vn/usercollect/1/20181121154006_7H4.jpg?x-oss-process=image/format,webp';
-const icStore11 =
-  'https://oss.buyoo.vn/usercollect/1/20181121154022_N0g.jpg?x-oss-process=image/format,webp';
-const icStore12 =
-  'https://oss.buyoo.vn/usercollect/1/20181121154050_S1q.jpg?x-oss-process=image/format,webp';
-const icStore13 =
-  'https://oss.buyoo.vn/usercollect/1/20181121154110_Xk0.jpg?x-oss-process=image/format,webp';
-const icStore14 =
-  'https://oss.buyoo.vn/usercollect/1/20181121154141_880.jpg?x-oss-process=image/format,webp';
-const icStore15 =
-  'https://oss.buyoo.vn/usercollect/1/20181121154159_w98.jpg?x-oss-process=image/format,webp';
-const icStore16 =
-  'https://oss.buyoo.vn/usercollect/1/20181121154214_L80.jpg?x-oss-process=image/format,webp';
-const icStore17 =
-  'https://oss.buyoo.vn/usercollect/1/20181121154232_6Bc.jpg?x-oss-process=image/format,webp';
-const icStore18 =
-  'https://oss.buyoo.vn/usercollect/1/20181121154248_182.jpg?x-oss-process=image/format,webp';
+const icStore1 = 'https://oss.buyoo.vn/usercollect/1/20181121153540_gOd.jpg';
+const icStore2 = 'https://oss.buyoo.vn/usercollect/1/20181121153705_f57.jpg';
+const icStore3 = 'https://oss.buyoo.vn/usercollect/1/20181121153738_5u9.jpg';
+const icStore4 = 'https://oss.buyoo.vn/usercollect/1/20181121153758_74g.jpg';
+const icStore5 = 'https://oss.buyoo.vn/usercollect/1/20181121153818_JD3.jpg';
+const icStore6 = 'https://oss.buyoo.vn/usercollect/1/20181121153849_c4D.jpg';
+const icStore7 = 'https://oss.buyoo.vn/usercollect/1/20181121153908_968.jpg';
+const icStore8 = 'https://oss.buyoo.vn/usercollect/1/20181121153929_4k1.jpg';
+const icStore9 = 'https://oss.buyoo.vn/usercollect/1/20181121153948_212.jpg';
+const icStore10 = 'https://oss.buyoo.vn/usercollect/1/20181121154006_7H4.jpg';
+const icStore11 = 'https://oss.buyoo.vn/usercollect/1/20181121154022_N0g.jpg';
+const icStore12 = 'https://oss.buyoo.vn/usercollect/1/20181121154050_S1q.jpg';
+const icStore13 = 'https://oss.buyoo.vn/usercollect/1/20181121154110_Xk0.jpg';
+const icStore14 = 'https://oss.buyoo.vn/usercollect/1/20181121154141_880.jpg';
+const icStore15 = 'https://oss.buyoo.vn/usercollect/1/20181121154159_w98.jpg';
+const icStore16 = 'https://oss.buyoo.vn/usercollect/1/20181121154214_L80.jpg';
+const icStore17 = 'https://oss.buyoo.vn/usercollect/1/20181121154232_6Bc.jpg';
+const icStore18 = 'https://oss.buyoo.vn/usercollect/1/20181121154248_182.jpg';
 
 const styles = {
   container: {
@@ -290,12 +272,7 @@ class PaymentCode extends React.Component {
         </div>
         <div style={styles.row3}>
           {images.map((val, key) => (
-            <img
-              alt=""
-              style={styles.row3Image}
-              src={`${val}?x-oss-process=image/format,webp`}
-              key={key}
-            />
+            <img alt="" style={styles.row3Image} src={`${val}`} key={key} />
 
             // <Image style={styles.row3Image} source={val} key={key} />
           ))}
