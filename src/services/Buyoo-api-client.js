@@ -7,13 +7,13 @@ const TIMEOUT = 30 * 1000;
 
 const BASE_URL = API_DEBUG ? 'http://buyoo.club' : '';
 
-const PORT_80 = API_DEBUG ? ':8180' : 'https://uc.buyoo.vn';
-// const PORT_81 = API_DEBUG ? ':8181' : 'https://payment.buyoo.vn';
-const PORT_83 = API_DEBUG ? ':8183' : 'https://trade.buyoo.vn';
-const PORT_84 = API_DEBUG ? ':8184' : 'https://settlement.buyoo.vn';
-const PORT_85 = API_DEBUG ? ':8185' : 'https://commodity.buyoo.vn';
-const PORT_86 = API_DEBUG ? ':8186' : 'https://risk.buyoo.vn';
-const PORT_87 = API_DEBUG ? ':8187' : 'https://market.buyoo.vn';
+const PORT_80 = API_DEBUG ? ':8180' : 'https://uc.buyoo.vip';
+// const PORT_81 = API_DEBUG ? ':8181' : 'https://payment.buyoo.vip';
+const PORT_83 = API_DEBUG ? ':8183' : 'https://trade.buyoo.vip';
+const PORT_84 = API_DEBUG ? ':8184' : 'https://settlement.buyoo.vip';
+const PORT_85 = API_DEBUG ? ':8185' : 'https://commodity.buyoo.vip';
+// const PORT_86 = API_DEBUG ? ':8186' : 'https://risk.buyoo.vip';
+const PORT_87 = API_DEBUG ? ':8187' : 'https://market.buyoo.vip';
 
 function callApi(url, options) {
   const finalUrl = /^https?:\/\//i.test(url) ? url : BASE_URL + url;
@@ -1530,39 +1530,39 @@ class ReactStore {
     return this.requestUrl(`${PORT_80}/fun/userfile/getImgUrl`, options);
   }
 
-  submitInfo(o) {
-    let options = o;
-    if (!options) {
-      return Promise.reject(new Error('fields required'));
-    }
+  // submitInfo(o) {
+  //   let options = o;
+  //   if (!options) {
+  //     return Promise.reject(new Error('fields required'));
+  //   }
 
-    const data = qs.stringify(options);
-    options = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      data,
-    };
-    return this.requestUrl(`${PORT_86}/fun/risk/audit/submitInfo`, options);
-  }
+  //   const data = qs.stringify(options);
+  //   options = {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/x-www-form-urlencoded',
+  //     },
+  //     data,
+  //   };
+  //   return this.requestUrl(`${PORT_86}/fun/risk/audit/submitInfo`, options);
+  // }
 
-  auditGetInfo(o) {
-    let options = o;
-    if (!options) {
-      return Promise.reject(new Error('fields required'));
-    }
+  // auditGetInfo(o) {
+  //   let options = o;
+  //   if (!options) {
+  //     return Promise.reject(new Error('fields required'));
+  //   }
 
-    const data = qs.stringify(options);
-    options = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      data,
-    };
-    return this.requestUrl(`${PORT_86}/fun/risk/audit/getInfo`, options);
-  }
+  //   const data = qs.stringify(options);
+  //   options = {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/x-www-form-urlencoded',
+  //     },
+  //     data,
+  //   };
+  //   return this.requestUrl(`${PORT_86}/fun/risk/audit/getInfo`, options);
+  // }
 
   getVoucher(o) {
     let options = o;
