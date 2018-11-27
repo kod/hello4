@@ -114,12 +114,13 @@ class BYHeader extends React.PureComponent {
             : styles.containerShadow),
         }}
       >
-        <div
-          style={styles.subContainer}
-          onClick={() => this.handleOnPressBackButton()}
-        >
+        <div style={styles.subContainer}>
           {showBackButton ? (
-            <CustomIcon type="left" style={styles.headerBack} />
+            <CustomIcon
+              type="left"
+              style={styles.headerBack}
+              onClick={() => this.handleOnPressBackButton()}
+            />
           ) : (
             headerLeft || this.renderHeaderLeft()
           )}
