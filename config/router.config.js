@@ -95,4 +95,8 @@ export default [
     path: '/Callback',
     component: './Callback/Index',
   },
+  {
+    path: '/Comment',
+    component: './Comment/Index',
+  },
 ];

@@ -17,7 +17,7 @@ import {
   WINDOW_HEIGHT,
   STATUSBAR_HEIGHT,
   // OSS_IMAGE_QUALITY,
-  SCREENS,
+  // SCREENS,
   MODAL_TYPES,
   IS_IOS,
   OSS_IMAGE_QUALITY,
@@ -28,7 +28,7 @@ import { BORDER_COLOR, RED_COLOR } from '@/styles/variables';
 import Comment from '@/components/Comment';
 import SeparateBar from '@/components/SeparateBar';
 import {
-  dispatchEvent,
+  // dispatchEvent,
   addEventListener,
   removeEventListener,
   xOssProcess,
@@ -329,9 +329,13 @@ class ProductDetailMain extends React.Component {
             <div style={styles.commentMore}>
               <div
                 style={styles.commentMoreText}
-                onClick={() => {
-                  dispatchEvent(SCREENS.ProductDetail);
-                }}
+                onClick={() =>
+                  router.push(
+                    `/Comment?${qs.stringify({
+                      brandId,
+                    })}`,
+                  )
+                }
               >
                 {formatMessage({ id: 'more' })}
               </div>
