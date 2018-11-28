@@ -275,11 +275,8 @@ class CartItem extends React.Component {
                   router.push(
                     `/ProductDetail?brandId=${
                       details[products[val].detail].brandId
-                    }&groupon=false`,
+                    }`,
                   )
-                // navigate(SCREENS.ProductDetail, {
-                //   brandId: details[products[val].detail].brandId,
-                // })
               }
             >
               {/* {products[val].status !== 1 && (

@@ -105,7 +105,6 @@ class ProductDetailMain extends React.Component {
           router.replace(
             `${pathname}?${qs.stringify({
               brandId,
-              groupon: false,
               id: params.id,
             })}`,
           );
@@ -116,7 +115,6 @@ class ProductDetailMain extends React.Component {
         router.replace(
           `${pathname}?${qs.stringify({
             brandId,
-            groupon: false,
             id: params.id,
           })}`,
         );

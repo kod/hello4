@@ -81,7 +81,7 @@ export default ({ groupon = false, data, style, ...restProps }) => (
         key={key}
         onClick={() => {
           router.push(
-            `/ProductDetail?brandId=${val.brandId}&groupon=${groupon}`,
+            `/ProductDetail?brandId=${val.brandId}`,
           );
         }}
       >

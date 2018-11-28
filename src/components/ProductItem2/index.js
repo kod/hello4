@@ -111,14 +111,13 @@ class ProductItem2 extends React.Component {
       // navigate(SCREENS.Prepaid);
     } else if (isPress) {
       router.push(
-        `/ProductDetail?brandId=${val.brandId}&groupon=false&propertiesIds=${
-          val.propertiesIds
-        }`,
+        `/ProductDetail?brandId=${val.brandId}`,
       );
-      // navigate(SCREENS.ProductDetail, {
-      //   brandId: val.brandId,
-      //   propertiesIds: val.propertiesIds,
-      // });
+      // router.push(
+      //   `/ProductDetail?brandId=${val.brandId}&groupon=false&propertiesIds=${
+      //     val.propertiesIds
+      //   }`,
+      // );
     }
   }
 

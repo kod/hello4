@@ -48,7 +48,6 @@ export default ({ groupon = false, data, style, ...restProps }) => (
           router.push(
             `/${SCREENS.ProductDetail}?${qs.stringify({
               brandId: val.brandId,
-              groupon,
             })}`,
           );
         }}

@@ -103,9 +103,6 @@ class Index extends React.Component {
     if (!authUser) return router.push('/Login');
     if (!(numbers > 0)) return false;
     return router.push(`/OrderWrite?groupon=false`);
-    // return navigate(SCREENS.OrderWrite, {
-    //   groupon,
-    // });
   }
 
   handleToggleService() {
