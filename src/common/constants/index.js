@@ -50,6 +50,8 @@ export const ORDERCANCEL_NAMESPACE = 'orderCancel';
 export const ADDEVALUATION_NAMESPACE = 'addEvaluation';
 export const COLLECTFILES_NAMESPACE = 'collectFiles';
 export const JUDGEVOUCHER_NAMESPACE = 'judgeVoucher';
+export const SEARCHHISTORY_NAMESPACE = 'searchHistory';
+export const FINDPRODUCTS_NAMESPACE = 'findProducts';
 // namespace -end-
 
 export const DOMAIN = 'https://buyoo.vn';
@@ -74,24 +76,6 @@ export const FUNCARD_HELP_STAGE = `${DOMAIN}/html/aboutFunCard.html#Huong-dan-mu
 export const FUNCARD_HELP_REPAY = `${DOMAIN}/html/aboutFunCard.html#Thanh-toan-no-hang-thang-the-Buyoo-Fun-Card-nhu-the-nao`; // 如何还款
 
 export const ICON_SCRIPTURL = '//at.alicdn.com/t/font_892500_x5rzysu98nr.js';
-
-export const STUDENT_CARD_POSITIVE_IMAGE =
-  'https://oss.buyoo.vn/usercollect/1/20180917153943_QB7.png'; // 学生证正面
-
-export const STUDENT_CARD_OBVERSE_IMAGE =
-  'https://oss.buyoo.vn/usercollect/1/20180917154051_35a.png'; // 学生证反面
-
-export const ID_CARD_POSITIVE_IMAGE =
-  'https://oss.buyoo.vn/usercollect/1/20180917154409_o2p.png'; // 身份证正面
-
-export const ID_CARD_OBVERSE_IMAGE =
-  'https://oss.buyoo.vn/usercollect/1/20180917154446_5U2.png'; // 身份证反面
-
-export const HANDHELD_STUDENT_ID_CARD_IMAGE =
-  'https://oss.buyoo.vn/usercollect/1/20180917152555_R2T.png'; // 手持学生证
-
-export const HANDHELD_IDENTITY_CARD_IMAGE =
-  'https://oss.buyoo.vn/usercollect/1/20180917153832_5NH.png'; // 手持身份证
 
 export const CREDIT_PAYWAY = 1;
 export const INTERNET_BANK_PAYWAY = 2;
