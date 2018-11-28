@@ -147,7 +147,16 @@ export default {
         ]);
 
         if (response.code !== 10000) {
-          yield put(productDetailInfoFetchFailure(response.msg));
+          
+          switch (response.code) {
+            case 40004:
+              yield put(addError(response.msg));
+              break;
+          
+            default:
+            yield put(productDetailInfoFetchFailure(response.msg));
+              break;
+          }
         } else {
           const { properties_detail, brand_detail } = response;
 
@@ -157,7 +166,7 @@ export default {
               result.imageUrl = val1;
               return result;
             });
-            val.goodsProperties = val.goodsProperties.split('|');
+            val.goodsProperties = val.goodsProperties ? val.goodsProperties.split('|') : [];
             return val;
           });
 
