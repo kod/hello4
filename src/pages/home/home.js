@@ -15,7 +15,7 @@ import { dispatchEvent, analyzeUrlNavigate, b } from '@/utils';
 import NavImg1 from '@/components/NavImg1';
 import SeparateBar from '@/components/SeparateBar';
 import { RED_COLOR } from '@/styles/variables';
-import { SIDEINTERVAL, WINDOW_WIDTH, BUYOO } from '@/common/constants';
+import { SIDEINTERVAL, WINDOW_WIDTH, BUYOO, SCREENS } from '@/common/constants';
 import ProductItem5 from '@/components/ProductItem5';
 import PhoneAdBaner from '@/components/PhoneAdBaner';
 import ProductItem4 from '@/components/ProductItem4';
@@ -118,6 +118,7 @@ class Index extends PureComponent {
         <SearchHeader
           text={formatMessage({ id: 'search' })}
           rightOnPress={() => this.handleRightOnPress()}
+          middleOnPress={() => router.push(`/${SCREENS.SearchResult}`)}
           isLogin={authUser}
         />
 

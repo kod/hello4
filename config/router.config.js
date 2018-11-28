@@ -99,4 +99,12 @@ export default [
     path: '/Comment',
     component: './Comment/Index',
   },
+  {
+    path: '/SearchResult',
+    component: './SearchResult/Index',
+  },
+  {
+    path: '/SearchResultList',
+    component: './SearchResultList/Index',
+  },
 ];
