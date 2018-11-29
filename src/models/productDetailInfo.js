@@ -147,14 +147,13 @@ export default {
         ]);
 
         if (response.code !== 10000) {
-          
           switch (response.code) {
             case 40004:
               yield put(addError(response.msg));
               break;
-          
+
             default:
-            yield put(productDetailInfoFetchFailure(response.msg));
+              yield put(productDetailInfoFetchFailure(response.msg));
               break;
           }
         } else {
@@ -166,7 +165,9 @@ export default {
               result.imageUrl = val1;
               return result;
             });
-            val.goodsProperties = val.goodsProperties ? val.goodsProperties.split('|') : [];
+            val.goodsProperties = val.goodsProperties
+              ? val.goodsProperties.split('|')
+              : [];
             return val;
           });
 

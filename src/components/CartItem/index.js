@@ -270,13 +270,12 @@ class CartItem extends React.Component {
             <div
               style={{ ...styles.item, ...styleItem }}
               key={details[products[val].detail].iconUrl}
-              onClick={
-                () =>
-                  router.push(
-                    `/ProductDetail?brandId=${
-                      details[products[val].detail].brandId
-                    }`,
-                  )
+              onClick={() =>
+                router.push(
+                  `/ProductDetail?brandId=${
+                    details[products[val].detail].brandId
+                  }`,
+                )
               }
             >
               {/* {products[val].status !== 1 && (

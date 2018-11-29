@@ -107,4 +107,20 @@ export default [
     path: '/SearchResultList',
     component: './SearchResultList/Index',
   },
+  {
+    path: '/Mobile',
+    component: './Mobile/Index',
+  },
+  {
+    path: '/CateList',
+    component: './CateList/Index',
+  },
+  {
+    path: '/Computer',
+    component: './Computer/Index',
+  },
+  {
+    path: '/SmartDigital',
+    component: './SmartDigital/Index',
+  },
 ];

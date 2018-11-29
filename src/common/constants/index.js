@@ -52,6 +52,8 @@ export const COLLECTFILES_NAMESPACE = 'collectFiles';
 export const JUDGEVOUCHER_NAMESPACE = 'judgeVoucher';
 export const SEARCHHISTORY_NAMESPACE = 'searchHistory';
 export const FINDPRODUCTS_NAMESPACE = 'findProducts';
+export const ADPHONE_NAMESPACE = 'adPhone';
+export const GETALLPRODUCTINFO_NAMESPACE = 'getAllProductInfo';
 // namespace -end-
 
 export const DOMAIN = 'https://buyoo.vn';

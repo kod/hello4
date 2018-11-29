@@ -110,9 +110,7 @@ class ProductItem2 extends React.Component {
     } else if (val.tradeStatus === '32' || val.tradeStatus === '33') {
       // navigate(SCREENS.Prepaid);
     } else if (isPress) {
-      router.push(
-        `/ProductDetail?brandId=${val.brandId}`,
-      );
+      router.push(`/ProductDetail?brandId=${val.brandId}`);
       // router.push(
       //   `/ProductDetail?brandId=${val.brandId}&groupon=false&propertiesIds=${
       //     val.propertiesIds
