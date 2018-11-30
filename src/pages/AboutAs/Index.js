@@ -18,7 +18,7 @@ import NavBar1 from '@/components/NavBar1';
 import SeparateBar from '@/components/SeparateBar';
 import { xOssProcess } from '@/utils';
 
-const icAvatarPng = 'https://oss.buyoo.vn/usercollect/1/20181120125848_x6L.png';
+const icAvatarPng = 'https://oss.buyoo.vn/usercollect/1/20181130132407_o46.png';
 
 const styles = {
   container: {
