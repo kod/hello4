@@ -1,5 +1,6 @@
 import React from 'react';
 // import { formatMessage } from 'umi/locale';
+import router from 'umi/router';
 
 import {
   SIDEINTERVAL,
@@ -13,6 +14,7 @@ import { xOssProcess } from '@/utils';
 import { BORDER_COLOR, RED_COLOR } from '@/styles/variables';
 import Loader from '../Loader';
 import priceFormat from '@/utils/priceFormat';
+import stylesLess from './index.less';
 
 const itemIntervalWidth = SIDEINTERVAL;
 const itemWidth = (WINDOW_WIDTH - itemIntervalWidth * 4) / 3;
@@ -20,6 +22,7 @@ const paddingInerval = SIDEINTERVAL / 2;
 
 const styles = {
   itemWrap: {
+    display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
     paddingLeft: SIDEINTERVAL,
@@ -66,39 +69,32 @@ const styles = {
 };
 
 class ProductItem1A extends React.Component {
-  renderItem = ({ item, key }) => {
-    const {
-      groupon = false,
-      navigation: { navigate },
-    } = this.props;
-
-    return (
-      <div
-        style={styles.item}
-        key={key}
-        onPress={() =>
-          navigate(SCREENS.ProductDetail, { brandId: item.brandId, groupon })
-        }
-      >
-        <img
-          alt=""
-          style={styles.itemImg}
-          src={`${item.imageUrl}?${xOssProcess(IS_IOS, OSS_IMAGE_QUALITY)}`}
-        />
-        <div numberOfLines={2} style={styles.itemText}>
-          {item.name}
-        </div>
-        {!!item.orgPrice && (
-          <div style={styles.itemOrgPrice}>
-            {`${priceFormat(item.orgPrice)} ${MONETARY}`}
-          </div>
-        )}
-        <div style={styles.itemPrice}>{`${priceFormat(
-          item.price,
-        )} ${MONETARY}`}</div>
+  renderItem = ({ item, key }) => (
+    <div
+      style={styles.item}
+      key={key}
+      onClick={() =>
+        router.push(`/${SCREENS.ProductDetail}?brandId=${item.brandId}`)
+      }
+    >
+      <img
+        alt=""
+        style={styles.itemImg}
+        src={`${item.imageUrl}?${xOssProcess(IS_IOS, OSS_IMAGE_QUALITY)}`}
+      />
+      <div style={styles.itemText} className={stylesLess.itemtext}>
+        {item.name}
       </div>
-    );
-  };
+      {!!item.orgPrice && (
+        <div style={styles.itemOrgPrice}>
+          {`${priceFormat(item.orgPrice)} ${MONETARY}`}
+        </div>
+      )}
+      <div style={styles.itemPrice}>{`${priceFormat(
+        item.price,
+      )} ${MONETARY}`}</div>
+    </div>
+  );
 
   render() {
     const {
@@ -109,7 +105,13 @@ class ProductItem1A extends React.Component {
     return (
       <div style={{ ...styles.itemWrap, ...style }}>
         {(!items || (!loaded && loading)) && <Loader />}
-        {items && items.map((val, key) => this.renderItem(val))}
+        {items &&
+          items.map((val, key) =>
+            this.renderItem({
+              item: val,
+              key,
+            }),
+          )}
       </div>
     );
   }

@@ -19,6 +19,7 @@ import PhoneAdBaner from '../PhoneAdBaner';
 import BrandList from '../BrandList';
 import FloorTitle from '../FloorTitle';
 import SwiperFlatList from '../SwiperFlatList';
+import { WINDOW_WIDTH } from '@/common/constants';
 
 @connect(
   state => {
@@ -45,11 +46,17 @@ class Scrollable2 extends Component {
     const { bannerSwiper, adPhone } = this.props;
     const { classfyinfo, phoneAdList, phoneAdBanerList } = adPhone;
     const bannerSwiperList = bannerSwiper.items;
-    console.log(bannerSwiperList);
     return (
       <div>
         {bannerSwiperList && bannerSwiperList.length > 0 && (
-          <SwiperFlatList data={bannerSwiperList} />
+          <SwiperFlatList
+            data={bannerSwiperList}
+            styleImg={{
+              display: 'block',
+              width: WINDOW_WIDTH,
+              minHeight: WINDOW_WIDTH * 0.35583333,
+            }}
+          />
         )}
 
         <BrandList data={classfyinfo} style={{ marginBottom: 5 }} />

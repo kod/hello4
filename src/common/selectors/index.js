@@ -248,6 +248,7 @@ export const getGetAllProductInfoItems = createSelector(
     denormalize(
       getAllProductInfo.items,
       Schemas.GETALLPRODUCTINFO_ARRAY,
-      entities,
+      getAllProductInfo.entities,
+      // entities,
     ),
 );

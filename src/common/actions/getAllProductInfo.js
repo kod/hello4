@@ -31,7 +31,7 @@ export function getAllProductInfoFetch({
   classfy_id = '0',
   sub_classfy_id = '0',
   third_classfy_id = '0',
-  pagesize = 6,
+  pagesize = 60,
   currentPage = 1,
 }) {
   return {

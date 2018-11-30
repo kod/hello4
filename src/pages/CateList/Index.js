@@ -6,7 +6,11 @@ import { formatMessage } from 'umi/locale';
 
 import BYHeader from '@/components/BYHeader';
 import * as getAllProductInfoActionCreators from '@/common/actions/getAllProductInfo';
-import { SIDEINTERVAL, GETALLPRODUCTINFO_NAMESPACE } from '@/common/constants';
+import {
+  SIDEINTERVAL,
+  GETALLPRODUCTINFO_NAMESPACE,
+  WINDOW_HEIGHT,
+} from '@/common/constants';
 import EmptyState from '@/components/EmptyState';
 
 import ProductItem1A from '@/components/ProductItem1A';
@@ -116,7 +120,8 @@ class CateList extends React.Component {
   renderContent() {
     const stylesX = {
       container: {
-        flex: 1,
+        height: WINDOW_HEIGHT - 45,
+        overflowY: 'auto',
         paddingTop: SIDEINTERVAL,
         paddingBottom: SIDEINTERVAL,
       },

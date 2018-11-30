@@ -334,7 +334,7 @@ export const analyzeUrlNavigate = ({
     subClassfyIdRegexResult = linkUrl.match(SUBCLASSFYID_REGEX);
     thirdClassfyIdRegexResult = linkUrl.match(THIRDCLASSFYID_REGEX);
     router.push(
-      `/${SCREENS.OrderDetail}?${qs.stringify({
+      `/${SCREENS.CateList}?${qs.stringify({
         parent_id: brandIdRegexResult ? brandIdRegexResult[1] : '0',
         classfy_id: classifyIdRegexResult ? classifyIdRegexResult[1] : '0',
         sub_classfy_id: subClassfyIdRegexResult

@@ -21,6 +21,7 @@ const initState = {
   currentPage: 1,
   totalPage: 1,
   pagesize: 6,
+  entities: [],
 };
 
 export default {
@@ -142,6 +143,7 @@ export default {
         items: [...new Set([...state.items, ...action.payload.items])],
         currentPage: action.payload.currentPage,
         totalPage: action.payload.totalPage,
+        entities: action.payload.entities,
       };
     },
     [GET_ALL_PRODUCT_INFO.FAILURE](state) {

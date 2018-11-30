@@ -173,14 +173,14 @@ class SearchResult extends React.Component {
           {items.map(val => (
             <div
               style={styles.historyItem}
-              onPress={() => this.handleOnPressHistoryItem(val)}
+              onClick={() => this.handleOnPressHistoryItem(val)}
               key={val}
             >
               <div style={styles.historyTitle}>{val}</div>
               <CustomIcon
                 type="close"
                 style={styles.historyCloseIcon}
-                onPress={() => searchHistoryRemove(val)}
+                onClick={() => searchHistoryRemove(val)}
               />
             </div>
           ))}
