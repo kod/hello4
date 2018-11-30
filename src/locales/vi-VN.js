@@ -367,5 +367,7 @@ export default {
   pleaseLogIn: 'Vui lòng đăng nhập',
   paymentOnDelivery: 'Thanh toán khi nhận hàng',
   changePassword: 'Thay đổi mật khẩu',
-  receiveServicesOffers: 'Tôi sẵn sàng nhận các dịch vụ và ưu đãi liên quan.',
+  receiveServicesOffers: 'Đồng ý nhận quảng cáo và tin tức từ Buyoo.vip',
+  emailCodeTips:
+    ' Hệ thống sẽ gửi email sau 2 phút nữa, vui lòng không lặp lại thao tác. Trường hợp không nhận được email vui lòng kiểm tra trong hộp thư rác của bạn.',
 };

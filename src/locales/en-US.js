@@ -361,5 +361,8 @@ export default {
   pleaseLogIn: 'Please log in',
   paymentOnDelivery: 'Payment on delivery',
   changePassword: 'Change the password',
-  receiveServicesOffers: 'Tôi sẵn sàng nhận các dịch vụ và ưu đãi liên quan.',
+  receiveServicesOffers:
+    'I am willing to receive advertising and various information from buyoo.vip',
+  emailCodeTips:
+    'There will be a delay in the mail, usually received in two minutes, please be patient and avoid repeated operations. If you have not received it, please check it in the spam, because some mail systems will be blocked by mistake.',
 };

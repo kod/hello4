@@ -4,11 +4,12 @@ import { connect } from 'dva';
 import { createForm } from 'rc-form';
 import { formatMessage } from 'umi/locale';
 import BYButton from '@/components/BYButton';
-import { LOGIN_PASSWORD_EXPR, SCREENS } from '@/common/constants';
+import { LOGIN_PASSWORD_EXPR, SCREENS, SIDEINTERVAL } from '@/common/constants';
 import InputRight from '@/components/InputRight';
 import ReadSeconds from '@/components/ReadSeconds';
 
 import * as changePasswordActionCreators from '@/common/actions/changePassword';
+import { FONT_COLOR_THIRD } from '@/styles/variables';
 
 @connect(
   (state, props) => {
@@ -75,12 +76,25 @@ class LoginForm extends React.Component {
           pattern={LOGIN_PASSWORD_EXPR}
           // inputRight={this.renderInputRight()}
           getFieldProps={getFieldProps}
-          styleWrap={{ marginBottom: 75 }}
+          // styleWrap={{ marginBottom: 75 }}
           placeholder={formatMessage({ id: 'pleaseEnterPasswordAgain' })}
           message={formatMessage({ id: 'pleaseEnter820CharactersOrNumbers' })}
           name="repassword"
           type="password"
         />
+        <div
+          style={{
+            paddingTop: 10,
+            paddingBottom: 5,
+            paddingLeft: SIDEINTERVAL,
+            paddingRight: SIDEINTERVAL,
+            fontSize: 11,
+            color: FONT_COLOR_THIRD,
+            marginBottom: 50,
+          }}
+        >
+          {formatMessage({ id: 'emailCodeTips' })}
+        </div>
         <BYButton
           text={formatMessage({ id: 'submit' })}
           style={{ marginBottom: 30 }}

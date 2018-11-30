@@ -4,12 +4,13 @@ import { connect } from 'dva';
 import { createForm } from 'rc-form';
 import { formatMessage } from 'umi/locale';
 import BYButton from '@/components/BYButton';
-import { LOGIN_PASSWORD_EXPR } from '@/common/constants';
+import { LOGIN_PASSWORD_EXPR, SIDEINTERVAL } from '@/common/constants';
 import InputRight from '@/components/InputRight';
 
 import * as loginActionCreators from '@/common/actions/login';
 import * as registerActionCreators from '@/common/actions/register';
 import ReadSeconds from '@/components/ReadSeconds';
+import { FONT_COLOR_THIRD } from '@/styles/variables';
 
 @connect(
   (state, props) => {
@@ -102,6 +103,18 @@ class LoginForm extends React.Component {
           name="repassword"
           type="password"
         />
+        <div
+          style={{
+            paddingTop: 10,
+            paddingBottom: 5,
+            paddingLeft: SIDEINTERVAL,
+            paddingRight: SIDEINTERVAL,
+            fontSize: 11,
+            color: FONT_COLOR_THIRD,
+          }}
+        >
+          {formatMessage({ id: 'emailCodeTips' })}
+        </div>
         <div style={{ marginBottom: 50 }}>
           <Checkbox.AgreeItem
             checked={isReceive}
