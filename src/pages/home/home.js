@@ -58,14 +58,19 @@ class Index extends PureComponent {
       getAdverstTopInfoFetch,
       getSquaresInfoFetch,
       getNewestInfoFetch,
+      bannerSwiperClear,
       bannerSwiperFetch,
+      adverstInfoClear,
       adverstInfoFetch,
+      initAdverstCommonClear,
       initAdverstCommonFetch,
     } = this.props;
     getAdverstTopInfoFetch();
     getSquaresInfoFetch();
     getNewestInfoFetch();
+    bannerSwiperClear('one');
     bannerSwiperFetch('one');
+    adverstInfoClear();
     adverstInfoFetch({
       type_id: '1',
     });
@@ -75,6 +80,7 @@ class Index extends PureComponent {
     adverstInfoFetch({
       type_id: '5',
     });
+    initAdverstCommonClear();
     initAdverstCommonFetch(1, 3);
 
     // setLocale('zh-CN');
