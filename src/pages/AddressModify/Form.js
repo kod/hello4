@@ -270,7 +270,7 @@ class AddressModify extends React.Component {
                 id: 'pleaseEnterCorrectPhoneNumber',
               })}
               name="phone"
-              type="phone-pad"
+              type="number"
             />
           </div>
           <div style={styles.item}>
