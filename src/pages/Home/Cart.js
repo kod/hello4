@@ -61,8 +61,8 @@ class Index extends PureComponent {
   }
 
   addEventListenerCartShow = () => {
-    const { cartRequest } = this.props;
-    cartRequest();
+    const { cartRequest, authUser } = this.props;
+    if (authUser) cartRequest();
   };
 
   renderHeaderTitle = () => {
