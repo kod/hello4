@@ -123,7 +123,7 @@ export default {
     },
     *[LOGOUT.SUCCESS](action, { put }) {
       try {
-        sessionStorage.clear();
+        localStorage.clear();
         yield put(cartClear());
         yield put(cardQueryClear());
         yield put(queryOrderListClear());

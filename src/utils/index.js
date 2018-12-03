@@ -591,5 +591,5 @@ export const capitalizeTool = () => {
   };
 };
 
-export const a = (k, v) => sessionStorage.setItem(k, v);
-export const b = c => sessionStorage.getItem(c);
+export const a = (k, v) => localStorage.setItem(k, v);
+export const b = c => localStorage.getItem(c);
