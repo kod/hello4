@@ -160,6 +160,7 @@ class ProductDetailMain extends React.Component {
         color: '#333',
         fontSize: 14,
         marginBottom: 3,
+        paddingTop: 10,
       },
       productPrice: {
         fontSize: 18,
