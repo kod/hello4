@@ -1,26 +1,26 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'dva';
 import { formatMessage } from 'umi/locale';
+import { Modal } from 'antd-mobile';
+import router from 'umi/router';
+import qs from 'qs';
 
-import * as getMenuActionCreators from '@/common/actions/getMenu';
+import * as cartActionCreators from '@/common/actions/cart';
 import BYHeader from '@/components/BYHeader';
 import {
-  WINDOW_HEIGHT,
-  APPBAR_HEIGHT,
-  STATUSBAR_HEIGHT,
   WINDOW_WIDTH,
   SIDEINTERVAL,
   MONETARY,
-  IS_IOS,
-  OSS_IMAGE_QUALITY,
+  WINDOW_HEIGHT,
+  SCREENS,
 } from '@/common/constants';
-import { BORDER_COLOR, PRIMARY_COLOR, RED_COLOR } from '@/styles/variables';
+import { BORDER_COLOR, RED_COLOR, PRIMARY_COLOR } from '@/styles/variables';
 import CartItem from '@/components/CartItem';
 import CustomIcon from '@/components/CustomIcon';
 import priceFormat from '@/utils/priceFormat';
 import EmptyState from '@/components/EmptyState';
 import { getCartTotalMoney } from '@/common/selectors';
-import { xOssProcess } from '@/utils';
+import { addEventListener, removeEventListener } from '@/utils';
 
 const ouhrigdfnjsoeijehrJpg =
   'https://oss.buyoo.vn/usercollect/1/20181101180309_67w.jpg';
@@ -39,19 +39,31 @@ const ouhrigdfnjsoeijehrJpg =
     };
   },
   {
-    ...getMenuActionCreators,
+    ...cartActionCreators,
   },
 )
 class Index extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {};
+    this.addEventListenerCartShow = this.addEventListenerCartShow.bind(this);
   }
 
   componentDidMount() {
-    const { getMenuFetch } = this.props;
-    getMenuFetch();
+    addEventListener('CartShow', this.addEventListenerCartShow);
+
+    this.addEventListenerCartShow();
+    // cartRequest();
   }
+
+  componentWillUnmount() {
+    removeEventListener('popstate', this.addEventListenerCartShow);
+  }
+
+  addEventListenerCartShow = () => {
+    const { cartRequest } = this.props;
+    cartRequest();
+  };
 
   renderHeaderTitle = () => {
     const { cart } = this.props;
@@ -120,210 +132,106 @@ class Index extends PureComponent {
     );
   };
 
-  renderScrollViewRight() {
-    const stylesX = {
-      scrollViewRight: {
-        width: WINDOW_WIDTH * 0.75,
-      },
-      main: {
-        paddingTop: SIDEINTERVAL,
-        paddingBottom: SIDEINTERVAL,
-      },
-    };
-
-    const { items, itemsIndex } = this.props;
-
-    return (
-      <div style={stylesX.scrollViewRight}>
-        <div style={stylesX.main}>
-          {items.map(
-            (val, key) =>
-              itemsIndex === key && this.renderScrollViewRightItem(key),
-          )}
-        </div>
-      </div>
-    );
-  }
-
-  renderScrollViewRightItem(key) {
-    const stylesX = {
-      rightItemTitle: {
-        fontSize: 11,
-        color: '#ccc',
-        textAlign: 'center',
-        marginBottom: 15,
-      },
-      rightItemMain: {
-        display: 'flex',
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        paddingLeft: SIDEINTERVAL,
-        paddingRight: SIDEINTERVAL,
-      },
-      rightItemSubItem: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        width: (WINDOW_WIDTH * 0.74 - SIDEINTERVAL * 2) / 3,
-        minHeight: (WINDOW_WIDTH * 0.74 - SIDEINTERVAL * 2) / 3,
-        marginBottom: 25,
-      },
-      rightItemSubItemImage: {
-        resizeMode: 'contain',
-        width: (WINDOW_WIDTH * 0.75 - SIDEINTERVAL * 8) / 3,
-        height: (WINDOW_WIDTH * 0.75 - SIDEINTERVAL * 8) / 3,
-        marginBottom: 3,
-      },
-      rightItemSubItemText: {
-        textAlign: 'center',
-        fontSize: 11,
-        color: '#666',
-      },
-    };
-
-    const { itemsList, itemsClassfy } = this.props;
-
-    return (
-      <div style={stylesX.rightItem} key={key}>
-        <div style={stylesX.rightItemTitle} />
-        <div style={stylesX.rightItemMain}>
-          {itemsList.length !== 0 &&
-            itemsList[key].map(val1 =>
-              val1.status === '1' ? (
-                <div
-                  style={stylesX.rightItemSubItem}
-                  key={val1.image}
-                  onClick={() => {
-                    // navigate(SCREENS.CateList, {
-                    //   parent_id: val1.parentId,
-                    //   sub_classfy_id: val1.id,
-                    // });
-                  }}
-                >
-                  <img
-                    alt=""
-                    style={stylesX.rightItemSubItemImage}
-                    src={`${val1.image}?${xOssProcess(
-                      IS_IOS,
-                      OSS_IMAGE_QUALITY,
-                    )}`}
-                  />
-                  <div style={stylesX.rightItemSubItemText}>{val1.name}</div>
-                </div>
-              ) : null,
-            )}
-        </div>
-        <div style={stylesX.rightItemTitle}>
-          {formatMessage({ id: 'brand' })}
-        </div>
-        <div style={stylesX.rightItemMain}>
-          {itemsClassfy.length !== 0 &&
-            itemsClassfy[key].map(val1 =>
-              val1.status === '1' ? (
-                <div
-                  style={stylesX.rightItemSubItem}
-                  key={val1.imageUrl}
-                  onClick={() => {
-                    // navigate(SCREENS.CateList, {
-                    //   parent_id: val1.parentId,
-                    //   classfy_id: val1.id,
-                    // })
-                  }}
-                >
-                  <img
-                    alt=""
-                    style={stylesX.rightItemSubItemImage}
-                    src={`${val1.imageUrl}?${xOssProcess(
-                      IS_IOS,
-                      OSS_IMAGE_QUALITY,
-                    )}`}
-                  />
-                  <div style={stylesX.rightItemSubItemText}>{val1.name}</div>
-                </div>
-              ) : null,
-            )}
-        </div>
-      </div>
-    );
-  }
-
-  renderContent() {
-    const stylesX = {
-      content: {
-        display: 'flex',
-        height: WINDOW_HEIGHT - APPBAR_HEIGHT - STATUSBAR_HEIGHT - 1,
-        flexDirection: 'row',
-      },
-      scrollViewLeft: {
-        width: WINDOW_WIDTH * 0.25,
-        height: WINDOW_HEIGHT - APPBAR_HEIGHT - STATUSBAR_HEIGHT - 55,
-        borderRightColor: BORDER_COLOR,
-        borderRightWidth: 1,
-      },
-      main: {},
-      item: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        position: 'relative',
-        paddingTop: 15,
-        paddingBottom: 15,
-      },
-      itemImage: {
-        height: 30,
-        width: 30,
-        resizeMode: 'contain',
-      },
-      itemText: {
-        fontSize: 11,
-        lineHeight: `${11 * 1.618}px`,
-        color: '#333',
-        textAlign: 'center',
-      },
-      itemActive: {
-        position: 'absolute',
-        top: 0,
-        bottom: 0,
-        left: 0,
-        width: 5,
-        backgroundColor: PRIMARY_COLOR,
-      },
-    };
-
+  onPressSelectAllHandle = () => {
     const {
-      items,
-      getMenuIndexFetch,
-      itemsIndex,
-      // loading,
+      isEdit,
+      cartSelectAllRequest,
+      cartSelectDelAllRequest,
+      cart: { items },
     } = this.props;
+    if (items.length < 2) return false;
+    if (isEdit === false) {
+      cartSelectAllRequest();
+    } else {
+      // delete
+      cartSelectDelAllRequest();
+    }
+    return true;
+  };
 
-    return (
-      <div style={stylesX.content}>
-        <div style={stylesX.scrollViewLeft}>
-          <div style={stylesX.main}>
-            {items.map((val, key) => (
-              <div
-                style={stylesX.item}
-                key={val.image}
-                onClick={() => getMenuIndexFetch(key)}
-              >
-                <img
-                  alt=""
-                  style={stylesX.itemImage}
-                  src={`${val.image}?${xOssProcess(IS_IOS, OSS_IMAGE_QUALITY)}`}
-                />
+  onPressSubmitHandle = () => {
+    const { isEdit, cart, cartDeleteRequest } = this.props;
 
-                <div style={stylesX.itemText}>{val.name}</div>
+    const getSelectedDelId = () => {
+      const { items, products } = cart;
+      const result = [];
+      items.forEach(value => {
+        if (products[value].selectedDel) result.push(value);
+      });
+      return result.join(',');
+    };
 
-                {itemsIndex === key && <div style={stylesX.itemActive} />}
-              </div>
-            ))}
-          </div>
-        </div>
-        {this.renderScrollViewRight()}
-      </div>
-    );
-  }
+    const getSelectedId = () => {
+      const { items, products } = cart;
+      const result = [];
+      items.forEach(value => {
+        if (products[value].selected) result.push(value);
+      });
+      return result.join(',');
+    };
+
+    const submit = () => {
+      const { items, products, details } = cart;
+      const productsCart = [];
+      const adverstInfo = [];
+
+      for (let index = 0; index < items.length; index += 1) {
+        const val = items[index];
+
+        if (products[val].selected) {
+          productsCart.push({
+            id: products[val].detail,
+            amount:
+              products[val].quantity * details[products[val].detail].price,
+          });
+
+          adverstInfo.push({
+            cartitemid: val,
+            productid: products[val].itemId,
+            brandId: details[products[val].detail].brandId,
+            propertiesIds: '',
+            imageUrl: details[products[val].detail].iconUrl,
+            name: details[products[val].detail].name,
+            price: details[products[val].detail].price,
+            number: products[val].quantity,
+          });
+        }
+      }
+
+      return {
+        products: JSON.stringify(productsCart),
+        adverstInfo: JSON.stringify(adverstInfo),
+      };
+    };
+
+    if (isEdit === false) {
+      // submit
+      const selectedIdStr = getSelectedId();
+      if (!selectedIdStr) return false;
+
+      console.log(submit(cart));
+      router.push(
+        `/${SCREENS.OrderWrite}?${qs.stringify({
+          ...submit(cart),
+          isCart: true,
+        })}`,
+      );
+    } else {
+      // delete
+      const selectedDelIdStr = getSelectedDelId();
+      if (!selectedDelIdStr) return false;
+      Modal.alert('', formatMessage({ id: 'confirmDelete' }), [
+        { text: formatMessage({ id: 'cancel' }), style: 'default' },
+        {
+          text: formatMessage({ id: 'delete' }),
+          onPress: () => {
+            cartDeleteRequest(selectedDelIdStr);
+          },
+        },
+      ]);
+    }
+    return true;
+  };
 
   render() {
     const {
@@ -332,80 +240,75 @@ class Index extends PureComponent {
       allSelected,
       allSelectedDel,
       isEdit,
-      navigation,
       totalMoney,
     } = this.props;
 
     const styles = {
       container: {
-        height: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-      },
-      itemWrap: {
         backgroundColor: '#fff',
       },
-      item: {
-        position: 'relative',
+      main: {
+        display: 'flex',
+        flexDirection: 'column',
+        height: WINDOW_HEIGHT - 45 - 50 - 50,
+        overflowY: 'auto',
+      },
+      overview: {
+        display: 'flex',
         flexDirection: 'row',
-        borderBottomColor: BORDER_COLOR,
-        borderBottomStyle: 'solid',
-        borderBottomWidth: 1,
-        zIndex: 100,
+        backgroundColor: '#fff',
+        borderTopColor: BORDER_COLOR,
+        borderTopWidth: 1,
+        borderTopStyle: 'solid',
       },
-      disable: {
-        position: 'absolute',
-        top: 0,
-        bottom: 0,
-        right: 0,
-        left: 0,
-        backgroundColor: 'rgba(0,0,0,.1)',
-        zIndex: 999,
+      overviewIconWrap: {
+        paddingLeft: WINDOW_WIDTH * 0.045,
       },
-      itemLeft: {
-        // width: WINDOW_WIDTH * 0.25,
-        alignItems: 'center',
-        paddingLeft: SIDEINTERVAL,
-        paddingTop: 18,
-        paddingBottom: 18,
-      },
-      itemImage: {
-        width: 60,
-        height: 60,
-        // backgroundColor: '#0f0',
-        borderColor: BORDER_COLOR,
-        borderWidth: 1,
-      },
-      itemRight: {
-        flex: 1,
-        paddingTop: 18,
-        // paddingBottom: 18,
-        paddingLeft: SIDEINTERVAL,
-        paddingRight: SIDEINTERVAL,
-      },
-      itemTitle: {
-        fontSize: 14,
-        color: '#333',
-        marginBottom: 6,
-        lineHeight: '18px',
-      },
-      itemPrice: {
-        fontSize: 11,
-        color: '#999',
-        marginBottom: 6,
-      },
-      itemRightRow3: {
+      overviewSelectAll: {
+        display: 'flex',
         flexDirection: 'row',
       },
-      itemRightRow3Price: {
-        fontSize: 14,
-        color: RED_COLOR,
-        marginRight: 9,
-      },
-      itemRightRow3Number: {
-        fontSize: 11,
+      overviewIcon: {
+        height: 50,
+        lineHeight: '50px',
+        fontSize: 20,
         color: '#666',
-        paddingTop: 2,
+        marginRight: WINDOW_WIDTH * 0.02,
+      },
+      overviewIconSelected: {
+        color: PRIMARY_COLOR,
+      },
+      overviewIconSelectedDel: {
+        color: RED_COLOR,
+      },
+      overviewSelect: {
+        height: 49,
+        lineHeight: '49px',
+        fontSize: 16,
+        color: '#666',
+        paddingRight: WINDOW_WIDTH * 0.02,
+      },
+      overviewPrice: {
+        ddisplay: 'flex',
+        flex: 1,
+        height: 50,
+        lineHeight: '50px',
+        textAlign: 'center',
+        fontSize: 16,
+        color: RED_COLOR,
+        fontWeight: '700',
+      },
+      overviewSubmitText: {
+        height: 50,
+        lineHeight: '50px',
+        textAlign: 'center',
+        width: WINDOW_WIDTH * 0.25,
+        color: '#fff',
+        fontSize: 14,
+        backgroundColor: PRIMARY_COLOR,
+      },
+      overviewSubmitTextDel: {
+        backgroundColor: RED_COLOR,
       },
     };
 
@@ -418,21 +321,26 @@ class Index extends PureComponent {
           showBackButton={false}
         />
         {!isEmptyCart && (
-          <div>
-            <CartItem
-              data={cart}
-              navigation={navigation}
-              styleItem={{
-                marginBottom: 25,
-                borderTopColor: BORDER_COLOR,
-                borderTopWidth: 1,
-              }}
-              styleItemLeft={{
-                paddingLeft: 0,
-                paddingTop: 15,
-                paddingBottom: 15,
-              }}
-            />
+          <div style={styles.main}>
+            {!isEmptyCart && (
+              <div>
+                <CartItem
+                  data={cart}
+                  styleItem={{
+                    marginBottom: 25,
+                    borderTopColor: BORDER_COLOR,
+                    borderTopWidth: 1,
+                    borderTopStyle: 'solid',
+                  }}
+                  styleItemLeft={{
+                    paddingLeft: 0,
+                    paddingTop: 15,
+                    paddingBottom: 15,
+                  }}
+                />
+              </div>
+            )}
+            {!isEmptyCart && <div style={{ flex: 1 }} />}
           </div>
         )}
         {!isEmptyCart && (

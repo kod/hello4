@@ -1,20 +1,38 @@
 import React from 'react';
 import { TabBar } from 'antd-mobile';
 import { formatMessage } from 'umi/locale';
+import { connect } from 'dva';
+import router from 'umi/router';
+import qs from 'qs';
+
 import { WINDOW_HEIGHT } from '@/common/constants';
 import Home from '@/pages/Home/Home';
 // import Categories from '@/pages/Home/Categories';
 import Cart from '@/pages/Home/Cart';
 import Me from '@/pages/Home/Me';
 import CustomIcon from '@/components/CustomIcon';
-import { addEventListener, removeEventListener } from '@/utils';
+import { addEventListener, removeEventListener, dispatchEvent } from '@/utils';
 import stylesLess from './index.less';
 
+@connect(
+  (_, props) => {
+    const {
+      location: { query = {} },
+    } = props;
+
+    return {
+      index: query.index || 0,
+    };
+  },
+  {},
+)
 class Index extends React.Component {
   constructor(props) {
     super(props);
+    const { index } = props;
+
     this.state = {
-      tabBarIndex: 0,
+      tabBarIndex: parseInt(index, 10),
       hidden: false,
     };
     this.tabBarTabBarIndexHandle = this.tabBarTabBarIndexHandle.bind(this);
@@ -62,6 +80,7 @@ class Index extends React.Component {
           tintColor="#33A3F4"
           barTintColor="white"
           hidden={hidden}
+          prerenderingSiblingsNumber={0}
         >
           <TabBar.Item
             title={formatMessage({ id: 'home' })}
@@ -74,6 +93,11 @@ class Index extends React.Component {
               this.setState({
                 tabBarIndex: 0,
               });
+              router.push(
+                `/?${qs.stringify({
+                  index: 0,
+                })}`,
+              );
             }}
             data-seed="logId"
           >
@@ -110,6 +134,12 @@ class Index extends React.Component {
               this.setState({
                 tabBarIndex: 2,
               });
+              router.push(
+                `/?${qs.stringify({
+                  index: 2,
+                })}`,
+              );
+              dispatchEvent('CartShow');
             }}
           >
             <div style={styles.container} className={stylesLess.container}>
@@ -126,6 +156,11 @@ class Index extends React.Component {
               this.setState({
                 tabBarIndex: 3,
               });
+              router.push(
+                `/?${qs.stringify({
+                  index: 3,
+                })}`,
+              );
             }}
           >
             <div style={styles.container} className={stylesLess.container}>

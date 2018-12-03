@@ -2,6 +2,7 @@
 import React from 'react';
 import { formatMessage } from 'umi/locale';
 import router from 'umi/router';
+import { connect } from 'dva';
 
 import { BORDER_COLOR, RED_COLOR, PRIMARY_COLOR } from '@/styles/variables';
 import {
@@ -11,10 +12,15 @@ import {
   MONETARY,
   IS_IOS,
   OSS_IMAGE_QUALITY,
+  BUYOO,
 } from '@/common/constants';
 import CustomIcon from '@/components/CustomIcon';
 import priceFormat from '@/utils/priceFormat';
-import { xOssProcess } from '@/utils';
+import { xOssProcess, b } from '@/utils';
+
+import * as cartActionCreators from '@/common/actions/cart';
+// import { getCartTotalMoney } from '@/common/selectors';
+import { o } from '@/utils/AuthEncrypt';
 
 const styles = {
   itemWrap: {
@@ -40,6 +46,7 @@ const styles = {
   },
   itemLeft: {
     display: 'flex',
+    width: WINDOW_WIDTH * 0.15,
     alignItems: 'center',
     paddingLeft: SIDEINTERVAL,
     paddingTop: 18,
@@ -51,9 +58,11 @@ const styles = {
     // backgroundColor: '#0f0',
     borderColor: BORDER_COLOR,
     borderWidth: 1,
+    borderStyle: 'solid',
   },
   itemRight: {
-    flex: 1,
+    width: WINDOW_WIDTH * 0.6,
+    // flex: 1,
     paddingTop: 18,
     // paddingBottom: 18,
     paddingLeft: SIDEINTERVAL,
@@ -90,13 +99,26 @@ const styles = {
   },
 };
 
+@connect(
+  state => {
+    const { cart } = state;
+
+    return {
+      authUser: o(b, BUYOO),
+      isEdit: cart.isEdit,
+    };
+  },
+  {
+    ...cartActionCreators,
+  },
+)
 class CartItem extends React.Component {
   renderCartItemLeft = (id, selected) => {
     const { isEdit } = this.props;
     const stylesX = {
       container: {
         display: 'flex',
-        width: WINDOW_WIDTH * 0.134,
+        width: WINDOW_WIDTH * 0.13,
         justifyContent: 'center',
         alignItems: 'center',
       },
@@ -132,7 +154,7 @@ class CartItem extends React.Component {
     const stylesX = {
       container: {
         position: 'relative',
-        width: 30 + SIDEINTERVAL,
+        width: WINDOW_WIDTH * 0.12,
         paddingRight: SIDEINTERVAL,
       },
       number: {
@@ -189,6 +211,12 @@ class CartItem extends React.Component {
       itemDisable: {
         display: 'flex',
       },
+      quantity: {
+        textAlign: 'center',
+        width: 30,
+        height: 35,
+        lineHeight: '35px',
+      },
     };
 
     const onChangeTextHandle = text => {
@@ -212,13 +240,15 @@ class CartItem extends React.Component {
               }}
             />
           </div>
-          <BYTextInput
+          <div style={stylesX.quantity}>{quantity}</div>
+
+          {/* <BYTextInput
             style={stylesX.textInput}
             keyboardType="numeric"
             value={quantity}
             // onChangeText={(text) => onChangeTextHandle(text, id)}
             editable={false}
-          />
+          /> */}
           <div
             onClick={() => onChangeTextHandle(parseInt(quantity, 10) + 1, id)}
           >
@@ -258,7 +288,6 @@ class CartItem extends React.Component {
       itemLeft,
       itemRight,
       cartNumberRequest,
-      // navigation: { navigate },
       ...restProps
     } = this.props;
     const { items, products, details, isEdit } = data;
@@ -270,13 +299,6 @@ class CartItem extends React.Component {
             <div
               style={{ ...styles.item, ...styleItem }}
               key={details[products[val].detail].iconUrl}
-              onClick={() =>
-                router.push(
-                  `/ProductDetail?brandId=${
-                    details[products[val].detail].brandId
-                  }`,
-                )
-              }
             >
               {/* {products[val].status !== 1 && (
                 <TouchableOpacity style={styles.disable} activeOpacity={1} />
@@ -285,7 +307,16 @@ class CartItem extends React.Component {
                 val,
                 isEdit ? products[val].selectedDel : products[val].selected,
               )}
-              <div style={{ ...styles.itemLeft, ...styleItemLeft }}>
+              <div
+                style={{ ...styles.itemLeft, ...styleItemLeft }}
+                onClick={() =>
+                  router.push(
+                    `/ProductDetail?brandId=${
+                      details[products[val].detail].brandId
+                    }`,
+                  )
+                }
+              >
                 <img
                   alt=""
                   style={styles.itemImage}

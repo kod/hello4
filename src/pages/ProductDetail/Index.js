@@ -3,6 +3,7 @@ import { formatMessage } from 'umi/locale';
 import { connect } from 'dva';
 import router from 'umi/router';
 import { Modal } from 'antd-mobile';
+import qs from 'qs';
 
 import stylesLess from './index.less';
 import CustomIcon from '@/components/CustomIcon';
@@ -25,6 +26,7 @@ import ProductDetailMain from './ProductDetailMain';
 
 import * as collectionActionCreators from '@/common/actions/collection';
 import * as modalActionCreators from '@/common/actions/modal';
+import * as cartActionCreators from '@/common/actions/cart';
 import ProductDetailComment from './ProductDetailComment';
 import { addEventListener, removeEventListener, b } from '@/utils';
 import { getIsCollection } from '@/common/selectors';
@@ -48,6 +50,7 @@ import { o } from '@/utils/AuthEncrypt';
   {
     ...modalActionCreators,
     ...collectionActionCreators,
+    ...cartActionCreators,
   },
 )
 class Index extends React.Component {
@@ -99,10 +102,16 @@ class Index extends React.Component {
   };
 
   handleOnPressBuy() {
-    const { numbers, authUser } = this.props;
+    const { numbers, authUser, brandId, id } = this.props;
     if (!authUser) return router.push('/Login');
     if (!(numbers > 0)) return false;
-    return router.push(`/OrderWrite?groupon=false`);
+    return router.push(
+      `/${SCREENS.OrderWrite}?${qs.stringify({
+        groupon: false,
+        brandId,
+        id,
+      })}`,
+    );
   }
 
   handleToggleService() {

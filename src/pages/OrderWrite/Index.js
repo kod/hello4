@@ -19,6 +19,7 @@ import * as orderCreateActionCreators from '@/common/actions/orderCreate';
 import * as orderPayActionCreators from '@/common/actions/orderPay';
 import * as couponSelectActionCreators from '@/common/actions/couponSelect';
 import * as modalActionCreators from '@/common/actions/modal';
+import * as productDetailInfoActionCreators from '@/common/actions/productDetailInfo';
 import {
   addEventListener,
   removeEventListener,
@@ -61,6 +62,7 @@ import { o } from '@/utils/AuthEncrypt';
     const {
       location: { query = {} },
     } = props;
+    const { brandId, id } = query;
     const { mergeMasterInfo, isCart, products, adverstInfo } = query;
     const detailItem = productDetailInfo.item;
     return {
@@ -76,8 +78,10 @@ import { o } from '@/utils/AuthEncrypt';
       groupon: false,
       mergeMasterInfo,
       isCart,
-      cartProducts: products,
-      cartAdverstInfo: adverstInfo,
+      brandId,
+      productIdVIP: id,
+      cartProducts: products && JSON.parse(products),
+      cartAdverstInfo: adverstInfo && JSON.parse(adverstInfo),
       detailItem,
       orderCreate,
       addressSelectedItem: getAddressSelectedItem(state, props),
@@ -96,6 +100,7 @@ import { o } from '@/utils/AuthEncrypt';
     ...orderPayActionCreators,
     ...couponSelectActionCreators,
     ...modalActionCreators,
+    ...productDetailInfoActionCreators,
   },
 )
 class OrderWrite extends React.Component {
@@ -110,10 +115,25 @@ class OrderWrite extends React.Component {
   }
 
   componentDidMount() {
-    const { addressFetch, getUserInfoByIdFetch } = this.props;
+    const {
+      addressFetch,
+      getUserInfoByIdFetch,
+      productDetailInfoFetch,
+      productDetailInfoClear,
+      brandId,
+      productIdVIP,
+    } = this.props;
 
     addressFetch();
     getUserInfoByIdFetch();
+
+    productDetailInfoClear(brandId);
+    productDetailInfoFetch({
+      brandId,
+      propertiesIds: '',
+      productIdVIP,
+      screen: 'ProductDetailMain',
+    });
 
     addEventListener(SCREENS.OrderWrite, this.addEventListenerHandle);
   }
@@ -391,6 +411,7 @@ class OrderWrite extends React.Component {
         flexDirection: 'row',
         borderTopWidth: 1,
         borderTopColor: BORDER_COLOR,
+        borderTopStyle: 'solid',
       },
       navLeft: {
         flex: 2,
