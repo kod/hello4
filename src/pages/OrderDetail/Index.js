@@ -166,6 +166,7 @@ class OrderDetail extends React.Component {
 
     router.push(`${locationPathname}${locationSearch}#123`);
 
+    addEventListener(SCREENS.OrderDetail, this.addEventListenerHandle);
     addEventListener('popstate', this.addEventListenerPopstate);
 
     queryOrderClear();
@@ -216,6 +217,22 @@ class OrderDetail extends React.Component {
     clearInterval(this.setIntervalId);
     removeEventListener('popstate', this.addEventListenerPopstate);
   }
+
+  addEventListenerHandle = ({ detail: { method } }) => {
+    const { orderNo, tradeNo, queryOrderClear, queryOrderFetch } = this.props;
+    switch (method) {
+      case 'orderCancel':
+        queryOrderClear();
+        queryOrderFetch({
+          orderNo,
+          tradeNo,
+        });
+        break;
+
+      default:
+        break;
+    }
+  };
 
   addEventListenerPopstate = () => {
     this.handleOnPressBack();
@@ -282,6 +299,7 @@ class OrderDetail extends React.Component {
         style: 'default',
         onPress: () => {
           orderCancelFetch({
+            screen: SCREENS.OrderDetail,
             orderno: orderNo,
             tradeno: tradeNo,
             status: '40000',

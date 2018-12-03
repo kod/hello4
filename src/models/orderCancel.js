@@ -9,7 +9,7 @@ import {
   orderCancelFetchFailure,
 } from '@/common/actions/orderCancel';
 import { addError } from '@/common/actions/error';
-import { b } from '@/utils';
+import { b, dispatchEvent } from '@/utils';
 
 const initState = {
   loading: false,
@@ -25,7 +25,7 @@ export default {
   effects: {
     *[ORDER_CANCEL.REQUEST](action, { apply, put }) {
       try {
-        const { tradeno, orderno, status } = action.payload;
+        const { tradeno, orderno, status, screen } = action.payload;
         const funid = o(b, BUYOO).result;
 
         const Key = 'tradeKey';
@@ -85,13 +85,24 @@ export default {
             orderCancelFetchSuccess({
               orderno,
               tradeno,
+              screen,
             }),
           );
         }
       } catch (err) {
-        console.log(err);
         yield put(orderCancelFetchFailure());
         yield put(addError(typeof err === 'string' ? err : err.toString()));
+      }
+    },
+    *[ORDER_CANCEL.SUCCESS](action) {
+      const { screen } = action.payload;
+      try {
+        yield dispatchEvent(screen, {
+          method: 'orderCancel',
+          params: {},
+        });
+      } catch (err) {
+        console.warn(err);
       }
     },
   },
