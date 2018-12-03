@@ -25,11 +25,7 @@ const styles = {
 
 export default ({ data, styleWrap, style, styleText, text, ...restProps }) => (
   <div style={{ ...styles.componentWrap, ...styleWrap }}>
-    <div
-      delayPressIn={0}
-      style={{ ...styles.component, ...style }}
-      {...restProps}
-    >
+    <div style={{ ...styles.component, ...style }} {...restProps}>
       <div style={{ ...styles.componentText, ...styleText }}>{text}</div>
     </div>
   </div>

@@ -55,11 +55,7 @@ export default ({
   isShowBorderBottom = false,
   ...restProps
 }) => (
-  <div
-    delayPressIn={0}
-    style={{ ...styles.component, ...style }}
-    {...restProps}
-  >
+  <div style={{ ...styles.component, ...style }} {...restProps}>
     <div
       style={{
         ...styles.componentMain,

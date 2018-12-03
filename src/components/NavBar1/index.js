@@ -62,7 +62,6 @@ export default ({
   <div style={{ ...styles.cellItem1Wrap, ...style }}>
     {list.map((val, key) => (
       <div
-        delayPressIn={0}
         style={{ ...styles.cellItem1, ...styleItem }}
         key={key}
         onClick={() => val.func()}
