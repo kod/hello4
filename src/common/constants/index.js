@@ -9,7 +9,7 @@ export const LINE_HEIGHT_RATIO = 1.618; // 行高
 export const IS_PROMPT_FIRSTPAY = true; // 没有选择首付时是否提示选择首付
 export const MIN_FIRSTPAY_RATE = 0.1; // 最低首付比: 0, 0.1, 0.2, 0.3, 0.4, 0.5
 export const IS_IOS = /iP(ad|hone|od)/.test(navigator.userAgent);
-export const VERSION = '1.3.0-beta.2';
+export const VERSION = '1.4.0-beta';
 
 // namespace -start-
 export const GETADVERSTTOPINFO_NAMESPACE = 'getAdverstTopInfo';
@@ -20,6 +20,7 @@ export const CART_NAMESPACE = 'cart';
 export const CARDQUERY_NAMESPACE = 'cardQuery';
 export const QUERYORDERLIST_NAMESPACE = 'queryOrderList';
 export const GETSQUARESINFO_NAMESPACE = 'getSquaresInfo';
+
 export const GETNEWESTINFO_NAMESPACE = 'getNewestInfo';
 export const BANNERSWIPER_NAMESPACE = 'bannerSwiper';
 export const ADVERSTINFO_NAMESPACE = 'adverstInfo';
