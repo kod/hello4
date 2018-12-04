@@ -223,7 +223,7 @@ class Index extends React.Component {
         fontSize: 10,
       },
       operateLeft: {
-        width: (WINDOW_WIDTH * 5) / 24,
+        width: (WINDOW_WIDTH * 6) / 24,
         height: 49,
         lineHeight: `${10 * 1.618}px`,
         textAlign: 'center',
@@ -236,7 +236,7 @@ class Index extends React.Component {
         flexWrap: 'wrap',
       },
       operateRight: {
-        width: (WINDOW_WIDTH * 10) / 24,
+        width: (WINDOW_WIDTH * 9) / 24,
         height: 49,
         lineHeight: `${49}px`,
         textAlign: 'center',
