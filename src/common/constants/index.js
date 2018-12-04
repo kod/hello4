@@ -1,7 +1,7 @@
 export const DEBUG = false;
 export const API_DEBUG = DEBUG;
 export const IS_SHOW_LOG = DEBUG;
-export const IS_I18N = true; // 是否支持多语言; 默认为越南语
+export const IS_I18N = DEBUG; // 是否支持多语言; 默认为越南语
 export const CARMAXNUMBER = 50;
 export const MINIMUM_PAYMENT_AMOUNT = 10000; // 最小支付金额
 export const OSS_IMAGE_QUALITY = 70; // 图片压缩比例；1-100；100：不压缩；
