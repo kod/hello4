@@ -15,18 +15,6 @@ import { CHANGE_PASSWORD } from '@/common/constants/actionTypes';
 import Loader from '@/components/Loader';
 import { removeEventListener, addEventListener } from '@/utils';
 
-@connect(
-  state => {
-    const { loading } = state;
-    return {
-      changePasswordLoading:
-        loading.effects[
-          `${CHANGEPASSWORD_NAMESPACE}/${CHANGE_PASSWORD.REQUEST}`
-        ],
-    };
-  },
-  {},
-)
 class Index extends React.Component {
   constructor(props) {
     super(props);
@@ -74,4 +62,15 @@ class Index extends React.Component {
   }
 }
 
-export default Index;
+export default connect(
+  state => {
+    const { loading } = state;
+    return {
+      changePasswordLoading:
+        loading.effects[
+          `${CHANGEPASSWORD_NAMESPACE}/${CHANGE_PASSWORD.REQUEST}`
+        ],
+    };
+  },
+  {},
+)(Index);

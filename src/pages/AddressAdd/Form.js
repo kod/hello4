@@ -88,29 +88,6 @@ const styles = {
   },
 };
 
-@connect(
-  state => {
-    const { cityInfos, addressModify, loading } = state;
-
-    return {
-      loading:
-        loading.effects[`${USERADDADDR_NAMESPACE}/${ADDRESS_ADD.REQUEST}`],
-      addressModifyLoaded: addressModify.loaded,
-      addressModifyIsTrue: addressModify.isTrue,
-      division2ndItems: cityInfos.division2nd,
-      division3rdItems: cityInfos.division3rd,
-      division4thItems: cityInfos.division4th,
-      authUser: o(b, BUYOO),
-    };
-  },
-  {
-    ...cityInfosActionCreators,
-    ...addressActionCreators,
-    ...addressModifyActionCreators,
-    ...userAddAddrActionCreators,
-    ...modalActionCreators,
-  },
-)
 class AddressAdd extends React.Component {
   constructor(props) {
     super(props);
@@ -301,4 +278,26 @@ class AddressAdd extends React.Component {
   }
 }
 
-export default createForm()(AddressAdd);
+export default connect(
+  state => {
+    const { cityInfos, addressModify, loading } = state;
+
+    return {
+      loading:
+        loading.effects[`${USERADDADDR_NAMESPACE}/${ADDRESS_ADD.REQUEST}`],
+      addressModifyLoaded: addressModify.loaded,
+      addressModifyIsTrue: addressModify.isTrue,
+      division2ndItems: cityInfos.division2nd,
+      division3rdItems: cityInfos.division3rd,
+      division4thItems: cityInfos.division4th,
+      authUser: o(b, BUYOO),
+    };
+  },
+  {
+    ...cityInfosActionCreators,
+    ...addressActionCreators,
+    ...addressModifyActionCreators,
+    ...userAddAddrActionCreators,
+    ...modalActionCreators,
+  },
+)(createForm()(AddressAdd));

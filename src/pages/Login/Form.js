@@ -10,19 +10,6 @@ import InputCountry from '@/components/InputCountry';
 
 import * as loginActionCreators from '@/common/actions/login';
 
-@connect(
-  state => {
-    const { login } = state;
-    return {
-      auth: login,
-      loading: login.loading,
-      // auth: state.login,
-    };
-  },
-  {
-    ...loginActionCreators,
-  },
-)
 class LoginForm extends React.Component {
   componentDidMount() {
     // this.autoFocusInst.focus();
@@ -72,4 +59,16 @@ class LoginForm extends React.Component {
   }
 }
 
-export default createForm()(LoginForm);
+export default connect(
+  state => {
+    const { login } = state;
+    return {
+      auth: login,
+      loading: login.loading,
+      // auth: state.login,
+    };
+  },
+  {
+    ...loginActionCreators,
+  },
+)(createForm()(LoginForm));

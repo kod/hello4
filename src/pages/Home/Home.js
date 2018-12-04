@@ -22,36 +22,6 @@ import ProductItem4 from '@/components/ProductItem4';
 import ProductItem6 from '@/components/ProductItem6';
 import { o } from '@/utils/AuthEncrypt';
 
-@connect(
-  state => {
-    const {
-      getAdverstTopInfo,
-      getSquaresInfo,
-      getNewestInfo,
-      bannerSwiper,
-      adverstInfo,
-      initAdverstCommon,
-    } = state;
-
-    return {
-      getAdverstTopInfoItems: getAdverstTopInfo.items,
-      getSquaresInfoItems: getSquaresInfo.items,
-      getNewestInfoItems: getNewestInfo.items,
-      initAdverstCommonItems: initAdverstCommon.items,
-      bannerSwiper: bannerSwiper.one || {},
-      adverstInfo: adverstInfo || {},
-      authUser: o(b, BUYOO),
-    };
-  },
-  {
-    ...getAdverstTopInfoActionCreators,
-    ...getSquaresInfoActionCreators,
-    ...getNewestInfoActionCreators,
-    ...bannerSwiperActionCreators,
-    ...adverstInfoActionCreators,
-    ...initAdverstCommonActionCreators,
-  },
-)
 class Index extends PureComponent {
   componentDidMount() {
     const {
@@ -183,4 +153,33 @@ class Index extends PureComponent {
   }
 }
 
-export default Index;
+export default connect(
+  state => {
+    const {
+      getAdverstTopInfo,
+      getSquaresInfo,
+      getNewestInfo,
+      bannerSwiper,
+      adverstInfo,
+      initAdverstCommon,
+    } = state;
+
+    return {
+      getAdverstTopInfoItems: getAdverstTopInfo.items,
+      getSquaresInfoItems: getSquaresInfo.items,
+      getNewestInfoItems: getNewestInfo.items,
+      initAdverstCommonItems: initAdverstCommon.items,
+      bannerSwiper: bannerSwiper.one || {},
+      adverstInfo: adverstInfo || {},
+      authUser: o(b, BUYOO),
+    };
+  },
+  {
+    ...getAdverstTopInfoActionCreators,
+    ...getSquaresInfoActionCreators,
+    ...getNewestInfoActionCreators,
+    ...bannerSwiperActionCreators,
+    ...adverstInfoActionCreators,
+    ...initAdverstCommonActionCreators,
+  },
+)(Index);

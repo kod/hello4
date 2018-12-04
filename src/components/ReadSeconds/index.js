@@ -26,17 +26,6 @@ const styles = {
   },
 };
 
-@connect(
-  (state, props) => {
-    const { mail } = props;
-    return {
-      mail,
-    };
-  },
-  {
-    ...otpActionCreators,
-  },
-)
 class ReadSeconds extends React.PureComponent {
   constructor(props) {
     super(props);
@@ -105,4 +94,14 @@ class ReadSeconds extends React.PureComponent {
   }
 }
 
-export default ReadSeconds;
+export default connect(
+  (state, props) => {
+    const { mail } = props;
+    return {
+      mail,
+    };
+  },
+  {
+    ...otpActionCreators,
+  },
+)(ReadSeconds);

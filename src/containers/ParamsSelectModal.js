@@ -18,30 +18,6 @@ import * as modalActionCreators from '../common/actions/modal';
 import * as productDetailInfoActionCreators from '../common/actions/productDetailInfo';
 import { xOssProcess } from '@/utils';
 
-@connect(
-  (state, props) => {
-    const {
-      modal: { modalProps = {} },
-      productDetailInfo,
-    } = state;
-
-    const { brandId } = props;
-
-    const brandIdUsed = brandId;
-    return {
-      ...productDetailInfo.item,
-      visible: false,
-      brandId: brandIdUsed,
-      groupon: false,
-      isMaster: false,
-      modalProps,
-    };
-  },
-  {
-    ...productDetailInfoActionCreators,
-    ...modalActionCreators,
-  },
-)
 class ParamsSelectModal extends Component {
   constructor(props) {
     super(props);
@@ -418,4 +394,27 @@ class ParamsSelectModal extends Component {
   }
 }
 
-export default ParamsSelectModal;
+export default connect(
+  (state, props) => {
+    const {
+      modal: { modalProps = {} },
+      productDetailInfo,
+    } = state;
+
+    const { brandId } = props;
+
+    const brandIdUsed = brandId;
+    return {
+      ...productDetailInfo.item,
+      visible: false,
+      brandId: brandIdUsed,
+      groupon: false,
+      isMaster: false,
+      modalProps,
+    };
+  },
+  {
+    ...productDetailInfoActionCreators,
+    ...modalActionCreators,
+  },
+)(ParamsSelectModal);

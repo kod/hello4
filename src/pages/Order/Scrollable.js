@@ -81,19 +81,6 @@ const stylesScrollable = {
   },
 };
 
-@connect(
-  state => {
-    const { queryOrderList } = state;
-
-    return {
-      authUser: o(b, BUYOO),
-      queryOrderListItem: queryOrderList.item,
-    };
-  },
-  {
-    ...queryOrderListActionCreators,
-  },
-)
 class Scrollable extends React.Component {
   constructor(props) {
     super(props);
@@ -247,4 +234,16 @@ class Scrollable extends React.Component {
   }
 }
 
-export default Scrollable;
+export default connect(
+  state => {
+    const { queryOrderList } = state;
+
+    return {
+      authUser: o(b, BUYOO),
+      queryOrderListItem: queryOrderList.item,
+    };
+  },
+  {
+    ...queryOrderListActionCreators,
+  },
+)(Scrollable);

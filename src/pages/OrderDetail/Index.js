@@ -106,42 +106,6 @@ const styles = {
   },
 };
 
-@connect(
-  (state, props) => {
-    const { address, queryOrder, getUserInfoById, orderPay } = state;
-    const {
-      location: {
-        query: { orderNo, tradeNo, from = '' },
-        pathname: locationPathname,
-        search: locationSearch,
-      },
-    } = props;
-
-    return {
-      loading: orderPay.loading,
-      addressSelectedItem: getAddressSelectedItem(state, props),
-      addressItems: address.items,
-      authUser: o(b, BUYOO),
-      queryOrderItem: queryOrder.item,
-      locationPathname,
-      locationSearch,
-      from,
-      orderNo,
-      tradeNo,
-      getUserInfoById,
-      initPassword: getUserInfoById.item.initPassword || null,
-      userType: getUserInfoById.item.userType || null,
-    };
-  },
-  {
-    ...addressActionCreators,
-    ...queryOrderActionCreators,
-    ...orderPayActionCreators,
-    ...getUserInfoByIdActionCreators,
-    ...orderCancelActionCreators,
-    ...modalActionCreators,
-  },
-)
 class OrderDetail extends React.Component {
   constructor(props) {
     super(props);
@@ -704,4 +668,39 @@ class OrderDetail extends React.Component {
   }
 }
 
-export default OrderDetail;
+export default connect(
+  (state, props) => {
+    const { address, queryOrder, getUserInfoById, orderPay } = state;
+    const {
+      location: {
+        query: { orderNo, tradeNo, from = '' },
+        pathname: locationPathname,
+        search: locationSearch,
+      },
+    } = props;
+
+    return {
+      loading: orderPay.loading,
+      addressSelectedItem: getAddressSelectedItem(state, props),
+      addressItems: address.items,
+      authUser: o(b, BUYOO),
+      queryOrderItem: queryOrder.item,
+      locationPathname,
+      locationSearch,
+      from,
+      orderNo,
+      tradeNo,
+      getUserInfoById,
+      initPassword: getUserInfoById.item.initPassword || null,
+      userType: getUserInfoById.item.userType || null,
+    };
+  },
+  {
+    ...addressActionCreators,
+    ...queryOrderActionCreators,
+    ...orderPayActionCreators,
+    ...getUserInfoByIdActionCreators,
+    ...orderCancelActionCreators,
+    ...modalActionCreators,
+  },
+)(OrderDetail);

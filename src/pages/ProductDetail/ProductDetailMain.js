@@ -34,36 +34,6 @@ import {
   xOssProcess,
 } from '@/utils';
 
-@connect(
-  (state, props) => {
-    const { productDetailInfo, comment } = state;
-    // const {
-    //   screenProps: { brandId, propertiesIds },
-    // } = props;
-
-    const {
-      query: { brandId, propertiesIds = '', id = '' },
-      pathname,
-    } = props;
-
-    return {
-      ...productDetailInfo.item,
-      loaded: productDetailInfo.loaded,
-      isTrue: productDetailInfo.isTrue,
-      msg: productDetailInfo.msg,
-      brandId,
-      propertiesIds,
-      productIdVIP: id,
-      comment: comment.items.detail ? comment.items.detail.slice(0, 1) : [],
-      pathname,
-    };
-  },
-  {
-    ...commentActionCreators,
-    ...productDetailInfoActionCreators,
-    ...modalActionCreators,
-  },
-)
 class ProductDetailMain extends React.Component {
   constructor(props) {
     super(props);
@@ -386,4 +356,33 @@ class ProductDetailMain extends React.Component {
   }
 }
 
-export default ProductDetailMain;
+export default connect(
+  (state, props) => {
+    const { productDetailInfo, comment } = state;
+    // const {
+    //   screenProps: { brandId, propertiesIds },
+    // } = props;
+
+    const {
+      query: { brandId, propertiesIds = '', id = '' },
+      pathname,
+    } = props;
+
+    return {
+      ...productDetailInfo.item,
+      loaded: productDetailInfo.loaded,
+      isTrue: productDetailInfo.isTrue,
+      msg: productDetailInfo.msg,
+      brandId,
+      propertiesIds,
+      productIdVIP: id,
+      comment: comment.items.detail ? comment.items.detail.slice(0, 1) : [],
+      pathname,
+    };
+  },
+  {
+    ...commentActionCreators,
+    ...productDetailInfoActionCreators,
+    ...modalActionCreators,
+  },
+)(ProductDetailMain);

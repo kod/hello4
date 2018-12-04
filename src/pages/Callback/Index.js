@@ -8,20 +8,6 @@ import router from 'umi/router';
 import { WINDOW_HEIGHT, SCREENS, WINDOW_WIDTH } from '@/common/constants';
 import BYButton from '@/components/BYButton';
 
-@connect(
-  (state, props) => {
-    const {
-      location: {
-        query: { msg = 20000 },
-      },
-    } = props;
-
-    return {
-      msg,
-    };
-  },
-  {},
-)
 class Address extends React.Component {
   constructor(props) {
     super(props);
@@ -125,4 +111,17 @@ class Address extends React.Component {
   }
 }
 
-export default Address;
+export default connect(
+  (state, props) => {
+    const {
+      location: {
+        query: { msg = 20000 },
+      },
+    } = props;
+
+    return {
+      msg,
+    };
+  },
+  {},
+)(Address);

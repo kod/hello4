@@ -16,23 +16,6 @@ import {
 import { BORDER_COLOR, PRIMARY_COLOR } from '@/styles/variables';
 import { xOssProcess } from '@/utils';
 
-@connect(
-  state => {
-    const { getMenu } = state;
-
-    return {
-      loading: getMenu.loading,
-      loaded: getMenu.loaded,
-      items: getMenu.items,
-      itemsList: getMenu.itemsList,
-      itemsClassfy: getMenu.itemsClassfy,
-      itemsIndex: getMenu.itemsIndex,
-    };
-  },
-  {
-    ...getMenuActionCreators,
-  },
-)
 class Index extends PureComponent {
   constructor(props) {
     super(props);
@@ -282,4 +265,20 @@ class Index extends PureComponent {
   }
 }
 
-export default Index;
+export default connect(
+  state => {
+    const { getMenu } = state;
+
+    return {
+      loading: getMenu.loading,
+      loaded: getMenu.loaded,
+      items: getMenu.items,
+      itemsList: getMenu.itemsList,
+      itemsClassfy: getMenu.itemsClassfy,
+      itemsIndex: getMenu.itemsIndex,
+    };
+  },
+  {
+    ...getMenuActionCreators,
+  },
+)(Index);

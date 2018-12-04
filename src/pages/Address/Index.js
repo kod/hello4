@@ -32,26 +32,6 @@ import { b } from '@/utils';
 const afiasifsdhfsPng =
   'https://oss.buyoo.vn/usercollect/1/20181109084840_7R8.png';
 
-@connect(
-  state => {
-    const { address, loading } = state;
-
-    return {
-      authUser: o(b, BUYOO),
-      items: address.items,
-      loading: loading.effects[`${ADDRESS_NAMESPACE}/${ADDRESS.REQUEST}`],
-      loaded: address.loaded,
-      refreshing: address.refreshing,
-    };
-  },
-  {
-    ...addressActionCreators,
-    ...getUserInfoByIdActionCreators,
-    ...orderCreateActionCreators,
-    ...couponSelectActionCreators,
-    ...modalActionCreators,
-  },
-)
 class Address extends React.Component {
   componentDidMount() {
     const { authUser, addressFetch } = this.props;
@@ -323,4 +303,23 @@ class Address extends React.Component {
   }
 }
 
-export default Address;
+export default connect(
+  state => {
+    const { address, loading } = state;
+
+    return {
+      authUser: o(b, BUYOO),
+      items: address.items,
+      loading: loading.effects[`${ADDRESS_NAMESPACE}/${ADDRESS.REQUEST}`],
+      loaded: address.loaded,
+      refreshing: address.refreshing,
+    };
+  },
+  {
+    ...addressActionCreators,
+    ...getUserInfoByIdActionCreators,
+    ...orderCreateActionCreators,
+    ...couponSelectActionCreators,
+    ...modalActionCreators,
+  },
+)(Address);

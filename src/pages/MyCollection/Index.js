@@ -33,20 +33,6 @@ const styles = {
   },
 };
 
-@connect(
-  state => {
-    const { collection, loading } = state;
-
-    return {
-      authUser: o(b, BUYOO),
-      loading: loading.effects[`${COLLECTION_NAMESPACE}/${COLLECTION.REQUEST}`],
-      items: collection.items.details ? collection.items.details : [],
-    };
-  },
-  {
-    ...collectionActionCreators,
-  },
-)
 class MyCollection extends React.Component {
   componentDidMount() {
     const { collectionFetch, authUser } = this.props;
@@ -94,4 +80,17 @@ class MyCollection extends React.Component {
   }
 }
 
-export default MyCollection;
+export default connect(
+  state => {
+    const { collection, loading } = state;
+
+    return {
+      authUser: o(b, BUYOO),
+      loading: loading.effects[`${COLLECTION_NAMESPACE}/${COLLECTION.REQUEST}`],
+      items: collection.items.details ? collection.items.details : [],
+    };
+  },
+  {
+    ...collectionActionCreators,
+  },
+)(MyCollection);

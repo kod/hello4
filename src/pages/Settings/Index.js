@@ -47,16 +47,6 @@ const styles = {
   },
 };
 
-@connect(
-  () => {
-    return {
-      authUser: o(b, BUYOO),
-    };
-  },
-  {
-    ...loginActionCreators,
-  },
-)
 class Settings extends React.Component {
   handleOnPressLogout() {
     const { logout } = this.props;
@@ -152,4 +142,13 @@ class Settings extends React.Component {
   }
 }
 
-export default Settings;
+export default connect(
+  () => {
+    return {
+      authUser: o(b, BUYOO),
+    };
+  },
+  {
+    ...loginActionCreators,
+  },
+)(Settings);

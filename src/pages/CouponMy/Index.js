@@ -23,28 +23,6 @@ import Loader from '@/components/Loader';
 import { o } from '@/utils/AuthEncrypt';
 import { b } from '@/utils';
 
-@connect(
-  state => {
-    const { getVoucher, getVoucherList, loading } = state;
-
-    return {
-      loading:
-        loading.effects[
-          `${GETVOUCHERLIST_NAMESPACE}/${GET_VOUCHER_LIST.REQUEST}`
-        ],
-      authUser: o(b, BUYOO),
-      items: getVoucher.items,
-      couponMyPastLength: getVoucherList.CouponMyPast.length,
-      couponMyUnusedLength: getVoucherList.CouponMyUnused.length,
-      couponMyUsedLength: getVoucherList.CouponMyUsed.length,
-    };
-  },
-  {
-    ...getVoucherActionCreators,
-    ...receiveVoucherActionCreators,
-    ...getVoucherListActionCreators,
-  },
-)
 class CouponMy extends React.Component {
   componentDidMount() {
     const { getVoucherListFetch } = this.props;
@@ -114,4 +92,25 @@ class CouponMy extends React.Component {
   }
 }
 
-export default CouponMy;
+export default connect(
+  state => {
+    const { getVoucher, getVoucherList, loading } = state;
+
+    return {
+      loading:
+        loading.effects[
+          `${GETVOUCHERLIST_NAMESPACE}/${GET_VOUCHER_LIST.REQUEST}`
+        ],
+      authUser: o(b, BUYOO),
+      items: getVoucher.items,
+      couponMyPastLength: getVoucherList.CouponMyPast.length,
+      couponMyUnusedLength: getVoucherList.CouponMyUnused.length,
+      couponMyUsedLength: getVoucherList.CouponMyUsed.length,
+    };
+  },
+  {
+    ...getVoucherActionCreators,
+    ...receiveVoucherActionCreators,
+    ...getVoucherListActionCreators,
+  },
+)(CouponMy);

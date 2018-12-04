@@ -22,14 +22,11 @@ const MODAL_COMPONENTS = {
   // [MODAL_TYPES.STAGINGDETAILS]: StagingDetailsModal,
 };
 
-@connect(state => {
-  const { modal } = state;
-
-  return {
-    modal,
-  };
-})
 class ModalRoot extends React.Component {
+  componentDidMount() {
+    console.log('');
+  }
+
   render() {
     const {
       modal: { modalType, modalProps },
@@ -43,4 +40,10 @@ class ModalRoot extends React.Component {
   }
 }
 
-export default ModalRoot;
+export default connect(state => {
+  const { modal } = state;
+
+  return {
+    modal,
+  };
+})(ModalRoot);

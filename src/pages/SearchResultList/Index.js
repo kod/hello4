@@ -29,27 +29,6 @@ const styles = {
 const ouhrigdfnjsoeijehrJpg =
   'https://oss.buyoo.vn/usercollect/1/20181101180309_67w.jpg';
 
-@connect(
-  (state, props) => {
-    const { findProducts, loading } = state;
-
-    const {
-      location: {
-        query: { findcontent },
-      },
-    } = props;
-
-    return {
-      items: findProducts.items,
-      findcontent,
-      loading:
-        loading.effects[`${FINDPRODUCTS_NAMESPACE}/${FIND_PRODUCTS.REQUEST}`],
-    };
-  },
-  {
-    ...findProductsActionCreators,
-  },
-)
 class SearchResultList extends React.Component {
   componentDidMount() {
     console.log('12113');
@@ -129,4 +108,24 @@ class SearchResultList extends React.Component {
   }
 }
 
-export default SearchResultList;
+export default connect(
+  (state, props) => {
+    const { findProducts, loading } = state;
+
+    const {
+      location: {
+        query: { findcontent },
+      },
+    } = props;
+
+    return {
+      items: findProducts.items,
+      findcontent,
+      loading:
+        loading.effects[`${FINDPRODUCTS_NAMESPACE}/${FIND_PRODUCTS.REQUEST}`],
+    };
+  },
+  {
+    ...findProductsActionCreators,
+  },
+)(SearchResultList);

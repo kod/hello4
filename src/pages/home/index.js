@@ -14,18 +14,6 @@ import CustomIcon from '@/components/CustomIcon';
 import { addEventListener, removeEventListener, dispatchEvent } from '@/utils';
 import stylesLess from './index.less';
 
-@connect(
-  (_, props) => {
-    const {
-      location: { query = {} },
-    } = props;
-
-    return {
-      index: query.index || 0,
-    };
-  },
-  {},
-)
 class Index extends React.Component {
   constructor(props) {
     super(props);
@@ -173,4 +161,15 @@ class Index extends React.Component {
   }
 }
 
-export default Index;
+export default connect(
+  (_, props) => {
+    const {
+      location: { query = {} },
+    } = props;
+
+    return {
+      index: query.index || 0,
+    };
+  },
+  {},
+)(Index);

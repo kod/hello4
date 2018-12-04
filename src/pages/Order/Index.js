@@ -19,29 +19,6 @@ import OrderTabNavigator from './OrderTabNavigator';
 import { o } from '@/utils/AuthEncrypt';
 import { b } from '@/utils';
 
-@connect(
-  (state, props) => {
-    const { queryOrderList } = state;
-
-    const {
-      location: {
-        query: { index },
-      },
-    } = props;
-
-    return {
-      initialPage: index,
-      authUser: o(b, BUYOO),
-      queryOrderListItem: queryOrderList.item,
-      scrollTabIndex: queryOrderList.scrollTabIndex,
-    };
-  },
-  {
-    ...getVoucherActionCreators,
-    ...receiveVoucherActionCreators,
-    ...getVoucherListActionCreators,
-  },
-)
 class CouponMy extends React.Component {
   componentDidMount() {
     // setLocale('zh-CN');
@@ -106,4 +83,26 @@ class CouponMy extends React.Component {
   }
 }
 
-export default CouponMy;
+export default connect(
+  (state, props) => {
+    const { queryOrderList } = state;
+
+    const {
+      location: {
+        query: { index },
+      },
+    } = props;
+
+    return {
+      initialPage: index,
+      authUser: o(b, BUYOO),
+      queryOrderListItem: queryOrderList.item,
+      scrollTabIndex: queryOrderList.scrollTabIndex,
+    };
+  },
+  {
+    ...getVoucherActionCreators,
+    ...receiveVoucherActionCreators,
+    ...getVoucherListActionCreators,
+  },
+)(CouponMy);

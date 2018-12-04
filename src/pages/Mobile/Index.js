@@ -12,17 +12,11 @@ const styles = {
   },
 };
 
-@connect(
-  state => {
-    const { login } = state;
-
-    return {
-      isAuthUser: !!login.user,
-    };
-  },
-  {},
-)
 class Mobile extends React.Component {
+  componentDidMount() {
+    console.log();
+  }
+
   render() {
     return (
       <div style={styles.container}>
@@ -35,4 +29,13 @@ class Mobile extends React.Component {
   }
 }
 
-export default Mobile;
+export default connect(
+  state => {
+    const { login } = state;
+
+    return {
+      isAuthUser: !!login.user,
+    };
+  },
+  {},
+)(Mobile);

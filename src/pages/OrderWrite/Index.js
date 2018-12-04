@@ -49,60 +49,6 @@ import {
 } from '@/common/constants/actionTypes';
 import { o } from '@/utils/AuthEncrypt';
 
-@connect(
-  (state, props) => {
-    const {
-      address,
-      getUserInfoById,
-      orderCreate,
-      productDetailInfo,
-      couponSelect,
-      loading,
-    } = state;
-    const {
-      location: { query = {} },
-    } = props;
-    const { brandId, id } = query;
-    const { mergeMasterInfo, isCart, products, adverstInfo } = query;
-    const detailItem = productDetailInfo.item;
-    return {
-      orderCreateLoading:
-        loading.effects[`${ORDERCREATE_NAMESPACE}/${ORDER_CREATE.REQUEST}`],
-      getUserInfoByIdLoading:
-        loading.effects[
-          `${GETUSERINFOBYID_NAMESPACE}/${GET_USERINFO_BYID.REQUEST}`
-        ],
-      orderpayLoading:
-        loading.effects[`${ORDERPAY_NAMESPACE}/${ORDER_PAY.REQUEST}`],
-      couponSelectItem: couponSelect.item,
-      groupon: false,
-      mergeMasterInfo,
-      isCart,
-      brandId,
-      productIdVIP: id,
-      cartProducts: products && JSON.parse(products),
-      cartAdverstInfo: adverstInfo && JSON.parse(adverstInfo),
-      detailItem,
-      orderCreate,
-      addressSelectedItem: getAddressSelectedItem(state, props),
-      addressItems: address.items,
-      addressSelectedId: address.addressSelectedId,
-      authUser: o(b, BUYOO),
-      getUserInfoById,
-      getUserInfoByIdLoaded: getUserInfoById.loaded,
-      userType: getUserInfoById.item.userType || null,
-    };
-  },
-  {
-    ...addressActionCreators,
-    ...getUserInfoByIdActionCreators,
-    ...orderCreateActionCreators,
-    ...orderPayActionCreators,
-    ...couponSelectActionCreators,
-    ...modalActionCreators,
-    ...productDetailInfoActionCreators,
-  },
-)
 class OrderWrite extends React.Component {
   constructor(props) {
     super(props);
@@ -557,4 +503,57 @@ class OrderWrite extends React.Component {
   }
 }
 
-export default OrderWrite;
+export default connect(
+  (state, props) => {
+    const {
+      address,
+      getUserInfoById,
+      orderCreate,
+      productDetailInfo,
+      couponSelect,
+      loading,
+    } = state;
+    const {
+      location: { query = {} },
+    } = props;
+    const { brandId, id } = query;
+    const { mergeMasterInfo, isCart, products, adverstInfo } = query;
+    const detailItem = productDetailInfo.item;
+    return {
+      orderCreateLoading:
+        loading.effects[`${ORDERCREATE_NAMESPACE}/${ORDER_CREATE.REQUEST}`],
+      getUserInfoByIdLoading:
+        loading.effects[
+          `${GETUSERINFOBYID_NAMESPACE}/${GET_USERINFO_BYID.REQUEST}`
+        ],
+      orderpayLoading:
+        loading.effects[`${ORDERPAY_NAMESPACE}/${ORDER_PAY.REQUEST}`],
+      couponSelectItem: couponSelect.item,
+      groupon: false,
+      mergeMasterInfo,
+      isCart,
+      brandId,
+      productIdVIP: id,
+      cartProducts: products && JSON.parse(products),
+      cartAdverstInfo: adverstInfo && JSON.parse(adverstInfo),
+      detailItem,
+      orderCreate,
+      addressSelectedItem: getAddressSelectedItem(state, props),
+      addressItems: address.items,
+      addressSelectedId: address.addressSelectedId,
+      authUser: o(b, BUYOO),
+      getUserInfoById,
+      getUserInfoByIdLoaded: getUserInfoById.loaded,
+      userType: getUserInfoById.item.userType || null,
+    };
+  },
+  {
+    ...addressActionCreators,
+    ...getUserInfoByIdActionCreators,
+    ...orderCreateActionCreators,
+    ...orderPayActionCreators,
+    ...couponSelectActionCreators,
+    ...modalActionCreators,
+    ...productDetailInfoActionCreators,
+  },
+)(OrderWrite);

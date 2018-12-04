@@ -105,46 +105,6 @@ const styles = {
   },
 };
 
-@connect(
-  (state, props) => {
-    const { orderPay, loading } = state;
-
-    const {
-      location: {
-        pathname: locationPathname,
-        search: locationSearch,
-        query: {
-          orderNo,
-          tradeNo,
-          payway,
-          payrate,
-          repaymentmonth,
-          totalAmount,
-          code,
-          from,
-        },
-      },
-    } = props;
-
-    return {
-      orderno: orderNo,
-      tradeno: tradeNo,
-      locationPathname,
-      locationSearch,
-      from,
-      payway,
-      payrate,
-      repaymentmonth,
-      code: code || orderPay.ret,
-      loading: loading.effects[`${ORDERPAY_NAMESPACE}/${ORDER_PAY.REQUEST}`],
-      payvalue: totalAmount,
-      authUser: o(b, BUYOO),
-    };
-  },
-  {
-    ...orderPayActionCreators,
-  },
-)
 class PaymentCode extends React.Component {
   constructor(props) {
     super(props);
@@ -300,4 +260,43 @@ class PaymentCode extends React.Component {
   }
 }
 
-export default PaymentCode;
+export default connect(
+  (state, props) => {
+    const { orderPay, loading } = state;
+
+    const {
+      location: {
+        pathname: locationPathname,
+        search: locationSearch,
+        query: {
+          orderNo,
+          tradeNo,
+          payway,
+          payrate,
+          repaymentmonth,
+          totalAmount,
+          code,
+          from,
+        },
+      },
+    } = props;
+
+    return {
+      orderno: orderNo,
+      tradeno: tradeNo,
+      locationPathname,
+      locationSearch,
+      from,
+      payway,
+      payrate,
+      repaymentmonth,
+      code: code || orderPay.ret,
+      loading: loading.effects[`${ORDERPAY_NAMESPACE}/${ORDER_PAY.REQUEST}`],
+      payvalue: totalAmount,
+      authUser: o(b, BUYOO),
+    };
+  },
+  {
+    ...orderPayActionCreators,
+  },
+)(PaymentCode);

@@ -32,27 +32,6 @@ import { addEventListener, removeEventListener, b } from '@/utils';
 import { getIsCollection } from '@/common/selectors';
 import { o } from '@/utils/AuthEncrypt';
 
-@connect(
-  (state, props) => {
-    const { productDetailInfo } = state;
-    const {
-      location: { query = {}, pathname = '' },
-    } = props;
-
-    return {
-      ...productDetailInfo.item,
-      query,
-      pathname,
-      authUser: o(b, BUYOO),
-      isCollection: getIsCollection(state, props),
-    };
-  },
-  {
-    ...modalActionCreators,
-    ...collectionActionCreators,
-    ...cartActionCreators,
-  },
-)
 class Index extends React.Component {
   constructor(props) {
     super(props);
@@ -461,4 +440,24 @@ class Index extends React.Component {
   }
 }
 
-export default Index;
+export default connect(
+  (state, props) => {
+    const { productDetailInfo } = state;
+    const {
+      location: { query = {}, pathname = '' },
+    } = props;
+
+    return {
+      ...productDetailInfo.item,
+      query,
+      pathname,
+      authUser: o(b, BUYOO),
+      isCollection: getIsCollection(state, props),
+    };
+  },
+  {
+    ...modalActionCreators,
+    ...collectionActionCreators,
+    ...cartActionCreators,
+  },
+)(Index);

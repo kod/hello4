@@ -20,26 +20,6 @@ import { COMMENT } from '@/common/constants/actionTypes';
 const emptycommentPng =
   'https://oss.buyoo.vn/usercollect/1/20181107170628_nI0.png';
 
-@connect(
-  (state, props) => {
-    const { comment, loading } = state;
-    const {
-      location: {
-        query: { brandId = '' },
-      },
-    } = props;
-    console.log(props);
-
-    return {
-      brandId,
-      comment: comment.items.detail ? comment.items.detail : [],
-      loading: loading.effects[`${COMMENT_NAMESPACE}/${COMMENT.REQUEST}`],
-    };
-  },
-  {
-    ...commentActionCreators,
-  },
-)
 class ProductDetailComment extends React.Component {
   componentDidMount() {
     const { commentFetch, brandId } = this.props;
@@ -102,4 +82,23 @@ class ProductDetailComment extends React.Component {
   }
 }
 
-export default ProductDetailComment;
+export default connect(
+  (state, props) => {
+    const { comment, loading } = state;
+    const {
+      location: {
+        query: { brandId = '' },
+      },
+    } = props;
+    console.log(props);
+
+    return {
+      brandId,
+      comment: comment.items.detail ? comment.items.detail : [],
+      loading: loading.effects[`${COMMENT_NAMESPACE}/${COMMENT.REQUEST}`],
+    };
+  },
+  {
+    ...commentActionCreators,
+  },
+)(ProductDetailComment);

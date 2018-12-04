@@ -28,28 +28,6 @@ const styles = {
   },
 };
 
-@connect(
-  (state, props) => {
-    const { judgeVoucher } = state;
-
-    const {
-      location: {
-        query: { products },
-      },
-    } = props;
-
-    return {
-      products,
-      loading: judgeVoucher.loading,
-      items: judgeVoucher.items,
-      authUser: o(b, BUYOO),
-    };
-  },
-  {
-    ...judgeVoucherActionCreators,
-    ...couponSelectActionCreators,
-  },
-)
 class CouponSelect extends React.Component {
   constructor(props) {
     super(props);
@@ -111,4 +89,25 @@ class CouponSelect extends React.Component {
   }
 }
 
-export default CouponSelect;
+export default connect(
+  (state, props) => {
+    const { judgeVoucher } = state;
+
+    const {
+      location: {
+        query: { products },
+      },
+    } = props;
+
+    return {
+      products,
+      loading: judgeVoucher.loading,
+      items: judgeVoucher.items,
+      authUser: o(b, BUYOO),
+    };
+  },
+  {
+    ...judgeVoucherActionCreators,
+    ...couponSelectActionCreators,
+  },
+)(CouponSelect);

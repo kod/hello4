@@ -27,35 +27,6 @@ const styles = {
   },
 };
 
-@connect(
-  (state, props) => {
-    const { getAllProductInfo, loading } = state;
-
-    const {
-      location: {
-        query: { parent_id, classfy_id, sub_classfy_id, third_classfy_id },
-      },
-    } = props;
-
-    return {
-      getAllProductInfo,
-      loading:
-        loading.effects[
-          `${GETALLPRODUCTINFO_NAMESPACE}/${GET_ALL_PRODUCT_INFO.REQUEST}`
-        ],
-      loaded: getAllProductInfo.loaded,
-      items: getGetAllProductInfoItems(state, props),
-      // items: getAllProductInfo.items,
-      parent_id,
-      classfy_id,
-      sub_classfy_id,
-      third_classfy_id,
-    };
-  },
-  {
-    ...getAllProductInfoActionCreators,
-  },
-)
 class CateList extends React.Component {
   componentDidMount() {
     const {
@@ -158,4 +129,32 @@ class CateList extends React.Component {
   }
 }
 
-export default CateList;
+export default connect(
+  (state, props) => {
+    const { getAllProductInfo, loading } = state;
+
+    const {
+      location: {
+        query: { parent_id, classfy_id, sub_classfy_id, third_classfy_id },
+      },
+    } = props;
+
+    return {
+      getAllProductInfo,
+      loading:
+        loading.effects[
+          `${GETALLPRODUCTINFO_NAMESPACE}/${GET_ALL_PRODUCT_INFO.REQUEST}`
+        ],
+      loaded: getAllProductInfo.loaded,
+      items: getGetAllProductInfoItems(state, props),
+      // items: getAllProductInfo.items,
+      parent_id,
+      classfy_id,
+      sub_classfy_id,
+      third_classfy_id,
+    };
+  },
+  {
+    ...getAllProductInfoActionCreators,
+  },
+)(CateList);

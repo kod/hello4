@@ -12,25 +12,6 @@ import * as registerActionCreators from '@/common/actions/register';
 import ReadSeconds from '@/components/ReadSeconds';
 import { FONT_COLOR_THIRD } from '@/styles/variables';
 
-@connect(
-  (state, props) => {
-    const { login } = state;
-
-    const {
-      query: { mail = '' },
-    } = props;
-
-    return {
-      auth: login,
-      loading: login.loading,
-      mail,
-    };
-  },
-  {
-    ...loginActionCreators,
-    ...registerActionCreators,
-  },
-)
 class LoginForm extends React.Component {
   constructor(props) {
     super(props);
@@ -145,4 +126,22 @@ class LoginForm extends React.Component {
   }
 }
 
-export default createForm()(LoginForm);
+export default connect(
+  (state, props) => {
+    const { login } = state;
+
+    const {
+      query: { mail = '' },
+    } = props;
+
+    return {
+      auth: login,
+      loading: login.loading,
+      mail,
+    };
+  },
+  {
+    ...loginActionCreators,
+    ...registerActionCreators,
+  },
+)(createForm()(LoginForm));

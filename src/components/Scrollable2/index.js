@@ -21,20 +21,6 @@ import FloorTitle from '../FloorTitle';
 import SwiperFlatList from '../SwiperFlatList';
 import { WINDOW_WIDTH } from '@/common/constants';
 
-@connect(
-  state => {
-    const { bannerSwiper, adPhone } = state;
-
-    return {
-      bannerSwiper: bannerSwiper.two,
-      adPhone,
-    };
-  },
-  {
-    ...bannerSwiperActionCreators,
-    ...adPhoneActionCreators,
-  },
-)
 class Scrollable2 extends Component {
   componentDidMount() {
     const { bannerSwiperFetch, adPhoneFetch } = this.props;
@@ -77,4 +63,17 @@ class Scrollable2 extends Component {
   }
 }
 
-export default Scrollable2;
+export default connect(
+  state => {
+    const { bannerSwiper, adPhone } = state;
+
+    return {
+      bannerSwiper: bannerSwiper.two,
+      adPhone,
+    };
+  },
+  {
+    ...bannerSwiperActionCreators,
+    ...adPhoneActionCreators,
+  },
+)(Scrollable2);

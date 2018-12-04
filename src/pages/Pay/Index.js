@@ -39,32 +39,6 @@ import MustLogin from '@/components/MustLogin';
 import { ORDER_PAY } from '@/common/constants/actionTypes';
 import { o } from '@/utils/AuthEncrypt';
 
-@connect(
-  (state, props) => {
-    const { queryOrder, loading } = state;
-
-    const {
-      location: {
-        query: { orderNo, tradeNo },
-      },
-    } = props;
-
-    return {
-      authUser: o(b, BUYOO),
-      orderNo,
-      tradeNo,
-      queryOrderItem: queryOrder.item,
-      queryOrderLoaded: queryOrder.loaded,
-      orderpayLoading:
-        loading.effects[`${ORDERPAY_NAMESPACE}/${ORDER_PAY.REQUEST}`],
-    };
-  },
-  {
-    ...orderPayActionCreators,
-    ...queryOrderActionCreators,
-    ...modalActionCreators,
-  },
-)
 class Pay extends React.Component {
   constructor(props) {
     super(props);
@@ -289,4 +263,29 @@ class Pay extends React.Component {
   }
 }
 
-export default Pay;
+export default connect(
+  (state, props) => {
+    const { queryOrder, loading } = state;
+
+    const {
+      location: {
+        query: { orderNo, tradeNo },
+      },
+    } = props;
+
+    return {
+      authUser: o(b, BUYOO),
+      orderNo,
+      tradeNo,
+      queryOrderItem: queryOrder.item,
+      queryOrderLoaded: queryOrder.loaded,
+      orderpayLoading:
+        loading.effects[`${ORDERPAY_NAMESPACE}/${ORDER_PAY.REQUEST}`],
+    };
+  },
+  {
+    ...orderPayActionCreators,
+    ...queryOrderActionCreators,
+    ...modalActionCreators,
+  },
+)(Pay);

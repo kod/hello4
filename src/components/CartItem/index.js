@@ -99,19 +99,6 @@ const styles = {
   },
 };
 
-@connect(
-  state => {
-    const { cart } = state;
-
-    return {
-      authUser: o(b, BUYOO),
-      isEdit: cart.isEdit,
-    };
-  },
-  {
-    ...cartActionCreators,
-  },
-)
 class CartItem extends React.Component {
   renderCartItemLeft = (id, selected) => {
     const { isEdit } = this.props;
@@ -351,4 +338,16 @@ class CartItem extends React.Component {
   }
 }
 
-export default CartItem;
+export default connect(
+  state => {
+    const { cart } = state;
+
+    return {
+      authUser: o(b, BUYOO),
+      isEdit: cart.isEdit,
+    };
+  },
+  {
+    ...cartActionCreators,
+  },
+)(CartItem);

@@ -89,12 +89,6 @@ const styles = {
   },
 };
 
-@connect(
-  () => {},
-  {
-    ...cartActionCreators,
-  },
-)
 class ProductItem2 extends React.Component {
   onPressHandle(val) {
     const {
@@ -178,4 +172,9 @@ class ProductItem2 extends React.Component {
   }
 }
 
-export default ProductItem2;
+export default connect(
+  () => {},
+  {
+    ...cartActionCreators,
+  },
+)(ProductItem2);

@@ -29,34 +29,6 @@ import { o } from '@/utils/AuthEncrypt';
 const aioru09230fPng =
   'https://oss.buyoo.vn/usercollect/1/20181102094215_995.png';
 
-@connect(
-  (state, props) => {
-    const {
-      userCertificateInfo,
-      queryOrderList,
-      cardQuery,
-      getUserInfoById,
-    } = state;
-
-    const { location } = props;
-
-    return {
-      location,
-      getUserInfoByIdUserType: getUserInfoById.item.userType,
-      orderItem: queryOrderList.item,
-      certUser: userCertificateInfo.certUser,
-      authUser: o(b, BUYOO),
-      initPassword: cardQuery.item.initPassword,
-      status: cardQuery.item.status,
-    };
-  },
-  {
-    ...getUserInfoByIdActionCreators,
-    ...queryOrderListActionCreators,
-    ...cardQueryActionCreators,
-    ...userCertificateInfoActionCreators,
-  },
-)
 class Index extends PureComponent {
   constructor(props) {
     super(props);
@@ -390,4 +362,31 @@ class Index extends PureComponent {
   }
 }
 
-export default Index;
+export default connect(
+  (state, props) => {
+    const {
+      userCertificateInfo,
+      queryOrderList,
+      cardQuery,
+      getUserInfoById,
+    } = state;
+
+    const { location } = props;
+
+    return {
+      location,
+      getUserInfoByIdUserType: getUserInfoById.item.userType,
+      orderItem: queryOrderList.item,
+      certUser: userCertificateInfo.certUser,
+      authUser: o(b, BUYOO),
+      initPassword: cardQuery.item.initPassword,
+      status: cardQuery.item.status,
+    };
+  },
+  {
+    ...getUserInfoByIdActionCreators,
+    ...queryOrderListActionCreators,
+    ...cardQueryActionCreators,
+    ...userCertificateInfoActionCreators,
+  },
+)(Index);

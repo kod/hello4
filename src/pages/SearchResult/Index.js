@@ -62,18 +62,6 @@ const styles = {
   },
 };
 
-@connect(
-  state => {
-    const { searchHistory } = state;
-
-    return {
-      items: searchHistory.items,
-    };
-  },
-  {
-    ...searchHistoryActionCreators,
-  },
-)
 class SearchResult extends React.Component {
   constructor(props) {
     super(props);
@@ -190,4 +178,15 @@ class SearchResult extends React.Component {
   }
 }
 
-export default createForm()(SearchResult);
+export default connect(
+  state => {
+    const { searchHistory } = state;
+
+    return {
+      items: searchHistory.items,
+    };
+  },
+  {
+    ...searchHistoryActionCreators,
+  },
+)(createForm()(SearchResult));

@@ -11,16 +11,6 @@ import Loader from '@/components/Loader';
 import { addEventListener, removeEventListener } from '@/utils';
 import Form from './Form';
 
-@connect(
-  state => {
-    const { loading } = state;
-    return {
-      registerLoading:
-        loading.effects[`${REGISTER_NAMESPACE}/${REGISTER.REQUEST}`],
-    };
-  },
-  {},
-)
 class Index extends React.Component {
   constructor(props) {
     super(props);
@@ -67,4 +57,13 @@ class Index extends React.Component {
   }
 }
 
-export default Index;
+export default connect(
+  state => {
+    const { loading } = state;
+    return {
+      registerLoading:
+        loading.effects[`${REGISTER_NAMESPACE}/${REGISTER.REQUEST}`],
+    };
+  },
+  {},
+)(Index);

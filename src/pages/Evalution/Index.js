@@ -43,36 +43,6 @@ const styles = {
   },
 };
 
-@connect(
-  (state, props) => {
-    const { collectFiles, loading } = state;
-
-    const {
-      location: {
-        query: { orderNo, tradeNo, brandId },
-      },
-    } = props;
-
-    return {
-      authUser: o(b, BUYOO),
-      collectFiles,
-      orderNo,
-      tradeNo,
-      brandId,
-      // loading: collectFiles.loading,
-      addEvaluationLoading:
-        loading.effects[`${ADDEVALUATION_NAMESPACE}/${ADD_EVALUATION.REQUEST}`],
-      images: collectFiles.images,
-      loading:
-        loading.effects[`${COLLECTFILES_NAMESPACE}/${COLLECT_FILES.REQUEST}`],
-    };
-  },
-  {
-    ...collectFilesActionCreators,
-    // ...modalActionCreators,
-    ...addEvaluationActionCreators,
-  },
-)
 class Evalution extends React.Component {
   constructor(props) {
     super(props);
@@ -442,4 +412,33 @@ class Evalution extends React.Component {
   }
 }
 
-export default Evalution;
+export default connect(
+  (state, props) => {
+    const { collectFiles, loading } = state;
+
+    const {
+      location: {
+        query: { orderNo, tradeNo, brandId },
+      },
+    } = props;
+
+    return {
+      authUser: o(b, BUYOO),
+      collectFiles,
+      orderNo,
+      tradeNo,
+      brandId,
+      // loading: collectFiles.loading,
+      addEvaluationLoading:
+        loading.effects[`${ADDEVALUATION_NAMESPACE}/${ADD_EVALUATION.REQUEST}`],
+      images: collectFiles.images,
+      loading:
+        loading.effects[`${COLLECTFILES_NAMESPACE}/${COLLECT_FILES.REQUEST}`],
+    };
+  },
+  {
+    ...collectFilesActionCreators,
+    // ...modalActionCreators,
+    ...addEvaluationActionCreators,
+  },
+)(Evalution);

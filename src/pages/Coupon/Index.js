@@ -35,27 +35,6 @@ const styles = {
   },
 };
 
-@connect(
-  state => {
-    const { getVoucher, loading } = state;
-
-    return {
-      receiveVoucherLoading:
-        loading.effects[
-          `${RECEIVEVOUCHER_NAMESPACE}/${RECEIVE_VOUCHER.REQUEST}`
-        ],
-      loading:
-        loading.effects[`${GETVOUCHER_NAMESPACE}/${GET_VOUCHER.REQUEST}`],
-      items: getVoucher.items,
-      authUser: o(b, BUYOO),
-    };
-  },
-  {
-    ...getVoucherActionCreators,
-    ...receiveVoucherActionCreators,
-    ...modalActionCreators,
-  },
-)
 class Coupon extends React.Component {
   constructor(props) {
     super(props);
@@ -147,4 +126,24 @@ class Coupon extends React.Component {
   }
 }
 
-export default Coupon;
+export default connect(
+  state => {
+    const { getVoucher, loading } = state;
+
+    return {
+      receiveVoucherLoading:
+        loading.effects[
+          `${RECEIVEVOUCHER_NAMESPACE}/${RECEIVE_VOUCHER.REQUEST}`
+        ],
+      loading:
+        loading.effects[`${GETVOUCHER_NAMESPACE}/${GET_VOUCHER.REQUEST}`],
+      items: getVoucher.items,
+      authUser: o(b, BUYOO),
+    };
+  },
+  {
+    ...getVoucherActionCreators,
+    ...receiveVoucherActionCreators,
+    ...modalActionCreators,
+  },
+)(Coupon);

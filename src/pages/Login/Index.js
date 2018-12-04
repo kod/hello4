@@ -12,15 +12,6 @@ import { LOGIN } from '@/common/constants/actionTypes';
 import { LOGIN_NAMESPACE, SCREENS, WINDOW_HEIGHT } from '@/common/constants';
 import { addEventListener, removeEventListener } from '@/utils';
 
-@connect(
-  state => {
-    const { loading } = state;
-    return {
-      loginLoading: loading.effects[`${LOGIN_NAMESPACE}/${LOGIN.REQUEST}`],
-    };
-  },
-  {},
-)
 class Index extends React.Component {
   constructor(props) {
     super(props);
@@ -73,4 +64,12 @@ class Index extends React.Component {
   }
 }
 
-export default Index;
+export default connect(
+  state => {
+    const { loading } = state;
+    return {
+      loginLoading: loading.effects[`${LOGIN_NAMESPACE}/${LOGIN.REQUEST}`],
+    };
+  },
+  {},
+)(Index);

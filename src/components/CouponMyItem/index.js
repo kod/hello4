@@ -21,23 +21,11 @@ const styles = {
   },
 };
 
-@connect(
-  (state, props) => {
-    const { getVoucherList } = state;
-
-    const { routeName } = props;
-    return {
-      items: getVoucherList[routeName],
-      loading: getVoucherList.loading,
-      routeName,
-    };
-  },
-  {
-    ...getVoucherListActionCreators,
-    ...receiveVoucherActionCreators,
-  },
-)
 class CouponMyItem extends React.Component {
+  componentDidMount() {
+    console.log(' ');
+  }
+
   render() {
     const { items, loading } = this.props;
 
@@ -59,4 +47,20 @@ class CouponMyItem extends React.Component {
     );
   }
 }
-export default CouponMyItem;
+
+export default connect(
+  (state, props) => {
+    const { getVoucherList } = state;
+
+    const { routeName } = props;
+    return {
+      items: getVoucherList[routeName],
+      loading: getVoucherList.loading,
+      routeName,
+    };
+  },
+  {
+    ...getVoucherListActionCreators,
+    ...receiveVoucherActionCreators,
+  },
+)(CouponMyItem);

@@ -64,13 +64,11 @@ const styles = {
   },
 };
 
-@connect(
-  () => {},
-  {
-    ...collectionActionCreators,
-  },
-)
 class AboutAs extends React.Component {
+  componentDidMount() {
+    console.log();
+  }
+
   render() {
     const navBar1List = [
       {
@@ -148,4 +146,9 @@ class AboutAs extends React.Component {
   }
 }
 
-export default AboutAs;
+export default connect(
+  () => {},
+  {
+    ...collectionActionCreators,
+  },
+)(AboutAs);

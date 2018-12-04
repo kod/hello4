@@ -11,20 +11,6 @@ import ReadSeconds from '@/components/ReadSeconds';
 import * as changePasswordActionCreators from '@/common/actions/changePassword';
 import { FONT_COLOR_THIRD } from '@/styles/variables';
 
-@connect(
-  (state, props) => {
-    const {
-      query: { mail = '' },
-    } = props;
-
-    return {
-      mail,
-    };
-  },
-  {
-    ...changePasswordActionCreators,
-  },
-)
 class LoginForm extends React.Component {
   submit = () => {
     const { form, mail, changePasswordFetch } = this.props;
@@ -105,4 +91,17 @@ class LoginForm extends React.Component {
   }
 }
 
-export default createForm()(LoginForm);
+export default connect(
+  (state, props) => {
+    const {
+      query: { mail = '' },
+    } = props;
+
+    return {
+      mail,
+    };
+  },
+  {
+    ...changePasswordActionCreators,
+  },
+)(createForm()(LoginForm));

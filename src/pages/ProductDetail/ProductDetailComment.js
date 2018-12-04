@@ -18,19 +18,11 @@ import { dispatchEvent, xOssProcess } from '@/utils';
 const emptycommentPng =
   'https://oss.buyoo.vn/usercollect/1/20181107170628_nI0.png';
 
-@connect(
-  state => {
-    const { comment } = state;
-
-    return {
-      comment: comment.items.detail ? comment.items.detail : [],
-    };
-  },
-  {
-    ...collectionActionCreators,
-  },
-)
 class ProductDetailComment extends React.Component {
+  componentDidMount() {
+    console.log();
+  }
+
   render() {
     const { comment } = this.props;
 
@@ -89,4 +81,15 @@ class ProductDetailComment extends React.Component {
   }
 }
 
-export default ProductDetailComment;
+export default connect(
+  state => {
+    const { comment } = state;
+
+    return {
+      comment: comment.items.detail ? comment.items.detail : [],
+    };
+  },
+  {
+    ...collectionActionCreators,
+  },
+)(ProductDetailComment);

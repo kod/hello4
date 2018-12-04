@@ -13,6 +13,7 @@ import {
   MONETARY,
   WINDOW_HEIGHT,
   SCREENS,
+  BUYOO,
 } from '@/common/constants';
 import { BORDER_COLOR, RED_COLOR, PRIMARY_COLOR } from '@/styles/variables';
 import CartItem from '@/components/CartItem';
@@ -20,28 +21,12 @@ import CustomIcon from '@/components/CustomIcon';
 import priceFormat from '@/utils/priceFormat';
 import EmptyState from '@/components/EmptyState';
 import { getCartTotalMoney } from '@/common/selectors';
-import { addEventListener, removeEventListener } from '@/utils';
+import { addEventListener, removeEventListener, b } from '@/utils';
+import { o } from '@/utils/AuthEncrypt';
 
 const ouhrigdfnjsoeijehrJpg =
   'https://oss.buyoo.vn/usercollect/1/20181101180309_67w.jpg';
 
-@connect(
-  (state, props) => {
-    const { cart } = state;
-
-    return {
-      cart,
-      totalMoney: getCartTotalMoney(state, props),
-      loading: cart.loading,
-      allSelected: cart.allSelected,
-      allSelectedDel: cart.allSelectedDel,
-      isEdit: cart.isEdit,
-    };
-  },
-  {
-    ...cartActionCreators,
-  },
-)
 class Index extends PureComponent {
   constructor(props) {
     super(props);
@@ -62,6 +47,8 @@ class Index extends PureComponent {
 
   addEventListenerCartShow = () => {
     const { cartRequest, authUser } = this.props;
+    console.log(this.props);
+    console.log(authUser);
     if (authUser) cartRequest();
   };
 
@@ -209,7 +196,6 @@ class Index extends PureComponent {
       const selectedIdStr = getSelectedId();
       if (!selectedIdStr) return false;
 
-      console.log(submit(cart));
       router.push(
         `/${SCREENS.OrderWrite}?${qs.stringify({
           ...submit(cart),
@@ -404,4 +390,21 @@ class Index extends PureComponent {
   }
 }
 
-export default Index;
+export default connect(
+  (state, props) => {
+    const { cart } = state;
+
+    return {
+      authUser: o(b, BUYOO),
+      cart,
+      totalMoney: getCartTotalMoney(state, props),
+      loading: cart.loading,
+      allSelected: cart.allSelected,
+      allSelectedDel: cart.allSelectedDel,
+      isEdit: cart.isEdit,
+    };
+  },
+  {
+    ...cartActionCreators,
+  },
+)(Index);

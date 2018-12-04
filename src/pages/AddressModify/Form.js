@@ -81,28 +81,6 @@ const styles = {
   },
 };
 
-@connect(
-  state => {
-    const { cityInfos, userAddAddr, addressModify } = state;
-
-    return {
-      loading: userAddAddr.loading,
-      addressModifyLoading: addressModify.loading,
-      addressModifyLoaded: addressModify.loaded,
-      addressModifyIsTrue: addressModify.isTrue,
-      division2ndItems: cityInfos.division2nd,
-      division3rdItems: cityInfos.division3rd,
-      division4thItems: cityInfos.division4th,
-    };
-  },
-  {
-    ...cityInfosActionCreators,
-    ...addressActionCreators,
-    ...addressModifyActionCreators,
-    ...userAddAddrActionCreators,
-    ...modalActionCreators,
-  },
-)
 class AddressModify extends React.Component {
   constructor(props) {
     super(props);
@@ -327,4 +305,25 @@ class AddressModify extends React.Component {
   }
 }
 
-export default createForm()(AddressModify);
+export default connect(
+  state => {
+    const { cityInfos, userAddAddr, addressModify } = state;
+
+    return {
+      loading: userAddAddr.loading,
+      addressModifyLoading: addressModify.loading,
+      addressModifyLoaded: addressModify.loaded,
+      addressModifyIsTrue: addressModify.isTrue,
+      division2ndItems: cityInfos.division2nd,
+      division3rdItems: cityInfos.division3rd,
+      division4thItems: cityInfos.division4th,
+    };
+  },
+  {
+    ...cityInfosActionCreators,
+    ...addressActionCreators,
+    ...addressModifyActionCreators,
+    ...userAddAddrActionCreators,
+    ...modalActionCreators,
+  },
+)(createForm()(AddressModify));
