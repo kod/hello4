@@ -181,7 +181,6 @@ export const SCREENS = {
   PrepaidScratchCards: 'PrepaidScratchCards',
   ProductDetail: 'ProductDetail',
   OrderDetail: 'OrderDetail',
-  ProductDetailComment: 'ProductDetailComment',
   ProductDetailImages: 'ProductDetailImages',
   ProductDetailMain: 'ProductDetailMain',
   ProductDetailMainGroupon: 'ProductDetailMainGroupon',

@@ -27,41 +27,22 @@ import ProductDetailMain from './ProductDetailMain';
 import * as collectionActionCreators from '@/common/actions/collection';
 import * as modalActionCreators from '@/common/actions/modal';
 import * as cartActionCreators from '@/common/actions/cart';
-import ProductDetailComment from './ProductDetailComment';
-import { addEventListener, removeEventListener, b } from '@/utils';
+import { b } from '@/utils';
 import { getIsCollection } from '@/common/selectors';
 import { o } from '@/utils/AuthEncrypt';
 
 class Index extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      isShowProductDetailComment: false,
-    };
-    this.addEventListenerHandle = this.addEventListenerHandle.bind(this);
-  }
-
   componentDidMount() {
     const { authUser, collectionFetch } = this.props;
 
     if (authUser) {
       collectionFetch();
     }
-    addEventListener(SCREENS.ProductDetail, this.addEventListenerHandle);
   }
 
   componentWillUnmount() {
-    removeEventListener(SCREENS.ProductDetail, this.addEventListenerHandle);
     clearTimeout(this.setTimeoutId);
   }
-
-  addEventListenerHandle = () => {
-    const { isShowProductDetailComment } = this.state;
-    this.setState({
-      isShowProductDetailComment: !isShowProductDetailComment,
-    });
-  };
 
   handleOnPressAddCart = () => {
     const { id, name, authUser, cartAddRequest } = this.props;
@@ -152,7 +133,6 @@ class Index extends React.Component {
   };
 
   render() {
-    const { isShowProductDetailComment } = this.state;
     const { numbers, isCollection, query, pathname, authUser } = this.props;
 
     const styles = {
@@ -290,14 +270,6 @@ class Index extends React.Component {
         fontSize: 20,
         color: FONT_COLOR_FIFTH,
       },
-      productDetailComment: {
-        positoin: 'absolute',
-        zIndex: 199,
-        top: 0,
-        bottom: 0,
-        left: 0,
-        right: 0,
-      },
     };
 
     return (
@@ -351,11 +323,6 @@ class Index extends React.Component {
             <CustomIcon type="gengduo" style={styles.backIcon} />
           </div>
         </div>
-        {isShowProductDetailComment && (
-          <div style={styles.productDetailComment}>
-            <ProductDetailComment />
-          </div>
-        )}
 
         <div style={styles.main}>
           <ProductDetailMain query={query} pathname={pathname} />
