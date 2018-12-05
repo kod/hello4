@@ -105,6 +105,7 @@ class ProductDetailMain extends React.Component {
       price,
       imageUrls,
       imageDesc,
+      goodsProperties,
       propertiesIds,
       propertiesIdsObject,
       propertiesObjectForId,
@@ -226,6 +227,15 @@ class ProductDetailMain extends React.Component {
         height: WINDOW_WIDTH,
         width: WINDOW_WIDTH,
       },
+      subTitle: {
+        paddingLeft: SIDEINTERVAL,
+        paddingRight: SIDEINTERVAL,
+        paddingTop: 10,
+        paddingBottom: 10,
+        borderBottomColor: BORDER_COLOR,
+        borderBottomWidth: 1,
+        borderBottomStyle: 'solid',
+      },
     };
 
     return (
@@ -311,6 +321,9 @@ class ProductDetailMain extends React.Component {
             </div>
           )}
           <SeparateBar />
+          <div style={styles.subTitle}>
+            {formatMessage({ id: 'productDescription' })}
+          </div>
           <div style={styles.imagesDesc}>
             {imageDesc.map((val, key) => (
               <img
@@ -322,6 +335,25 @@ class ProductDetailMain extends React.Component {
               />
             ))}
           </div>
+          {!!goodsProperties && goodsProperties.length > 0 && (
+            <>
+              <SeparateBar />
+              <div style={styles.subTitle}>
+                {formatMessage({ id: 'detailsInfo' })}
+              </div>
+              <div style={styles.imagesDesc}>
+                {goodsProperties.map((val, key) => (
+                  <img
+                    alt=""
+                    key={key}
+                    style={styles.imagesDescItem}
+                    src={`${val}?${xOssProcess(IS_IOS, OSS_IMAGE_QUALITY)}`}
+                    // src={`${val}?x-oss-process=image/quality,Q_${OSS_IMAGE_QUALITY}`}
+                  />
+                ))}
+              </div>
+            </>
+          )}
         </div>
         {/* <Modal
           popup

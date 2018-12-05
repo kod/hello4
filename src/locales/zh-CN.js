@@ -24,6 +24,8 @@ export default {
   defaultAddress: '默认地址',
   delete: '删除',
   details: '详情',
+  detailsInfo: '详情信息',
+  productDescription: '产品描述',
   doYouWantToSignOut: '确定退出登录',
   edit: '编辑',
   fastDelivery: '快速发货',

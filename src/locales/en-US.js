@@ -24,6 +24,8 @@ export default {
   defaultAddress: 'Default address',
   delete: 'Delete',
   details: 'Details',
+  detailsInfo: 'Details info',
+  productDescription: 'Product description',
   doYouWantToSignOut: 'Do you want to sign out',
   edit: 'Edit',
   fastDelivery: 'Fast delivery',

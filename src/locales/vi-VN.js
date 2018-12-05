@@ -24,6 +24,8 @@ export default {
   defaultAddress: 'Địa chỉ mặc định',
   delete: 'Xoá',
   details: 'Chi tiết',
+  detailsInfo: 'Thông tin chi tiết',
+  productDescription: 'Mô tả sản phẩm',
   doYouWantToSignOut: 'Bạn có muốn thoát phải không',
   edit: 'Sửa',
   fastDelivery: 'Giao hàng nhanh',
