@@ -77,6 +77,17 @@ class Settings extends React.Component {
             tips: '',
           },
           {
+            // iconImg: aboutPng,
+            name: formatMessage({ id: 'changePassword' }),
+            func: () =>
+              router.push(
+                `/${SCREENS.ForgotPasswordOne}?${qs.stringify({
+                  title: formatMessage({ id: 'changePassword' }),
+                })}`,
+              ),
+            tips: '',
+          },
+          {
             // iconImg: personPng,
             name: formatMessage({ id: 'language' }),
             func: () =>
