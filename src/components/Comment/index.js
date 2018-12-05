@@ -1,5 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
+import dayjs from 'dayjs';
 import {
   SIDEINTERVAL,
   WINDOW_WIDTH,
@@ -90,7 +91,7 @@ export default ({ data, styleWrap, style, ...restProps }) => (
       data.map((val, key) => (
         <div style={{ ...styles.component, ...style }} key={key}>
           <div style={styles.componentTitle}>
-            <div style={styles.componentAcount}>{val.username}</div>
+            <div style={styles.componentAcount}>{val.username.slice(0, 4)}</div>
             <div style={styles.componentStar}>
               {[0, 1, 2, 3, 4].map(val1 => (
                 <CustomIcon
@@ -113,7 +114,9 @@ export default ({ data, styleWrap, style, ...restProps }) => (
                 // />
               ))}
             </div>
-            <div style={styles.componentTime}>{val.updateTime}</div>
+            <div style={styles.componentTime}>
+              {dayjs(val.updateTime).format('DD/MM/YYYY')}
+            </div>
           </div>
           <div style={styles.componentDesc}>{val.content}</div>
           <div style={styles.componentimageWrap}>
