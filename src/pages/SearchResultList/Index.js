@@ -31,7 +31,6 @@ const ouhrigdfnjsoeijehrJpg =
 
 class SearchResultList extends React.Component {
   componentDidMount() {
-    console.log('12113');
     const { findProductsClear, findProductsFetch, findcontent } = this.props;
     findProductsClear();
     findProductsFetch({

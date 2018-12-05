@@ -98,9 +98,7 @@ class SearchResult extends React.Component {
   }
 
   keypressListener(e) {
-    console.log(e);
     const keycode = e.keyCode;
-    console.log(keycode);
 
     if (keycode === 13) {
       this.handleOnPressSubmit();
@@ -111,7 +109,6 @@ class SearchResult extends React.Component {
     const { form, searchHistoryAdd } = this.props;
     form.validateFields((error, value) => {
       const { search } = value;
-      console.log(search);
       if (search.length > 0) {
         searchHistoryAdd([search]);
         router.push(

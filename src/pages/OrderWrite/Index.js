@@ -125,8 +125,6 @@ class OrderWrite extends React.Component {
                   from: SCREENS.OrderWrite,
                 })}`,
               );
-
-              // console.log('（货到付款）提交订单成功');
             },
           },
         ]);

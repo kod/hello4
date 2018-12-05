@@ -90,7 +90,6 @@ export default connect(
         query: { brandId = '' },
       },
     } = props;
-    console.log(props);
 
     return {
       brandId,

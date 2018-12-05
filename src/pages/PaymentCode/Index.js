@@ -183,11 +183,10 @@ class PaymentCode extends React.Component {
     }
   };
 
-  async handleOnPressCopy(val) {
+  async handleOnPressCopy() {
     const { authUser } = this.props;
 
     if (authUser) {
-      console.log(val);
       // Clipboard.setString(val);
       Modal.alert('', formatMessage({ id: 'successfulCopy' }), [
         {

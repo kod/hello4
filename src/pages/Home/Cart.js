@@ -47,8 +47,6 @@ class Index extends PureComponent {
 
   addEventListenerCartShow = () => {
     const { cartRequest, authUser } = this.props;
-    console.log(this.props);
-    console.log(authUser);
     if (authUser) cartRequest();
   };
 

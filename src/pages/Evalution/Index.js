@@ -119,35 +119,9 @@ class Evalution extends React.Component {
           },
         ]);
 
-        console.log(err.message);
+        console.warn(err.message);
       },
     });
-
-    // const imageCompressor = new Compressor();
-    // imageCompressor
-    //   .compress(file, {
-    //     quality: 0.7,
-    //   })
-    //   .then(result => {
-    //     console.log(result);
-    //     // Handle the compressed image file.
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-    //     // Handle the error
-    //   });
-
-    // new ImageCompressor(file, {
-    //   quality: 1,
-    //   success(result) {
-    //     collectFilesFetch({
-    //       fileOrigin: files[files.length - 1].file,
-    //     });
-    //   },
-    //   error(e) {
-    //     console.log(e);
-    //   },
-    // });
   };
 
   onChange = (files, type) => {
@@ -370,7 +344,6 @@ class Evalution extends React.Component {
                 id: key,
               }))}
               onChange={this.onChange}
-              // onImageClick={(index, fs) => console.log(index, fs)}
               selectable={images.length < 4}
               multiple={multiple}
             />

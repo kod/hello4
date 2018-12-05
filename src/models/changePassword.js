@@ -86,8 +86,7 @@ export default {
     *[CHANGE_PASSWORD.SUCCESS](action) {
       const { screen } = action.payload;
       try {
-        yield console.log(screen);
-        dispatchEvent(screen);
+        yield dispatchEvent(screen);
       } catch (err) {
         console.warn(err);
       }
