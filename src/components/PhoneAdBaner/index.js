@@ -38,7 +38,7 @@ const styles = {
   },
 };
 
-export default ({ groupon = false, data, style, ...restProps }) => (
+export default ({ data, style, ...restProps }) => (
   <div style={{ ...styles.itemWrap, ...style }} {...restProps}>
     {data.map((val, key) => (
       <div

@@ -73,16 +73,14 @@ const styles = {
   },
 };
 
-export default ({ groupon = false, data, style, ...restProps }) => (
+export default ({ data, style, ...restProps }) => (
   <div style={{ ...styles.itemWrap, ...style }} {...restProps}>
     {data.map((val, key) => (
       <div
         style={styles.item}
         key={key}
         onClick={() => {
-          router.push(
-            `/ProductDetail?brandId=${val.brandId}`,
-          );
+          router.push(`/ProductDetail?brandId=${val.brandId}`);
         }}
       >
         <img
