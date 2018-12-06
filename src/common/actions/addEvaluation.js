@@ -1,4 +1,4 @@
-import { ADD_EVALUATION } from '../constants/actionTypes';
+import { ADD_EVALUATION } from '@/common/constants/actionTypes';
 import { ADDEVALUATION_NAMESPACE } from '@/common/constants';
 
 export function addEvaluationFetchSuccess(params) {

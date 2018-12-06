@@ -1,4 +1,4 @@
-import { AD_PHONE } from '../constants/actionTypes';
+import { AD_PHONE } from '@/common/constants/actionTypes';
 import { ADPHONE_NAMESPACE } from '@/common/constants';
 
 export function adPhoneFetchSuccess(

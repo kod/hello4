@@ -1,4 +1,4 @@
-import { ORDER_CANCEL } from '../constants/actionTypes';
+import { ORDER_CANCEL } from '@/common/constants/actionTypes';
 import { ORDERCANCEL_NAMESPACE } from '@/common/constants';
 
 export function orderCancelFetchSuccess(params) {

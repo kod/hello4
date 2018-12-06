@@ -6,7 +6,7 @@
 
 import { createSelector } from 'reselect';
 import { denormalize } from 'normalizr';
-import Schemas from '../constants/schemas';
+import Schemas from '@/common/constants/schemas';
 
 // const defaultArray = [];
 const defaultObject = {};

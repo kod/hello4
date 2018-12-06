@@ -1,4 +1,4 @@
-import { COLLECT_FILES } from '../constants/actionTypes';
+import { COLLECT_FILES } from '@/common/constants/actionTypes';
 import { COLLECTFILES_NAMESPACE } from '@/common/constants';
 
 export function collectFilesFetchSuccess(item) {

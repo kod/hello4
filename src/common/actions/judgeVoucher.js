@@ -1,4 +1,4 @@
-import { JUDGE_VOUCHER } from '../constants/actionTypes';
+import { JUDGE_VOUCHER } from '@/common/constants/actionTypes';
 import { JUDGEVOUCHER_NAMESPACE } from '@/common/constants';
 
 export function judgeVoucherFetchSuccess({ items, status }) {

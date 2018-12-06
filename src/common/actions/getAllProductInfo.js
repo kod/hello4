@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import { GET_ALL_PRODUCT_INFO } from '../constants/actionTypes';
+import { GET_ALL_PRODUCT_INFO } from '@/common/constants/actionTypes';
 import { GETALLPRODUCTINFO_NAMESPACE } from '@/common/constants';
 
 export function getAllProductInfoFetchSuccess(

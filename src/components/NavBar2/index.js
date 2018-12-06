@@ -2,7 +2,7 @@ import React from 'react';
 
 import { BORDER_COLOR_FIRST } from '@/styles/variables';
 import { SIDEINTERVAL } from '@/common/constants';
-import CustomIcon from '../CustomIcon';
+import CustomIcon from '@/components/CustomIcon';
 
 const styles = {
   component: {

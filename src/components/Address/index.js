@@ -3,7 +3,7 @@ import { formatMessage } from 'umi/locale';
 
 import { SIDEINTERVAL } from '@/common/constants';
 import { addressJoin } from '@/utils';
-import CustomIcon from '../CustomIcon';
+import CustomIcon from '@/components/CustomIcon';
 
 const styles = {
   address: {
