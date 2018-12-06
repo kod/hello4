@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Modal } from 'antd-mobile';
 import { connect } from 'dva';
 
-import * as cityInfosActionCreators from '../common/actions/cityInfos';
-import * as modalActionCreators from '../common/actions/modal';
+import * as cityInfosActionCreators from '@/common/actions/cityInfos';
+import * as modalActionCreators from '@/common/actions/modal';
 import { WINDOW_WIDTH, SIDEINTERVAL, WINDOW_HEIGHT } from '@/common/constants';
 import { BORDER_COLOR, PRIMARY_COLOR } from '@/styles/variables';
 import CustomIcon from '@/components/CustomIcon';

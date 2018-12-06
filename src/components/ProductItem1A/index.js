@@ -12,7 +12,7 @@ import {
 } from '@/common/constants';
 import { xOssProcess } from '@/utils';
 import { BORDER_COLOR, RED_COLOR } from '@/styles/variables';
-import Loader from '../Loader';
+import Loader from '@/components/Loader';
 import priceFormat from '@/utils/priceFormat';
 import stylesLess from './index.less';
 

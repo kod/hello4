@@ -1,8 +1,8 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
 import { WINDOW_WIDTH, IS_IOS, OSS_IMAGE_QUALITY } from '@/common/constants';
-import ProductItem4 from '../ProductItem4';
-import SeparateBar from '../SeparateBar';
+import ProductItem4 from '@/components/ProductItem4';
+import SeparateBar from '@/components/SeparateBar';
 import { xOssProcess } from '@/utils';
 
 const styles = {

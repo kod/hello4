@@ -14,11 +14,11 @@ import * as adPhoneActionCreators from '@/common/actions/adPhone';
 //   SCREENS,
 // } from '@/common/constants';
 // import { xOssProcess } from '@/utils';
-import ProductItem4 from '../ProductItem4';
-import PhoneAdBaner from '../PhoneAdBaner';
-import BrandList from '../BrandList';
-import FloorTitle from '../FloorTitle';
-import SwiperFlatList from '../SwiperFlatList';
+import ProductItem4 from '@/components/ProductItem4';
+import PhoneAdBaner from '@/components/PhoneAdBaner';
+import BrandList from '@/components/BrandList';
+import FloorTitle from '@/components/FloorTitle';
+import SwiperFlatList from '@/components/SwiperFlatList';
 import { WINDOW_WIDTH } from '@/common/constants';
 
 class Scrollable2 extends Component {

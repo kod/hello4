@@ -1,4 +1,4 @@
-import { API_DEBUG, IS_SHOW_LOG } from '../common/constants';
+import { API_DEBUG, IS_SHOW_LOG } from '@/common/constants';
 
 const axios = require('axios');
 const qs = require('qs');
@@ -309,7 +309,7 @@ class ReactStore {
     return this.requestUrl(`${PORT_83}/fun/trade/orderCancel`, options);
   }
 
-  orderPayInternetBank(o) {
+  orderPayInternetBank = o => {
     const options = o;
     if (!options) {
       return Promise.reject(new Error('fields required'));
@@ -324,9 +324,9 @@ class ReactStore {
       ),
     );
     return `${BASE_URL}${PORT_83}/fun/trade/order/pay?${queryString}`;
-  }
+  };
 
-  payNormalOrderInternetBank(o) {
+  payNormalOrderInternetBank = o => {
     const options = o;
     if (!options) {
       return Promise.reject(new Error('fields required'));
@@ -341,7 +341,7 @@ class ReactStore {
       ),
     );
     return `${BASE_URL}${PORT_83}/fun/trade/payNormalOrder?${queryString}`;
-  }
+  };
 
   queryOrder(o) {
     let options = o;
