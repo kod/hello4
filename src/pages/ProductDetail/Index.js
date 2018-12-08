@@ -509,7 +509,6 @@ class Index extends React.Component {
       },
       main: {
         position: 'relative',
-        paddingTop: 45,
         paddingBottom: 50,
       },
     };
