@@ -363,6 +363,7 @@ export default {
   pleaseLogIn: 'Please log in',
   paymentOnDelivery: 'Payment on delivery',
   changePassword: 'Change the password',
+  overview: 'Overview',
   receiveServicesOffers:
     'I am willing to receive advertising and various information from buyoo.vip',
   emailCodeTips:

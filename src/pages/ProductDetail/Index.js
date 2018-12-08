@@ -283,7 +283,7 @@ class Index extends React.Component {
         fontSize: FONT_SIZE_SECOND,
       },
       navHeaderLeft: {
-        paddingRight: SIDEINTERVAL,
+        // paddingRight: SIDEINTERVAL,
       },
       navHeaderIcon: {
         color: FONT_COLOR_SECOND,
@@ -293,7 +293,7 @@ class Index extends React.Component {
         fontSize: 20,
       },
       navHeaderRight: {
-        paddingLeft: SIDEINTERVAL,
+        // paddingLeft: SIDEINTERVAL,
       },
       navHeaderLocationIcon: {
         display: 'none',
@@ -318,20 +318,20 @@ class Index extends React.Component {
         <ul style={styles.navHeaderWrap} data-gumshoe>
           <li style={styles.navHeaderItem}>
             <p style={styles.navHeaderText} data-scroll href="#navproduct">
-              <CustomIcon
+              {/* <CustomIcon
                 type="location"
                 style={styles.navHeaderLocationIcon}
-              />
-              <span>商品</span>
+              /> */}
+              <span>{formatMessage({ id: 'overview' })}</span>
             </p>
           </li>
           <li style={styles.navHeaderItem}>
             <p style={styles.navHeaderText} data-scroll href="#navcomment">
-              <CustomIcon
+              {/* <CustomIcon
                 type="location"
                 style={styles.navHeaderLocationIcon}
-              />
-              <span>评论</span>
+              /> */}
+              <span>{formatMessage({ id: 'evaluation' })}</span>
             </p>
           </li>
           <li style={styles.navHeaderItem}>
@@ -340,20 +340,20 @@ class Index extends React.Component {
               data-scroll
               href="#productDescription"
             >
-              <CustomIcon
+              {/* <CustomIcon
                 type="location"
                 style={styles.navHeaderLocationIcon}
-              />
-              <span>详情</span>
+              /> */}
+              <span>{formatMessage({ id: 'details' })}</span>
             </p>
           </li>
           <li style={styles.navHeaderItem}>
             <p style={styles.navHeaderText} data-scroll href="#navparameters">
-              <CustomIcon
+              {/* <CustomIcon
                 type="location"
                 style={styles.navHeaderLocationIcon}
-              />
-              <span>参数</span>
+              /> */}
+              <span>{formatMessage({ id: 'parameter' })}</span>
             </p>
           </li>
         </ul>
