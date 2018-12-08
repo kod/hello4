@@ -300,6 +300,11 @@ class Index extends React.Component {
         marginRight: SIDEINTERVAL * 0.1,
         fontSize: 12,
       },
+      navHeaderSpan: {
+        display: 'inline-block',
+        height: 45,
+        lineHeight: '45px',
+      },
     };
 
     return (
@@ -322,7 +327,9 @@ class Index extends React.Component {
                 type="location"
                 style={styles.navHeaderLocationIcon}
               /> */}
-              <span>{formatMessage({ id: 'overview' })}</span>
+              <span style={styles.navHeaderSpan}>
+                {formatMessage({ id: 'overview' })}
+              </span>
             </p>
           </li>
           <li style={styles.navHeaderItem}>
@@ -331,7 +338,9 @@ class Index extends React.Component {
                 type="location"
                 style={styles.navHeaderLocationIcon}
               /> */}
-              <span>{formatMessage({ id: 'evaluation' })}</span>
+              <span style={styles.navHeaderSpan}>
+                {formatMessage({ id: 'evaluation' })}
+              </span>
             </p>
           </li>
           <li style={styles.navHeaderItem}>
@@ -344,7 +353,9 @@ class Index extends React.Component {
                 type="location"
                 style={styles.navHeaderLocationIcon}
               /> */}
-              <span>{formatMessage({ id: 'details' })}</span>
+              <span style={styles.navHeaderSpan}>
+                {formatMessage({ id: 'details' })}
+              </span>
             </p>
           </li>
           <li style={styles.navHeaderItem}>
@@ -353,7 +364,9 @@ class Index extends React.Component {
                 type="location"
                 style={styles.navHeaderLocationIcon}
               /> */}
-              <span>{formatMessage({ id: 'parameter' })}</span>
+              <span style={styles.navHeaderSpan}>
+                {formatMessage({ id: 'parameter' })}
+              </span>
             </p>
           </li>
         </ul>

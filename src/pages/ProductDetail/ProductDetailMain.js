@@ -348,21 +348,26 @@ class ProductDetailMain extends React.Component {
             ))}
           </div>
           <SeparateBar />
-          <div id="navparameters" style={styles.subTitle}>
-            {formatMessage({ id: 'detailsInfo' })}
-          </div>
-          {!!goodsProperties && goodsProperties.length > 0 && (
-            <div style={styles.imagesDesc}>
-              {goodsProperties.map((val, key) => (
-                <img
-                  alt=""
-                  key={key}
-                  style={styles.imagesDescItem}
-                  src={`${val}?${xOssProcess(IS_IOS, OSS_IMAGE_QUALITY)}`}
-                  // src={`${val}?x-oss-process=image/quality,Q_${OSS_IMAGE_QUALITY}`}
-                />
-              ))}
-            </div>
+          {!!goodsProperties && goodsProperties.length > 0 ? (
+            <>
+              <div id="navparameters" style={styles.subTitle}>
+                {formatMessage({ id: 'detailsInfo' })}
+              </div>
+
+              <div style={styles.imagesDesc}>
+                {goodsProperties.map((val, key) => (
+                  <img
+                    alt=""
+                    key={key}
+                    style={styles.imagesDescItem}
+                    src={`${val}?${xOssProcess(IS_IOS, OSS_IMAGE_QUALITY)}`}
+                    // src={`${val}?x-oss-process=image/quality,Q_${OSS_IMAGE_QUALITY}`}
+                  />
+                ))}
+              </div>
+            </>
+          ) : (
+            <div id="navparameters" />
           )}
         </div>
       </div>
