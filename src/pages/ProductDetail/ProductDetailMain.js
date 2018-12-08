@@ -307,28 +307,30 @@ class ProductDetailMain extends React.Component {
               <CustomIcon style={styles.specArrow} type="right" />
             </div>
           </div>
-          <SeparateBar />
-          <div id="navcomment" style={styles.subTitle}>
-            {formatMessage({ id: 'evaluation' })}
-          </div>
           <Comment data={comment} />
           {comment.length ? (
-            <div style={styles.commentMore}>
-              <div
-                style={styles.commentMoreText}
-                onClick={() =>
-                  router.push(
-                    `/Comment?${qs.stringify({
-                      brandId,
-                    })}`,
-                  )
-                }
-              >
-                {formatMessage({ id: 'more' })}
+            <>
+              <SeparateBar />
+              <div id="navcomment" style={styles.subTitle}>
+                {formatMessage({ id: 'evaluation' })}
               </div>
-            </div>
+              <div style={styles.commentMore}>
+                <div
+                  style={styles.commentMoreText}
+                  onClick={() =>
+                    router.push(
+                      `/Comment?${qs.stringify({
+                        brandId,
+                      })}`,
+                    )
+                  }
+                >
+                  {formatMessage({ id: 'more' })}
+                </div>
+              </div>
+            </>
           ) : (
-            <div>暂无评论</div>
+            <div id="navcomment" />
           )}
           <SeparateBar />
           <div id="productDescription" style={styles.subTitle}>

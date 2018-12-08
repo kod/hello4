@@ -27,7 +27,7 @@ import ProductDetailMain from './ProductDetailMain';
 import * as collectionActionCreators from '@/common/actions/collection';
 import * as modalActionCreators from '@/common/actions/modal';
 import * as cartActionCreators from '@/common/actions/cart';
-import { b } from '@/utils';
+import { b, addEventListener, removeEventListener } from '@/utils';
 import { getIsCollection } from '@/common/selectors';
 import { o } from '@/utils/AuthEncrypt';
 
@@ -46,29 +46,27 @@ class Index extends React.Component {
     if (authUser) {
       collectionFetch();
     }
-    window.addEventListener(
-      'scroll',
-      () => {
-        const scrollTop =
-          document.body.scrollTop + document.documentElement.scrollTop;
-        console.log(scrollTop);
-        if (scrollTop > 50) {
-          this.setState({
-            isShowNavHeader: true,
-          });
-        } else {
-          this.setState({
-            isShowNavHeader: false,
-          });
-        }
-      },
-      false,
-    );
+    addEventListener('scroll', this.addEventListenerHandleScroll);
   }
 
   componentWillUnmount() {
     clearTimeout(this.setTimeoutId);
+    removeEventListener('scroll', this.addEventListenerHandleScroll);
   }
+
+  addEventListenerHandleScroll = () => {
+    const scrollTop =
+      document.body.scrollTop + document.documentElement.scrollTop;
+    if (scrollTop > 45) {
+      this.setState({
+        isShowNavHeader: true,
+      });
+    } else {
+      this.setState({
+        isShowNavHeader: false,
+      });
+    }
+  };
 
   handleOnPressAddCart = () => {
     const { id, name, authUser, cartAddRequest } = this.props;
@@ -98,6 +96,32 @@ class Index extends React.Component {
         id,
       })}`,
     );
+  }
+
+  handleOnModalOperation() {
+    const { authUser } = this.props;
+    Modal.operation([
+      {
+        text: authUser
+          ? formatMessage({ id: 'me' })
+          : formatMessage({ id: 'login' }),
+        onPress: () => (authUser ? router.push(`/Me`) : router.push('/Login')),
+      },
+      {
+        text: formatMessage({ id: 'home' }),
+        onPress: () => router.push(`/`),
+      },
+      {
+        text: formatMessage({ id: 'myOrder' }),
+        onPress: () =>
+          authUser ? router.push(`/Order`) : router.push('/Login'),
+      },
+      {
+        text: formatMessage({ id: 'myCollection' }),
+        onPress: () =>
+          authUser ? router.push(`/MyCollection`) : router.push('/Login'),
+      },
+    ]);
   }
 
   handleToggleService() {
@@ -159,7 +183,6 @@ class Index extends React.Component {
   };
 
   renderDefaultHeader() {
-    const { authUser } = this.props;
     const styles = {
       header: {
         display: 'flex',
@@ -216,33 +239,7 @@ class Index extends React.Component {
         </div>
         <div
           style={styles.headerRight}
-          onClick={() =>
-            Modal.operation([
-              {
-                text: authUser
-                  ? formatMessage({ id: 'me' })
-                  : formatMessage({ id: 'login' }),
-                onPress: () =>
-                  authUser ? router.push(`/Me`) : router.push('/Login'),
-              },
-              {
-                text: formatMessage({ id: 'home' }),
-                onPress: () => router.push(`/`),
-              },
-              {
-                text: formatMessage({ id: 'myOrder' }),
-                onPress: () =>
-                  authUser ? router.push(`/Order`) : router.push('/Login'),
-              },
-              {
-                text: formatMessage({ id: 'myCollection' }),
-                onPress: () =>
-                  authUser
-                    ? router.push(`/MyCollection`)
-                    : router.push('/Login'),
-              },
-            ])
-          }
+          onClick={() => this.handleOnModalOperation()}
         >
           <CustomIcon type="gengduo" style={styles.backIcon} />
         </div>
@@ -307,7 +304,15 @@ class Index extends React.Component {
 
     return (
       <div data-gumshoe-header data-scroll-header style={styles.navHeader}>
-        <div style={styles.navHeaderLeft}>
+        <div
+          style={styles.navHeaderLeft}
+          onClick={() => {
+            router.go(-1);
+            this.setTimeoutId = setTimeout(() => {
+              router.push(`/`);
+            }, 300);
+          }}
+        >
           <CustomIcon type="left" style={styles.navHeaderIcon} />
         </div>
         <ul style={styles.navHeaderWrap} data-gumshoe>
@@ -352,7 +357,10 @@ class Index extends React.Component {
             </p>
           </li>
         </ul>
-        <div style={styles.navHeaderRight}>
+        <div
+          style={styles.navHeaderRight}
+          onClick={() => this.handleOnModalOperation()}
+        >
           <CustomIcon type="gengduo" style={styles.navHeaderIcon} />
         </div>
       </div>
