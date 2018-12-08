@@ -377,7 +377,7 @@ class Index extends React.Component {
         left: 0,
         right: 0,
         zIndex: 99,
-        height: 45,
+        height: 50,
         display: 'flex',
         flexDirection: 'row',
         borderTopColor: BORDER_COLOR,
