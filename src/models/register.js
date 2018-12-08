@@ -11,6 +11,7 @@ import {
   registerFetchFailure,
 } from '@/common/actions/register';
 import { addError } from '@/common/actions/error';
+import { loginFetchSuccess } from '@/common/actions/login';
 
 const initState = {
   loading: false,
@@ -121,7 +122,7 @@ export default {
               break;
           }
         } else {
-          yield put(registerFetchSuccess());
+          yield put(registerFetchSuccess(response));
         }
       } catch (err) {
         yield put(registerFetchFailure());
@@ -130,13 +131,14 @@ export default {
     },
     *[REGISTER.SUCCESS](action, { put }) {
       try {
-        // const {
-        //   from,
-        // } = action.payload;
+        const { response } = action.payload;
+        console.log(response);
+        yield put(loginFetchSuccess(response, ''));
+
         Modal.alert('', formatMessage({ id: 'signUpSuccessfully' }), [
           {
             text: formatMessage({ id: 'confirm' }),
-            onPress: () => router.go(-2),
+            onPress: () => router.go(-3),
             style: 'default',
           },
         ]);
