@@ -307,13 +307,13 @@ class ProductDetailMain extends React.Component {
               <CustomIcon style={styles.specArrow} type="right" />
             </div>
           </div>
-          <Comment data={comment} />
           {comment.length ? (
             <>
               <SeparateBar />
               <div id="navcomment" style={styles.subTitle}>
                 {formatMessage({ id: 'evaluation' })}
               </div>
+              <Comment data={comment} />
               <div style={styles.commentMore}>
                 <div
                   style={styles.commentMoreText}
