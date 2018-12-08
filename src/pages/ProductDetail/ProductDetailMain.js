@@ -15,24 +15,18 @@ import {
   MONETARY,
   SIDEINTERVAL,
   WINDOW_HEIGHT,
-  STATUSBAR_HEIGHT,
-  // OSS_IMAGE_QUALITY,
-  // SCREENS,
   MODAL_TYPES,
   IS_IOS,
   OSS_IMAGE_QUALITY,
 } from '@/common/constants';
 import priceFormat from '@/utils/priceFormat';
+import smoothScroll from '@/utils/smoothScroll';
+import gumshoe from '@/utils/gumshoe';
 import CustomIcon from '@/components/CustomIcon';
 import { BORDER_COLOR, RED_COLOR } from '@/styles/variables';
 import Comment from '@/components/Comment';
 import SeparateBar from '@/components/SeparateBar';
-import {
-  // dispatchEvent,
-  addEventListener,
-  removeEventListener,
-  xOssProcess,
-} from '@/utils';
+import { addEventListener, removeEventListener, xOssProcess } from '@/utils';
 
 class ProductDetailMain extends React.Component {
   constructor(props) {
@@ -60,10 +54,22 @@ class ProductDetailMain extends React.Component {
     commentFetch(brandId);
 
     addEventListener('ProductDetailMain', this.addEventListenerHandle);
+    setTimeout(() => {
+      smoothScroll.init({
+        offset: 20,
+      });
+      gumshoe.init({
+        offset: 21,
+        activeClass: 'gumshoeActive',
+        selector: '[data-gumshoe] p',
+      });
+    }, 2000);
   }
 
   componentWillUnmount() {
     removeEventListener('ProductDetailMain', this.addEventListenerHandle);
+    smoothScroll.destroy();
+    gumshoe.destroy();
   }
 
   addEventListenerHandle = ({ detail: { method, params } }) => {
@@ -97,7 +103,6 @@ class ProductDetailMain extends React.Component {
   };
 
   render() {
-    // const { isShowParamsSelectModal } = this.state;
     const {
       name,
       comment,
@@ -116,11 +121,9 @@ class ProductDetailMain extends React.Component {
 
     const styles = {
       container: {
-        flex: 1,
         position: 'relative',
       },
       statusbarPlaceholder: {
-        height: STATUSBAR_HEIGHT,
         backgroundColor: '#fff',
       },
       product: {
@@ -241,6 +244,8 @@ class ProductDetailMain extends React.Component {
     return (
       <div style={styles.container}>
         <ModalRoot />
+        <div id="navproduct" />
+
         <div style={styles.statusbarPlaceholder}>
           <div style={styles.carousel}>
             {imageUrls && imageUrls.length > 0 && (
@@ -303,8 +308,11 @@ class ProductDetailMain extends React.Component {
             </div>
           </div>
           <SeparateBar />
+          <div id="navcomment" style={styles.subTitle}>
+            {formatMessage({ id: 'evaluation' })}
+          </div>
           <Comment data={comment} />
-          {!!comment.length && (
+          {comment.length ? (
             <div style={styles.commentMore}>
               <div
                 style={styles.commentMoreText}
@@ -319,9 +327,11 @@ class ProductDetailMain extends React.Component {
                 {formatMessage({ id: 'more' })}
               </div>
             </div>
+          ) : (
+            <div>暂无评论</div>
           )}
           <SeparateBar />
-          <div style={styles.subTitle}>
+          <div id="productDescription" style={styles.subTitle}>
             {formatMessage({ id: 'productDescription' })}
           </div>
           <div style={styles.imagesDesc}>
@@ -335,54 +345,24 @@ class ProductDetailMain extends React.Component {
               />
             ))}
           </div>
+          <SeparateBar />
+          <div id="navparameters" style={styles.subTitle}>
+            {formatMessage({ id: 'detailsInfo' })}
+          </div>
           {!!goodsProperties && goodsProperties.length > 0 && (
-            <>
-              <SeparateBar />
-              <div style={styles.subTitle}>
-                {formatMessage({ id: 'detailsInfo' })}
-              </div>
-              <div style={styles.imagesDesc}>
-                {goodsProperties.map((val, key) => (
-                  <img
-                    alt=""
-                    key={key}
-                    style={styles.imagesDescItem}
-                    src={`${val}?${xOssProcess(IS_IOS, OSS_IMAGE_QUALITY)}`}
-                    // src={`${val}?x-oss-process=image/quality,Q_${OSS_IMAGE_QUALITY}`}
-                  />
-                ))}
-              </div>
-            </>
+            <div style={styles.imagesDesc}>
+              {goodsProperties.map((val, key) => (
+                <img
+                  alt=""
+                  key={key}
+                  style={styles.imagesDescItem}
+                  src={`${val}?${xOssProcess(IS_IOS, OSS_IMAGE_QUALITY)}`}
+                  // src={`${val}?x-oss-process=image/quality,Q_${OSS_IMAGE_QUALITY}`}
+                />
+              ))}
+            </div>
           )}
         </div>
-        {/* <Modal
-          popup
-          visible={isShowParamsSelectModal}
-          onClose={() =>
-            this.setState({
-              isShowParamsSelectModal: !isShowParamsSelectModal,
-            })
-          }
-          animationType="slide-up"
-        >
-          <List renderHeader={() => <div>委托买入</div>} className="popup-list">
-            {['股票名称', '股票代码', '买入价格'].map((i, index) => (
-              <List.Item key={index}>{i}</List.Item>
-            ))}
-            <List.Item>
-              <Button
-                type="primary"
-                onClick={() =>
-                  this.setState({
-                    isShowParamsSelectModal: !isShowParamsSelectModal,
-                  })
-                }
-              >
-                买入
-              </Button>
-            </List.Item>
-          </List>
-        </Modal> */}
       </div>
     );
   }
@@ -391,9 +371,6 @@ class ProductDetailMain extends React.Component {
 export default connect(
   (state, props) => {
     const { productDetailInfo, comment } = state;
-    // const {
-    //   screenProps: { brandId, propertiesIds },
-    // } = props;
 
     const {
       query: { brandId, propertiesIds = '', id = '' },
