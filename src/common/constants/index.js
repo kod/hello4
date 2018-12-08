@@ -1,4 +1,4 @@
-export const DEBUG = true;
+export const DEBUG = false;
 export const API_DEBUG = DEBUG;
 export const IS_SHOW_LOG = DEBUG;
 export const IS_I18N = DEBUG; // 是否支持多语言; 默认为越南语
@@ -9,7 +9,7 @@ export const LINE_HEIGHT_RATIO = 1.618; // 行高
 export const IS_PROMPT_FIRSTPAY = true; // 没有选择首付时是否提示选择首付
 export const MIN_FIRSTPAY_RATE = 0.1; // 最低首付比: 0, 0.1, 0.2, 0.3, 0.4, 0.5
 export const IS_IOS = /iP(ad|hone|od)/.test(navigator.userAgent);
-export const VERSION = '1.5.0-beta';
+export const VERSION = '1.5.0';
 
 // namespace -start-
 export const GETADVERSTTOPINFO_NAMESPACE = 'getAdverstTopInfo';
