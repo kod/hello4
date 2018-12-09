@@ -320,7 +320,7 @@ class Index extends React.Component {
         >
           <CustomIcon type="left" style={styles.navHeaderIcon} />
         </div>
-        <ul style={styles.navHeaderWrap} data-gumshoe>
+        <ul style={styles.navHeaderWrap} data-gumshoe onClick={() => {}}>
           <li style={styles.navHeaderItem}>
             <p style={styles.navHeaderText} data-scroll href="#navproduct">
               {/* <CustomIcon
