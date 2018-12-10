@@ -22,7 +22,7 @@ import {
   OSS_IMAGE_QUALITY,
 } from '@/common/constants';
 
-const invitationCodeNavigate = (navigation, id) => {
+const invitationCodeNavigate = id => {
   router.push(`/${SCREENS.RegisterStepOne}?${qs.stringify({ id })}`);
   // navigation.dispatch(
   //   NavigationActions.reset({
@@ -298,7 +298,7 @@ export const navigateCheckLogin = (authUser, screensName, params = {}) => {
 
 export const analyzeUrlNavigate = ({
   linkUrl,
-  navigation,
+  // navigation,
   authUser = false,
   isQrCode = false,
 }) => {
@@ -312,7 +312,7 @@ export const analyzeUrlNavigate = ({
   let subClassfyIdRegexResult = null;
   let thirdClassfyIdRegexResult = null;
 
-  const customNavigate = (routeName, params = {}) => {
+  const customNavigate = routeName => {
     if (isQrCode) {
       // navigation.dispatch(
       //   NavigationActions.reset({
@@ -324,7 +324,7 @@ export const analyzeUrlNavigate = ({
       //   }),
       // );
     } else {
-      router.push(`/${routeName}?${qs.stringify(params)}`);
+      router.push(`/${routeName}`);
     }
   };
 
@@ -400,13 +400,11 @@ export const analyzeUrlNavigate = ({
         customNavigate(SCREENS.SmartDigital);
         break;
 
-      case 'details':
+      case 'ProductDetail':
         // 商品详情
         brandIdRegexResult = linkUrl.match(BRANDID_REGEX);
         if (brandIdRegexResult) {
-          customNavigate(SCREENS.ProductDetail, {
-            brandId: brandIdRegexResult[1],
-          });
+          customNavigate(brandIdRegexResult[1]);
         }
         break;
 
@@ -436,7 +434,7 @@ export const analyzeUrlNavigate = ({
         // 邀请注册
         shareIdResult = linkUrl.match(SHAREID_REGEX);
         invitationCodeNavigate(
-          navigation,
+          // navigation,
           shareIdResult ? shareIdResult[1] : '',
         );
         break;

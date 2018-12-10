@@ -78,7 +78,7 @@ export const FUNCARD_HELP_APPLY = `${DOMAIN}/html/aboutFunCard.html#Cach-thuc-da
 export const FUNCARD_HELP_STAGE = `${DOMAIN}/html/aboutFunCard.html#Huong-dan-mua-hang-bang-Buyoo-Fun-Card`; // 如何分期
 export const FUNCARD_HELP_REPAY = `${DOMAIN}/html/aboutFunCard.html#Thanh-toan-no-hang-thang-the-Buyoo-Fun-Card-nhu-the-nao`; // 如何还款
 
-export const ICON_SCRIPTURL = '//at.alicdn.com/t/font_892500_x5rzysu98nr.js';
+export const ICON_SCRIPTURL = '//at.alicdn.com/t/font_892500_eo65rtyplqm.js';
 
 export const CREDIT_PAYWAY = 1;
 export const INTERNET_BANK_PAYWAY = 2;
@@ -92,8 +92,8 @@ export const NAME_EXPR = /^.*\s.*$/; // 越南姓名
 export const IDENTIFICATION_EXPR = /^(\d{9}|\d{12})$/; // 越南身份证
 export const CARD_PASSWORD_EXPR = /^\d{6}$/; // 交易密码
 export const LOGIN_PASSWORD_EXPR = /^[\w~!@#$%^&*()_+`\-=[\]{}\\|;:,./<>?]{8,20}$/; // 登录密码
-export const HTML_REGEX = /\/(\w+)\.html/;
-export const BRANDID_REGEX = /brandId=(\d+)/;
+export const HTML_REGEX = /\/(\w+)\?/;
+export const BRANDID_REGEX = /\.vip\/(.*)/;
 export const ORDERNO_REGEX = /orderNo=(\d+)/;
 export const TRADENO_REGEX = /tradeNo=(\d+)/;
 export const CLASSIFYID_REGEX = /classifyId=(\d+)/;

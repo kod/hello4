@@ -12,7 +12,7 @@ import {
 } from '@/common/constants';
 import priceFormat from '@/utils/priceFormat';
 import { RED_COLOR } from '@/styles/variables';
-import { xOssProcess } from '@/utils';
+import { xOssProcess, analyzeUrlNavigate } from '@/utils';
 
 const itemIntervalWidth = SIDEINTERVAL;
 const itemWidth = (WINDOW_WIDTH - itemIntervalWidth * 4) / 3;
@@ -80,7 +80,11 @@ export default ({ data, style, ...restProps }) => (
         style={styles.item}
         key={key}
         onClick={() => {
-          router.push(`/ProductDetail?brandId=${val.brandId}`);
+          if (val.brandId) {
+            router.push(`/ProductDetail?brandId=${val.brandId}`);
+          } else if (val.actionUrl) {
+            analyzeUrlNavigate({ linkUrl: val.actionUrl });
+          }
         }}
       >
         <img

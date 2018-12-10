@@ -3,7 +3,7 @@ import { Carousel } from 'antd-mobile';
 
 import styles from './index.less';
 import { OSS_IMAGE_QUALITY, IS_IOS } from '@/common/constants';
-import { xOssProcess } from '@/utils';
+import { xOssProcess, analyzeUrlNavigate } from '@/utils';
 
 export default class SwiperFlatList extends PureComponent {
   render() {
@@ -12,11 +12,14 @@ export default class SwiperFlatList extends PureComponent {
     return (
       <Carousel autoplay infinite>
         {data.map(val => (
-          <a
+          <div
             key={val.id}
-            href={val.actionUrl}
+            // href={val.actionUrl}
             className={styles.a}
             style={styleA}
+            onClick={() => {
+              analyzeUrlNavigate({ linkUrl: val.actionUrl });
+            }}
           >
             <img
               src={`${val.imageUrl}?${xOssProcess(IS_IOS, OSS_IMAGE_QUALITY)}`}
@@ -29,7 +32,7 @@ export default class SwiperFlatList extends PureComponent {
               //   // this.setState({ imgHeight: 'auto' });
               // }}
             />
-          </a>
+          </div>
         ))}
       </Carousel>
     );

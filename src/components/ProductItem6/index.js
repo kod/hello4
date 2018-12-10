@@ -3,7 +3,7 @@ import React from 'react';
 import { WINDOW_WIDTH, IS_IOS, OSS_IMAGE_QUALITY } from '@/common/constants';
 import ProductItem4 from '@/components/ProductItem4';
 import SeparateBar from '@/components/SeparateBar';
-import { xOssProcess } from '@/utils';
+import { xOssProcess, analyzeUrlNavigate } from '@/utils';
 
 const styles = {
   itemWrap: {},
@@ -26,7 +26,9 @@ export default ({ data, style, ...restProps }) => (
           style={styles.item}
           key={key}
           onClick={() => {
-            // navigate(SCREENS.ProductDetail, { brandId: val.brandId, groupon });
+            if (val.top.actionUrl) {
+              analyzeUrlNavigate({ linkUrl: val.top.actionUrl });
+            }
           }}
         >
           <img
