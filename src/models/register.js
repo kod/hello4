@@ -132,7 +132,6 @@ export default {
     *[REGISTER.SUCCESS](action, { put }) {
       try {
         const { response } = action.payload;
-        console.log(response);
         yield put(loginFetchSuccess(response, ''));
 
         Modal.alert('', formatMessage({ id: 'signUpSuccessfully' }), [
