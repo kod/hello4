@@ -364,6 +364,9 @@ export default {
   paymentOnDelivery: 'Payment on delivery',
   changePassword: 'Change the password',
   overview: 'Overview',
+  orSignInWith: '其他登录方式',
+  facebook: 'Facebook',
+  google: 'Google',
   receiveServicesOffers:
     'I am willing to receive advertising and various information from buyoo.vip',
   emailCodeTips:
