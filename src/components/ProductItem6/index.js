@@ -22,18 +22,15 @@ export default ({ data, style, ...restProps }) => (
       }}
     >
       {data.map((val, key) => (
-        <div
-          style={styles.item}
-          key={key}
-          onClick={() => {
-            if (val.top.actionUrl) {
-              analyzeUrlNavigate({ linkUrl: val.top.actionUrl });
-            }
-          }}
-        >
+        <div style={styles.item} key={key}>
           <img
             alt=""
             style={styles.itemImg}
+            onClick={() => {
+              if (val.top.actionUrl) {
+                analyzeUrlNavigate({ linkUrl: val.top.actionUrl });
+              }
+            }}
             src={`${val.top.imageUrl}?${xOssProcess(
               IS_IOS,
               OSS_IMAGE_QUALITY,
