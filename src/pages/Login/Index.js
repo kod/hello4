@@ -175,7 +175,7 @@ class Index extends React.Component {
           }
         />
         <div style={{ flex: 1 }} />
-        {/* {this.renderOtherLogin()} */}
+        {this.renderOtherLogin()}
       </div>
     );
   }

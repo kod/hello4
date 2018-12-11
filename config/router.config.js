@@ -123,4 +123,8 @@ export default [
     path: '/SmartDigital',
     component: './SmartDigital/Index',
   },
+  {
+    path: '/Test',
+    component: './Test/Index',
+  },
 ];
