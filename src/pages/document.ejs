@@ -1,15 +1,32 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Buyoo.vip</title>
-  <link rel="icon" href="https://oss.buyoo.vn/usercollect/1/20181130132407_o46.png?x-oss-process=image/format,webp/quality,Q_70" type="image/x-icon">
-  <link rel="apple-touch-icon" href="https://oss.buyoo.vn/usercollect/1/20181130132407_o46.png?x-oss-process=image/format,webp/quality,Q_70"/>
+  <link rel="icon" href="https://oss.buyoo.vn/usercollect/1/20181130132407_o46.png?x-oss-process=image/format,webp/quality,Q_70"
+    type="image/x-icon">
+  <link rel="apple-touch-icon" href="https://oss.buyoo.vn/usercollect/1/20181130132407_o46.png?x-oss-process=image/format,webp/quality,Q_70" />
   <meta name="apple-mobile-web-app-title" content="Buyoo.vip">
 </head>
+
 <body>
   <div id="root"></div>
+  <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyDbBhpwiU8KNo04oqxAYE4T9MQ84W7KkQs",
+      authDomain: "buyoo-vip.firebaseapp.com",
+      databaseURL: "https://buyoo-vip.firebaseio.com",
+      projectId: "buyoo-vip",
+      storageBucket: "buyoo-vip.appspot.com",
+      messagingSenderId: "717067101088"
+    };
+    firebase.initializeApp(config);
+  </script>
 </body>
+
 </html>
