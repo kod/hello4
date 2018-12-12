@@ -18,7 +18,7 @@ import NavBar1 from '@/components/NavBar1';
 import { RED_COLOR } from '@/styles/variables';
 import * as loginActionCreators from '@/common/actions/login';
 import { o } from '@/utils/AuthEncrypt';
-import { b } from '@/utils';
+import { localStorageGetItem } from '@/utils';
 
 // const personPng = 'https://oss.buyoo.vn/usercollect/1/20181120125641_E6E.png';
 
@@ -156,7 +156,7 @@ class Settings extends React.Component {
 export default connect(
   () => {
     return {
-      authUser: o(b, BUYOO),
+      authUser: o(localStorageGetItem, BUYOO),
     };
   },
   {

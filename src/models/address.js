@@ -20,7 +20,7 @@ import {
   addressRemoveFailure,
 } from '@/common/actions/address';
 import { addError } from '@/common/actions/error';
-import { dispatchEvent, b } from '@/utils';
+import { dispatchEvent, localStorageGetItem } from '@/utils';
 
 const initState = {
   loading: false,
@@ -38,8 +38,8 @@ export default {
   effects: {
     *[ADDRESS.REQUEST](action, { apply, put }) {
       try {
-        const funid = o(b, BUYOO).result;
-        const { msisdn } = o(b, BUYOO);
+        const funid = o(localStorageGetItem, BUYOO).result;
+        const { msisdn } = o(localStorageGetItem, BUYOO);
 
         const Key = 'userKey';
         const appId = '3';
@@ -97,7 +97,7 @@ export default {
     },
     *[ADDRESS_ADD.REQUEST](action, { apply, put }) {
       try {
-        const funid = o(b, BUYOO).result;
+        const funid = o(localStorageGetItem, BUYOO).result;
 
         const {
           msisdn,
@@ -216,7 +216,7 @@ export default {
     },
     *[ADDRESS_REMOVE.REQUEST](action, { put, apply }) {
       try {
-        const funid = o(b, BUYOO).result;
+        const funid = o(localStorageGetItem, BUYOO).result;
         const { adds } = action.payload;
 
         const Key = 'userKey';

@@ -16,7 +16,7 @@ import EmptyState from '@/components/EmptyState';
 import CouponItem from '@/components/CouponItem';
 import MustLogin from '@/components/MustLogin';
 import { o } from '@/utils/AuthEncrypt';
-import { b } from '@/utils';
+import { localStorageGetItem } from '@/utils';
 
 const ouhrigdfnjsoeijehrJpg =
   'https://oss.buyoo.vn/usercollect/1/20181101180309_67w.jpg';
@@ -103,7 +103,7 @@ export default connect(
       products,
       loading: judgeVoucher.loading,
       items: judgeVoucher.items,
-      authUser: o(b, BUYOO),
+      authUser: o(localStorageGetItem, BUYOO),
     };
   },
   {

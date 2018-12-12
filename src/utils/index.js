@@ -589,5 +589,7 @@ export const capitalizeTool = () => {
   };
 };
 
-export const a = (k, v) => localStorage.setItem(k, v);
-export const b = c => localStorage.getItem(c);
+export const localStorageSetItem = (k, v) => localStorage.setItem(k, v);
+export const localStorageGetItem = c => localStorage.getItem(c);
+export const localStorageRemoveItem = c => localStorage.removeItem(c);
+export const localStorageClear = () => localStorage.clear();

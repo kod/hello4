@@ -21,7 +21,7 @@ import CouponMyTabNavigator from './CouponMyTabNavigator';
 import { GET_VOUCHER_LIST } from '@/common/constants/actionTypes';
 import Loader from '@/components/Loader';
 import { o } from '@/utils/AuthEncrypt';
-import { b } from '@/utils';
+import { localStorageGetItem } from '@/utils';
 
 class CouponMy extends React.Component {
   componentDidMount() {
@@ -101,7 +101,7 @@ export default connect(
         loading.effects[
           `${GETVOUCHERLIST_NAMESPACE}/${GET_VOUCHER_LIST.REQUEST}`
         ],
-      authUser: o(b, BUYOO),
+      authUser: o(localStorageGetItem, BUYOO),
       items: getVoucher.items,
       couponMyPastLength: getVoucherList.CouponMyPast.length,
       couponMyUnusedLength: getVoucherList.CouponMyUnused.length,

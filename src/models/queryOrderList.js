@@ -12,7 +12,7 @@ import {
   queryOrderListFetchFailure,
 } from '@/common/actions/queryOrderList';
 import { addError } from '@/common/actions/error';
-import { b } from '@/utils';
+import { localStorageGetItem } from '@/utils';
 
 const initState = {
   scrollTabIndex: 0,
@@ -58,9 +58,9 @@ export default {
     *[QUERY_ORDER_LIST.REQUEST](action, { apply, put }) {
       try {
         const { page = 1, index = 0, status, rows = 100 } = action.payload;
-        const authUser = o(b, BUYOO);
+        const authUser = o(localStorageGetItem, BUYOO);
 
-        const funid = authUser ? o(b, BUYOO).result : '';
+        const funid = authUser ? o(localStorageGetItem, BUYOO).result : '';
 
         const Key = 'tradeKey';
         const appId = '3';

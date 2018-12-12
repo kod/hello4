@@ -9,7 +9,7 @@ import {
   cardQueryFetchFailure,
 } from '@/common/actions/cardQuery';
 import { addError } from '@/common/actions/error';
-import { b } from '@/utils';
+import { localStorageGetItem } from '@/utils';
 
 const initState = {
   loading: false,
@@ -26,7 +26,7 @@ export default {
   effects: {
     *[CARD_QUERY.REQUEST](_, { apply, put }) {
       try {
-        const funid = o(b, BUYOO).result;
+        const funid = o(localStorageGetItem, BUYOO).result;
 
         const Key = 'userKey';
         const appId = '3';

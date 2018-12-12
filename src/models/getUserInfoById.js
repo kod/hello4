@@ -8,7 +8,7 @@ import {
   getUserInfoByIdFetchFailure,
 } from '@/common/actions/getUserInfoById';
 import { addError } from '@/common/actions/error';
-import { b } from '@/utils';
+import { localStorageGetItem } from '@/utils';
 
 const initState = {
   loading: false,
@@ -25,7 +25,7 @@ export default {
   effects: {
     *[GET_USERINFO_BYID.REQUEST](action, { apply, put }) {
       try {
-        const funid = o(b, BUYOO).result;
+        const funid = o(localStorageGetItem, BUYOO).result;
 
         const Key = 'userKey';
         const provider = '3';

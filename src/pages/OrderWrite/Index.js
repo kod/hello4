@@ -25,7 +25,7 @@ import {
   removeEventListener,
   orderWritePayWayArray,
   payWayToText,
-  b,
+  localStorageGetItem,
 } from '@/utils';
 import {
   SCREENS,
@@ -539,7 +539,7 @@ export default connect(
       addressSelectedItem: getAddressSelectedItem(state, props),
       addressItems: address.items,
       addressSelectedId: address.addressSelectedId,
-      authUser: o(b, BUYOO),
+      authUser: o(localStorageGetItem, BUYOO),
       getUserInfoById,
       getUserInfoByIdLoaded: getUserInfoById.loaded,
       userType: getUserInfoById.item.userType || null,

@@ -21,7 +21,7 @@ import { COLLECTION } from '@/common/constants/actionTypes';
 import ProductItem2 from '@/components/ProductItem2';
 import MustLogin from '@/components/MustLogin';
 import { o } from '@/utils/AuthEncrypt';
-import { b } from '@/utils';
+import { localStorageGetItem } from '@/utils';
 
 const ouhrigdfnjsoeijehrJpg =
   'https://oss.buyoo.vn/usercollect/1/20181101180309_67w.jpg';
@@ -85,7 +85,7 @@ export default connect(
     const { collection, loading } = state;
 
     return {
-      authUser: o(b, BUYOO),
+      authUser: o(localStorageGetItem, BUYOO),
       loading: loading.effects[`${COLLECTION_NAMESPACE}/${COLLECTION.REQUEST}`],
       items: collection.items.details ? collection.items.details : [],
     };

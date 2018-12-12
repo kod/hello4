@@ -11,7 +11,7 @@ import {
   addressModifyFailure,
 } from '@/common/actions/addressModify';
 import { addError } from '@/common/actions/error';
-import { b } from '@/utils';
+import { localStorageGetItem } from '@/utils';
 
 const initState = {
   loading: false,
@@ -29,7 +29,7 @@ export default {
   effects: {
     *[ADDRESS_MODIFY.REQUEST](action, { put, apply }) {
       try {
-        const funid = o(b, BUYOO).result;
+        const funid = o(localStorageGetItem, BUYOO).result;
 
         const {
           addrid,

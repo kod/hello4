@@ -23,7 +23,7 @@ import { PRIMARY_COLOR, RED_COLOR } from '@/styles/variables';
 import NavBar1 from '@/components/NavBar1';
 import CustomIcon from '@/components/CustomIcon';
 import BYHeader from '@/components/BYHeader';
-import { xOssProcess, b } from '@/utils';
+import { xOssProcess, localStorageGetItem } from '@/utils';
 import { o } from '@/utils/AuthEncrypt';
 
 const aioru09230fPng =
@@ -378,7 +378,7 @@ export default connect(
       getUserInfoByIdUserType: getUserInfoById.item.userType,
       orderItem: queryOrderList.item,
       certUser: userCertificateInfo.certUser,
-      authUser: o(b, BUYOO),
+      authUser: o(localStorageGetItem, BUYOO),
       initPassword: cardQuery.item.initPassword,
       status: cardQuery.item.status,
     };

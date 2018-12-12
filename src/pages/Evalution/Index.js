@@ -14,7 +14,7 @@ import {
   addEventListener,
   removeEventListener,
   submitDuplicateFreeze,
-  b,
+  localStorageGetItem,
 } from '@/utils';
 
 import * as collectFilesActionCreators from '@/common/actions/collectFiles';
@@ -396,7 +396,7 @@ export default connect(
     } = props;
 
     return {
-      authUser: o(b, BUYOO),
+      authUser: o(localStorageGetItem, BUYOO),
       collectFiles,
       orderNo,
       tradeNo,

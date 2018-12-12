@@ -15,7 +15,7 @@ import {
   addressAddFailure,
 } from '@/common/actions/userAddAddr';
 import { addError } from '@/common/actions/error';
-import { dispatchEvent, b } from '@/utils';
+import { dispatchEvent, localStorageGetItem } from '@/utils';
 
 const initState = {
   loading: false,
@@ -33,7 +33,7 @@ export default {
   effects: {
     *[ADDRESS_ADD.REQUEST](action, { apply, put }) {
       try {
-        const funid = o(b, BUYOO).result;
+        const funid = o(localStorageGetItem, BUYOO).result;
 
         const {
           msisdn,

@@ -40,7 +40,7 @@ import {
   cartSelectAllFailure,
 } from '@/common/actions/cart';
 import { addError } from '@/common/actions/error';
-import { b } from '@/utils';
+import { localStorageGetItem } from '@/utils';
 
 const initState = {
   loading: false,
@@ -63,7 +63,7 @@ export default {
   effects: {
     *[CART.REQUEST](action, { apply, put }) {
       try {
-        const funid = o(b, BUYOO).result;
+        const funid = o(localStorageGetItem, BUYOO).result;
         const Key = 'commodityKey';
         const appId = '3';
         const method = 'fun.cart.query';
@@ -138,7 +138,7 @@ export default {
         // quetity,
       } = action.payload;
       try {
-        const funid = o(b, BUYOO).result;
+        const funid = o(localStorageGetItem, BUYOO).result;
 
         const Key = 'commodityKey';
         const appId = '3';
@@ -202,7 +202,7 @@ export default {
     },
     *[CART_DELETE.REQUEST](action, { apply, put }) {
       try {
-        const funid = o(b, BUYOO).result;
+        const funid = o(localStorageGetItem, BUYOO).result;
         const { cartitemids, orderno = '' } = action.payload;
 
         const Key = 'commodityKey';
@@ -300,7 +300,7 @@ export default {
     },
     *[CART_ADD.REQUEST](action, { put, apply }) {
       try {
-        const funid = o(b, BUYOO).result;
+        const funid = o(localStorageGetItem, BUYOO).result;
         const { cartitems } = action.payload;
 
         const Key = 'commodityKey';

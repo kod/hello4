@@ -29,7 +29,7 @@ import {
   removeEventListener,
   submitDuplicateFreeze,
   payWayToText,
-  b,
+  localStorageGetItem,
 } from '@/utils';
 import priceFormat from '@/utils/priceFormat';
 import NavBar2 from '@/components/NavBar2';
@@ -274,7 +274,7 @@ export default connect(
     } = props;
 
     return {
-      authUser: o(b, BUYOO),
+      authUser: o(localStorageGetItem, BUYOO),
       orderNo,
       tradeNo,
       queryOrderItem: queryOrder.item,

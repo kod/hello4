@@ -21,7 +21,11 @@ import CustomIcon from '@/components/CustomIcon';
 import priceFormat from '@/utils/priceFormat';
 import EmptyState from '@/components/EmptyState';
 import { getCartTotalMoney } from '@/common/selectors';
-import { addEventListener, removeEventListener, b } from '@/utils';
+import {
+  addEventListener,
+  removeEventListener,
+  localStorageGetItem,
+} from '@/utils';
 import { o } from '@/utils/AuthEncrypt';
 
 const ouhrigdfnjsoeijehrJpg =
@@ -393,7 +397,7 @@ export default connect(
     const { cart } = state;
 
     return {
-      authUser: o(b, BUYOO),
+      authUser: o(localStorageGetItem, BUYOO),
       cart,
       totalMoney: getCartTotalMoney(state, props),
       loading: cart.loading,

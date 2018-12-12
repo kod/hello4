@@ -9,7 +9,7 @@ import {
   getAdverstTopInfoFetchFailure,
 } from '@/common/actions/getAdverstTopInfo';
 import { addError } from '@/common/actions/error';
-import { b } from '@/utils';
+import { localStorageGetItem } from '@/utils';
 
 const initState = {
   loading: false,
@@ -26,9 +26,9 @@ export default {
   effects: {
     *[GET_ADVERST_TOP_INFO.REQUEST](_, { apply, put }) {
       try {
-        const authUser = o(b, BUYOO);
+        const authUser = o(localStorageGetItem, BUYOO);
 
-        const funid = authUser ? o(b, BUYOO).result : '';
+        const funid = authUser ? o(localStorageGetItem, BUYOO).result : '';
         const Key = 'commodityKey';
         const appId = '3';
         const method = 'fun.adverst.top';

@@ -10,7 +10,7 @@ import {
   initAdverstCommonFetchFailure,
 } from '@/common/actions/initAdverstCommon';
 import { addError } from '@/common/actions/error';
-import { b } from '@/utils';
+import { localStorageGetItem } from '@/utils';
 
 const initState = {
   loading: false,
@@ -29,8 +29,8 @@ export default {
   effects: {
     *[INIT_ADVERST_COMMON.REQUEST](action, { apply, put }) {
       const { pagesize, currentpage } = action.payload;
-      const authUser = o(b, BUYOO);
-      const funid = authUser ? o(b, BUYOO).result : '';
+      const authUser = o(localStorageGetItem, BUYOO);
+      const funid = authUser ? o(localStorageGetItem, BUYOO).result : '';
 
       try {
         const Key = 'commodityKey';

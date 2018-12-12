@@ -10,7 +10,7 @@ import {
 } from '@/common/actions/orderCreate';
 import { orderPayFetch } from '@/common/actions/orderPay';
 import { addError } from '@/common/actions/error';
-import { dispatchEvent, b } from '@/utils';
+import { dispatchEvent, localStorageGetItem } from '@/utils';
 
 const initState = {
   loading: false,
@@ -41,7 +41,7 @@ export default {
           remark = '',
           payvalue = 0,
         } = action.payload;
-        const funid = o(b, BUYOO).result;
+        const funid = o(localStorageGetItem, BUYOO).result;
 
         const Key = 'tradeKey';
         const appId = '3';

@@ -19,7 +19,7 @@ import {
   collectionRemoveFetchFailure,
 } from '@/common/actions/collection';
 import { addError } from '@/common/actions/error';
-import { b } from '@/utils';
+import { localStorageGetItem } from '@/utils';
 
 const initState = {
   loading: false,
@@ -36,8 +36,8 @@ export default {
   effects: {
     *[COLLECTION.REQUEST](action, { apply, put }) {
       try {
-        const funid = o(b, BUYOO).result;
-        const { msisdn } = o(b, BUYOO);
+        const funid = o(localStorageGetItem, BUYOO).result;
+        const { msisdn } = o(localStorageGetItem, BUYOO);
         const pagesize = 100;
         const currentpage = 1;
 
@@ -110,7 +110,7 @@ export default {
     },
     *[COLLECTION_ADD.REQUEST](action, { apply, put }) {
       try {
-        const funid = o(b, BUYOO).result;
+        const funid = o(localStorageGetItem, BUYOO).result;
         const brandids = action.payload.brandIds;
 
         const Key = 'userKey';
@@ -164,8 +164,8 @@ export default {
     *[COLLECTION_REMOVE.REQUEST](action, { apply, put }) {
       const { brand_id: brandId } = action.payload;
       try {
-        const funid = o(b, BUYOO).result;
-        const { msisdn } = o(b, BUYOO);
+        const funid = o(localStorageGetItem, BUYOO).result;
+        const { msisdn } = o(localStorageGetItem, BUYOO);
 
         const Key = 'userKey';
         const appId = '3';

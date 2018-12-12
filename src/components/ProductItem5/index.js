@@ -86,9 +86,7 @@ export default ({ groupon = false, data, style, ...restProps }) => (
           style={styles.item}
           key={key}
           onClick={() => {
-            router.push(
-              `/ProductDetail?brandId=${val.brandId}`,
-            );
+            router.push(`/ProductDetail?brandId=${val.brandId}`);
           }}
         >
           <img

@@ -30,7 +30,11 @@ import {
 import priceFormat from '@/utils/priceFormat';
 import MustLogin from '@/components/MustLogin';
 import { ORDER_PAY } from '@/common/constants/actionTypes';
-import { addEventListener, removeEventListener, b } from '@/utils';
+import {
+  addEventListener,
+  removeEventListener,
+  localStorageGetItem,
+} from '@/utils';
 import { o } from '@/utils/AuthEncrypt';
 
 const icStore1 = 'https://oss.buyoo.vn/usercollect/1/20181121153540_gOd.jpg';
@@ -292,7 +296,7 @@ export default connect(
       code: code || orderPay.ret,
       loading: loading.effects[`${ORDERPAY_NAMESPACE}/${ORDER_PAY.REQUEST}`],
       payvalue: totalAmount,
-      authUser: o(b, BUYOO),
+      authUser: o(localStorageGetItem, BUYOO),
     };
   },
   {

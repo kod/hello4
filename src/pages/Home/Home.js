@@ -11,7 +11,11 @@ import * as getNewestInfoActionCreators from '@/common/actions/getNewestInfo';
 import * as bannerSwiperActionCreators from '@/common/actions/bannerSwiper';
 import * as adverstInfoActionCreators from '@/common/actions/adverstInfo';
 import * as initAdverstCommonActionCreators from '@/common/actions/initAdverstCommon';
-import { dispatchEvent, analyzeUrlNavigate, b } from '@/utils';
+import {
+  dispatchEvent,
+  analyzeUrlNavigate,
+  localStorageGetItem,
+} from '@/utils';
 import NavImg1 from '@/components/NavImg1';
 import SeparateBar from '@/components/SeparateBar';
 import { RED_COLOR } from '@/styles/variables';
@@ -171,7 +175,7 @@ export default connect(
       initAdverstCommonItems: initAdverstCommon.items,
       bannerSwiper: bannerSwiper.one || {},
       adverstInfo: adverstInfo || {},
-      authUser: o(b, BUYOO),
+      authUser: o(localStorageGetItem, BUYOO),
     };
   },
   {

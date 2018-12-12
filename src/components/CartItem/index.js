@@ -16,7 +16,7 @@ import {
 } from '@/common/constants';
 import CustomIcon from '@/components/CustomIcon';
 import priceFormat from '@/utils/priceFormat';
-import { xOssProcess, b } from '@/utils';
+import { xOssProcess, localStorageGetItem } from '@/utils';
 
 import * as cartActionCreators from '@/common/actions/cart';
 // import { getCartTotalMoney } from '@/common/selectors';
@@ -343,7 +343,7 @@ export default connect(
     const { cart } = state;
 
     return {
-      authUser: o(b, BUYOO),
+      authUser: o(localStorageGetItem, BUYOO),
       isEdit: cart.isEdit,
     };
   },

@@ -9,7 +9,7 @@ import {
   orderCancelFetchFailure,
 } from '@/common/actions/orderCancel';
 import { addError } from '@/common/actions/error';
-import { b, dispatchEvent } from '@/utils';
+import { localStorageGetItem, dispatchEvent } from '@/utils';
 
 const initState = {
   loading: false,
@@ -26,7 +26,7 @@ export default {
     *[ORDER_CANCEL.REQUEST](action, { apply, put }) {
       try {
         const { tradeno, orderno, status, screen } = action.payload;
-        const funid = o(b, BUYOO).result;
+        const funid = o(localStorageGetItem, BUYOO).result;
 
         const Key = 'tradeKey';
         const appId = '3';

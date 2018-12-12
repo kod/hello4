@@ -13,7 +13,7 @@ import {
   getVoucherListFetchFailure,
 } from '@/common/actions/getVoucherList';
 import { addError } from '@/common/actions/error';
-import { b } from '@/utils';
+import { localStorageGetItem } from '@/utils';
 
 const initState = {
   loading: false,
@@ -32,7 +32,7 @@ export default {
   effects: {
     *[GET_VOUCHER_LIST.REQUEST](action, { apply, put }) {
       try {
-        const funid = o(b, BUYOO).result;
+        const funid = o(localStorageGetItem, BUYOO).result;
         const {
           vouchertype = '',
           typeid = '',

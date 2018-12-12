@@ -29,7 +29,7 @@ import {
   payWayToText,
   addEventListener,
   removeEventListener,
-  b,
+  localStorageGetItem,
 } from '@/utils';
 import SeparateBar from '@/components/SeparateBar';
 import ProductItem2 from '@/components/ProductItem2';
@@ -683,7 +683,7 @@ export default connect(
       loading: orderPay.loading,
       addressSelectedItem: getAddressSelectedItem(state, props),
       addressItems: address.items,
-      authUser: o(b, BUYOO),
+      authUser: o(localStorageGetItem, BUYOO),
       queryOrderItem: queryOrder.item,
       locationPathname,
       locationSearch,

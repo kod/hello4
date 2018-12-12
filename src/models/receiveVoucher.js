@@ -13,7 +13,7 @@ import {
 import { getVoucherFetch } from '@/common//actions/getVoucher';
 
 import { addError } from '@/common/actions/error';
-import { b } from '@/utils';
+import { localStorageGetItem } from '@/utils';
 
 const initState = {
   loading: false,
@@ -30,7 +30,7 @@ export default {
     *[RECEIVE_VOUCHER.REQUEST](action, { apply, put }) {
       try {
         const { voucherid } = action.payload;
-        const funid = o(b, BUYOO).result;
+        const funid = o(localStorageGetItem, BUYOO).result;
 
         const Key = 'userKey';
         const appId = '3';

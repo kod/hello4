@@ -18,7 +18,11 @@ import { formatMessage } from 'umi/locale';
 import * as queryOrderListActionCreators from '@/common/actions/queryOrderList';
 import { BORDER_COLOR, PRIMARY_COLOR } from '@/styles/variables';
 import ProductItem2 from '@/components/ProductItem2';
-import { tradeStatusCodes, operateForTradeStatusCodes, b } from '@/utils';
+import {
+  tradeStatusCodes,
+  operateForTradeStatusCodes,
+  localStorageGetItem,
+} from '@/utils';
 import priceFormat from '@/utils/priceFormat';
 import SeparateBar from '@/components/SeparateBar';
 import EmptyState from '@/components/EmptyState';
@@ -239,7 +243,7 @@ export default connect(
     const { queryOrderList } = state;
 
     return {
-      authUser: o(b, BUYOO),
+      authUser: o(localStorageGetItem, BUYOO),
       queryOrderListItem: queryOrderList.item,
     };
   },

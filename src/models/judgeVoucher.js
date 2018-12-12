@@ -9,7 +9,7 @@ import {
   judgeVoucherFetchFailure,
 } from '@/common/actions/judgeVoucher';
 import { addError } from '@/common/actions/error';
-import { b } from '@/utils';
+import { localStorageGetItem } from '@/utils';
 
 const initState = {
   loading: false,
@@ -26,7 +26,7 @@ export default {
   effects: {
     *[JUDGE_VOUCHER.REQUEST](action, { apply, put }) {
       try {
-        const funid = o(b, BUYOO).result;
+        const funid = o(localStorageGetItem, BUYOO).result;
         const {
           products = '',
           currentpage = 1,

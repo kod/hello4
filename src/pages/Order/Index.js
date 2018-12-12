@@ -17,7 +17,7 @@ import { Modal } from 'antd-mobile';
 import MustLogin from '@/components/MustLogin';
 import OrderTabNavigator from './OrderTabNavigator';
 import { o } from '@/utils/AuthEncrypt';
-import { b } from '@/utils';
+import { localStorageGetItem } from '@/utils';
 
 class CouponMy extends React.Component {
   componentDidMount() {
@@ -95,7 +95,7 @@ export default connect(
 
     return {
       initialPage: index,
-      authUser: o(b, BUYOO),
+      authUser: o(localStorageGetItem, BUYOO),
       queryOrderListItem: queryOrderList.item,
       scrollTabIndex: queryOrderList.scrollTabIndex,
     };

@@ -10,7 +10,7 @@ import {
   getMenuFetchFailure,
 } from '@/common/actions/getMenu';
 import { addError } from '@/common/actions/error';
-import { b } from '@/utils';
+import { localStorageGetItem } from '@/utils';
 
 const initState = {
   loading: false,
@@ -30,8 +30,8 @@ export default {
   effects: {
     *[GET_MENU.REQUEST](action, { apply, put }) {
       try {
-        const authUser = o(b, BUYOO);
-        const funid = authUser ? o(b, BUYOO).result : '';
+        const authUser = o(localStorageGetItem, BUYOO);
+        const funid = authUser ? o(localStorageGetItem, BUYOO).result : '';
         const {
           typeid = 0,
           subclassfyid = 0,

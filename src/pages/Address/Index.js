@@ -27,7 +27,7 @@ import EmptyState from '@/components/EmptyState';
 import { ADDRESS } from '@/common/constants/actionTypes';
 import MustLogin from '@/components/MustLogin';
 import { o } from '@/utils/AuthEncrypt';
-import { b } from '@/utils';
+import { localStorageGetItem } from '@/utils';
 
 const afiasifsdhfsPng =
   'https://oss.buyoo.vn/usercollect/1/20181109084840_7R8.png';
@@ -308,7 +308,7 @@ export default connect(
     const { address, loading } = state;
 
     return {
-      authUser: o(b, BUYOO),
+      authUser: o(localStorageGetItem, BUYOO),
       items: address.items,
       loading: loading.effects[`${ADDRESS_NAMESPACE}/${ADDRESS.REQUEST}`],
       loaded: address.loaded,

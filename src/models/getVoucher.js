@@ -9,7 +9,7 @@ import {
   getVoucherFetchFailure,
 } from '@/common/actions/getVoucher';
 import { addError } from '@/common/actions/error';
-import { b } from '@/utils';
+import { localStorageGetItem } from '@/utils';
 
 const initState = {
   loading: false,
@@ -26,8 +26,8 @@ export default {
   effects: {
     *[GET_VOUCHER.REQUEST](action, { apply, put }) {
       try {
-        const authUser = o(b, BUYOO);
-        const funid = authUser ? o(b, BUYOO).result : '';
+        const authUser = o(localStorageGetItem, BUYOO);
+        const funid = authUser ? o(localStorageGetItem, BUYOO).result : '';
 
         const {
           vouchertype = '',

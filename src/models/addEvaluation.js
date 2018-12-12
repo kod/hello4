@@ -10,7 +10,7 @@ import {
   addEvaluationFetchFailure,
 } from '@/common/actions/addEvaluation';
 import { addError } from '@/common/actions/error';
-import { dispatchEvent, b } from '@/utils';
+import { dispatchEvent, localStorageGetItem } from '@/utils';
 
 const initState = {
   loading: false,
@@ -25,8 +25,8 @@ export default {
 
   effects: {
     *[ADD_EVALUATION.REQUEST](action, { apply, put }) {
-      const { msisdn } = o(b, BUYOO);
-      const funid = o(b, BUYOO).result;
+      const { msisdn } = o(localStorageGetItem, BUYOO);
+      const funid = o(localStorageGetItem, BUYOO).result;
 
       try {
         const { trade_no, order_no, comments, screen } = action.payload;

@@ -9,7 +9,7 @@ import {
   findProductsFetchFailure,
 } from '@/common/actions/findProducts';
 import { addError } from '@/common/actions/error';
-import { b } from '@/utils';
+import { localStorageGetItem } from '@/utils';
 
 const initState = {
   loading: false,
@@ -26,8 +26,8 @@ export default {
   effects: {
     *[FIND_PRODUCTS.REQUEST](action, { apply, put }) {
       try {
-        const authUser = o(b, BUYOO);
-        const funid = authUser ? o(b, BUYOO).result : '';
+        const authUser = o(localStorageGetItem, BUYOO);
+        const funid = authUser ? o(localStorageGetItem, BUYOO).result : '';
         const { findcontent, pagesize = 50, currentpage = 1 } = action.payload;
 
         const Key = 'commodityKey';

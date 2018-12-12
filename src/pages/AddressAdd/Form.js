@@ -28,7 +28,7 @@ import {
   submitDuplicateFreeze,
   addEventListener,
   removeEventListener,
-  b,
+  localStorageGetItem,
 } from '@/utils';
 import InputRight from '@/components/InputRight';
 import BYButton from '@/components/BYButton';
@@ -290,7 +290,7 @@ export default connect(
       division2ndItems: cityInfos.division2nd,
       division3rdItems: cityInfos.division3rd,
       division4thItems: cityInfos.division4th,
-      authUser: o(b, BUYOO),
+      authUser: o(localStorageGetItem, BUYOO),
     };
   },
   {
