@@ -6,6 +6,7 @@ import qs from 'qs';
 import router from 'umi/router';
 
 import ModalRoot from '@/containers/ModalRoot';
+import * as collectionActionCreators from '@/common/actions/collection';
 import * as commentActionCreators from '@/common/actions/comment';
 import * as productDetailInfoActionCreators from '@/common/actions/productDetailInfo';
 import * as modalActionCreators from '@/common/actions/modal';
@@ -18,15 +19,29 @@ import {
   MODAL_TYPES,
   IS_IOS,
   OSS_IMAGE_QUALITY,
+  BUYOO,
 } from '@/common/constants';
 import priceFormat from '@/utils/priceFormat';
 import smoothScroll from '@/utils/smoothScroll';
 import gumshoe from '@/utils/gumshoe';
 import CustomIcon from '@/components/CustomIcon';
-import { BORDER_COLOR, RED_COLOR } from '@/styles/variables';
+import {
+  BORDER_COLOR,
+  RED_COLOR,
+  PRIMARY_COLOR,
+  FONT_COLOR_THIRD,
+  FONT_COLOR_SECOND,
+} from '@/styles/variables';
 import Comment from '@/components/Comment';
 import SeparateBar from '@/components/SeparateBar';
-import { addEventListener, removeEventListener, xOssProcess } from '@/utils';
+import {
+  addEventListener,
+  removeEventListener,
+  xOssProcess,
+  localStorageGetItem,
+} from '@/utils';
+import { getIsCollection } from '@/common/selectors';
+import { o } from '@/utils/AuthEncrypt';
 
 class ProductDetailMain extends React.Component {
   constructor(props) {
@@ -102,77 +117,100 @@ class ProductDetailMain extends React.Component {
     }
   };
 
-  render() {
+  handleToggleCollection() {
+    const {
+      collectionAddFetch,
+      collectionRemoveFetch,
+      isCollection,
+      authUser,
+      brandId,
+    } = this.props;
+    if (!authUser) return router.push(`/login`);
+    return isCollection
+      ? collectionRemoveFetch(brandId.toString())
+      : collectionAddFetch(brandId.toString());
+  }
+
+  renderProduct() {
     const {
       name,
-      comment,
       brandId,
       price,
       imageUrls,
-      imageDesc,
-      goodsProperties,
       propertiesIds,
       propertiesIdsObject,
       propertiesObjectForId,
       openModal,
       productDetailNumber,
       numbers,
+      isCollection,
     } = this.props;
 
     const styles = {
-      container: {
-        position: 'relative',
-      },
-      statusbarPlaceholder: {
-        backgroundColor: '#fff',
-      },
       product: {
-        paddingLeft: SIDEINTERVAL,
+        // paddingLeft: SIDEINTERVAL,
         backgroundColor: '#fff',
       },
       productTitle: {
         color: '#333',
         fontSize: 14,
-        marginBottom: 3,
-        paddingTop: 10,
+        paddingBottom: 10,
       },
       productPrice: {
         fontSize: 18,
         color: RED_COLOR,
+        marginBottom: 3,
+        paddingTop: 10,
         fontWeight: '700',
-        paddingBottom: 10,
-        marginBottom: 8,
-        borderBottomColor: BORDER_COLOR,
-        borderBottomWidth: 1,
-        borderBottomStyle: 'solid',
       },
       serverinfo: {
         display: 'flex',
         flexDirection: 'row',
+        height: 45,
         borderBottomColor: BORDER_COLOR,
         borderBottomWidth: 1,
         borderBottomStyle: 'solid',
-        paddingBottom: 8,
+      },
+      serverinfoLeft: {
+        position: 'relative',
+        display: 'flex',
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+      serverinfoLeftSeparate: {
+        position: 'absolute',
+        right: 0,
+        top: 10,
+        bottom: 10,
+        width: 1,
+        backgroundColor: BORDER_COLOR,
+      },
+      serverinfoRight: {
+        display: 'flex',
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
       },
       serverinfoToBePaid: {
         fontSize: 11,
-        color: '#ccc',
-        paddingTop: 2,
+        color: FONT_COLOR_THIRD,
+        // paddingTop: 2,
         marginRight: 5,
       },
       serverinfoToBePaidText: {
-        color: '#ccc',
+        color: FONT_COLOR_THIRD,
         fontSize: 12,
         marginRight: 15,
       },
       serverinfotoReceiveGoods: {
         fontSize: 12,
-        color: '#ccc',
-        paddingTop: 3,
+        color: FONT_COLOR_THIRD,
+        // paddingTop: 3,
         marginRight: 5,
       },
       serverinfotoReceiveGoodsText: {
-        color: '#ccc',
+        color: FONT_COLOR_THIRD,
         fontSize: 12,
       },
       spec: {
@@ -183,21 +221,172 @@ class ProductDetailMain extends React.Component {
         borderBottomWidth: 1,
         borderBottomStyle: 'solid',
         height: 50,
+        paddingLeft: SIDEINTERVAL,
       },
       specTitle: {
         fontSize: 14,
-        color: '#999',
+        color: FONT_COLOR_THIRD,
         paddingRight: 15,
       },
       specDesc: {
         fontSize: 14,
-        color: '#666',
+        color: FONT_COLOR_SECOND,
         flex: 1,
       },
       specArrow: {
         fontSize: 10,
-        color: '#999',
+        color: FONT_COLOR_THIRD,
         paddingRight: SIDEINTERVAL,
+      },
+      titlePrice: {
+        display: 'flex',
+        // marginBottom: 8,
+        borderBottomColor: BORDER_COLOR,
+        borderBottomWidth: 1,
+        borderBottomStyle: 'solid',
+        paddingLeft: SIDEINTERVAL,
+      },
+      titlePriceLeft: {
+        flex: 3,
+      },
+      titlePriceRight: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flex: 2,
+      },
+      favorite: {
+        paddingTop: 8,
+        paddingBottom: 8,
+        paddingRight: WINDOW_WIDTH * 0.03,
+      },
+      favoriteItem: {
+        fontSize: 21,
+      },
+      favoriteIconActive: {
+        color: PRIMARY_COLOR,
+      },
+      share: {
+        borderWidth: 1,
+        borderColor: RED_COLOR,
+        borderStyle: 'solid',
+        borderRadius: 3,
+        paddingLeft: WINDOW_WIDTH * 0.025,
+        paddingRight: WINDOW_WIDTH * 0.025,
+        paddingTop: 8,
+        paddingBottom: 8,
+        lineHeight: 1,
+        color: RED_COLOR,
+        fontSize: 14,
+      },
+      shareIcon: {
+        fontSize: 18,
+        marginRight: WINDOW_WIDTH * 0.021,
+      },
+    };
+
+    return (
+      <div style={styles.product}>
+        <div style={styles.titlePrice}>
+          <div style={styles.titlePriceLeft}>
+            <div style={styles.productPrice}>
+              {`${priceFormat(price || 0)} ${MONETARY}`}
+            </div>
+            <div style={styles.productTitle}>{name}</div>
+          </div>
+          <div style={styles.titlePriceRight}>
+            <div
+              style={styles.favorite}
+              onClick={() => this.handleToggleCollection()}
+            >
+              {isCollection ? (
+                <CustomIcon
+                  type="heart-fill"
+                  style={{
+                    ...styles.favoriteItem,
+                    ...styles.favoriteIconActive,
+                  }}
+                />
+              ) : (
+                <CustomIcon type="heart" style={styles.favoriteItem} />
+              )}
+            </div>
+            <div style={styles.share}>
+              <CustomIcon
+                type="ScreenShopping_icon2"
+                style={styles.shareIcon}
+              />
+              {formatMessage({ id: 'share' })}
+            </div>
+          </div>
+        </div>
+        <div style={styles.serverinfo}>
+          <div style={styles.serverinfoLeft}>
+            <div style={styles.serverinfoLeftSeparate} />
+            <CustomIcon style={styles.serverinfoToBePaid} type="returns" />
+            <div style={styles.serverinfoToBePaidText}>
+              {formatMessage({ id: 'qualityAssurance' })}
+            </div>
+          </div>
+          <div style={styles.serverinfoRight}>
+            <CustomIcon
+              style={styles.serverinfotoReceiveGoods}
+              type="toReceiveGoods"
+            />
+            <div style={styles.serverinfotoReceiveGoodsText}>
+              {formatMessage({ id: 'fastDelivery' })}
+            </div>
+          </div>
+        </div>
+        <SeparateBar />
+        <div style={styles.spec}>
+          <div style={styles.specTitle}>
+            {formatMessage({ id: 'selected' })}
+          </div>
+          <div
+            style={styles.specDesc}
+            onClick={() => {
+              openModal(MODAL_TYPES.PARAMSSELECT, {
+                productDetailNumber,
+                imageUrls,
+                price,
+                numbers,
+                propertiesIdsObject,
+                brandId,
+                propertiesIds,
+              });
+            }}
+          >
+            {propertiesIdsObject
+              .split('-')
+              .map(val =>
+                propertiesObjectForId[val]
+                  ? propertiesObjectForId[val].value
+                  : '',
+              )
+              .join('  ')}
+          </div>
+          <CustomIcon style={styles.specArrow} type="right" />
+        </div>
+      </div>
+    );
+  }
+
+  render() {
+    const {
+      comment,
+      brandId,
+      imageUrls,
+      imageDesc,
+      goodsProperties,
+    } = this.props;
+
+    const styles = {
+      container: {
+        position: 'relative',
+      },
+      statusbarPlaceholder: {
+        backgroundColor: '#fff',
       },
       commentMore: {
         paddingLeft: SIDEINTERVAL,
@@ -213,7 +402,7 @@ class ProductDetailMain extends React.Component {
         borderColor: BORDER_COLOR,
         borderWidth: 1,
         borderStyle: 'solid',
-        color: '#999',
+        color: FONT_COLOR_THIRD,
       },
       productImageItem: {
         width: WINDOW_WIDTH,
@@ -259,54 +448,7 @@ class ProductDetailMain extends React.Component {
               />
             )}
           </div>
-          <div style={styles.product}>
-            <div style={styles.productTitle}>{name}</div>
-            <div style={styles.productPrice}>
-              {`${priceFormat(price || 0)} ${MONETARY}`}
-            </div>
-            <div style={styles.serverinfo}>
-              <CustomIcon style={styles.serverinfoToBePaid} type="returns" />
-              <div style={styles.serverinfoToBePaidText}>
-                {formatMessage({ id: 'qualityAssurance' })}
-              </div>
-              <CustomIcon
-                style={styles.serverinfotoReceiveGoods}
-                type="toReceiveGoods"
-              />
-              <div style={styles.serverinfotoReceiveGoodsText}>
-                {formatMessage({ id: 'fastDelivery' })}
-              </div>
-            </div>
-            <div style={styles.spec}>
-              <div style={styles.specTitle}>
-                {formatMessage({ id: 'selected' })}
-              </div>
-              <div
-                style={styles.specDesc}
-                onClick={() => {
-                  openModal(MODAL_TYPES.PARAMSSELECT, {
-                    productDetailNumber,
-                    imageUrls,
-                    price,
-                    numbers,
-                    propertiesIdsObject,
-                    brandId,
-                    propertiesIds,
-                  });
-                }}
-              >
-                {propertiesIdsObject
-                  .split('-')
-                  .map(val =>
-                    propertiesObjectForId[val]
-                      ? propertiesObjectForId[val].value
-                      : '',
-                  )
-                  .join('  ')}
-              </div>
-              <CustomIcon style={styles.specArrow} type="right" />
-            </div>
-          </div>
+          {this.renderProduct()}
           {comment.length ? (
             <>
               <SeparateBar />
@@ -394,11 +536,14 @@ export default connect(
       productIdVIP: id,
       comment: comment.items.detail ? comment.items.detail.slice(0, 1) : [],
       pathname,
+      isCollection: getIsCollection(state, props),
+      authUser: o(localStorageGetItem, BUYOO),
     };
   },
   {
     ...commentActionCreators,
     ...productDetailInfoActionCreators,
     ...modalActionCreators,
+    ...collectionActionCreators,
   },
 )(ProductDetailMain);

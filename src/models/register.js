@@ -12,6 +12,7 @@ import {
 } from '@/common/actions/register';
 import { addError } from '@/common/actions/error';
 import { loginFetchSuccess } from '@/common/actions/login';
+import { dispatchEvent } from '@/utils';
 
 const initState = {
   loading: false,
@@ -37,6 +38,7 @@ export default {
           appid = '',
           inviterno = '',
           isReceive = false,
+          screen = '',
         } = action.payload;
 
         const Key = 'userKey';
@@ -122,7 +124,7 @@ export default {
               break;
           }
         } else {
-          yield put(registerFetchSuccess(response));
+          yield put(registerFetchSuccess(response, screen));
         }
       } catch (err) {
         yield put(registerFetchFailure());
@@ -131,16 +133,25 @@ export default {
     },
     *[REGISTER.SUCCESS](action, { put }) {
       try {
-        const { response } = action.payload;
-        yield put(loginFetchSuccess(response, ''));
+        const { response, screen } = action.payload;
+        yield put(loginFetchSuccess(response, screen));
 
-        Modal.alert('', formatMessage({ id: 'signUpSuccessfully' }), [
-          {
-            text: formatMessage({ id: 'confirm' }),
-            onPress: () => router.go(-3),
-            style: 'default',
-          },
-        ]);
+        if (screen) {
+          dispatchEvent(screen, {
+            method: 'register',
+            params: {
+              response,
+            },
+          });
+        } else {
+          Modal.alert('', formatMessage({ id: 'signUpSuccessfully' }), [
+            {
+              text: formatMessage({ id: 'confirm' }),
+              onPress: () => router.go(-3),
+              style: 'default',
+            },
+          ]);
+        }
       } catch (error) {
         yield put(addError(typeof err === 'string' ? error : error.toString()));
       }

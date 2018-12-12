@@ -575,6 +575,12 @@ export const BILL_DETAILS = defineAction(
   // appNamespace,
 );
 
+export const OAUTH_REQUEST = defineAction(
+  'OAUTH_REQUEST',
+  [REQUEST, SUCCESS, FAILURE],
+  // appNamespace,
+);
+
 export const REPAYMENT_RECORD = defineAction(
   'REPAYMENT_RECORD',
   [REQUEST, SUCCESS, FAILURE],

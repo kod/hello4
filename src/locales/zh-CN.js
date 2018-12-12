@@ -359,6 +359,9 @@ export default {
   orSignInWith: '其他登录方式',
   facebook: 'Facebook',
   google: 'Google',
+  messenger: 'Messenger',
+  linkEmail: '绑定邮箱',
+  tipsLinkEmail: '为了您帐户的安全，请绑定邮箱',
   receiveServicesOffers: '我愿意从接收buyoo.vip广告和各种资讯',
   emailCodeTips:
     '邮件会存在延迟，一般两分钟可收到，请耐心等候，避免重复操作。如未收到请去垃圾邮件中检查一下，因为部分邮件系统会有误拦截现象发生',

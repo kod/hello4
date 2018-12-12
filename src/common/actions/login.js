@@ -19,7 +19,14 @@ export function loginFetchFailure() {
   };
 }
 
-export function loginFetch({ mail, password, otp, screen }) {
+export function loginFetch({
+  mail,
+  password,
+  otp,
+  oauthtype,
+  oauthid,
+  screen,
+}) {
   return {
     type: `${LOGIN_NAMESPACE}/${LOGIN.REQUEST}`,
     payload: {
@@ -27,6 +34,8 @@ export function loginFetch({ mail, password, otp, screen }) {
       password,
       otp,
       screen,
+      oauthtype,
+      oauthid,
     },
   };
 }

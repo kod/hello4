@@ -1,4 +1,4 @@
-export const DEBUG = false;
+export const DEBUG = true;
 export const API_DEBUG = DEBUG;
 export const IS_SHOW_LOG = DEBUG;
 export const IS_I18N = DEBUG; // 是否支持多语言; 默认为越南语
@@ -21,6 +21,9 @@ export const CARDQUERY_NAMESPACE = 'cardQuery';
 export const QUERYORDERLIST_NAMESPACE = 'queryOrderList';
 export const GETSQUARESINFO_NAMESPACE = 'getSquaresInfo';
 
+export const SOCIALBIND_GOOGLE = 1; // google
+export const SOCIALBIND_FACEBOOK = 2; // facebook
+
 export const GETNEWESTINFO_NAMESPACE = 'getNewestInfo';
 export const BANNERSWIPER_NAMESPACE = 'bannerSwiper';
 export const ADVERSTINFO_NAMESPACE = 'adverstInfo';
@@ -30,6 +33,7 @@ export const GETUSERINFOBYID_NAMESPACE = 'getUserInfoById';
 export const CERTIFIEDINFORMATION_NAMESPACE = 'certifiedInformation';
 export const OTP_NAMESPACE = 'otp';
 export const REGISTER_NAMESPACE = 'register';
+export const OAUTH_REQUEST_NAMESPACE = 'oauthRequest';
 export const CHANGEPASSWORD_NAMESPACE = 'changePassword';
 export const COLLECTION_NAMESPACE = 'collection';
 export const PRODUCTDETAILINFO_NAMESPACE = 'productDetailInfo';
@@ -78,7 +82,7 @@ export const FUNCARD_HELP_APPLY = `${DOMAIN}/html/aboutFunCard.html#Cach-thuc-da
 export const FUNCARD_HELP_STAGE = `${DOMAIN}/html/aboutFunCard.html#Huong-dan-mua-hang-bang-Buyoo-Fun-Card`; // 如何分期
 export const FUNCARD_HELP_REPAY = `${DOMAIN}/html/aboutFunCard.html#Thanh-toan-no-hang-thang-the-Buyoo-Fun-Card-nhu-the-nao`; // 如何还款
 
-export const ICON_SCRIPTURL = '//at.alicdn.com/t/font_892500_eo65rtyplqm.js';
+export const ICON_SCRIPTURL = '//at.alicdn.com/t/font_892500_emqz10mipxr.js';
 
 export const CREDIT_PAYWAY = 1;
 export const INTERNET_BANK_PAYWAY = 2;
@@ -209,6 +213,8 @@ export const SCREENS = {
   IdCardUpload: 'IdCardUpload',
   HandHeldPhotoUpload: 'HandHeldPhotoUpload',
   BillDetailOld: 'BillDetailOld',
+  OauthBindMailOne: 'OauthBindMailOne',
+  OauthBindMailTwo: 'OauthBindMailTwo',
 };
 
 export const COUPONMY_TABNAVIGATOR_MAP = {

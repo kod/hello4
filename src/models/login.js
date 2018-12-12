@@ -13,7 +13,7 @@ import {
 import { cartRequest, cartClear } from '@/common/actions/cart';
 import { cardQueryFetch, cardQueryClear } from '@/common/actions/cardQuery';
 import { queryOrderListClear } from '@/common/actions/queryOrderList';
-import { dispatchEvent, a } from '@/utils';
+import { dispatchEvent, localStorageSetItem, localStorageClear } from '@/utils';
 
 const initState = {
   loading: false,
@@ -29,11 +29,19 @@ export default {
 
   effects: {
     *[LOGIN.REQUEST](action, { apply, put }) {
-      const { mail, password = '', otp = '', screen = '' } = action.payload;
+      const {
+        mail = '',
+        password = '',
+        otp = '',
+        screen = '',
+        oauthtype = '',
+        oauthid = '',
+      } = action.payload;
       try {
         const Key = 'userKey';
         const provider = '3';
-        const appid = '';
+        const appid = '0';
+        const version = '2.1';
 
         const encrypt = encryptMD5(
           [
@@ -57,6 +65,14 @@ export default {
               key: 'appid',
               value: appid,
             },
+            {
+              key: 'oauthtype',
+              value: oauthtype,
+            },
+            {
+              key: 'oauthid',
+              value: oauthid,
+            },
           ],
           Key,
         );
@@ -68,6 +84,9 @@ export default {
             password,
             otp,
             appid,
+            oauthtype,
+            oauthid,
+            version,
             encryption: encrypt,
           },
         ]);
@@ -76,7 +95,8 @@ export default {
           yield put(loginFetchFailure());
           switch (response.status) {
             case 60050:
-              yield put(addError(formatMessage({ id: 'userNotExist' })));
+              yield put(loginFetchSuccess(null, screen));
+              // yield put(addError(formatMessage({ id: 'userNotExist' })));
               break;
 
             case 60051:
@@ -106,24 +126,36 @@ export default {
     *[LOGIN.SUCCESS](action, { put }) {
       const { user, screen } = action.payload;
       try {
-        yield put(userCertificateInfoFetch());
+        if (user) {
+          yield put(userCertificateInfoFetch());
 
-        yield put(cartRequest());
-        yield put(cardQueryFetch());
+          yield put(cartRequest());
+          yield put(cardQueryFetch());
 
-        const b = 'p';
-        const c = new Date();
-        const d = JSON.stringify(user);
-        a(md5(`${BUYOO}vi${b}`), d);
-        a(md5(`${BUYOO}vXi${b}`), md5(`a${d}aa${c.getDay()}`).toString());
-        if (screen) dispatchEvent(screen);
+          const b = 'p';
+          const c = new Date();
+          const d = JSON.stringify(user);
+          localStorageSetItem(md5(`${BUYOO}vi${b}`), d);
+          localStorageSetItem(
+            md5(`${BUYOO}vXi${b}`),
+            md5(`a${d}aa${c.getDay()}`).toString(),
+          );
+        }
+        if (screen) {
+          dispatchEvent(screen, {
+            method: 'login',
+            params: {
+              user,
+            },
+          });
+        }
       } catch (err) {
         console.warn(err);
       }
     },
     *[LOGOUT.SUCCESS](action, { put }) {
       try {
-        localStorage.clear();
+        localStorageClear();
         yield put(cartClear());
         yield put(cardQueryClear());
         yield put(queryOrderListClear());

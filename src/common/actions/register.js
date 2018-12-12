@@ -1,11 +1,12 @@
 import { REGISTER } from '@/common/constants/actionTypes';
 import { REGISTER_NAMESPACE } from '@/common/constants';
 
-export function registerFetchSuccess(response) {
+export function registerFetchSuccess(response, screen) {
   return {
     type: `${REGISTER_NAMESPACE}/${REGISTER.SUCCESS}`,
     payload: {
       response,
+      screen,
     },
   };
 }

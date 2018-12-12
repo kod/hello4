@@ -373,6 +373,9 @@ export default {
   orSignInWith: 'Hoặc đăng nhập bằng',
   facebook: 'Facebook',
   google: 'Google',
+  messenger: 'Messenger',
+  linkEmail: 'Liên kết Email',
+  tipsLinkEmail: 'Vì sự an toàn cho tài khoản của bạn, Vui lòng liên kết Email',
   receiveServicesOffers: 'Đồng ý nhận quảng cáo và tin tức từ Buyoo.vip',
   emailCodeTips:
     ' Hệ thống sẽ gửi email sau 2 phút nữa, vui lòng không lặp lại thao tác. Trường hợp không nhận được email vui lòng kiểm tra trong hộp thư rác của bạn.',

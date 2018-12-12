@@ -123,8 +123,16 @@ export default [
     path: '/SmartDigital',
     component: './SmartDigital/Index',
   },
+  // {
+  //   path: '/Test',
+  //   component: './Test/Index',
+  // },
   {
-    path: '/Test',
-    component: './Test/Index',
+    path: '/OauthBindMailOne',
+    component: './OauthBindMailOne/Index',
+  },
+  {
+    path: '/OauthBindMailTwo',
+    component: './OauthBindMailTwo/Index',
   },
 ];

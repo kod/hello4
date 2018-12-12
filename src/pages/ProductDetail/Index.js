@@ -27,8 +27,11 @@ import ProductDetailMain from './ProductDetailMain';
 import * as collectionActionCreators from '@/common/actions/collection';
 import * as modalActionCreators from '@/common/actions/modal';
 import * as cartActionCreators from '@/common/actions/cart';
-import { b, addEventListener, removeEventListener } from '@/utils';
-import { getIsCollection } from '@/common/selectors';
+import {
+  localStorageGetItem,
+  addEventListener,
+  removeEventListener,
+} from '@/utils';
 import { o } from '@/utils/AuthEncrypt';
 
 class Index extends React.Component {
@@ -149,20 +152,6 @@ class Index extends React.Component {
     window.location.href = linkStr;
   }
 
-  handleToggleCollection() {
-    const {
-      collectionAddFetch,
-      collectionRemoveFetch,
-      isCollection,
-      authUser,
-      brandId,
-    } = this.props;
-    if (!authUser) return router.push(`/login`);
-    return isCollection
-      ? collectionRemoveFetch(brandId.toString())
-      : collectionAddFetch(brandId.toString());
-  }
-
   renderHeaderRight = () => {
     const styles = {
       container: {
@@ -237,12 +226,12 @@ class Index extends React.Component {
         >
           <CustomIcon type="left" style={styles.backIcon} />
         </div>
-        <div
+        {/* <div
           style={styles.headerRight}
           onClick={() => this.handleOnModalOperation()}
         >
           <CustomIcon type="gengduo" style={styles.backIcon} />
-        </div>
+        </div> */}
       </div>
     );
   }
@@ -293,6 +282,8 @@ class Index extends React.Component {
         fontSize: 20,
       },
       navHeaderRight: {
+        height: 45,
+        width: 45,
         // paddingLeft: SIDEINTERVAL,
       },
       navHeaderLocationIcon: {
@@ -374,14 +365,14 @@ class Index extends React.Component {
           style={styles.navHeaderRight}
           onClick={() => this.handleOnModalOperation()}
         >
-          <CustomIcon type="gengduo" style={styles.navHeaderIcon} />
+          {/* <CustomIcon type="gengduo" style={styles.navHeaderIcon} /> */}
         </div>
       </div>
     );
   }
 
   renderOperate() {
-    const { numbers, isCollection } = this.props;
+    const { numbers } = this.props;
 
     const styles = {
       operate: {
@@ -399,31 +390,43 @@ class Index extends React.Component {
       },
       operateIcon: {
         display: 'flex',
-        width: (WINDOW_WIDTH * 9) / 24,
+        width: (WINDOW_WIDTH * 12) / 24,
         backgroundColor: '#fff',
         flexDirection: 'row',
       },
       operateIconItem: {
+        position: 'relative',
         display: 'flex',
         flexDirection: 'column',
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
       },
+      operateIconItemSeparate: {
+        position: 'absolute',
+        right: 0,
+        top: 10,
+        bottom: 10,
+        width: 1,
+        backgroundColor: BORDER_COLOR,
+      },
       operateIconItemIcon: {
-        fontSize: 16,
+        fontSize: 21,
       },
       operateIconItemActive: {
         color: PRIMARY_COLOR,
       },
-      favoriteItem: {
-        fontSize: 16,
-      },
-      favoriteIconActive: {
-        color: PRIMARY_COLOR,
-      },
+      // favoriteItem: {
+      //   fontSize: 21,
+      // },
+      // favoriteIconActive: {
+      //   color: PRIMARY_COLOR,
+      // },
       operateIconItemText: {
         fontSize: 10,
+        lineHeight: 1,
+        paddingTop: 2,
+        textAlign: 'center',
       },
       operateLeft: {
         width: (WINDOW_WIDTH * 6) / 24,
@@ -439,7 +442,7 @@ class Index extends React.Component {
         flexWrap: 'wrap',
       },
       operateRight: {
-        width: (WINDOW_WIDTH * 9) / 24,
+        width: (WINDOW_WIDTH * 12) / 24,
         height: 49,
         lineHeight: `${49}px`,
         textAlign: 'center',
@@ -457,45 +460,47 @@ class Index extends React.Component {
         <div style={styles.operateIcon}>
           <div
             style={styles.operateIconItem}
-            onClick={() => this.handleToggleCollection()}
+            onClick={() => this.handleToggleService()}
+            // onClick={() => this.handleToggleCollection()}
           >
-            {isCollection ? (
+            {/* {isCollection ? (
               <CustomIcon
                 type="heart-fill"
                 style={{
                   ...styles.favoriteItem,
-                  ...styles.operateIconItemActive,
                 }}
               />
             ) : (
-              <CustomIcon type="heart" style={styles.favoriteItem} />
-            )}
+              <CustomIcon type="iconmessages" style={styles.favoriteItem} />
+            )} */}
+            <div style={styles.operateIconItemSeparate} />
+            <CustomIcon type="iconmessages" style={styles.favoriteItem} />
             <div
               style={{
                 ...styles.operateIconItemText,
-                ...(isCollection && styles.operateIconItemActive),
+                // ...(isCollection && styles.operateIconItemActive),
               }}
             >
-              {formatMessage({ id: 'collect' })}
+              {formatMessage({ id: 'messenger' })}
             </div>
           </div>
           <div
             style={styles.operateIconItem}
-            onClick={() => this.handleToggleService()}
+            onClick={() => this.handleOnPressAddCart()}
           >
-            <CustomIcon type="service" style={styles.operateIconItemIcon} />
+            <CustomIcon type="iconcart" style={styles.operateIconItemIcon} />
 
             <div style={styles.operateIconItemText}>
-              {formatMessage({ id: 'service' })}
+              {formatMessage({ id: 'addToCart' })}
             </div>
           </div>
         </div>
-        <div
+        {/* <div
           style={styles.operateLeft}
           onClick={() => this.handleOnPressAddCart()}
         >
           {formatMessage({ id: 'addToCart' })}
-        </div>
+        </div> */}
         <div
           style={{
             ...styles.operateRight,
@@ -550,8 +555,8 @@ export default connect(
       ...productDetailInfo.item,
       query,
       pathname,
-      authUser: o(b, BUYOO),
-      isCollection: getIsCollection(state, props),
+      authUser: o(localStorageGetItem, BUYOO),
+      // isCollection: getIsCollection(state, props),
     };
   },
   {

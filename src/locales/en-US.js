@@ -367,6 +367,9 @@ export default {
   orSignInWith: '其他登录方式',
   facebook: 'Facebook',
   google: 'Google',
+  messenger: 'Messenger',
+  linkEmail: 'Email Links',
+  tipsLinkEmail: 'For the safety of your account, please Email Links',
   receiveServicesOffers:
     'I am willing to receive advertising and various information from buyoo.vip',
   emailCodeTips:
