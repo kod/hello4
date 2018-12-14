@@ -157,8 +157,12 @@ class ProductDetailMain extends React.Component {
       console.log(link);
       window.FB.ui(
         {
-          method: 'share',
-          link,
+          display: 'popup',
+          method: 'share_open_graph',
+          action_type: 'og.likes',
+          action_properties: JSON.stringify({
+            object: link,
+          }),
         },
         response => {
           console.log(response);
