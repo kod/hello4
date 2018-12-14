@@ -7,13 +7,13 @@ const TIMEOUT = 30 * 1000;
 
 const BASE_URL = API_DEBUG ? 'https://buyoo.club' : '';
 
-const PORT_80 = API_DEBUG ? ':8180' : 'https://uc.buyoo.vip';
-// const PORT_81 = API_DEBUG ? ':8181' : 'https://payment.buyoo.vip';
-const PORT_83 = API_DEBUG ? ':8183' : 'https://trade.buyoo.vip';
-const PORT_84 = API_DEBUG ? ':8184' : 'https://settlement.buyoo.vip';
-const PORT_85 = API_DEBUG ? ':8185' : 'https://commodity.buyoo.vip';
-// const PORT_86 = API_DEBUG ? ':8186' : 'https://risk.buyoo.vip';
-const PORT_87 = API_DEBUG ? ':8187' : 'https://market.buyoo.vip';
+const PORT_80 = API_DEBUG ? ':8280' : 'https://uc.buyoo.vip';
+// const PORT_81 = API_DEBUG ? ':8281' : 'https://payment.buyoo.vip';
+const PORT_83 = API_DEBUG ? ':8283' : 'https://trade.buyoo.vip';
+const PORT_84 = API_DEBUG ? ':8284' : 'https://settlement.buyoo.vip';
+const PORT_85 = API_DEBUG ? ':8285' : 'https://commodity.buyoo.vip';
+// const PORT_86 = API_DEBUG ? ':8286' : 'https://risk.buyoo.vip';
+const PORT_87 = API_DEBUG ? ':8287' : 'https://market.buyoo.vip';
 
 function callApi(url, options) {
   const finalUrl = /^https?:\/\//i.test(url) ? url : BASE_URL + url;
