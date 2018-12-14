@@ -1,4 +1,4 @@
-export const DEBUG = true;
+export const DEBUG = false;
 export const API_DEBUG = DEBUG;
 export const IS_SHOW_LOG = DEBUG;
 export const IS_I18N = DEBUG; // 是否支持多语言; 默认为越南语
@@ -62,7 +62,7 @@ export const GETALLPRODUCTINFO_NAMESPACE = 'getAllProductInfo';
 // namespace -end-
 
 export const DOMAIN = 'https://buyoo.vn';
-export const MESSAGE_URL = 'http://m.me/buyooshop.vip';
+export const MESSAGE_URL = 'https://m.me/buyooshop.vip';
 export const SHARE_URL = `${DOMAIN}/html/downloadApp.html?userID=XXX`;
 export const SUPPORT_CENTER_URL = `${DOMAIN}/html/buyIntroM.html`;
 export const HOW_TO_BUY_URL = `${DOMAIN}/html/paystepM.html`;

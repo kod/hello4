@@ -5,7 +5,7 @@ const qs = require('qs');
 
 const TIMEOUT = 30 * 1000;
 
-const BASE_URL = API_DEBUG ? 'http://buyoo.club' : '';
+const BASE_URL = API_DEBUG ? 'https://buyoo.club' : '';
 
 const PORT_80 = API_DEBUG ? ':8180' : 'https://uc.buyoo.vip';
 // const PORT_81 = API_DEBUG ? ':8181' : 'https://payment.buyoo.vip';
@@ -260,18 +260,6 @@ class ReactStore {
   //     },
   //     data,
   //   };
-
-  //   return axios(`http://192.168.7.99${PORT_83}/fun/trade/order/pay`, options)
-  //     .then(res => {
-  //       if (res.data.status !== 10000) {
-  //         throw new Error(res.data.result);
-  //       }
-  //       return res.data;
-  //     })
-  //     .catch(err => {
-  //       throw err;
-  //     });
-  // }
 
   orderPay(o) {
     let options = o;
