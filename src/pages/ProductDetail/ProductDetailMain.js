@@ -82,6 +82,18 @@ class ProductDetailMain extends React.Component {
       });
     });
 
+    if (window.FB) {
+      this.setState({
+        isLoadFBSDK: true,
+      });
+    } else {
+      setTimeout(() => {
+        this.setState({
+          isLoadFBSDK: true,
+        });
+      }, 3 * 1000);
+    }
+
     setTimeout(() => {
       smoothScroll.init({
         offset: 20,
