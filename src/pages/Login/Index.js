@@ -1,4 +1,3 @@
-/* eslint-disable func-names, no-var, one-var, no-undef */
 import React from 'react';
 import { Modal } from 'antd-mobile';
 import { formatMessage } from 'umi/locale';
@@ -25,6 +24,7 @@ import {
   removeEventListener,
   localStorageRemoveItem,
   localStorageSetItem,
+  loadFbLoginApi,
 } from '@/utils';
 import {
   FONT_SIZE_FOURTH,
@@ -50,7 +50,11 @@ class Index extends React.Component {
 
   componentDidMount() {
     addEventListener(SCREENS.Login, this.addEventListenerHandle);
-    this.loadFbLoginApi();
+    loadFbLoginApi(() => {
+      this.setState({
+        isLoadFBSDK: true,
+      });
+    });
 
     if (window.FB) {
       this.setState({
@@ -68,37 +72,6 @@ class Index extends React.Component {
   componentWillUnmount() {
     removeEventListener(SCREENS.Login, this.addEventListenerHandle);
   }
-
-  loadFbLoginApi = () => {
-    window.fbAsyncInit = () => {
-      this.setState({
-        isLoadFBSDK: true,
-      });
-      FB.init({
-        appId: '273625800016270',
-        cookie: true,
-        xfbml: true,
-        version: 'v3.2',
-      });
-
-      FB.AppEvents.logPageView();
-    };
-    (function(d, s, id) {
-      var js,
-        fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) {
-        return;
-      }
-      js = d.createElement(s);
-      js.id = id;
-      js.src = 'https://connect.facebook.net/en_US/sdk.js';
-      fjs.parentNode.insertBefore(js, fjs);
-    })(document, 'script', 'facebook-jssdk');
-  };
-
-  // addEventListenerHandle = () => {
-  //   router.go(-1);
-  // };
 
   addEventListenerHandle = ({ detail: { method, params } }) => {
     switch (method) {
@@ -132,9 +105,10 @@ class Index extends React.Component {
   socialLoginCallback = ret => {
     const { loginFetch } = this.props;
     // 判断此第三方账号是否已绑定过用户
+    console.log(ret);
     loginFetch({
-      oauth_type: ret.oauth_type,
-      oauth_id: ret.oauth_id,
+      oauthtype: ret.oauth_type,
+      oauthid: ret.oauth_id,
       // access_token: ret.access_token,
       screen: SCREENS.Login,
     });
@@ -153,7 +127,7 @@ class Index extends React.Component {
         // access_token: authResponse.accessToken,
       });
     } else {
-      FB.login();
+      window.FB.login();
     }
   };
 
@@ -172,33 +146,27 @@ class Index extends React.Component {
         break;
 
       case SOCIALBIND_FACEBOOK:
-        // facebookLogin({
-        //   LoginManager,
-        //   AccessToken,
-        //   GraphRequest,
-        //   GraphRequestManager,
-        //   callback: this.socialLoginCallback,
-        // });
-        setTimeout(() => {
-          const response = {
-            authResponse: {
-              accessToken:
-                'EAAD43HicgY4BAL87VQjmuLoYTWxWzyMXZCXqvY4wiFksdk1McgkdV91yPoBUgCVwuTZCaCImPMUZAv7rZB007rBo88RkGbmgMn2v0uZBzoSrogX00suvYH0z4qJSl22k27tSeGmub8dHKZBbxYVBo52PKMfMOdp5lOyXZBIBSUA6LCANLadJvgA9Bm2ZBizCPokASlZBeSDCcrgZDZD',
-              userID: '376293986471968',
-              expiresIn: 7017,
-              signedRequest:
-                'WGLR8Ek8s_3FJ7usdD0-uGbaEVDDWcT2E9unqHU4FHY.eyJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsImNvZGUiOiJBUURDS21kenFHNDFEWEFWeE1rempCREFrYmtPc2hKM2dyRmhZTXE2NTgza1RzUUFQbi1xb0pfc2EtWEVlNjVWbWFSQ29pQmUtUFAwOFlMR0Vpdm5fd0UzT2VWUnh5TjQxdlNLRnIwTHZqN1Jzd1ZTU0RweG1RN1dNckxOUWFieE4wcUh1cEpOQTQ2eFdhNm1KTTNLUjhZQndya0k0M2ZoNnc2VXd0dVVrVDkzVDZJaVJKbExQQUxhVmhEaXFNREpReXAxMGpCVjd4ZmJlYmt1UlBDTVJTUDdiRkJYQmRHR0R4TTVxWjJibDVZVERXZ2t0UGxwUzZjOTFhQVdGMnlZZUZQNjA0endGYm12cm0zLV9URnNXX25uNURTSDNlY1JQalNUOFZYZjR0UGx2QzBYWGpidUV0OFBJTW01bGpNVkN1UkJEMV9xYjJ1dFR1SXVxTnh4dTl5Q1BxdDBnNE5KeFFaT0pmcmtoYkNFNmciLCJpc3N1ZWRfYXQiOjE1NDQ1OTgxODMsInVzZXJfaWQiOiIzNzYyOTM5ODY0NzE5NjgifQ',
-              reauthorize_required_in: 7768224,
-              data_access_expiration_time: 1552366407,
-            },
-            status: 'connected',
-          };
+        // setTimeout(() => {
+        //   const response = {
+        //     authResponse: {
+        //       accessToken:
+        //         'EAAD43HicgY4BAL87VQjmuLoYTWxWzyMXZCXqvY4wiFksdk1McgkdV91yPoBUgCVwuTZCaCImPMUZAv7rZB007rBo88RkGbmgMn2v0uZBzoSrogX00suvYH0z4qJSl22k27tSeGmub8dHKZBbxYVBo52PKMfMOdp5lOyXZBIBSUA6LCANLadJvgA9Bm2ZBizCPokASlZBeSDCcrgZDZD',
+        //       userID: '376293986471968',
+        //       expiresIn: 7017,
+        //       signedRequest:
+        //         'WGLR8Ek8s_3FJ7usdD0-uGbaEVDDWcT2E9unqHU4FHY.eyJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsImNvZGUiOiJBUURDS21kenFHNDFEWEFWeE1rempCREFrYmtPc2hKM2dyRmhZTXE2NTgza1RzUUFQbi1xb0pfc2EtWEVlNjVWbWFSQ29pQmUtUFAwOFlMR0Vpdm5fd0UzT2VWUnh5TjQxdlNLRnIwTHZqN1Jzd1ZTU0RweG1RN1dNckxOUWFieE4wcUh1cEpOQTQ2eFdhNm1KTTNLUjhZQndya0k0M2ZoNnc2VXd0dVVrVDkzVDZJaVJKbExQQUxhVmhEaXFNREpReXAxMGpCVjd4ZmJlYmt1UlBDTVJTUDdiRkJYQmRHR0R4TTVxWjJibDVZVERXZ2t0UGxwUzZjOTFhQVdGMnlZZUZQNjA0endGYm12cm0zLV9URnNXX25uNURTSDNlY1JQalNUOFZYZjR0UGx2QzBYWGpidUV0OFBJTW01bGpNVkN1UkJEMV9xYjJ1dFR1SXVxTnh4dTl5Q1BxdDBnNE5KeFFaT0pmcmtoYkNFNmciLCJpc3N1ZWRfYXQiOjE1NDQ1OTgxODMsInVzZXJfaWQiOiIzNzYyOTM5ODY0NzE5NjgifQ',
+        //       reauthorize_required_in: 7768224,
+        //       data_access_expiration_time: 1552366407,
+        //     },
+        //     status: 'connected',
+        //   };
 
-          this.FBstatusChangeCallback(response);
-        }, 1000);
-        // FB.getLoginStatus(response => {
         //   this.FBstatusChangeCallback(response);
-        // });
+        // }, 1000);
+
+        window.FB.getLoginStatus(response => {
+          this.FBstatusChangeCallback(response);
+        });
         break;
 
       default:

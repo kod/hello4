@@ -39,6 +39,7 @@ import {
   removeEventListener,
   xOssProcess,
   localStorageGetItem,
+  loadFbLoginApi,
 } from '@/utils';
 import { getIsCollection } from '@/common/selectors';
 import { o } from '@/utils/AuthEncrypt';
@@ -46,6 +47,11 @@ import { o } from '@/utils/AuthEncrypt';
 class ProductDetailMain extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      isLoadFBSDK: false,
+    };
+
     this.addEventListenerHandle = this.addEventListenerHandle.bind(this);
   }
 
@@ -69,6 +75,13 @@ class ProductDetailMain extends React.Component {
     commentFetch(brandId);
 
     addEventListener('ProductDetailMain', this.addEventListenerHandle);
+
+    loadFbLoginApi(() => {
+      this.setState({
+        isLoadFBSDK: true,
+      });
+    });
+
     setTimeout(() => {
       smoothScroll.init({
         offset: 20,
@@ -116,6 +129,32 @@ class ProductDetailMain extends React.Component {
         break;
     }
   };
+
+  handlePressShare() {
+    const { isLoadFBSDK } = this.state;
+    const { authUser } = this.props;
+    console.log(authUser);
+    console.log(isLoadFBSDK);
+    if (isLoadFBSDK) {
+      console.log(window.location.href);
+      console.log('handlePressShare');
+      const link = window.location.href;
+      if (authUser) {
+        console.log(`${link}&uid=${authUser.result}`);
+      }
+      console.log(link);
+      window.FB.ui(
+        {
+          method: 'share',
+          link,
+        },
+        response => {
+          console.log(response);
+          console.log('asdf');
+        },
+      );
+    }
+  }
 
   handleToggleCollection() {
     const {
@@ -311,7 +350,7 @@ class ProductDetailMain extends React.Component {
                 <CustomIcon type="heart" style={styles.favoriteItem} />
               )}
             </div>
-            <div style={styles.share}>
+            <div style={styles.share} onClick={() => this.handlePressShare()}>
               <CustomIcon
                 type="ScreenShopping_icon2"
                 style={styles.shareIcon}
