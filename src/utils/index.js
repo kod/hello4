@@ -602,7 +602,8 @@ export const loadFbLoginApi = (callback = () => {}) => {
     window.FB.AppEvents.logPageView();
   };
 
-  /* eslint-disable */
+  if (!window.FB) {
+    /* eslint-disable */
   (function(d, s, id) {
     var js,
       fjs = d.getElementsByTagName(s)[0];
@@ -614,8 +615,39 @@ export const loadFbLoginApi = (callback = () => {}) => {
     js.src = 'https://connect.facebook.net/en_US/sdk.js';
     fjs.parentNode.insertBefore(js, fjs);
   })(document, 'script', 'facebook-jssdk');
-  /* eslint-disable */
+    /* eslint-enable */
+  }
+};
 
+export const loadGoogleLoginApi = (callback = () => {}) => {
+  // window.fbAsyncInit = () => {
+  //   callback();
+  //   window.FB.init({
+  //     appId: '273625800016270',
+  //     cookie: true,
+  //     xfbml: true,
+  //     version: 'v3.2',
+  //   });
+
+  //   window.FB.AppEvents.logPageView();
+  // };
+
+  if (!window.gapi) {
+    /* eslint-disable */
+    (function(d, s, id) {
+      var js,
+        fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {
+        return;
+      }
+      js = d.createElement(s);
+      js.id = id;
+      js.onload = () => callback();
+      js.src = 'https://apis.google.com/js/platform.js';
+      fjs.parentNode.insertBefore(js, fjs);
+    })(document, 'script', 'google-jssdk');
+    /* eslint-enable */
+  }
 };
 
 export const localStorageSetItem = (k, v) => localStorage.setItem(k, v);

@@ -94,6 +94,10 @@ export default {
         if (response.status !== 10000) {
           yield put(loginFetchFailure());
           switch (response.status) {
+            case 40007:
+              yield put(loginFetchSuccess(null, screen));
+              break;
+
             case 60050:
               yield put(loginFetchSuccess(null, screen));
               // yield put(addError(formatMessage({ id: 'userNotExist' })));

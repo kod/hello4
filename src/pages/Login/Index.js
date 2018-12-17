@@ -25,6 +25,7 @@ import {
   localStorageRemoveItem,
   localStorageSetItem,
   loadFbLoginApi,
+  loadGoogleLoginApi,
 } from '@/utils';
 import {
   FONT_SIZE_FOURTH,
@@ -46,6 +47,7 @@ class Index extends React.Component {
     this.addEventListenerHandle = this.addEventListenerHandle.bind(this);
     this.socialLoginCallback = this.socialLoginCallback.bind(this);
     this.FBstatusChangeCallback = this.FBstatusChangeCallback.bind(this);
+    this.onSignIn = this.onSignIn.bind(this);
   }
 
   componentDidMount() {
@@ -53,6 +55,17 @@ class Index extends React.Component {
     loadFbLoginApi(() => {
       this.setState({
         isLoadFBSDK: true,
+      });
+    });
+    loadGoogleLoginApi(() => {
+      window.gapi.load('auth2', () => {
+        window.gapi.auth2.init({
+          client_id:
+            '717067101088-lbqv77ppebtf031ge0lf1up024v5145j.apps.googleusercontent.com',
+        });
+        // const googleUser = gapi.auth2.getAuthInstance().currentUser.get();
+        // const profile = googleUser.getBasicProfile();
+        // profile.getId();
       });
     });
 
@@ -102,10 +115,24 @@ class Index extends React.Component {
     }
   };
 
+  onSignIn = googleUser => {
+    const profile = googleUser.getBasicProfile();
+
+    this.socialLoginCallback({
+      oauth_type: SOCIALBIND_GOOGLE,
+      oauth_id: profile.getId(),
+    });
+
+    // console.log(`ID: ${profile.getId()}`); // Do not send to your backend! Use an ID token instead.
+    // console.log(`Name: ${profile.getName()}`);
+    // console.log(`Image URL: ${profile.getImageUrl()}`);
+    // console.log(`Email: ${profile.getEmail()}`); // This is null if the 'email' scope is not present.
+  };
+
   socialLoginCallback = ret => {
     const { loginFetch } = this.props;
     // 判断此第三方账号是否已绑定过用户
-    console.log(ret);
+    // console.log(ret);
     loginFetch({
       oauthtype: ret.oauth_type,
       oauthid: ret.oauth_id,
@@ -132,8 +159,23 @@ class Index extends React.Component {
   };
 
   handleOnPressOtherLogin = type => {
+    const getAuthInstance = window.gapi.auth2.getAuthInstance();
     switch (type) {
       case SOCIALBIND_GOOGLE:
+        // console.log(getAuthInstance.isSignedIn.get());
+        if (getAuthInstance.isSignedIn.get()) {
+          // 已登录
+          // getAuthInstance.signOut();
+          this.onSignIn(getAuthInstance.currentUser.get());
+        } else {
+          // 未登录
+          getAuthInstance.signIn().then(() => {
+            this.onSignIn(
+              window.gapi.auth2.getAuthInstance().currentUser.get(),
+            );
+          });
+        }
+
         // googleLogin({
         //   GoogleSignin,
         //   statusCodes,
