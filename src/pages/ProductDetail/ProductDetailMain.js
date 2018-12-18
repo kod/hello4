@@ -113,9 +113,26 @@ class ProductDetailMain extends React.Component {
   }
 
   addEventListenerHandle = ({ detail: { method, params } }) => {
-    const { pathname, productIdVIP, brandId } = this.props;
+    const {
+      pathname,
+      productIdVIP,
+      brandId,
+      voucherId,
+      inviteID,
+      openModal,
+    } = this.props;
     switch (method) {
       case 'productDetailInfo':
+        console.log(voucherId);
+
+        console.log(inviteID);
+        if (inviteID && voucherId) {
+          setTimeout(() => {
+            openModal(MODAL_TYPES.GIFT, {
+              voucherId,
+            });
+          }, 700);
+        }
         if (productIdVIP === '') {
           // 设置默认id
           router.replace(
@@ -150,9 +167,10 @@ class ProductDetailMain extends React.Component {
     if (isLoadFBSDK) {
       console.log(window.location.href);
       console.log('handlePressShare');
-      const link = window.location.href;
+      let link = window.location.href;
       if (authUser) {
-        console.log(`${link}&uid=${authUser.result}`);
+        link = `${link}&inviteID=${authUser.result}`;
+        console.log(link);
       }
       console.log(link);
       window.FB.ui(
@@ -577,7 +595,7 @@ export default connect(
     const { productDetailInfo, comment } = state;
 
     const {
-      query: { brandId, propertiesIds = '', id = '' },
+      query: { brandId, propertiesIds = '', id = '', inviteID = '' },
       pathname,
     } = props;
 
@@ -589,6 +607,7 @@ export default connect(
       brandId,
       propertiesIds,
       productIdVIP: id,
+      inviteID,
       comment: comment.items.detail ? comment.items.detail.slice(0, 1) : [],
       pathname,
       isCollection: getIsCollection(state, props),

@@ -370,6 +370,10 @@ export default {
   messenger: 'Messenger',
   linkEmail: 'Email Links',
   tipsLinkEmail: 'For the safety of your account, please Email Links',
+  receivedGiftCard: 'You received a gift card from a friend',
+  usedImmediately: 'Can be used immediately',
+  youGotCoupon: 'You got a coupon',
+  youHaveReceived: 'You have received',
   receiveServicesOffers:
     'I am willing to receive advertising and various information from buyoo.vip',
   emailCodeTips:

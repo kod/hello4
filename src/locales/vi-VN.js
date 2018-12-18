@@ -376,6 +376,10 @@ export default {
   messenger: 'Messenger',
   linkEmail: 'Liên kết Email',
   tipsLinkEmail: 'Vì sự an toàn cho tài khoản của bạn, Vui lòng liên kết Email',
+  receivedGiftCard: 'Bạn đã nhận được một thẻ quà tặng từ bạn bè',
+  usedImmediately: 'Sử dụng ngay',
+  youGotCoupon: 'Bạn có một phiếu giảm giá',
+  youHaveReceived: 'Bạn đã nhận được',
   receiveServicesOffers: 'Đồng ý nhận quảng cáo và tin tức từ Buyoo.vip',
   emailCodeTips:
     ' Hệ thống sẽ gửi email sau 2 phút nữa, vui lòng không lặp lại thao tác. Trường hợp không nhận được email vui lòng kiểm tra trong hộp thư rác của bạn.',

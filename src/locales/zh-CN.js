@@ -362,6 +362,10 @@ export default {
   messenger: 'Messenger',
   linkEmail: '绑定邮箱',
   tipsLinkEmail: '为了您帐户的安全，请绑定邮箱',
+  receivedGiftCard: '你收到了朋友的礼品卡',
+  usedImmediately: '立即使用',
+  youGotCoupon: '您获得了一张优惠券',
+  youHaveReceived: '您已领取',
   receiveServicesOffers: '我愿意从接收buyoo.vip广告和各种资讯',
   emailCodeTips:
     '邮件会存在延迟，一般两分钟可收到，请耐心等候，避免重复操作。如未收到请去垃圾邮件中检查一下，因为部分邮件系统会有误拦截现象发生',

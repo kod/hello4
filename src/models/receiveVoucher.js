@@ -13,7 +13,7 @@ import {
 import { getVoucherFetch } from '@/common//actions/getVoucher';
 
 import { addError } from '@/common/actions/error';
-import { localStorageGetItem } from '@/utils';
+import { localStorageGetItem, dispatchEvent } from '@/utils';
 
 const initState = {
   loading: false,
@@ -29,7 +29,7 @@ export default {
   effects: {
     *[RECEIVE_VOUCHER.REQUEST](action, { apply, put }) {
       try {
-        const { voucherid } = action.payload;
+        const { voucherid, screen = '' } = action.payload;
         const funid = o(localStorageGetItem, BUYOO).result;
 
         const Key = 'userKey';
@@ -71,37 +71,43 @@ export default {
 
         if (response.code !== 10000) {
           yield put(receiveVoucherFetchFailure());
-          yield put(addError(`msg: ${response.msg}; code: ${response.code}`));
+          switch (response.code) {
+            case 40003:
+              yield put(addError(formatMessage({ id: 'youHaveReceived' })));
+              break;
+
+            default:
+              yield put(
+                addError(`msg: ${response.msg}; code: ${response.code}`),
+              );
+              break;
+          }
         } else {
-          yield put(receiveVoucherFetchSuccess());
+          yield put(receiveVoucherFetchSuccess(screen));
         }
       } catch (err) {
         yield put(receiveVoucherFetchFailure());
         yield put(addError(typeof err === 'string' ? err : err.toString()));
       }
     },
-    *[RECEIVE_VOUCHER.SUCCESS](_, { put }) {
+    *[RECEIVE_VOUCHER.SUCCESS](action, { put }) {
+      const { screen } = action.payload;
       try {
-        yield put(getVoucherFetch());
-        Modal.alert('', formatMessage({ id: 'success' }), [
-          {
-            text: formatMessage({ id: 'confirm' }),
-            style: 'default',
-            onPress: () => {},
-          },
-        ]);
-
-        // Alert.alert(
-        //   '',
-        //   i18n.success,
-        //   [
-        //     {
-        //       text: i18n.confirm,
-        //       onPress: () => {},
-        //     },
-        //   ],
-        //   // { cancelable: false },
-        // );
+        if (screen) {
+          dispatchEvent(screen, {
+            method: 'receiveVoucher',
+            params: {},
+          });
+        } else {
+          yield put(getVoucherFetch());
+          Modal.alert('', formatMessage({ id: 'success' }), [
+            {
+              text: formatMessage({ id: 'confirm' }),
+              style: 'default',
+              onPress: () => {},
+            },
+          ]);
+        }
       } catch (err) {
         yield put(addError(typeof err === 'string' ? err : err.toString()));
       }

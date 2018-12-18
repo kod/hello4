@@ -84,6 +84,8 @@ export const FUNCARD_HELP_REPAY = `${DOMAIN}/html/aboutFunCard.html#Thanh-toan-n
 
 export const ICON_SCRIPTURL = '//at.alicdn.com/t/font_892500_emqz10mipxr.js';
 
+export const LOCALSTORAGE_INVITE = 'invite';
+
 export const CREDIT_PAYWAY = 1;
 export const INTERNET_BANK_PAYWAY = 2;
 export const OFFLINE_PAYWAY = 5;
@@ -136,6 +138,7 @@ export const MODAL_TYPES = {
   SHARE: 'SHARE',
   PERMONTHPRICE: 'PERMONTHPRICE',
   STAGINGDETAILS: 'STAGINGDETAILS',
+  GIFT: 'GIFT',
 };
 
 export const SCREENS = {

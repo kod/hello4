@@ -2,7 +2,12 @@ import dayjs from 'dayjs';
 import buyoo from '@/services/api';
 
 import { encryptMD5, signTypeMD5, o } from '@/utils/AuthEncrypt';
-import { ORDERCREATE_NAMESPACE, SCREENS, BUYOO } from '@/common/constants';
+import {
+  ORDERCREATE_NAMESPACE,
+  SCREENS,
+  BUYOO,
+  LOCALSTORAGE_INVITE,
+} from '@/common/constants';
 import { ORDER_CREATE } from '@/common/constants/actionTypes';
 import {
   orderCreateFetchSuccess,
@@ -10,7 +15,11 @@ import {
 } from '@/common/actions/orderCreate';
 import { orderPayFetch } from '@/common/actions/orderPay';
 import { addError } from '@/common/actions/error';
-import { dispatchEvent, localStorageGetItem } from '@/utils';
+import {
+  dispatchEvent,
+  localStorageGetItem,
+  localStorageRemoveItem,
+} from '@/utils';
 
 const initState = {
   loading: false,
@@ -40,6 +49,7 @@ export default {
           subject = '',
           remark = '',
           payvalue = 0,
+          invitefunid = '',
         } = action.payload;
         const funid = o(localStorageGetItem, BUYOO).result;
 
@@ -90,6 +100,10 @@ export default {
               key: 'coupondetail',
               value: coupondetail,
             },
+            {
+              key: 'invitefunid',
+              value: invitefunid,
+            },
           ],
           Key,
         );
@@ -112,6 +126,7 @@ export default {
             coupondetail,
             subject,
             remark,
+            invitefunid,
           },
         ]);
         if (response.code !== 10000) {
@@ -136,25 +151,17 @@ export default {
     *[ORDER_CREATE.SUCCESS](action, { put }) {
       try {
         const { tradeNo, orderNo, payvalue, screen, BYpayway } = action.payload;
+        // 订单创建成功，删除本地邀请ID
+        localStorageRemoveItem(LOCALSTORAGE_INVITE);
         switch (screen) {
           case SCREENS.OrderWrite:
             dispatchEvent(screen, {
-              method: 'orderCreateSuccess',
+              method: 'orderCreate',
               params: {
                 tradeNo,
                 orderNo,
               },
             });
-            // yield apply(DeviceEventEmitter, DeviceEventEmitter.emit, [
-            //   SCREENS.OrderWrite,
-            //   {
-            //     type: 'orderCreateSuccess',
-            //     params: {
-            //       tradeNo,
-            //       orderNo,
-            //     },
-            //   },
-            // ]);
             break;
 
           case SCREENS.Bill:

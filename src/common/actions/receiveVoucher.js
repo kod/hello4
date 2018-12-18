@@ -1,10 +1,12 @@
 import { RECEIVE_VOUCHER } from '@/common/constants/actionTypes';
 import { RECEIVEVOUCHER_NAMESPACE } from '@/common/constants';
 
-export function receiveVoucherFetchSuccess() {
+export function receiveVoucherFetchSuccess(screen) {
   return {
     type: `${RECEIVEVOUCHER_NAMESPACE}/${RECEIVE_VOUCHER.SUCCESS}`,
-    payload: {},
+    payload: {
+      screen,
+    },
   };
 }
 

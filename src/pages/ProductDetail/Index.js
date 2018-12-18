@@ -13,6 +13,7 @@ import {
   SCREENS,
   MESSAGE_URL,
   BUYOO,
+  LOCALSTORAGE_INVITE,
 } from '@/common/constants';
 import {
   BORDER_COLOR,
@@ -31,6 +32,7 @@ import {
   localStorageGetItem,
   addEventListener,
   removeEventListener,
+  localStorageSetItem,
 } from '@/utils';
 import { o } from '@/utils/AuthEncrypt';
 
@@ -44,8 +46,18 @@ class Index extends React.Component {
   }
 
   componentDidMount() {
-    const { authUser, collectionFetch } = this.props;
+    const { authUser, collectionFetch, inviteID } = this.props;
 
+    if (inviteID) {
+      // 24小时内有效，订单创建成功后，会自动删除
+      localStorageSetItem(
+        LOCALSTORAGE_INVITE,
+        JSON.stringify({
+          inviteID,
+          validTime: Date.now() + 24 * 60 * 60 * 1000,
+        }),
+      );
+    }
     if (authUser) {
       collectionFetch();
     }
@@ -554,6 +566,7 @@ export default connect(
     return {
       ...productDetailInfo.item,
       query,
+      inviteID: query.inviteID || '',
       pathname,
       authUser: o(localStorageGetItem, BUYOO),
       // isCollection: getIsCollection(state, props),

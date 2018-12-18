@@ -23,3 +23,7 @@ li.gumshoeActive i {
 li.gumshoeActive span {
   color: #0076F7;
 }
+
+.gift-modal .am-modal-content {
+  background-color: transparent;
+}

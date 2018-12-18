@@ -174,6 +174,7 @@ class ParamsSelectModal extends Component {
         display: 'flex',
         flexDirection: 'column',
         position: 'relative',
+        backgroundColor: '#fff',
       },
       mask: {
         display: 'flex',

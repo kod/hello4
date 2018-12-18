@@ -20,6 +20,7 @@ import * as orderPayActionCreators from '@/common/actions/orderPay';
 import * as couponSelectActionCreators from '@/common/actions/couponSelect';
 import * as modalActionCreators from '@/common/actions/modal';
 import * as productDetailInfoActionCreators from '@/common/actions/productDetailInfo';
+import * as judgeVoucherActionCreators from '@/common/actions/judgeVoucher';
 import {
   addEventListener,
   removeEventListener,
@@ -38,6 +39,7 @@ import {
   GETUSERINFOBYID_NAMESPACE,
   ORDERPAY_NAMESPACE,
   BUYOO,
+  LOCALSTORAGE_INVITE,
 } from '@/common/constants';
 import priceFormat from '@/utils/priceFormat';
 import { BORDER_COLOR, RED_COLOR, PRIMARY_COLOR } from '@/styles/variables';
@@ -58,6 +60,7 @@ class OrderWrite extends React.Component {
       payWayIndex: ONLINE_PAYWAY,
     };
     this.addEventListenerHandle = this.addEventListenerHandle.bind(this);
+    this.getInviteID = this.getInviteID.bind(this);
   }
 
   componentDidMount() {
@@ -88,11 +91,29 @@ class OrderWrite extends React.Component {
     removeEventListener(SCREENS.OrderWrite, this.addEventListenerHandle);
   }
 
+  getInviteID() {
+    let result = '';
+
+    const { authUser } = this.props;
+    if (!authUser) return router.push('/Login');
+
+    let localStorageInvite = localStorageGetItem(LOCALSTORAGE_INVITE);
+    if (localStorageInvite) {
+      localStorageInvite = JSON.parse(localStorageInvite);
+      if (Date.now() <= localStorageInvite.validTime) {
+        // 时间有效
+        result = localStorageInvite.inviteID;
+      }
+    }
+
+    return result;
+  }
+
   addEventListenerHandle = ({ detail: { method, params } }) => {
     const { payWayIndex } = this.state;
     const { orderPayFetch } = this.props;
     switch (method) {
-      case 'orderCreateSuccess':
+      case 'orderCreate':
         if (payWayIndex === ONDELIVERY_PAYWAY) {
           // 货到付款，自动下单
           orderPayFetch({
@@ -280,6 +301,7 @@ class OrderWrite extends React.Component {
           }),
           coupondetail: getCoupondetail(),
           subject: getSubject(isCart),
+          invitefunid: this.getInviteID(),
         };
       } else {
         result = {
@@ -290,6 +312,7 @@ class OrderWrite extends React.Component {
           mergedetail: '',
           coupondetail: getCoupondetail(),
           subject: getSubject(isCart),
+          invitefunid: this.getInviteID(),
         };
       }
       return result;
@@ -553,5 +576,6 @@ export default connect(
     ...couponSelectActionCreators,
     ...modalActionCreators,
     ...productDetailInfoActionCreators,
+    ...judgeVoucherActionCreators,
   },
 )(OrderWrite);
