@@ -12,9 +12,11 @@ import {
   SIDEINTERVAL,
   OSS_IMAGE_QUALITY,
   IS_IOS,
+  GETMENU_NAMESPACE,
 } from '@/common/constants';
 import { BORDER_COLOR, PRIMARY_COLOR } from '@/styles/variables';
 import { xOssProcess } from '@/utils';
+import { GET_MENU } from '@/common/constants/actionTypes';
 
 class Index extends PureComponent {
   constructor(props) {
@@ -267,10 +269,10 @@ class Index extends PureComponent {
 
 export default connect(
   state => {
-    const { getMenu } = state;
+    const { getMenu, loading } = state;
 
     return {
-      loading: getMenu.loading,
+      loading: loading.effects[`${GETMENU_NAMESPACE}/${GET_MENU.REQUEST}`],
       loaded: getMenu.loaded,
       items: getMenu.items,
       itemsList: getMenu.itemsList,

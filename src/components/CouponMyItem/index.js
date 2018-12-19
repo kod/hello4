@@ -6,10 +6,11 @@ import { formatMessage } from 'umi/locale';
 
 import * as getVoucherListActionCreators from '@/common/actions/getVoucherList';
 import * as receiveVoucherActionCreators from '@/common/actions/receiveVoucher';
-import { WINDOW_HEIGHT } from '@/common/constants';
+import { WINDOW_HEIGHT, GETVOUCHERLIST_NAMESPACE } from '@/common/constants';
 import Loader from '@/components/Loader';
 import EmptyState from '@/components/EmptyState';
 import CouponItem from '@/components/CouponItem';
+import { GET_VOUCHER_LIST } from '@/common/constants/actionTypes';
 
 const ouhrigdfnjsoeijehrJpg =
   'https://oss.buyoo.vn/usercollect/1/20181101180309_67w.jpg';
@@ -50,12 +51,16 @@ class CouponMyItem extends React.Component {
 
 export default connect(
   (state, props) => {
-    const { getVoucherList } = state;
+    const { getVoucherList, loading } = state;
 
     const { routeName } = props;
     return {
       items: getVoucherList[routeName],
-      loading: getVoucherList.loading,
+      loading:
+        loading.effects[
+          `${GETVOUCHERLIST_NAMESPACE}/${GET_VOUCHER_LIST.REQUEST}`
+        ],
+
       routeName,
     };
   },

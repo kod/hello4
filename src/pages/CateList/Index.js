@@ -72,10 +72,11 @@ class CateList extends React.Component {
       sub_classfy_id,
       third_classfy_id,
       getAllProductInfoFetch,
+      loading,
     } = this.props;
     if (
       getAllProductInfo &&
-      !getAllProductInfo.loading &&
+      !loading &&
       getAllProductInfo.currentPage < getAllProductInfo.totalPage
     ) {
       getAllProductInfoFetch({

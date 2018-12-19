@@ -13,6 +13,8 @@ import {
   NAME_EXPR,
   PHONE_EXPR,
   MODAL_TYPES,
+  USERADDADDR_NAMESPACE,
+  ADDRESSMODIFY_NAMESPACE,
 } from '@/common/constants';
 import { PRIMARY_COLOR } from '@/styles/variables';
 
@@ -28,6 +30,7 @@ import {
 } from '@/utils';
 import InputRight from '@/components/InputRight';
 import BYButton from '@/components/BYButton';
+import { ADDRESS_ADD, ADDRESS_MODIFY } from '@/common/constants/actionTypes';
 
 const styles = {
   container: {
@@ -307,11 +310,13 @@ class AddressModify extends React.Component {
 
 export default connect(
   state => {
-    const { cityInfos, userAddAddr, addressModify } = state;
+    const { cityInfos, loading, addressModify } = state;
 
     return {
-      loading: userAddAddr.loading,
-      addressModifyLoading: addressModify.loading,
+      loading:
+        loading.effects[`${USERADDADDR_NAMESPACE}/${ADDRESS_ADD.REQUEST}`],
+      addressModifyLoading:
+        loading.effects[`${ADDRESSMODIFY_NAMESPACE}/${ADDRESS_MODIFY.REQUEST}`],
       addressModifyLoaded: addressModify.loaded,
       addressModifyIsTrue: addressModify.isTrue,
       division2ndItems: cityInfos.division2nd,

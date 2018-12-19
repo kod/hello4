@@ -23,6 +23,8 @@ import {
   MODAL_TYPES,
   WINDOW_HEIGHT,
   BUYOO,
+  ORDERPAY_NAMESPACE,
+  GETUSERINFOBYID_NAMESPACE,
 } from '@/common/constants';
 import {
   tradeStatusCodes,
@@ -41,6 +43,7 @@ import Loader from '@/components/Loader';
 import Address from '@/components/Address';
 import { getAddressSelectedItem } from '@/common/selectors';
 import { o } from '@/utils/AuthEncrypt';
+import { ORDER_PAY, GET_USERINFO_BYID } from '@/common/constants/actionTypes';
 
 const styles = {
   container: {
@@ -543,7 +546,7 @@ class OrderDetail extends React.Component {
     const { payWayIndex } = this.state;
 
     const {
-      getUserInfoById,
+      getUserInfoByIdLoading,
       queryOrderItem: {
         totalAmount,
         goodsDetail,
@@ -573,7 +576,7 @@ class OrderDetail extends React.Component {
       division4thName,
     };
 
-    if (getUserInfoById.loading) return <Loader />;
+    if (getUserInfoByIdLoading) return <Loader />;
 
     const stylesX = {
       status: {
@@ -670,7 +673,7 @@ class OrderDetail extends React.Component {
 
 export default connect(
   (state, props) => {
-    const { address, queryOrder, getUserInfoById, orderPay } = state;
+    const { address, queryOrder, getUserInfoById, loading } = state;
     const {
       location: {
         query: { orderNo, tradeNo, from = '' },
@@ -680,7 +683,7 @@ export default connect(
     } = props;
 
     return {
-      loading: orderPay.loading,
+      loading: loading.effects[`${ORDERPAY_NAMESPACE}/${ORDER_PAY.REQUEST}`],
       addressSelectedItem: getAddressSelectedItem(state, props),
       addressItems: address.items,
       authUser: o(localStorageGetItem, BUYOO),
@@ -691,6 +694,10 @@ export default connect(
       orderNo,
       tradeNo,
       getUserInfoById,
+      getUserInfoByIdLoading:
+        loading.effects[
+          `${GETUSERINFOBYID_NAMESPACE}/${GET_USERINFO_BYID.REQUEST}`
+        ],
       initPassword: getUserInfoById.item.initPassword || null,
       userType: getUserInfoById.item.userType || null,
     };

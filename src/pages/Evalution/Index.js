@@ -401,7 +401,6 @@ export default connect(
       orderNo,
       tradeNo,
       brandId,
-      // loading: collectFiles.loading,
       addEvaluationLoading:
         loading.effects[`${ADDEVALUATION_NAMESPACE}/${ADD_EVALUATION.REQUEST}`],
       images: collectFiles.images,

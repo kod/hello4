@@ -177,16 +177,11 @@ class AddressAddModal extends Component {
 export default connect(
   state => {
     const {
-      cityInfos,
       modal: { modalProps = {} },
     } = state;
 
     return {
       modalProps,
-      loading: cityInfos.loading,
-      division2ndItems: cityInfos.division2nd,
-      division3rdItems: cityInfos.division3rd,
-      division4thItems: cityInfos.division4th,
       authUser: o(localStorageGetItem, BUYOO),
     };
   },

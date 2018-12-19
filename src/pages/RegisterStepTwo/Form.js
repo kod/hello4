@@ -136,7 +136,6 @@ export default connect(
 
     return {
       auth: login,
-      loading: login.loading,
       mail,
     };
   },

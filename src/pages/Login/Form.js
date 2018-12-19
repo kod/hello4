@@ -64,8 +64,6 @@ export default connect(
     const { login } = state;
     return {
       auth: login,
-      loading: login.loading,
-      // auth: state.login,
     };
   },
   {

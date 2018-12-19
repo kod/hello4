@@ -14,6 +14,7 @@ import {
   WINDOW_HEIGHT,
   SCREENS,
   BUYOO,
+  CART_NAMESPACE,
 } from '@/common/constants';
 import { BORDER_COLOR, RED_COLOR, PRIMARY_COLOR } from '@/styles/variables';
 import CartItem from '@/components/CartItem';
@@ -27,6 +28,7 @@ import {
   localStorageGetItem,
 } from '@/utils';
 import { o } from '@/utils/AuthEncrypt';
+import { CART } from '@/common/constants/actionTypes';
 
 const ouhrigdfnjsoeijehrJpg =
   'https://oss.buyoo.vn/usercollect/1/20181101180309_67w.jpg';
@@ -394,13 +396,13 @@ class Index extends PureComponent {
 
 export default connect(
   (state, props) => {
-    const { cart } = state;
+    const { cart, loading } = state;
 
     return {
       authUser: o(localStorageGetItem, BUYOO),
       cart,
       totalMoney: getCartTotalMoney(state, props),
-      loading: cart.loading,
+      loading: loading.effects[`${CART_NAMESPACE}/${CART.REQUEST}`],
       allSelected: cart.allSelected,
       allSelectedDel: cart.allSelectedDel,
       isEdit: cart.isEdit,
