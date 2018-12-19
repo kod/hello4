@@ -20,6 +20,8 @@ import {
   IS_IOS,
   OSS_IMAGE_QUALITY,
   BUYOO,
+  FACEBOOK,
+  FB_APPID,
 } from '@/common/constants';
 import priceFormat from '@/utils/priceFormat';
 import smoothScroll from '@/utils/smoothScroll';
@@ -53,6 +55,7 @@ class ProductDetailMain extends React.Component {
     };
 
     this.addEventListenerHandle = this.addEventListenerHandle.bind(this);
+    this.shareEventListenerHandle = this.shareEventListenerHandle.bind(this);
   }
 
   componentDidMount() {
@@ -63,7 +66,12 @@ class ProductDetailMain extends React.Component {
       propertiesIds,
       productIdVIP,
       brandId,
+      // openModal,
     } = this.props;
+
+    // setTimeout(() => {
+    //   openModal(MODAL_TYPES.SHARE);
+    // }, 1);
 
     productDetailInfoClear(brandId);
     productDetailInfoFetch({
@@ -75,6 +83,7 @@ class ProductDetailMain extends React.Component {
     commentFetch(brandId);
 
     addEventListener('ProductDetailMain', this.addEventListenerHandle);
+    addEventListener('ProductDetailMainShare', this.shareEventListenerHandle);
 
     loadFbLoginApi(() => {
       this.setState({
@@ -159,19 +168,53 @@ class ProductDetailMain extends React.Component {
     }
   };
 
-  handlePressShare() {
-    const { isLoadFBSDK } = this.state;
+  shareEventListenerHandle = ({ detail: ret }) => {
     const { authUser } = this.props;
-    console.log(authUser);
+    const { type } = ret;
+    let link = window.location.href;
+    if (authUser) {
+      link = `${link}&inviteID=${authUser.result}`;
+    }
+    console.log(link);
+
+    if (type === FACEBOOK) {
+      this.handleFBShare(link);
+    } else {
+      this.handleMessengerShare(link);
+    }
+    console.log(ret);
+    // this.setState(ret);
+  };
+
+  handleMessengerShare = link => {
+    console.log(link);
+    window.open(
+      `fb-messenger://share?link=${encodeURIComponent(
+        link,
+      )}&app_id=${encodeURIComponent(FB_APPID)}`,
+    );
+  };
+
+  handlePressShare() {
+    const { openModal, iconUrl, name, price, rewardNumber } = this.props;
+    openModal(MODAL_TYPES.SHARE, {
+      callback: 'ProductDetailMainShare',
+      params: {
+        iconUrl,
+        name,
+        price,
+        rewardNumber,
+      },
+    });
+  }
+
+  handleFBShare(link) {
+    const { isLoadFBSDK } = this.state;
+
     console.log(isLoadFBSDK);
     if (isLoadFBSDK) {
       console.log(window.location.href);
       console.log('handlePressShare');
-      let link = window.location.href;
-      if (authUser) {
-        link = `${link}&inviteID=${authUser.result}`;
-        console.log(link);
-      }
       console.log(link);
       window.FB.ui(
         {

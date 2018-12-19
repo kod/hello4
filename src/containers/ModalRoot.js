@@ -4,7 +4,7 @@ import { MODAL_TYPES } from '@/common/constants';
 import AddressAddModal from './AddressAddModal';
 import ParamsSelectModal from './ParamsSelectModal';
 import GiftModal from './GiftModal';
-// import ActionSheetModal from './ActionSheetModal';
+import ShareModal from './ShareModal';
 // import BillSelectModal from './BillSelectModal';
 // import EnterPasswordModal from './EnterPasswordModal';
 // import ShareModal from './ShareModal';
@@ -15,11 +15,11 @@ const MODAL_COMPONENTS = {
   [MODAL_TYPES.ADDRESSADD]: AddressAddModal,
   [MODAL_TYPES.PARAMSSELECT]: ParamsSelectModal,
   [MODAL_TYPES.GIFT]: GiftModal,
+  [MODAL_TYPES.SHARE]: ShareModal,
   // [MODAL_TYPES.LOADER]: LoaderModal,
   // [MODAL_TYPES.ACTIONSHEET]: ActionSheetModal,
   // [MODAL_TYPES.BILLSELECT]: BillSelectModal,
   // [MODAL_TYPES.ENTERPASSWORD]: EnterPasswordModal,
-  // [MODAL_TYPES.SHARE]: ShareModal,
   // [MODAL_TYPES.PERMONTHPRICE]: PerMonthPriceModal,
   // [MODAL_TYPES.STAGINGDETAILS]: StagingDetailsModal,
 };
