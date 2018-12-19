@@ -138,7 +138,7 @@ export default {
   internetBanking: '网银',
   submit: '提交',
   userNotExist: '用户不存在',
-  wrongPhoneNumberOrPassword: '手机或者密码输入错误',
+  wrongEmailNumberOrPassword: '邮箱或者密码输入错误',
   funCard: 'Fun Card',
   successfulCopy: '复制成功',
   showQRCodeShareInvitationCodeYourFriends:

@@ -139,7 +139,7 @@ export default {
   internetBanking: 'Internet banking',
   submit: 'Submit',
   userNotExist: 'User does not exist',
-  wrongPhoneNumberOrPassword: 'Wrong phone number or password',
+  wrongEmailNumberOrPassword: 'Wrong Email or password',
   funCard: 'Fun Card',
   successfulCopy: 'Successful copy',
   showQRCodeShareInvitationCodeYourFriends:

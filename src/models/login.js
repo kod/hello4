@@ -105,7 +105,7 @@ export default {
 
             case 60051:
               yield put(
-                addError(formatMessage({ id: 'wrongPhoneNumberOrPassword' })),
+                addError(formatMessage({ id: 'wrongEmailNumberOrPassword' })),
               );
               break;
 

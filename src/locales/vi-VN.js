@@ -140,7 +140,7 @@ export default {
   internetBanking: 'ATM/Visa/Master',
   submit: 'Gửi',
   userNotExist: 'Người dùng không tồn tại',
-  wrongPhoneNumberOrPassword: 'Điện thoại hoặc mật khẩu nhập sai',
+  wrongEmailNumberOrPassword: 'Email hoặc mật khẩu nhập sai',
   funCard: 'Fun Card',
   successfulCopy: 'Sao chép thành công',
   showQRCodeShareInvitationCodeYourFriends:
