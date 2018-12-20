@@ -72,30 +72,6 @@ class Coupon extends React.Component {
     });
   }
 
-  renderHeaderTitle = () => {
-    const stylesX = {
-      container: {
-        display: 'flex',
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingRight: 40,
-        flexDirection: 'row',
-      },
-      title: {
-        fontSize: 16,
-        color: '#333',
-        marginRight: 5,
-      },
-    };
-
-    return (
-      <div style={stylesX.container}>
-        <div style={stylesX.title}>{formatMessage({ id: 'discountCode' })}</div>
-      </div>
-    );
-  };
-
   renderContent() {
     const { items } = this.props;
 
@@ -109,7 +85,7 @@ class Coupon extends React.Component {
 
     return (
       <div style={styles.container}>
-        <BYHeader headerTitle={this.renderHeaderTitle()} />
+        <BYHeader title={formatMessage({ id: 'discountCode' })} />
         {receiveVoucherLoading && <Loader />}
         {items.length > 0 ? (
           this.renderContent()
