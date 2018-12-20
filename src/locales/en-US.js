@@ -374,6 +374,7 @@ export default {
   usedImmediately: 'Can be used immediately',
   youGotCoupon: 'You got a coupon',
   youHaveReceived: 'You have received',
+  myBrokerage: 'Your brokerage',
   receiveServicesOffers:
     'I am willing to receive advertising and various information from buyoo.vip',
   emailCodeTips:

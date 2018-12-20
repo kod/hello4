@@ -1,4 +1,4 @@
-export const DEBUG = false;
+export const DEBUG = true;
 export const API_DEBUG = DEBUG;
 export const IS_SHOW_LOG = DEBUG;
 export const IS_I18N = DEBUG; // 是否支持多语言; 默认为越南语
@@ -83,7 +83,7 @@ export const FUNCARD_HELP_APPLY = `${DOMAIN}/html/aboutFunCard.html#Cach-thuc-da
 export const FUNCARD_HELP_STAGE = `${DOMAIN}/html/aboutFunCard.html#Huong-dan-mua-hang-bang-Buyoo-Fun-Card`; // 如何分期
 export const FUNCARD_HELP_REPAY = `${DOMAIN}/html/aboutFunCard.html#Thanh-toan-no-hang-thang-the-Buyoo-Fun-Card-nhu-the-nao`; // 如何还款
 
-export const ICON_SCRIPTURL = '//at.alicdn.com/t/font_892500_kn7kew84uom.js';
+export const ICON_SCRIPTURL = '//at.alicdn.com/t/font_892500_kriymneaz1r.js';
 
 export const FB_APPID = 273625800016270;
 export const GOOGLE_CLIENT_ID =

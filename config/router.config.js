@@ -135,4 +135,8 @@ export default [
     path: '/OauthBindMailTwo',
     component: './OauthBindMailTwo/Index',
   },
+  {
+    path: '/Withdraw',
+    component: './Withdraw/Index',
+  },
 ];

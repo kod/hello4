@@ -2,9 +2,9 @@
 import React from 'react';
 import router from 'umi/router';
 
-import { SIDEINTERVAL, WINDOW_WIDTH } from '@/common/constants';
+import { SIDEINTERVAL } from '@/common/constants';
 import CustomIcon from '@/components/CustomIcon';
-import { HEADER_BACKGROUND_COLOR, BORDER_COLOR } from '@/styles/variables';
+import { BORDER_COLOR, HEADER_BACKGROUND_COLOR } from '@/styles/variables';
 
 const styles = {
   container: {
@@ -15,16 +15,16 @@ const styles = {
     borderBottomStyle: 'solid',
   },
   containerShadow: {},
-  absolutePosition: {
-    position: 'absolute',
-    top: 0, // android only for use with translucent status bar
-    left: 0,
-    right: 0,
-    bottom: 0,
-    height: 0,
-    zIndex: 100,
-    backgroundColor: 'rgba(0, 0, 0, .3)',
-  },
+  // absolutePosition: {
+  //   position: 'absolute',
+  //   top: 0, // android only for use with translucent status bar
+  //   left: 0,
+  //   right: 0,
+  //   bottom: 0,
+  //   height: 0,
+  //   zIndex: 100,
+  //   backgroundColor: 'rgba(0, 0, 0, .3)',
+  // },
   subContainer: {
     display: 'flex',
     flexDirection: 'row',
@@ -33,12 +33,12 @@ const styles = {
     // justifyContent: 'space-between',
   },
   headerBack: {
-    paddingLeft: WINDOW_WIDTH * 0.03,
+    paddingLeft: SIDEINTERVAL,
     paddingRight: SIDEINTERVAL,
-    fontSize: 15,
-    paddingTop: 10,
-    paddingBottom: 10,
-    color: '#333',
+    fontSize: 16,
+    paddingTop: 14,
+    paddingBottom: 14,
+    color: '#147af3',
   },
   headerLine: {
     position: 'absolute',
@@ -70,7 +70,7 @@ class BYHeader extends React.PureComponent {
   renderHeaderLeft = () => <div />;
 
   renderHeaderTitle = () => {
-    const { headerRight } = this.props;
+    const { headerRight, styleTitle } = this.props;
     const stylesX = {
       container: {
         display: 'flex',
@@ -81,9 +81,9 @@ class BYHeader extends React.PureComponent {
         flexDirection: 'row',
       },
       title: {
-        fontSize: 16,
-        color: '#333',
-        marginRight: 5,
+        fontSize: 18,
+        color: '#3F3F3F',
+        // marginRight: 5,
       },
     };
 
@@ -91,34 +91,43 @@ class BYHeader extends React.PureComponent {
 
     return (
       <div style={stylesX.container}>
-        <span style={stylesX.title}>{title}</span>
+        <span
+          style={{
+            ...stylesX.title,
+            ...styleTitle,
+          }}
+        >
+          {title}
+        </span>
       </div>
     );
   };
 
   render() {
     const {
+      styleContainer,
+      styleBack,
       showBackButton,
       headerTitle,
       headerRight,
       headerLeft,
-      absolutePosition,
     } = this.props;
 
     return (
       <div
         style={{
           ...styles.container,
-          ...(absolutePosition
-            ? styles.absolutePosition
-            : styles.containerShadow),
+          ...styleContainer,
         }}
       >
         <div style={styles.subContainer}>
           {showBackButton ? (
             <CustomIcon
-              type="left"
-              style={styles.headerBack}
+              type="Back"
+              style={{
+                ...styles.headerBack,
+                ...styleBack,
+              }}
               onClick={() => this.handleOnPressBackButton()}
             />
           ) : (
