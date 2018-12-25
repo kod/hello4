@@ -39,13 +39,13 @@ class Index extends PureComponent {
     const {
       authUser,
       cardQueryFetch,
-      userCertificateInfoFetch,
+      // userCertificateInfoFetch,
       getUserInfoByIdFetch,
     } = this.props;
 
     if (authUser) {
       cardQueryFetch();
-      userCertificateInfoFetch();
+      // userCertificateInfoFetch();
       getUserInfoByIdFetch();
     }
 
