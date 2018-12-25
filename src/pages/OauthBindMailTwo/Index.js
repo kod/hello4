@@ -44,7 +44,6 @@ class Index extends React.Component {
     switch (method) {
       case 'login':
         // 注册成功后会自动登录，登录后会调用
-        console.log(user);
         if (user.status === 10000) {
           // 注册成功
           if (localStorageGetItem('otherLoginToken')) {
@@ -81,7 +80,6 @@ class Index extends React.Component {
             },
           },
         ]);
-        console.log(oauthRequest);
         break;
 
       default:

@@ -18,7 +18,6 @@ class LoginForm extends React.Component {
     this.state = {
       isReceive: true,
     };
-    console.log(parseInt(Math.random() * 100000000, 10));
   }
 
   submit = () => {

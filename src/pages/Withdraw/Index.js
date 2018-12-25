@@ -4,26 +4,25 @@ import { connect } from 'dva';
 import { formatMessage } from 'umi/locale';
 import router from 'umi/router';
 import { Modal } from 'antd-mobile';
+import dayjs from 'dayjs';
 
 import BYHeader from '@/components/BYHeader';
 import Loader from '@/components/Loader';
 
-import * as getVoucherActionCreators from '@/common/actions/getVoucher';
-import * as receiveVoucherActionCreators from '@/common/actions/receiveVoucher';
-import * as modalActionCreators from '@/common/actions/modal';
+import * as getInviteRecordActionCreators from '@/common/actions/getInviteRecord';
+import * as enchashmentGetListActionCreators from '@/common/actions/enchashmentGetList';
+import * as enchashmentConfigActionCreators from '@/common/actions/enchashmentConfig';
 import {
   SCREENS,
-  RECEIVEVOUCHER_NAMESPACE,
-  GETVOUCHER_NAMESPACE,
   WINDOW_HEIGHT,
   BUYOO,
   WINDOW_WIDTH,
   SIDEINTERVAL,
+  ENCHASHMENT_GETLIST_NAMESPACE,
+  GET_INVITE_RECORD_NAMESPACE,
+  MONETARY,
 } from '@/common/constants';
-import EmptyState from '@/components/EmptyState';
 
-import CouponItem from '@/components/CouponItem';
-import { RECEIVE_VOUCHER, GET_VOUCHER } from '@/common/constants/actionTypes';
 import { o } from '@/utils/AuthEncrypt';
 import { localStorageGetItem } from '@/utils';
 import {
@@ -32,24 +31,58 @@ import {
   FONT_SIZE_FIRST,
 } from '@/styles/variables';
 import CustomIcon from '@/components/CustomIcon';
-
-const ouhrigdfnjsoeijehrJpg =
-  'https://oss.buyoo.vn/usercollect/1/20181101180309_67w.jpg';
+import MustLogin from '@/components/MustLogin';
+import {
+  ENCHASHMENT_GETLIST,
+  GET_INVITE_RECORD,
+} from '@/common/constants/actionTypes';
+import priceFormat from '@/utils/priceFormat';
 
 class Withdraw extends React.Component {
-  // constructor(props) {
-  //   super(props);
+  constructor(props) {
+    super(props);
 
-  //   this.handlerOnPress = this.handlerOnPress.bind(this);
-  // }
+    this.state = {
+      isShowIncome: true,
+    };
 
-  // componentDidMount() {
-  //   const { getVoucherFetch } = this.props;
-  //   getVoucherFetch();
-  // }
+    // this.handlerOnPress = this.handlerOnPress.bind(this);
+  }
 
-  renderBackground() {
-    const { items } = this.props;
+  componentDidMount() {
+    const {
+      getInviteRecordFetch,
+      enchashmentGetListFetch,
+      enchashmentConfigFetch,
+      authUser,
+    } = this.props;
+    enchashmentConfigFetch();
+    if (authUser) {
+      getInviteRecordFetch();
+      enchashmentGetListFetch();
+    }
+  }
+
+  handleOnPressWithdraw() {
+    const { limit, balance } = this.props;
+    if (balance > limit) {
+      router.push(`/${SCREENS.Withdrawal}`);
+    } else {
+      Modal.alert(
+        '',
+        formatMessage({ id: 'limitWithdrawnTips' }).replace('XXX', limit),
+        [
+          {
+            text: formatMessage({ id: 'confirm' }),
+            style: 'default',
+            // onPress: () => {},
+          },
+        ],
+      );
+    }
+  }
+
+  renderBackground = () => {
     const styles = {
       container: {
         position: 'absolute',
@@ -68,10 +101,10 @@ class Withdraw extends React.Component {
     };
 
     return <div style={styles.container} />;
-  }
+  };
 
   renderCard() {
-    const { items } = this.props;
+    const { balance, enchashmentGetList } = this.props;
     const styles = {
       container: {
         position: 'absolute',
@@ -104,8 +137,13 @@ class Withdraw extends React.Component {
         color: '#5E5E5E',
       },
       row2: {
+        display: 'flex',
+        flexDivection: 'row',
         paddingLeft: SIDEINTERVAL,
         paddingRight: SIDEINTERVAL,
+      },
+      row2Left: {
+        marginRight: WINDOW_WIDTH * 0.08,
       },
       row2LeftTitle: {
         fontSize: FONT_SIZE_FIRST,
@@ -116,6 +154,30 @@ class Withdraw extends React.Component {
         fontSize: FONT_SIZE_FIRST,
         color: '#FF424E',
         fontWeight: '700',
+        marginBottom: 10,
+      },
+      row2LeftButton: {
+        display: 'inline-block',
+        fontSize: 10,
+        color: '#FF424E',
+        paddingTop: 3,
+        paddingBottom: 3,
+        paddingLeft: SIDEINTERVAL * 0.8,
+        paddingRight: SIDEINTERVAL * 0.8,
+        borderColor: '#FF424E',
+        borderWidth: 1,
+        borderStyle: 'solid',
+        borderRadius: 3,
+      },
+      row2RightTitle: {
+        fontSize: FONT_SIZE_FIRST,
+        color: '#9B9B9B',
+        marginBottom: 5,
+      },
+      row2RightPrice: {
+        fontSize: FONT_SIZE_FIRST,
+        color: '#72BE20',
+        fontWeight: '700',
       },
     };
     return (
@@ -123,42 +185,250 @@ class Withdraw extends React.Component {
         <div style={styles.main}>
           <div style={styles.row1}>
             <CustomIcon type="Money" style={styles.row1Icon} />
-            <div style={styles.row1Text}>Tiền hoa hồng</div>
+            <div style={styles.row1Text}>
+              {formatMessage({ id: 'commission' })}
+            </div>
           </div>
           <div style={styles.row2}>
             <div style={styles.row2Left}>
-              <div style={styles.row2LeftTitle}>Tiền hoa hồng chưa nhận</div>
-              <div style={styles.row2LeftPrice}>200.000 d</div>
+              <div style={styles.row2LeftTitle}>
+                {formatMessage({ id: 'commissionsNotReceived' })}
+              </div>
+              <div style={styles.row2LeftPrice}>
+                {enchashmentGetList ? `${priceFormat(balance)} ${MONETARY}` : 0}
+              </div>
+              <div
+                style={styles.row2LeftButton}
+                onClick={() => this.handleOnPressWithdraw()}
+              >
+                {formatMessage({ id: 'withdrawal' })}
+              </div>
             </div>
-            <div style={styles.row2Right}>222</div>
+            <div style={styles.row2Right}>
+              <div style={styles.row2RightTitle}>
+                {formatMessage({ id: 'commissionsReceived' })}
+              </div>
+              <div style={styles.row2RightPrice}>
+                {enchashmentGetList && enchashmentGetList.amountSum
+                  ? `${priceFormat(enchashmentGetList.amountSum)} ${MONETARY}`
+                  : 0}
+              </div>
+            </div>
           </div>
         </div>
       </div>
     );
   }
 
+  renderIncome() {
+    const { getInviteRecord } = this.props;
+    const styles = {
+      incomeItem: {
+        marginBottom: 5,
+      },
+      incomeDate: {
+        paddingTop: 10,
+        paddingBottom: 10,
+        color: '#A6A6A6',
+        fontSize: 10,
+        marginBottom: 10,
+        borderBottomColor: '#e5e5e5',
+        borderBottomWidth: 1,
+        borderBottomStyle: 'solid',
+      },
+      incomeMain: {
+        display: 'flex',
+        flexDivection: 'row',
+        justifyContent: 'space-between',
+        paddingLeft: SIDEINTERVAL,
+        paddingRight: SIDEINTERVAL,
+        paddingTop: 15,
+        paddingBottom: 15,
+        backgroundColor: '#fff',
+      },
+      incomeTitle: {
+        width: WINDOW_WIDTH * 0.55,
+        overflow: 'hidden',
+        whiteSpace: 'nowrap',
+        textOverflow: 'ellipsis',
+        color: '#848484',
+      },
+      incomePrice: {
+        color: '#F55830',
+      },
+      noData: {
+        textAlign: 'center',
+        color: '#9b9b9b',
+        fontSize: FONT_SIZE_FIRST,
+        paddingTop: 15,
+        paddingBottom: 15,
+      },
+    };
+
+    const inviteRewards = getInviteRecord ? getInviteRecord.inviteRewards : [];
+
+    return (
+      <div style={styles.income}>
+        {inviteRewards.map((val, key) => (
+          <div style={styles.incomeItem} key={key}>
+            <div style={styles.incomeDate}>
+              {`${dayjs(val.createTime).format('DD-MM-YYYY')}`}
+            </div>
+            <div style={styles.incomeMain}>
+              <div style={styles.incomeTitle}>{val.productName}</div>
+              <div style={styles.incomePrice}>
+                {`+ ${priceFormat(val.rewardValue)} ${MONETARY}`}
+              </div>
+            </div>
+          </div>
+        ))}
+        {inviteRewards.length === 0 && (
+          <div style={styles.noData}>{formatMessage({ id: 'noData' })}</div>
+        )}
+      </div>
+    );
+  }
+
+  renderExpend() {
+    const { enchashmentGetList } = this.props;
+    const styles = {
+      incomeItem: {
+        marginBottom: 5,
+      },
+      incomeDate: {
+        paddingTop: 10,
+        paddingBottom: 10,
+        color: '#A6A6A6',
+        fontSize: 10,
+        marginBottom: 10,
+        borderBottomColor: '#e5e5e5',
+        borderBottomWidth: 1,
+        borderBottomStyle: 'solid',
+      },
+      incomeMain: {
+        display: 'flex',
+        flexDivection: 'row',
+        justifyContent: 'space-between',
+        paddingLeft: SIDEINTERVAL,
+        paddingRight: SIDEINTERVAL,
+        paddingTop: 15,
+        paddingBottom: 15,
+        backgroundColor: '#fff',
+      },
+      incomeTitle: {
+        color: '#848484',
+        width: WINDOW_WIDTH * 0.55,
+        overflow: 'hidden',
+        whiteSpace: 'nowrap',
+        textOverflow: 'ellipsis',
+      },
+      incomePrice: {
+        color: '#72BE20',
+      },
+      noData: {
+        textAlign: 'center',
+        color: '#9b9b9b',
+        fontSize: FONT_SIZE_FIRST,
+        paddingTop: 15,
+        paddingBottom: 15,
+      },
+    };
+
+    const enchashmentInfo = enchashmentGetList
+      ? enchashmentGetList.enchashmentInfo
+      : [];
+
+    return (
+      <div style={styles.income}>
+        {enchashmentInfo.map((val, key) => (
+          <div style={styles.incomeItem} key={key}>
+            <div style={styles.incomeDate}>
+              {`${dayjs(val.createTime).format('DD-MM-YYYY')}`}
+            </div>
+            <div style={styles.incomeMain}>
+              <div style={styles.incomeTitle}>{val.bankName}</div>
+              <div style={styles.incomePrice}>
+                {`- ${priceFormat(val.amount)} ${MONETARY}`}
+              </div>
+            </div>
+          </div>
+        ))}
+        {enchashmentInfo.length === 0 && (
+          <div style={styles.noData}>{formatMessage({ id: 'noData' })}</div>
+        )}
+      </div>
+    );
+  }
+
   renderContent() {
-    const { items } = this.props;
+    const { isShowIncome } = this.state;
     const styles = {
       container: {
         paddingTop: 190 - 45,
       },
-      main: {
+      wrap: {
         backgroundColor: '#f2f2f2',
         minHeight: WINDOW_HEIGHT - 190,
+      },
+      main: {
+        paddingLeft: SIDEINTERVAL,
+        paddingRight: SIDEINTERVAL,
+        paddingTop: 20,
+      },
+      title: {
+        display: 'flex',
+        flexDivection: 'row',
+      },
+      titleLeft: {
+        paddingRight: SIDEINTERVAL * 2,
+        color: isShowIncome ? '#0076F7' : '#4B4B4B',
+        fontSize: FONT_SIZE_FIRST,
+        paddingTop: 10,
+        paddingBottom: 10,
+      },
+      titleRight: {
+        paddingRight: SIDEINTERVAL * 2,
+        color: isShowIncome ? '#4B4B4B' : '#0076F7',
+        fontSize: FONT_SIZE_FIRST,
+        paddingTop: 10,
+        paddingBottom: 10,
       },
     };
     return (
       <div style={styles.container}>
-        <div style={styles.main}>
-          <div style={styles.row1}>22222</div>
+        <div style={styles.wrap}>
+          <div style={styles.main}>
+            <div style={styles.title}>
+              <div
+                style={styles.titleLeft}
+                onClick={() =>
+                  this.setState({
+                    isShowIncome: true,
+                  })
+                }
+              >
+                {formatMessage({ id: 'detailedStatisticalTable' })}
+              </div>
+              <div
+                style={styles.titleRight}
+                onClick={() =>
+                  this.setState({
+                    isShowIncome: false,
+                  })
+                }
+              >
+                {formatMessage({ id: 'moneyWithdrawalHistory' })}
+              </div>
+            </div>
+            {isShowIncome ? this.renderIncome() : this.renderExpend()}
+          </div>
         </div>
       </div>
     );
   }
 
   render() {
-    const { items, loading, receiveVoucherLoading } = this.props;
+    const { enchashmentLoading, getInviteRecordLoading, authUser } = this.props;
 
     const styles = {
       container: {
@@ -169,7 +439,13 @@ class Withdraw extends React.Component {
 
     return (
       <div style={styles.container}>
-        {receiveVoucherLoading && <Loader />}
+        <MustLogin
+          Modal={Modal}
+          visible={!authUser}
+          formatMessage={formatMessage}
+          router={router}
+          SCREENS={SCREENS}
+        />
         <BYHeader
           styleContainer={{
             backgroundColor: 'transparent',
@@ -183,9 +459,15 @@ class Withdraw extends React.Component {
           }}
           title={formatMessage({ id: 'myBrokerage' })}
         />
-        {this.renderBackground()}
-        {this.renderCard()}
-        {this.renderContent()}
+        {enchashmentLoading || getInviteRecordLoading ? (
+          <Loader />
+        ) : (
+          <>
+            {this.renderBackground()}
+            {this.renderCard()}
+            {this.renderContent()}
+          </>
+        )}
       </div>
     );
   }
@@ -193,14 +475,32 @@ class Withdraw extends React.Component {
 
 export default connect(
   state => {
-    console.log(state);
+    const {
+      loading,
+      enchashmentGetList,
+      enchashmentConfig,
+      getInviteRecord,
+    } = state;
+
     return {
+      enchashmentLoading:
+        loading.effects[
+          `${ENCHASHMENT_GETLIST_NAMESPACE}/${ENCHASHMENT_GETLIST.REQUEST}`
+        ],
+      getInviteRecordLoading:
+        loading.effects[
+          `${GET_INVITE_RECORD_NAMESPACE}/${GET_INVITE_RECORD.REQUEST}`
+        ],
       authUser: o(localStorageGetItem, BUYOO),
+      enchashmentGetList: enchashmentGetList.item,
+      getInviteRecord: getInviteRecord.item,
+      balance: enchashmentGetList ? enchashmentGetList.balance : 0,
+      limit: parseInt(enchashmentConfig.limit, 10),
     };
   },
   {
-    ...getVoucherActionCreators,
-    ...receiveVoucherActionCreators,
-    ...modalActionCreators,
+    ...getInviteRecordActionCreators,
+    ...enchashmentGetListActionCreators,
+    ...enchashmentConfigActionCreators,
   },
 )(Withdraw);

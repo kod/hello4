@@ -99,8 +99,8 @@ export default {
               break;
 
             case 60050:
-              yield put(loginFetchSuccess(null, screen));
-              // yield put(addError(formatMessage({ id: 'userNotExist' })));
+              // yield put(loginFetchSuccess(null, screen));
+              yield put(addError(formatMessage({ id: 'userNotExist' })));
               break;
 
             case 60051:

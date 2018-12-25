@@ -12,7 +12,7 @@ export function userCertificateInfoFetchSuccess(certUser) {
 
 export function userCertificateInfoFetchFailure() {
   return {
-    type: `${USERCERTIFICATEINFO_NAMESPACE}/${USER_CERTIFICATE_INFO.SUCCESS}`,
+    type: `${USERCERTIFICATEINFO_NAMESPACE}/${USER_CERTIFICATE_INFO.FAILURE}`,
     payload: {
       // rankingMode,
     },
@@ -21,7 +21,7 @@ export function userCertificateInfoFetchFailure() {
 
 export function userCertificateInfoFetch(type = 'userCertificateInfo') {
   return {
-    type: `${USERCERTIFICATEINFO_NAMESPACE}/${USER_CERTIFICATE_INFO.SUCCESS}`,
+    type: `${USERCERTIFICATEINFO_NAMESPACE}/${USER_CERTIFICATE_INFO.REQUEST}`,
     payload: {
       type,
     },
@@ -30,7 +30,7 @@ export function userCertificateInfoFetch(type = 'userCertificateInfo') {
 
 export function userCertificateInfoClear() {
   return {
-    type: `${USERCERTIFICATEINFO_NAMESPACE}/${USER_CERTIFICATE_INFO.SUCCESS}`,
+    type: `${USERCERTIFICATEINFO_NAMESPACE}/${USER_CERTIFICATE_INFO.CLEAR}`,
     payload: {},
   };
 }

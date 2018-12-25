@@ -239,7 +239,6 @@ class OrderDetail extends React.Component {
   async handleOnPressCopy(val) {
     const { authUser } = this.props;
 
-    console.log(val);
     if (authUser) {
       // Clipboard.setString(val);
       Modal.alert('', formatMessage({ id: 'successfulCopy' }), [

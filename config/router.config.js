@@ -139,4 +139,8 @@ export default [
     path: '/Withdraw',
     component: './Withdraw/Index',
   },
+  {
+    path: '/Withdrawal',
+    component: './Withdrawal/Index',
+  },
 ];

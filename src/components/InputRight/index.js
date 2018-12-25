@@ -39,6 +39,7 @@ export default ({
   pattern,
   value,
   initialValue = '',
+  onChange = () => {},
   required = true,
 }) => (
   <div style={{ ...styles.componentWrap, ...styleWrap }}>
@@ -48,6 +49,7 @@ export default ({
         value={value}
         style={{ ...styles.componentInput, ...styleInput }}
         {...getFieldProps(name, {
+          onChange,
           initialValue,
           rules: [
             {

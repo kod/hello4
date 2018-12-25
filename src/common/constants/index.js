@@ -45,11 +45,16 @@ export const COUPONSELECT_NAMESPACE = 'couponSelect';
 export const ORDERPAY_NAMESPACE = 'orderPay';
 export const CITYINFOS_NAMESPACE = 'cityInfos';
 export const USERADDADDR_NAMESPACE = 'userAddAddr';
+export const USERADDDETAILINFO_NAMESPACE = 'userAddDetailInfo';
 export const ADDRESSMODIFY_NAMESPACE = 'addressModify';
 export const GETVOUCHERLIST_NAMESPACE = 'getVoucherList';
 export const GETVOUCHER_NAMESPACE = 'getVoucher';
 export const RECEIVEVOUCHER_NAMESPACE = 'receiveVoucher';
 export const QUERYORDER_NAMESPACE = 'queryOrder';
+export const GET_INVITE_RECORD_NAMESPACE = 'getInviteRecord';
+export const ENCHASHMENT_GETLIST_NAMESPACE = 'enchashmentGetList';
+export const ENCHASHMENT_APPLY_NAMESPACE = 'enchashmentApply';
+export const ENCHASHMENT_CONFIG_NAMESPACE = 'enchashmentConfig';
 export const RETURNMONEY_NAMESPACE = 'returnMoney';
 export const ORDERCANCEL_NAMESPACE = 'orderCancel';
 export const ADDEVALUATION_NAMESPACE = 'addEvaluation';
@@ -223,6 +228,8 @@ export const SCREENS = {
   BillDetailOld: 'BillDetailOld',
   OauthBindMailOne: 'OauthBindMailOne',
   OauthBindMailTwo: 'OauthBindMailTwo',
+  Withdrawal: 'Withdrawal',
+  Withdraw: 'Withdraw',
 };
 
 export const COUPONMY_TABNAVIGATOR_MAP = {

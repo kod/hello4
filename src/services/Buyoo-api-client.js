@@ -349,6 +349,77 @@ class ReactStore {
     return this.requestUrl(`${PORT_83}/fun/trade/queryOrder`, options);
   }
 
+  getInviteRecord(o) {
+    let options = o;
+    if (!options) {
+      return Promise.reject(new Error('fields required'));
+    }
+
+    const data = qs.stringify(options);
+    options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      data,
+    };
+
+    return this.requestUrl(`${PORT_83}/fun/trade/getInviteRecord`, options);
+  }
+
+  enchashmentGetList(o) {
+    let options = o;
+    if (!options) {
+      return Promise.reject(new Error('fields required'));
+    }
+
+    const data = qs.stringify(options);
+    options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      data,
+    };
+
+    return this.requestUrl(`${PORT_80}/fun/enchashment/getList`, options);
+  }
+
+  enchashmentApply(o) {
+    let options = o;
+    if (!options) {
+      return Promise.reject(new Error('fields required'));
+    }
+
+    const data = qs.stringify(options);
+    options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      data,
+    };
+
+    return this.requestUrl(`${PORT_80}/fun/enchashment/apply`, options);
+  }
+
+  enchashmentConfig(o) {
+    const options = o;
+    if (!options) {
+      return Promise.reject(new Error('fields required'));
+    }
+
+    const queryString = qs.stringify(
+      Object.assign(
+        {
+          // filter,
+        },
+        options,
+      ),
+    );
+    return this.requestUrl(`${PORT_80}/fun/enchashment/config?${queryString}`);
+  }
+
   billDetails(o) {
     let options = o;
     if (!options) {

@@ -473,6 +473,30 @@ export const QUERY_ORDER = defineAction(
   // appNamespace,
 );
 
+export const GET_INVITE_RECORD = defineAction(
+  'GET_INVITE_RECORD',
+  [REQUEST, SUCCESS, FAILURE, CLEAR],
+  // appNamespace,
+);
+
+export const ENCHASHMENT_GETLIST = defineAction(
+  'ENCHASHMENT_GETLIST',
+  [REQUEST, SUCCESS, FAILURE, CLEAR],
+  // appNamespace,
+);
+
+export const ENCHASHMENT_APPLY = defineAction(
+  'ENCHASHMENT_APPLY',
+  [REQUEST, SUCCESS, FAILURE, CLEAR],
+  // appNamespace,
+);
+
+export const ENCHASHMENT_CONFIG = defineAction(
+  'ENCHASHMENT_CONFIG',
+  [REQUEST, SUCCESS, FAILURE, CLEAR],
+  // appNamespace,
+);
+
 export const CREATE_DISORDER = defineAction(
   'CREATE_DISORDER',
   [REQUEST, SUCCESS, FAILURE],

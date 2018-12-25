@@ -132,7 +132,6 @@ class Index extends React.Component {
   socialLoginCallback = ret => {
     const { loginFetch } = this.props;
     // 判断此第三方账号是否已绑定过用户
-    // console.log(ret);
     loginFetch({
       oauthtype: ret.oauth_type,
       oauthid: ret.oauth_id,
@@ -162,7 +161,6 @@ class Index extends React.Component {
     const getAuthInstance = window.gapi.auth2.getAuthInstance();
     switch (type) {
       case SOCIALBIND_GOOGLE:
-        // console.log(getAuthInstance.isSignedIn.get());
         if (getAuthInstance.isSignedIn.get()) {
           // 已登录
           // getAuthInstance.signOut();

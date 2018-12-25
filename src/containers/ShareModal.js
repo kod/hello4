@@ -39,14 +39,12 @@ class AddressAddModal extends Component {
     // this.addEventListenerHandle = this.addEventListenerHandle.bind(this);
   }
 
-  componentDidMount() {
-    const {
-      modalProps: { params = {} },
-    } = this.props;
-    const { iconUrl, name } = params;
-    console.log(iconUrl);
-    console.log(name);
-  }
+  // componentDidMount() {
+  //   const {
+  //     modalProps: { params = {} },
+  //   } = this.props;
+  //   const { iconUrl, name } = params;
+  // }
 
   // componentWillUnmount() {
   //   removeEventListener('GiftModal', this.addEventListenerHandle);
