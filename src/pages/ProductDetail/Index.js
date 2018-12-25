@@ -486,7 +486,10 @@ class Index extends React.Component {
               <CustomIcon type="iconmessages" style={styles.favoriteItem} />
             )} */}
             <div style={styles.operateIconItemSeparate} />
-            <CustomIcon type="iconmessages" style={styles.favoriteItem} />
+            <CustomIcon
+              type="iconmessages"
+              style={styles.operateIconItemIcon}
+            />
             <div
               style={{
                 ...styles.operateIconItemText,
