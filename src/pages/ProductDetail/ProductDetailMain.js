@@ -215,9 +215,6 @@ class ProductDetailMain extends React.Component {
 
     console.log(isLoadFBSDK);
     if (isLoadFBSDK) {
-      console.log(window.location.href);
-      console.log('handlePressShare');
-      console.log(link);
       window.FB.ui(
         {
           display: 'popup',
