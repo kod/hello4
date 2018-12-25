@@ -92,7 +92,7 @@ class AddressAddModal extends Component {
     const {
       modalProps: { params = {} },
     } = this.props;
-    const { iconUrl, name, price } = params;
+    const { iconUrl, name, price, rewardNumber } = params;
 
     const styles = {
       container: {
@@ -224,6 +224,7 @@ class AddressAddModal extends Component {
       },
     };
 
+    console.log(rewardNumber);
     return (
       <div style={styles.container}>
         <div style={styles.main}>
@@ -253,11 +254,15 @@ class AddressAddModal extends Component {
                 <div style={styles.productInfoPrice}>{`${priceFormat(
                   price,
                 )} ${MONETARY}`}</div>
-                <div style={styles.productInfoRow1}>Voucher giảm giá</div>
-                <div style={styles.productInfoRow2}>
-                  Voucher giảm giá:{' '}
-                  <span style={styles.productInfoRow2Price}>+ 2.000</span>
-                </div>
+                {/* <div style={styles.productInfoRow1}>Voucher giảm giá</div> */}
+                {!!rewardNumber && (
+                  <div style={styles.productInfoRow2}>
+                    {`${formatMessage({ id: 'salesCommission' })}: `}
+                    <span style={styles.productInfoRow2Price}>
+                      {`+ ${priceFormat(rewardNumber)} ${MONETARY}`}
+                    </span>
+                  </div>
+                )}
               </div>
             </div>
           </div>

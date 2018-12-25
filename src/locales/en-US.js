@@ -391,6 +391,7 @@ export default {
   amountActuallyReceived: 'The amount actually received',
   limitWithdrawnTips: 'The amount is less than XXX and cannot be withdrawn',
   insufficientAmount: 'Insufficient amount',
+  salesCommission: 'Sales commission',
   withdrawnSuccess:
     'You have successfully withdrawed the commission, we will transfer this amount to your account within 5 working days. Please check and contact us if you have any questions. Thank you very much.',
   receiveServicesOffers:
