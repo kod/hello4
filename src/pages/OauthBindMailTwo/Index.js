@@ -40,7 +40,7 @@ class Index extends React.Component {
 
   addEventListenerHandle = ({ detail: { method, params } }) => {
     const { oauthRequestFetch } = this.props;
-    const { oauthRequest, user } = params;
+    const { user } = params;
     switch (method) {
       case 'login':
         // 注册成功后会自动登录，登录后会调用

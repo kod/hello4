@@ -236,7 +236,7 @@ class OrderDetail extends React.Component {
     return result;
   };
 
-  async handleOnPressCopy(val) {
+  async handleOnPressCopy(/* val */) {
     const { authUser } = this.props;
 
     if (authUser) {

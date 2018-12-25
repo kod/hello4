@@ -68,7 +68,7 @@ const styles = {
   },
 };
 
-export default ({ groupon = false, data, style, ...restProps }) => (
+export default ({ data, style, ...restProps }) => (
   <div
     // horizontal
     // showsHorizontalScrollIndicator={false}
