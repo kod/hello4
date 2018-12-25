@@ -171,7 +171,9 @@ class ProductDetailMain extends React.Component {
   shareEventListenerHandle = ({ detail: ret }) => {
     const { authUser } = this.props;
     const { type } = ret;
-    let link = window.location.href;
+    // console.log(window.location);
+    const { pathname, search } = window.location;
+    let link = `https://buyoo.vip${pathname}${search}`;
     if (authUser) {
       link = `${link}&inviteID=${authUser.result}`;
     }
