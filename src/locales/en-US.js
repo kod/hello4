@@ -392,6 +392,8 @@ export default {
   limitWithdrawnTips: 'The amount is less than XXX and cannot be withdrawn',
   insufficientAmount: 'Insufficient amount',
   salesCommission: 'Sales commission',
+  shareGetDiscountedDealsAndMoneyRose:
+    'Share now to get discounted deals and money rose.',
   withdrawnSuccess:
     'You have successfully withdrawed the commission, we will transfer this amount to your account within 5 working days. Please check and contact us if you have any questions. Thank you very much.',
   receiveServicesOffers:

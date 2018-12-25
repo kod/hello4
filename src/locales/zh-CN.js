@@ -384,6 +384,7 @@ export default {
   limitWithdrawnTips: 'The amount is less than XXX and cannot be withdrawn',
   insufficientAmount: '余额不足',
   salesCommission: '销售佣金',
+  shareGetDiscountedDealsAndMoneyRose: '立即分享以获得折扣优惠和佣金。',
   withdrawnSuccess:
     '恭喜您已提现成功，我们将在5个工作日内打款到您的账户，请注意查收，如有疑问请联系我们，谢谢！',
   receiveServicesOffers: '我愿意从接收buyoo.vip广告和各种资讯',

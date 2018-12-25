@@ -24,6 +24,7 @@ import {
   FONT_SIZE_FIRST,
   FONT_COLOR_FIFTH,
   FONT_SIZE_SECOND,
+  FONT_SIZE_THIRD,
 } from '@/styles/variables';
 import CustomIcon from '@/components/CustomIcon';
 import { o } from '@/utils/AuthEncrypt';
@@ -128,6 +129,7 @@ class AddressAddModal extends Component {
         flex: 1,
         textAlign: 'center',
         color: FONT_COLOR_FIRST,
+        fontWeight: '700',
       },
       headerRight: {
         paddingLeft: SIDEINTERVAL,
@@ -222,9 +224,17 @@ class AddressAddModal extends Component {
         paddingRight: SIDEINTERVAL * 0.6,
         fontSize: FONT_SIZE_SECOND,
       },
+      tips: {
+        color: '#3A3A3A',
+        fontSize: FONT_SIZE_THIRD,
+        textAlign: 'left',
+        paddingLeft: SIDEINTERVAL,
+        paddingRight: SIDEINTERVAL,
+        paddingTop: 10,
+        paddingBottom: 5,
+      },
     };
 
-    console.log(rewardNumber);
     return (
       <div style={styles.container}>
         <div style={styles.main}>
@@ -241,6 +251,9 @@ class AddressAddModal extends Component {
             <div style={styles.headerRight}>
               {formatMessage({ id: 'cancel' })}
             </div>
+          </div>
+          <div style={styles.tips}>
+            {formatMessage({ id: 'shareGetDiscountedDealsAndMoneyRose' })}
           </div>
           <div style={styles.body}>
             <div style={styles.productInfo}>

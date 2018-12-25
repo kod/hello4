@@ -398,6 +398,8 @@ export default {
   limitWithdrawnTips: 'The amount is less than XXX and cannot be withdrawn',
   insufficientAmount: 'Số tiền không đủ',
   salesCommission: 'Hoa hồng bán hàng',
+  shareGetDiscountedDealsAndMoneyRose:
+    'Chia sẻ ngay để nhận ưu đãi chiết khấu và tiền hoa hồng.',
   withdrawnSuccess:
     'Bạn đã rút tiền hoa hồng thành công, chúng tôi sẽ chuyển số tiền này vào tài khoản của bạn trong vòng 5 ngày làm việc. Vui lòng kiểm tra và liên hệ với chúng tôi nếu có bất kì câu hỏi nào. Chân thành cảm ơn.',
   receiveServicesOffers: 'Đồng ý nhận quảng cáo và tin tức từ Buyoo.vip',
