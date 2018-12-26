@@ -1,4 +1,4 @@
-/* eslint-disable camelcase */
+/* eslint-disable camelcase, import/prefer-default-export */
 import { takeEvery, apply, put } from 'redux-saga/effects';
 import dayjs from 'dayjs';
 import {
@@ -6,14 +6,14 @@ import {
   addEvaluationFetchFailure,
 } from '@/common/actions/addEvaluation';
 import { addError } from '@/common/actions/error';
-import buyoo from '@/common/helpers/apiClient';
+import buyoo from '@/services/api';
 import { ADD_EVALUATION } from '@/common/constants/actionTypes';
 import { encryptMD5, signTypeMD5, o } from '@/utils/AuthEncrypt';
 
 import { dispatchEvent, localStorageGetItem } from '@/utils';
 import { BUYOO } from '../constants';
 
-export function* addEvaluationFetchWatchHandle(action) {
+function* addEvaluationFetchWatchHandle(action) {
   const { msisdn } = o(localStorageGetItem, BUYOO);
   const funid = o(localStorageGetItem, BUYOO).result;
 
