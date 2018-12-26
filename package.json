@@ -28,7 +28,10 @@
     "rc-form": "^2.2.6",
     "react": "^16.6.0",
     "react-dom": "^16.6.3",
+    "react-redux": "^6.0.0",
+    "redux": "^4.0.1",
     "redux-define": "^1.1.1",
+    "redux-saga": "^0.16.2",
     "reselect": "^4.0.0"
   },
   "devDependencies": {

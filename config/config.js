@@ -30,6 +30,7 @@ export default {
           : {}),
       },
     ],
+    './umi-plugin-entry.js',
   ],
   targets: {
     ie: 9,
