@@ -40,8 +40,8 @@ import {
 import Comment from '@/components/Comment';
 import SeparateBar from '@/components/SeparateBar';
 import {
-  addEventListener,
-  removeEventListener,
+  addEventListenerBuyoo,
+  removeEventListenerBuyoo,
   xOssProcess,
   localStorageGetItem,
   loadFbLoginApi,
@@ -85,8 +85,11 @@ class ProductDetailMain extends React.Component {
     });
     commentFetch(brandId);
 
-    addEventListener('ProductDetailMain', this.addEventListenerHandle);
-    addEventListener('ProductDetailMainShare', this.shareEventListenerHandle);
+    addEventListenerBuyoo('ProductDetailMain', this.addEventListenerHandle);
+    addEventListenerBuyoo(
+      'ProductDetailMainShare',
+      this.shareEventListenerHandle,
+    );
 
     loadFbLoginApi(() => {
       this.setState({
@@ -119,7 +122,7 @@ class ProductDetailMain extends React.Component {
   }
 
   componentWillUnmount() {
-    removeEventListener('ProductDetailMain', this.addEventListenerHandle);
+    removeEventListenerBuyoo('ProductDetailMain', this.addEventListenerHandle);
     smoothScroll.destroy();
     gumshoe.destroy();
   }

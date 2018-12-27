@@ -18,7 +18,7 @@ import {
   ADDRESS_REMOVE,
 } from '@/common/constants/actionTypes';
 
-import { localStorageGetItem, dispatchEvent } from '@/utils';
+import { localStorageGetItem, dispatchEventBuyoo } from '@/utils';
 import { encryptMD5, signTypeMD5, o } from '@/utils/AuthEncrypt';
 import { BUYOO } from '@/common/constants';
 
@@ -197,7 +197,7 @@ function* addressAddSuccessWatchHandle(action) {
   const { screen } = action.payload;
   try {
     yield put(addressFetch());
-    dispatchEvent(screen);
+    dispatchEventBuyoo(screen);
   } catch (err) {
     console.log(err);
   }

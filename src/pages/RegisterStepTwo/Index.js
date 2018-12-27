@@ -8,7 +8,7 @@ import { Modal } from 'antd-mobile';
 import { REGISTER_NAMESPACE, SCREENS, WINDOW_HEIGHT } from '@/common/constants';
 import { REGISTER } from '@/common/constants/actionTypes';
 import Loader from '@/components/Loader';
-import { addEventListener, removeEventListener } from '@/utils';
+import { addEventListenerBuyoo, removeEventListenerBuyoo } from '@/utils';
 import Form from './Form';
 
 class Index extends React.Component {
@@ -18,11 +18,14 @@ class Index extends React.Component {
   }
 
   componentDidMount() {
-    addEventListener(SCREENS.RegisterStepTwo, this.addEventListenerHandle);
+    addEventListenerBuyoo(SCREENS.RegisterStepTwo, this.addEventListenerHandle);
   }
 
   componentWillUnmount() {
-    removeEventListener(SCREENS.RegisterStepTwo, this.addEventListenerHandle);
+    removeEventListenerBuyoo(
+      SCREENS.RegisterStepTwo,
+      this.addEventListenerHandle,
+    );
   }
 
   addEventListenerHandle = () => {

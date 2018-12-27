@@ -25,8 +25,8 @@ import {
 } from '@/common/constants';
 import {
   payWayArray,
-  addEventListener,
-  removeEventListener,
+  addEventListenerBuyoo,
+  removeEventListenerBuyoo,
   submitDuplicateFreeze,
   payWayToText,
   localStorageGetItem,
@@ -56,7 +56,7 @@ class Pay extends React.Component {
 
     queryOrderClear();
 
-    addEventListener(SCREENS.Pay, this.addEventListenerHandle);
+    addEventListenerBuyoo(SCREENS.Pay, this.addEventListenerHandle);
 
     queryOrderFetch({
       orderNo,
@@ -66,7 +66,7 @@ class Pay extends React.Component {
   }
 
   componentWillUnmount() {
-    removeEventListener(SCREENS.Pay, this.addEventListenerHandle);
+    removeEventListenerBuyoo(SCREENS.Pay, this.addEventListenerHandle);
     clearTimeout(this.setTimeoutId);
   }
 

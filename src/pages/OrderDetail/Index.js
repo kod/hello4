@@ -29,8 +29,8 @@ import {
 import {
   tradeStatusCodes,
   payWayToText,
-  addEventListener,
-  removeEventListener,
+  addEventListenerBuyoo,
+  removeEventListenerBuyoo,
   localStorageGetItem,
 } from '@/utils';
 import SeparateBar from '@/components/SeparateBar';
@@ -133,8 +133,8 @@ class OrderDetail extends React.Component {
 
     router.push(`${locationPathname}${locationSearch}#123`);
 
-    addEventListener(SCREENS.OrderDetail, this.addEventListenerHandle);
-    addEventListener('popstate', this.addEventListenerPopstate);
+    addEventListenerBuyoo(SCREENS.OrderDetail, this.addEventListenerHandle);
+    addEventListenerBuyoo('popstate', this.addEventListenerPopstate);
 
     queryOrderClear();
 
@@ -182,7 +182,7 @@ class OrderDetail extends React.Component {
 
   componentWillUnmount() {
     clearInterval(this.setIntervalId);
-    removeEventListener('popstate', this.addEventListenerPopstate);
+    removeEventListenerBuyoo('popstate', this.addEventListenerPopstate);
   }
 
   addEventListenerHandle = ({ detail: { method } }) => {

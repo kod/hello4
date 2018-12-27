@@ -10,7 +10,7 @@ import buyoo from '@/services/api';
 
 import { CHANGE_PASSWORD } from '@/common/constants/actionTypes';
 import { encryptMD5 } from '@/utils/AuthEncrypt';
-import { dispatchEvent } from '@/utils';
+import { dispatchEventBuyoo } from '@/utils';
 
 export function* changePasswordFetchWatchHandle(action) {
   const { msisdn, password, otp, screen } = action.payload;
@@ -75,7 +75,7 @@ export function* changePasswordFetchWatchHandle(action) {
 export function* changePasswordSuccessWatchHandle(action) {
   const { screen } = action.payload;
   try {
-    yield dispatchEvent(screen);
+    yield dispatchEventBuyoo(screen);
   } catch (err) {
     console.warn(err);
   }

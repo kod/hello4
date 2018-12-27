@@ -52,7 +52,7 @@ export const xOssProcess = (isIos, ossImageQuality) =>
     ? `x-oss-process=image/quality,Q_${ossImageQuality}`
     : `x-oss-process=image/format,webp/quality,Q_${ossImageQuality}`;
 
-export function addEventListener(type, listener) {
+export function addEventListenerBuyoo(type, listener) {
   // TODO
   // 输入值：变量类型，变量必填
   // 返回值：e.detail 统一返回类型，系统默认为null
@@ -64,13 +64,13 @@ export function addEventListener(type, listener) {
   }
 }
 
-export function removeEventListener(type, listener) {
+export function removeEventListenerBuyoo(type, listener) {
   // TODO
   // 输入值：变量类型，变量必填
   window.removeEventListener(type, listener, false);
 }
 
-export function dispatchEvent(type, params = {}) {
+export function dispatchEventBuyoo(type, params = {}) {
   // TODO
   // 输入值：变量类型判断；type必填，params选填
   window.dispatchEvent(

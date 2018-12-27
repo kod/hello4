@@ -21,8 +21,8 @@ import {
   GOOGLE_CLIENT_ID,
 } from '@/common/constants';
 import {
-  addEventListener,
-  removeEventListener,
+  addEventListenerBuyoo,
+  removeEventListenerBuyoo,
   localStorageRemoveItem,
   localStorageSetItem,
   loadFbLoginApi,
@@ -52,7 +52,7 @@ class Index extends React.Component {
   }
 
   componentDidMount() {
-    addEventListener(SCREENS.Login, this.addEventListenerHandle);
+    addEventListenerBuyoo(SCREENS.Login, this.addEventListenerHandle);
     loadFbLoginApi(() => {
       this.setState({
         isLoadFBSDK: true,
@@ -83,7 +83,7 @@ class Index extends React.Component {
   }
 
   componentWillUnmount() {
-    removeEventListener(SCREENS.Login, this.addEventListenerHandle);
+    removeEventListenerBuyoo(SCREENS.Login, this.addEventListenerHandle);
   }
 
   addEventListenerHandle = ({ detail: { method, params } }) => {

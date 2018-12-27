@@ -11,8 +11,8 @@ import router from 'umi/router';
 
 import Loader from '@/components/Loader';
 import {
-  addEventListener,
-  removeEventListener,
+  addEventListenerBuyoo,
+  removeEventListenerBuyoo,
   submitDuplicateFreeze,
   localStorageGetItem,
 } from '@/utils';
@@ -57,7 +57,7 @@ class Evalution extends React.Component {
   }
 
   componentDidMount() {
-    addEventListener(SCREENS.Evalution, this.addEventListenerHandle);
+    addEventListenerBuyoo(SCREENS.Evalution, this.addEventListenerHandle);
 
     // this.screenListener = DeviceEventEmitter.addListener(
     //   SCREENS.Evalution,
@@ -75,7 +75,7 @@ class Evalution extends React.Component {
   }
 
   componentWillUnmount() {
-    removeEventListener(SCREENS.Evalution, this.addEventListenerHandle);
+    removeEventListenerBuyoo(SCREENS.Evalution, this.addEventListenerHandle);
     clearTimeout(this.setTimeoutId);
   }
 

@@ -13,7 +13,7 @@ import {
 } from '@/common/constants';
 import { CHANGE_PASSWORD } from '@/common/constants/actionTypes';
 import Loader from '@/components/Loader';
-import { removeEventListener, addEventListener } from '@/utils';
+import { removeEventListenerBuyoo, addEventListenerBuyoo } from '@/utils';
 
 class Index extends React.Component {
   constructor(props) {
@@ -22,11 +22,17 @@ class Index extends React.Component {
   }
 
   componentDidMount() {
-    addEventListener(SCREENS.ForgotPasswordTwo, this.addEventListenerHandle);
+    addEventListenerBuyoo(
+      SCREENS.ForgotPasswordTwo,
+      this.addEventListenerHandle,
+    );
   }
 
   componentWillUnmount() {
-    removeEventListener(SCREENS.ForgotPasswordTwo, this.addEventListenerHandle);
+    removeEventListenerBuyoo(
+      SCREENS.ForgotPasswordTwo,
+      this.addEventListenerHandle,
+    );
   }
 
   addEventListenerHandle = () => {

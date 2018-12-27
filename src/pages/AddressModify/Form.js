@@ -25,8 +25,8 @@ import * as userAddAddrActionCreators from '@/common/actions/userAddAddr';
 import * as modalActionCreators from '@/common/actions/modal';
 import {
   submitDuplicateFreeze,
-  removeEventListener,
-  addEventListener,
+  removeEventListenerBuyoo,
+  addEventListenerBuyoo,
 } from '@/utils';
 import InputRight from '@/components/InputRight';
 import BYButton from '@/components/BYButton';
@@ -106,7 +106,7 @@ class AddressModify extends React.Component {
     const { addressModifyClear, query: params } = this.props;
 
     addressModifyClear();
-    addEventListener(
+    addEventListenerBuyoo(
       'toggleMenuBottomSheetEventListener',
       this.toggleMenuBottomSheetEventListenerHandle,
     );
@@ -145,7 +145,7 @@ class AddressModify extends React.Component {
   }
 
   componentWillUnmount() {
-    removeEventListener(
+    removeEventListenerBuyoo(
       'toggleMenuBottomSheetEventListener',
       this.toggleMenuBottomSheetEventListenerHandle,
     );

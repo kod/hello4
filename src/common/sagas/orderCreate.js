@@ -11,7 +11,11 @@ import buyoo from '@/services/api';
 import { ORDER_CREATE } from '@/common/constants/actionTypes';
 import { encryptMD5, signTypeMD5, o } from '@/utils/AuthEncrypt';
 
-import { localStorageGetItem, localStorageRemoveItem } from '@/utils';
+import {
+  localStorageGetItem,
+  localStorageRemoveItem,
+  dispatchEventBuyoo,
+} from '@/utils';
 
 export function* orderCreateFetchWatchHandle(action) {
   try {
@@ -138,7 +142,7 @@ export function* orderCreateSuccessWatchHandle(action) {
     localStorageRemoveItem(LOCALSTORAGE_INVITE);
     switch (screen) {
       case SCREENS.OrderWrite:
-        dispatchEvent(screen, {
+        dispatchEventBuyoo(screen, {
           method: 'orderCreate',
           params: {
             tradeNo,

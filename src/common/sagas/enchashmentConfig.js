@@ -6,7 +6,7 @@ import {
 import { addError } from '@/common/actions/error';
 import buyoo from '@/services/api';
 import { ENCHASHMENT_CONFIG } from '@/common/constants/actionTypes';
-import { dispatchEvent } from '@/utils';
+import { dispatchEventBuyoo } from '@/utils';
 
 export function* enchashmentConfigFetchWatchHandle() {
   try {
@@ -22,7 +22,7 @@ export function* enchashmentConfigSuccessWatchHandle(action) {
   const { screen } = action.payload;
   try {
     if (screen) {
-      yield dispatchEvent(screen, {
+      yield dispatchEventBuyoo(screen, {
         method: 'enchashmentConfig',
         params: {},
       });

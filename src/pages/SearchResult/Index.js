@@ -75,20 +75,6 @@ class SearchResult extends React.Component {
       .addEventListener('keypress', this.keypressListener, false);
 
     document.querySelector('input').focus();
-    // $("#search").addEventListener('keypress', function(e) {
-    //   var keycode = e.keyCode;
-    //   //获取搜索框的值
-    //   var searchContent = $(this).val();
-    //   if (keycode == '13') {
-    //       e.preventDefault();
-    //       //请求搜索接口
-    //       if (searchContent == '') {
-    //           alert('请输入检索内容！');
-    //       } else {
-    //           alert(searchContent);
-    //       }
-    //   }
-    // });
   }
 
   componentWillUnmount() {

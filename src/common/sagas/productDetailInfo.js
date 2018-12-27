@@ -13,7 +13,7 @@ import {
   PRODUCT_DETAIL_SELECT,
 } from '@/common/constants/actionTypes';
 import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
-import { dispatchEvent } from '@/utils';
+import { dispatchEventBuyoo } from '@/utils';
 
 export function* productDetailInfoFetchWatchHandle(action) {
   // 获取默认显示商品(库存不为0)
@@ -175,7 +175,7 @@ export function* productDetailInfoFetchWatch() {
 export function* productDetailInfoSuccessWatchHandle(action) {
   const { screen, detail } = action.payload;
   try {
-    yield dispatchEvent(screen, {
+    yield dispatchEventBuyoo(screen, {
       method: 'productDetailInfo',
       params: {
         ...detail,
@@ -196,7 +196,7 @@ export function* productDetailInfoSuccessWatch() {
 export function* productDetailSelectFetchWatchHandle(action) {
   const { screen, productDetail } = action.payload;
   try {
-    yield dispatchEvent(screen, {
+    yield dispatchEventBuyoo(screen, {
       method: 'productDetailSelect',
       params: {
         ...productDetail,

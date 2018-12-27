@@ -29,7 +29,11 @@ import buyoo from '@/services/api';
 // import { SCREENS } from '@/common/constants';
 import { LOGIN, LOGOUT } from '@/common/constants/actionTypes';
 import { encryptMD5 } from '@/utils/AuthEncrypt';
-import { dispatchEvent, localStorageSetItem, localStorageClear } from '@/utils';
+import {
+  dispatchEventBuyoo,
+  localStorageSetItem,
+  localStorageClear,
+} from '@/utils';
 import { BUYOO } from '../constants';
 
 export function* loginFetchWatchHandle(action) {
@@ -151,7 +155,7 @@ export function* loginSuccessWatchHandle(action) {
       );
     }
     if (screen) {
-      dispatchEvent(screen, {
+      dispatchEventBuyoo(screen, {
         method: 'login',
         params: {
           user,

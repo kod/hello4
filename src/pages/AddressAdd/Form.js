@@ -26,8 +26,8 @@ import * as userAddAddrActionCreators from '@/common/actions/userAddAddr';
 import * as modalActionCreators from '@/common/actions/modal';
 import {
   submitDuplicateFreeze,
-  addEventListener,
-  removeEventListener,
+  addEventListenerBuyoo,
+  removeEventListenerBuyoo,
   localStorageGetItem,
 } from '@/utils';
 import InputRight from '@/components/InputRight';
@@ -109,16 +109,16 @@ class AddressAdd extends React.Component {
   componentDidMount() {
     const { addressModifyClear } = this.props;
     addressModifyClear();
-    addEventListener(SCREENS.AddressAdd, this.addEventListenerHandle);
-    addEventListener(
+    addEventListenerBuyoo(SCREENS.AddressAdd, this.addEventListenerHandle);
+    addEventListenerBuyoo(
       'toggleMenuBottomSheetEventListener',
       this.toggleMenuBottomSheetEventListenerHandle,
     );
   }
 
   componentWillUnmount() {
-    removeEventListener(SCREENS.AddressAdd, this.addEventListenerHandle);
-    removeEventListener(
+    removeEventListenerBuyoo(SCREENS.AddressAdd, this.addEventListenerHandle);
+    removeEventListenerBuyoo(
       'toggleMenuBottomSheetEventListener',
       this.toggleMenuBottomSheetEventListenerHandle,
     );

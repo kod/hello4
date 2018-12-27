@@ -22,8 +22,8 @@ import BYButton from '@/components/BYButton';
 import { o } from '@/utils/AuthEncrypt';
 import {
   localStorageGetItem,
-  addEventListener,
-  removeEventListener,
+  addEventListenerBuyoo,
+  removeEventListenerBuyoo,
 } from '@/utils';
 
 class AddressAddModal extends Component {
@@ -36,11 +36,11 @@ class AddressAddModal extends Component {
   }
 
   componentDidMount() {
-    addEventListener('GiftModal', this.addEventListenerHandle);
+    addEventListenerBuyoo('GiftModal', this.addEventListenerHandle);
   }
 
   componentWillUnmount() {
-    removeEventListener('GiftModal', this.addEventListenerHandle);
+    removeEventListenerBuyoo('GiftModal', this.addEventListenerHandle);
   }
 
   addEventListenerHandle = ({ detail: { method } }) => {

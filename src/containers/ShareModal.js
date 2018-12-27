@@ -28,7 +28,7 @@ import {
 } from '@/styles/variables';
 import CustomIcon from '@/components/CustomIcon';
 import { o } from '@/utils/AuthEncrypt';
-import { localStorageGetItem, xOssProcess, dispatchEvent } from '@/utils';
+import { localStorageGetItem, xOssProcess, dispatchEventBuyoo } from '@/utils';
 import priceFormat from '@/utils/priceFormat';
 
 class AddressAddModal extends Component {
@@ -48,7 +48,7 @@ class AddressAddModal extends Component {
   // }
 
   // componentWillUnmount() {
-  //   removeEventListener('GiftModal', this.addEventListenerHandle);
+  //   removeEventListenerBuyoo('GiftModal', this.addEventListenerHandle);
   // }
 
   // addEventListenerHandle = ({ detail: { method } }) => {
@@ -84,7 +84,7 @@ class AddressAddModal extends Component {
       modalProps: { callback = '' },
     } = this.props;
 
-    dispatchEvent(callback, {
+    dispatchEventBuyoo(callback, {
       type,
     });
   }

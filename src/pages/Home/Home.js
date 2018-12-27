@@ -12,7 +12,7 @@ import * as bannerSwiperActionCreators from '@/common/actions/bannerSwiper';
 import * as adverstInfoActionCreators from '@/common/actions/adverstInfo';
 import * as initAdverstCommonActionCreators from '@/common/actions/initAdverstCommon';
 import {
-  dispatchEvent,
+  dispatchEventBuyoo,
   analyzeUrlNavigate,
   localStorageGetItem,
 } from '@/utils';
@@ -63,7 +63,7 @@ class Index extends PureComponent {
   handleRightOnPress() {
     const { authUser } = this.props;
     if (authUser) {
-      dispatchEvent('TabBarTabBarIndex', {
+      dispatchEventBuyoo('TabBarTabBarIndex', {
         index: 3,
       });
     } else {

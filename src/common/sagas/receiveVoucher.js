@@ -12,7 +12,7 @@ import buyoo from '@/services/api';
 import { RECEIVE_VOUCHER } from '@/common/constants/actionTypes';
 import { encryptMD5, signTypeMD5, o } from '@/utils/AuthEncrypt';
 
-import { localStorageGetItem, dispatchEvent } from '@/utils';
+import { localStorageGetItem, dispatchEventBuyoo } from '@/utils';
 import { BUYOO } from '../constants';
 
 export function* receiveVoucherFetchWatchHandle(action) {
@@ -84,7 +84,7 @@ export function* receiveVoucherSuccessWatchHandle(action) {
   const { screen } = action.payload;
   try {
     if (screen) {
-      dispatchEvent(screen, {
+      dispatchEventBuyoo(screen, {
         method: 'receiveVoucher',
         params: {},
       });

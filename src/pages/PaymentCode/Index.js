@@ -31,8 +31,8 @@ import priceFormat from '@/utils/priceFormat';
 import MustLogin from '@/components/MustLogin';
 import { ORDER_PAY } from '@/common/constants/actionTypes';
 import {
-  addEventListener,
-  removeEventListener,
+  addEventListenerBuyoo,
+  removeEventListenerBuyoo,
   localStorageGetItem,
 } from '@/utils';
 import { o } from '@/utils/AuthEncrypt';
@@ -153,7 +153,7 @@ class PaymentCode extends React.Component {
     } = this.props;
 
     router.push(`${locationPathname}${locationSearch}#123`);
-    addEventListener('popstate', this.addEventListenerPopstate);
+    addEventListenerBuyoo('popstate', this.addEventListenerPopstate);
 
     if (authUser && orderno && tradeno) {
       orderPayClear();
@@ -171,7 +171,7 @@ class PaymentCode extends React.Component {
   }
 
   componentWillUnmount() {
-    removeEventListener('popstate', this.addEventListenerPopstate);
+    removeEventListenerBuyoo('popstate', this.addEventListenerPopstate);
   }
 
   addEventListenerPopstate = () => {

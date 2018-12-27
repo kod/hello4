@@ -9,7 +9,7 @@ import buyoo from '@/services/api';
 import { ORDER_CANCEL } from '@/common/constants/actionTypes';
 import { encryptMD5, signTypeMD5, o } from '@/utils/AuthEncrypt';
 
-import { localStorageGetItem, dispatchEvent } from '@/utils';
+import { localStorageGetItem, dispatchEventBuyoo } from '@/utils';
 import { BUYOO } from '../constants';
 
 export function* orderCancelFetchWatchHandle(action) {
@@ -91,7 +91,7 @@ export function* orderCancelFetchWatch() {
 export function* orderCancelSuccessWatchHandle(action) {
   const { screen } = action.payload;
   try {
-    yield dispatchEvent(screen, {
+    yield dispatchEventBuyoo(screen, {
       method: 'orderCancel',
       params: {},
     });

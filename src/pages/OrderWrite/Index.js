@@ -22,8 +22,8 @@ import * as modalActionCreators from '@/common/actions/modal';
 import * as productDetailInfoActionCreators from '@/common/actions/productDetailInfo';
 import * as judgeVoucherActionCreators from '@/common/actions/judgeVoucher';
 import {
-  addEventListener,
-  removeEventListener,
+  addEventListenerBuyoo,
+  removeEventListenerBuyoo,
   orderWritePayWayArray,
   payWayToText,
   localStorageGetItem,
@@ -84,11 +84,11 @@ class OrderWrite extends React.Component {
       screen: 'ProductDetailMain',
     });
 
-    addEventListener(SCREENS.OrderWrite, this.addEventListenerHandle);
+    addEventListenerBuyoo(SCREENS.OrderWrite, this.addEventListenerHandle);
   }
 
   componentWillUnmount() {
-    removeEventListener(SCREENS.OrderWrite, this.addEventListenerHandle);
+    removeEventListenerBuyoo(SCREENS.OrderWrite, this.addEventListenerHandle);
   }
 
   getInviteID() {

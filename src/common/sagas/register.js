@@ -22,6 +22,7 @@ import {
 import { encryptMD5 } from '@/utils/AuthEncrypt';
 
 import { loginFetchSuccess } from '../actions/login';
+import { dispatchEventBuyoo } from '@/utils';
 
 export function* registerFetchWatchHandle(action) {
   try {
@@ -136,7 +137,7 @@ export function* registerSuccessWatchHandle(action) {
     yield put(loginFetchSuccess(response, screen));
 
     if (screen) {
-      dispatchEvent(screen, {
+      dispatchEventBuyoo(screen, {
         method: 'register',
         params: {
           response,

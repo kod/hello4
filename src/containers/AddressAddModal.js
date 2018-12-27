@@ -13,7 +13,7 @@ import {
 import { BORDER_COLOR, PRIMARY_COLOR } from '@/styles/variables';
 import CustomIcon from '@/components/CustomIcon';
 import Loader from '@/components/Loader';
-import { dispatchEvent } from '@/utils';
+import { dispatchEventBuyoo } from '@/utils';
 import { CITY_INFOS } from '@/common/constants/actionTypes';
 
 const styles = {
@@ -216,7 +216,7 @@ class AddressAddModal extends Component {
         // 是否为初始化
         if (init === false) {
           // 非初始化
-          dispatchEvent(callback, {
+          dispatchEventBuyoo(callback, {
             division2ndName,
             division3rdName,
             division4thName: name,

@@ -13,7 +13,7 @@ import {
 } from '@/common/constants/actionTypes';
 import { encryptMD5, signTypeMD5, o } from '@/utils/AuthEncrypt';
 import { getCertifiedInformationCertUser } from '@/common/selectors';
-import { localStorageGetItem, dispatchEvent } from '@/utils';
+import { localStorageGetItem, dispatchEventBuyoo } from '@/utils';
 import { BUYOO } from '../constants';
 // import i18n from '@/common/helpers/i18n';
 
@@ -265,7 +265,7 @@ export function* userAddDetailInfoSuccessWatchHandle(action) {
   const { screen } = action.payload;
   try {
     if (screen) {
-      yield dispatchEvent(screen, {
+      yield dispatchEventBuyoo(screen, {
         method: 'userAddDetailInfo',
         params: {},
       });

@@ -30,8 +30,8 @@ import * as modalActionCreators from '@/common/actions/modal';
 import * as cartActionCreators from '@/common/actions/cart';
 import {
   localStorageGetItem,
-  addEventListener,
-  removeEventListener,
+  addEventListenerBuyoo,
+  removeEventListenerBuyoo,
   localStorageSetItem,
 } from '@/utils';
 import { o } from '@/utils/AuthEncrypt';
@@ -61,12 +61,12 @@ class Index extends React.Component {
     if (authUser) {
       collectionFetch();
     }
-    addEventListener('scroll', this.addEventListenerHandleScroll);
+    addEventListenerBuyoo('scroll', this.addEventListenerHandleScroll);
   }
 
   componentWillUnmount() {
     clearTimeout(this.setTimeoutId);
-    removeEventListener('scroll', this.addEventListenerHandleScroll);
+    removeEventListenerBuyoo('scroll', this.addEventListenerHandleScroll);
   }
 
   addEventListenerHandleScroll = () => {

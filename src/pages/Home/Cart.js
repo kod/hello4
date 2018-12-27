@@ -23,8 +23,8 @@ import priceFormat from '@/utils/priceFormat';
 import EmptyState from '@/components/EmptyState';
 import { getCartTotalMoney } from '@/common/selectors';
 import {
-  addEventListener,
-  removeEventListener,
+  addEventListenerBuyoo,
+  removeEventListenerBuyoo,
   localStorageGetItem,
 } from '@/utils';
 import { o } from '@/utils/AuthEncrypt';
@@ -41,14 +41,14 @@ class Index extends PureComponent {
   }
 
   componentDidMount() {
-    addEventListener('CartShow', this.addEventListenerCartShow);
+    addEventListenerBuyoo('CartShow', this.addEventListenerCartShow);
 
     this.addEventListenerCartShow();
     // cartRequest();
   }
 
   componentWillUnmount() {
-    removeEventListener('popstate', this.addEventListenerCartShow);
+    removeEventListenerBuyoo('popstate', this.addEventListenerCartShow);
   }
 
   addEventListenerCartShow = () => {

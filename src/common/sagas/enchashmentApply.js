@@ -8,7 +8,7 @@ import { addError } from '@/common/actions/error';
 import buyoo from '@/services/api';
 import { ENCHASHMENT_APPLY } from '@/common/constants/actionTypes';
 import { encryptMD5, signTypeMD5, o } from '@/utils/AuthEncrypt';
-import { localStorageGetItem, dispatchEvent } from '@/utils';
+import { localStorageGetItem, dispatchEventBuyoo } from '@/utils';
 import { BUYOO } from '../constants';
 
 export function* enchashmentApplyFetchWatchHandle(action) {
@@ -71,7 +71,7 @@ export function* enchashmentApplySuccessWatchHandle(action) {
   const { screen } = action.payload;
   try {
     if (screen) {
-      yield dispatchEvent(screen, {
+      yield dispatchEventBuyoo(screen, {
         method: 'enchashmentApply',
         params: {},
       });

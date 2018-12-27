@@ -29,8 +29,8 @@ import MustLogin from '@/components/MustLogin';
 import { o } from '@/utils/AuthEncrypt';
 import {
   localStorageGetItem,
-  addEventListener,
-  removeEventListener,
+  addEventListenerBuyoo,
+  removeEventListenerBuyoo,
 } from '@/utils';
 import {
   ENCHASHMENT_CONFIG,
@@ -59,7 +59,7 @@ class LoginForm extends React.Component {
       enchashmentGetListFetch,
       userCertificateInfoFetch,
     } = this.props;
-    addEventListener(SCREENS.Withdrawal, this.addEventListenerHandle);
+    addEventListenerBuyoo(SCREENS.Withdrawal, this.addEventListenerHandle);
 
     if (authUser) {
       enchashmentConfigFetch();
@@ -69,7 +69,7 @@ class LoginForm extends React.Component {
   }
 
   componentWillUnmount() {
-    removeEventListener(SCREENS.Withdrawal, this.addEventListenerHandle);
+    removeEventListenerBuyoo(SCREENS.Withdrawal, this.addEventListenerHandle);
   }
 
   addEventListenerHandle = ({ detail: { method } }) => {

@@ -11,7 +11,11 @@ import Home from '@/pages/Home/Home';
 import Cart from '@/pages/Home/Cart';
 import Me from '@/pages/Home/Me';
 import CustomIcon from '@/components/CustomIcon';
-import { addEventListener, removeEventListener, dispatchEvent } from '@/utils';
+import {
+  addEventListenerBuyoo,
+  removeEventListenerBuyoo,
+  dispatchEventBuyoo,
+} from '@/utils';
 import stylesLess from './index.less';
 
 class Index extends React.Component {
@@ -27,11 +31,11 @@ class Index extends React.Component {
   }
 
   componentDidMount() {
-    addEventListener('TabBarTabBarIndex', this.tabBarTabBarIndexHandle);
+    addEventListenerBuyoo('TabBarTabBarIndex', this.tabBarTabBarIndexHandle);
   }
 
   componentWillUnmount() {
-    removeEventListener('TabBarTabBarIndex', this.tabBarTabBarIndexHandle);
+    removeEventListenerBuyoo('TabBarTabBarIndex', this.tabBarTabBarIndexHandle);
   }
 
   tabBarTabBarIndexHandle({ detail: ret }) {
@@ -127,7 +131,7 @@ class Index extends React.Component {
                   index: 2,
                 })}`,
               );
-              dispatchEvent('CartShow');
+              dispatchEventBuyoo('CartShow');
             }}
           >
             <div style={styles.container} className={stylesLess.container}>

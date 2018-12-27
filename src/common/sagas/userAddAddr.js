@@ -9,7 +9,7 @@ import { addError } from '@/common/actions/error';
 import buyoo from '@/services/api';
 import { ADDRESS_ADD } from '@/common/constants/actionTypes';
 import { encryptMD5, signTypeMD5, o } from '@/utils/AuthEncrypt';
-import { localStorageGetItem, dispatchEvent } from '@/utils';
+import { localStorageGetItem, dispatchEventBuyoo } from '@/utils';
 import { BUYOO } from '../constants';
 
 export function* userAddAddrFetchWatchHandle(action) {
@@ -131,7 +131,7 @@ export function* userAddAddrSuccessWatchHandle(action) {
   const { screen } = action.payload;
   try {
     yield put(addressFetch());
-    dispatchEvent(screen);
+    dispatchEventBuyoo(screen);
   } catch (err) {
     console.log(err);
   }

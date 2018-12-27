@@ -15,8 +15,8 @@ import {
 import { REGISTER, OAUTH_REQUEST } from '@/common/constants/actionTypes';
 import Loader from '@/components/Loader';
 import {
-  addEventListener,
-  removeEventListener,
+  addEventListenerBuyoo,
+  removeEventListenerBuyoo,
   localStorageGetItem,
   localStorageRemoveItem,
 } from '@/utils';
@@ -31,11 +31,17 @@ class Index extends React.Component {
   }
 
   componentDidMount() {
-    addEventListener(SCREENS.OauthBindMailTwo, this.addEventListenerHandle);
+    addEventListenerBuyoo(
+      SCREENS.OauthBindMailTwo,
+      this.addEventListenerHandle,
+    );
   }
 
   componentWillUnmount() {
-    removeEventListener(SCREENS.OauthBindMailTwo, this.addEventListenerHandle);
+    removeEventListenerBuyoo(
+      SCREENS.OauthBindMailTwo,
+      this.addEventListenerHandle,
+    );
   }
 
   addEventListenerHandle = ({ detail: { method, params } }) => {

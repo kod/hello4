@@ -10,7 +10,7 @@ import buyoo from '@/services/api';
 import { ADD_EVALUATION } from '@/common/constants/actionTypes';
 import { encryptMD5, signTypeMD5, o } from '@/utils/AuthEncrypt';
 
-import { dispatchEvent, localStorageGetItem } from '@/utils';
+import { dispatchEventBuyoo, localStorageGetItem } from '@/utils';
 import { BUYOO } from '../constants';
 
 function* addEvaluationFetchWatchHandle(action) {
@@ -82,7 +82,7 @@ function* addEvaluationFetchWatchHandle(action) {
       yield put(addError(`msg: ${response.msg}; code: ${response.code}`));
     } else {
       yield put(addEvaluationFetchSuccess());
-      dispatchEvent(screen, {
+      dispatchEventBuyoo(screen, {
         method: 'addEvaluation',
         params: {},
       });

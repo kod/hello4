@@ -11,7 +11,7 @@ import buyoo from '@/services/api';
 import { ORDER_PAY } from '@/common/constants/actionTypes';
 import { encryptMD5, signTypeMD5, o } from '@/utils/AuthEncrypt';
 
-import { localStorageGetItem, dispatchEvent } from '@/utils';
+import { localStorageGetItem, dispatchEventBuyoo } from '@/utils';
 
 export function* orderPayFetchWatchHandle(action) {
   try {
@@ -149,7 +149,7 @@ export function* orderPaySuccessWatchHandle(action) {
       tradeno,
       payway,
     } = action.payload;
-    yield dispatchEvent(screen, {
+    yield dispatchEventBuyoo(screen, {
       method: 'orderPay',
       params: {
         ret,
