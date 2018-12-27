@@ -21,6 +21,8 @@ import {
   IS_IOS,
   OSS_IMAGE_QUALITY,
   FB_APPID,
+  API_DEBUG,
+  FB_APPID_TEST,
 } from '@/common/constants';
 
 const invitationCodeNavigate = id => {
@@ -594,7 +596,7 @@ export const loadFbLoginApi = (callback = () => {}) => {
   window.fbAsyncInit = () => {
     callback();
     window.FB.init({
-      appId: FB_APPID,
+      appId: API_DEBUG ? FB_APPID_TEST : FB_APPID,
       cookie: true,
       xfbml: true,
       version: 'v3.2',

@@ -66,7 +66,7 @@ export const ADPHONE_NAMESPACE = 'adPhone';
 export const GETALLPRODUCTINFO_NAMESPACE = 'getAllProductInfo';
 // namespace -end-
 
-export const DOMAIN = API_DEBUG ? 'https://buyoo.club/' : 'https://buyoo.vip';
+export const DOMAIN = API_DEBUG ? 'https://buyoo.club' : 'https://buyoo.vip';
 export const MESSAGE_URL = 'https://m.me/buyooshop.vip';
 export const SUPPORT_CENTER_URL = `${DOMAIN}/html/buyIntroM.html`;
 export const HOW_TO_BUY_URL = `${DOMAIN}/html/paystepM.html`;
@@ -86,6 +86,7 @@ export const PAYOO_STORE_MAP = 'https://payoo.vn/map/public/?verify=true#'; // p
 export const ICON_SCRIPTURL = '//at.alicdn.com/t/font_892500_kriymneaz1r.js';
 
 export const FB_APPID = 273625800016270;
+export const FB_APPID_TEST = 2265550737053818;
 export const GOOGLE_CLIENT_ID =
   '717067101088-lbqv77ppebtf031ge0lf1up024v5145j.apps.googleusercontent.com';
 

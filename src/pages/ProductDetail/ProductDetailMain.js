@@ -22,6 +22,9 @@ import {
   BUYOO,
   FACEBOOK,
   FB_APPID,
+  DOMAIN,
+  API_DEBUG,
+  FB_APPID_TEST,
 } from '@/common/constants';
 import priceFormat from '@/utils/priceFormat';
 import smoothScroll from '@/utils/smoothScroll';
@@ -173,7 +176,8 @@ class ProductDetailMain extends React.Component {
     const { type } = ret;
     // console.log(window.location);
     const { pathname, search } = window.location;
-    let link = `https://buyoo.vip${pathname}${search}`;
+    console.log(DOMAIN);
+    let link = `${DOMAIN}${pathname}${search}`;
     if (authUser) {
       link = `${link}&inviteID=${authUser.result}`;
     }
@@ -193,7 +197,7 @@ class ProductDetailMain extends React.Component {
     window.open(
       `fb-messenger://share?link=${encodeURIComponent(
         link,
-      )}&app_id=${encodeURIComponent(FB_APPID)}`,
+      )}&app_id=${encodeURIComponent(API_DEBUG ? FB_APPID_TEST : FB_APPID)}`,
     );
   };
 
