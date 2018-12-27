@@ -3,11 +3,10 @@ import {
   COLLECTION_ADD,
   COLLECTION_REMOVE,
 } from '@/common/constants/actionTypes';
-import { COLLECTION_NAMESPACE } from '@/common/constants';
 
 export function collectionFetchSuccess(items) {
   return {
-    type: `${COLLECTION_NAMESPACE}/${COLLECTION.SUCCESS}`,
+    type: COLLECTION.SUCCESS,
     payload: {
       items,
     },
@@ -16,42 +15,42 @@ export function collectionFetchSuccess(items) {
 
 export function collectionFetchFailure() {
   return {
-    type: `${COLLECTION_NAMESPACE}/${COLLECTION.FAILURE}`,
+    type: COLLECTION.FAILURE,
     payload: {},
   };
 }
 
 export function collectionFetch() {
   return {
-    type: `${COLLECTION_NAMESPACE}/${COLLECTION.REQUEST}`,
+    type: COLLECTION.REQUEST,
     payload: {},
   };
 }
 
 export function collectionClear() {
   return {
-    type: `${COLLECTION_NAMESPACE}/${COLLECTION.CLEAR}`,
+    type: COLLECTION.CLEAR,
     payload: {},
   };
 }
 
 export function collectionAddFetchSuccess() {
   return {
-    type: `${COLLECTION_NAMESPACE}/${COLLECTION_ADD.SUCCESS}`,
+    type: COLLECTION_ADD.SUCCESS,
     payload: {},
   };
 }
 
 export function collectionAddFetchFailure() {
   return {
-    type: `${COLLECTION_NAMESPACE}/${COLLECTION_ADD.FAILURE}`,
+    type: COLLECTION_ADD.FAILURE,
     payload: {},
   };
 }
 
 export function collectionAddFetch(brandIds) {
   return {
-    type: `${COLLECTION_NAMESPACE}/${COLLECTION_ADD.REQUEST}`,
+    type: COLLECTION_ADD.REQUEST,
     payload: {
       brandIds,
     },
@@ -59,21 +58,21 @@ export function collectionAddFetch(brandIds) {
 }
 export function collectionRemoveFetchSuccess() {
   return {
-    type: `${COLLECTION_NAMESPACE}/${COLLECTION_REMOVE.SUCCESS}`,
+    type: COLLECTION_REMOVE.SUCCESS,
     payload: {},
   };
 }
 
 export function collectionRemoveFetchFailure() {
   return {
-    type: `${COLLECTION_NAMESPACE}/${COLLECTION_REMOVE.FAILURE}`,
+    type: COLLECTION_REMOVE.FAILURE,
     payload: {},
   };
 }
 
 export function collectionRemoveFetch(brandId) {
   return {
-    type: `${COLLECTION_NAMESPACE}/${COLLECTION_REMOVE.REQUEST}`,
+    type: COLLECTION_REMOVE.REQUEST,
     payload: {
       brand_id: brandId,
     },

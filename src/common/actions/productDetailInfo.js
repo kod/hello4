@@ -5,7 +5,6 @@ import {
   PRODUCT_DETAIL_NUMBER,
   PRODUCT_DETAIL_OPACITY,
 } from '@/common/constants/actionTypes';
-import { PRODUCTDETAILINFO_NAMESPACE } from '@/common/constants';
 
 export function productDetailInfoFetchSuccess({
   product_detail,
@@ -19,7 +18,7 @@ export function productDetailInfoFetchSuccess({
   screen,
 }) {
   return {
-    type: `${PRODUCTDETAILINFO_NAMESPACE}/${PRODUCT_DETAIL_INFO.SUCCESS}`,
+    type: PRODUCT_DETAIL_INFO.SUCCESS,
     payload: {
       product_detail,
       detail: productDetailResult,
@@ -36,7 +35,7 @@ export function productDetailInfoFetchSuccess({
 
 export function productDetailInfoFetchFailure(msg) {
   return {
-    type: `${PRODUCTDETAILINFO_NAMESPACE}/${PRODUCT_DETAIL_INFO.FAILURE}`,
+    type: PRODUCT_DETAIL_INFO.FAILURE,
     payload: {
       msg,
     },
@@ -50,7 +49,7 @@ export function productDetailInfoFetch({
   screen,
 }) {
   return {
-    type: `${PRODUCTDETAILINFO_NAMESPACE}/${PRODUCT_DETAIL_INFO.REQUEST}`,
+    type: PRODUCT_DETAIL_INFO.REQUEST,
     payload: {
       brand_id: brandId,
       propertiesIds,
@@ -62,7 +61,7 @@ export function productDetailInfoFetch({
 
 export function productDetailInfoClear(brand_id) {
   return {
-    type: `${PRODUCTDETAILINFO_NAMESPACE}/${PRODUCT_DETAIL_INFO.CLEAR}`,
+    type: PRODUCT_DETAIL_INFO.CLEAR,
     payload: {
       brand_id,
     },
@@ -75,7 +74,7 @@ export function productDetailSelect(
   screen,
 ) {
   return {
-    type: `${PRODUCTDETAILINFO_NAMESPACE}/${PRODUCT_DETAIL_SELECT.REQUEST}`,
+    type: PRODUCT_DETAIL_SELECT.REQUEST,
     payload: {
       propertiesIdsObject,
       productDetail,
@@ -86,7 +85,7 @@ export function productDetailSelect(
 
 export function productDetailNumberFetch(number) {
   return {
-    type: `${PRODUCTDETAILINFO_NAMESPACE}/${PRODUCT_DETAIL_NUMBER.REQUEST}`,
+    type: PRODUCT_DETAIL_NUMBER.REQUEST,
     payload: {
       number,
     },
@@ -95,7 +94,7 @@ export function productDetailNumberFetch(number) {
 
 export function productDetailOpacityFetch(opacity = 0) {
   return {
-    type: `${PRODUCTDETAILINFO_NAMESPACE}/${PRODUCT_DETAIL_OPACITY.REQUEST}`,
+    type: PRODUCT_DETAIL_OPACITY.REQUEST,
     payload: {
       opacity,
     },

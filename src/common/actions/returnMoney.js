@@ -1,9 +1,8 @@
 import { RETURN_MONEY } from '@/common/constants/actionTypes';
-import { RETURNMONEY_NAMESPACE } from '@/common/constants';
 
 export function returnMoneyFetchSuccess(item) {
   return {
-    type: `${RETURNMONEY_NAMESPACE}/${RETURN_MONEY.SUCCESS}`,
+    type: RETURN_MONEY.SUCCESS,
     payload: {
       item,
     },
@@ -12,14 +11,14 @@ export function returnMoneyFetchSuccess(item) {
 
 export function returnMoneyFetchFailure() {
   return {
-    type: `${RETURNMONEY_NAMESPACE}/${RETURN_MONEY.FAILURE}`,
+    type: RETURN_MONEY.FAILURE,
     payload: {},
   };
 }
 
 export function returnMoneyFetch(totalamounts, repaymentmonths, payrate) {
   return {
-    type: `${RETURNMONEY_NAMESPACE}/${RETURN_MONEY.REQUEST}`,
+    type: RETURN_MONEY.REQUEST,
     payload: {
       totalamounts,
       repaymentmonths,
@@ -30,7 +29,7 @@ export function returnMoneyFetch(totalamounts, repaymentmonths, payrate) {
 
 export function returnMoneyClear() {
   return {
-    type: `${RETURNMONEY_NAMESPACE}/${RETURN_MONEY.CLEAR}`,
+    type: RETURN_MONEY.CLEAR,
     payload: {},
   };
 }

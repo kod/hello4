@@ -1,6 +1,5 @@
 /* eslint-disable camelcase */
 import { GET_ALL_PRODUCT_INFO } from '@/common/constants/actionTypes';
-import { GETALLPRODUCTINFO_NAMESPACE } from '@/common/constants';
 
 export function getAllProductInfoFetchSuccess(
   entities,
@@ -9,7 +8,7 @@ export function getAllProductInfoFetchSuccess(
   totalPage,
 ) {
   return {
-    type: `${GETALLPRODUCTINFO_NAMESPACE}/${GET_ALL_PRODUCT_INFO.SUCCESS}`,
+    type: GET_ALL_PRODUCT_INFO.SUCCESS,
     payload: {
       entities,
       items,
@@ -21,7 +20,7 @@ export function getAllProductInfoFetchSuccess(
 
 export function getAllProductInfoFetchFailure() {
   return {
-    type: `${GETALLPRODUCTINFO_NAMESPACE}/${GET_ALL_PRODUCT_INFO.FAILURE}`,
+    type: GET_ALL_PRODUCT_INFO.FAILURE,
     payload: {},
   };
 }
@@ -35,7 +34,7 @@ export function getAllProductInfoFetch({
   currentPage = 1,
 }) {
   return {
-    type: `${GETALLPRODUCTINFO_NAMESPACE}/${GET_ALL_PRODUCT_INFO.REQUEST}`,
+    type: GET_ALL_PRODUCT_INFO.REQUEST,
     payload: {
       parent_id,
       classfy_id,
@@ -49,7 +48,7 @@ export function getAllProductInfoFetch({
 
 export function getAllProductInfoClear() {
   return {
-    type: `${GETALLPRODUCTINFO_NAMESPACE}/${GET_ALL_PRODUCT_INFO.CLEAR}`,
+    type: GET_ALL_PRODUCT_INFO.CLEAR,
     payload: {},
   };
 }

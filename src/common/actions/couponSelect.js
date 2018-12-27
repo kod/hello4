@@ -1,9 +1,8 @@
 import { COUPON_SELECT } from '@/common/constants/actionTypes';
-import { COUPONSELECT_NAMESPACE } from '@/common/constants';
 
 export function couponSelectFetch(item) {
   return {
-    type: `${COUPONSELECT_NAMESPACE}/${COUPON_SELECT.REQUEST}`,
+    type: COUPON_SELECT.REQUEST,
     payload: {
       item,
     },
@@ -12,7 +11,7 @@ export function couponSelectFetch(item) {
 
 export function couponSelectClear() {
   return {
-    type: `${COUPONSELECT_NAMESPACE}/${COUPON_SELECT.CLEAR}`,
+    type: COUPON_SELECT.CLEAR,
     payload: {},
   };
 }

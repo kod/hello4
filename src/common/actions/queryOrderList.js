@@ -2,11 +2,10 @@ import {
   QUERY_ORDER_LIST,
   QUERY_ORDER_LIST_INDEX,
 } from '@/common/constants/actionTypes';
-import { QUERYORDERLIST_NAMESPACE } from '@/common/constants';
 
 export function queryOrderListFetchSuccess(params) {
   return {
-    type: `${QUERYORDERLIST_NAMESPACE}/${QUERY_ORDER_LIST.SUCCESS}`,
+    type: QUERY_ORDER_LIST.SUCCESS,
     payload: {
       ...params,
     },
@@ -15,14 +14,14 @@ export function queryOrderListFetchSuccess(params) {
 
 export function queryOrderListFetchFailure() {
   return {
-    type: `${QUERYORDERLIST_NAMESPACE}/${QUERY_ORDER_LIST.FAILURE}`,
+    type: QUERY_ORDER_LIST.FAILURE,
     payload: {},
   };
 }
 
 export function queryOrderListFetch(params) {
   return {
-    type: `${QUERYORDERLIST_NAMESPACE}/${QUERY_ORDER_LIST.REQUEST}`,
+    type: QUERY_ORDER_LIST.REQUEST,
     payload: {
       ...params,
     },
@@ -31,14 +30,14 @@ export function queryOrderListFetch(params) {
 
 export function queryOrderListClear() {
   return {
-    type: `${QUERYORDERLIST_NAMESPACE}/${QUERY_ORDER_LIST.CLEAR}`,
+    type: QUERY_ORDER_LIST.CLEAR,
     payload: {},
   };
 }
 
 export function queryOrderListIndexFetch(params) {
   return {
-    type: `${QUERYORDERLIST_NAMESPACE}/${QUERY_ORDER_LIST_INDEX.REQUEST}`,
+    type: QUERY_ORDER_LIST_INDEX.REQUEST,
     payload: {
       ...params,
     },

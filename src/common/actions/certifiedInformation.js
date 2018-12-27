@@ -2,11 +2,10 @@ import {
   CERTIFIED_INFORMATION,
   CERTIFIED_INFORMATION_EDIT,
 } from '@/common/constants/actionTypes';
-import { CERTIFIEDINFORMATION_NAMESPACE } from '@/common/constants';
 
 export function certifiedInformationFetchSuccess(certUser) {
   return {
-    type: `${CERTIFIEDINFORMATION_NAMESPACE}/${CERTIFIED_INFORMATION.SUCCESS}`,
+    type: CERTIFIED_INFORMATION.SUCCESS,
     payload: {
       certUser: {
         ...certUser,
@@ -18,7 +17,7 @@ export function certifiedInformationFetchSuccess(certUser) {
 
 export function certifiedInformationFetchFailure() {
   return {
-    type: `${CERTIFIEDINFORMATION_NAMESPACE}/${CERTIFIED_INFORMATION.FAILURE}`,
+    type: CERTIFIED_INFORMATION.FAILURE,
     payload: {
       // rankingMode,
     },
@@ -27,9 +26,7 @@ export function certifiedInformationFetchFailure() {
 
 export function certifiedInformationEdit(key, value) {
   return {
-    type: `${CERTIFIEDINFORMATION_NAMESPACE}/${
-      CERTIFIED_INFORMATION_EDIT.REQUEST
-    }`,
+    type: CERTIFIED_INFORMATION_EDIT.REQUEST,
     payload: {
       key,
       value,

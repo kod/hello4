@@ -1,5 +1,4 @@
 import { ORDER_PAY } from '@/common/constants/actionTypes';
-import { ORDERPAY_NAMESPACE } from '@/common/constants';
 
 export function orderPayFetchSuccess({
   ret,
@@ -11,7 +10,7 @@ export function orderPayFetchSuccess({
   payway,
 }) {
   return {
-    type: `${ORDERPAY_NAMESPACE}/${ORDER_PAY.SUCCESS}`,
+    type: ORDER_PAY.SUCCESS,
     payload: {
       ret,
       screen,
@@ -26,14 +25,14 @@ export function orderPayFetchSuccess({
 
 export function orderPayFetchFailure() {
   return {
-    type: `${ORDERPAY_NAMESPACE}/${ORDER_PAY.FAILURE}`,
+    type: ORDER_PAY.FAILURE,
     payload: {},
   };
 }
 
 export function orderPayFetch(params) {
   return {
-    type: `${ORDERPAY_NAMESPACE}/${ORDER_PAY.REQUEST}`,
+    type: ORDER_PAY.REQUEST,
     payload: {
       ...params,
     },
@@ -42,7 +41,7 @@ export function orderPayFetch(params) {
 
 export function orderPayClear() {
   return {
-    type: `${ORDERPAY_NAMESPACE}/${ORDER_PAY.CLEAR}`,
+    type: ORDER_PAY.CLEAR,
     payload: {},
   };
 }

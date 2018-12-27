@@ -1,9 +1,8 @@
 import { CARD_QUERY } from '@/common/constants/actionTypes';
-import { CARDQUERY_NAMESPACE } from '@/common/constants';
 
 export function cardQueryFetchSuccess(item) {
   return {
-    type: `${CARDQUERY_NAMESPACE}/${CARD_QUERY.SUCCESS}`,
+    type: CARD_QUERY.SUCCESS,
     payload: {
       item,
     },
@@ -12,7 +11,7 @@ export function cardQueryFetchSuccess(item) {
 
 export function cardQueryFetchFailure() {
   return {
-    type: `${CARDQUERY_NAMESPACE}/${CARD_QUERY.FAILURE}`,
+    type: CARD_QUERY.FAILURE,
     payload: {
       // rankingMode,
     },
@@ -21,14 +20,14 @@ export function cardQueryFetchFailure() {
 
 export function cardQueryFetch() {
   return {
-    type: `${CARDQUERY_NAMESPACE}/${CARD_QUERY.REQUEST}`,
+    type: CARD_QUERY.REQUEST,
     payload: {},
   };
 }
 
 export function cardQueryClear() {
   return {
-    type: `${CARDQUERY_NAMESPACE}/${CARD_QUERY.CLEAR}`,
+    type: CARD_QUERY.CLEAR,
     payload: {},
   };
 }

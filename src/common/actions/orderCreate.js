@@ -1,9 +1,8 @@
 import { ORDER_CREATE } from '@/common/constants/actionTypes';
-import { ORDERCREATE_NAMESPACE } from '@/common/constants';
 
 export function orderCreateFetchSuccess(params) {
   return {
-    type: `${ORDERCREATE_NAMESPACE}/${ORDER_CREATE.SUCCESS}`,
+    type: ORDER_CREATE.SUCCESS,
     payload: {
       ...params,
     },
@@ -12,14 +11,14 @@ export function orderCreateFetchSuccess(params) {
 
 export function orderCreateFetchFailure() {
   return {
-    type: `${ORDERCREATE_NAMESPACE}/${ORDER_CREATE.FAILURE}`,
+    type: ORDER_CREATE.FAILURE,
     payload: {},
   };
 }
 
 export function orderCreateFetch(params) {
   return {
-    type: `${ORDERCREATE_NAMESPACE}/${ORDER_CREATE.REQUEST}`,
+    type: ORDER_CREATE.REQUEST,
     payload: {
       ...params,
     },
@@ -28,7 +27,7 @@ export function orderCreateFetch(params) {
 
 export function orderCreateClear() {
   return {
-    type: `${ORDERCREATE_NAMESPACE}/${ORDER_CREATE.CLEAR}`,
+    type: ORDER_CREATE.CLEAR,
     payload: {},
   };
 }

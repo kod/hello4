@@ -9,7 +9,6 @@ import {
   userAddDetailInfoFetchFailure,
 } from '@/common/actions/userAddDetailInfo';
 import { certifiedInformationFetchSuccess } from '@/common/actions/certifiedInformation';
-import { cardSubmitFetch } from '@/common/actions/cardSubmit';
 import { addError } from '@/common/actions/error';
 import buyoo from '@/services/api';
 import { USER_CERTIFICATE_INFO } from '@/common/constants/actionTypes';
@@ -321,25 +320,6 @@ export function* userAddDetailInfoFetchWatchHandle(/* action */) {
   } catch (err) {
     yield put(userAddDetailInfoFetchFailure());
     yield put(addError(typeof err === 'string' ? err : err.toString()));
-  }
-}
-
-export function* userAddDetailInfoSuccessWatchHandle() {
-  try {
-    const certifiedInformationCertUser = yield select(
-      getCertifiedInformationCertUser,
-    );
-    const {
-      username,
-      // username,
-    } = certifiedInformationCertUser;
-    yield put(
-      cardSubmitFetch({
-        name: username,
-      }),
-    );
-  } catch (error) {
-    console.log(error);
   }
 }
 
