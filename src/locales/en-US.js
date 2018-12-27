@@ -279,7 +279,7 @@ export default {
   historicalSearch: 'Historical search',
   error: 'Error',
   invitationCodeText:
-    "I am a customer of Buyoo.vn. Let me experience the service of the leading genuine seller's website in Vietnam. My invitation code is ₫ XXX ₫ Copy this message and open buyoo.vn.",
+    "I am a customer of Buyoo.vip. Let me experience the service of the leading genuine seller's website in Vietnam. My invitation code is ₫ XXX ₫ Copy this message and open buyoo.vip.",
   downloadExperienceRightAway: 'Download is an experience right away',
   shareTip: 'Show this QR code or share the invitation code to your friends.',
   registerNow: 'Register now',
@@ -359,7 +359,7 @@ export default {
   overdueTime: 'Overdue time',
   balance: 'Balance',
   pleaseSelectFirstPaymentRate: 'Please select firstPayment rate',
-  shareProduct2: ' on buyoo.vn, perfect quality, 100%% licensed, buy one',
+  shareProduct2: ' on buyoo.vip, perfect quality, 100%% licensed, buy one',
   pleaseLogIn: 'Please log in',
   paymentOnDelivery: 'Payment on delivery',
   changePassword: 'Change the password',

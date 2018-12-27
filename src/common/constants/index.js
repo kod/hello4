@@ -66,9 +66,8 @@ export const ADPHONE_NAMESPACE = 'adPhone';
 export const GETALLPRODUCTINFO_NAMESPACE = 'getAllProductInfo';
 // namespace -end-
 
-export const DOMAIN = 'https://buyoo.vn';
+export const DOMAIN = API_DEBUG ? 'https://buyoo.club/' : 'https://buyoo.vip';
 export const MESSAGE_URL = 'https://m.me/buyooshop.vip';
-export const SHARE_URL = `${DOMAIN}/html/downloadApp.html?userID=XXX`;
 export const SUPPORT_CENTER_URL = `${DOMAIN}/html/buyIntroM.html`;
 export const HOW_TO_BUY_URL = `${DOMAIN}/html/paystepM.html`;
 export const BUSINESS_EMAIL = 'business.vn@buyoo.aisa';
@@ -83,10 +82,6 @@ export const FACEBOOK = 'facebook';
 export const MESSENGER = 'messenger';
 export const MONETARY = '₫'; // 货币单位
 export const PAYOO_STORE_MAP = 'https://payoo.vn/map/public/?verify=true#'; // payoo门店地图
-export const FUNCARD_HELP_WHAT = `${DOMAIN}/html/aboutFunCard.html#Buyoo-Funcard-la-gi`; // buyoo card 是什么
-export const FUNCARD_HELP_APPLY = `${DOMAIN}/html/aboutFunCard.html#Cach-thuc-dang-ki-the-Buyoo-Fun-Card`; // 如何申请
-export const FUNCARD_HELP_STAGE = `${DOMAIN}/html/aboutFunCard.html#Huong-dan-mua-hang-bang-Buyoo-Fun-Card`; // 如何分期
-export const FUNCARD_HELP_REPAY = `${DOMAIN}/html/aboutFunCard.html#Thanh-toan-no-hang-thang-the-Buyoo-Fun-Card-nhu-the-nao`; // 如何还款
 
 export const ICON_SCRIPTURL = '//at.alicdn.com/t/font_892500_kriymneaz1r.js';
 

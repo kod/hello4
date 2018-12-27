@@ -277,12 +277,12 @@ export default {
   cancelTransaction: 'Hủy giao dịch',
   enterMobileNumberRecharged: ' Nhập số điện thoại cần nạp tiền',
   warehouse: 'kho',
-  shareProduct1: 'Tôi phát hiện trên buyoo.vn có ',
+  shareProduct1: 'Tôi phát hiện trên buyoo.vip có ',
   hotNewProduct: 'Hàng mới ra',
   historicalSearch: 'Tìm kiếm lịch sử',
   error: 'Lỗi',
   invitationCodeText:
-    'Tôi đang là khách hàng của Buyoo.vn. Hãy cùng tôi trải nghiệm dịch vụ của website chuyên bán hàng chính hãng trả góp hàng đầu Việt Nam. Mã lời mời của tôi là ₫ XXX ₫ Copy tin nhắn này và mở buyoo.vn.',
+    'Tôi đang là khách hàng của Buyoo.vip. Hãy cùng tôi trải nghiệm dịch vụ của website chuyên bán hàng chính hãng trả góp hàng đầu Việt Nam. Mã lời mời của tôi là ₫ XXX ₫ Copy tin nhắn này và mở buyoo.vip.',
   downloadExperienceRightAway: 'Tải về là trải nghiệm được ngay',
   shareTip:
     'Để hoàn thành lời mời, Vui lòng mời bạn bè quét mã QR để tiến hành đăng kí. Bạn có thể chia sẽ mã QR này vào trang xã hội của bạn hoặc copy mà mời dưới đây gửi cho bạn bè để hoàn tất đăng kí.',
