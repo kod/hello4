@@ -13,15 +13,12 @@ import * as receiveVoucherActionCreators from '@/common/actions/receiveVoucher';
 import * as modalActionCreators from '@/common/actions/modal';
 import {
   SCREENS,
-  RECEIVEVOUCHER_NAMESPACE,
-  GETVOUCHER_NAMESPACE,
   WINDOW_HEIGHT,
   BUYOO,
 } from '@/common/constants';
 import EmptyState from '@/components/EmptyState';
 
 import CouponItem from '@/components/CouponItem';
-import { RECEIVE_VOUCHER, GET_VOUCHER } from '@/common/constants/actionTypes';
 import { o } from '@/utils/AuthEncrypt';
 import { localStorageGetItem } from '@/utils';
 
@@ -104,15 +101,11 @@ class Coupon extends React.Component {
 
 export default connect(
   state => {
-    const { getVoucher, loading } = state;
+    const { getVoucher, receiveVoucher } = state;
 
     return {
-      receiveVoucherLoading:
-        loading.effects[
-          `${RECEIVEVOUCHER_NAMESPACE}/${RECEIVE_VOUCHER.REQUEST}`
-        ],
-      loading:
-        loading.effects[`${GETVOUCHER_NAMESPACE}/${GET_VOUCHER.REQUEST}`],
+      receiveVoucherLoading: receiveVoucher.loading,
+      loading: getVoucher.loading,
       items: getVoucher.items,
       authUser: o(localStorageGetItem, BUYOO),
     };

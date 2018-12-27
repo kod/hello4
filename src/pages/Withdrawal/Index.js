@@ -4,8 +4,7 @@ import { connect } from 'react-redux';
 
 import BYHeader from '@/components/BYHeader';
 import Form from './Form';
-import { LOGIN } from '@/common/constants/actionTypes';
-import { LOGIN_NAMESPACE, WINDOW_HEIGHT } from '@/common/constants';
+import { WINDOW_HEIGHT } from '@/common/constants';
 
 import * as loginActionCreators from '@/common/actions/login';
 
@@ -51,9 +50,9 @@ const Withdrawal = () => {
 
 export default connect(
   state => {
-    const { loading } = state;
+    const { login } = state;
     return {
-      loginLoading: loading.effects[`${LOGIN_NAMESPACE}/${LOGIN.REQUEST}`],
+      loginLoading: login.loading,
     };
   },
   {

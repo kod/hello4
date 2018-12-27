@@ -14,7 +14,6 @@ import {
   PHONE_EXPR,
   MODAL_TYPES,
   SCREENS,
-  USERADDADDR_NAMESPACE,
   BUYOO,
 } from '@/common/constants';
 import { PRIMARY_COLOR } from '@/styles/variables';
@@ -33,7 +32,6 @@ import {
 import InputRight from '@/components/InputRight';
 import BYButton from '@/components/BYButton';
 import MustLogin from '@/components/MustLogin';
-import { ADDRESS_ADD } from '@/common/constants/actionTypes';
 import { o } from '@/utils/AuthEncrypt';
 
 const styles = {
@@ -280,11 +278,10 @@ class AddressAdd extends React.Component {
 
 export default connect(
   state => {
-    const { cityInfos, addressModify, loading } = state;
+    const { cityInfos, addressModify, userAddAddr } = state;
 
     return {
-      loading:
-        loading.effects[`${USERADDADDR_NAMESPACE}/${ADDRESS_ADD.REQUEST}`],
+      loading: userAddAddr.loading,
       addressModifyLoaded: addressModify.loaded,
       addressModifyIsTrue: addressModify.isTrue,
       division2ndItems: cityInfos.division2nd,

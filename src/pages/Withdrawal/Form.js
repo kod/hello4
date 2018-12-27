@@ -339,28 +339,13 @@ class LoginForm extends React.Component {
 
 export default connect(
   state => {
-    const { enchashmentConfig, enchashmentGetList, loading } = state;
+    const { enchashmentConfig, enchashmentGetList, enchashmentApply, userAddDetailInfo, userCertificateInfo } = state;
     return {
-      enchashmentConfigLoading:
-        loading.effects[
-          `${ENCHASHMENT_CONFIG_NAMESPACE}/${ENCHASHMENT_CONFIG.REQUEST}`
-        ],
-      enchashmentApplyLoading:
-        loading.effects[
-          `${ENCHASHMENT_APPLY_NAMESPACE}/${ENCHASHMENT_APPLY.REQUEST}`
-        ],
-      addDetailInfoLoading:
-        loading.effects[
-          `${USERADDDETAILINFO_NAMESPACE}/${ADD_DETAIL_INFO.REQUEST}`
-        ],
-      enchashmentLoading:
-        loading.effects[
-          `${ENCHASHMENT_GETLIST_NAMESPACE}/${ENCHASHMENT_GETLIST.REQUEST}`
-        ],
-      userCertificateInfoLoading:
-        loading.effects[
-          `${USERCERTIFICATEINFO_NAMESPACE}/${USER_CERTIFICATE_INFO.REQUEST}`
-        ],
+      enchashmentConfigLoading: enchashmentConfig.loading,
+      enchashmentApplyLoading: enchashmentApply.loading,
+      addDetailInfoLoading: userAddDetailInfo.loading,
+      enchashmentLoading: enchashmentGetList.loading,
+      userCertificateInfoLoading: userCertificateInfo.loading,
       // limit: enchashmentConfig.limit || '',
       feeRate: enchashmentConfig.feeRate
         ? parseFloat(enchashmentConfig.feeRate)

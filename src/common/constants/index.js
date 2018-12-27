@@ -82,6 +82,7 @@ export const FACEBOOK = 'facebook';
 export const MESSENGER = 'messenger';
 export const MONETARY = '₫'; // 货币单位
 export const PAYOO_STORE_MAP = 'https://payoo.vn/map/public/?verify=true#'; // payoo门店地图
+export const VERIFICATION_CODE_SECONDS = 60 * 5; // 验证码时间
 
 export const ICON_SCRIPTURL = '//at.alicdn.com/t/font_892500_kriymneaz1r.js';
 

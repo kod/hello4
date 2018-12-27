@@ -17,14 +17,12 @@ import {
   SIDEINTERVAL,
   WINDOW_WIDTH,
   SCREENS,
-  ADDRESS_NAMESPACE,
   WINDOW_HEIGHT,
   BUYOO,
 } from '@/common/constants';
 import { Modal } from 'antd-mobile';
 import EmptyState from '@/components/EmptyState';
 
-import { ADDRESS } from '@/common/constants/actionTypes';
 import MustLogin from '@/components/MustLogin';
 import { o } from '@/utils/AuthEncrypt';
 import { localStorageGetItem } from '@/utils';
@@ -305,12 +303,12 @@ class Address extends React.Component {
 
 export default connect(
   state => {
-    const { address, loading } = state;
+    const { address } = state;
 
     return {
       authUser: o(localStorageGetItem, BUYOO),
       items: address.items,
-      loading: loading.effects[`${ADDRESS_NAMESPACE}/${ADDRESS.REQUEST}`],
+      loading: address.loading,
       loaded: address.loaded,
       refreshing: address.refreshing,
     };

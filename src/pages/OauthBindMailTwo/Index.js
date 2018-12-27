@@ -118,12 +118,10 @@ class Index extends React.Component {
 
 export default connect(
   state => {
-    const { loading } = state;
+    const { register, oauthRequest } = state;
     return {
-      registerLoading:
-        loading.effects[`${REGISTER_NAMESPACE}/${REGISTER.REQUEST}`],
-      oauthRequestLoading:
-        loading.effects[`${OAUTH_REQUEST_NAMESPACE}/${OAUTH_REQUEST.REQUEST}`],
+      registerLoading: register.loading,
+      oauthRequestLoading: oauthRequest.loading,
     };
   },
   {

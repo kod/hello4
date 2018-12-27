@@ -19,7 +19,6 @@ import {
   OFFLINE_PAYWAY,
   WINDOW_HEIGHT,
   CREDIT_PAYWAY,
-  ORDERPAY_NAMESPACE,
   DEBUG,
   BUYOO,
 } from '@/common/constants';
@@ -36,7 +35,6 @@ import NavBar2 from '@/components/NavBar2';
 import SeparateBar from '@/components/SeparateBar';
 import BYButton from '@/components/BYButton';
 import MustLogin from '@/components/MustLogin';
-import { ORDER_PAY } from '@/common/constants/actionTypes';
 import { o } from '@/utils/AuthEncrypt';
 
 class Pay extends React.Component {
@@ -265,7 +263,7 @@ class Pay extends React.Component {
 
 export default connect(
   (state, props) => {
-    const { queryOrder, loading } = state;
+    const { queryOrder, orderPay } = state;
 
     const {
       location: {
@@ -279,8 +277,7 @@ export default connect(
       tradeNo,
       queryOrderItem: queryOrder.item,
       queryOrderLoaded: queryOrder.loaded,
-      orderpayLoading:
-        loading.effects[`${ORDERPAY_NAMESPACE}/${ORDER_PAY.REQUEST}`],
+      orderpayLoading: orderPay.loading,
     };
   },
   {

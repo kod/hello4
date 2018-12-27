@@ -483,14 +483,8 @@ export default connect(
     } = state;
 
     return {
-      enchashmentLoading:
-        loading.effects[
-          `${ENCHASHMENT_GETLIST_NAMESPACE}/${ENCHASHMENT_GETLIST.REQUEST}`
-        ],
-      getInviteRecordLoading:
-        loading.effects[
-          `${GET_INVITE_RECORD_NAMESPACE}/${GET_INVITE_RECORD.REQUEST}`
-        ],
+      enchashmentLoading: enchashmentGetList.loading,
+      getInviteRecordLoading: getInviteRecord.loading,
       authUser: o(localStorageGetItem, BUYOO),
       enchashmentGetList: enchashmentGetList.item,
       getInviteRecord: getInviteRecord.item,

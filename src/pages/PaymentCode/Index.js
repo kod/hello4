@@ -23,13 +23,11 @@ import {
   SCREENS,
   MONETARY,
   PAYOO_STORE_MAP,
-  ORDERPAY_NAMESPACE,
   BUYOO,
 } from '@/common/constants';
 // import SmallButton from '@/components/SmallButton';
 import priceFormat from '@/utils/priceFormat';
 import MustLogin from '@/components/MustLogin';
-import { ORDER_PAY } from '@/common/constants/actionTypes';
 import {
   addEventListenerBuyoo,
   removeEventListenerBuyoo,
@@ -265,7 +263,7 @@ class PaymentCode extends React.Component {
 
 export default connect(
   (state, props) => {
-    const { orderPay, loading } = state;
+    const { orderPay } = state;
 
     const {
       location: {
@@ -294,7 +292,7 @@ export default connect(
       payrate,
       repaymentmonth,
       code: code || orderPay.ret,
-      loading: loading.effects[`${ORDERPAY_NAMESPACE}/${ORDER_PAY.REQUEST}`],
+      loading: orderPay.loading,
       payvalue: totalAmount,
       authUser: o(localStorageGetItem, BUYOO),
     };

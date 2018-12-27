@@ -7,7 +7,6 @@ import {
   WINDOW_HEIGHT,
   IS_IOS,
   OSS_IMAGE_QUALITY,
-  COMMENT_NAMESPACE,
 } from '@/common/constants';
 
 import * as commentActionCreators from '@/common/actions/comment';
@@ -15,7 +14,6 @@ import Comment from '@/components/Comment';
 import BYHeader from '@/components/BYHeader';
 import { xOssProcess } from '@/utils';
 import Loader from '@/components/Loader';
-import { COMMENT } from '@/common/constants/actionTypes';
 
 const emptycommentPng =
   'https://oss.buyoo.vn/usercollect/1/20181107170628_nI0.png';
@@ -84,7 +82,7 @@ class ProductDetailComment extends React.Component {
 
 export default connect(
   (state, props) => {
-    const { comment, loading } = state;
+    const { comment } = state;
     const {
       location: {
         query: { brandId = '' },
@@ -94,7 +92,7 @@ export default connect(
     return {
       brandId,
       comment: comment.items.detail ? comment.items.detail : [],
-      loading: loading.effects[`${COMMENT_NAMESPACE}/${COMMENT.REQUEST}`],
+      loading: comment.loading,
     };
   },
   {

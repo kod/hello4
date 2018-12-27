@@ -25,15 +25,12 @@ import {
   SIDEINTERVAL,
   WINDOW_WIDTH,
   SCREENS,
-  COLLECTFILES_NAMESPACE,
-  ADDEVALUATION_NAMESPACE,
   BUYOO,
 } from '@/common/constants';
 
 import MustLogin from '@/components/MustLogin';
 import BYButton from '@/components/BYButton';
 import CustomIcon from '@/components/CustomIcon';
-import { COLLECT_FILES, ADD_EVALUATION } from '@/common/constants/actionTypes';
 import { o } from '@/utils/AuthEncrypt';
 
 const styles = {
@@ -387,7 +384,7 @@ class Evalution extends React.Component {
 
 export default connect(
   (state, props) => {
-    const { collectFiles, loading } = state;
+    const { collectFiles, addEvaluation } = state;
 
     const {
       location: {
@@ -401,11 +398,9 @@ export default connect(
       orderNo,
       tradeNo,
       brandId,
-      addEvaluationLoading:
-        loading.effects[`${ADDEVALUATION_NAMESPACE}/${ADD_EVALUATION.REQUEST}`],
+      addEvaluationLoading: addEvaluation.loading,
       images: collectFiles.images,
-      loading:
-        loading.effects[`${COLLECTFILES_NAMESPACE}/${COLLECT_FILES.REQUEST}`],
+      loading: collectFiles.loading,
     };
   },
   {

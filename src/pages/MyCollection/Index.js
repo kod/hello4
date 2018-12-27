@@ -11,13 +11,11 @@ import Loader from '@/components/Loader';
 import * as collectionActionCreators from '@/common/actions/collection';
 import {
   SCREENS,
-  COLLECTION_NAMESPACE,
   WINDOW_HEIGHT,
   BUYOO,
 } from '@/common/constants';
 import EmptyState from '@/components/EmptyState';
 
-import { COLLECTION } from '@/common/constants/actionTypes';
 import ProductItem2 from '@/components/ProductItem2';
 import MustLogin from '@/components/MustLogin';
 import { o } from '@/utils/AuthEncrypt';
@@ -82,11 +80,11 @@ class MyCollection extends React.Component {
 
 export default connect(
   state => {
-    const { collection, loading } = state;
+    const { collection } = state;
 
     return {
       authUser: o(localStorageGetItem, BUYOO),
-      loading: loading.effects[`${COLLECTION_NAMESPACE}/${COLLECTION.REQUEST}`],
+      loading: collection.loading,
       items: collection.items.details ? collection.items.details : [],
     };
   },

@@ -8,13 +8,11 @@ import {
   WINDOW_WIDTH,
   SIDEINTERVAL,
   WINDOW_HEIGHT,
-  CITYINFOS_NAMESPACE,
 } from '@/common/constants';
 import { BORDER_COLOR, PRIMARY_COLOR } from '@/styles/variables';
 import CustomIcon from '@/components/CustomIcon';
 import Loader from '@/components/Loader';
 import { dispatchEventBuyoo } from '@/utils';
-import { CITY_INFOS } from '@/common/constants/actionTypes';
 
 const styles = {
   container: {
@@ -408,13 +406,12 @@ export default connect(
   state => {
     const {
       cityInfos,
-      loading,
       modal: { modalProps = {} },
     } = state;
 
     return {
       modalProps,
-      loading: loading.effects[`${CITYINFOS_NAMESPACE}/${CITY_INFOS.REQUEST}`],
+      loading: cityInfos.loading,
       division2ndItems: cityInfos.division2nd,
       division3rdItems: cityInfos.division3rd,
       division4thItems: cityInfos.division4th,

@@ -9,9 +9,7 @@ import BYHeader from '@/components/BYHeader';
 import NavSidesText from '@/components/NavSidesText';
 import Form from './Form';
 import Loader from '@/components/Loader';
-import { LOGIN } from '@/common/constants/actionTypes';
 import {
-  LOGIN_NAMESPACE,
   SCREENS,
   WINDOW_HEIGHT,
   SIDEINTERVAL,
@@ -356,9 +354,9 @@ class Index extends React.Component {
 
 export default connect(
   state => {
-    const { loading } = state;
+    const { login } = state;
     return {
-      loginLoading: loading.effects[`${LOGIN_NAMESPACE}/${LOGIN.REQUEST}`],
+      loginLoading: login.loading,
     };
   },
   {

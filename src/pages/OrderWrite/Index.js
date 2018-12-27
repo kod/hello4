@@ -35,20 +35,12 @@ import {
   WINDOW_HEIGHT,
   ONLINE_PAYWAY,
   ONDELIVERY_PAYWAY,
-  ORDERCREATE_NAMESPACE,
-  GETUSERINFOBYID_NAMESPACE,
-  ORDERPAY_NAMESPACE,
   BUYOO,
   LOCALSTORAGE_INVITE,
 } from '@/common/constants';
 import priceFormat from '@/utils/priceFormat';
 import { BORDER_COLOR, RED_COLOR, PRIMARY_COLOR } from '@/styles/variables';
 import MustLogin from '@/components/MustLogin';
-import {
-  ORDER_CREATE,
-  GET_USERINFO_BYID,
-  ORDER_PAY,
-} from '@/common/constants/actionTypes';
 import { o } from '@/utils/AuthEncrypt';
 
 class OrderWrite extends React.Component {
@@ -532,7 +524,7 @@ export default connect(
       orderCreate,
       productDetailInfo,
       couponSelect,
-      loading,
+      orderPay,
     } = state;
     const {
       location: { query = {} },
@@ -541,14 +533,9 @@ export default connect(
     const { mergeMasterInfo, isCart, products, adverstInfo } = query;
     const detailItem = productDetailInfo.item;
     return {
-      orderCreateLoading:
-        loading.effects[`${ORDERCREATE_NAMESPACE}/${ORDER_CREATE.REQUEST}`],
-      getUserInfoByIdLoading:
-        loading.effects[
-          `${GETUSERINFOBYID_NAMESPACE}/${GET_USERINFO_BYID.REQUEST}`
-        ],
-      orderpayLoading:
-        loading.effects[`${ORDERPAY_NAMESPACE}/${ORDER_PAY.REQUEST}`],
+      orderCreateLoading: orderCreate.loading,
+      getUserInfoByIdLoading: getUserInfoById.loading,
+      orderpayLoading: orderPay.loading,
       couponSelectItem: couponSelect.item,
       groupon: false,
       mergeMasterInfo,

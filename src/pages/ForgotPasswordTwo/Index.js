@@ -7,11 +7,9 @@ import BYHeader from '@/components/BYHeader';
 import { Modal } from 'antd-mobile';
 import Form from './Form';
 import {
-  CHANGEPASSWORD_NAMESPACE,
   SCREENS,
   WINDOW_HEIGHT,
 } from '@/common/constants';
-import { CHANGE_PASSWORD } from '@/common/constants/actionTypes';
 import Loader from '@/components/Loader';
 import { removeEventListenerBuyoo, addEventListenerBuyoo } from '@/utils';
 
@@ -70,12 +68,9 @@ class Index extends React.Component {
 
 export default connect(
   state => {
-    const { loading } = state;
+    const { changePassword } = state;
     return {
-      changePasswordLoading:
-        loading.effects[
-          `${CHANGEPASSWORD_NAMESPACE}/${CHANGE_PASSWORD.REQUEST}`
-        ],
+      loading: changePassword.loading,
     };
   },
   {},

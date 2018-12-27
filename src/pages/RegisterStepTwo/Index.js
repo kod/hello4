@@ -5,8 +5,7 @@ import { connect } from 'react-redux';
 
 import BYHeader from '@/components/BYHeader';
 import { Modal } from 'antd-mobile';
-import { REGISTER_NAMESPACE, SCREENS, WINDOW_HEIGHT } from '@/common/constants';
-import { REGISTER } from '@/common/constants/actionTypes';
+import { SCREENS, WINDOW_HEIGHT } from '@/common/constants';
 import Loader from '@/components/Loader';
 import { addEventListenerBuyoo, removeEventListenerBuyoo } from '@/utils';
 import Form from './Form';
@@ -62,10 +61,9 @@ class Index extends React.Component {
 
 export default connect(
   state => {
-    const { loading } = state;
+    const { register } = state;
     return {
-      registerLoading:
-        loading.effects[`${REGISTER_NAMESPACE}/${REGISTER.REQUEST}`],
+      registerLoading: register.loading,
     };
   },
   {},

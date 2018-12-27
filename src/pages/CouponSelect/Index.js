@@ -14,7 +14,6 @@ import {
   SCREENS,
   WINDOW_HEIGHT,
   BUYOO,
-  JUDGEVOUCHER_NAMESPACE,
 } from '@/common/constants';
 import EmptyState from '@/components/EmptyState';
 
@@ -22,7 +21,6 @@ import CouponItem from '@/components/CouponItem';
 import MustLogin from '@/components/MustLogin';
 import { o } from '@/utils/AuthEncrypt';
 import { localStorageGetItem } from '@/utils';
-import { JUDGE_VOUCHER } from '@/common/constants/actionTypes';
 
 const ouhrigdfnjsoeijehrJpg =
   'https://oss.buyoo.vn/usercollect/1/20181101180309_67w.jpg';
@@ -97,7 +95,7 @@ class CouponSelect extends React.Component {
 
 export default connect(
   (state, props) => {
-    const { judgeVoucher, loading } = state;
+    const { judgeVoucher } = state;
 
     const {
       location: {
@@ -109,8 +107,7 @@ export default connect(
       products,
       items: judgeVoucher.items,
       authUser: o(localStorageGetItem, BUYOO),
-      loading:
-        loading.effects[`${JUDGEVOUCHER_NAMESPACE}/${JUDGE_VOUCHER.REQUEST}`],
+      loading: judgeVoucher.loading,
     };
   },
   {

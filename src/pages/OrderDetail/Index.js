@@ -1,4 +1,4 @@
-/* eslint-disable react/no-array-index-key */
+
 import React from 'react';
 import dayjs from 'dayjs';
 import { connect } from 'react-redux';
@@ -23,7 +23,6 @@ import {
   MODAL_TYPES,
   WINDOW_HEIGHT,
   BUYOO,
-  ORDERPAY_NAMESPACE,
   GETUSERINFOBYID_NAMESPACE,
 } from '@/common/constants';
 import {
@@ -39,7 +38,6 @@ import priceFormat from '@/utils/priceFormat';
 import NavBar2 from '@/components/NavBar2';
 import MustLogin from '@/components/MustLogin';
 import Loader from '@/components/Loader';
-// import SmallButton from '@/components/SmallButton';
 import Address from '@/components/Address';
 import { getAddressSelectedItem } from '@/common/selectors';
 import { o } from '@/utils/AuthEncrypt';
@@ -672,7 +670,7 @@ class OrderDetail extends React.Component {
 
 export default connect(
   (state, props) => {
-    const { address, queryOrder, getUserInfoById, loading } = state;
+    const { address, queryOrder, getUserInfoById, loading, orderPay } = state;
     const {
       location: {
         query: { orderNo, tradeNo, from = '' },
@@ -682,7 +680,7 @@ export default connect(
     } = props;
 
     return {
-      loading: loading.effects[`${ORDERPAY_NAMESPACE}/${ORDER_PAY.REQUEST}`],
+      loading: orderPay.loading,
       addressSelectedItem: getAddressSelectedItem(state, props),
       addressItems: address.items,
       authUser: o(localStorageGetItem, BUYOO),
@@ -693,10 +691,7 @@ export default connect(
       orderNo,
       tradeNo,
       getUserInfoById,
-      getUserInfoByIdLoading:
-        loading.effects[
-          `${GETUSERINFOBYID_NAMESPACE}/${GET_USERINFO_BYID.REQUEST}`
-        ],
+      getUserInfoByIdLoading: getUserInfoById.loading,
       initPassword: getUserInfoById.item.initPassword || null,
       userType: getUserInfoById.item.userType || null,
     };

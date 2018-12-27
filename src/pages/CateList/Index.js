@@ -8,14 +8,12 @@ import BYHeader from '@/components/BYHeader';
 import * as getAllProductInfoActionCreators from '@/common/actions/getAllProductInfo';
 import {
   SIDEINTERVAL,
-  GETALLPRODUCTINFO_NAMESPACE,
   WINDOW_HEIGHT,
 } from '@/common/constants';
 import EmptyState from '@/components/EmptyState';
 
 import ProductItem1A from '@/components/ProductItem1A';
 import { getGetAllProductInfoItems } from '@/common/selectors';
-import { GET_ALL_PRODUCT_INFO } from '@/common/constants/actionTypes';
 
 const ouhrigdfnjsoeijehrJpg =
   'https://oss.buyoo.vn/usercollect/1/20181101180309_67w.jpg';
@@ -132,7 +130,7 @@ class CateList extends React.Component {
 
 export default connect(
   (state, props) => {
-    const { getAllProductInfo, loading } = state;
+    const { getAllProductInfo } = state;
 
     const {
       location: {
@@ -142,10 +140,7 @@ export default connect(
 
     return {
       getAllProductInfo,
-      loading:
-        loading.effects[
-          `${GETALLPRODUCTINFO_NAMESPACE}/${GET_ALL_PRODUCT_INFO.REQUEST}`
-        ],
+      loading: getAllProductInfo.loading,
       loaded: getAllProductInfo.loaded,
       items: getGetAllProductInfoItems(state, props),
       // items: getAllProductInfo.items,

@@ -94,13 +94,10 @@ class CouponMy extends React.Component {
 
 export default connect(
   state => {
-    const { getVoucher, getVoucherList, loading } = state;
+    const { getVoucher, getVoucherList } = state;
 
     return {
-      loading:
-        loading.effects[
-          `${GETVOUCHERLIST_NAMESPACE}/${GET_VOUCHER_LIST.REQUEST}`
-        ],
+      loading: getVoucherList.loading,
       authUser: o(localStorageGetItem, BUYOO),
       items: getVoucher.items,
       couponMyPastLength: getVoucherList.CouponMyPast.length,

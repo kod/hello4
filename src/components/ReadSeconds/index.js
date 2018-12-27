@@ -4,7 +4,7 @@ import { formatMessage } from 'umi/locale';
 
 import * as otpActionCreators from '@/common/actions/otp';
 
-import { WINDOW_WIDTH } from '@/common/constants';
+import { WINDOW_WIDTH, VERIFICATION_CODE_SECONDS } from '@/common/constants';
 
 const styles = {
   second: {
@@ -50,7 +50,7 @@ class ReadSeconds extends React.PureComponent {
     if (ing === false) {
       otpFetch(mail);
       await this.setState({
-        seconds: 30,
+        seconds: VERIFICATION_CODE_SECONDS,
         ing: true,
       });
     }

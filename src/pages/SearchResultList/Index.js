@@ -10,14 +10,12 @@ import * as findProductsActionCreators from '@/common/actions/findProducts';
 import {
   SIDEINTERVAL,
   WINDOW_WIDTH,
-  FINDPRODUCTS_NAMESPACE,
   WINDOW_HEIGHT,
 } from '@/common/constants';
 import EmptyState from '@/components/EmptyState';
 
 import CustomIcon from '@/components/CustomIcon';
 import ProductItem4 from '@/components/ProductItem4';
-import { FIND_PRODUCTS } from '@/common/constants/actionTypes';
 
 const styles = {
   container: {
@@ -109,7 +107,7 @@ class SearchResultList extends React.Component {
 
 export default connect(
   (state, props) => {
-    const { findProducts, loading } = state;
+    const { findProducts } = state;
 
     const {
       location: {
@@ -120,8 +118,7 @@ export default connect(
     return {
       items: findProducts.items,
       findcontent,
-      loading:
-        loading.effects[`${FINDPRODUCTS_NAMESPACE}/${FIND_PRODUCTS.REQUEST}`],
+      loading: findProducts.loading,
     };
   },
   {
