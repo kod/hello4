@@ -1,6 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
-import { connect } from 'dva';
+import { connect } from 'react-redux';
 import { formatMessage } from 'umi/locale';
 import qs from 'qs';
 import router from 'umi/router';

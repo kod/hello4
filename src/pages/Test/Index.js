@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React from 'react';
-import { connect } from 'dva';
+import { connect } from 'react-redux';
 
 import * as collectionActionCreators from '@/common/actions/collection';
 import BYHeader from '@/components/BYHeader';

@@ -1,6 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
-import { connect } from 'dva';
+import { connect } from 'react-redux';
 import { formatMessage } from 'umi/locale';
 import { Modal, ActionSheet } from 'antd-mobile';
 import qs from 'qs';

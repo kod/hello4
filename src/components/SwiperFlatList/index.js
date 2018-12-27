@@ -26,11 +26,6 @@ export default class SwiperFlatList extends PureComponent {
               alt=""
               className={styles.img}
               style={styleImg}
-              // onLoad={() => {
-              //   // fire window resize event to change height
-              //   // window.dispatchEvent(new Event('resize'));
-              //   // this.setState({ imgHeight: 'auto' });
-              // }}
             />
           </div>
         ))}

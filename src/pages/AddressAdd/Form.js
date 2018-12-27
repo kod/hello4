@@ -2,7 +2,7 @@ import React from 'react';
 import { List, Modal, Toast } from 'antd-mobile';
 import { createForm } from 'rc-form';
 import { formatMessage } from 'umi/locale';
-import { connect } from 'dva';
+import { connect } from 'react-redux';
 
 import ModalRoot from '@/containers/ModalRoot';
 import Loader from '@/components/Loader';

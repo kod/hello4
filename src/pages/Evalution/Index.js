@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable no-new */
 import React from 'react';
-import { connect } from 'dva';
+import { connect } from 'react-redux';
 import Compressor from 'compressorjs';
 
 import BYHeader from '@/components/BYHeader';

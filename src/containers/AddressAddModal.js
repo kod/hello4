@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Modal } from 'antd-mobile';
-import { connect } from 'dva';
+import { connect } from 'react-redux';
 
 import * as cityInfosActionCreators from '@/common/actions/cityInfos';
 import * as modalActionCreators from '@/common/actions/modal';

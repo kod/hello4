@@ -1,7 +1,7 @@
 import React from 'react';
 import { TabBar } from 'antd-mobile';
 import { formatMessage } from 'umi/locale';
-import { connect } from 'dva';
+import { connect } from 'react-redux';
 import router from 'umi/router';
 import qs from 'qs';
 
@@ -162,7 +162,8 @@ class Index extends React.Component {
 }
 
 export default connect(
-  (_, props) => {
+  (store, props) => {
+    console.log(store);
     const {
       location: { query = {} },
     } = props;

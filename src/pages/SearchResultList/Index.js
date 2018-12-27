@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'dva';
+import { connect } from 'react-redux';
 import router from 'umi/router';
 import { formatMessage } from 'umi/locale';
 

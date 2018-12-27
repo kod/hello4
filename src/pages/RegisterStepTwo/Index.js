@@ -1,7 +1,7 @@
 import React from 'react';
 import { formatMessage } from 'umi/locale';
 import router from 'umi/router';
-import { connect } from 'dva';
+import { connect } from 'react-redux';
 
 import BYHeader from '@/components/BYHeader';
 import { Modal } from 'antd-mobile';

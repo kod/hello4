@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { connect } from 'dva';
+import { connect } from 'react-redux';
 import { formatMessage } from 'umi/locale';
 
 import * as getMenuActionCreators from '@/common/actions/getMenu';

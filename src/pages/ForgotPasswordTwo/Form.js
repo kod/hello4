@@ -1,6 +1,6 @@
 import React from 'react';
 import { List, Toast } from 'antd-mobile';
-import { connect } from 'dva';
+import { connect } from 'react-redux';
 import { createForm } from 'rc-form';
 import { formatMessage } from 'umi/locale';
 import BYButton from '@/components/BYButton';

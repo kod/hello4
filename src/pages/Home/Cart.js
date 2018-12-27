@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { connect } from 'dva';
+import { connect } from 'react-redux';
 import { formatMessage } from 'umi/locale';
 import { Modal } from 'antd-mobile';
 import router from 'umi/router';

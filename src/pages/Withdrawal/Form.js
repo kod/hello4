@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 import React from 'react';
 import { Toast, Modal } from 'antd-mobile';
-import { connect } from 'dva';
+import { connect } from 'react-redux';
 import { createForm } from 'rc-form';
 import { formatMessage } from 'umi/locale';
 import router from 'umi/router';

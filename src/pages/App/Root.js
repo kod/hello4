@@ -11,3 +11,14 @@ const Root = ({ children }) => (
 );
 
 export default Root;
+
+// export default class ReduxWrapper extends React.PureComponent {
+//   render() {
+//     const { children } = this.props;
+//     return (
+//       <Provider store={store}>
+//         <div>{children}</div>
+//       </Provider>
+//     );
+//   }
+// }

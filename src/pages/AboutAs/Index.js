@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'dva';
+import { connect } from 'react-redux';
 import { formatMessage } from 'umi/locale';
 
 import * as collectionActionCreators from '@/common/actions/collection';

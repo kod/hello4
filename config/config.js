@@ -7,7 +7,7 @@ export default {
       'umi-plugin-react',
       {
         antd: true,
-        dva: true,
+        dva: false,
         locale: {
           // enable: true, // default false
           // antd: true,

@@ -1,6 +1,6 @@
 /* eslint-disable arrow-body-style */
 import React from 'react';
-import { connect } from 'dva';
+import { connect } from 'react-redux';
 import { Modal } from 'antd-mobile';
 import { formatMessage, setLocale } from 'umi/locale';
 import router from 'umi/router';

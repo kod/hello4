@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Modal } from 'antd-mobile';
-import { connect } from 'dva';
+import { connect } from 'react-redux';
 import { formatMessage } from 'umi/locale';
 
 import * as receiveVoucherActionCreators from '@/common/actions/receiveVoucher';

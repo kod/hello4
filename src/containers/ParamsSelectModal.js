@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Modal } from 'antd-mobile';
-import { connect } from 'dva';
+import { connect } from 'react-redux';
 import { formatMessage } from 'umi/locale';
 
 import { BORDER_COLOR, PRIMARY_COLOR, RED_COLOR } from '@/styles/variables';

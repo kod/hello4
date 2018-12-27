@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
 import dayjs from 'dayjs';
-import { connect } from 'dva';
+import { connect } from 'react-redux';
 import BYHeader from '@/components/BYHeader';
 import { formatMessage } from 'umi/locale';
 import { Modal } from 'antd-mobile';

@@ -2,7 +2,7 @@
 import React from 'react';
 import { formatMessage } from 'umi/locale';
 import router from 'umi/router';
-import { connect } from 'dva';
+import { connect } from 'react-redux';
 
 import { BORDER_COLOR, RED_COLOR, PRIMARY_COLOR } from '@/styles/variables';
 import {

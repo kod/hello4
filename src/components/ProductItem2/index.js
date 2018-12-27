@@ -1,6 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
-import { connect } from 'dva';
+import { connect } from 'react-redux';
 import router from 'umi/router';
 
 import { BORDER_COLOR, RED_COLOR } from '@/styles/variables';
