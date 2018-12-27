@@ -9,7 +9,7 @@ import { addError } from '@/common/actions/error';
 import buyoo from '@/services/api';
 import { ADDRESS_ADD } from '@/common/constants/actionTypes';
 import { encryptMD5, signTypeMD5, o } from '@/utils/AuthEncrypt';
-import { localStorageGetItem } from '@/utils';
+import { localStorageGetItem, dispatchEvent } from '@/utils';
 import { BUYOO } from '../constants';
 
 export function* userAddAddrFetchWatchHandle(action) {
