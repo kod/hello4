@@ -1,5 +1,4 @@
 import { formatMessage } from 'umi/locale';
-import md5 from 'blueimp-md5';
 import { takeEvery, apply, put } from 'redux-saga/effects';
 
 import {
@@ -36,7 +35,6 @@ import {
   getSKey,
   getSValue,
 } from '@/utils';
-import { BUYOO } from '../constants';
 
 export function* loginFetchWatchHandle(action) {
   const {
