@@ -1,6 +1,6 @@
-import { takeEvery, apply, put } from 'redux-saga/effects';
+import { takeEvery, apply, put, select } from 'redux-saga/effects';
 import dayjs from 'dayjs';
-import { SCREENS, BUYOO, LOCALSTORAGE_INVITE } from '@/common/constants';
+import { SCREENS, LOCALSTORAGE_INVITE } from '@/common/constants';
 import {
   orderCreateFetchSuccess,
   orderCreateFetchFailure,
@@ -9,13 +9,10 @@ import { orderPayFetch } from '@/common/actions/orderPay';
 import { addError } from '@/common/actions/error';
 import buyoo from '@/services/api';
 import { ORDER_CREATE } from '@/common/constants/actionTypes';
-import { encryptMD5, signTypeMD5, o } from '@/utils/AuthEncrypt';
+import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
 
-import {
-  localStorageGetItem,
-  localStorageRemoveItem,
-  dispatchEventBuyoo,
-} from '@/utils';
+import { localStorageRemoveItem, dispatchEventBuyoo } from '@/utils';
+import { getAuthUser } from '../selectors';
 
 export function* orderCreateFetchWatchHandle(action) {
   try {
@@ -33,7 +30,8 @@ export function* orderCreateFetchWatchHandle(action) {
       payvalue = 0,
       invitefunid = '',
     } = action.payload;
-    const funid = o(localStorageGetItem, BUYOO).result;
+    const authUser = yield select(getAuthUser);
+    const funid = authUser ? authUser.result : null;
 
     const Key = 'tradeKey';
     const appId = '3';

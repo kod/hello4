@@ -1,4 +1,4 @@
-import { takeEvery, apply, put } from 'redux-saga/effects';
+import { takeEvery, apply, put, select } from 'redux-saga/effects';
 import dayjs from 'dayjs';
 import {
   getAdverstTopInfoFetchSuccess,
@@ -7,15 +7,13 @@ import {
 import { addError } from '@/common/actions/error';
 import buyoo from '@/services/api';
 import { GET_ADVERST_TOP_INFO } from '@/common/constants/actionTypes';
-import { encryptMD5, signTypeMD5, o } from '@/utils/AuthEncrypt';
-import { localStorageGetItem } from '@/utils';
-import { BUYOO } from '../constants';
+import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
+import { getAuthUser } from '../selectors';
 
 export function* getAdverstTopInfoFetchWatchHandle() {
   try {
-    const authUser = o(localStorageGetItem, BUYOO);
-
-    const funid = authUser ? o(localStorageGetItem, BUYOO).result : '';
+    const authUser = yield select(getAuthUser);
+    const funid = authUser ? authUser.result : null;
     const Key = 'commodityKey';
     const appId = '3';
     const method = 'fun.adverst.top';

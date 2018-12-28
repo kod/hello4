@@ -10,8 +10,6 @@ import buyoo from '@/services/api';
 import { CITY_INFOS } from '@/common/constants/actionTypes';
 import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
 
-// import { getAuthUserFunid, getAuthUserMsisdn } from '@/common/selectors';
-
 export function* cityInfosFetchWatchHandle(action) {
   try {
     const { pid, level } = action.payload;

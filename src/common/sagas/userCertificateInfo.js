@@ -12,17 +12,16 @@ import { certifiedInformationFetchSuccess } from '@/common/actions/certifiedInfo
 import { addError } from '@/common/actions/error';
 import buyoo from '@/services/api';
 import { USER_CERTIFICATE_INFO } from '@/common/constants/actionTypes';
-import { encryptMD5, signTypeMD5, o } from '@/utils/AuthEncrypt';
+import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
 import {
-  getAuthUserFunid,
+  getAuthUser,
   getCertifiedInformationCertUser,
 } from '@/common/selectors';
-import { localStorageGetItem } from '@/utils';
-import { BUYOO } from '../constants';
 
 export function* userCertificateInfoFetchWatchHandle() {
   try {
-    const funid = o(localStorageGetItem, BUYOO).result;
+    const authUser = yield select(getAuthUser);
+    const funid = authUser ? authUser.result : null;
 
     const Key = 'userKey';
     const appId = '3';
@@ -93,7 +92,9 @@ export function* userCertificateInfoFetchWatchHandle() {
 
 export function* userAddDetailInfoFetchWatchHandle(/* action */) {
   try {
-    const funid = yield select(getAuthUserFunid);
+    const authUser = yield select(getAuthUser);
+    const funid = authUser ? authUser.result : null;
+
     const certifiedInformationCertUser = yield select(
       getCertifiedInformationCertUser,
     );

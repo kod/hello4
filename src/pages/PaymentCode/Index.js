@@ -23,17 +23,12 @@ import {
   SCREENS,
   MONETARY,
   PAYOO_STORE_MAP,
-  BUYOO,
 } from '@/common/constants';
 // import SmallButton from '@/components/SmallButton';
 import priceFormat from '@/utils/priceFormat';
 import MustLogin from '@/components/MustLogin';
-import {
-  addEventListenerBuyoo,
-  removeEventListenerBuyoo,
-  localStorageGetItem,
-} from '@/utils';
-import { o } from '@/utils/AuthEncrypt';
+import { addEventListenerBuyoo, removeEventListenerBuyoo } from '@/utils';
+import { getLoginUser } from '@/common/selectors';
 
 const icStore1 = 'https://oss.buyoo.vn/usercollect/1/20181121153540_gOd.jpg';
 const icStore2 = 'https://oss.buyoo.vn/usercollect/1/20181121153705_f57.jpg';
@@ -294,7 +289,7 @@ export default connect(
       code: code || orderPay.ret,
       loading: orderPay.loading,
       payvalue: totalAmount,
-      authUser: o(localStorageGetItem, BUYOO),
+      authUser: getLoginUser(state, props),
     };
   },
   {

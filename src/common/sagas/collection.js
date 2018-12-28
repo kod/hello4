@@ -1,4 +1,4 @@
-import { takeEvery, apply, put } from 'redux-saga/effects';
+import { takeEvery, apply, put, select } from 'redux-saga/effects';
 import dayjs from 'dayjs';
 import {
   collectionFetch,
@@ -16,15 +16,16 @@ import {
   COLLECTION_ADD,
   COLLECTION_REMOVE,
 } from '@/common/constants/actionTypes';
-import { encryptMD5, signTypeMD5, o } from '@/utils/AuthEncrypt';
+import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
 
-import { localStorageGetItem } from '@/utils';
-import { BUYOO } from '../constants';
+import { getAuthUser } from '../selectors';
 
 export function* collectionFetchWatchHandle() {
   try {
-    const funid = o(localStorageGetItem, BUYOO).result;
-    const { msisdn } = o(localStorageGetItem, BUYOO);
+    const authUser = yield select(getAuthUser);
+    const funid = authUser ? authUser.result : null;
+    const msisdn = authUser ? authUser.msisdn : null;
+
     const pagesize = 100;
     const currentpage = 1;
 
@@ -98,7 +99,8 @@ export function* collectionFetchWatchHandle() {
 
 export function* collectionAddFetchWatchHandle(action) {
   try {
-    const funid = o(localStorageGetItem, BUYOO).result;
+    const authUser = yield select(getAuthUser);
+    const funid = authUser ? authUser.result : null;
     const brandids = action.payload.brandIds;
 
     const Key = 'userKey';
@@ -161,8 +163,9 @@ export function* collectionAddSuccessWatchHandle() {
 export function* collectionRemoveFetchWatchHandle(action) {
   const { brand_id: brandId } = action.payload;
   try {
-    const funid = o(localStorageGetItem, BUYOO).result;
-    const { msisdn } = o(localStorageGetItem, BUYOO);
+    const authUser = yield select(getAuthUser);
+    const funid = authUser ? authUser.result : null;
+    const msisdn = authUser ? authUser.msisdn : null;
 
     const Key = 'userKey';
     const appId = '3';

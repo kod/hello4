@@ -21,14 +21,12 @@ import {
   SCREENS,
   MODAL_TYPES,
   WINDOW_HEIGHT,
-  BUYOO,
 } from '@/common/constants';
 import {
   tradeStatusCodes,
   payWayToText,
   addEventListenerBuyoo,
   removeEventListenerBuyoo,
-  localStorageGetItem,
 } from '@/utils';
 import SeparateBar from '@/components/SeparateBar';
 import ProductItem2 from '@/components/ProductItem2';
@@ -37,8 +35,7 @@ import NavBar2 from '@/components/NavBar2';
 import MustLogin from '@/components/MustLogin';
 import Loader from '@/components/Loader';
 import Address from '@/components/Address';
-import { getAddressSelectedItem } from '@/common/selectors';
-import { o } from '@/utils/AuthEncrypt';
+import { getAddressSelectedItem, getLoginUser } from '@/common/selectors';
 
 const styles = {
   container: {
@@ -681,7 +678,7 @@ export default connect(
       loading: orderPay.loading,
       addressSelectedItem: getAddressSelectedItem(state, props),
       addressItems: address.items,
-      authUser: o(localStorageGetItem, BUYOO),
+      authUser: getLoginUser(state, props),
       queryOrderItem: queryOrder.item,
       locationPathname,
       locationSearch,

@@ -9,7 +9,6 @@ import {
   WINDOW_WIDTH,
   SIDEINTERVAL,
   WINDOW_HEIGHT,
-  BUYOO,
   IS_IOS,
   OSS_IMAGE_QUALITY,
   MONETARY,
@@ -27,9 +26,9 @@ import {
   FONT_SIZE_THIRD,
 } from '@/styles/variables';
 import CustomIcon from '@/components/CustomIcon';
-import { o } from '@/utils/AuthEncrypt';
-import { localStorageGetItem, xOssProcess, dispatchEventBuyoo } from '@/utils';
+import { xOssProcess, dispatchEventBuyoo } from '@/utils';
 import priceFormat from '@/utils/priceFormat';
+import { getLoginUser } from '@/common/selectors';
 
 class AddressAddModal extends Component {
   constructor(props) {
@@ -318,14 +317,14 @@ class AddressAddModal extends Component {
 }
 
 export default connect(
-  state => {
+  (state, props) => {
     const {
       modal: { modalProps = {} },
     } = state;
 
     return {
       modalProps,
-      authUser: o(localStorageGetItem, BUYOO),
+      authUser: getLoginUser(state, props),
     };
   },
   {

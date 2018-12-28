@@ -1,7 +1,7 @@
 import { formatMessage } from 'umi/locale';
-import { takeEvery, apply, put } from 'redux-saga/effects';
+import { takeEvery, apply, put, select } from 'redux-saga/effects';
 import dayjs from 'dayjs';
-import { INTERNET_BANK_PAYWAY, BUYOO } from '@/common/constants';
+import { INTERNET_BANK_PAYWAY } from '@/common/constants';
 import {
   orderPayFetchSuccess,
   orderPayFetchFailure,
@@ -9,9 +9,10 @@ import {
 import { addError } from '@/common/actions/error';
 import buyoo from '@/services/api';
 import { ORDER_PAY } from '@/common/constants/actionTypes';
-import { encryptMD5, signTypeMD5, o } from '@/utils/AuthEncrypt';
+import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
 
-import { localStorageGetItem, dispatchEventBuyoo } from '@/utils';
+import { dispatchEventBuyoo } from '@/utils';
+import { getAuthUser } from '../selectors';
 
 export function* orderPayFetchWatchHandle(action) {
   try {
@@ -26,7 +27,8 @@ export function* orderPayFetchWatchHandle(action) {
       payvalue = 0,
       pop = 1, // 返回层级
     } = action.payload;
-    const funid = o(localStorageGetItem, BUYOO).result;
+    const authUser = yield select(getAuthUser);
+    const funid = authUser ? authUser.result : null;
 
     const Key = 'tradeKey';
     const appId = '3';

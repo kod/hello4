@@ -10,13 +10,12 @@ import Loader from '@/components/Loader';
 
 import * as judgeVoucherActionCreators from '@/common/actions/judgeVoucher';
 import * as couponSelectActionCreators from '@/common/actions/couponSelect';
-import { SCREENS, WINDOW_HEIGHT, BUYOO } from '@/common/constants';
+import { SCREENS, WINDOW_HEIGHT } from '@/common/constants';
 import EmptyState from '@/components/EmptyState';
 
 import CouponItem from '@/components/CouponItem';
 import MustLogin from '@/components/MustLogin';
-import { o } from '@/utils/AuthEncrypt';
-import { localStorageGetItem } from '@/utils';
+import { getLoginUser } from '@/common/selectors';
 
 const ouhrigdfnjsoeijehrJpg =
   'https://oss.buyoo.vn/usercollect/1/20181101180309_67w.jpg';
@@ -102,7 +101,7 @@ export default connect(
     return {
       products,
       items: judgeVoucher.items,
-      authUser: o(localStorageGetItem, BUYOO),
+      authUser: getLoginUser(state, props),
       loading: judgeVoucher.loading,
     };
   },

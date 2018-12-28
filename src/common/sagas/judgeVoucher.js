@@ -1,4 +1,4 @@
-import { takeEvery, apply, put } from 'redux-saga/effects';
+import { takeEvery, apply, put, select } from 'redux-saga/effects';
 import dayjs from 'dayjs';
 import {
   judgeVoucherFetchSuccess,
@@ -8,14 +8,14 @@ import { getVoucherFetch } from '@/common/actions/getVoucher';
 import { addError } from '@/common/actions/error';
 import buyoo from '@/services/api';
 import { JUDGE_VOUCHER } from '@/common/constants/actionTypes';
-import { encryptMD5, signTypeMD5, o } from '@/utils/AuthEncrypt';
+import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
 
-import { localStorageGetItem } from '@/utils';
-import { BUYOO } from '../constants';
+import { getAuthUser } from '../selectors';
 
 export function* judgeVoucherFetchWatchHandle(action) {
   try {
-    const funid = o(localStorageGetItem, BUYOO).result;
+    const authUser = yield select(getAuthUser);
+    const funid = authUser ? authUser.result : null;
     const { products = '', currentpage = 1, pagesize = 100 } = action.payload;
 
     const Key = 'userKey';

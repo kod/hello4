@@ -11,20 +11,16 @@ import * as getNewestInfoActionCreators from '@/common/actions/getNewestInfo';
 import * as bannerSwiperActionCreators from '@/common/actions/bannerSwiper';
 import * as adverstInfoActionCreators from '@/common/actions/adverstInfo';
 import * as initAdverstCommonActionCreators from '@/common/actions/initAdverstCommon';
-import {
-  dispatchEventBuyoo,
-  analyzeUrlNavigate,
-  localStorageGetItem,
-} from '@/utils';
+import { dispatchEventBuyoo, analyzeUrlNavigate } from '@/utils';
 import NavImg1 from '@/components/NavImg1';
 import SeparateBar from '@/components/SeparateBar';
 import { RED_COLOR } from '@/styles/variables';
-import { SIDEINTERVAL, WINDOW_WIDTH, BUYOO, SCREENS } from '@/common/constants';
+import { SIDEINTERVAL, WINDOW_WIDTH, SCREENS } from '@/common/constants';
 import ProductItem5 from '@/components/ProductItem5';
 import PhoneAdBaner from '@/components/PhoneAdBaner';
 import ProductItem4 from '@/components/ProductItem4';
 import ProductItem6 from '@/components/ProductItem6';
-import { o } from '@/utils/AuthEncrypt';
+import { getLoginUser } from '@/common/selectors';
 
 class Index extends PureComponent {
   componentDidMount() {
@@ -158,7 +154,7 @@ class Index extends PureComponent {
 }
 
 export default connect(
-  state => {
+  (state, props) => {
     const {
       getAdverstTopInfo,
       getSquaresInfo,
@@ -168,6 +164,7 @@ export default connect(
       initAdverstCommon,
     } = state;
 
+    // console.log(getLoginUser(state, props));
     return {
       getAdverstTopInfoItems: getAdverstTopInfo.items,
       getSquaresInfoItems: getSquaresInfo.items,
@@ -175,7 +172,7 @@ export default connect(
       initAdverstCommonItems: initAdverstCommon.items,
       bannerSwiper: bannerSwiper.one || {},
       adverstInfo: adverstInfo || {},
-      authUser: o(localStorageGetItem, BUYOO),
+      authUser: getLoginUser(state, props),
     };
   },
   {

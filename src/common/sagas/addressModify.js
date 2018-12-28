@@ -1,4 +1,4 @@
-import { takeEvery, apply, put } from 'redux-saga/effects';
+import { takeEvery, apply, put, select } from 'redux-saga/effects';
 import dayjs from 'dayjs';
 import {
   addressFetch,
@@ -9,13 +9,13 @@ import { addError } from '@/common/actions/error';
 import buyoo from '@/services/api';
 import { ADDRESS_MODIFY } from '@/common/constants/actionTypes';
 
-import { localStorageGetItem } from '@/utils';
-import { encryptMD5, signTypeMD5, o } from '@/utils/AuthEncrypt';
-import { BUYOO } from '@/common/constants';
+import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
+import { getAuthUser } from '../selectors';
 
 function* addressModifyWatchHandle(action) {
   try {
-    const funid = o(localStorageGetItem, BUYOO).result;
+    const authUser = yield select(getAuthUser);
+    const funid = authUser ? authUser.result : null;
 
     const {
       addrid,

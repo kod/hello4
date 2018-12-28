@@ -12,15 +12,14 @@ import {
   MONETARY,
   IS_IOS,
   OSS_IMAGE_QUALITY,
-  BUYOO,
 } from '@/common/constants';
 import CustomIcon from '@/components/CustomIcon';
 import priceFormat from '@/utils/priceFormat';
-import { xOssProcess, localStorageGetItem } from '@/utils';
 
 import * as cartActionCreators from '@/common/actions/cart';
+import { xOssProcess } from '@/utils';
+import { getLoginUser } from '@/common/selectors';
 // import { getCartTotalMoney } from '@/common/selectors';
-import { o } from '@/utils/AuthEncrypt';
 
 const styles = {
   itemWrap: {
@@ -339,11 +338,11 @@ class CartItem extends React.Component {
 }
 
 export default connect(
-  state => {
+  (state, props) => {
     const { cart } = state;
 
     return {
-      authUser: o(localStorageGetItem, BUYOO),
+      authUser: getLoginUser(state, props),
       isEdit: cart.isEdit,
     };
   },

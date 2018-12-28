@@ -9,8 +9,6 @@ const defaultObject = {};
 
 export const getAuth = state => state.login;
 export const getAuthUser = state => state.login.user;
-export const getAuthUserFunid = state => state.login.user.result;
-export const getAuthUserMsisdn = state => state.login.user.msisdn;
 export const getCart = state => state.cart;
 export const getCartItems = state => state.cart.items;
 export const getCartDetails = state => state.cart.details;
@@ -32,7 +30,7 @@ export const getQueryOrderListItem = state => state.queryOrderList.item;
 export const getQueryOrderListScrollTabIndex = state =>
   state.queryOrderList.scrollTabIndex;
 
-const getProps = (state, props) => props;
+const getProps = (_, props) => props;
 const selectEntities = state => state.entities;
 const selectProductDetailInfo = state => state.productDetailInfo;
 const selectGetAllProductInfo = state => state.getAllProductInfo;

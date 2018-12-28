@@ -1,4 +1,4 @@
-import { takeEvery, apply, put } from 'redux-saga/effects';
+import { takeEvery, apply, put, select } from 'redux-saga/effects';
 import dayjs from 'dayjs';
 import {
   enchashmentGetListFetchSuccess,
@@ -7,16 +7,14 @@ import {
 import { addError } from '@/common/actions/error';
 import buyoo from '@/services/api';
 import { ENCHASHMENT_GETLIST } from '@/common/constants/actionTypes';
-import { encryptMD5, signTypeMD5, o } from '@/utils/AuthEncrypt';
-import { localStorageGetItem } from '@/utils';
-import { BUYOO } from '../constants';
+import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
+import { getAuthUser } from '../selectors';
 
 export function* enchashmentGetListFetchWatchHandle(action) {
   const { pagesize = 100, currentpage = 1 } = action.payload;
   try {
-    const authUser = o(localStorageGetItem, BUYOO);
-
-    const funid = authUser ? o(localStorageGetItem, BUYOO).result : '';
+    const authUser = yield select(getAuthUser);
+    const funid = authUser ? authUser.result : null;
 
     const Key = 'userKey';
     const appId = '3';

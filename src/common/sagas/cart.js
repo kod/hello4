@@ -1,7 +1,7 @@
+import { apply, put, takeEvery, select } from 'redux-saga/effects';
 import { formatMessage } from 'umi/locale';
 import { Modal } from 'antd-mobile';
 import { normalize } from 'normalizr';
-import { apply, put, takeEvery } from 'redux-saga/effects';
 import dayjs from 'dayjs';
 import {
   cartRequest,
@@ -31,14 +31,14 @@ import {
 } from '@/common/constants/actionTypes';
 import { addError } from '@/common/actions/error';
 import buyoo from '@/services/api';
-import { encryptMD5, signTypeMD5, o } from '@/utils/AuthEncrypt';
+import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
 import Schemas from '@/common/constants/schemas';
-import { localStorageGetItem } from '@/utils';
-import { BUYOO } from '../constants';
+import { getAuthUser } from '../selectors';
 
 function* cartFetchWatchHandle(/* action */) {
   try {
-    const funid = o(localStorageGetItem, BUYOO).result;
+    const authUser = yield select(getAuthUser);
+    const funid = authUser ? authUser.result : null;
     const Key = 'commodityKey';
     const appId = '3';
     const method = 'fun.cart.query';
@@ -114,7 +114,8 @@ function* cartNumberRequestWatchHandle(action) {
     // quetity,
   } = action.payload;
   try {
-    const funid = o(localStorageGetItem, BUYOO).result;
+    const authUser = yield select(getAuthUser);
+    const funid = authUser ? authUser.result : null;
 
     const Key = 'commodityKey';
     const appId = '3';
@@ -183,7 +184,8 @@ export function* cartNumberRequestWatch() {
 
 function* cartDeleteRequestWatchHandle(action) {
   try {
-    const funid = o(localStorageGetItem, BUYOO).result;
+    const authUser = yield select(getAuthUser);
+    const funid = authUser ? authUser.result : null;
     const { cartitemids, orderno = '' } = action.payload;
 
     const Key = 'commodityKey';
@@ -298,7 +300,8 @@ export function* cartSelectAllRequestWatch() {
 
 function* cartAddRequestWatchHandle(action) {
   try {
-    const funid = o(localStorageGetItem, BUYOO).result;
+    const authUser = yield select(getAuthUser);
+    const funid = authUser ? authUser.result : null;
     const { cartitems } = action.payload;
 
     const Key = 'commodityKey';

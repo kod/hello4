@@ -12,7 +12,6 @@ import {
   WINDOW_WIDTH,
   SCREENS,
   MESSAGE_URL,
-  BUYOO,
   LOCALSTORAGE_INVITE,
 } from '@/common/constants';
 import {
@@ -29,12 +28,11 @@ import * as collectionActionCreators from '@/common/actions/collection';
 import * as modalActionCreators from '@/common/actions/modal';
 import * as cartActionCreators from '@/common/actions/cart';
 import {
-  localStorageGetItem,
   addEventListenerBuyoo,
   removeEventListenerBuyoo,
   localStorageSetItem,
 } from '@/utils';
-import { o } from '@/utils/AuthEncrypt';
+import { getLoginUser } from '@/common/selectors';
 
 class Index extends React.Component {
   constructor(props) {
@@ -571,7 +569,7 @@ export default connect(
       query,
       inviteID: query.inviteID || '',
       pathname,
-      authUser: o(localStorageGetItem, BUYOO),
+      authUser: getLoginUser(state, props),
       // isCollection: getIsCollection(state, props),
     };
   },

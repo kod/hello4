@@ -11,11 +11,12 @@ import {
   ADD_DETAIL_INFO,
   // ADD_DETAIL_INFO,
 } from '@/common/constants/actionTypes';
-import { encryptMD5, signTypeMD5, o } from '@/utils/AuthEncrypt';
-import { getCertifiedInformationCertUser } from '@/common/selectors';
-import { localStorageGetItem, dispatchEventBuyoo } from '@/utils';
-import { BUYOO } from '../constants';
-// import i18n from '@/common/helpers/i18n';
+import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
+import {
+  getCertifiedInformationCertUser,
+  getAuthUser,
+} from '@/common/selectors';
+import { dispatchEventBuyoo } from '@/utils';
 
 export function* userAddDetailInfoFetchWatchHandle(action) {
   const {
@@ -27,7 +28,8 @@ export function* userAddDetailInfoFetchWatchHandle(action) {
   } = action.payload;
 
   try {
-    const funid = o(localStorageGetItem, BUYOO).result;
+    const authUser = yield select(getAuthUser);
+    const funid = authUser ? authUser.result : null;
     const certifiedInformationCertUser = yield select(
       getCertifiedInformationCertUser,
     );

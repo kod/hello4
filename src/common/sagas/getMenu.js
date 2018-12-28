@@ -1,4 +1,4 @@
-import { takeEvery, apply, put } from 'redux-saga/effects';
+import { takeEvery, apply, put, select } from 'redux-saga/effects';
 import dayjs from 'dayjs';
 import {
   getMenuFetchSuccess,
@@ -7,15 +7,14 @@ import {
 import { addError } from '@/common/actions/error';
 import buyoo from '@/services/api';
 import { GET_MENU } from '@/common/constants/actionTypes';
-import { encryptMD5, signTypeMD5, o } from '@/utils/AuthEncrypt';
+import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
 
-import { localStorageGetItem } from '@/utils';
-import { BUYOO } from '../constants';
+import { getAuthUser } from '../selectors';
 
 export function* getMenuFetchWatchHandle(action) {
   try {
-    const authUser = o(localStorageGetItem, BUYOO);
-    const funid = authUser ? o(localStorageGetItem, BUYOO).result : '';
+    const authUser = yield select(getAuthUser);
+    const funid = authUser ? authUser.result : null;
     const { typeid = 0, subclassfyid = 0, thirdclassfyid = 0 } = action.payload;
 
     const Key = 'commodityKey';

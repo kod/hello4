@@ -1,4 +1,4 @@
-import { takeEvery, apply, put } from 'redux-saga/effects';
+import { takeEvery, apply, put, select } from 'redux-saga/effects';
 import dayjs from 'dayjs';
 // import { SCREENS } from '@/common/constants';
 import {
@@ -18,14 +18,15 @@ import {
   ADDRESS_REMOVE,
 } from '@/common/constants/actionTypes';
 
-import { localStorageGetItem, dispatchEventBuyoo } from '@/utils';
-import { encryptMD5, signTypeMD5, o } from '@/utils/AuthEncrypt';
-import { BUYOO } from '@/common/constants';
+import { dispatchEventBuyoo } from '@/utils';
+import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
+import { getAuthUser } from '../selectors';
 
 function* addressFetchWatchHandle(/* action */) {
   try {
-    const funid = o(localStorageGetItem, BUYOO).result;
-    const { msisdn } = o(localStorageGetItem, BUYOO);
+    const authUser = yield select(getAuthUser);
+    const funid = authUser ? authUser.result : null;
+    const msisdn = authUser ? authUser.msisdn : null;
 
     const Key = 'userKey';
     const appId = '3';
@@ -84,7 +85,8 @@ function* addressFetchWatchHandle(/* action */) {
 
 function* addressAddFetchWatchHandle(action) {
   try {
-    const funid = o(localStorageGetItem, BUYOO).result;
+    const authUser = yield select(getAuthUser);
+    const funid = authUser ? authUser.result : null;
 
     const {
       msisdn,
@@ -205,7 +207,9 @@ function* addressAddSuccessWatchHandle(action) {
 
 function* addressRemoveWatchHandle(action) {
   try {
-    const funid = o(localStorageGetItem, BUYOO).result;
+    const authUser = yield select(getAuthUser);
+    const funid = authUser ? authUser.result : null;
+
     const { adds } = action.payload;
 
     const Key = 'userKey';

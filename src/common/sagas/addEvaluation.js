@@ -1,5 +1,5 @@
-/* eslint-disable camelcase, import/prefer-default-export */
-import { takeEvery, apply, put } from 'redux-saga/effects';
+/* eslint-disable camelcase */
+import { takeEvery, apply, put, select } from 'redux-saga/effects';
 import dayjs from 'dayjs';
 import {
   addEvaluationFetchSuccess,
@@ -8,14 +8,15 @@ import {
 import { addError } from '@/common/actions/error';
 import buyoo from '@/services/api';
 import { ADD_EVALUATION } from '@/common/constants/actionTypes';
-import { encryptMD5, signTypeMD5, o } from '@/utils/AuthEncrypt';
+import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
 
-import { dispatchEventBuyoo, localStorageGetItem } from '@/utils';
-import { BUYOO } from '../constants';
+import { dispatchEventBuyoo } from '@/utils';
+import { getAuthUser } from '../selectors';
 
-function* addEvaluationFetchWatchHandle(action) {
-  const { msisdn } = o(localStorageGetItem, BUYOO);
-  const funid = o(localStorageGetItem, BUYOO).result;
+export function* addEvaluationFetchWatchHandle(action) {
+  const authUser = yield select(getAuthUser);
+  const funid = authUser ? authUser.result : null;
+  const msisdn = authUser ? authUser.msisdn : null;
 
   try {
     const { trade_no, order_no, comments, screen } = action.payload;

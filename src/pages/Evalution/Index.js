@@ -14,19 +14,18 @@ import {
   addEventListenerBuyoo,
   removeEventListenerBuyoo,
   submitDuplicateFreeze,
-  localStorageGetItem,
 } from '@/utils';
 
 import * as collectFilesActionCreators from '@/common/actions/collectFiles';
 // import * as modalActionCreators from '@/common/actions/modal';
 import * as addEvaluationActionCreators from '@/common/actions/addEvaluation';
 import { PRIMARY_COLOR } from '@/styles/variables';
-import { SIDEINTERVAL, WINDOW_WIDTH, SCREENS, BUYOO } from '@/common/constants';
+import { SIDEINTERVAL, WINDOW_WIDTH, SCREENS } from '@/common/constants';
 
 import MustLogin from '@/components/MustLogin';
 import BYButton from '@/components/BYButton';
 import CustomIcon from '@/components/CustomIcon';
-import { o } from '@/utils/AuthEncrypt';
+import { getLoginUser } from '@/common/selectors';
 
 const styles = {
   container: {
@@ -388,7 +387,7 @@ export default connect(
     } = props;
 
     return {
-      authUser: o(localStorageGetItem, BUYOO),
+      authUser: getLoginUser(state, props),
       collectFiles,
       orderNo,
       tradeNo,

@@ -13,20 +13,14 @@ import {
   MONETARY,
   WINDOW_HEIGHT,
   SCREENS,
-  BUYOO,
 } from '@/common/constants';
 import { BORDER_COLOR, RED_COLOR, PRIMARY_COLOR } from '@/styles/variables';
 import CartItem from '@/components/CartItem';
 import CustomIcon from '@/components/CustomIcon';
 import priceFormat from '@/utils/priceFormat';
 import EmptyState from '@/components/EmptyState';
-import { getCartTotalMoney } from '@/common/selectors';
-import {
-  addEventListenerBuyoo,
-  removeEventListenerBuyoo,
-  localStorageGetItem,
-} from '@/utils';
-import { o } from '@/utils/AuthEncrypt';
+import { getCartTotalMoney, getLoginUser } from '@/common/selectors';
+import { addEventListenerBuyoo, removeEventListenerBuyoo } from '@/utils';
 
 const ouhrigdfnjsoeijehrJpg =
   'https://oss.buyoo.vn/usercollect/1/20181101180309_67w.jpg';
@@ -397,7 +391,7 @@ export default connect(
     const { cart } = state;
 
     return {
-      authUser: o(localStorageGetItem, BUYOO),
+      authUser: getLoginUser(state, props),
       cart,
       totalMoney: getCartTotalMoney(state, props),
       loading: cart.loading,
