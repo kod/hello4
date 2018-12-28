@@ -9,7 +9,7 @@ import buyoo from '@/services/api';
 import { ENCHASHMENT_APPLY } from '@/common/constants/actionTypes';
 import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
 import { dispatchEventBuyoo } from '@/utils';
-import { getAuthUser } from '../selectors';
+import { getAuthUser } from '@/common/selectors';
 
 export function* enchashmentApplyFetchWatchHandle(action) {
   const { amount = 0, screen = '' } = action.payload;

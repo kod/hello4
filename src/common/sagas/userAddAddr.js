@@ -10,7 +10,7 @@ import buyoo from '@/services/api';
 import { ADDRESS_ADD } from '@/common/constants/actionTypes';
 import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
 import { dispatchEventBuyoo } from '@/utils';
-import { getAuthUser } from '../selectors';
+import { getAuthUser } from '@/common/selectors';
 
 export function* userAddAddrFetchWatchHandle(action) {
   try {

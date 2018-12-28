@@ -12,7 +12,7 @@ import { ORDER_CREATE } from '@/common/constants/actionTypes';
 import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
 
 import { localStorageRemoveItem, dispatchEventBuyoo } from '@/utils';
-import { getAuthUser } from '../selectors';
+import { getAuthUser } from '@/common/selectors';
 
 export function* orderCreateFetchWatchHandle(action) {
   try {

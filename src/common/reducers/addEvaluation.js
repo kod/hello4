@@ -1,4 +1,4 @@
-import { ADD_EVALUATION } from '../constants/actionTypes';
+import { ADD_EVALUATION } from '@/common/constants/actionTypes';
 
 const initState = {
   loading: false,

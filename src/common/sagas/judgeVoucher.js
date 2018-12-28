@@ -10,7 +10,7 @@ import buyoo from '@/services/api';
 import { JUDGE_VOUCHER } from '@/common/constants/actionTypes';
 import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
 
-import { getAuthUser } from '../selectors';
+import { getAuthUser } from '@/common/selectors';
 
 export function* judgeVoucherFetchWatchHandle(action) {
   try {

@@ -9,7 +9,7 @@ import buyoo from '@/services/api';
 import { QUERY_ORDER_LIST } from '@/common/constants/actionTypes';
 import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
 
-import { getAuthUser } from '../selectors';
+import { getAuthUser } from '@/common/selectors';
 
 export function* queryOrderListFetchWatchHandle(action) {
   try {

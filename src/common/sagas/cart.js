@@ -33,7 +33,7 @@ import { addError } from '@/common/actions/error';
 import buyoo from '@/services/api';
 import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
 import Schemas from '@/common/constants/schemas';
-import { getAuthUser } from '../selectors';
+import { getAuthUser } from '@/common/selectors';
 
 function* cartFetchWatchHandle(/* action */) {
   try {

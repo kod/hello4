@@ -20,7 +20,7 @@ import {
 
 import { dispatchEventBuyoo } from '@/utils';
 import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
-import { getAuthUser } from '../selectors';
+import { getAuthUser } from '@/common/selectors';
 
 function* addressFetchWatchHandle(/* action */) {
   try {

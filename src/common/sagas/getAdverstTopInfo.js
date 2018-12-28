@@ -8,7 +8,7 @@ import { addError } from '@/common/actions/error';
 import buyoo from '@/services/api';
 import { GET_ADVERST_TOP_INFO } from '@/common/constants/actionTypes';
 import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
-import { getAuthUser } from '../selectors';
+import { getAuthUser } from '@/common/selectors';
 
 export function* getAdverstTopInfoFetchWatchHandle() {
   try {

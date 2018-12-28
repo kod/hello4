@@ -21,7 +21,7 @@ import {
 } from '@/common/constants/actionTypes';
 import { encryptMD5 } from '@/utils/AuthEncrypt';
 
-import { loginFetchSuccess } from '../actions/login';
+import { loginFetchSuccess } from '@/common/actions/login';
 import { dispatchEventBuyoo } from '@/utils';
 
 export function* registerFetchWatchHandle(action) {

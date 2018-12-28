@@ -9,7 +9,7 @@ import buyoo from '@/services/api';
 import { GET_VOUCHER } from '@/common/constants/actionTypes';
 import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
 
-import { getAuthUser } from '../selectors';
+import { getAuthUser } from '@/common/selectors';
 
 export function* getVoucherFetchWatchHandle(action) {
   try {

@@ -8,7 +8,7 @@ import { addError } from '@/common/actions/error';
 import buyoo from '@/services/api';
 import { GET_INVITE_RECORD } from '@/common/constants/actionTypes';
 import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
-import { getAuthUser } from '../selectors';
+import { getAuthUser } from '@/common/selectors';
 
 export function* getInviteRecordFetchWatchHandle(action) {
   const { pagesize = 100, currentpage = 1 } = action.payload;

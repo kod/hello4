@@ -8,7 +8,7 @@ import buyoo from '@/services/api';
 import { GET_USERINFO_BYID } from '@/common/constants/actionTypes';
 import { encryptMD5 } from '@/utils/AuthEncrypt';
 
-import { getAuthUser } from '../selectors';
+import { getAuthUser } from '@/common/selectors';
 
 export function* getUserInfoByIdFetchWatchHandle() {
   try {
