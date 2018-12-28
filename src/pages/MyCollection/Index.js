@@ -9,11 +9,7 @@ import BYHeader from '@/components/BYHeader';
 import Loader from '@/components/Loader';
 
 import * as collectionActionCreators from '@/common/actions/collection';
-import {
-  SCREENS,
-  WINDOW_HEIGHT,
-  BUYOO,
-} from '@/common/constants';
+import { SCREENS, WINDOW_HEIGHT, BUYOO } from '@/common/constants';
 import EmptyState from '@/components/EmptyState';
 
 import ProductItem2 from '@/components/ProductItem2';

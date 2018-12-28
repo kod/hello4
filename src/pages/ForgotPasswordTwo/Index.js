@@ -6,10 +6,7 @@ import { connect } from 'react-redux';
 import BYHeader from '@/components/BYHeader';
 import { Modal } from 'antd-mobile';
 import Form from './Form';
-import {
-  SCREENS,
-  WINDOW_HEIGHT,
-} from '@/common/constants';
+import { SCREENS, WINDOW_HEIGHT } from '@/common/constants';
 import Loader from '@/components/Loader';
 import { removeEventListenerBuyoo, addEventListenerBuyoo } from '@/utils';
 

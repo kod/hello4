@@ -5,17 +5,7 @@ import { connect } from 'react-redux';
 import { createForm } from 'rc-form';
 import { formatMessage } from 'umi/locale';
 import router from 'umi/router';
-import {
-  SCREENS,
-  SIDEINTERVAL,
-  MONETARY,
-  BUYOO,
-  ENCHASHMENT_CONFIG_NAMESPACE,
-  ENCHASHMENT_APPLY_NAMESPACE,
-  USERADDDETAILINFO_NAMESPACE,
-  ENCHASHMENT_GETLIST_NAMESPACE,
-  USERCERTIFICATEINFO_NAMESPACE,
-} from '@/common/constants';
+import { SCREENS, SIDEINTERVAL, MONETARY, BUYOO } from '@/common/constants';
 import InputRight from '@/components/InputRight';
 import NavBar2 from '@/components/NavBar2';
 
@@ -32,13 +22,6 @@ import {
   addEventListenerBuyoo,
   removeEventListenerBuyoo,
 } from '@/utils';
-import {
-  ENCHASHMENT_CONFIG,
-  ENCHASHMENT_APPLY,
-  ADD_DETAIL_INFO,
-  ENCHASHMENT_GETLIST,
-  USER_CERTIFICATE_INFO,
-} from '@/common/constants/actionTypes';
 import Loader from '@/components/Loader';
 
 class LoginForm extends React.Component {
@@ -339,7 +322,13 @@ class LoginForm extends React.Component {
 
 export default connect(
   state => {
-    const { enchashmentConfig, enchashmentGetList, enchashmentApply, userAddDetailInfo, userCertificateInfo } = state;
+    const {
+      enchashmentConfig,
+      enchashmentGetList,
+      enchashmentApply,
+      userAddDetailInfo,
+      userCertificateInfo,
+    } = state;
     return {
       enchashmentConfigLoading: enchashmentConfig.loading,
       enchashmentApplyLoading: enchashmentApply.loading,

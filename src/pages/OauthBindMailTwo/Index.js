@@ -5,14 +5,7 @@ import router from 'umi/router';
 import { connect } from 'react-redux';
 
 import BYHeader from '@/components/BYHeader';
-// import { Modal } from 'antd-mobile';
-import {
-  REGISTER_NAMESPACE,
-  SCREENS,
-  WINDOW_HEIGHT,
-  OAUTH_REQUEST_NAMESPACE,
-} from '@/common/constants';
-import { REGISTER, OAUTH_REQUEST } from '@/common/constants/actionTypes';
+import { SCREENS, WINDOW_HEIGHT } from '@/common/constants';
 import Loader from '@/components/Loader';
 import {
   addEventListenerBuyoo,

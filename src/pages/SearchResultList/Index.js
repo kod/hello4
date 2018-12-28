@@ -7,11 +7,7 @@ import BYHeader from '@/components/BYHeader';
 import Loader from '@/components/Loader';
 
 import * as findProductsActionCreators from '@/common/actions/findProducts';
-import {
-  SIDEINTERVAL,
-  WINDOW_WIDTH,
-  WINDOW_HEIGHT,
-} from '@/common/constants';
+import { SIDEINTERVAL, WINDOW_WIDTH, WINDOW_HEIGHT } from '@/common/constants';
 import EmptyState from '@/components/EmptyState';
 
 import CustomIcon from '@/components/CustomIcon';

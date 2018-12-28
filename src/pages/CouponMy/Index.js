@@ -8,17 +8,11 @@ import router from 'umi/router';
 import * as getVoucherActionCreators from '@/common/actions/getVoucher';
 import * as receiveVoucherActionCreators from '@/common/actions/receiveVoucher';
 import * as getVoucherListActionCreators from '@/common/actions/getVoucherList';
-import {
-  SCREENS,
-  WINDOW_HEIGHT,
-  GETVOUCHERLIST_NAMESPACE,
-  BUYOO,
-} from '@/common/constants';
+import { SCREENS, WINDOW_HEIGHT, BUYOO } from '@/common/constants';
 import { Modal } from 'antd-mobile';
 
 import MustLogin from '@/components/MustLogin';
 import CouponMyTabNavigator from './CouponMyTabNavigator';
-import { GET_VOUCHER_LIST } from '@/common/constants/actionTypes';
 import Loader from '@/components/Loader';
 import { o } from '@/utils/AuthEncrypt';
 import { localStorageGetItem } from '@/utils';

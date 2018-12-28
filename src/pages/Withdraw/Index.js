@@ -18,8 +18,6 @@ import {
   BUYOO,
   WINDOW_WIDTH,
   SIDEINTERVAL,
-  ENCHASHMENT_GETLIST_NAMESPACE,
-  GET_INVITE_RECORD_NAMESPACE,
   MONETARY,
 } from '@/common/constants';
 
@@ -32,10 +30,6 @@ import {
 } from '@/styles/variables';
 import CustomIcon from '@/components/CustomIcon';
 import MustLogin from '@/components/MustLogin';
-import {
-  ENCHASHMENT_GETLIST,
-  GET_INVITE_RECORD,
-} from '@/common/constants/actionTypes';
 import priceFormat from '@/utils/priceFormat';
 
 class Withdraw extends React.Component {
@@ -475,12 +469,7 @@ class Withdraw extends React.Component {
 
 export default connect(
   state => {
-    const {
-      loading,
-      enchashmentGetList,
-      enchashmentConfig,
-      getInviteRecord,
-    } = state;
+    const { enchashmentGetList, enchashmentConfig, getInviteRecord } = state;
 
     return {
       enchashmentLoading: enchashmentGetList.loading,

@@ -11,11 +11,7 @@ import Loader from '@/components/Loader';
 import * as getVoucherActionCreators from '@/common/actions/getVoucher';
 import * as receiveVoucherActionCreators from '@/common/actions/receiveVoucher';
 import * as modalActionCreators from '@/common/actions/modal';
-import {
-  SCREENS,
-  WINDOW_HEIGHT,
-  BUYOO,
-} from '@/common/constants';
+import { SCREENS, WINDOW_HEIGHT, BUYOO } from '@/common/constants';
 import EmptyState from '@/components/EmptyState';
 
 import CouponItem from '@/components/CouponItem';

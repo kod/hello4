@@ -21,12 +21,7 @@ import * as collectFilesActionCreators from '@/common/actions/collectFiles';
 // import * as modalActionCreators from '@/common/actions/modal';
 import * as addEvaluationActionCreators from '@/common/actions/addEvaluation';
 import { PRIMARY_COLOR } from '@/styles/variables';
-import {
-  SIDEINTERVAL,
-  WINDOW_WIDTH,
-  SCREENS,
-  BUYOO,
-} from '@/common/constants';
+import { SIDEINTERVAL, WINDOW_WIDTH, SCREENS, BUYOO } from '@/common/constants';
 
 import MustLogin from '@/components/MustLogin';
 import BYButton from '@/components/BYButton';

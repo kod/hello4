@@ -10,11 +10,7 @@ import Loader from '@/components/Loader';
 
 import * as judgeVoucherActionCreators from '@/common/actions/judgeVoucher';
 import * as couponSelectActionCreators from '@/common/actions/couponSelect';
-import {
-  SCREENS,
-  WINDOW_HEIGHT,
-  BUYOO,
-} from '@/common/constants';
+import { SCREENS, WINDOW_HEIGHT, BUYOO } from '@/common/constants';
 import EmptyState from '@/components/EmptyState';
 
 import CouponItem from '@/components/CouponItem';

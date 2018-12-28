@@ -1,4 +1,3 @@
-
 import React from 'react';
 import dayjs from 'dayjs';
 import { connect } from 'react-redux';
@@ -23,7 +22,6 @@ import {
   MODAL_TYPES,
   WINDOW_HEIGHT,
   BUYOO,
-  GETUSERINFOBYID_NAMESPACE,
 } from '@/common/constants';
 import {
   tradeStatusCodes,
@@ -41,7 +39,6 @@ import Loader from '@/components/Loader';
 import Address from '@/components/Address';
 import { getAddressSelectedItem } from '@/common/selectors';
 import { o } from '@/utils/AuthEncrypt';
-import { ORDER_PAY, GET_USERINFO_BYID } from '@/common/constants/actionTypes';
 
 const styles = {
   container: {
@@ -670,7 +667,7 @@ class OrderDetail extends React.Component {
 
 export default connect(
   (state, props) => {
-    const { address, queryOrder, getUserInfoById, loading, orderPay } = state;
+    const { address, queryOrder, getUserInfoById, orderPay } = state;
     const {
       location: {
         query: { orderNo, tradeNo, from = '' },
