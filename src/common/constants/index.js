@@ -11,60 +11,8 @@ export const MIN_FIRSTPAY_RATE = 0.1; // 最低首付比: 0, 0.1, 0.2, 0.3, 0.4,
 export const IS_IOS = /iP(ad|hone|od)/.test(navigator.userAgent);
 export const VERSION = '1.6.0-beta';
 
-// namespace -start-
-export const GETADVERSTTOPINFO_NAMESPACE = 'getAdverstTopInfo';
-export const ERROR_NAMESPACE = 'error';
-export const LOGIN_NAMESPACE = 'login';
-export const USERCERTIFICATEINFO_NAMESPACE = 'userCertificateInfo';
-export const CART_NAMESPACE = 'cart';
-export const CARDQUERY_NAMESPACE = 'cardQuery';
-export const QUERYORDERLIST_NAMESPACE = 'queryOrderList';
-export const GETSQUARESINFO_NAMESPACE = 'getSquaresInfo';
-
 export const SOCIALBIND_GOOGLE = 1; // google
 export const SOCIALBIND_FACEBOOK = 2; // facebook
-
-export const GETNEWESTINFO_NAMESPACE = 'getNewestInfo';
-export const BANNERSWIPER_NAMESPACE = 'bannerSwiper';
-export const ADVERSTINFO_NAMESPACE = 'adverstInfo';
-export const INITADVERSTCOMMON_NAMESPACE = 'initAdverstCommon';
-export const GETMENU_NAMESPACE = 'getMenu';
-export const GETUSERINFOBYID_NAMESPACE = 'getUserInfoById';
-export const CERTIFIEDINFORMATION_NAMESPACE = 'certifiedInformation';
-export const OTP_NAMESPACE = 'otp';
-export const REGISTER_NAMESPACE = 'register';
-export const OAUTH_REQUEST_NAMESPACE = 'oauthRequest';
-export const CHANGEPASSWORD_NAMESPACE = 'changePassword';
-export const COLLECTION_NAMESPACE = 'collection';
-export const PRODUCTDETAILINFO_NAMESPACE = 'productDetailInfo';
-export const COMMENT_NAMESPACE = 'comment';
-export const MODAL_NAMESPACE = 'modal';
-export const ADDRESS_NAMESPACE = 'address';
-export const ORDERCREATE_NAMESPACE = 'orderCreate';
-export const COUPONSELECT_NAMESPACE = 'couponSelect';
-export const ORDERPAY_NAMESPACE = 'orderPay';
-export const CITYINFOS_NAMESPACE = 'cityInfos';
-export const USERADDADDR_NAMESPACE = 'userAddAddr';
-export const USERADDDETAILINFO_NAMESPACE = 'userAddDetailInfo';
-export const ADDRESSMODIFY_NAMESPACE = 'addressModify';
-export const GETVOUCHERLIST_NAMESPACE = 'getVoucherList';
-export const GETVOUCHER_NAMESPACE = 'getVoucher';
-export const RECEIVEVOUCHER_NAMESPACE = 'receiveVoucher';
-export const QUERYORDER_NAMESPACE = 'queryOrder';
-export const GET_INVITE_RECORD_NAMESPACE = 'getInviteRecord';
-export const ENCHASHMENT_GETLIST_NAMESPACE = 'enchashmentGetList';
-export const ENCHASHMENT_APPLY_NAMESPACE = 'enchashmentApply';
-export const ENCHASHMENT_CONFIG_NAMESPACE = 'enchashmentConfig';
-export const RETURNMONEY_NAMESPACE = 'returnMoney';
-export const ORDERCANCEL_NAMESPACE = 'orderCancel';
-export const ADDEVALUATION_NAMESPACE = 'addEvaluation';
-export const COLLECTFILES_NAMESPACE = 'collectFiles';
-export const JUDGEVOUCHER_NAMESPACE = 'judgeVoucher';
-export const SEARCHHISTORY_NAMESPACE = 'searchHistory';
-export const FINDPRODUCTS_NAMESPACE = 'findProducts';
-export const ADPHONE_NAMESPACE = 'adPhone';
-export const GETALLPRODUCTINFO_NAMESPACE = 'getAllProductInfo';
-// namespace -end-
 
 export const DOMAIN = API_DEBUG ? 'https://buyoo.club' : 'https://buyoo.vip';
 export const MESSAGE_URL = 'https://m.me/buyooshop.vip';
