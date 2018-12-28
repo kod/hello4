@@ -177,6 +177,7 @@ class OrderDetail extends React.Component {
 
   componentWillUnmount() {
     clearInterval(this.setIntervalId);
+    removeEventListenerBuyoo(SCREENS.OrderDetail, this.addEventListenerHandle);
     removeEventListenerBuyoo('popstate', this.addEventListenerPopstate);
   }
 

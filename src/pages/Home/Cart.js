@@ -46,7 +46,7 @@ class Index extends PureComponent {
   }
 
   componentWillUnmount() {
-    removeEventListenerBuyoo('popstate', this.addEventListenerCartShow);
+    removeEventListenerBuyoo('CartShow', this.addEventListenerCartShow);
   }
 
   addEventListenerCartShow = () => {

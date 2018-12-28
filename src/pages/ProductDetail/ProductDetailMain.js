@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { formatMessage } from 'umi/locale';
 import qs from 'qs';
 import router from 'umi/router';
+import { Modal } from 'antd-mobile';
 
 import ModalRoot from '@/containers/ModalRoot';
 import * as collectionActionCreators from '@/common/actions/collection';
@@ -25,6 +26,7 @@ import {
   DOMAIN,
   API_DEBUG,
   FB_APPID_TEST,
+  SCREENS,
 } from '@/common/constants';
 import priceFormat from '@/utils/priceFormat';
 import smoothScroll from '@/utils/smoothScroll';
@@ -123,6 +125,10 @@ class ProductDetailMain extends React.Component {
 
   componentWillUnmount() {
     removeEventListenerBuyoo('ProductDetailMain', this.addEventListenerHandle);
+    removeEventListenerBuyoo(
+      'ProductDetailMainShare',
+      this.shareEventListenerHandle,
+    );
     smoothScroll.destroy();
     gumshoe.destroy();
   }
@@ -177,22 +183,40 @@ class ProductDetailMain extends React.Component {
   shareEventListenerHandle = ({ detail: ret }) => {
     const { authUser } = this.props;
     const { type } = ret;
-    // console.log(window.location);
     const { pathname, search } = window.location;
-    console.log(DOMAIN);
     let link = `${DOMAIN}${pathname}${search}`;
-    if (authUser) {
-      link = `${link}&inviteID=${authUser.result}`;
-    }
-    console.log(link);
 
-    if (type === FACEBOOK) {
-      this.handleFBShare(link);
-    } else {
-      this.handleMessengerShare(link);
-    }
     console.log(ret);
-    // this.setState(ret);
+
+    const shareAction = () => {
+      if (authUser) {
+        link = `${link}&inviteID=${authUser.result}`;
+      }
+      console.log(link);
+
+      if (type === FACEBOOK) {
+        this.handleFBShare(link);
+      } else {
+        this.handleMessengerShare(link);
+      }
+    };
+
+    if (authUser) {
+      shareAction();
+    } else {
+      Modal.alert('', '登录后，分享后下单会有奖励哦，是否登录？', [
+        {
+          text: formatMessage({ id: 'cancel' }),
+        },
+        {
+          text: formatMessage({ id: 'confirm' }),
+          style: 'default',
+          onPress: () => {
+            router.push(`/${SCREENS.Login}`);
+          },
+        },
+      ]);
+    }
   };
 
   handleMessengerShare = link => {
