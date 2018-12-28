@@ -33,6 +33,8 @@ import {
   dispatchEventBuyoo,
   localStorageSetItem,
   localStorageClear,
+  getSKey,
+  getSValue,
 } from '@/utils';
 import { BUYOO } from '../constants';
 
@@ -147,12 +149,14 @@ export function* loginSuccessWatchHandle(action) {
 
       const b = 'p';
       const c = new Date();
-      const d = JSON.stringify(user);
-      localStorageSetItem(md5(`${BUYOO}vi${b}`), d);
+      const userStringify = JSON.stringify(user);
+      localStorageSetItem(md5(`${BUYOO}vi${b}`), userStringify);
       localStorageSetItem(
         md5(`${BUYOO}vXi${b}`),
-        md5(`a${d}aa${c.getDay()}`).toString(),
+        md5(`a${userStringify}aa${c.getDay()}`).toString(),
       );
+
+      localStorageSetItem(getSKey(), getSValue(user));
     }
     if (screen) {
       dispatchEventBuyoo(screen, {
