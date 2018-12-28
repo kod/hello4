@@ -28,7 +28,7 @@ export function* orderPayFetchWatchHandle(action) {
       pop = 1, // 返回层级
     } = action.payload;
     const authUser = yield select(getAuthUser);
-    const funid = authUser ? authUser.result : null;
+    const funid = authUser ? authUser.result : '';
 
     const Key = 'tradeKey';
     const appId = '3';

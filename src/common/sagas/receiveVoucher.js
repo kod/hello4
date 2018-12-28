@@ -19,7 +19,7 @@ export function* receiveVoucherFetchWatchHandle(action) {
   try {
     const { voucherid, screen = '' } = action.payload;
     const authUser = yield select(getAuthUser);
-    const funid = authUser ? authUser.result : null;
+    const funid = authUser ? authUser.result : '';
 
     const Key = 'userKey';
     const appId = '3';

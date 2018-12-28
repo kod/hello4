@@ -15,7 +15,7 @@ export function* enchashmentApplyFetchWatchHandle(action) {
   const { amount = 0, screen = '' } = action.payload;
   try {
     const authUser = yield select(getAuthUser);
-    const funid = authUser ? authUser.result : null;
+    const funid = authUser ? authUser.result : '';
 
     const Key = 'userKey';
     const appId = '3';

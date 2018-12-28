@@ -13,7 +13,7 @@ import { getAuthUser } from '@/common/selectors';
 export function* findProductsFetchWatchHandle(action) {
   try {
     const authUser = yield select(getAuthUser);
-    const funid = authUser ? authUser.result : null;
+    const funid = authUser ? authUser.result : '';
     const { findcontent, pagesize = 50, currentpage = 1 } = action.payload;
 
     const Key = 'commodityKey';

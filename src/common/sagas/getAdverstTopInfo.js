@@ -13,7 +13,7 @@ import { getAuthUser } from '@/common/selectors';
 export function* getAdverstTopInfoFetchWatchHandle() {
   try {
     const authUser = yield select(getAuthUser);
-    const funid = authUser ? authUser.result : null;
+    const funid = authUser ? authUser.result : '';
     const Key = 'commodityKey';
     const appId = '3';
     const method = 'fun.adverst.top';

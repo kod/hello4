@@ -16,8 +16,8 @@ import { getAuthUser } from '@/common/selectors';
 
 export function* addEvaluationFetchWatchHandle(action) {
   const authUser = yield select(getAuthUser);
-  const funid = authUser ? authUser.result : null;
-  const msisdn = authUser ? authUser.msisdn : null;
+  const funid = authUser ? authUser.result : '';
+  const msisdn = authUser ? authUser.msisdn : '';
 
   try {
     const { trade_no, order_no, comments, screen } = action.payload;

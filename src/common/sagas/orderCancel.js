@@ -16,7 +16,7 @@ export function* orderCancelFetchWatchHandle(action) {
   try {
     const { tradeno, orderno, status, screen } = action.payload;
     const authUser = yield select(getAuthUser);
-    const funid = authUser ? authUser.result : null;
+    const funid = authUser ? authUser.result : '';
 
     const Key = 'tradeKey';
     const appId = '3';

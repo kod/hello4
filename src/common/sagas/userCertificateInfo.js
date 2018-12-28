@@ -21,7 +21,7 @@ import {
 export function* userCertificateInfoFetchWatchHandle() {
   try {
     const authUser = yield select(getAuthUser);
-    const funid = authUser ? authUser.result : null;
+    const funid = authUser ? authUser.result : '';
 
     const Key = 'userKey';
     const appId = '3';
@@ -93,7 +93,7 @@ export function* userCertificateInfoFetchWatchHandle() {
 export function* userAddDetailInfoFetchWatchHandle(/* action */) {
   try {
     const authUser = yield select(getAuthUser);
-    const funid = authUser ? authUser.result : null;
+    const funid = authUser ? authUser.result : '';
 
     const certifiedInformationCertUser = yield select(
       getCertifiedInformationCertUser,

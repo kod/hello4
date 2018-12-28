@@ -13,7 +13,7 @@ import { getAuthUser } from '@/common/selectors';
 export function* initAdverstCommonFetchWatchHandle(action) {
   const { pagesize, currentpage } = action.payload;
   const authUser = yield select(getAuthUser);
-  const funid = authUser ? authUser.result : null;
+  const funid = authUser ? authUser.result : '';
 
   try {
     const Key = 'commodityKey';

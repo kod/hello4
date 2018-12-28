@@ -14,7 +14,7 @@ import { getAuthUser } from '@/common/selectors';
 export function* getMenuFetchWatchHandle(action) {
   try {
     const authUser = yield select(getAuthUser);
-    const funid = authUser ? authUser.result : null;
+    const funid = authUser ? authUser.result : '';
     const { typeid = 0, subclassfyid = 0, thirdclassfyid = 0 } = action.payload;
 
     const Key = 'commodityKey';

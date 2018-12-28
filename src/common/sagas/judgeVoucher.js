@@ -15,7 +15,7 @@ import { getAuthUser } from '@/common/selectors';
 export function* judgeVoucherFetchWatchHandle(action) {
   try {
     const authUser = yield select(getAuthUser);
-    const funid = authUser ? authUser.result : null;
+    const funid = authUser ? authUser.result : '';
     const { products = '', currentpage = 1, pagesize = 100 } = action.payload;
 
     const Key = 'userKey';

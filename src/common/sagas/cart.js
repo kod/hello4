@@ -38,7 +38,7 @@ import { getAuthUser } from '@/common/selectors';
 function* cartFetchWatchHandle(/* action */) {
   try {
     const authUser = yield select(getAuthUser);
-    const funid = authUser ? authUser.result : null;
+    const funid = authUser ? authUser.result : '';
     const Key = 'commodityKey';
     const appId = '3';
     const method = 'fun.cart.query';
@@ -115,7 +115,7 @@ function* cartNumberRequestWatchHandle(action) {
   } = action.payload;
   try {
     const authUser = yield select(getAuthUser);
-    const funid = authUser ? authUser.result : null;
+    const funid = authUser ? authUser.result : '';
 
     const Key = 'commodityKey';
     const appId = '3';
@@ -185,7 +185,7 @@ export function* cartNumberRequestWatch() {
 function* cartDeleteRequestWatchHandle(action) {
   try {
     const authUser = yield select(getAuthUser);
-    const funid = authUser ? authUser.result : null;
+    const funid = authUser ? authUser.result : '';
     const { cartitemids, orderno = '' } = action.payload;
 
     const Key = 'commodityKey';
@@ -301,7 +301,7 @@ export function* cartSelectAllRequestWatch() {
 function* cartAddRequestWatchHandle(action) {
   try {
     const authUser = yield select(getAuthUser);
-    const funid = authUser ? authUser.result : null;
+    const funid = authUser ? authUser.result : '';
     const { cartitems } = action.payload;
 
     const Key = 'commodityKey';

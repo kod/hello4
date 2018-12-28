@@ -23,8 +23,8 @@ import { getAuthUser } from '@/common/selectors';
 export function* collectionFetchWatchHandle() {
   try {
     const authUser = yield select(getAuthUser);
-    const funid = authUser ? authUser.result : null;
-    const msisdn = authUser ? authUser.msisdn : null;
+    const funid = authUser ? authUser.result : '';
+    const msisdn = authUser ? authUser.msisdn : '';
 
     const pagesize = 100;
     const currentpage = 1;
@@ -100,7 +100,7 @@ export function* collectionFetchWatchHandle() {
 export function* collectionAddFetchWatchHandle(action) {
   try {
     const authUser = yield select(getAuthUser);
-    const funid = authUser ? authUser.result : null;
+    const funid = authUser ? authUser.result : '';
     const brandids = action.payload.brandIds;
 
     const Key = 'userKey';
@@ -164,8 +164,8 @@ export function* collectionRemoveFetchWatchHandle(action) {
   const { brand_id: brandId } = action.payload;
   try {
     const authUser = yield select(getAuthUser);
-    const funid = authUser ? authUser.result : null;
-    const msisdn = authUser ? authUser.msisdn : null;
+    const funid = authUser ? authUser.result : '';
+    const msisdn = authUser ? authUser.msisdn : '';
 
     const Key = 'userKey';
     const appId = '3';

@@ -15,7 +15,7 @@ import { getAuthUser } from '@/common/selectors';
 export function* userAddAddrFetchWatchHandle(action) {
   try {
     const authUser = yield select(getAuthUser);
-    const funid = authUser ? authUser.result : null;
+    const funid = authUser ? authUser.result : '';
 
     const {
       msisdn,

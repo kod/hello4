@@ -15,7 +15,7 @@ export function* queryOrderListFetchWatchHandle(action) {
   try {
     const { page = 1, index = 0, status, rows = 100 } = action.payload;
     const authUser = yield select(getAuthUser);
-    const funid = authUser ? authUser.result : null;
+    const funid = authUser ? authUser.result : '';
 
     const Key = 'tradeKey';
     const appId = '3';

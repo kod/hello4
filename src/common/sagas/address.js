@@ -25,8 +25,8 @@ import { getAuthUser } from '@/common/selectors';
 function* addressFetchWatchHandle(/* action */) {
   try {
     const authUser = yield select(getAuthUser);
-    const funid = authUser ? authUser.result : null;
-    const msisdn = authUser ? authUser.msisdn : null;
+    const funid = authUser ? authUser.result : '';
+    const msisdn = authUser ? authUser.msisdn : '';
 
     const Key = 'userKey';
     const appId = '3';
@@ -86,7 +86,7 @@ function* addressFetchWatchHandle(/* action */) {
 function* addressAddFetchWatchHandle(action) {
   try {
     const authUser = yield select(getAuthUser);
-    const funid = authUser ? authUser.result : null;
+    const funid = authUser ? authUser.result : '';
 
     const {
       msisdn,
@@ -208,7 +208,7 @@ function* addressAddSuccessWatchHandle(action) {
 function* addressRemoveWatchHandle(action) {
   try {
     const authUser = yield select(getAuthUser);
-    const funid = authUser ? authUser.result : null;
+    const funid = authUser ? authUser.result : '';
 
     const { adds } = action.payload;
 

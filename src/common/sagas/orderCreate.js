@@ -31,7 +31,7 @@ export function* orderCreateFetchWatchHandle(action) {
       invitefunid = '',
     } = action.payload;
     const authUser = yield select(getAuthUser);
-    const funid = authUser ? authUser.result : null;
+    const funid = authUser ? authUser.result : '';
 
     const Key = 'tradeKey';
     const appId = '3';

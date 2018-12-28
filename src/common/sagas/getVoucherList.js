@@ -18,7 +18,7 @@ import { getAuthUser } from '@/common/selectors';
 export function* getVoucherListFetchWatchHandle(action) {
   try {
     const authUser = yield select(getAuthUser);
-    const funid = authUser ? authUser.result : null;
+    const funid = authUser ? authUser.result : '';
     const {
       vouchertype = '',
       typeid = '',
