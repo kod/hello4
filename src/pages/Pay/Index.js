@@ -20,7 +20,6 @@ import {
   WINDOW_HEIGHT,
   CREDIT_PAYWAY,
   DEBUG,
-  BUYOO,
 } from '@/common/constants';
 import {
   payWayArray,
@@ -28,14 +27,13 @@ import {
   removeEventListenerBuyoo,
   submitDuplicateFreeze,
   payWayToText,
-  localStorageGetItem,
 } from '@/utils';
 import priceFormat from '@/utils/priceFormat';
 import NavBar2 from '@/components/NavBar2';
 import SeparateBar from '@/components/SeparateBar';
 import BYButton from '@/components/BYButton';
 import MustLogin from '@/components/MustLogin';
-import { o } from '@/utils/AuthEncrypt';
+import { getLoginUser } from '@/common/selectors';
 
 class Pay extends React.Component {
   constructor(props) {
@@ -272,7 +270,7 @@ export default connect(
     } = props;
 
     return {
-      authUser: o(localStorageGetItem, BUYOO),
+      authUser: getLoginUser(state, props),
       orderNo,
       tradeNo,
       queryOrderItem: queryOrder.item,

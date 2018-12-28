@@ -12,13 +12,11 @@ import {
   SIDEINTERVAL,
   IS_I18N,
   WINDOW_HEIGHT,
-  BUYOO,
 } from '@/common/constants';
 import NavBar1 from '@/components/NavBar1';
 import { RED_COLOR } from '@/styles/variables';
 import * as loginActionCreators from '@/common/actions/login';
-import { o } from '@/utils/AuthEncrypt';
-import { localStorageGetItem } from '@/utils';
+import { getLoginUser } from '@/common/selectors';
 
 // const personPng = 'https://oss.buyoo.vn/usercollect/1/20181120125641_E6E.png';
 
@@ -154,9 +152,9 @@ class Settings extends React.Component {
 }
 
 export default connect(
-  () => {
+  (state, props) => {
     return {
-      authUser: o(localStorageGetItem, BUYOO),
+      authUser: getLoginUser(state, props),
     };
   },
   {

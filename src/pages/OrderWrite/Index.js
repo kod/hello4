@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { formatMessage } from 'umi/locale';
 import { Modal, ActionSheet } from 'antd-mobile';
 import BYHeader from '@/components/BYHeader';
-import { getAddressSelectedItem } from '@/common/selectors';
+import { getAddressSelectedItem, getLoginUser } from '@/common/selectors';
 import router from 'umi/router';
 import qs from 'qs';
 
@@ -35,13 +35,11 @@ import {
   WINDOW_HEIGHT,
   ONLINE_PAYWAY,
   ONDELIVERY_PAYWAY,
-  BUYOO,
   LOCALSTORAGE_INVITE,
 } from '@/common/constants';
 import priceFormat from '@/utils/priceFormat';
 import { BORDER_COLOR, RED_COLOR, PRIMARY_COLOR } from '@/styles/variables';
 import MustLogin from '@/components/MustLogin';
-import { o } from '@/utils/AuthEncrypt';
 
 class OrderWrite extends React.Component {
   constructor(props) {
@@ -549,7 +547,7 @@ export default connect(
       addressSelectedItem: getAddressSelectedItem(state, props),
       addressItems: address.items,
       addressSelectedId: address.addressSelectedId,
-      authUser: o(localStorageGetItem, BUYOO),
+      authUser: getLoginUser(state, props),
       getUserInfoById,
       getUserInfoByIdLoaded: getUserInfoById.loaded,
       userType: getUserInfoById.item.userType || null,

@@ -1,4 +1,4 @@
-import { takeEvery, apply, put } from 'redux-saga/effects';
+import { takeEvery, apply, put, select } from 'redux-saga/effects';
 import dayjs from 'dayjs';
 import {
   initAdverstCommonFetchSuccess,
@@ -7,14 +7,13 @@ import {
 import { addError } from '@/common/actions/error';
 import buyoo from '@/services/api';
 import { INIT_ADVERST_COMMON } from '@/common/constants/actionTypes';
-import { encryptMD5, signTypeMD5, o } from '@/utils/AuthEncrypt';
-import { localStorageGetItem } from '@/utils';
-import { BUYOO } from '../constants';
+import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
+import { getAuthUser } from '../selectors';
 
 export function* initAdverstCommonFetchWatchHandle(action) {
   const { pagesize, currentpage } = action.payload;
-  const authUser = o(localStorageGetItem, BUYOO);
-  const funid = authUser ? o(localStorageGetItem, BUYOO).result : '';
+  const authUser = yield select(getAuthUser);
+  const funid = authUser ? authUser.result : null;
 
   try {
     const Key = 'commodityKey';

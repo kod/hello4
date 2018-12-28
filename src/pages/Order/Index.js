@@ -11,13 +11,12 @@ import router from 'umi/router';
 import * as getVoucherActionCreators from '@/common/actions/getVoucher';
 import * as receiveVoucherActionCreators from '@/common/actions/receiveVoucher';
 import * as getVoucherListActionCreators from '@/common/actions/getVoucherList';
-import { SCREENS, WINDOW_HEIGHT, BUYOO } from '@/common/constants';
+import { SCREENS, WINDOW_HEIGHT } from '@/common/constants';
 import { Modal } from 'antd-mobile';
 
 import MustLogin from '@/components/MustLogin';
 import OrderTabNavigator from './OrderTabNavigator';
-import { o } from '@/utils/AuthEncrypt';
-import { localStorageGetItem } from '@/utils';
+import { getLoginUser } from '@/common/selectors';
 
 class CouponMy extends React.Component {
   componentDidMount() {
@@ -95,7 +94,7 @@ export default connect(
 
     return {
       initialPage: index,
-      authUser: o(localStorageGetItem, BUYOO),
+      authUser: getLoginUser(state, props),
       queryOrderListItem: queryOrderList.item,
       scrollTabIndex: queryOrderList.scrollTabIndex,
     };

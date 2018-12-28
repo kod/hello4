@@ -23,10 +23,7 @@ export default (state = initState, action) => {
         ...state,
         loading: false,
         loaded: true,
-        user: {
-          ...action.payload.user,
-          // result: 'VNNMQ2XRG1AG',
-        },
+        user: action.payload.user,
       };
     case LOGIN.FAILURE:
       return {

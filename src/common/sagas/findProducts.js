@@ -1,4 +1,4 @@
-import { takeEvery, apply, put } from 'redux-saga/effects';
+import { takeEvery, apply, put, select } from 'redux-saga/effects';
 import dayjs from 'dayjs';
 import {
   findProductsFetchSuccess,
@@ -7,14 +7,13 @@ import {
 import { addError } from '@/common/actions/error';
 import buyoo from '@/services/api';
 import { FIND_PRODUCTS } from '@/common/constants/actionTypes';
-import { encryptMD5, signTypeMD5, o } from '@/utils/AuthEncrypt';
-import { localStorageGetItem } from '@/utils';
-import { BUYOO } from '../constants';
+import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
+import { getAuthUser } from '../selectors';
 
 export function* findProductsFetchWatchHandle(action) {
   try {
-    const authUser = o(localStorageGetItem, BUYOO);
-    const funid = authUser ? o(localStorageGetItem, BUYOO).result : '';
+    const authUser = yield select(getAuthUser);
+    const funid = authUser ? authUser.result : null;
     const { findcontent, pagesize = 50, currentpage = 1 } = action.payload;
 
     const Key = 'commodityKey';

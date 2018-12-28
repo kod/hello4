@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { createForm } from 'rc-form';
 import { formatMessage } from 'umi/locale';
 import router from 'umi/router';
-import { SCREENS, SIDEINTERVAL, MONETARY, BUYOO } from '@/common/constants';
+import { SCREENS, SIDEINTERVAL, MONETARY } from '@/common/constants';
 import InputRight from '@/components/InputRight';
 import NavBar2 from '@/components/NavBar2';
 
@@ -16,13 +16,9 @@ import * as userCertificateInfoActionCreators from '@/common/actions/userCertifi
 import * as enchashmentGetListActionCreators from '@/common/actions/enchashmentGetList';
 import { FONT_SIZE_FIRST, FONT_SIZE_THIRD } from '@/styles/variables';
 import MustLogin from '@/components/MustLogin';
-import { o } from '@/utils/AuthEncrypt';
-import {
-  localStorageGetItem,
-  addEventListenerBuyoo,
-  removeEventListenerBuyoo,
-} from '@/utils';
+import { addEventListenerBuyoo, removeEventListenerBuyoo } from '@/utils';
 import Loader from '@/components/Loader';
+import { getLoginUser } from '@/common/selectors';
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -321,7 +317,7 @@ class LoginForm extends React.Component {
 }
 
 export default connect(
-  state => {
+  (state, props) => {
     const {
       enchashmentConfig,
       enchashmentGetList,
@@ -339,7 +335,7 @@ export default connect(
       feeRate: enchashmentConfig.feeRate
         ? parseFloat(enchashmentConfig.feeRate)
         : 0,
-      authUser: o(localStorageGetItem, BUYOO),
+      authUser: getLoginUser(state, props),
       enchashmentGetList: enchashmentGetList.item,
       balance: enchashmentGetList.item ? enchashmentGetList.item.balance : 0,
     };

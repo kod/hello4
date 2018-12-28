@@ -1,6 +1,7 @@
 import qs from 'qs';
 import { Modal } from 'antd-mobile';
 import router from 'umi/router';
+import md5 from 'blueimp-md5';
 
 import { formatMessage } from 'umi/locale';
 import {
@@ -639,6 +640,16 @@ export const loadGoogleLoginApi = (callback = () => {}) => {
     })(document, 'script', 'google-jssdk');
     /* eslint-enable */
   }
+};
+
+export const getSKey = () => {
+  const dateNow = `${Date.now()}`.slice(0, 5);
+  return md5(`a${dateNow}b${dateNow}c`) + md5(`d${dateNow}e${dateNow}f`);
+};
+
+export const getSValue = user => {
+  const dateNow = `${Date.now()}`.slice(0, 5);
+  return `${md5(`3${JSON.stringify(user)}5${dateNow}7`)}`;
 };
 
 export const localStorageSetItem = (k, v) => localStorage.setItem(k, v);

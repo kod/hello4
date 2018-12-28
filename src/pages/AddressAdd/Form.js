@@ -14,7 +14,6 @@ import {
   PHONE_EXPR,
   MODAL_TYPES,
   SCREENS,
-  BUYOO,
 } from '@/common/constants';
 import { PRIMARY_COLOR } from '@/styles/variables';
 
@@ -27,12 +26,11 @@ import {
   submitDuplicateFreeze,
   addEventListenerBuyoo,
   removeEventListenerBuyoo,
-  localStorageGetItem,
 } from '@/utils';
 import InputRight from '@/components/InputRight';
 import BYButton from '@/components/BYButton';
 import MustLogin from '@/components/MustLogin';
-import { o } from '@/utils/AuthEncrypt';
+import { getLoginUser } from '@/common/selectors';
 
 const styles = {
   container: {
@@ -277,7 +275,7 @@ class AddressAdd extends React.Component {
 }
 
 export default connect(
-  state => {
+  (state, props) => {
     const { cityInfos, addressModify, userAddAddr } = state;
 
     return {
@@ -287,7 +285,7 @@ export default connect(
       division2ndItems: cityInfos.division2nd,
       division3rdItems: cityInfos.division3rd,
       division4thItems: cityInfos.division4th,
-      authUser: o(localStorageGetItem, BUYOO),
+      authUser: getLoginUser(state, props),
     };
   },
   {

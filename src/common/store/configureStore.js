@@ -1,5 +1,7 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
+import { offline } from '@redux-offline/redux-offline';
+import offlineConfig from '@redux-offline/redux-offline/lib/defaults';
 import rootReducer from '@/common/reducers';
 import rootSaga from '@/common/sagas';
 
@@ -15,7 +17,10 @@ export default function configureStore() {
       : compose;
   /* eslint-enable no-underscore-dangle */
 
-  const enhancer = composeEnhancers(applyMiddleware(sagaMiddleware));
+  const enhancer = composeEnhancers(
+    applyMiddleware(sagaMiddleware),
+    offline(offlineConfig),
+  );
 
   const store = createStore(rootReducer, undefined, enhancer);
   sagaMiddleware.run(rootSaga);

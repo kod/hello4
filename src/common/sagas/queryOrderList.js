@@ -1,4 +1,4 @@
-import { takeEvery, apply, put } from 'redux-saga/effects';
+import { takeEvery, apply, put, select } from 'redux-saga/effects';
 import dayjs from 'dayjs';
 import {
   queryOrderListFetchSuccess,
@@ -7,17 +7,15 @@ import {
 import { addError } from '@/common/actions/error';
 import buyoo from '@/services/api';
 import { QUERY_ORDER_LIST } from '@/common/constants/actionTypes';
-import { encryptMD5, signTypeMD5, o } from '@/utils/AuthEncrypt';
+import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
 
-import { localStorageGetItem } from '@/utils';
-import { BUYOO } from '../constants';
+import { getAuthUser } from '../selectors';
 
 export function* queryOrderListFetchWatchHandle(action) {
   try {
     const { page = 1, index = 0, status, rows = 100 } = action.payload;
-    const authUser = o(localStorageGetItem, BUYOO);
-
-    const funid = authUser ? o(localStorageGetItem, BUYOO).result : '';
+    const authUser = yield select(getAuthUser);
+    const funid = authUser ? authUser.result : null;
 
     const Key = 'tradeKey';
     const appId = '3';

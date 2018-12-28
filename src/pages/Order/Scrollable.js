@@ -11,22 +11,17 @@ import {
   WINDOW_WIDTH,
   MONETARY,
   SCREENS,
-  BUYOO,
 } from '@/common/constants';
 import { formatMessage } from 'umi/locale';
 
 import * as queryOrderListActionCreators from '@/common/actions/queryOrderList';
 import { BORDER_COLOR, PRIMARY_COLOR } from '@/styles/variables';
 import ProductItem2 from '@/components/ProductItem2';
-import {
-  tradeStatusCodes,
-  operateForTradeStatusCodes,
-  localStorageGetItem,
-} from '@/utils';
+import { tradeStatusCodes, operateForTradeStatusCodes } from '@/utils';
 import priceFormat from '@/utils/priceFormat';
 import SeparateBar from '@/components/SeparateBar';
 import EmptyState from '@/components/EmptyState';
-import { o } from '@/utils/AuthEncrypt';
+import { getLoginUser } from '@/common/selectors';
 
 const ouhrigdfnjsoeijehrJpg =
   'https://oss.buyoo.vn/usercollect/1/20181101180309_67w.jpg';
@@ -239,11 +234,11 @@ class Scrollable extends React.Component {
 }
 
 export default connect(
-  state => {
+  (state, props) => {
     const { queryOrderList } = state;
 
     return {
-      authUser: o(localStorageGetItem, BUYOO),
+      authUser: getLoginUser(state, props),
       queryOrderListItem: queryOrderList.item,
     };
   },

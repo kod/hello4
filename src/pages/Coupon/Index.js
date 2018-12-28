@@ -11,12 +11,11 @@ import Loader from '@/components/Loader';
 import * as getVoucherActionCreators from '@/common/actions/getVoucher';
 import * as receiveVoucherActionCreators from '@/common/actions/receiveVoucher';
 import * as modalActionCreators from '@/common/actions/modal';
-import { SCREENS, WINDOW_HEIGHT, BUYOO } from '@/common/constants';
+import { SCREENS, WINDOW_HEIGHT } from '@/common/constants';
 import EmptyState from '@/components/EmptyState';
 
 import CouponItem from '@/components/CouponItem';
-import { o } from '@/utils/AuthEncrypt';
-import { localStorageGetItem } from '@/utils';
+import { getLoginUser } from '@/common/selectors';
 
 const ouhrigdfnjsoeijehrJpg =
   'https://oss.buyoo.vn/usercollect/1/20181101180309_67w.jpg';
@@ -96,14 +95,14 @@ class Coupon extends React.Component {
 }
 
 export default connect(
-  state => {
+  (state, props) => {
     const { getVoucher, receiveVoucher } = state;
 
     return {
       receiveVoucherLoading: receiveVoucher.loading,
       loading: getVoucher.loading,
       items: getVoucher.items,
-      authUser: o(localStorageGetItem, BUYOO),
+      authUser: getLoginUser(state, props),
     };
   },
   {

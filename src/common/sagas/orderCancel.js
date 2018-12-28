@@ -1,4 +1,4 @@
-import { takeEvery, apply, put } from 'redux-saga/effects';
+import { takeEvery, apply, put, select } from 'redux-saga/effects';
 import dayjs from 'dayjs';
 import {
   orderCancelFetchSuccess,
@@ -7,15 +7,16 @@ import {
 import { addError } from '@/common/actions/error';
 import buyoo from '@/services/api';
 import { ORDER_CANCEL } from '@/common/constants/actionTypes';
-import { encryptMD5, signTypeMD5, o } from '@/utils/AuthEncrypt';
+import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
 
-import { localStorageGetItem, dispatchEventBuyoo } from '@/utils';
-import { BUYOO } from '../constants';
+import { dispatchEventBuyoo } from '@/utils';
+import { getAuthUser } from '../selectors';
 
 export function* orderCancelFetchWatchHandle(action) {
   try {
     const { tradeno, orderno, status, screen } = action.payload;
-    const funid = o(localStorageGetItem, BUYOO).result;
+    const authUser = yield select(getAuthUser);
+    const funid = authUser ? authUser.result : null;
 
     const Key = 'tradeKey';
     const appId = '3';

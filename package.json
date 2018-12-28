@@ -16,6 +16,7 @@
   "author": "taichiyi <taichiyi@foxmail.com>",
   "license": "ISC",
   "dependencies": {
+    "@redux-offline/redux-offline": "^2.5.1",
     "antd-mobile": "^2.2.5",
     "axios": "^0.18.0",
     "blueimp-md5": "^2.10.0",

@@ -18,14 +18,12 @@ import {
   WINDOW_WIDTH,
   SCREENS,
   WINDOW_HEIGHT,
-  BUYOO,
 } from '@/common/constants';
 import { Modal } from 'antd-mobile';
 import EmptyState from '@/components/EmptyState';
 
 import MustLogin from '@/components/MustLogin';
-import { o } from '@/utils/AuthEncrypt';
-import { localStorageGetItem } from '@/utils';
+import { getLoginUser } from '@/common/selectors';
 
 const afiasifsdhfsPng =
   'https://oss.buyoo.vn/usercollect/1/20181109084840_7R8.png';
@@ -302,11 +300,11 @@ class Address extends React.Component {
 }
 
 export default connect(
-  state => {
+  (state, props) => {
     const { address } = state;
 
     return {
-      authUser: o(localStorageGetItem, BUYOO),
+      authUser: getLoginUser(state, props),
       items: address.items,
       loading: address.loading,
       loaded: address.loaded,

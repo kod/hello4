@@ -15,14 +15,11 @@ import * as enchashmentConfigActionCreators from '@/common/actions/enchashmentCo
 import {
   SCREENS,
   WINDOW_HEIGHT,
-  BUYOO,
   WINDOW_WIDTH,
   SIDEINTERVAL,
   MONETARY,
 } from '@/common/constants';
 
-import { o } from '@/utils/AuthEncrypt';
-import { localStorageGetItem } from '@/utils';
 import {
   FONT_COLOR_FIFTH,
   BACKGROUND_COLOR_THIRD,
@@ -31,6 +28,7 @@ import {
 import CustomIcon from '@/components/CustomIcon';
 import MustLogin from '@/components/MustLogin';
 import priceFormat from '@/utils/priceFormat';
+import { getLoginUser } from '@/common/selectors';
 
 class Withdraw extends React.Component {
   constructor(props) {
@@ -468,13 +466,13 @@ class Withdraw extends React.Component {
 }
 
 export default connect(
-  state => {
+  (state, props) => {
     const { enchashmentGetList, enchashmentConfig, getInviteRecord } = state;
 
     return {
       enchashmentLoading: enchashmentGetList.loading,
       getInviteRecordLoading: getInviteRecord.loading,
-      authUser: o(localStorageGetItem, BUYOO),
+      authUser: getLoginUser(state, props),
       enchashmentGetList: enchashmentGetList.item,
       getInviteRecord: getInviteRecord.item,
       balance: enchashmentGetList ? enchashmentGetList.balance : 0,

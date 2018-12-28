@@ -9,13 +9,12 @@ import BYHeader from '@/components/BYHeader';
 import Loader from '@/components/Loader';
 
 import * as collectionActionCreators from '@/common/actions/collection';
-import { SCREENS, WINDOW_HEIGHT, BUYOO } from '@/common/constants';
+import { SCREENS, WINDOW_HEIGHT } from '@/common/constants';
 import EmptyState from '@/components/EmptyState';
 
 import ProductItem2 from '@/components/ProductItem2';
 import MustLogin from '@/components/MustLogin';
-import { o } from '@/utils/AuthEncrypt';
-import { localStorageGetItem } from '@/utils';
+import { getLoginUser } from '@/common/selectors';
 
 const ouhrigdfnjsoeijehrJpg =
   'https://oss.buyoo.vn/usercollect/1/20181101180309_67w.jpg';
@@ -75,11 +74,11 @@ class MyCollection extends React.Component {
 }
 
 export default connect(
-  state => {
+  (state, props) => {
     const { collection } = state;
 
     return {
-      authUser: o(localStorageGetItem, BUYOO),
+      authUser: getLoginUser(state, props),
       loading: collection.loading,
       items: collection.items.details ? collection.items.details : [],
     };

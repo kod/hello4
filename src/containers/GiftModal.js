@@ -6,12 +6,7 @@ import router from 'umi/router';
 
 import * as receiveVoucherActionCreators from '@/common/actions/receiveVoucher';
 import * as modalActionCreators from '@/common/actions/modal';
-import {
-  WINDOW_WIDTH,
-  SIDEINTERVAL,
-  WINDOW_HEIGHT,
-  BUYOO,
-} from '@/common/constants';
+import { WINDOW_WIDTH, SIDEINTERVAL, WINDOW_HEIGHT } from '@/common/constants';
 import {
   FONT_COLOR_PRIMARY,
   FONT_SIZE_THIRD,
@@ -19,12 +14,8 @@ import {
 } from '@/styles/variables';
 import CustomIcon from '@/components/CustomIcon';
 import BYButton from '@/components/BYButton';
-import { o } from '@/utils/AuthEncrypt';
-import {
-  localStorageGetItem,
-  addEventListenerBuyoo,
-  removeEventListenerBuyoo,
-} from '@/utils';
+import { addEventListenerBuyoo, removeEventListenerBuyoo } from '@/utils';
+import { getLoginUser } from '@/common/selectors';
 
 class AddressAddModal extends Component {
   constructor(props) {
@@ -175,14 +166,14 @@ class AddressAddModal extends Component {
 }
 
 export default connect(
-  state => {
+  (state, props) => {
     const {
       modal: { modalProps = {} },
     } = state;
 
     return {
       modalProps,
-      authUser: o(localStorageGetItem, BUYOO),
+      authUser: getLoginUser(state, props),
     };
   },
   {

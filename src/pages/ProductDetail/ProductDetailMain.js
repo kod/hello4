@@ -20,7 +20,6 @@ import {
   MODAL_TYPES,
   IS_IOS,
   OSS_IMAGE_QUALITY,
-  BUYOO,
   FACEBOOK,
   FB_APPID,
   DOMAIN,
@@ -45,11 +44,9 @@ import {
   addEventListenerBuyoo,
   removeEventListenerBuyoo,
   xOssProcess,
-  localStorageGetItem,
   loadFbLoginApi,
 } from '@/utils';
-import { getIsCollection } from '@/common/selectors';
-import { o } from '@/utils/AuthEncrypt';
+import { getIsCollection, getLoginUser } from '@/common/selectors';
 
 class ProductDetailMain extends React.Component {
   constructor(props) {
@@ -684,7 +681,7 @@ export default connect(
       comment: comment.items.detail ? comment.items.detail.slice(0, 1) : [],
       pathname,
       isCollection: getIsCollection(state, props),
-      authUser: o(localStorageGetItem, BUYOO),
+      authUser: getLoginUser(state, props),
     };
   },
   {
