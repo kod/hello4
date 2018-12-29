@@ -1,5 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
+import qs from 'qs';
 import { connect } from 'react-redux';
 import BYHeader from '@/components/BYHeader';
 import { formatMessage } from 'umi/locale';
@@ -8,6 +9,7 @@ import Loader from '@/components/Loader';
 import router from 'umi/router';
 
 import * as addressActionCreators from '@/common/actions/address';
+import * as addressModifyActionCreators from '@/common/actions/addressModify';
 import * as getUserInfoByIdActionCreators from '@/common/actions/getUserInfoById';
 import * as orderCreateActionCreators from '@/common/actions/orderCreate';
 import * as couponSelectActionCreators from '@/common/actions/couponSelect';
@@ -24,6 +26,7 @@ import EmptyState from '@/components/EmptyState';
 
 import MustLogin from '@/components/MustLogin';
 import { getLoginUser } from '@/common/selectors';
+import CustomIcon from '@/components/CustomIcon';
 
 const afiasifsdhfsPng =
   'https://oss.buyoo.vn/usercollect/1/20181109084840_7R8.png';
@@ -71,13 +74,15 @@ class Address extends React.Component {
   }
 
   handleOnPressItem(item) {
-    const { addressSelectFetch } = this.props;
-    addressSelectFetch(item.id);
-    router.go(-1);
+    const { addressSelectFetch, isSelect } = this.props;
+    if (isSelect) {
+      addressSelectFetch(item.id);
+      router.go(-1);
+    }
   }
 
   renderMainContent() {
-    const { items, loading, loaded, refreshing } = this.props;
+    const { items, loading, loaded, refreshing, isSelect } = this.props;
 
     const styles = {
       container: {
@@ -165,7 +170,7 @@ class Address extends React.Component {
       },
     };
 
-    // const isSelect = query.isSelect ? query.isSelect : false;
+    console.log(isSelect);
 
     return (
       <div style={styles.container}>
@@ -190,7 +195,7 @@ class Address extends React.Component {
                     <div style={styles.phone}>{val.msisdn}</div>
                   </div>
                   <div style={styles.address}>{this.editAddress(val)}</div>
-                  {/* {!isSelect && (
+                  {!isSelect && (
                     <div style={styles.operate}>
                       <div
                         style={styles.operateLeft}
@@ -255,7 +260,7 @@ class Address extends React.Component {
                         />
                       </div>
                     </div>
-                  )} */}
+                  )}
                 </div>
               </div>
             ))}
@@ -303,7 +308,11 @@ export default connect(
   (state, props) => {
     const { address } = state;
 
+    const { location } = props;
+
+    console.log(props);
     return {
+      isSelect: !!location.query.isSelect,
       authUser: getLoginUser(state, props),
       items: address.items,
       loading: address.loading,
@@ -313,6 +322,7 @@ export default connect(
   },
   {
     ...addressActionCreators,
+    ...addressModifyActionCreators,
     ...getUserInfoByIdActionCreators,
     ...orderCreateActionCreators,
     ...couponSelectActionCreators,

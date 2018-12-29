@@ -1,10 +1,10 @@
 import { takeEvery, apply, put, select } from 'redux-saga/effects';
 import dayjs from 'dayjs';
 import {
-  addressFetch,
   addressModifySuccess,
   addressModifyFailure,
-} from '@/common/actions/address';
+} from '@/common/actions/addressModify';
+import { addressFetch } from '@/common/actions/address';
 import { addError } from '@/common/actions/error';
 import buyoo from '@/services/api';
 import { ADDRESS_MODIFY } from '@/common/constants/actionTypes';
