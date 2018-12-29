@@ -6,7 +6,7 @@ import qs from 'qs';
 
 import * as queryOrderListActionCreators from '@/common/actions/queryOrderList';
 import * as cardQueryActionCreators from '@/common/actions/cardQuery';
-import * as userCertificateInfoActionCreators from '@/common/actions/userCertificateInfo';
+// import * as userCertificateInfoActionCreators from '@/common/actions/userCertificateInfo';
 import * as getUserInfoByIdActionCreators from '@/common/actions/getUserInfoById';
 
 import SeparateBar from '@/components/SeparateBar';
@@ -47,7 +47,6 @@ class Index extends PureComponent {
       // userCertificateInfoFetch();
       getUserInfoByIdFetch();
     }
-
     this.didFocusAddListener();
   }
 
@@ -211,17 +210,16 @@ class Index extends PureComponent {
 
   render() {
     const {
-      certUser,
+      // certUser,
       authUser,
       getUserInfoByIdUserType,
       location,
     } = this.props;
 
-    const headerIconImgSource =
-      authUser && certUser ? { uri: certUser.headimage } : aioru09230fPng;
+    const headerIconImgSource = aioru09230fPng;
 
     const username = authUser
-      ? certUser
+      ? authUser.msisdn
       : formatMessage({ id: 'loginRegister' });
     const phone = authUser ? authUser.msisdn : '';
 
@@ -232,6 +230,7 @@ class Index extends PureComponent {
         tips: '',
       },
     ];
+
     const renderCellItem1List2 = [
       // {
       //   name: formatMessage({ id: 'inviteFriends' }),
@@ -343,7 +342,6 @@ class Index extends PureComponent {
 
             <div style={styles.headerIconText}>{username || phone}</div>
           </div>
-          {/* {this.renderHeaderBottom()} */}
         </div>
         <NavBar1
           list={renderCellItem1List1}
@@ -364,7 +362,7 @@ class Index extends PureComponent {
 export default connect(
   (state, props) => {
     const {
-      userCertificateInfo,
+      // userCertificateInfo,
       queryOrderList,
       cardQuery,
       getUserInfoById,
@@ -376,7 +374,7 @@ export default connect(
       location,
       getUserInfoByIdUserType: getUserInfoById.item.userType,
       orderItem: queryOrderList.item,
-      certUser: userCertificateInfo.certUser,
+      // certUser: userCertificateInfo.certUser,
       authUser: getLoginUser(state, props),
       initPassword: cardQuery.item.initPassword,
       status: cardQuery.item.status,
@@ -386,6 +384,6 @@ export default connect(
     ...getUserInfoByIdActionCreators,
     ...queryOrderListActionCreators,
     ...cardQueryActionCreators,
-    ...userCertificateInfoActionCreators,
+    // ...userCertificateInfoActionCreators,
   },
 )(Index);
