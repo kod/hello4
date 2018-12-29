@@ -17,9 +17,15 @@ export default function configureStore() {
       : compose;
   /* eslint-enable no-underscore-dangle */
 
+  const reduxOfflineConfig = {
+    ...offlineConfig,
+    persistOptions: {
+      whitelist: ['login'],
+    },
+  };
   const enhancer = composeEnhancers(
     applyMiddleware(sagaMiddleware),
-    offline(offlineConfig),
+    offline(reduxOfflineConfig),
   );
 
   const store = createStore(rootReducer, undefined, enhancer);
