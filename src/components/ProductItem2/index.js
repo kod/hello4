@@ -1,6 +1,5 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
-import { connect } from 'react-redux';
 import router from 'umi/router';
 
 import { BORDER_COLOR, RED_COLOR } from '@/styles/variables';
@@ -12,7 +11,6 @@ import {
 } from '@/common/constants';
 import priceFormat from '@/utils/priceFormat';
 
-import * as cartActionCreators from '@/common/actions/cart';
 import { xOssProcess } from '@/utils';
 
 const styles = {
@@ -124,7 +122,6 @@ class ProductItem2 extends React.Component {
       stylePricePeriods,
       itemLeft,
       itemRight,
-      cartNumberRequest,
       isShowNumber = false,
       ...restProps
     } = this.props;
@@ -172,9 +169,4 @@ class ProductItem2 extends React.Component {
   }
 }
 
-export default connect(
-  () => {},
-  {
-    ...cartActionCreators,
-  },
-)(ProductItem2);
+export default ProductItem2;

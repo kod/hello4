@@ -1,8 +1,8 @@
 import React from 'react';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 import { formatMessage } from 'umi/locale';
 
-import * as collectionActionCreators from '@/common/actions/collection';
+// import * as collectionActionCreators from '@/common/actions/collection';
 import BYHeader from '@/components/BYHeader';
 import {
   BUYOOVIP,
@@ -146,9 +146,4 @@ class AboutAs extends React.Component {
   }
 }
 
-export default connect(
-  () => {},
-  {
-    ...collectionActionCreators,
-  },
-)(AboutAs);
+export default AboutAs;
