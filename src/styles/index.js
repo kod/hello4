@@ -1,9 +1,9 @@
-import { HEADER_BACKGROUND_COLOR } from './variables';
 import {
   WINDOW_HEIGHT,
   APPBAR_HEIGHT,
   STATUSBAR_HEIGHT,
-} from '@/common/constants';
+} from '@src/common/constants';
+import { HEADER_BACKGROUND_COLOR } from './variables';
 
 const globalStyles = {
   container: {

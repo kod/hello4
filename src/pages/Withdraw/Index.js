@@ -6,29 +6,29 @@ import router from 'umi/router';
 import { Modal } from 'antd-mobile';
 import dayjs from 'dayjs';
 
-import BYHeader from '@/components/BYHeader';
-import Loader from '@/components/Loader';
+import BYHeader from '@src/components/BYHeader';
+import Loader from '@src/components/Loader';
 
-import * as getInviteRecordActionCreators from '@/common/actions/getInviteRecord';
-import * as enchashmentGetListActionCreators from '@/common/actions/enchashmentGetList';
-import * as enchashmentConfigActionCreators from '@/common/actions/enchashmentConfig';
+import * as getInviteRecordActionCreators from '@src/common/actions/getInviteRecord';
+import * as enchashmentGetListActionCreators from '@src/common/actions/enchashmentGetList';
+import * as enchashmentConfigActionCreators from '@src/common/actions/enchashmentConfig';
 import {
   SCREENS,
   WINDOW_HEIGHT,
   WINDOW_WIDTH,
   SIDEINTERVAL,
   MONETARY,
-} from '@/common/constants';
+} from '@src/common/constants';
 
 import {
   FONT_COLOR_FIFTH,
   BACKGROUND_COLOR_THIRD,
   FONT_SIZE_FIRST,
-} from '@/styles/variables';
-import CustomIcon from '@/components/CustomIcon';
-import MustLogin from '@/components/MustLogin';
-import priceFormat from '@/utils/priceFormat';
-import { getLoginUser } from '@/common/selectors';
+} from '@src/styles/variables';
+import CustomIcon from '@src/components/CustomIcon';
+import MustLogin from '@src/components/MustLogin';
+import priceFormat from '@src/utils/priceFormat';
+import { getLoginUser } from '@src/common/selectors';
 
 class Withdraw extends React.Component {
   constructor(props) {

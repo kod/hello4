@@ -3,20 +3,20 @@ import dayjs from 'dayjs';
 import {
   userCertificateInfoFetchSuccess,
   userCertificateInfoFetchFailure,
-} from '@/common/actions/userCertificateInfo';
+} from '@src/common/actions/userCertificateInfo';
 import {
   userAddDetailInfoFetchSuccess,
   userAddDetailInfoFetchFailure,
-} from '@/common/actions/userAddDetailInfo';
-import { certifiedInformationFetchSuccess } from '@/common/actions/certifiedInformation';
-import { addError } from '@/common/actions/error';
-import buyoo from '@/services/api';
-import { USER_CERTIFICATE_INFO } from '@/common/constants/actionTypes';
-import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
+} from '@src/common/actions/userAddDetailInfo';
+import { certifiedInformationFetchSuccess } from '@src/common/actions/certifiedInformation';
+import { addError } from '@src/common/actions/error';
+import buyoo from '@src/services/api';
+import { USER_CERTIFICATE_INFO } from '@src/common/constants/actionTypes';
+import { encryptMD5, signTypeMD5 } from '@src/utils/AuthEncrypt';
 import {
   getAuthUser,
   getCertifiedInformationCertUser,
-} from '@/common/selectors';
+} from '@src/common/selectors';
 
 export function* userCertificateInfoFetchWatchHandle() {
   try {

@@ -2,8 +2,8 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { formatMessage } from 'umi/locale';
 
-import * as getMenuActionCreators from '@/common/actions/getMenu';
-import BYHeader from '@/components/BYHeader';
+import * as getMenuActionCreators from '@src/common/actions/getMenu';
+import BYHeader from '@src/components/BYHeader';
 import {
   WINDOW_HEIGHT,
   APPBAR_HEIGHT,
@@ -12,9 +12,9 @@ import {
   SIDEINTERVAL,
   OSS_IMAGE_QUALITY,
   IS_IOS,
-} from '@/common/constants';
-import { BORDER_COLOR, PRIMARY_COLOR } from '@/styles/variables';
-import { xOssProcess } from '@/utils';
+} from '@src/common/constants';
+import { BORDER_COLOR, PRIMARY_COLOR } from '@src/styles/variables';
+import { xOssProcess } from '@src/utils';
 
 class Index extends PureComponent {
   constructor(props) {

@@ -4,13 +4,13 @@ import { connect } from 'react-redux';
 import { formatMessage } from 'umi/locale';
 // import router from 'umi/router';
 
-import BYHeader from '@/components/BYHeader';
-import * as getAllProductInfoActionCreators from '@/common/actions/getAllProductInfo';
-import { SIDEINTERVAL, WINDOW_HEIGHT } from '@/common/constants';
-import EmptyState from '@/components/EmptyState';
+import BYHeader from '@src/components/BYHeader';
+import * as getAllProductInfoActionCreators from '@src/common/actions/getAllProductInfo';
+import { SIDEINTERVAL, WINDOW_HEIGHT } from '@src/common/constants';
+import EmptyState from '@src/components/EmptyState';
 
-import ProductItem1A from '@/components/ProductItem1A';
-import { getGetAllProductInfoItems } from '@/common/selectors';
+import ProductItem1A from '@src/components/ProductItem1A';
+import { getGetAllProductInfoItems } from '@src/common/selectors';
 
 const ouhrigdfnjsoeijehrJpg =
   'https://oss.buyoo.vn/usercollect/1/20181101180309_67w.jpg';

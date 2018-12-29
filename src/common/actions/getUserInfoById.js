@@ -1,4 +1,4 @@
-import { GET_USERINFO_BYID } from '@/common/constants/actionTypes';
+import { GET_USERINFO_BYID } from '@src/common/constants/actionTypes';
 
 export function getUserInfoByIdFetchSuccess(item) {
   return {

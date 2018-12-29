@@ -1,4 +1,4 @@
-import { ADVERST_INFO } from '@/common/constants/actionTypes';
+import { ADVERST_INFO } from '@src/common/constants/actionTypes';
 
 export function adverstInfoFetchSuccess(items) {
   return {

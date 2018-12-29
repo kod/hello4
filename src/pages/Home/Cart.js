@@ -5,22 +5,22 @@ import { Modal } from 'antd-mobile';
 import router from 'umi/router';
 import qs from 'qs';
 
-import * as cartActionCreators from '@/common/actions/cart';
-import BYHeader from '@/components/BYHeader';
+import * as cartActionCreators from '@src/common/actions/cart';
+import BYHeader from '@src/components/BYHeader';
 import {
   WINDOW_WIDTH,
   SIDEINTERVAL,
   MONETARY,
   WINDOW_HEIGHT,
   SCREENS,
-} from '@/common/constants';
-import { BORDER_COLOR, RED_COLOR, PRIMARY_COLOR } from '@/styles/variables';
-import CartItem from '@/components/CartItem';
-import CustomIcon from '@/components/CustomIcon';
-import priceFormat from '@/utils/priceFormat';
-import EmptyState from '@/components/EmptyState';
-import { getCartTotalMoney, getLoginUser } from '@/common/selectors';
-import { addEventListenerBuyoo, removeEventListenerBuyoo } from '@/utils';
+} from '@src/common/constants';
+import { BORDER_COLOR, RED_COLOR, PRIMARY_COLOR } from '@src/styles/variables';
+import CartItem from '@src/components/CartItem';
+import CustomIcon from '@src/components/CustomIcon';
+import priceFormat from '@src/utils/priceFormat';
+import EmptyState from '@src/components/EmptyState';
+import { getCartTotalMoney, getLoginUser } from '@src/common/selectors';
+import { addEventListenerBuyoo, removeEventListenerBuyoo } from '@src/utils';
 
 const ouhrigdfnjsoeijehrJpg =
   'https://oss.buyoo.vn/usercollect/1/20181101180309_67w.jpg';

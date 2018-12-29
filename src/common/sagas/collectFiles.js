@@ -3,11 +3,11 @@ import { takeEvery, apply, put } from 'redux-saga/effects';
 import {
   collectFilesFetchSuccess,
   collectFilesFetchFailure,
-} from '@/common/actions/collectFiles';
-import { addError } from '@/common/actions/error';
-import buyoo from '@/services/api';
-import { COLLECT_FILES } from '@/common/constants/actionTypes';
-// import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
+} from '@src/common/actions/collectFiles';
+import { addError } from '@src/common/actions/error';
+import buyoo from '@src/services/api';
+import { COLLECT_FILES } from '@src/common/constants/actionTypes';
+// import { encryptMD5, signTypeMD5 } from '@src/utils/AuthEncrypt';
 
 export function* collectFilesFetchWatchHandle(action) {
   try {

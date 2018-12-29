@@ -3,12 +3,12 @@ import dayjs from 'dayjs';
 import {
   getAdverstTopInfoFetchSuccess,
   getAdverstTopInfoFetchFailure,
-} from '@/common/actions/getAdverstTopInfo';
-import { addError } from '@/common/actions/error';
-import buyoo from '@/services/api';
-import { GET_ADVERST_TOP_INFO } from '@/common/constants/actionTypes';
-import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
-import { getAuthUser } from '@/common/selectors';
+} from '@src/common/actions/getAdverstTopInfo';
+import { addError } from '@src/common/actions/error';
+import buyoo from '@src/services/api';
+import { GET_ADVERST_TOP_INFO } from '@src/common/constants/actionTypes';
+import { encryptMD5, signTypeMD5 } from '@src/utils/AuthEncrypt';
+import { getAuthUser } from '@src/common/selectors';
 
 export function* getAdverstTopInfoFetchWatchHandle() {
   try {

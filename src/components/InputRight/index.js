@@ -1,6 +1,6 @@
 import React from 'react';
-import { SIDEINTERVAL } from '@/common/constants';
-import { BORDER_COLOR } from '@/styles/variables';
+import { SIDEINTERVAL } from '@src/common/constants';
+import { BORDER_COLOR } from '@src/styles/variables';
 
 const styles = {
   componentWrap: {

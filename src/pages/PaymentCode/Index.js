@@ -1,14 +1,14 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
 import { connect } from 'react-redux';
-import BYHeader from '@/components/BYHeader';
+import BYHeader from '@src/components/BYHeader';
 import { formatMessage } from 'umi/locale';
 
-import Loader from '@/components/Loader';
+import Loader from '@src/components/Loader';
 import router from 'umi/router';
 import { Modal } from 'antd-mobile';
 
-import * as orderPayActionCreators from '@/common/actions/orderPay';
+import * as orderPayActionCreators from '@src/common/actions/orderPay';
 import {
   BACKGROUND_COLOR_THIRD,
   BACKGROUND_COLOR_PRIMARY,
@@ -16,19 +16,19 @@ import {
   FONT_COLOR_FIFTH,
   FONT_SIZE_FIRST,
   FONT_COLOR_PRIMARY,
-} from '@/styles/variables';
+} from '@src/styles/variables';
 import {
   SIDEINTERVAL,
   WINDOW_WIDTH,
   SCREENS,
   MONETARY,
   PAYOO_STORE_MAP,
-} from '@/common/constants';
-// import SmallButton from '@/components/SmallButton';
-import priceFormat from '@/utils/priceFormat';
-import MustLogin from '@/components/MustLogin';
-import { addEventListenerBuyoo, removeEventListenerBuyoo } from '@/utils';
-import { getLoginUser } from '@/common/selectors';
+} from '@src/common/constants';
+// import SmallButton from '@src/components/SmallButton';
+import priceFormat from '@src/utils/priceFormat';
+import MustLogin from '@src/components/MustLogin';
+import { addEventListenerBuyoo, removeEventListenerBuyoo } from '@src/utils';
+import { getLoginUser } from '@src/common/selectors';
 
 const icStore1 = 'https://oss.buyoo.vn/usercollect/1/20181121153540_gOd.jpg';
 const icStore2 = 'https://oss.buyoo.vn/usercollect/1/20181121153705_f57.jpg';

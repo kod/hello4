@@ -4,12 +4,12 @@ import { formatMessage } from 'umi/locale';
 import router from 'umi/router';
 import qs from 'qs';
 
-import * as queryOrderListActionCreators from '@/common/actions/queryOrderList';
-import * as cardQueryActionCreators from '@/common/actions/cardQuery';
-// import * as userCertificateInfoActionCreators from '@/common/actions/userCertificateInfo';
-import * as getUserInfoByIdActionCreators from '@/common/actions/getUserInfoById';
+import * as queryOrderListActionCreators from '@src/common/actions/queryOrderList';
+import * as cardQueryActionCreators from '@src/common/actions/cardQuery';
+// import * as userCertificateInfoActionCreators from '@src/common/actions/userCertificateInfo';
+import * as getUserInfoByIdActionCreators from '@src/common/actions/getUserInfoById';
 
-import SeparateBar from '@/components/SeparateBar';
+import SeparateBar from '@src/components/SeparateBar';
 import {
   WINDOW_WIDTH,
   // SCREENS,
@@ -17,13 +17,13 @@ import {
   SCREENS,
   IS_IOS,
   OSS_IMAGE_QUALITY,
-} from '@/common/constants';
-import { PRIMARY_COLOR, RED_COLOR } from '@/styles/variables';
-import NavBar1 from '@/components/NavBar1';
-import CustomIcon from '@/components/CustomIcon';
-import BYHeader from '@/components/BYHeader';
-import { xOssProcess } from '@/utils';
-import { getLoginUser } from '@/common/selectors';
+} from '@src/common/constants';
+import { PRIMARY_COLOR, RED_COLOR } from '@src/styles/variables';
+import NavBar1 from '@src/components/NavBar1';
+import CustomIcon from '@src/components/CustomIcon';
+import BYHeader from '@src/components/BYHeader';
+import { xOssProcess } from '@src/utils';
+import { getLoginUser } from '@src/common/selectors';
 
 const aioru09230fPng =
   'https://oss.buyoo.vn/usercollect/1/20181102094215_995.png';

@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { BORDER_COLOR_FIRST } from '@/styles/variables';
-import { SIDEINTERVAL } from '@/common/constants';
-import CustomIcon from '@/components/CustomIcon';
+import { BORDER_COLOR_FIRST } from '@src/styles/variables';
+import { SIDEINTERVAL } from '@src/common/constants';
+import CustomIcon from '@src/components/CustomIcon';
 
 const styles = {
   component: {

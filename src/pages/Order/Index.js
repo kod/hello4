@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import BYHeader from '@/components/BYHeader';
+import BYHeader from '@src/components/BYHeader';
 import {
   formatMessage,
   // setLocale
@@ -8,15 +8,15 @@ import {
 
 import router from 'umi/router';
 
-import * as getVoucherActionCreators from '@/common/actions/getVoucher';
-import * as receiveVoucherActionCreators from '@/common/actions/receiveVoucher';
-import * as getVoucherListActionCreators from '@/common/actions/getVoucherList';
-import { SCREENS, WINDOW_HEIGHT } from '@/common/constants';
+import * as getVoucherActionCreators from '@src/common/actions/getVoucher';
+import * as receiveVoucherActionCreators from '@src/common/actions/receiveVoucher';
+import * as getVoucherListActionCreators from '@src/common/actions/getVoucherList';
+import { SCREENS, WINDOW_HEIGHT } from '@src/common/constants';
 import { Modal } from 'antd-mobile';
 
-import MustLogin from '@/components/MustLogin';
+import MustLogin from '@src/components/MustLogin';
+import { getLoginUser } from '@src/common/selectors';
 import OrderTabNavigator from './OrderTabNavigator';
-import { getLoginUser } from '@/common/selectors';
 
 class CouponMy extends React.Component {
   componentDidMount() {

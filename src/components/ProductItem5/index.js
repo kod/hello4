@@ -7,11 +7,11 @@ import {
   IS_IOS,
   OSS_IMAGE_QUALITY,
   // OSS_IMAGE_QUALITY,
-} from '@/common/constants';
-import { RED_COLOR } from '@/styles/variables';
-import priceFormat from '@/utils/priceFormat';
+} from '@src/common/constants';
+import { RED_COLOR } from '@src/styles/variables';
+import priceFormat from '@src/utils/priceFormat';
 import router from 'umi/router';
-import { xOssProcess } from '@/utils';
+import { xOssProcess } from '@src/utils';
 
 const itemIntervalWidth = SIDEINTERVAL;
 const itemWidth = parseInt(

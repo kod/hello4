@@ -2,11 +2,11 @@ import { takeEvery, apply, put } from 'redux-saga/effects';
 import {
   enchashmentConfigFetchSuccess,
   enchashmentConfigFetchFailure,
-} from '@/common/actions/enchashmentConfig';
-import { addError } from '@/common/actions/error';
-import buyoo from '@/services/api';
-import { ENCHASHMENT_CONFIG } from '@/common/constants/actionTypes';
-import { dispatchEventBuyoo } from '@/utils';
+} from '@src/common/actions/enchashmentConfig';
+import { addError } from '@src/common/actions/error';
+import buyoo from '@src/services/api';
+import { ENCHASHMENT_CONFIG } from '@src/common/constants/actionTypes';
+import { dispatchEventBuyoo } from '@src/utils';
 
 export function* enchashmentConfigFetchWatchHandle() {
   try {

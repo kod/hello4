@@ -1,4 +1,4 @@
-import { SEARCH_HISTORY } from '@/common/constants/actionTypes';
+import { SEARCH_HISTORY } from '@src/common/constants/actionTypes';
 
 export function searchHistoryAdd(item) {
   return {

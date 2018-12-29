@@ -3,13 +3,17 @@ import { List, Toast } from 'antd-mobile';
 import { connect } from 'react-redux';
 import { createForm } from 'rc-form';
 import { formatMessage } from 'umi/locale';
-import BYButton from '@/components/BYButton';
-import { LOGIN_PASSWORD_EXPR, SCREENS, SIDEINTERVAL } from '@/common/constants';
-import InputRight from '@/components/InputRight';
-import ReadSeconds from '@/components/ReadSeconds';
+import BYButton from '@src/components/BYButton';
+import {
+  LOGIN_PASSWORD_EXPR,
+  SCREENS,
+  SIDEINTERVAL,
+} from '@src/common/constants';
+import InputRight from '@src/components/InputRight';
+import ReadSeconds from '@src/components/ReadSeconds';
 
-import * as changePasswordActionCreators from '@/common/actions/changePassword';
-import { FONT_COLOR_THIRD } from '@/styles/variables';
+import * as changePasswordActionCreators from '@src/common/actions/changePassword';
+import { FONT_COLOR_THIRD } from '@src/styles/variables';
 
 class LoginForm extends React.Component {
   submit = () => {

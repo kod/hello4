@@ -1,4 +1,4 @@
-import { FIND_PRODUCTS } from '@/common/constants/actionTypes';
+import { FIND_PRODUCTS } from '@src/common/constants/actionTypes';
 
 export function findProductsFetchSuccess(items) {
   return {

@@ -3,7 +3,7 @@ import {
   PRODUCT_DETAIL_SELECT,
   PRODUCT_DETAIL_NUMBER,
   PRODUCT_DETAIL_OPACITY,
-} from '@/common/constants/actionTypes';
+} from '@src/common/constants/actionTypes';
 
 const initState = {
   loading: false,

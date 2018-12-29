@@ -3,11 +3,11 @@ import { formatMessage } from 'umi/locale';
 import router from 'umi/router';
 import { connect } from 'react-redux';
 
-import BYHeader from '@/components/BYHeader';
+import BYHeader from '@src/components/BYHeader';
 import { Modal } from 'antd-mobile';
-import { SCREENS, WINDOW_HEIGHT } from '@/common/constants';
-import Loader from '@/components/Loader';
-import { addEventListenerBuyoo, removeEventListenerBuyoo } from '@/utils';
+import { SCREENS, WINDOW_HEIGHT } from '@src/common/constants';
+import Loader from '@src/components/Loader';
+import { addEventListenerBuyoo, removeEventListenerBuyoo } from '@src/utils';
 import Form from './Form';
 
 class Index extends React.Component {

@@ -1,4 +1,4 @@
-import { ADD_DETAIL_INFO } from '@/common/constants/actionTypes';
+import { ADD_DETAIL_INFO } from '@src/common/constants/actionTypes';
 
 export function userAddDetailInfoFetchSuccess(screen) {
   return {

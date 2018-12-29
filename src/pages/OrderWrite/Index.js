@@ -3,31 +3,31 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { formatMessage } from 'umi/locale';
 import { Modal, ActionSheet } from 'antd-mobile';
-import BYHeader from '@/components/BYHeader';
-import { getAddressSelectedItem, getLoginUser } from '@/common/selectors';
+import BYHeader from '@src/components/BYHeader';
+import { getAddressSelectedItem, getLoginUser } from '@src/common/selectors';
 import router from 'umi/router';
 import qs from 'qs';
 
-import Loader from '@/components/Loader';
-import SeparateBar from '@/components/SeparateBar';
-import Address from '@/components/Address';
-import ProductItem2 from '@/components/ProductItem2';
-import NavBar2 from '@/components/NavBar2';
-import * as addressActionCreators from '@/common/actions/address';
-import * as getUserInfoByIdActionCreators from '@/common/actions/getUserInfoById';
-import * as orderCreateActionCreators from '@/common/actions/orderCreate';
-import * as orderPayActionCreators from '@/common/actions/orderPay';
-import * as couponSelectActionCreators from '@/common/actions/couponSelect';
-import * as modalActionCreators from '@/common/actions/modal';
-import * as productDetailInfoActionCreators from '@/common/actions/productDetailInfo';
-import * as judgeVoucherActionCreators from '@/common/actions/judgeVoucher';
+import Loader from '@src/components/Loader';
+import SeparateBar from '@src/components/SeparateBar';
+import Address from '@src/components/Address';
+import ProductItem2 from '@src/components/ProductItem2';
+import NavBar2 from '@src/components/NavBar2';
+import * as addressActionCreators from '@src/common/actions/address';
+import * as getUserInfoByIdActionCreators from '@src/common/actions/getUserInfoById';
+import * as orderCreateActionCreators from '@src/common/actions/orderCreate';
+import * as orderPayActionCreators from '@src/common/actions/orderPay';
+import * as couponSelectActionCreators from '@src/common/actions/couponSelect';
+import * as modalActionCreators from '@src/common/actions/modal';
+import * as productDetailInfoActionCreators from '@src/common/actions/productDetailInfo';
+import * as judgeVoucherActionCreators from '@src/common/actions/judgeVoucher';
 import {
   addEventListenerBuyoo,
   removeEventListenerBuyoo,
   orderWritePayWayArray,
   payWayToText,
   localStorageGetItem,
-} from '@/utils';
+} from '@src/utils';
 import {
   SCREENS,
   SIDEINTERVAL,
@@ -36,10 +36,10 @@ import {
   ONLINE_PAYWAY,
   ONDELIVERY_PAYWAY,
   LOCALSTORAGE_INVITE,
-} from '@/common/constants';
-import priceFormat from '@/utils/priceFormat';
-import { BORDER_COLOR, RED_COLOR, PRIMARY_COLOR } from '@/styles/variables';
-import MustLogin from '@/components/MustLogin';
+} from '@src/common/constants';
+import priceFormat from '@src/utils/priceFormat';
+import { BORDER_COLOR, RED_COLOR, PRIMARY_COLOR } from '@src/styles/variables';
+import MustLogin from '@src/components/MustLogin';
 
 class OrderWrite extends React.Component {
   constructor(props) {

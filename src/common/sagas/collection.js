@@ -8,17 +8,17 @@ import {
   collectionAddFetchFailure,
   collectionRemoveFetchSuccess,
   collectionRemoveFetchFailure,
-} from '@/common/actions/collection';
-import { addError } from '@/common/actions/error';
-import buyoo from '@/services/api';
+} from '@src/common/actions/collection';
+import { addError } from '@src/common/actions/error';
+import buyoo from '@src/services/api';
 import {
   COLLECTION,
   COLLECTION_ADD,
   COLLECTION_REMOVE,
-} from '@/common/constants/actionTypes';
-import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
+} from '@src/common/constants/actionTypes';
+import { encryptMD5, signTypeMD5 } from '@src/utils/AuthEncrypt';
 
-import { getAuthUser } from '@/common/selectors';
+import { getAuthUser } from '@src/common/selectors';
 
 export function* collectionFetchWatchHandle() {
   try {

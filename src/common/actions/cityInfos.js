@@ -1,4 +1,4 @@
-import { CITY_INFOS } from '@/common/constants/actionTypes';
+import { CITY_INFOS } from '@src/common/constants/actionTypes';
 
 export function cityInfosFetchSuccess(items, level) {
   return {

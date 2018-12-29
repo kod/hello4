@@ -1,7 +1,7 @@
 import {
   CERTIFIED_INFORMATION,
   CERTIFIED_INFORMATION_EDIT,
-} from '@/common/constants/actionTypes';
+} from '@src/common/constants/actionTypes';
 
 export function certifiedInformationFetchSuccess(certUser) {
   return {

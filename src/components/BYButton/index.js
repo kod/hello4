@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { PRIMARY_COLOR } from '@/styles/variables';
-import { SIDEINTERVAL } from '@/common/constants';
+import { PRIMARY_COLOR } from '@src/styles/variables';
+import { SIDEINTERVAL } from '@src/common/constants';
 
 const styles = {
   componentWrap: {

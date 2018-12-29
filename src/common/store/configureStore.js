@@ -2,8 +2,8 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { offline } from '@redux-offline/redux-offline';
 import offlineConfig from '@redux-offline/redux-offline/lib/defaults';
-import rootReducer from '@/common/reducers';
-import rootSaga from '@/common/sagas';
+import rootReducer from '@src/common/reducers';
+import rootSaga from '@src/common/sagas';
 
 export default function configureStore() {
   const sagaMiddleware = createSagaMiddleware();

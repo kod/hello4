@@ -1,9 +1,9 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
 
-import { SIDEINTERVAL, IS_IOS, OSS_IMAGE_QUALITY } from '@/common/constants';
-import CustomIcon from '@/components/CustomIcon';
-import { xOssProcess } from '@/utils';
+import { SIDEINTERVAL, IS_IOS, OSS_IMAGE_QUALITY } from '@src/common/constants';
+import CustomIcon from '@src/components/CustomIcon';
+import { xOssProcess } from '@src/utils';
 
 const styles = {
   cellItem1Wrap: {

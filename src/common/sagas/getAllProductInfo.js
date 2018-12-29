@@ -5,12 +5,12 @@ import dayjs from 'dayjs';
 import {
   getAllProductInfoFetchSuccess,
   getAllProductInfoFetchFailure,
-} from '@/common/actions/getAllProductInfo';
-import { addError } from '@/common/actions/error';
-import buyoo from '@/services/api';
-import { GET_ALL_PRODUCT_INFO } from '@/common/constants/actionTypes';
-import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
-import Schemas from '@/common/constants/schemas';
+} from '@src/common/actions/getAllProductInfo';
+import { addError } from '@src/common/actions/error';
+import buyoo from '@src/services/api';
+import { GET_ALL_PRODUCT_INFO } from '@src/common/constants/actionTypes';
+import { encryptMD5, signTypeMD5 } from '@src/utils/AuthEncrypt';
+import Schemas from '@src/common/constants/schemas';
 
 export function* getAllProductInfoFetchWatchHandle(action) {
   try {

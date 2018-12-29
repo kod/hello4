@@ -12,17 +12,17 @@ import {
   // registerFetch,
   registerFetchSuccess,
   registerFetchFailure,
-} from '@/common/actions/register';
-import { addError } from '@/common/actions/error';
-import buyoo from '@/services/api';
+} from '@src/common/actions/register';
+import { addError } from '@src/common/actions/error';
+import buyoo from '@src/services/api';
 import {
   REGISTER,
   // REGISTER,
-} from '@/common/constants/actionTypes';
-import { encryptMD5 } from '@/utils/AuthEncrypt';
+} from '@src/common/constants/actionTypes';
+import { encryptMD5 } from '@src/utils/AuthEncrypt';
 
-import { loginFetchSuccess } from '@/common/actions/login';
-import { dispatchEventBuyoo } from '@/utils';
+import { loginFetchSuccess } from '@src/common/actions/login';
+import { dispatchEventBuyoo } from '@src/utils';
 
 export function* registerFetchWatchHandle(action) {
   try {

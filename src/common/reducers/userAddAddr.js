@@ -1,4 +1,4 @@
-import { ADDRESS_ADD } from '@/common/constants/actionTypes';
+import { ADDRESS_ADD } from '@src/common/constants/actionTypes';
 
 const initState = {
   loading: false,

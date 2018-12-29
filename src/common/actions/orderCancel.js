@@ -1,4 +1,4 @@
-import { ORDER_CANCEL } from '@/common/constants/actionTypes';
+import { ORDER_CANCEL } from '@src/common/constants/actionTypes';
 
 export function orderCancelFetchSuccess(params) {
   return {

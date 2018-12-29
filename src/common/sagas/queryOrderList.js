@@ -3,13 +3,13 @@ import dayjs from 'dayjs';
 import {
   queryOrderListFetchSuccess,
   queryOrderListFetchFailure,
-} from '@/common/actions/queryOrderList';
-import { addError } from '@/common/actions/error';
-import buyoo from '@/services/api';
-import { QUERY_ORDER_LIST } from '@/common/constants/actionTypes';
-import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
+} from '@src/common/actions/queryOrderList';
+import { addError } from '@src/common/actions/error';
+import buyoo from '@src/services/api';
+import { QUERY_ORDER_LIST } from '@src/common/constants/actionTypes';
+import { encryptMD5, signTypeMD5 } from '@src/utils/AuthEncrypt';
 
-import { getAuthUser } from '@/common/selectors';
+import { getAuthUser } from '@src/common/selectors';
 
 export function* queryOrderListFetchWatchHandle(action) {
   try {

@@ -1,4 +1,4 @@
-import { GET_INVITE_RECORD } from '@/common/constants/actionTypes';
+import { GET_INVITE_RECORD } from '@src/common/constants/actionTypes';
 
 const initState = {
   loading: false,

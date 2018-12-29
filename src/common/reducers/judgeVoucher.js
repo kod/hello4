@@ -1,4 +1,4 @@
-import { JUDGE_VOUCHER } from '@/common/constants/actionTypes';
+import { JUDGE_VOUCHER } from '@src/common/constants/actionTypes';
 
 const initState = {
   loading: false,

@@ -1,4 +1,4 @@
-import { ENCHASHMENT_GETLIST } from '@/common/constants/actionTypes';
+import { ENCHASHMENT_GETLIST } from '@src/common/constants/actionTypes';
 
 const initState = {
   loading: false,

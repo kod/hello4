@@ -3,8 +3,8 @@ import { Modal } from 'antd-mobile';
 import { connect } from 'react-redux';
 import { formatMessage } from 'umi/locale';
 
-import * as receiveVoucherActionCreators from '@/common/actions/receiveVoucher';
-import * as modalActionCreators from '@/common/actions/modal';
+import * as receiveVoucherActionCreators from '@src/common/actions/receiveVoucher';
+import * as modalActionCreators from '@src/common/actions/modal';
 import {
   WINDOW_WIDTH,
   SIDEINTERVAL,
@@ -14,7 +14,7 @@ import {
   MONETARY,
   MESSENGER,
   FACEBOOK,
-} from '@/common/constants';
+} from '@src/common/constants';
 import {
   FONT_COLOR_FIRST,
   BORDER_COLOR_FIRST,
@@ -24,11 +24,11 @@ import {
   FONT_COLOR_FIFTH,
   FONT_SIZE_SECOND,
   FONT_SIZE_THIRD,
-} from '@/styles/variables';
-import CustomIcon from '@/components/CustomIcon';
-import { xOssProcess, dispatchEventBuyoo } from '@/utils';
-import priceFormat from '@/utils/priceFormat';
-import { getLoginUser } from '@/common/selectors';
+} from '@src/styles/variables';
+import CustomIcon from '@src/components/CustomIcon';
+import { xOssProcess, dispatchEventBuyoo } from '@src/utils';
+import priceFormat from '@src/utils/priceFormat';
+import { getLoginUser } from '@src/common/selectors';
 
 class AddressAddModal extends Component {
   constructor(props) {

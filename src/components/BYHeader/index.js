@@ -2,9 +2,9 @@
 import React from 'react';
 import router from 'umi/router';
 
-import { SIDEINTERVAL } from '@/common/constants';
-import CustomIcon from '@/components/CustomIcon';
-import { BORDER_COLOR, HEADER_BACKGROUND_COLOR } from '@/styles/variables';
+import { SIDEINTERVAL } from '@src/common/constants';
+import CustomIcon from '@src/components/CustomIcon';
+import { BORDER_COLOR, HEADER_BACKGROUND_COLOR } from '@src/styles/variables';
 
 const styles = {
   container: {

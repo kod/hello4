@@ -1,18 +1,18 @@
 import { formatMessage } from 'umi/locale';
 import { takeEvery, apply, put, select } from 'redux-saga/effects';
 import dayjs from 'dayjs';
-import { INTERNET_BANK_PAYWAY } from '@/common/constants';
+import { INTERNET_BANK_PAYWAY } from '@src/common/constants';
 import {
   orderPayFetchSuccess,
   orderPayFetchFailure,
-} from '@/common/actions/orderPay';
-import { addError } from '@/common/actions/error';
-import buyoo from '@/services/api';
-import { ORDER_PAY } from '@/common/constants/actionTypes';
-import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
+} from '@src/common/actions/orderPay';
+import { addError } from '@src/common/actions/error';
+import buyoo from '@src/services/api';
+import { ORDER_PAY } from '@src/common/constants/actionTypes';
+import { encryptMD5, signTypeMD5 } from '@src/utils/AuthEncrypt';
 
-import { dispatchEventBuyoo } from '@/utils';
-import { getAuthUser } from '@/common/selectors';
+import { dispatchEventBuyoo } from '@src/utils';
+import { getAuthUser } from '@src/common/selectors';
 
 export function* orderPayFetchWatchHandle(action) {
   try {

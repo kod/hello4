@@ -7,13 +7,13 @@ import {
   WINDOW_HEIGHT,
   IS_IOS,
   OSS_IMAGE_QUALITY,
-} from '@/common/constants';
+} from '@src/common/constants';
 
-import * as commentActionCreators from '@/common/actions/comment';
-import Comment from '@/components/Comment';
-import BYHeader from '@/components/BYHeader';
-import { xOssProcess } from '@/utils';
-import Loader from '@/components/Loader';
+import * as commentActionCreators from '@src/common/actions/comment';
+import Comment from '@src/components/Comment';
+import BYHeader from '@src/components/BYHeader';
+import { xOssProcess } from '@src/utils';
+import Loader from '@src/components/Loader';
 
 const emptycommentPng =
   'https://oss.buyoo.vn/usercollect/1/20181107170628_nI0.png';

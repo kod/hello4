@@ -3,15 +3,19 @@ import { connect } from 'react-redux';
 import router from 'umi/router';
 import { formatMessage } from 'umi/locale';
 
-import BYHeader from '@/components/BYHeader';
-import Loader from '@/components/Loader';
+import BYHeader from '@src/components/BYHeader';
+import Loader from '@src/components/Loader';
 
-import * as findProductsActionCreators from '@/common/actions/findProducts';
-import { SIDEINTERVAL, WINDOW_WIDTH, WINDOW_HEIGHT } from '@/common/constants';
-import EmptyState from '@/components/EmptyState';
+import * as findProductsActionCreators from '@src/common/actions/findProducts';
+import {
+  SIDEINTERVAL,
+  WINDOW_WIDTH,
+  WINDOW_HEIGHT,
+} from '@src/common/constants';
+import EmptyState from '@src/components/EmptyState';
 
-import CustomIcon from '@/components/CustomIcon';
-import ProductItem4 from '@/components/ProductItem4';
+import CustomIcon from '@src/components/CustomIcon';
+import ProductItem4 from '@src/components/ProductItem4';
 
 const styles = {
   container: {

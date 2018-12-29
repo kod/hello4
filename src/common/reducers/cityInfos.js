@@ -1,4 +1,4 @@
-import { CITY_INFOS } from '@/common/constants/actionTypes';
+import { CITY_INFOS } from '@src/common/constants/actionTypes';
 
 const initState = {
   loading: false,

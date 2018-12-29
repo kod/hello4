@@ -1,7 +1,7 @@
 import {
   QUERY_ORDER_LIST,
   QUERY_ORDER_LIST_INDEX,
-} from '@/common/constants/actionTypes';
+} from '@src/common/constants/actionTypes';
 
 const initState = {
   scrollTabIndex: 0,

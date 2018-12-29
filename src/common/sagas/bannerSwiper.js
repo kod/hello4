@@ -3,11 +3,11 @@ import { takeEvery, apply, put } from 'redux-saga/effects';
 import {
   bannerSwiperFetchSuccess,
   bannerSwiperFetchFailure,
-} from '@/common/actions/bannerSwiper';
-import { addError } from '@/common/actions/error';
-import buyoo from '@/services/api';
-import { BANNER_SWIPER } from '@/common/constants/actionTypes';
-import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
+} from '@src/common/actions/bannerSwiper';
+import { addError } from '@src/common/actions/error';
+import buyoo from '@src/services/api';
+import { BANNER_SWIPER } from '@src/common/constants/actionTypes';
+import { encryptMD5, signTypeMD5 } from '@src/utils/AuthEncrypt';
 import dayjs from 'dayjs';
 
 export function* bannerSwiperFetchWatchHandle(action) {

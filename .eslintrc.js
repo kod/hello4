@@ -34,7 +34,7 @@ module.exports = {
         "import/no-unresolved": [
             2,
             {
-                "ignore": ["^@/", "^umi/"]
+                "ignore": ["^@src/", "^umi/"]
             }
         ],
         "import/no-extraneous-dependencies": [

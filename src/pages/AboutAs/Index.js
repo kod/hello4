@@ -2,8 +2,8 @@ import React from 'react';
 // import { connect } from 'react-redux';
 import { formatMessage } from 'umi/locale';
 
-// import * as collectionActionCreators from '@/common/actions/collection';
-import BYHeader from '@/components/BYHeader';
+// import * as collectionActionCreators from '@src/common/actions/collection';
+import BYHeader from '@src/components/BYHeader';
 import {
   BUYOOVIP,
   BUYOO_VN,
@@ -13,10 +13,10 @@ import {
   SUPPORT_CENTER_URL,
   IS_IOS,
   OSS_IMAGE_QUALITY,
-} from '@/common/constants';
-import NavBar1 from '@/components/NavBar1';
-import SeparateBar from '@/components/SeparateBar';
-import { xOssProcess } from '@/utils';
+} from '@src/common/constants';
+import NavBar1 from '@src/components/NavBar1';
+import SeparateBar from '@src/components/SeparateBar';
+import { xOssProcess } from '@src/utils';
 
 const icAvatarPng = 'https://oss.buyoo.vn/usercollect/1/20181130132407_o46.png';
 

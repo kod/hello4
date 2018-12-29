@@ -9,8 +9,8 @@ import {
   SCREENS,
   IS_IOS,
   OSS_IMAGE_QUALITY,
-} from '@/common/constants';
-import { xOssProcess } from '@/utils';
+} from '@src/common/constants';
+import { xOssProcess } from '@src/utils';
 
 const styles = {
   nav1: {

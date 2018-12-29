@@ -1,4 +1,4 @@
-import { GET_MENU, GET_MENU_INDEX } from '@/common/constants/actionTypes';
+import { GET_MENU, GET_MENU_INDEX } from '@src/common/constants/actionTypes';
 
 const initState = {
   loading: false,

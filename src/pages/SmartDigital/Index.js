@@ -1,10 +1,10 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
 import { connect } from 'react-redux';
-import BYHeader from '@/components/BYHeader';
+import BYHeader from '@src/components/BYHeader';
 import { formatMessage } from 'umi/locale';
 
-import Scrollable2 from '@/components/Scrollable2';
+import Scrollable2 from '@src/components/Scrollable2';
 
 const styles = {
   container: {

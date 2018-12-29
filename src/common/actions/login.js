@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT } from '@/common/constants/actionTypes';
+import { LOGIN, LOGOUT } from '@src/common/constants/actionTypes';
 
 export function loginFetchSuccess(user, screen) {
   return {

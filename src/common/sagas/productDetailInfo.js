@@ -5,15 +5,15 @@ import dayjs from 'dayjs';
 import {
   productDetailInfoFetchSuccess,
   productDetailInfoFetchFailure,
-} from '@/common/actions/productDetailInfo';
-import { addError } from '@/common/actions/error';
-import buyoo from '@/services/api';
+} from '@src/common/actions/productDetailInfo';
+import { addError } from '@src/common/actions/error';
+import buyoo from '@src/services/api';
 import {
   PRODUCT_DETAIL_INFO,
   PRODUCT_DETAIL_SELECT,
-} from '@/common/constants/actionTypes';
-import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
-import { dispatchEventBuyoo } from '@/utils';
+} from '@src/common/constants/actionTypes';
+import { encryptMD5, signTypeMD5 } from '@src/utils/AuthEncrypt';
+import { dispatchEventBuyoo } from '@src/utils';
 
 export function* productDetailInfoFetchWatchHandle(action) {
   // 获取默认显示商品(库存不为0)

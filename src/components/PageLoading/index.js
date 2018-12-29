@@ -1,6 +1,6 @@
 import React from 'react';
 import { ActivityIndicator } from 'antd-mobile';
-import { WINDOW_HEIGHT } from '@/common/constants';
+import { WINDOW_HEIGHT } from '@src/common/constants';
 
 export default () => (
   <div

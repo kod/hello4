@@ -1,4 +1,4 @@
-import { ADD_DETAIL_INFO } from '@/common/constants/actionTypes';
+import { ADD_DETAIL_INFO } from '@src/common/constants/actionTypes';
 
 const initState = {
   loading: false,

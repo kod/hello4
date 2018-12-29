@@ -1,4 +1,4 @@
-import { ENCHASHMENT_APPLY } from '@/common/constants/actionTypes';
+import { ENCHASHMENT_APPLY } from '@src/common/constants/actionTypes';
 
 const initState = {
   loading: false,

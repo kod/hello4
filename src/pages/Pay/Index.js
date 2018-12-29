@@ -6,12 +6,12 @@ import { Modal, ActionSheet } from 'antd-mobile';
 import qs from 'qs';
 import router from 'umi/router';
 
-import BYHeader from '@/components/BYHeader';
-import Loader from '@/components/Loader';
+import BYHeader from '@src/components/BYHeader';
+import Loader from '@src/components/Loader';
 
-import * as orderPayActionCreators from '@/common/actions/orderPay';
-import * as queryOrderActionCreators from '@/common/actions/queryOrder';
-import * as modalActionCreators from '@/common/actions/modal';
+import * as orderPayActionCreators from '@src/common/actions/orderPay';
+import * as queryOrderActionCreators from '@src/common/actions/queryOrder';
+import * as modalActionCreators from '@src/common/actions/modal';
 import {
   MONETARY,
   SCREENS,
@@ -20,20 +20,20 @@ import {
   WINDOW_HEIGHT,
   CREDIT_PAYWAY,
   DEBUG,
-} from '@/common/constants';
+} from '@src/common/constants';
 import {
   payWayArray,
   addEventListenerBuyoo,
   removeEventListenerBuyoo,
   submitDuplicateFreeze,
   payWayToText,
-} from '@/utils';
-import priceFormat from '@/utils/priceFormat';
-import NavBar2 from '@/components/NavBar2';
-import SeparateBar from '@/components/SeparateBar';
-import BYButton from '@/components/BYButton';
-import MustLogin from '@/components/MustLogin';
-import { getLoginUser } from '@/common/selectors';
+} from '@src/utils';
+import priceFormat from '@src/utils/priceFormat';
+import NavBar2 from '@src/components/NavBar2';
+import SeparateBar from '@src/components/SeparateBar';
+import BYButton from '@src/components/BYButton';
+import MustLogin from '@src/components/MustLogin';
+import { getLoginUser } from '@src/common/selectors';
 
 class Pay extends React.Component {
   constructor(props) {

@@ -1,4 +1,4 @@
-import { ORDER_PAY } from '@/common/constants/actionTypes';
+import { ORDER_PAY } from '@src/common/constants/actionTypes';
 
 export function orderPayFetchSuccess({
   ret,

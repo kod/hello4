@@ -3,20 +3,20 @@ import { Modal } from 'antd-mobile';
 import { connect } from 'react-redux';
 import { formatMessage } from 'umi/locale';
 
-import { BORDER_COLOR, PRIMARY_COLOR, RED_COLOR } from '@/styles/variables';
+import { BORDER_COLOR, PRIMARY_COLOR, RED_COLOR } from '@src/styles/variables';
 import {
   WINDOW_WIDTH,
   SIDEINTERVAL,
   MONETARY,
   IS_IOS,
   OSS_IMAGE_QUALITY,
-} from '@/common/constants';
+} from '@src/common/constants';
 
-import priceFormat from '@/utils/priceFormat';
-import CustomIcon from '@/components/CustomIcon';
-import * as modalActionCreators from '@/common/actions/modal';
-import * as productDetailInfoActionCreators from '@/common/actions/productDetailInfo';
-import { xOssProcess } from '@/utils';
+import priceFormat from '@src/utils/priceFormat';
+import CustomIcon from '@src/components/CustomIcon';
+import * as modalActionCreators from '@src/common/actions/modal';
+import * as productDetailInfoActionCreators from '@src/common/actions/productDetailInfo';
+import { xOssProcess } from '@src/utils';
 
 class ParamsSelectModal extends Component {
   constructor(props) {

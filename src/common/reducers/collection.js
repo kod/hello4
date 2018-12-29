@@ -1,4 +1,4 @@
-import { COLLECTION } from '@/common/constants/actionTypes';
+import { COLLECTION } from '@src/common/constants/actionTypes';
 
 const initState = {
   loading: false,

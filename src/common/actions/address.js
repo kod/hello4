@@ -2,7 +2,7 @@ import {
   ADDRESS,
   ADDRESS_REMOVE,
   ADDRESS_SELECT,
-} from '@/common/constants/actionTypes';
+} from '@src/common/constants/actionTypes';
 
 export function addressFetchSuccess(items, addressSelectedId) {
   return {

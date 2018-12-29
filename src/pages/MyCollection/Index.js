@@ -5,16 +5,16 @@ import { formatMessage } from 'umi/locale';
 import router from 'umi/router';
 import { Modal } from 'antd-mobile';
 
-import BYHeader from '@/components/BYHeader';
-import Loader from '@/components/Loader';
+import BYHeader from '@src/components/BYHeader';
+import Loader from '@src/components/Loader';
 
-import * as collectionActionCreators from '@/common/actions/collection';
-import { SCREENS, WINDOW_HEIGHT } from '@/common/constants';
-import EmptyState from '@/components/EmptyState';
+import * as collectionActionCreators from '@src/common/actions/collection';
+import { SCREENS, WINDOW_HEIGHT } from '@src/common/constants';
+import EmptyState from '@src/components/EmptyState';
 
-import ProductItem2 from '@/components/ProductItem2';
-import MustLogin from '@/components/MustLogin';
-import { getLoginUser } from '@/common/selectors';
+import ProductItem2 from '@src/components/ProductItem2';
+import MustLogin from '@src/components/MustLogin';
+import { getLoginUser } from '@src/common/selectors';
 
 const ouhrigdfnjsoeijehrJpg =
   'https://oss.buyoo.vn/usercollect/1/20181101180309_67w.jpg';

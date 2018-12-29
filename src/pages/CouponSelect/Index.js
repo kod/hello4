@@ -5,17 +5,17 @@ import { formatMessage } from 'umi/locale';
 import router from 'umi/router';
 import { Modal } from 'antd-mobile';
 
-import BYHeader from '@/components/BYHeader';
-import Loader from '@/components/Loader';
+import BYHeader from '@src/components/BYHeader';
+import Loader from '@src/components/Loader';
 
-import * as judgeVoucherActionCreators from '@/common/actions/judgeVoucher';
-import * as couponSelectActionCreators from '@/common/actions/couponSelect';
-import { SCREENS, WINDOW_HEIGHT } from '@/common/constants';
-import EmptyState from '@/components/EmptyState';
+import * as judgeVoucherActionCreators from '@src/common/actions/judgeVoucher';
+import * as couponSelectActionCreators from '@src/common/actions/couponSelect';
+import { SCREENS, WINDOW_HEIGHT } from '@src/common/constants';
+import EmptyState from '@src/components/EmptyState';
 
-import CouponItem from '@/components/CouponItem';
-import MustLogin from '@/components/MustLogin';
-import { getLoginUser } from '@/common/selectors';
+import CouponItem from '@src/components/CouponItem';
+import MustLogin from '@src/components/MustLogin';
+import { getLoginUser } from '@src/common/selectors';
 
 const ouhrigdfnjsoeijehrJpg =
   'https://oss.buyoo.vn/usercollect/1/20181101180309_67w.jpg';

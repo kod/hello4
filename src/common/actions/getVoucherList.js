@@ -1,4 +1,4 @@
-import { GET_VOUCHER_LIST } from '@/common/constants/actionTypes';
+import { GET_VOUCHER_LIST } from '@src/common/constants/actionTypes';
 
 export function getVoucherListFetchSuccess({ items, status }) {
   return {

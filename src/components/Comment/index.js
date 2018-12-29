@@ -6,10 +6,10 @@ import {
   WINDOW_WIDTH,
   IS_IOS,
   OSS_IMAGE_QUALITY,
-} from '@/common/constants';
-import { BORDER_COLOR, PRIMARY_COLOR } from '@/styles/variables';
-import CustomIcon from '@/components/CustomIcon';
-import { xOssProcess } from '@/utils';
+} from '@src/common/constants';
+import { BORDER_COLOR, PRIMARY_COLOR } from '@src/styles/variables';
+import CustomIcon from '@src/components/CustomIcon';
+import { xOssProcess } from '@src/utils';
 
 const imageItemWidth = (WINDOW_WIDTH - SIDEINTERVAL * 4) / 3;
 

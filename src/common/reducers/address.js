@@ -1,4 +1,4 @@
-import { ADDRESS, ADDRESS_SELECT } from '@/common/constants/actionTypes';
+import { ADDRESS, ADDRESS_SELECT } from '@src/common/constants/actionTypes';
 
 const initState = {
   loading: false,

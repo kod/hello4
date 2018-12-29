@@ -1,4 +1,4 @@
-import { GET_ADVERST_TOP_INFO } from '@/common/constants/actionTypes';
+import { GET_ADVERST_TOP_INFO } from '@src/common/constants/actionTypes';
 
 const initState = {
   loading: false,

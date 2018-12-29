@@ -20,7 +20,7 @@ import {
   // cartSelectAllRequest,
   cartSelectAllSuccess,
   cartSelectAllFailure,
-} from '@/common/actions/cart';
+} from '@src/common/actions/cart';
 import {
   CART,
   CART_ADD,
@@ -28,12 +28,12 @@ import {
   CART_SELECT,
   CART_SELECTALL,
   CART_DELETE,
-} from '@/common/constants/actionTypes';
-import { addError } from '@/common/actions/error';
-import buyoo from '@/services/api';
-import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
-import Schemas from '@/common/constants/schemas';
-import { getAuthUser } from '@/common/selectors';
+} from '@src/common/constants/actionTypes';
+import { addError } from '@src/common/actions/error';
+import buyoo from '@src/services/api';
+import { encryptMD5, signTypeMD5 } from '@src/utils/AuthEncrypt';
+import Schemas from '@src/common/constants/schemas';
+import { getAuthUser } from '@src/common/selectors';
 
 function* cartFetchWatchHandle(/* action */) {
   try {

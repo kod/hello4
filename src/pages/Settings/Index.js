@@ -6,17 +6,17 @@ import { formatMessage, setLocale } from 'umi/locale';
 import router from 'umi/router';
 import qs from 'qs';
 
-import BYHeader from '@/components/BYHeader';
+import BYHeader from '@src/components/BYHeader';
 import {
   SCREENS,
   SIDEINTERVAL,
   IS_I18N,
   WINDOW_HEIGHT,
-} from '@/common/constants';
-import NavBar1 from '@/components/NavBar1';
-import { RED_COLOR } from '@/styles/variables';
-import * as loginActionCreators from '@/common/actions/login';
-import { getLoginUser } from '@/common/selectors';
+} from '@src/common/constants';
+import NavBar1 from '@src/components/NavBar1';
+import { RED_COLOR } from '@src/styles/variables';
+import * as loginActionCreators from '@src/common/actions/login';
+import { getLoginUser } from '@src/common/selectors';
 
 // const personPng = 'https://oss.buyoo.vn/usercollect/1/20181120125641_E6E.png';
 

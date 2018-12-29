@@ -5,36 +5,36 @@ import {
   // loginFetch,
   loginFetchSuccess,
   loginFetchFailure,
-} from '@/common/actions/login';
-import { addError } from '@/common/actions/error';
+} from '@src/common/actions/login';
+import { addError } from '@src/common/actions/error';
 import {
   cartRequest,
   cartClear,
   // cartClear,
-} from '@/common/actions/cart';
+} from '@src/common/actions/cart';
 import {
   userCertificateInfoFetch,
   userCertificateInfoClear,
-} from '@/common/actions/userCertificateInfo';
+} from '@src/common/actions/userCertificateInfo';
 import {
   cardQueryFetch,
   cardQueryClear,
   // cardQueryClear,
-} from '@/common/actions/cardQuery';
-import { queryOrderListClear } from '@/common/actions/queryOrderList';
+} from '@src/common/actions/cardQuery';
+import { queryOrderListClear } from '@src/common/actions/queryOrderList';
 
-import buyoo from '@/services/api';
+import buyoo from '@src/services/api';
 
-// import { SCREENS } from '@/common/constants';
-import { LOGIN, LOGOUT } from '@/common/constants/actionTypes';
-import { encryptMD5 } from '@/utils/AuthEncrypt';
+// import { SCREENS } from '@src/common/constants';
+import { LOGIN, LOGOUT } from '@src/common/constants/actionTypes';
+import { encryptMD5 } from '@src/utils/AuthEncrypt';
 import {
   dispatchEventBuyoo,
   localStorageSetItem,
   localStorageClear,
   getSKey,
   getSValue,
-} from '@/utils';
+} from '@src/utils';
 
 export function* loginFetchWatchHandle(action) {
   const {

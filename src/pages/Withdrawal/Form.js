@@ -5,20 +5,20 @@ import { connect } from 'react-redux';
 import { createForm } from 'rc-form';
 import { formatMessage } from 'umi/locale';
 import router from 'umi/router';
-import { SCREENS, SIDEINTERVAL, MONETARY } from '@/common/constants';
-import InputRight from '@/components/InputRight';
-import NavBar2 from '@/components/NavBar2';
+import { SCREENS, SIDEINTERVAL, MONETARY } from '@src/common/constants';
+import InputRight from '@src/components/InputRight';
+import NavBar2 from '@src/components/NavBar2';
 
-import * as enchashmentConfigActionCreators from '@/common/actions/enchashmentConfig';
-import * as enchashmentApplyActionCreators from '@/common/actions/enchashmentApply';
-import * as userAddDetailInfoActionCreators from '@/common/actions/userAddDetailInfo';
-import * as userCertificateInfoActionCreators from '@/common/actions/userCertificateInfo';
-import * as enchashmentGetListActionCreators from '@/common/actions/enchashmentGetList';
-import { FONT_SIZE_FIRST, FONT_SIZE_THIRD } from '@/styles/variables';
-import MustLogin from '@/components/MustLogin';
-import { addEventListenerBuyoo, removeEventListenerBuyoo } from '@/utils';
-import Loader from '@/components/Loader';
-import { getLoginUser } from '@/common/selectors';
+import * as enchashmentConfigActionCreators from '@src/common/actions/enchashmentConfig';
+import * as enchashmentApplyActionCreators from '@src/common/actions/enchashmentApply';
+import * as userAddDetailInfoActionCreators from '@src/common/actions/userAddDetailInfo';
+import * as userCertificateInfoActionCreators from '@src/common/actions/userCertificateInfo';
+import * as enchashmentGetListActionCreators from '@src/common/actions/enchashmentGetList';
+import { FONT_SIZE_FIRST, FONT_SIZE_THIRD } from '@src/styles/variables';
+import MustLogin from '@src/components/MustLogin';
+import { addEventListenerBuyoo, removeEventListenerBuyoo } from '@src/utils';
+import Loader from '@src/components/Loader';
+import { getLoginUser } from '@src/common/selectors';
 
 class LoginForm extends React.Component {
   constructor(props) {

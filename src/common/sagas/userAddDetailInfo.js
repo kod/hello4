@@ -4,19 +4,19 @@ import dayjs from 'dayjs';
 import {
   userAddDetailInfoFetchSuccess,
   userAddDetailInfoFetchFailure,
-} from '@/common/actions/userAddDetailInfo';
-import { addError } from '@/common/actions/error';
-import buyoo from '@/services/api';
+} from '@src/common/actions/userAddDetailInfo';
+import { addError } from '@src/common/actions/error';
+import buyoo from '@src/services/api';
 import {
   ADD_DETAIL_INFO,
   // ADD_DETAIL_INFO,
-} from '@/common/constants/actionTypes';
-import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
+} from '@src/common/constants/actionTypes';
+import { encryptMD5, signTypeMD5 } from '@src/utils/AuthEncrypt';
 import {
   getCertifiedInformationCertUser,
   getAuthUser,
-} from '@/common/selectors';
-import { dispatchEventBuyoo } from '@/utils';
+} from '@src/common/selectors';
+import { dispatchEventBuyoo } from '@src/utils';
 
 export function* userAddDetailInfoFetchWatchHandle(action) {
   const {

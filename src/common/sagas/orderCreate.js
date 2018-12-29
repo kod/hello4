@@ -1,18 +1,18 @@
 import { takeEvery, apply, put, select } from 'redux-saga/effects';
 import dayjs from 'dayjs';
-import { SCREENS, LOCALSTORAGE_INVITE } from '@/common/constants';
+import { SCREENS, LOCALSTORAGE_INVITE } from '@src/common/constants';
 import {
   orderCreateFetchSuccess,
   orderCreateFetchFailure,
-} from '@/common/actions/orderCreate';
-import { orderPayFetch } from '@/common/actions/orderPay';
-import { addError } from '@/common/actions/error';
-import buyoo from '@/services/api';
-import { ORDER_CREATE } from '@/common/constants/actionTypes';
-import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
+} from '@src/common/actions/orderCreate';
+import { orderPayFetch } from '@src/common/actions/orderPay';
+import { addError } from '@src/common/actions/error';
+import buyoo from '@src/services/api';
+import { ORDER_CREATE } from '@src/common/constants/actionTypes';
+import { encryptMD5, signTypeMD5 } from '@src/utils/AuthEncrypt';
 
-import { localStorageRemoveItem, dispatchEventBuyoo } from '@/utils';
-import { getAuthUser } from '@/common/selectors';
+import { localStorageRemoveItem, dispatchEventBuyoo } from '@src/utils';
+import { getAuthUser } from '@src/common/selectors';
 
 export function* orderCreateFetchWatchHandle(action) {
   try {

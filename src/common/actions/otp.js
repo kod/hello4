@@ -1,4 +1,4 @@
-import { OTP } from '@/common/constants/actionTypes';
+import { OTP } from '@src/common/constants/actionTypes';
 
 export function otpFetchSuccess() {
   return {

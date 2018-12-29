@@ -4,7 +4,7 @@ import { formatMessage } from 'umi/locale';
 import router from 'umi/router';
 import { connect } from 'react-redux';
 
-import { BORDER_COLOR, RED_COLOR, PRIMARY_COLOR } from '@/styles/variables';
+import { BORDER_COLOR, RED_COLOR, PRIMARY_COLOR } from '@src/styles/variables';
 import {
   WINDOW_WIDTH,
   SIDEINTERVAL,
@@ -12,14 +12,14 @@ import {
   MONETARY,
   IS_IOS,
   OSS_IMAGE_QUALITY,
-} from '@/common/constants';
-import CustomIcon from '@/components/CustomIcon';
-import priceFormat from '@/utils/priceFormat';
+} from '@src/common/constants';
+import CustomIcon from '@src/components/CustomIcon';
+import priceFormat from '@src/utils/priceFormat';
 
-import * as cartActionCreators from '@/common/actions/cart';
-import { xOssProcess } from '@/utils';
-import { getLoginUser } from '@/common/selectors';
-// import { getCartTotalMoney } from '@/common/selectors';
+import * as cartActionCreators from '@src/common/actions/cart';
+import { xOssProcess } from '@src/utils';
+import { getLoginUser } from '@src/common/selectors';
+// import { getCartTotalMoney } from '@src/common/selectors';
 
 const styles = {
   itemWrap: {

@@ -1,6 +1,6 @@
-import { GET_VOUCHER_LIST } from '@/common/constants/actionTypes';
+import { GET_VOUCHER_LIST } from '@src/common/constants/actionTypes';
 
-import { COUPONMY_TABNAVIGATOR_MAP } from '@/common/constants';
+import { COUPONMY_TABNAVIGATOR_MAP } from '@src/common/constants';
 
 const initState = {
   loading: false,

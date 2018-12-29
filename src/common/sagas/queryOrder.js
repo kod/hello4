@@ -3,11 +3,11 @@ import dayjs from 'dayjs';
 import {
   queryOrderFetchSuccess,
   queryOrderFetchFailure,
-} from '@/common/actions/queryOrder';
-import { addError } from '@/common/actions/error';
-import buyoo from '@/services/api';
-import { QUERY_ORDER } from '@/common/constants/actionTypes';
-import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
+} from '@src/common/actions/queryOrder';
+import { addError } from '@src/common/actions/error';
+import buyoo from '@src/services/api';
+import { QUERY_ORDER } from '@src/common/constants/actionTypes';
+import { encryptMD5, signTypeMD5 } from '@src/utils/AuthEncrypt';
 
 export function* queryOrderFetchWatchHandle(action) {
   try {

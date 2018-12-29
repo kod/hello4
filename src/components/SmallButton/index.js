@@ -1,5 +1,5 @@
 import React from 'react';
-import { WINDOW_WIDTH } from '@/common/constants';
+import { WINDOW_WIDTH } from '@src/common/constants';
 
 const styles = {
   component: {

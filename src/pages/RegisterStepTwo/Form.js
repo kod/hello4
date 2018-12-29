@@ -3,14 +3,14 @@ import { List, Toast, Checkbox } from 'antd-mobile';
 import { connect } from 'react-redux';
 import { createForm } from 'rc-form';
 import { formatMessage } from 'umi/locale';
-import BYButton from '@/components/BYButton';
-import { LOGIN_PASSWORD_EXPR, SIDEINTERVAL } from '@/common/constants';
-import InputRight from '@/components/InputRight';
+import BYButton from '@src/components/BYButton';
+import { LOGIN_PASSWORD_EXPR, SIDEINTERVAL } from '@src/common/constants';
+import InputRight from '@src/components/InputRight';
 
-import * as loginActionCreators from '@/common/actions/login';
-import * as registerActionCreators from '@/common/actions/register';
-import ReadSeconds from '@/components/ReadSeconds';
-import { FONT_COLOR_THIRD } from '@/styles/variables';
+import * as loginActionCreators from '@src/common/actions/login';
+import * as registerActionCreators from '@src/common/actions/register';
+import ReadSeconds from '@src/components/ReadSeconds';
+import { FONT_COLOR_THIRD } from '@src/styles/variables';
 
 class LoginForm extends React.Component {
   constructor(props) {

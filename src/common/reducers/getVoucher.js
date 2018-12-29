@@ -1,4 +1,4 @@
-import { GET_VOUCHER } from '@/common/constants/actionTypes';
+import { GET_VOUCHER } from '@src/common/constants/actionTypes';
 
 const initState = {
   loading: false,

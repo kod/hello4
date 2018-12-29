@@ -2,13 +2,13 @@ import { takeEvery, apply, put, select } from 'redux-saga/effects';
 import {
   getUserInfoByIdFetchSuccess,
   getUserInfoByIdFetchFailure,
-} from '@/common/actions/getUserInfoById';
-import { addError } from '@/common/actions/error';
-import buyoo from '@/services/api';
-import { GET_USERINFO_BYID } from '@/common/constants/actionTypes';
-import { encryptMD5 } from '@/utils/AuthEncrypt';
+} from '@src/common/actions/getUserInfoById';
+import { addError } from '@src/common/actions/error';
+import buyoo from '@src/services/api';
+import { GET_USERINFO_BYID } from '@src/common/constants/actionTypes';
+import { encryptMD5 } from '@src/utils/AuthEncrypt';
 
-import { getAuthUser } from '@/common/selectors';
+import { getAuthUser } from '@src/common/selectors';
 
 export function* getUserInfoByIdFetchWatchHandle() {
   try {

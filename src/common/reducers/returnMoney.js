@@ -1,4 +1,4 @@
-import { RETURN_MONEY } from '@/common/constants/actionTypes';
+import { RETURN_MONEY } from '@src/common/constants/actionTypes';
 
 const initState = {
   loading: false,

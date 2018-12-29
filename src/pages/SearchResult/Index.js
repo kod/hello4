@@ -6,12 +6,12 @@ import qs from 'qs';
 import { createForm } from 'rc-form';
 import router from 'umi/router';
 
-import BYHeader from '@/components/BYHeader';
+import BYHeader from '@src/components/BYHeader';
 
-import * as searchHistoryActionCreators from '@/common/actions/searchHistory';
-import { SIDEINTERVAL, SCREENS } from '@/common/constants';
+import * as searchHistoryActionCreators from '@src/common/actions/searchHistory';
+import { SIDEINTERVAL, SCREENS } from '@src/common/constants';
 
-import InputRight from '@/components/InputRight';
+import InputRight from '@src/components/InputRight';
 
 const styles = {
   container: {

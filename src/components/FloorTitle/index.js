@@ -1,8 +1,8 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
 
-import { SIDEINTERVAL } from '@/common/constants';
-import CustomIcon from '@/components/CustomIcon';
+import { SIDEINTERVAL } from '@src/common/constants';
+import CustomIcon from '@src/components/CustomIcon';
 
 const styles = {
   component: {

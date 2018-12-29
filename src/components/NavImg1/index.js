@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { WINDOW_WIDTH, IS_IOS, OSS_IMAGE_QUALITY } from '@/common/constants';
-import { xOssProcess } from '@/utils';
+import { WINDOW_WIDTH, IS_IOS, OSS_IMAGE_QUALITY } from '@src/common/constants';
+import { xOssProcess } from '@src/utils';
 
 const styles = {
   nav1: {

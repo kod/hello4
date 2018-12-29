@@ -3,11 +3,11 @@ import dayjs from 'dayjs';
 import {
   commentFetchSuccess,
   commentFetchFailure,
-} from '@/common/actions/comment';
-import { addError } from '@/common/actions/error';
-import buyoo from '@/services/api';
-import { COMMENT } from '@/common/constants/actionTypes';
-import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
+} from '@src/common/actions/comment';
+import { addError } from '@src/common/actions/error';
+import buyoo from '@src/services/api';
+import { COMMENT } from '@src/common/constants/actionTypes';
+import { encryptMD5, signTypeMD5 } from '@src/utils/AuthEncrypt';
 
 export function* commentFetchWatchHandle(action) {
   try {

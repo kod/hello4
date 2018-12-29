@@ -5,10 +5,9 @@ import router from 'umi/router';
 import { connect } from 'react-redux';
 import qs from 'qs';
 
-import BYHeader from '@/components/BYHeader';
-import NavSidesText from '@/components/NavSidesText';
-import Form from './Form';
-import Loader from '@/components/Loader';
+import BYHeader from '@src/components/BYHeader';
+import NavSidesText from '@src/components/NavSidesText';
+import Loader from '@src/components/Loader';
 import {
   SCREENS,
   WINDOW_HEIGHT,
@@ -17,7 +16,7 @@ import {
   SOCIALBIND_GOOGLE,
   SOCIALBIND_FACEBOOK,
   GOOGLE_CLIENT_ID,
-} from '@/common/constants';
+} from '@src/common/constants';
 import {
   addEventListenerBuyoo,
   removeEventListenerBuyoo,
@@ -25,15 +24,16 @@ import {
   localStorageSetItem,
   loadFbLoginApi,
   loadGoogleLoginApi,
-} from '@/utils';
+} from '@src/utils';
 import {
   FONT_SIZE_FOURTH,
   BACKGROUND_COLOR_FOURTH,
   FONT_COLOR_FIFTH,
-} from '@/styles/variables';
-import CustomIcon from '@/components/CustomIcon';
+} from '@src/styles/variables';
+import CustomIcon from '@src/components/CustomIcon';
 
-import * as loginActionCreators from '@/common/actions/login';
+import * as loginActionCreators from '@src/common/actions/login';
+import Form from './Form';
 
 class Index extends React.Component {
   constructor(props) {

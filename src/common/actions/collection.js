@@ -2,7 +2,7 @@ import {
   COLLECTION,
   COLLECTION_ADD,
   COLLECTION_REMOVE,
-} from '@/common/constants/actionTypes';
+} from '@src/common/constants/actionTypes';
 
 export function collectionFetchSuccess(items) {
   return {

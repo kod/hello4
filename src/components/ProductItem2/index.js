@@ -2,16 +2,16 @@
 import React from 'react';
 import router from 'umi/router';
 
-import { BORDER_COLOR, RED_COLOR } from '@/styles/variables';
+import { BORDER_COLOR, RED_COLOR } from '@src/styles/variables';
 import {
   SIDEINTERVAL,
   MONETARY,
   IS_IOS,
   OSS_IMAGE_QUALITY,
-} from '@/common/constants';
-import priceFormat from '@/utils/priceFormat';
+} from '@src/common/constants';
+import priceFormat from '@src/utils/priceFormat';
 
-import { xOssProcess } from '@/utils';
+import { xOssProcess } from '@src/utils';
 
 const styles = {
   itemWrap: {

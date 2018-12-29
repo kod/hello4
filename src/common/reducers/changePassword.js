@@ -1,4 +1,4 @@
-import { CHANGE_PASSWORD, LOGOUT } from '@/common/constants/actionTypes';
+import { CHANGE_PASSWORD, LOGOUT } from '@src/common/constants/actionTypes';
 
 const initState = {
   loading: false,

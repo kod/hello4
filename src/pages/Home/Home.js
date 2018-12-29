@@ -3,24 +3,24 @@ import { connect } from 'react-redux';
 import { formatMessage } from 'umi/locale';
 import router from 'umi/router';
 
-import SwiperFlatList from '@/components/SwiperFlatList';
-import SearchHeader from '@/components/SearchHeader';
-import * as getAdverstTopInfoActionCreators from '@/common/actions/getAdverstTopInfo';
-import * as getSquaresInfoActionCreators from '@/common/actions/getSquaresInfo';
-import * as getNewestInfoActionCreators from '@/common/actions/getNewestInfo';
-import * as bannerSwiperActionCreators from '@/common/actions/bannerSwiper';
-import * as adverstInfoActionCreators from '@/common/actions/adverstInfo';
-import * as initAdverstCommonActionCreators from '@/common/actions/initAdverstCommon';
-import { dispatchEventBuyoo, analyzeUrlNavigate } from '@/utils';
-import NavImg1 from '@/components/NavImg1';
-import SeparateBar from '@/components/SeparateBar';
-import { RED_COLOR } from '@/styles/variables';
-import { SIDEINTERVAL, WINDOW_WIDTH, SCREENS } from '@/common/constants';
-import ProductItem5 from '@/components/ProductItem5';
-import PhoneAdBaner from '@/components/PhoneAdBaner';
-import ProductItem4 from '@/components/ProductItem4';
-import ProductItem6 from '@/components/ProductItem6';
-import { getLoginUser } from '@/common/selectors';
+import SwiperFlatList from '@src/components/SwiperFlatList';
+import SearchHeader from '@src/components/SearchHeader';
+import * as getAdverstTopInfoActionCreators from '@src/common/actions/getAdverstTopInfo';
+import * as getSquaresInfoActionCreators from '@src/common/actions/getSquaresInfo';
+import * as getNewestInfoActionCreators from '@src/common/actions/getNewestInfo';
+import * as bannerSwiperActionCreators from '@src/common/actions/bannerSwiper';
+import * as adverstInfoActionCreators from '@src/common/actions/adverstInfo';
+import * as initAdverstCommonActionCreators from '@src/common/actions/initAdverstCommon';
+import { dispatchEventBuyoo, analyzeUrlNavigate } from '@src/utils';
+import NavImg1 from '@src/components/NavImg1';
+import SeparateBar from '@src/components/SeparateBar';
+import { RED_COLOR } from '@src/styles/variables';
+import { SIDEINTERVAL, WINDOW_WIDTH, SCREENS } from '@src/common/constants';
+import ProductItem5 from '@src/components/ProductItem5';
+import PhoneAdBaner from '@src/components/PhoneAdBaner';
+import ProductItem4 from '@src/components/ProductItem4';
+import ProductItem6 from '@src/components/ProductItem6';
+import { getLoginUser } from '@src/common/selectors';
 
 class Index extends PureComponent {
   componentDidMount() {

@@ -3,12 +3,12 @@ import dayjs from 'dayjs';
 import {
   getInviteRecordFetchSuccess,
   getInviteRecordFetchFailure,
-} from '@/common/actions/getInviteRecord';
-import { addError } from '@/common/actions/error';
-import buyoo from '@/services/api';
-import { GET_INVITE_RECORD } from '@/common/constants/actionTypes';
-import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
-import { getAuthUser } from '@/common/selectors';
+} from '@src/common/actions/getInviteRecord';
+import { addError } from '@src/common/actions/error';
+import buyoo from '@src/services/api';
+import { GET_INVITE_RECORD } from '@src/common/constants/actionTypes';
+import { encryptMD5, signTypeMD5 } from '@src/utils/AuthEncrypt';
+import { getAuthUser } from '@src/common/selectors';
 
 export function* getInviteRecordFetchWatchHandle(action) {
   const { pagesize = 100, currentpage = 1 } = action.payload;

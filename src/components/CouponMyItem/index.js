@@ -4,12 +4,12 @@ import { connect } from 'react-redux';
 import { formatMessage } from 'umi/locale';
 // import { Modal } from 'antd-mobile';
 
-import * as getVoucherListActionCreators from '@/common/actions/getVoucherList';
-import * as receiveVoucherActionCreators from '@/common/actions/receiveVoucher';
-import { WINDOW_HEIGHT } from '@/common/constants';
-import Loader from '@/components/Loader';
-import EmptyState from '@/components/EmptyState';
-import CouponItem from '@/components/CouponItem';
+import * as getVoucherListActionCreators from '@src/common/actions/getVoucherList';
+import * as receiveVoucherActionCreators from '@src/common/actions/receiveVoucher';
+import { WINDOW_HEIGHT } from '@src/common/constants';
+import Loader from '@src/components/Loader';
+import EmptyState from '@src/components/EmptyState';
+import CouponItem from '@src/components/CouponItem';
 
 const ouhrigdfnjsoeijehrJpg =
   'https://oss.buyoo.vn/usercollect/1/20181101180309_67w.jpg';

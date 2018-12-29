@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Tabs } from 'antd-mobile';
-import CouponMyItem from '@/components/CouponMyItem';
+import CouponMyItem from '@src/components/CouponMyItem';
 
 export default ({ tabs }) => (
   <Tabs tabs={tabs} initialPage={0} tabBarPosition="top">

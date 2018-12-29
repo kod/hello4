@@ -1,4 +1,4 @@
-import { CHANGE_PASSWORD } from '@/common/constants/actionTypes';
+import { CHANGE_PASSWORD } from '@src/common/constants/actionTypes';
 
 export function changePasswordFetchSuccess(screen) {
   return {

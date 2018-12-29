@@ -1,4 +1,4 @@
-import { ORDER_CREATE } from '@/common/constants/actionTypes';
+import { ORDER_CREATE } from '@src/common/constants/actionTypes';
 
 const initState = {
   loading: false,

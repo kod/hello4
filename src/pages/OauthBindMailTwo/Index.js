@@ -4,18 +4,17 @@ import { formatMessage } from 'umi/locale';
 import router from 'umi/router';
 import { connect } from 'react-redux';
 
-import BYHeader from '@/components/BYHeader';
-import { SCREENS, WINDOW_HEIGHT } from '@/common/constants';
-import Loader from '@/components/Loader';
+import BYHeader from '@src/components/BYHeader';
+import { SCREENS, WINDOW_HEIGHT } from '@src/common/constants';
+import Loader from '@src/components/Loader';
 import {
   addEventListenerBuyoo,
   removeEventListenerBuyoo,
   localStorageGetItem,
   localStorageRemoveItem,
-} from '@/utils';
+} from '@src/utils';
+import * as oauthRequestActionCreators from '@src/common/actions/oauthRequest';
 import Form from './Form';
-
-import * as oauthRequestActionCreators from '@/common/actions/oauthRequest';
 
 class Index extends React.Component {
   constructor(props) {

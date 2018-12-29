@@ -13,7 +13,7 @@ import {
   OPEN,
   CLOSE,
   STOP,
-} from '@/common/constants/stateConstants';
+} from '@src/common/constants/stateConstants';
 
 const appNamespace = defineAction('buyoo');
 

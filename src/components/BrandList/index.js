@@ -9,8 +9,8 @@ import {
   SCREENS,
   IS_IOS,
   OSS_IMAGE_QUALITY,
-} from '@/common/constants';
-import { xOssProcess } from '@/utils';
+} from '@src/common/constants';
+import { xOssProcess } from '@src/utils';
 
 const marginWidth = WINDOW_WIDTH * 0.015;
 const width = (WINDOW_WIDTH - marginWidth * 2 * 4 - marginWidth * 2) / 4;

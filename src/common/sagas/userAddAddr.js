@@ -1,16 +1,16 @@
 import { takeEvery, apply, put, select } from 'redux-saga/effects';
 import dayjs from 'dayjs';
-import { addressFetch } from '@/common/actions/address';
+import { addressFetch } from '@src/common/actions/address';
 import {
   addressAddSuccess,
   addressAddFailure,
-} from '@/common/actions/userAddAddr';
-import { addError } from '@/common/actions/error';
-import buyoo from '@/services/api';
-import { ADDRESS_ADD } from '@/common/constants/actionTypes';
-import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
-import { dispatchEventBuyoo } from '@/utils';
-import { getAuthUser } from '@/common/selectors';
+} from '@src/common/actions/userAddAddr';
+import { addError } from '@src/common/actions/error';
+import buyoo from '@src/services/api';
+import { ADDRESS_ADD } from '@src/common/constants/actionTypes';
+import { encryptMD5, signTypeMD5 } from '@src/utils/AuthEncrypt';
+import { dispatchEventBuyoo } from '@src/utils';
+import { getAuthUser } from '@src/common/selectors';
 
 export function* userAddAddrFetchWatchHandle(action) {
   try {

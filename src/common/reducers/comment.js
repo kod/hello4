@@ -1,4 +1,4 @@
-import { COMMENT } from '@/common/constants/actionTypes';
+import { COMMENT } from '@src/common/constants/actionTypes';
 
 const initState = {
   loading: false,

@@ -1,4 +1,4 @@
-import { COLLECT_FILES } from '@/common/constants/actionTypes';
+import { COLLECT_FILES } from '@src/common/constants/actionTypes';
 
 export function collectFilesFetchSuccess(item) {
   return {

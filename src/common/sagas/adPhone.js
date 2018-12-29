@@ -3,11 +3,11 @@ import dayjs from 'dayjs';
 import {
   adPhoneFetchSuccess,
   adPhoneFetchFailure,
-} from '@/common/actions/adPhone';
-import { addError } from '@/common/actions/error';
-import buyoo from '@/services/api';
-import { AD_PHONE } from '@/common/constants/actionTypes';
-import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
+} from '@src/common/actions/adPhone';
+import { addError } from '@src/common/actions/error';
+import buyoo from '@src/services/api';
+import { AD_PHONE } from '@src/common/constants/actionTypes';
+import { encryptMD5, signTypeMD5 } from '@src/utils/AuthEncrypt';
 
 export function* adPhoneFetchWatchHandle(action) {
   try {

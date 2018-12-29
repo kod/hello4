@@ -1,4 +1,4 @@
-import { API_DEBUG, IS_SHOW_LOG } from '@/common/constants';
+import { API_DEBUG, IS_SHOW_LOG } from '@src/common/constants';
 
 const axios = require('axios');
 const qs = require('qs');

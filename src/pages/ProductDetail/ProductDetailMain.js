@@ -6,12 +6,12 @@ import qs from 'qs';
 import router from 'umi/router';
 import { Modal } from 'antd-mobile';
 
-import ModalRoot from '@/containers/ModalRoot';
-import * as collectionActionCreators from '@/common/actions/collection';
-import * as commentActionCreators from '@/common/actions/comment';
-import * as productDetailInfoActionCreators from '@/common/actions/productDetailInfo';
-import * as modalActionCreators from '@/common/actions/modal';
-import SwiperFlatList from '@/components/SwiperFlatList';
+import ModalRoot from '@src/containers/ModalRoot';
+import * as collectionActionCreators from '@src/common/actions/collection';
+import * as commentActionCreators from '@src/common/actions/comment';
+import * as productDetailInfoActionCreators from '@src/common/actions/productDetailInfo';
+import * as modalActionCreators from '@src/common/actions/modal';
+import SwiperFlatList from '@src/components/SwiperFlatList';
 import {
   WINDOW_WIDTH,
   MONETARY,
@@ -26,27 +26,27 @@ import {
   API_DEBUG,
   FB_APPID_TEST,
   SCREENS,
-} from '@/common/constants';
-import priceFormat from '@/utils/priceFormat';
-import smoothScroll from '@/utils/smoothScroll';
-import gumshoe from '@/utils/gumshoe';
-import CustomIcon from '@/components/CustomIcon';
+} from '@src/common/constants';
+import priceFormat from '@src/utils/priceFormat';
+import smoothScroll from '@src/utils/smoothScroll';
+import gumshoe from '@src/utils/gumshoe';
+import CustomIcon from '@src/components/CustomIcon';
 import {
   BORDER_COLOR,
   RED_COLOR,
   PRIMARY_COLOR,
   FONT_COLOR_THIRD,
   FONT_COLOR_SECOND,
-} from '@/styles/variables';
-import Comment from '@/components/Comment';
-import SeparateBar from '@/components/SeparateBar';
+} from '@src/styles/variables';
+import Comment from '@src/components/Comment';
+import SeparateBar from '@src/components/SeparateBar';
 import {
   addEventListenerBuyoo,
   removeEventListenerBuyoo,
   xOssProcess,
   loadFbLoginApi,
-} from '@/utils';
-import { getIsCollection, getLoginUser } from '@/common/selectors';
+} from '@src/utils';
+import { getIsCollection, getLoginUser } from '@src/common/selectors';
 
 class ProductDetailMain extends React.Component {
   constructor(props) {

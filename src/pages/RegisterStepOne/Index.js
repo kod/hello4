@@ -1,11 +1,11 @@
 import React from 'react';
 import { formatMessage } from 'umi/locale';
 import router from 'umi/router';
-// import { WINDOW_HEIGHT } from '@/common/constants';
-import BYHeader from '@/components/BYHeader';
-import NavSidesText from '@/components/NavSidesText';
+// import { WINDOW_HEIGHT } from '@src/common/constants';
+import BYHeader from '@src/components/BYHeader';
+import NavSidesText from '@src/components/NavSidesText';
+import { WINDOW_HEIGHT } from '@src/common/constants';
 import Form from './Form';
-import { WINDOW_HEIGHT } from '@/common/constants';
 
 const styles = {
   container: {

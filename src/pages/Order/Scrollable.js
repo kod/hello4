@@ -11,17 +11,17 @@ import {
   WINDOW_WIDTH,
   MONETARY,
   SCREENS,
-} from '@/common/constants';
+} from '@src/common/constants';
 import { formatMessage } from 'umi/locale';
 
-import * as queryOrderListActionCreators from '@/common/actions/queryOrderList';
-import { BORDER_COLOR, PRIMARY_COLOR } from '@/styles/variables';
-import ProductItem2 from '@/components/ProductItem2';
-import { tradeStatusCodes, operateForTradeStatusCodes } from '@/utils';
-import priceFormat from '@/utils/priceFormat';
-import SeparateBar from '@/components/SeparateBar';
-import EmptyState from '@/components/EmptyState';
-import { getLoginUser } from '@/common/selectors';
+import * as queryOrderListActionCreators from '@src/common/actions/queryOrderList';
+import { BORDER_COLOR, PRIMARY_COLOR } from '@src/styles/variables';
+import ProductItem2 from '@src/components/ProductItem2';
+import { tradeStatusCodes, operateForTradeStatusCodes } from '@src/utils';
+import priceFormat from '@src/utils/priceFormat';
+import SeparateBar from '@src/components/SeparateBar';
+import EmptyState from '@src/components/EmptyState';
+import { getLoginUser } from '@src/common/selectors';
 
 const ouhrigdfnjsoeijehrJpg =
   'https://oss.buyoo.vn/usercollect/1/20181101180309_67w.jpg';

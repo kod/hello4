@@ -4,18 +4,22 @@ import { connect } from 'react-redux';
 import { formatMessage } from 'umi/locale';
 import router from 'umi/router';
 
-import * as receiveVoucherActionCreators from '@/common/actions/receiveVoucher';
-import * as modalActionCreators from '@/common/actions/modal';
-import { WINDOW_WIDTH, SIDEINTERVAL, WINDOW_HEIGHT } from '@/common/constants';
+import * as receiveVoucherActionCreators from '@src/common/actions/receiveVoucher';
+import * as modalActionCreators from '@src/common/actions/modal';
+import {
+  WINDOW_WIDTH,
+  SIDEINTERVAL,
+  WINDOW_HEIGHT,
+} from '@src/common/constants';
 import {
   FONT_COLOR_PRIMARY,
   FONT_SIZE_THIRD,
   FONT_COLOR_FIRST,
-} from '@/styles/variables';
-import CustomIcon from '@/components/CustomIcon';
-import BYButton from '@/components/BYButton';
-import { addEventListenerBuyoo, removeEventListenerBuyoo } from '@/utils';
-import { getLoginUser } from '@/common/selectors';
+} from '@src/styles/variables';
+import CustomIcon from '@src/components/CustomIcon';
+import BYButton from '@src/components/BYButton';
+import { addEventListenerBuyoo, removeEventListenerBuyoo } from '@src/utils';
+import { getLoginUser } from '@src/common/selectors';
 
 class AddressAddModal extends Component {
   constructor(props) {

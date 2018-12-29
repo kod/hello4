@@ -3,12 +3,12 @@ import { List, Toast } from 'antd-mobile';
 import { createForm } from 'rc-form';
 import { formatMessage } from 'umi/locale';
 import router from 'umi/router';
-import BYButton from '@/components/BYButton';
-import { EMAIL_EXPR } from '@/common/constants';
-// import InputRight from '@/components/InputRight';
-import InputCountry from '@/components/InputCountry';
+import BYButton from '@src/components/BYButton';
+import { EMAIL_EXPR } from '@src/common/constants';
+// import InputRight from '@src/components/InputRight';
+import InputCountry from '@src/components/InputCountry';
 
-// import * as loginActionCreators from '@/common/actions/login';
+// import * as loginActionCreators from '@src/common/actions/login';
 
 class LoginForm extends React.Component {
   componentDidMount() {

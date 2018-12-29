@@ -1,4 +1,4 @@
-import { AD_PHONE } from '@/common/constants/actionTypes';
+import { AD_PHONE } from '@src/common/constants/actionTypes';
 
 const initState = {
   loading: false,

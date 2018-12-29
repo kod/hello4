@@ -1,12 +1,12 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
 import { connect } from 'react-redux';
-import BYHeader from '@/components/BYHeader';
+import BYHeader from '@src/components/BYHeader';
 import { formatMessage } from 'umi/locale';
 import router from 'umi/router';
 
-import { WINDOW_HEIGHT, SCREENS, WINDOW_WIDTH } from '@/common/constants';
-import BYButton from '@/components/BYButton';
+import { WINDOW_HEIGHT, SCREENS, WINDOW_WIDTH } from '@src/common/constants';
+import BYButton from '@src/components/BYButton';
 
 class Address extends React.Component {
   constructor(props) {

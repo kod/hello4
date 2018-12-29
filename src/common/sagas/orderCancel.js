@@ -3,14 +3,14 @@ import dayjs from 'dayjs';
 import {
   orderCancelFetchSuccess,
   orderCancelFetchFailure,
-} from '@/common/actions/orderCancel';
-import { addError } from '@/common/actions/error';
-import buyoo from '@/services/api';
-import { ORDER_CANCEL } from '@/common/constants/actionTypes';
-import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
+} from '@src/common/actions/orderCancel';
+import { addError } from '@src/common/actions/error';
+import buyoo from '@src/services/api';
+import { ORDER_CANCEL } from '@src/common/constants/actionTypes';
+import { encryptMD5, signTypeMD5 } from '@src/utils/AuthEncrypt';
 
-import { dispatchEventBuyoo } from '@/utils';
-import { getAuthUser } from '@/common/selectors';
+import { dispatchEventBuyoo } from '@src/utils';
+import { getAuthUser } from '@src/common/selectors';
 
 export function* orderCancelFetchWatchHandle(action) {
   try {

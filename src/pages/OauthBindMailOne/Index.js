@@ -1,8 +1,8 @@
 import React from 'react';
 import { formatMessage } from 'umi/locale';
-import BYHeader from '@/components/BYHeader';
+import BYHeader from '@src/components/BYHeader';
+import { WINDOW_HEIGHT } from '@src/common/constants';
 import Form from './Form';
-import { WINDOW_HEIGHT } from '@/common/constants';
 
 const styles = {
   container: {

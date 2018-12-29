@@ -2,31 +2,31 @@
 import React from 'react';
 import qs from 'qs';
 import { connect } from 'react-redux';
-import BYHeader from '@/components/BYHeader';
+import BYHeader from '@src/components/BYHeader';
 import { formatMessage } from 'umi/locale';
 
-import Loader from '@/components/Loader';
+import Loader from '@src/components/Loader';
 import router from 'umi/router';
 
-import * as addressActionCreators from '@/common/actions/address';
-import * as addressModifyActionCreators from '@/common/actions/addressModify';
-import * as getUserInfoByIdActionCreators from '@/common/actions/getUserInfoById';
-import * as orderCreateActionCreators from '@/common/actions/orderCreate';
-import * as couponSelectActionCreators from '@/common/actions/couponSelect';
-import * as modalActionCreators from '@/common/actions/modal';
-import { PRIMARY_COLOR, BORDER_COLOR } from '@/styles/variables';
+import * as addressActionCreators from '@src/common/actions/address';
+import * as addressModifyActionCreators from '@src/common/actions/addressModify';
+import * as getUserInfoByIdActionCreators from '@src/common/actions/getUserInfoById';
+import * as orderCreateActionCreators from '@src/common/actions/orderCreate';
+import * as couponSelectActionCreators from '@src/common/actions/couponSelect';
+import * as modalActionCreators from '@src/common/actions/modal';
+import { PRIMARY_COLOR, BORDER_COLOR } from '@src/styles/variables';
 import {
   SIDEINTERVAL,
   WINDOW_WIDTH,
   SCREENS,
   WINDOW_HEIGHT,
-} from '@/common/constants';
+} from '@src/common/constants';
 import { Modal } from 'antd-mobile';
-import EmptyState from '@/components/EmptyState';
+import EmptyState from '@src/components/EmptyState';
 
-import MustLogin from '@/components/MustLogin';
-import { getLoginUser } from '@/common/selectors';
-import CustomIcon from '@/components/CustomIcon';
+import MustLogin from '@src/components/MustLogin';
+import { getLoginUser } from '@src/common/selectors';
+import CustomIcon from '@src/components/CustomIcon';
 
 const afiasifsdhfsPng =
   'https://oss.buyoo.vn/usercollect/1/20181109084840_7R8.png';

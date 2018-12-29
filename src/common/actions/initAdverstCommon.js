@@ -1,4 +1,4 @@
-import { INIT_ADVERST_COMMON } from '@/common/constants/actionTypes';
+import { INIT_ADVERST_COMMON } from '@src/common/constants/actionTypes';
 
 export function initAdverstCommonFetchSuccess(items, totalpage, currentpage) {
   return {

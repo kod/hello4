@@ -5,15 +5,15 @@ import dayjs from 'dayjs';
 import {
   receiveVoucherFetchSuccess,
   receiveVoucherFetchFailure,
-} from '@/common/actions/receiveVoucher';
-import { getVoucherFetch } from '@/common/actions/getVoucher';
-import { addError } from '@/common/actions/error';
-import buyoo from '@/services/api';
-import { RECEIVE_VOUCHER } from '@/common/constants/actionTypes';
-import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
+} from '@src/common/actions/receiveVoucher';
+import { getVoucherFetch } from '@src/common/actions/getVoucher';
+import { addError } from '@src/common/actions/error';
+import buyoo from '@src/services/api';
+import { RECEIVE_VOUCHER } from '@src/common/constants/actionTypes';
+import { encryptMD5, signTypeMD5 } from '@src/utils/AuthEncrypt';
 
-import { dispatchEventBuyoo } from '@/utils';
-import { getAuthUser } from '@/common/selectors';
+import { dispatchEventBuyoo } from '@src/utils';
+import { getAuthUser } from '@src/common/selectors';
 
 export function* receiveVoucherFetchWatchHandle(action) {
   try {

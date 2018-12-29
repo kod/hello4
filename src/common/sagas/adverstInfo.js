@@ -3,11 +3,11 @@ import dayjs from 'dayjs';
 import {
   adverstInfoFetchSuccess,
   adverstInfoFetchFailure,
-} from '@/common/actions/adverstInfo';
-import { addError } from '@/common/actions/error';
-import buyoo from '@/services/api';
-import { ADVERST_INFO } from '@/common/constants/actionTypes';
-import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
+} from '@src/common/actions/adverstInfo';
+import { addError } from '@src/common/actions/error';
+import buyoo from '@src/services/api';
+import { ADVERST_INFO } from '@src/common/constants/actionTypes';
+import { encryptMD5, signTypeMD5 } from '@src/utils/AuthEncrypt';
 
 export function* adverstInfoFetchWatchHandle(action) {
   try {

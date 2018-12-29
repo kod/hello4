@@ -1,9 +1,13 @@
 import React from 'react';
 import { formatMessage } from 'umi/locale';
 
-import { HEADER_BACKGROUND_COLOR, BORDER_COLOR } from '@/styles/variables';
-import { SIDEINTERVAL, WINDOW_WIDTH, WINDOW_HEIGHT } from '@/common/constants';
-import CustomIcon from '@/components/CustomIcon';
+import { HEADER_BACKGROUND_COLOR, BORDER_COLOR } from '@src/styles/variables';
+import {
+  SIDEINTERVAL,
+  WINDOW_WIDTH,
+  WINDOW_HEIGHT,
+} from '@src/common/constants';
+import CustomIcon from '@src/components/CustomIcon';
 
 const STATUSBAR_HEIGHT = 0;
 

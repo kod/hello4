@@ -5,17 +5,17 @@ import { connect } from 'react-redux';
 import router from 'umi/router';
 import qs from 'qs';
 
-import { WINDOW_HEIGHT } from '@/common/constants';
-import Home from '@/pages/Home/Home';
-// import Categories from '@/pages/Home/Categories';
-import Cart from '@/pages/Home/Cart';
-import Me from '@/pages/Home/Me';
-import CustomIcon from '@/components/CustomIcon';
+import { WINDOW_HEIGHT } from '@src/common/constants';
+import Home from '@src/pages/Home/Home';
+// import Categories from '@src/pages/Home/Categories';
+import Cart from '@src/pages/Home/Cart';
+import Me from '@src/pages/Home/Me';
+import CustomIcon from '@src/components/CustomIcon';
 import {
   addEventListenerBuyoo,
   removeEventListenerBuyoo,
   dispatchEventBuyoo,
-} from '@/utils';
+} from '@src/utils';
 import stylesLess from './index.less';
 
 class Index extends React.Component {

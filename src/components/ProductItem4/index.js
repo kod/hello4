@@ -9,10 +9,10 @@ import {
   WINDOW_WIDTH,
   IS_IOS,
   OSS_IMAGE_QUALITY,
-} from '@/common/constants';
-import priceFormat from '@/utils/priceFormat';
-import { RED_COLOR } from '@/styles/variables';
-import { xOssProcess, analyzeUrlNavigate } from '@/utils';
+} from '@src/common/constants';
+import priceFormat from '@src/utils/priceFormat';
+import { RED_COLOR } from '@src/styles/variables';
+import { xOssProcess, analyzeUrlNavigate } from '@src/utils';
 
 const itemIntervalWidth = SIDEINTERVAL;
 const itemWidth = (WINDOW_WIDTH - itemIntervalWidth * 4) / 3;

@@ -1,4 +1,4 @@
-import { ENCHASHMENT_CONFIG } from '@/common/constants/actionTypes';
+import { ENCHASHMENT_CONFIG } from '@src/common/constants/actionTypes';
 
 export function enchashmentConfigFetchSuccess(feeRate, limit) {
   return {

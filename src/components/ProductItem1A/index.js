@@ -9,11 +9,11 @@ import {
   MONETARY,
   IS_IOS,
   OSS_IMAGE_QUALITY,
-} from '@/common/constants';
-import { xOssProcess } from '@/utils';
-import { BORDER_COLOR, RED_COLOR } from '@/styles/variables';
-import Loader from '@/components/Loader';
-import priceFormat from '@/utils/priceFormat';
+} from '@src/common/constants';
+import { xOssProcess } from '@src/utils';
+import { BORDER_COLOR, RED_COLOR } from '@src/styles/variables';
+import Loader from '@src/components/Loader';
+import priceFormat from '@src/utils/priceFormat';
 import stylesLess from './index.less';
 
 const itemIntervalWidth = SIDEINTERVAL;

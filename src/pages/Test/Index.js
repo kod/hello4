@@ -2,8 +2,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import * as collectionActionCreators from '@/common/actions/collection';
-import BYHeader from '@/components/BYHeader';
+import * as collectionActionCreators from '@src/common/actions/collection';
+import BYHeader from '@src/components/BYHeader';
 
 class AboutAs extends React.Component {
   componentDidMount() {

@@ -1,4 +1,4 @@
-import { OAUTH_REQUEST } from '@/common/constants/actionTypes';
+import { OAUTH_REQUEST } from '@src/common/constants/actionTypes';
 
 export function oauthRequestFetchSuccess(response, screen) {
   return {

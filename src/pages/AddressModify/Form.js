@@ -4,8 +4,8 @@ import { createForm } from 'rc-form';
 import { formatMessage } from 'umi/locale';
 import { connect } from 'react-redux';
 
-import ModalRoot from '@/containers/ModalRoot';
-import Loader from '@/components/Loader';
+import ModalRoot from '@src/containers/ModalRoot';
+import Loader from '@src/components/Loader';
 import router from 'umi/router';
 import {
   SIDEINTERVAL,
@@ -13,21 +13,21 @@ import {
   NAME_EXPR,
   PHONE_EXPR,
   MODAL_TYPES,
-} from '@/common/constants';
-import { PRIMARY_COLOR } from '@/styles/variables';
+} from '@src/common/constants';
+import { PRIMARY_COLOR } from '@src/styles/variables';
 
-import * as cityInfosActionCreators from '@/common/actions/cityInfos';
-import * as addressActionCreators from '@/common/actions/address';
-import * as addressModifyActionCreators from '@/common/actions/addressModify';
-import * as userAddAddrActionCreators from '@/common/actions/userAddAddr';
-import * as modalActionCreators from '@/common/actions/modal';
+import * as cityInfosActionCreators from '@src/common/actions/cityInfos';
+import * as addressActionCreators from '@src/common/actions/address';
+import * as addressModifyActionCreators from '@src/common/actions/addressModify';
+import * as userAddAddrActionCreators from '@src/common/actions/userAddAddr';
+import * as modalActionCreators from '@src/common/actions/modal';
 import {
   submitDuplicateFreeze,
   removeEventListenerBuyoo,
   addEventListenerBuyoo,
-} from '@/utils';
-import InputRight from '@/components/InputRight';
-import BYButton from '@/components/BYButton';
+} from '@src/utils';
+import InputRight from '@src/components/InputRight';
+import BYButton from '@src/components/BYButton';
 
 const styles = {
   container: {

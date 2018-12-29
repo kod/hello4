@@ -1,5 +1,5 @@
 import React from 'react';
-import BYHeader from '@/components/BYHeader';
+import BYHeader from '@src/components/BYHeader';
 import Form from './Form';
 
 export default ({ location: { query } }) => (

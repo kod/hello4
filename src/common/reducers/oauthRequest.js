@@ -1,4 +1,4 @@
-import { OAUTH_REQUEST } from '@/common/constants/actionTypes';
+import { OAUTH_REQUEST } from '@src/common/constants/actionTypes';
 
 const initState = {
   loading: false,

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { SIDEINTERVAL } from '@/common/constants';
+import { SIDEINTERVAL } from '@src/common/constants';
 
 const styles = {
   component: {

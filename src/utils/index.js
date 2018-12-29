@@ -24,7 +24,7 @@ import {
   FB_APPID,
   API_DEBUG,
   FB_APPID_TEST,
-} from '@/common/constants';
+} from '@src/common/constants';
 
 const invitationCodeNavigate = id => {
   router.push(`/${SCREENS.RegisterStepOne}?${qs.stringify({ id })}`);

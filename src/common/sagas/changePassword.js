@@ -4,13 +4,13 @@ import { takeEvery, apply, put } from 'redux-saga/effects';
 import {
   changePasswordFetchSuccess,
   changePasswordFetchFailure,
-} from '@/common/actions/changePassword';
-import { addError } from '@/common/actions/error';
-import buyoo from '@/services/api';
+} from '@src/common/actions/changePassword';
+import { addError } from '@src/common/actions/error';
+import buyoo from '@src/services/api';
 
-import { CHANGE_PASSWORD } from '@/common/constants/actionTypes';
-import { encryptMD5 } from '@/utils/AuthEncrypt';
-import { dispatchEventBuyoo } from '@/utils';
+import { CHANGE_PASSWORD } from '@src/common/constants/actionTypes';
+import { encryptMD5 } from '@src/utils/AuthEncrypt';
+import { dispatchEventBuyoo } from '@src/utils';
 
 export function* changePasswordFetchWatchHandle(action) {
   const { msisdn, password, otp, screen } = action.payload;

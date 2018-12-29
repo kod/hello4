@@ -2,11 +2,11 @@ import React from 'react';
 import { formatMessage } from 'umi/locale';
 import { connect } from 'react-redux';
 
-import BYHeader from '@/components/BYHeader';
-import Form from './Form';
-import { WINDOW_HEIGHT } from '@/common/constants';
+import BYHeader from '@src/components/BYHeader';
+import { WINDOW_HEIGHT } from '@src/common/constants';
 
-import * as loginActionCreators from '@/common/actions/login';
+import * as loginActionCreators from '@src/common/actions/login';
+import Form from './Form';
 
 // class Withdrawal extends React.Component {
 //   render() {

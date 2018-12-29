@@ -1,4 +1,4 @@
-import { QUERY_ORDER } from '@/common/constants/actionTypes';
+import { QUERY_ORDER } from '@src/common/constants/actionTypes';
 
 export function queryOrderFetchSuccess(item) {
   return {

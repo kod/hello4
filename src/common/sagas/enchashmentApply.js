@@ -3,13 +3,13 @@ import dayjs from 'dayjs';
 import {
   enchashmentApplyFetchSuccess,
   enchashmentApplyFetchFailure,
-} from '@/common/actions/enchashmentApply';
-import { addError } from '@/common/actions/error';
-import buyoo from '@/services/api';
-import { ENCHASHMENT_APPLY } from '@/common/constants/actionTypes';
-import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
-import { dispatchEventBuyoo } from '@/utils';
-import { getAuthUser } from '@/common/selectors';
+} from '@src/common/actions/enchashmentApply';
+import { addError } from '@src/common/actions/error';
+import buyoo from '@src/services/api';
+import { ENCHASHMENT_APPLY } from '@src/common/constants/actionTypes';
+import { encryptMD5, signTypeMD5 } from '@src/utils/AuthEncrypt';
+import { dispatchEventBuyoo } from '@src/utils';
+import { getAuthUser } from '@src/common/selectors';
 
 export function* enchashmentApplyFetchWatchHandle(action) {
   const { amount = 0, screen = '' } = action.payload;

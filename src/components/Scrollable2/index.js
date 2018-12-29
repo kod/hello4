@@ -5,21 +5,21 @@ import { connect } from 'react-redux';
 // import router from 'umi/router';
 import { formatMessage } from 'umi/locale';
 
-import * as bannerSwiperActionCreators from '@/common/actions/bannerSwiper';
-import * as adPhoneActionCreators from '@/common/actions/adPhone';
+import * as bannerSwiperActionCreators from '@src/common/actions/bannerSwiper';
+import * as adPhoneActionCreators from '@src/common/actions/adPhone';
 // import {
 //   WINDOW_WIDTH,
 //   OSS_IMAGE_QUALITY,
 //   IS_IOS,
 //   SCREENS,
-// } from '@/common/constants';
-// import { xOssProcess } from '@/utils';
-import ProductItem4 from '@/components/ProductItem4';
-import PhoneAdBaner from '@/components/PhoneAdBaner';
-import BrandList from '@/components/BrandList';
-import FloorTitle from '@/components/FloorTitle';
-import SwiperFlatList from '@/components/SwiperFlatList';
-import { WINDOW_WIDTH } from '@/common/constants';
+// } from '@src/common/constants';
+// import { xOssProcess } from '@src/utils';
+import ProductItem4 from '@src/components/ProductItem4';
+import PhoneAdBaner from '@src/components/PhoneAdBaner';
+import BrandList from '@src/components/BrandList';
+import FloorTitle from '@src/components/FloorTitle';
+import SwiperFlatList from '@src/components/SwiperFlatList';
+import { WINDOW_WIDTH } from '@src/common/constants';
 
 class Scrollable2 extends Component {
   componentDidMount() {

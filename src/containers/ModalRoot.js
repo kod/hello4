@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { MODAL_TYPES } from '@/common/constants';
+import { MODAL_TYPES } from '@src/common/constants';
 import AddressAddModal from './AddressAddModal';
 import ParamsSelectModal from './ParamsSelectModal';
 import GiftModal from './GiftModal';

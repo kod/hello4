@@ -1,4 +1,4 @@
-import { REGISTER } from '@/common/constants/actionTypes';
+import { REGISTER } from '@src/common/constants/actionTypes';
 
 const initState = {
   loading: false,

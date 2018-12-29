@@ -1,19 +1,19 @@
 import React from 'react';
 import dayjs from 'dayjs';
 import { connect } from 'react-redux';
-import BYHeader from '@/components/BYHeader';
+import BYHeader from '@src/components/BYHeader';
 import { formatMessage } from 'umi/locale';
 import { Modal } from 'antd-mobile';
 import router from 'umi/router';
 import qs from 'qs';
 
-import * as addressActionCreators from '@/common/actions/address';
-import * as queryOrderActionCreators from '@/common/actions/queryOrder';
-import * as orderPayActionCreators from '@/common/actions/orderPay';
-import * as getUserInfoByIdActionCreators from '@/common/actions/getUserInfoById';
-import * as orderCancelActionCreators from '@/common/actions/orderCancel';
-import * as modalActionCreators from '@/common/actions/modal';
-import { RED_COLOR, PRIMARY_COLOR, BORDER_COLOR } from '@/styles/variables';
+import * as addressActionCreators from '@src/common/actions/address';
+import * as queryOrderActionCreators from '@src/common/actions/queryOrder';
+import * as orderPayActionCreators from '@src/common/actions/orderPay';
+import * as getUserInfoByIdActionCreators from '@src/common/actions/getUserInfoById';
+import * as orderCancelActionCreators from '@src/common/actions/orderCancel';
+import * as modalActionCreators from '@src/common/actions/modal';
+import { RED_COLOR, PRIMARY_COLOR, BORDER_COLOR } from '@src/styles/variables';
 import {
   SIDEINTERVAL,
   WINDOW_WIDTH,
@@ -21,21 +21,21 @@ import {
   SCREENS,
   MODAL_TYPES,
   WINDOW_HEIGHT,
-} from '@/common/constants';
+} from '@src/common/constants';
 import {
   tradeStatusCodes,
   payWayToText,
   addEventListenerBuyoo,
   removeEventListenerBuyoo,
-} from '@/utils';
-import SeparateBar from '@/components/SeparateBar';
-import ProductItem2 from '@/components/ProductItem2';
-import priceFormat from '@/utils/priceFormat';
-import NavBar2 from '@/components/NavBar2';
-import MustLogin from '@/components/MustLogin';
-import Loader from '@/components/Loader';
-import Address from '@/components/Address';
-import { getAddressSelectedItem, getLoginUser } from '@/common/selectors';
+} from '@src/utils';
+import SeparateBar from '@src/components/SeparateBar';
+import ProductItem2 from '@src/components/ProductItem2';
+import priceFormat from '@src/utils/priceFormat';
+import NavBar2 from '@src/components/NavBar2';
+import MustLogin from '@src/components/MustLogin';
+import Loader from '@src/components/Loader';
+import Address from '@src/components/Address';
+import { getAddressSelectedItem, getLoginUser } from '@src/common/selectors';
 
 const styles = {
   container: {

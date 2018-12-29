@@ -5,15 +5,14 @@ import router from 'umi/router';
 import { Modal } from 'antd-mobile';
 import qs from 'qs';
 
-import stylesLess from './index.less';
-import CustomIcon from '@/components/CustomIcon';
+import CustomIcon from '@src/components/CustomIcon';
 import {
   SIDEINTERVAL,
   WINDOW_WIDTH,
   SCREENS,
   MESSAGE_URL,
   LOCALSTORAGE_INVITE,
-} from '@/common/constants';
+} from '@src/common/constants';
 import {
   BORDER_COLOR,
   PRIMARY_COLOR,
@@ -21,18 +20,19 @@ import {
   FONT_COLOR_SECOND,
   FONT_COLOR_FIRST,
   FONT_SIZE_SECOND,
-} from '@/styles/variables';
-import ProductDetailMain from './ProductDetailMain';
+} from '@src/styles/variables';
 
-import * as collectionActionCreators from '@/common/actions/collection';
-import * as modalActionCreators from '@/common/actions/modal';
-import * as cartActionCreators from '@/common/actions/cart';
+import * as collectionActionCreators from '@src/common/actions/collection';
+import * as modalActionCreators from '@src/common/actions/modal';
+import * as cartActionCreators from '@src/common/actions/cart';
 import {
   addEventListenerBuyoo,
   removeEventListenerBuyoo,
   localStorageSetItem,
-} from '@/utils';
-import { getLoginUser } from '@/common/selectors';
+} from '@src/utils';
+import { getLoginUser } from '@src/common/selectors';
+import ProductDetailMain from './ProductDetailMain';
+import stylesLess from './index.less';
 
 class Index extends React.Component {
   constructor(props) {

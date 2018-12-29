@@ -4,28 +4,28 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Compressor from 'compressorjs';
 
-import BYHeader from '@/components/BYHeader';
+import BYHeader from '@src/components/BYHeader';
 import { TextareaItem, Modal, ImagePicker } from 'antd-mobile';
 import { formatMessage } from 'umi/locale';
 import router from 'umi/router';
 
-import Loader from '@/components/Loader';
+import Loader from '@src/components/Loader';
 import {
   addEventListenerBuyoo,
   removeEventListenerBuyoo,
   submitDuplicateFreeze,
-} from '@/utils';
+} from '@src/utils';
 
-import * as collectFilesActionCreators from '@/common/actions/collectFiles';
-// import * as modalActionCreators from '@/common/actions/modal';
-import * as addEvaluationActionCreators from '@/common/actions/addEvaluation';
-import { PRIMARY_COLOR } from '@/styles/variables';
-import { SIDEINTERVAL, WINDOW_WIDTH, SCREENS } from '@/common/constants';
+import * as collectFilesActionCreators from '@src/common/actions/collectFiles';
+// import * as modalActionCreators from '@src/common/actions/modal';
+import * as addEvaluationActionCreators from '@src/common/actions/addEvaluation';
+import { PRIMARY_COLOR } from '@src/styles/variables';
+import { SIDEINTERVAL, WINDOW_WIDTH, SCREENS } from '@src/common/constants';
 
-import MustLogin from '@/components/MustLogin';
-import BYButton from '@/components/BYButton';
-import CustomIcon from '@/components/CustomIcon';
-import { getLoginUser } from '@/common/selectors';
+import MustLogin from '@src/components/MustLogin';
+import BYButton from '@src/components/BYButton';
+import CustomIcon from '@src/components/CustomIcon';
+import { getLoginUser } from '@src/common/selectors';
 
 const styles = {
   container: {

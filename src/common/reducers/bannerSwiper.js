@@ -1,4 +1,4 @@
-import { BANNER_SWIPER } from '@/common/constants/actionTypes';
+import { BANNER_SWIPER } from '@src/common/constants/actionTypes';
 
 const initState = {
   loading: false,

@@ -1,4 +1,4 @@
-import { ERROR } from '@/common/constants/actionTypes';
+import { ERROR } from '@src/common/constants/actionTypes';
 
 const initState = {
   loading: false,

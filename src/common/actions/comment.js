@@ -1,4 +1,4 @@
-import { COMMENT } from '@/common/constants/actionTypes';
+import { COMMENT } from '@src/common/constants/actionTypes';
 
 export function commentFetchSuccess(items) {
   return {

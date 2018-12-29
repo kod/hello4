@@ -1,4 +1,4 @@
-import { USER_CERTIFICATE_INFO } from '@/common/constants/actionTypes';
+import { USER_CERTIFICATE_INFO } from '@src/common/constants/actionTypes';
 
 export function userCertificateInfoFetchSuccess(certUser) {
   return {

@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react';
 import { Carousel } from 'antd-mobile';
 
+import { OSS_IMAGE_QUALITY, IS_IOS } from '@src/common/constants';
+import { xOssProcess, analyzeUrlNavigate } from '@src/utils';
 import styles from './index.less';
-import { OSS_IMAGE_QUALITY, IS_IOS } from '@/common/constants';
-import { xOssProcess, analyzeUrlNavigate } from '@/utils';
 
 export default class SwiperFlatList extends PureComponent {
   render() {

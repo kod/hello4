@@ -5,9 +5,9 @@ import { formatMessage } from 'umi/locale';
 import router from 'umi/router';
 import qs from 'qs';
 
-import BYButton from '@/components/BYButton';
-import { EMAIL_EXPR } from '@/common/constants';
-import InputCountry from '@/components/InputCountry';
+import BYButton from '@src/components/BYButton';
+import { EMAIL_EXPR } from '@src/common/constants';
+import InputCountry from '@src/components/InputCountry';
 
 class LoginForm extends React.Component {
   submit = () => {

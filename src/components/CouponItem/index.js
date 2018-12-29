@@ -2,17 +2,17 @@
 import React from 'react';
 import dayjs from 'dayjs';
 
-import { PRIMARY_COLOR, RED_COLOR } from '@/styles/variables';
+import { PRIMARY_COLOR, RED_COLOR } from '@src/styles/variables';
 import {
   SIDEINTERVAL,
   MONETARY,
   WINDOW_WIDTH,
   IS_IOS,
   OSS_IMAGE_QUALITY,
-} from '@/common/constants';
-import priceFormat from '@/utils/priceFormat';
-import CustomIcon from '@/components/CustomIcon';
-import { xOssProcess } from '@/utils';
+} from '@src/common/constants';
+import priceFormat from '@src/utils/priceFormat';
+import CustomIcon from '@src/components/CustomIcon';
+import { xOssProcess } from '@src/utils';
 
 const couponBluePng =
   'https://oss.buyoo.vn/usercollect/1/20181109100835_r2M.png';

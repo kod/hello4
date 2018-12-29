@@ -1,4 +1,4 @@
-import { COUPON_SELECT } from '@/common/constants/actionTypes';
+import { COUPON_SELECT } from '@src/common/constants/actionTypes';
 
 export function couponSelectFetch(item) {
   return {

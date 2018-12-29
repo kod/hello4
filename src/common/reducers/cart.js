@@ -8,7 +8,7 @@ import {
   CART_SUBMIT,
   CART_DELETE,
   CART_SELECTDELALL,
-} from '@/common/constants/actionTypes';
+} from '@src/common/constants/actionTypes';
 
 const initState = {
   loading: false,

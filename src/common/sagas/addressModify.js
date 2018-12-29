@@ -3,14 +3,14 @@ import dayjs from 'dayjs';
 import {
   addressModifySuccess,
   addressModifyFailure,
-} from '@/common/actions/addressModify';
-import { addressFetch } from '@/common/actions/address';
-import { addError } from '@/common/actions/error';
-import buyoo from '@/services/api';
-import { ADDRESS_MODIFY } from '@/common/constants/actionTypes';
+} from '@src/common/actions/addressModify';
+import { addressFetch } from '@src/common/actions/address';
+import { addError } from '@src/common/actions/error';
+import buyoo from '@src/services/api';
+import { ADDRESS_MODIFY } from '@src/common/constants/actionTypes';
 
-import { encryptMD5, signTypeMD5 } from '@/utils/AuthEncrypt';
-import { getAuthUser } from '@/common/selectors';
+import { encryptMD5, signTypeMD5 } from '@src/utils/AuthEncrypt';
+import { getAuthUser } from '@src/common/selectors';
 
 function* addressModifyWatchHandle(action) {
   try {

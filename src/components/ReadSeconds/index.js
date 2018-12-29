@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { formatMessage } from 'umi/locale';
 
-import * as otpActionCreators from '@/common/actions/otp';
+import * as otpActionCreators from '@src/common/actions/otp';
 
-import { WINDOW_WIDTH, VERIFICATION_CODE_SECONDS } from '@/common/constants';
+import { WINDOW_WIDTH, VERIFICATION_CODE_SECONDS } from '@src/common/constants';
 
 const styles = {
   second: {

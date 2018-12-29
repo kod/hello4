@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 import { denormalize } from 'normalizr';
-import Schemas from '@/common/constants/schemas';
-import { localStorageGetItem, getSKey, getSValue } from '@/utils';
+import Schemas from '@src/common/constants/schemas';
+import { localStorageGetItem, getSKey, getSValue } from '@src/utils';
 
 // const defaultArray = [];
 const defaultObject = {};

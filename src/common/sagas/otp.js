@@ -1,9 +1,9 @@
 import { takeEvery, apply, put } from 'redux-saga/effects';
-import { otpFetchSuccess, otpFetchFailure } from '@/common/actions/otp';
-import { addError } from '@/common/actions/error';
-import buyoo from '@/services/api';
-import { OTP } from '@/common/constants/actionTypes';
-import { encryptMD5 } from '@/utils/AuthEncrypt';
+import { otpFetchSuccess, otpFetchFailure } from '@src/common/actions/otp';
+import { addError } from '@src/common/actions/error';
+import buyoo from '@src/services/api';
+import { OTP } from '@src/common/constants/actionTypes';
+import { encryptMD5 } from '@src/utils/AuthEncrypt';
 
 export function* otpFetchWatchHandle(action) {
   try {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ICON_SCRIPTURL } from '@/common/constants';
+import { ICON_SCRIPTURL } from '@src/common/constants';
 import Icon from './index';
 
 const customCache = new Set();

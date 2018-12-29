@@ -1,4 +1,4 @@
-import { ENCHASHMENT_GETLIST } from '@/common/constants/actionTypes';
+import { ENCHASHMENT_GETLIST } from '@src/common/constants/actionTypes';
 
 export function enchashmentGetListFetchSuccess(item) {
   return {

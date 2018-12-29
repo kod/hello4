@@ -1,9 +1,9 @@
 import React from 'react';
 import { formatMessage } from 'umi/locale';
 
-import { SIDEINTERVAL } from '@/common/constants';
-import { addressJoin } from '@/utils';
-import CustomIcon from '@/components/CustomIcon';
+import { SIDEINTERVAL } from '@src/common/constants';
+import { addressJoin } from '@src/utils';
+import CustomIcon from '@src/components/CustomIcon';
 
 const styles = {
   address: {
