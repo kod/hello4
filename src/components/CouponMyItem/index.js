@@ -1,7 +1,7 @@
 import React from 'react';
 // import router from 'umi/router';
 import { connect } from 'react-redux';
-import { formatMessage } from 'umi/locale';
+import { formatMessage } from 'umi-plugin-locale';
 // import { Modal } from 'antd-mobile';
 
 import * as getVoucherListActionCreators from '@src/common/actions/getVoucherList';

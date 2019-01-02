@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { formatMessage } from 'umi/locale';
+import { formatMessage } from 'umi-plugin-locale';
 
 import {
   WINDOW_WIDTH,

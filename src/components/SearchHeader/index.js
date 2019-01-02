@@ -1,5 +1,5 @@
 import React from 'react';
-import { formatMessage } from 'umi/locale';
+import { formatMessage } from 'umi-plugin-locale';
 
 import { HEADER_BACKGROUND_COLOR, BORDER_COLOR } from '@src/styles/variables';
 import {

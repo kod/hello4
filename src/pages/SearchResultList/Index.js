@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import router from 'umi/router';
-import { formatMessage } from 'umi/locale';
+import { formatMessage } from 'umi-plugin-locale';
 
 import BYHeader from '@src/components/BYHeader';
 import Loader from '@src/components/Loader';

@@ -5,7 +5,7 @@ import {
   put,
   // put,
 } from 'redux-saga/effects';
-import { formatMessage } from 'umi/locale';
+import { formatMessage } from 'umi-plugin-locale';
 import { ERROR } from '@src/common/constants/actionTypes';
 
 export function* handleAlertError(action) {

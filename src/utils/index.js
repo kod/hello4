@@ -3,7 +3,7 @@ import { Modal } from 'antd-mobile';
 import router from 'umi/router';
 import md5 from 'blueimp-md5';
 
-import { formatMessage } from 'umi/locale';
+import { formatMessage } from 'umi-plugin-locale';
 import {
   CREDIT_PAYWAY,
   INTERNET_BANK_PAYWAY,

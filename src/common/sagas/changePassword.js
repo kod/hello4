@@ -1,4 +1,4 @@
-import { formatMessage } from 'umi/locale';
+import { formatMessage } from 'umi-plugin-locale';
 import { takeEvery, apply, put } from 'redux-saga/effects';
 
 import {

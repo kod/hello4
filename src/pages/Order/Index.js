@@ -4,7 +4,7 @@ import BYHeader from '@src/components/BYHeader';
 import {
   formatMessage,
   // setLocale
-} from 'umi/locale';
+} from 'umi-plugin-locale';
 
 import router from 'umi/router';
 

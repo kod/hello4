@@ -3,7 +3,7 @@ import React from 'react';
 import qs from 'qs';
 import { connect } from 'react-redux';
 import BYHeader from '@src/components/BYHeader';
-import { formatMessage } from 'umi/locale';
+import { formatMessage } from 'umi-plugin-locale';
 
 import Loader from '@src/components/Loader';
 import router from 'umi/router';

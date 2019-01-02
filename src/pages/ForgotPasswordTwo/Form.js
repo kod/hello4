@@ -2,7 +2,7 @@ import React from 'react';
 import { List, Toast } from 'antd-mobile';
 import { connect } from 'react-redux';
 import { createForm } from 'rc-form';
-import { formatMessage } from 'umi/locale';
+import { formatMessage } from 'umi-plugin-locale';
 import BYButton from '@src/components/BYButton';
 import {
   LOGIN_PASSWORD_EXPR,

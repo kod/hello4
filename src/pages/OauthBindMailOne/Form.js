@@ -1,7 +1,7 @@
 import React from 'react';
 import { List, Toast } from 'antd-mobile';
 import { createForm } from 'rc-form';
-import { formatMessage } from 'umi/locale';
+import { formatMessage } from 'umi-plugin-locale';
 import router from 'umi/router';
 import BYButton from '@src/components/BYButton';
 import { EMAIL_EXPR } from '@src/common/constants';

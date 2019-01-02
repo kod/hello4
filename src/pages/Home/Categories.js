@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { formatMessage } from 'umi/locale';
+import { formatMessage } from 'umi-plugin-locale';
 
 import * as getMenuActionCreators from '@src/common/actions/getMenu';
 import BYHeader from '@src/components/BYHeader';

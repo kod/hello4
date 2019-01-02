@@ -1,5 +1,5 @@
 import React from 'react';
-import { formatMessage } from 'umi/locale';
+import { formatMessage } from 'umi-plugin-locale';
 import { connect } from 'react-redux';
 import router from 'umi/router';
 import { Modal } from 'antd-mobile';

@@ -12,7 +12,7 @@ import {
   MONETARY,
   SCREENS,
 } from '@src/common/constants';
-import { formatMessage } from 'umi/locale';
+import { formatMessage } from 'umi-plugin-locale';
 
 import * as queryOrderListActionCreators from '@src/common/actions/queryOrderList';
 import { BORDER_COLOR, PRIMARY_COLOR } from '@src/styles/variables';

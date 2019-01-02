@@ -1,4 +1,4 @@
-import { formatMessage } from 'umi/locale';
+import { formatMessage } from 'umi-plugin-locale';
 import { takeEvery, apply, put, select } from 'redux-saga/effects';
 import dayjs from 'dayjs';
 import { INTERNET_BANK_PAYWAY } from '@src/common/constants';

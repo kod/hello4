@@ -1,5 +1,5 @@
 import { apply, put, takeEvery, select } from 'redux-saga/effects';
-import { formatMessage } from 'umi/locale';
+import { formatMessage } from 'umi-plugin-locale';
 import { Modal } from 'antd-mobile';
 import { normalize } from 'normalizr';
 import dayjs from 'dayjs';

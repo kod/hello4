@@ -6,7 +6,7 @@ import Compressor from 'compressorjs';
 
 import BYHeader from '@src/components/BYHeader';
 import { TextareaItem, Modal, ImagePicker } from 'antd-mobile';
-import { formatMessage } from 'umi/locale';
+import { formatMessage } from 'umi-plugin-locale';
 import router from 'umi/router';
 
 import Loader from '@src/components/Loader';

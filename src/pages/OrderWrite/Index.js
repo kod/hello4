@@ -1,7 +1,7 @@
 /* eslint-disable no-shadow */
 import React from 'react';
 import { connect } from 'react-redux';
-import { formatMessage } from 'umi/locale';
+import { formatMessage } from 'umi-plugin-locale';
 import { Modal, ActionSheet } from 'antd-mobile';
 import BYHeader from '@src/components/BYHeader';
 import { getAddressSelectedItem, getLoginUser } from '@src/common/selectors';

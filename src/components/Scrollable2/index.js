@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import qs from 'qs';
 // import router from 'umi/router';
-import { formatMessage } from 'umi/locale';
+import { formatMessage } from 'umi-plugin-locale';
 
 import * as bannerSwiperActionCreators from '@src/common/actions/bannerSwiper';
 import * as adPhoneActionCreators from '@src/common/actions/adPhone';

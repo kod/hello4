@@ -3,7 +3,7 @@ import React from 'react';
 import { Toast, Modal } from 'antd-mobile';
 import { connect } from 'react-redux';
 import { createForm } from 'rc-form';
-import { formatMessage } from 'umi/locale';
+import { formatMessage } from 'umi-plugin-locale';
 import router from 'umi/router';
 import { SCREENS, SIDEINTERVAL, MONETARY } from '@src/common/constants';
 import InputRight from '@src/components/InputRight';

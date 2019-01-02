@@ -1,5 +1,5 @@
 import React from 'react';
-import { formatMessage } from 'umi/locale';
+import { formatMessage } from 'umi-plugin-locale';
 import { connect } from 'react-redux';
 
 import BYHeader from '@src/components/BYHeader';

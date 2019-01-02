@@ -2,7 +2,7 @@ import React from 'react';
 import dayjs from 'dayjs';
 import { connect } from 'react-redux';
 import BYHeader from '@src/components/BYHeader';
-import { formatMessage } from 'umi/locale';
+import { formatMessage } from 'umi-plugin-locale';
 import { Modal } from 'antd-mobile';
 import router from 'umi/router';
 import qs from 'qs';
