@@ -1,4 +1,4 @@
-import { ENCHASHMENT_APPLY } from '@src/common/constants/actionTypes';
+import { ENCHASHMENT_CONFIG } from '@src/common/constants/actionTypes';
 
 const initState = {
   loading: false,
@@ -10,16 +10,16 @@ const initState = {
 
 export default (state = initState, action) => {
   switch (action.type) {
-    case ENCHASHMENT_APPLY.CLEAR:
+    case ENCHASHMENT_CONFIG.CLEAR:
       return {
         ...initState,
       };
-    case ENCHASHMENT_APPLY.REQUEST:
+    case ENCHASHMENT_CONFIG.REQUEST:
       return {
         ...state,
         loading: true,
       };
-    case ENCHASHMENT_APPLY.SUCCESS:
+    case ENCHASHMENT_CONFIG.SUCCESS:
       return {
         ...state,
         loading: false,
@@ -27,7 +27,7 @@ export default (state = initState, action) => {
         limit: action.payload.limit,
         feeRate: action.payload.feeRate,
       };
-    case ENCHASHMENT_APPLY.FAILURE:
+    case ENCHASHMENT_CONFIG.FAILURE:
       return {
         ...state,
         loading: false,
