@@ -395,7 +395,10 @@ export default {
   amountWithdrawn: 'Số tiền rút',
   serviceFee: 'phí dịch vụ(phát sinh khi rút tiền)',
   amountActuallyReceived: 'Số tiền thực nhận',
-  limitWithdrawnTips: 'The amount is less than XXX and cannot be withdrawn',
+  limitWithdrawnTips:
+    'Bạn không thể rút tiền do số dư của bạn không đủ XXX VND',
+  loginShareReceiveBonus:
+    'Vui lòng đăng nhập và chia sẻ để nhận được tiền thưởng',
   insufficientAmount: 'Số tiền không đủ',
   salesCommission: 'Hoa hồng bán hàng',
   shareGetDiscountedDealsAndMoneyRose:

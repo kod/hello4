@@ -201,7 +201,7 @@ class ProductDetailMain extends React.Component {
     if (authUser) {
       shareAction();
     } else {
-      Modal.alert('', '登录后，分享后下单会有奖励哦，是否登录？', [
+      Modal.alert('', formatMessage({ id: 'loginShareReceiveBonus' }), [
         {
           text: formatMessage({ id: 'cancel' }),
         },

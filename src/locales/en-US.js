@@ -389,7 +389,9 @@ export default {
   amountWithdrawn: 'Amount withdrawn',
   serviceFee: 'service fee (arising when withdrawing money)',
   amountActuallyReceived: 'The amount actually received',
-  limitWithdrawnTips: 'The amount is less than XXX and cannot be withdrawn',
+  limitWithdrawnTips:
+    'You cannot withdraw money because your balance is not enough XXX VND',
+  loginShareReceiveBonus: 'Please login and share to receive the bonus',
   insufficientAmount: 'Insufficient amount',
   salesCommission: 'Sales commission',
   shareGetDiscountedDealsAndMoneyRose:
