@@ -1,4 +1,5 @@
 import os from 'os';
+import path from 'path';
 import pageRoutes from './router.config';
 
 export default {
@@ -36,6 +37,9 @@ export default {
     ie: 9,
   },
   hash: true,
+  alias: {
+    '@src': path.resolve(__dirname, '../src'),
+  },
   // chainWebpack(config) {
   //   config.optimization.splitChunks({
   //     cacheGroups: {
