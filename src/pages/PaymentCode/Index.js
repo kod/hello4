@@ -5,7 +5,7 @@ import BYHeader from '@src/components/BYHeader';
 import { formatMessage } from 'umi-plugin-locale';
 
 import Loader from '@src/components/Loader';
-import router from 'umi/router';
+import router from 'umi/lib/router';
 import { Modal } from 'antd-mobile';
 
 import * as orderPayActionCreators from '@src/common/actions/orderPay';

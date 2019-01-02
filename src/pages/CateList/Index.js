@@ -2,7 +2,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { formatMessage } from 'umi-plugin-locale';
-// import router from 'umi/router';
+// import router from 'umi/lib/router';
 
 import BYHeader from '@src/components/BYHeader';
 import * as getAllProductInfoActionCreators from '@src/common/actions/getAllProductInfo';

@@ -1,6 +1,6 @@
 import qs from 'qs';
 import { Modal } from 'antd-mobile';
-import router from 'umi/router';
+import router from 'umi/lib/router';
 import md5 from 'blueimp-md5';
 
 import { formatMessage } from 'umi-plugin-locale';

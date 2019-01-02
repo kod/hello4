@@ -1,6 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
-import router from 'umi/router';
+import router from 'umi/lib/router';
 
 import { BORDER_COLOR, RED_COLOR } from '@src/styles/variables';
 import {

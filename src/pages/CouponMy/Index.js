@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import BYHeader from '@src/components/BYHeader';
 import { formatMessage } from 'umi-plugin-locale';
 
-import router from 'umi/router';
+import router from 'umi/lib/router';
 
 import * as getVoucherActionCreators from '@src/common/actions/getVoucher';
 import * as receiveVoucherActionCreators from '@src/common/actions/receiveVoucher';

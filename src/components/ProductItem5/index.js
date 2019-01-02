@@ -10,7 +10,7 @@ import {
 } from '@src/common/constants';
 import { RED_COLOR } from '@src/styles/variables';
 import priceFormat from '@src/utils/priceFormat';
-import router from 'umi/router';
+import router from 'umi/lib/router';
 import { xOssProcess } from '@src/utils';
 
 const itemIntervalWidth = SIDEINTERVAL;

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { formatMessage } from 'umi-plugin-locale';
 import qs from 'qs';
 import { createForm } from 'rc-form';
-import router from 'umi/router';
+import router from 'umi/lib/router';
 
 import BYHeader from '@src/components/BYHeader';
 

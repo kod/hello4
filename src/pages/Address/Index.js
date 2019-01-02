@@ -6,7 +6,7 @@ import BYHeader from '@src/components/BYHeader';
 import { formatMessage } from 'umi-plugin-locale';
 
 import Loader from '@src/components/Loader';
-import router from 'umi/router';
+import router from 'umi/lib/router';
 
 import * as addressActionCreators from '@src/common/actions/address';
 import * as addressModifyActionCreators from '@src/common/actions/addressModify';

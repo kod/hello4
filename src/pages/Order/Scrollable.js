@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { PullToRefresh } from 'antd-mobile';
 import qs from 'qs';
-import router from 'umi/router';
+import router from 'umi/lib/router';
 
 import {
   WINDOW_HEIGHT,

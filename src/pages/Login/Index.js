@@ -1,7 +1,7 @@
 import React from 'react';
 import { Modal } from 'antd-mobile';
 import { formatMessage } from 'umi-plugin-locale';
-import router from 'umi/router';
+import router from 'umi/lib/router';
 import { connect } from 'react-redux';
 import qs from 'qs';
 

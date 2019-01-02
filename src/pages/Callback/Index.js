@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import BYHeader from '@src/components/BYHeader';
 import { formatMessage } from 'umi-plugin-locale';
-import router from 'umi/router';
+import router from 'umi/lib/router';
 
 import { WINDOW_HEIGHT, SCREENS, WINDOW_WIDTH } from '@src/common/constants';
 import BYButton from '@src/components/BYButton';

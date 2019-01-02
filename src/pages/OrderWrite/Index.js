@@ -5,7 +5,7 @@ import { formatMessage } from 'umi-plugin-locale';
 import { Modal, ActionSheet } from 'antd-mobile';
 import BYHeader from '@src/components/BYHeader';
 import { getAddressSelectedItem, getLoginUser } from '@src/common/selectors';
-import router from 'umi/router';
+import router from 'umi/lib/router';
 import qs from 'qs';
 
 import Loader from '@src/components/Loader';

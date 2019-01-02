@@ -1,6 +1,6 @@
 import { formatMessage } from 'umi-plugin-locale';
 import { Modal } from 'antd-mobile';
-import router from 'umi/router';
+import router from 'umi/lib/router';
 
 import {
   takeEvery,

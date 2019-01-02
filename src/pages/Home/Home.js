@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { formatMessage } from 'umi-plugin-locale';
-import router from 'umi/router';
+import router from 'umi/lib/router';
 
 import SwiperFlatList from '@src/components/SwiperFlatList';
 import SearchHeader from '@src/components/SearchHeader';

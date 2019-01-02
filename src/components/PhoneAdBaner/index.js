@@ -2,7 +2,7 @@
 import React from 'react';
 
 import qs from 'qs';
-import router from 'umi/router';
+import router from 'umi/lib/router';
 
 import {
   WINDOW_WIDTH,

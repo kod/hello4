@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { formatMessage } from 'umi-plugin-locale';
 import qs from 'qs';
-import router from 'umi/router';
+import router from 'umi/lib/router';
 import { Modal } from 'antd-mobile';
 
 import ModalRoot from '@src/containers/ModalRoot';

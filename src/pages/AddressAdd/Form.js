@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 
 import ModalRoot from '@src/containers/ModalRoot';
 import Loader from '@src/components/Loader';
-import router from 'umi/router';
+import router from 'umi/lib/router';
 import {
   SIDEINTERVAL,
   WINDOW_HEIGHT,

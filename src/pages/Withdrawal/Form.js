@@ -4,7 +4,7 @@ import { Toast, Modal } from 'antd-mobile';
 import { connect } from 'react-redux';
 import { createForm } from 'rc-form';
 import { formatMessage } from 'umi-plugin-locale';
-import router from 'umi/router';
+import router from 'umi/lib/router';
 import { SCREENS, SIDEINTERVAL, MONETARY } from '@src/common/constants';
 import InputRight from '@src/components/InputRight';
 import NavBar2 from '@src/components/NavBar2';

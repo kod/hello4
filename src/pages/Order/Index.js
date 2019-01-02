@@ -6,7 +6,7 @@ import {
   // setLocale
 } from 'umi-plugin-locale';
 
-import router from 'umi/router';
+import router from 'umi/lib/router';
 
 import * as getVoucherActionCreators from '@src/common/actions/getVoucher';
 import * as receiveVoucherActionCreators from '@src/common/actions/receiveVoucher';

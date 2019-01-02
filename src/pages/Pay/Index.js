@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { formatMessage } from 'umi-plugin-locale';
 import { Modal, ActionSheet } from 'antd-mobile';
 import qs from 'qs';
-import router from 'umi/router';
+import router from 'umi/lib/router';
 
 import BYHeader from '@src/components/BYHeader';
 import Loader from '@src/components/Loader';

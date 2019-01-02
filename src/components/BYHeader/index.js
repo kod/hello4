@@ -1,6 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
-import router from 'umi/router';
+import router from 'umi/lib/router';
 
 import { SIDEINTERVAL } from '@src/common/constants';
 import CustomIcon from '@src/components/CustomIcon';

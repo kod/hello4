@@ -2,7 +2,7 @@ import React from 'react';
 import { TabBar } from 'antd-mobile';
 import { formatMessage } from 'umi-plugin-locale';
 import { connect } from 'react-redux';
-import router from 'umi/router';
+import router from 'umi/lib/router';
 import qs from 'qs';
 
 import { WINDOW_HEIGHT } from '@src/common/constants';
