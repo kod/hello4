@@ -238,6 +238,11 @@ class Index extends PureComponent {
       //   tips: '',
       // },
       {
+        name: formatMessage({ id: 'myBrokerage' }),
+        func: () => this.handleOnNavBar1Callback(SCREENS.Withdraw),
+        tips: '',
+      },
+      {
         name: formatMessage({ id: 'myCollection' }),
         func: () => this.handleOnNavBar1Callback(SCREENS.MyCollection),
         tips: '',
