@@ -16,6 +16,8 @@ import {
   SOCIALBIND_GOOGLE,
   SOCIALBIND_FACEBOOK,
   GOOGLE_CLIENT_ID,
+  API_DEBUG,
+  GOOGLE_CLIENT_ID_TEST,
 } from '@src/common/constants';
 import {
   addEventListenerBuyoo,
@@ -59,7 +61,7 @@ class Index extends React.Component {
     loadGoogleLoginApi(() => {
       window.gapi.load('auth2', () => {
         window.gapi.auth2.init({
-          client_id: GOOGLE_CLIENT_ID,
+          client_id: API_DEBUG ? GOOGLE_CLIENT_ID_TEST : GOOGLE_CLIENT_ID,
         });
         // const googleUser = gapi.auth2.getAuthInstance().currentUser.get();
         // const profile = googleUser.getBasicProfile();

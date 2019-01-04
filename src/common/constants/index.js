@@ -38,6 +38,8 @@ export const FB_APPID = 273625800016270;
 export const FB_APPID_TEST = 2265550737053818;
 export const GOOGLE_CLIENT_ID =
   '717067101088-lbqv77ppebtf031ge0lf1up024v5145j.apps.googleusercontent.com';
+export const GOOGLE_CLIENT_ID_TEST =
+  '846120173888-9p9st5s77983ac4t4t17n9mo5kbsosb8.apps.googleusercontent.com';
 
 export const LOCALSTORAGE_INVITE = 'invite';
 
