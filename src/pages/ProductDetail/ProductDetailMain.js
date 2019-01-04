@@ -203,10 +203,13 @@ class ProductDetailMain extends React.Component {
     } else {
       Modal.alert('', formatMessage({ id: 'loginShareReceiveBonus' }), [
         {
-          text: formatMessage({ id: 'cancel' }),
+          text: formatMessage({ id: 'share' }),
+          onPress: () => {
+            shareAction();
+          },
         },
         {
-          text: formatMessage({ id: 'confirm' }),
+          text: formatMessage({ id: 'login' }),
           style: 'default',
           onPress: () => {
             router.push(`/${SCREENS.Login}`);
