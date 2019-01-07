@@ -1,4 +1,4 @@
-import os from 'os';
+// import os from 'os';
 import path from 'path';
 import pageRoutes from './router.config';
 
@@ -20,15 +20,15 @@ export default {
           loadingComponent: './components/PageLoading/index',
         },
         chunks: ['vendors', 'umi'],
-        ...(!process.env.TEST && os.platform() === 'darwin'
-          ? {
-              dll: {
-                include: ['dva', 'dva/router', 'dva/saga'],
-                exclude: ['@babel/runtime'],
-              },
-              hardSource: true,
-            }
-          : {}),
+        // ...(!process.env.TEST && os.platform() === 'darwin'
+        //   ? {
+        //       dll: {
+        //         include: ['dva', 'dva/router', 'dva/saga'],
+        //         exclude: ['@babel/runtime'],
+        //       },
+        //       hardSource: true,
+        //     }
+        //   : {}),
       },
     ],
     './umi-plugin-entry.js',
