@@ -34,6 +34,10 @@ export const VERIFICATION_CODE_SECONDS = 60 * 5; // 验证码时间
 
 export const ICON_SCRIPTURL = '//at.alicdn.com/t/font_892500_kriymneaz1r.js';
 
+export const LOCALE_EN_US = 'en-US';
+export const LOCALE_VI_VN = 'vi-VN';
+export const LOCALE_ZH_CN = 'zh-CN';
+
 export const FB_APPID = 273625800016270;
 export const FB_APPID_TEST = 2265550737053818;
 export const GOOGLE_CLIENT_ID =

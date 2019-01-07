@@ -3,11 +3,15 @@
 import en_US from '@src/locales/en-US';
 import vi_VN from '@src/locales/vi-VN';
 import zh_CN from '@src/locales/zh-CN';
-import { LOCALE_EN_US, LOCALE_VI_VN, LOCALE_ZH_CN } from './index';
+import {
+  LOCALE_EN_US,
+  LOCALE_VI_VN,
+  LOCALE_ZH_CN,
+} from '@src/common/constants';
 
 const localStorageName = 'umi_locale';
 
-export default () => {
+const getI18n = () => {
   let result;
   const local = localStorage.getItem(localStorageName) || LOCALE_EN_US;
   switch (local) {
@@ -26,5 +30,12 @@ export default () => {
     default:
       break;
   }
+  result = {
+    ...result,
+    getLanguage: () => 'en-US',
+    setLanguage: () => {},
+  };
   return result;
 };
+
+export default getI18n();

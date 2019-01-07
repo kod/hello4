@@ -3,7 +3,7 @@ import { I18N_SET_LANGUAGE } from '@src/common/actions/i18n';
 
 export default function i18n(
   state = {
-    lang: I18n.getLanguage() || 'vi',
+    lang: I18n.getLanguage() || 'en-US',
   },
   action = {},
 ) {

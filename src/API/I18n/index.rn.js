@@ -5,7 +5,11 @@ import en_US from '@src/locales/en-US';
 import vi_VN from '@src/locales/vi-VN';
 import zh_CN from '@src/locales/zh-CN';
 
-import { LOCALE_EN_US, LOCALE_VI_VN, LOCALE_ZH_CN } from './index';
+import {
+  LOCALE_EN_US,
+  LOCALE_VI_VN,
+  LOCALE_ZH_CN,
+} from '@src/common/constants';
 
 export default new LocalizedStrings({
   [LOCALE_EN_US]: en_US,

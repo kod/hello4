@@ -1,7 +1,8 @@
 /* eslint-disable arrow-body-style */
 import React from 'react';
 import { connect } from 'react-redux';
-import { Modal } from 'antd-mobile';
+// import { Modal } from 'antd-mobile';
+import { Modal } from '@src/API';
 import { formatMessage, setLocale } from 'umi-plugin-locale';
 import router from 'umi/lib/router';
 import qs from 'qs';
@@ -17,6 +18,7 @@ import NavBar1 from '@src/components/NavBar1';
 import { RED_COLOR } from '@src/styles/variables';
 import * as loginActionCreators from '@src/common/actions/login';
 import { getLoginUser } from '@src/common/selectors';
+import { connectLocalization } from '@src/components/Localization';
 
 // const personPng = 'https://oss.buyoo.vn/usercollect/1/20181120125641_E6E.png';
 
@@ -46,6 +48,22 @@ const styles = {
 };
 
 class Settings extends React.Component {
+  componentDidMount() {
+    Modal.alert(
+      '123',
+      'error',
+      [
+        {
+          text: 'ok1',
+          onPress: () => {
+            alert('alert');
+          },
+        },
+      ],
+      // false,
+    );
+  }
+
   handleOnPressLogout() {
     const { logout } = this.props;
     Modal.alert('', formatMessage({ id: 'doYouWantToSignOut' }), [
@@ -64,13 +82,13 @@ class Settings extends React.Component {
   }
 
   render() {
-    const { authUser } = this.props;
+    const { authUser, i18n } = this.props;
 
     const navBar1List = IS_I18N
       ? [
           {
             // iconImg: aboutPng,
-            name: formatMessage({ id: 'aboutAs' }),
+            name: i18n.aboutAs,
             func: () => router.push(`/${SCREENS.AboutAs}`),
             tips: '',
           },
@@ -151,13 +169,17 @@ class Settings extends React.Component {
   }
 }
 
-export default connect(
-  (state, props) => {
-    return {
-      authUser: getLoginUser(state, props),
-    };
-  },
-  {
-    ...loginActionCreators,
-  },
-)(Settings);
+export default connectLocalization(
+  connect(
+    (state, props) => {
+      console.log(state);
+      console.log(props);
+      return {
+        authUser: getLoginUser(state, props),
+      };
+    },
+    {
+      ...loginActionCreators,
+    },
+  )(Settings),
+);

@@ -1,4 +1,4 @@
-import alert from './alert.rn';
+import alert from './alert.browser';
 
 export default (
   title = '',
