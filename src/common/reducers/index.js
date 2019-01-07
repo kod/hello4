@@ -46,8 +46,10 @@ import searchHistory from './searchHistory';
 import userAddAddr from './userAddAddr';
 import userAddDetailInfo from './userAddDetailInfo';
 import userCertificateInfo from './userCertificateInfo';
+import i18n from './i18n';
 
 const rootReducer = combineReducers({
+  i18n,
   userCertificateInfo,
   userAddDetailInfo,
   userAddAddr,
