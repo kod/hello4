@@ -9,6 +9,7 @@ export default {
       {
         antd: true,
         dva: false,
+        hardSource: false,
         locale: {
           // enable: true, // default false
           // antd: true,
@@ -26,7 +27,7 @@ export default {
         //         include: ['dva', 'dva/router', 'dva/saga'],
         //         exclude: ['@babel/runtime'],
         //       },
-        //       hardSource: true,
+        //       hardSource: false,
         //     }
         //   : {}),
       },
