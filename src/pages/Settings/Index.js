@@ -48,21 +48,21 @@ const styles = {
 };
 
 class Settings extends React.Component {
-  componentDidMount() {
-    Modal.alert(
-      '123',
-      'error',
-      [
-        {
-          text: 'ok1',
-          onPress: () => {
-            alert('alert');
-          },
-        },
-      ],
-      // false,
-    );
-  }
+  // componentDidMount() {
+  //   Modal.alert(
+  //     '123',
+  //     'error',
+  //     [
+  //       {
+  //         text: 'ok1',
+  //         onPress: () => {
+  //           alert('alert');
+  //         },
+  //       },
+  //     ],
+  //     // false,
+  //   );
+  // }
 
   handleOnPressLogout() {
     const { logout } = this.props;
