@@ -1,9 +1,10 @@
 import { I18n } from '@src/API';
 import { I18N_SET_LANGUAGE } from '@src/common/actions/i18n';
+import { DEFAULT_LANG } from '@src/common/constants';
 
 export default function i18n(
   state = {
-    lang: I18n.getLanguage() || 'en-US',
+    lang: I18n.getLanguage() || DEFAULT_LANG,
   },
   action = {},
 ) {
