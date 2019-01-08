@@ -1,10 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import BYHeader from '@src/components/BYHeader';
-import {
-  formatMessage,
-  // setLocale
-} from 'umi-plugin-locale';
+import { formatMessage } from 'umi-plugin-locale';
 
 import router from 'umi/lib/router';
 
@@ -18,11 +15,7 @@ import MustLogin from '@src/components/MustLogin';
 import { getLoginUser } from '@src/common/selectors';
 import OrderTabNavigator from './OrderTabNavigator';
 
-class CouponMy extends React.Component {
-  componentDidMount() {
-    // setLocale('zh-CN');
-  }
-
+class CouponMy extends React.PureComponent {
   render() {
     const {
       initialPage,

@@ -3,7 +3,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 // import { Modal } from 'antd-mobile';
 import { Modal } from '@src/API';
-import { formatMessage, setLocale } from 'umi-plugin-locale';
 import router from 'umi/lib/router';
 import qs from 'qs';
 
@@ -13,9 +12,13 @@ import {
   SIDEINTERVAL,
   IS_I18N,
   WINDOW_HEIGHT,
+  LOCALE_EN_US,
+  LOCALE_VI_VN,
+  LOCALE_ZH_CN,
 } from '@src/common/constants';
 import NavBar1 from '@src/components/NavBar1';
 import { RED_COLOR } from '@src/styles/variables';
+import * as i18nActionCreators from '@src/common/actions/i18n';
 import * as loginActionCreators from '@src/common/actions/login';
 import { getLoginUser } from '@src/common/selectors';
 import { connectLocalization } from '@src/components/Localization';
@@ -65,13 +68,13 @@ class Settings extends React.Component {
   // }
 
   handleOnPressLogout() {
-    const { logout } = this.props;
-    Modal.alert('', formatMessage({ id: 'doYouWantToSignOut' }), [
+    const { logout, i18n } = this.props;
+    Modal.alert('', i18n.doYouWantToSignOut, [
       {
-        text: formatMessage({ id: 'cancel' }),
+        text: i18n.cancel,
       },
       {
-        text: formatMessage({ id: 'confirm' }),
+        text: i18n.confirm,
         style: 'default',
         onPress: () => {
           logout();
@@ -82,7 +85,7 @@ class Settings extends React.Component {
   }
 
   render() {
-    const { authUser, i18n } = this.props;
+    const { authUser, i18n, setLanguage } = this.props;
 
     const navBar1List = IS_I18N
       ? [
@@ -94,31 +97,31 @@ class Settings extends React.Component {
           },
           {
             // iconImg: aboutPng,
-            name: formatMessage({ id: 'changePassword' }),
+            name: i18n.changePassword,
             func: () =>
               router.push(
                 `/${SCREENS.ForgotPasswordOne}?${qs.stringify({
-                  title: formatMessage({ id: 'changePassword' }),
+                  title: i18n.changePassword,
                 })}`,
               ),
             tips: '',
           },
           {
             // iconImg: personPng,
-            name: formatMessage({ id: 'language' }),
+            name: i18n.language,
             func: () =>
               Modal.operation([
                 {
                   text: 'English',
-                  onPress: () => setLocale('en-US'),
+                  onPress: () => setLanguage(LOCALE_EN_US),
                 },
                 {
                   text: 'Tiếng Việt',
-                  onPress: () => setLocale('vi-VN'),
+                  onPress: () => setLanguage(LOCALE_VI_VN),
                 },
                 {
                   text: '中文',
-                  onPress: () => setLocale('zh-CN'),
+                  onPress: () => setLanguage(LOCALE_ZH_CN),
                 },
               ]),
             tips: '',
@@ -127,17 +130,17 @@ class Settings extends React.Component {
       : [
           {
             // iconImg: aboutPng,
-            name: formatMessage({ id: 'aboutAs' }),
+            name: i18n.aboutAs,
             func: () => router.push(`/${SCREENS.AboutAs}`),
             tips: '',
           },
           {
             // iconImg: aboutPng,
-            name: formatMessage({ id: 'changePassword' }),
+            name: i18n.changePassword,
             func: () =>
               router.push(
                 `/${SCREENS.ForgotPasswordOne}?${qs.stringify({
-                  title: formatMessage({ id: 'changePassword' }),
+                  title: i18n.changePassword,
                 })}`,
               ),
             tips: '',
@@ -158,9 +161,7 @@ class Settings extends React.Component {
               style={styles.logout}
               onClick={() => this.handleOnPressLogout()}
             >
-              <div style={styles.logoutText}>
-                {formatMessage({ id: 'signOut' })}
-              </div>
+              <div style={styles.logoutText}>{i18n.signOut}</div>
             </div>
           )}
         </div>
@@ -180,6 +181,7 @@ export default connectLocalization(
     },
     {
       ...loginActionCreators,
+      ...i18nActionCreators,
     },
   )(Settings),
 );

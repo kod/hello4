@@ -33,7 +33,7 @@ const getI18n = () => {
   }
   result = {
     ...result,
-    getLanguage: () => 'en-US',
+    getLanguage: () => DEFAULT_LANG,
     setLanguage: () => {},
   };
   return result;

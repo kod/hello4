@@ -447,6 +447,12 @@ export const GET_VOUCHER_LIST = defineAction(
   appNamespace,
 );
 
+export const I18N_SET_LANGUAGE = defineAction(
+  'I18N_SET_LANGUAGE',
+  [ADD],
+  appNamespace,
+);
+
 export const JUDGE_VOUCHER = defineAction(
   'JUDGE_VOUCHER',
   [REQUEST, SUCCESS, FAILURE],

@@ -52,8 +52,6 @@ class Index extends PureComponent {
     });
     initAdverstCommonClear();
     initAdverstCommonFetch(1, 3);
-
-    // setLocale('zh-CN');
   }
 
   handleRightOnPress() {

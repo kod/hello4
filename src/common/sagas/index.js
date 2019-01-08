@@ -43,9 +43,11 @@ import * as returnMoney from './returnMoney';
 import * as userAddAddr from './userAddAddr';
 import * as userAddDetailInfo from './userAddDetailInfo';
 import * as userCertificateInfo from './userCertificateInfo';
+import * as i18n from './i18n';
 
 export default function* rootSaga() {
   yield all([
+    i18n.setLanguageWatch(),
     userCertificateInfo.userCertificateInfoFetchWatch(),
     userAddDetailInfo.userAddDetailInfoSuccessWatch(),
     userAddDetailInfo.userAddDetailInfoFetchWatch(),
