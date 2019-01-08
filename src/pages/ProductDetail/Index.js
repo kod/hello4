@@ -1,5 +1,5 @@
 import React from 'react';
-import { formatMessage } from 'umi-plugin-locale';
+import { i18n } from '@src/API';
 import { connect } from 'react-redux';
 import router from 'umi/lib/router';
 import { Modal } from 'antd-mobile';
@@ -115,22 +115,20 @@ class Index extends React.Component {
     const { authUser } = this.props;
     Modal.operation([
       {
-        text: authUser
-          ? formatMessage({ id: 'me' })
-          : formatMessage({ id: 'login' }),
+        text: authUser ? i18n.me : i18n.login,
         onPress: () => (authUser ? router.push(`/Me`) : router.push('/Login')),
       },
       {
-        text: formatMessage({ id: 'home' }),
+        text: i18n.home,
         onPress: () => router.push(`/`),
       },
       {
-        text: formatMessage({ id: 'myOrder' }),
+        text: i18n.myOrder,
         onPress: () =>
           authUser ? router.push(`/Order`) : router.push('/Login'),
       },
       {
-        text: formatMessage({ id: 'myCollection' }),
+        text: i18n.myCollection,
         onPress: () =>
           authUser ? router.push(`/MyCollection`) : router.push('/Login'),
       },
@@ -328,9 +326,7 @@ class Index extends React.Component {
                 type="location"
                 style={styles.navHeaderLocationIcon}
               /> */}
-              <span style={styles.navHeaderSpan}>
-                {formatMessage({ id: 'overview' })}
-              </span>
+              <span style={styles.navHeaderSpan}>{i18n.overview}</span>
             </p>
           </li>
           <li style={styles.navHeaderItem}>
@@ -339,9 +335,7 @@ class Index extends React.Component {
                 type="location"
                 style={styles.navHeaderLocationIcon}
               /> */}
-              <span style={styles.navHeaderSpan}>
-                {formatMessage({ id: 'evaluation' })}
-              </span>
+              <span style={styles.navHeaderSpan}>{i18n.evaluation}</span>
             </p>
           </li>
           <li style={styles.navHeaderItem}>
@@ -354,9 +348,7 @@ class Index extends React.Component {
                 type="location"
                 style={styles.navHeaderLocationIcon}
               /> */}
-              <span style={styles.navHeaderSpan}>
-                {formatMessage({ id: 'details' })}
-              </span>
+              <span style={styles.navHeaderSpan}>{i18n.details}</span>
             </p>
           </li>
           <li style={styles.navHeaderItem}>
@@ -365,9 +357,7 @@ class Index extends React.Component {
                 type="location"
                 style={styles.navHeaderLocationIcon}
               /> */}
-              <span style={styles.navHeaderSpan}>
-                {formatMessage({ id: 'parameter' })}
-              </span>
+              <span style={styles.navHeaderSpan}>{i18n.parameter}</span>
             </p>
           </li>
         </ul>
@@ -494,7 +484,7 @@ class Index extends React.Component {
                 // ...(isCollection && styles.operateIconItemActive),
               }}
             >
-              {formatMessage({ id: 'messenger' })}
+              {i18n.messenger}
             </div>
           </div>
           <div
@@ -503,16 +493,14 @@ class Index extends React.Component {
           >
             <CustomIcon type="iconcart" style={styles.operateIconItemIcon} />
 
-            <div style={styles.operateIconItemText}>
-              {formatMessage({ id: 'addToCart' })}
-            </div>
+            <div style={styles.operateIconItemText}>{i18n.addToCart}</div>
           </div>
         </div>
         {/* <div
           style={styles.operateLeft}
           onClick={() => this.handleOnPressAddCart()}
         >
-          {formatMessage({ id: 'addToCart' })}
+          {i18n.addToCart}
         </div> */}
         <div
           style={{
@@ -521,9 +509,7 @@ class Index extends React.Component {
           }}
           onClick={() => this.handleOnPressBuy()}
         >
-          {numbers > 0
-            ? formatMessage({ id: 'buy' })
-            : formatMessage({ id: 'soldOut' })}
+          {numbers > 0 ? i18n.buy : i18n.soldOut}
         </div>
       </div>
     );

@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { formatMessage } from 'umi-plugin-locale';
+import { i18n } from '@src/API';
 import router from 'umi/lib/router';
 
 import SwiperFlatList from '@src/components/SwiperFlatList';
@@ -90,7 +90,7 @@ class Index extends PureComponent {
     return (
       <div>
         <SearchHeader
-          text={formatMessage({ id: 'search' })}
+          text={i18n.search}
           rightOnPress={() => this.handleRightOnPress()}
           middleOnPress={() => router.push(`/${SCREENS.SearchResult}`)}
           isLogin={authUser}
@@ -118,9 +118,7 @@ class Index extends PureComponent {
         {getNewestInfoItems.length > 0 && (
           <div>
             <SeparateBar />
-            <div style={styles.hotTittle}>
-              {formatMessage({ id: 'hotNewProduct' })}
-            </div>
+            <div style={styles.hotTittle}>{i18n.hotNewProduct}</div>
 
             <ProductItem5
               data={getNewestInfoItems}

@@ -3,7 +3,7 @@ import { Modal } from 'antd-mobile';
 import router from 'umi/lib/router';
 import md5 from 'blueimp-md5';
 
-import { formatMessage } from 'umi-plugin-locale';
+import { i18n } from '@src/API';
 import {
   CREDIT_PAYWAY,
   INTERNET_BANK_PAYWAY,
@@ -105,20 +105,20 @@ export const createOrderno = funid => {
 
 export const tradeStatusCodes = (code = 10000) => {
   const codes = {
-    10000: formatMessage({ id: 'pendingPayment' }), // '交易创建，等待买家付款'
-    10001: formatMessage({ id: 'successfulCopy' }), // '交易支付成功'
-    10002: formatMessage({ id: 'paymentFailed' }), // '交易支付失败'
-    10003: formatMessage({ id: 'transactionPaymentWaiting' }), // '交易支付等待'
-    10004: formatMessage({ id: 'orderPendingAudit' }), // '交易成功,等待审核(新流程)'
-    20000: formatMessage({ id: 'paymentOvertimeClosed' }), // '未付款交易超时关闭，或支付完成后全额退款'
-    20001: formatMessage({ id: 'endTransactionNonRefundable' }), // '交易结束，不可退款'
-    20002: formatMessage({ id: 'transactionRejectedFullRefund' }), // '交易拒绝, 全额退款'
-    20003: formatMessage({ id: 'paymentOvertimeClosed' }), // '交易支付超时, 订单退回'
-    30000: formatMessage({ id: 'inDelivery' }), // 等待发货
-    30001: formatMessage({ id: 'pendingEvaluation' }), // '已收货,未评价'
-    30002: formatMessage({ id: 'transactionComplete' }), // '已收货,已评价'
-    30003: formatMessage({ id: 'waitingForTheOrder' }), // '等待拼单'
-    40000: formatMessage({ id: 'cancelTransaction' }), // '交易取消(其他)'
+    10000: i18n.pendingPayment, // '交易创建，等待买家付款'
+    10001: i18n.successfulCopy, // '交易支付成功'
+    10002: i18n.paymentFailed, // '交易支付失败'
+    10003: i18n.transactionPaymentWaiting, // '交易支付等待'
+    10004: i18n.orderPendingAudit, // '交易成功,等待审核(新流程)'
+    20000: i18n.paymentOvertimeClosed, // '未付款交易超时关闭，或支付完成后全额退款'
+    20001: i18n.endTransactionNonRefundable, // '交易结束，不可退款'
+    20002: i18n.transactionRejectedFullRefund, // '交易拒绝, 全额退款'
+    20003: i18n.paymentOvertimeClosed, // '交易支付超时, 订单退回'
+    30000: i18n.inDelivery, // 等待发货
+    30001: i18n.pendingEvaluation, // '已收货,未评价'
+    30002: i18n.transactionComplete, // '已收货,已评价'
+    30003: i18n.waitingForTheOrder, // '等待拼单'
+    40000: i18n.cancelTransaction, // '交易取消(其他)'
     40001: 'Incorrect operation', // 取消交易理由(操作有误)
     40002: 'Error order', // 取消交易理由(错误下单)
     40003: 'Other channels are cheaper', // 取消交易理由(其他渠道价格更低)
@@ -134,14 +134,14 @@ export const operateForTradeStatusCodes = (code = 10000, payWay = 2) => {
   switch (~~code) {
     case 10000:
       if (payWay === 5) {
-        result.push(formatMessage({ id: 'viewPaymentCode' }));
+        result.push(i18n.viewPaymentCode);
       } else {
-        result.push(formatMessage({ id: 'payment' }));
+        result.push(i18n.payment);
       }
       break;
 
     case 30001:
-      result.push(formatMessage({ id: 'evaluation' }));
+      result.push(i18n.evaluation);
       break;
 
     case 10001:
@@ -161,11 +161,11 @@ export const operateForTradeStatusCodes = (code = 10000, payWay = 2) => {
     case 40003:
     case 40004:
     case 40005:
-      result.push(formatMessage({ id: 'view' }));
+      result.push(i18n.view);
       break;
 
     default:
-      result.push(formatMessage({ id: 'view' }));
+      result.push(i18n.view);
       break;
   }
   return result;
@@ -173,10 +173,10 @@ export const operateForTradeStatusCodes = (code = 10000, payWay = 2) => {
 
 export const billStatusCodes = (code = 10000) => {
   const codes = {
-    10000: formatMessage({ id: 'unsettledBills' }), // 未出账
-    10001: formatMessage({ id: 'notPaidOff' }), // 未还清
-    10002: formatMessage({ id: 'hasPaidOff' }), // 已还清
-    10007: formatMessage({ id: 'overdue' }), // '已逾期'
+    10000: i18n.unsettledBills, // 未出账
+    10001: i18n.notPaidOff, // 未还清
+    10002: i18n.hasPaidOff, // 已还清
+    10007: i18n.overdue, // '已逾期'
   };
   return codes[code];
 };
@@ -205,23 +205,23 @@ export const payWayToText = payWay => {
   let result = '';
   switch (~~payWay) {
     case CREDIT_PAYWAY:
-      result = formatMessage({ id: 'funCard' }); // 信用卡
+      result = i18n.funCard; // 信用卡
       break;
 
     case INTERNET_BANK_PAYWAY:
-      result = formatMessage({ id: 'internetBanking' }); // 网银支付
+      result = i18n.internetBanking; // 网银支付
       break;
 
     case OFFLINE_PAYWAY:
-      result = formatMessage({ id: 'paymentCollectingShop' }); // 线下支付
+      result = i18n.paymentCollectingShop; // 线下支付
       break;
 
     case ONDELIVERY_PAYWAY:
-      result = formatMessage({ id: 'paymentOnDelivery' }); // 货到付款
+      result = i18n.paymentOnDelivery; // 货到付款
       break;
 
     case ONLINE_PAYWAY:
-      result = formatMessage({ id: 'onlinePay' }); // 线上支付
+      result = i18n.onlinePay; // 线上支付
       break;
 
     default:
@@ -234,11 +234,11 @@ export const payWayToText = payWay => {
 export const orderWritePayWayArray = () => [
   {
     key: ONLINE_PAYWAY,
-    value: formatMessage({ id: 'onlinePay' }),
+    value: i18n.onlinePay,
   },
   {
     key: ONDELIVERY_PAYWAY,
-    value: formatMessage({ id: 'paymentOnDelivery' }),
+    value: i18n.paymentOnDelivery,
   },
 ];
 
@@ -247,25 +247,25 @@ export const payWayArray = DEBUG =>
     ? [
         {
           key: CREDIT_PAYWAY,
-          value: formatMessage({ id: 'funCard' }),
+          value: i18n.funCard,
         },
         {
           key: INTERNET_BANK_PAYWAY,
-          value: formatMessage({ id: 'internetBanking' }),
+          value: i18n.internetBanking,
         },
         {
           key: OFFLINE_PAYWAY,
-          value: formatMessage({ id: 'paymentCollectingShop' }),
+          value: i18n.paymentCollectingShop,
         },
       ]
     : [
         {
           key: INTERNET_BANK_PAYWAY,
-          value: formatMessage({ id: 'internetBanking' }),
+          value: i18n.internetBanking,
         },
         {
           key: OFFLINE_PAYWAY,
-          value: formatMessage({ id: 'paymentCollectingShop' }),
+          value: i18n.paymentCollectingShop,
         },
       ];
 
@@ -353,9 +353,9 @@ export const analyzeUrlNavigate = ({
 
   if (!htmlRegexResult) {
     if (isQrCode) {
-      Modal.alert('', formatMessage({ id: 'error' }), [
+      Modal.alert('', i18n.error, [
         {
-          text: formatMessage({ id: 'confirm' }),
+          text: i18n.confirm,
           style: 'default',
           onPress: () => {
             router.go(-1);
@@ -445,18 +445,18 @@ export const analyzeUrlNavigate = ({
 
       default:
         if (isQrCode) {
-          Modal.alert('', formatMessage({ id: 'error' }), [
+          Modal.alert('', i18n.error, [
             {
-              text: formatMessage({ id: 'confirm' }),
+              text: i18n.confirm,
               style: 'default',
               onPress: () => {
                 router.go(-1);
               },
             },
           ]);
-          Modal.alert('', formatMessage({ id: 'error' }), [
+          Modal.alert('', i18n.error, [
             {
-              text: formatMessage({ id: 'confirm' }),
+              text: i18n.confirm,
               style: 'default',
               onPress: () => {
                 router.go(-1);

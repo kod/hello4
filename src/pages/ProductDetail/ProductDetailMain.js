@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
 import { connect } from 'react-redux';
-import { formatMessage } from 'umi-plugin-locale';
+import { i18n } from '@src/API';
 import qs from 'qs';
 import router from 'umi/lib/router';
 import { Modal } from 'antd-mobile';
@@ -201,15 +201,15 @@ class ProductDetailMain extends React.Component {
     if (authUser) {
       shareAction();
     } else {
-      Modal.alert('', formatMessage({ id: 'loginShareReceiveBonus' }), [
+      Modal.alert('', i18n.loginShareReceiveBonus, [
         {
-          text: formatMessage({ id: 'share' }),
+          text: i18n.share,
           onPress: () => {
             shareAction();
           },
         },
         {
-          text: formatMessage({ id: 'login' }),
+          text: i18n.login,
           style: 'default',
           onPress: () => {
             router.push(`/${SCREENS.Login}`);
@@ -462,7 +462,7 @@ class ProductDetailMain extends React.Component {
                 type="ScreenShopping_icon2"
                 style={styles.shareIcon}
               />
-              {formatMessage({ id: 'share' })}
+              {i18n.share}
             </div>
           </div>
         </div>
@@ -471,7 +471,7 @@ class ProductDetailMain extends React.Component {
             <div style={styles.serverinfoLeftSeparate} />
             <CustomIcon style={styles.serverinfoToBePaid} type="returns" />
             <div style={styles.serverinfoToBePaidText}>
-              {formatMessage({ id: 'qualityAssurance' })}
+              {i18n.qualityAssurance}
             </div>
           </div>
           <div style={styles.serverinfoRight}>
@@ -480,15 +480,13 @@ class ProductDetailMain extends React.Component {
               type="toReceiveGoods"
             />
             <div style={styles.serverinfotoReceiveGoodsText}>
-              {formatMessage({ id: 'fastDelivery' })}
+              {i18n.fastDelivery}
             </div>
           </div>
         </div>
         <SeparateBar />
         <div style={styles.spec}>
-          <div style={styles.specTitle}>
-            {formatMessage({ id: 'selected' })}
-          </div>
+          <div style={styles.specTitle}>{i18n.selected}</div>
           <div
             style={styles.specDesc}
             onClick={() => {
@@ -599,7 +597,7 @@ class ProductDetailMain extends React.Component {
             <>
               <SeparateBar />
               <div id="navcomment" style={styles.subTitle}>
-                {formatMessage({ id: 'evaluation' })}
+                {i18n.evaluation}
               </div>
               <Comment data={comment} />
               <div style={styles.commentMore}>
@@ -613,7 +611,7 @@ class ProductDetailMain extends React.Component {
                     )
                   }
                 >
-                  {formatMessage({ id: 'more' })}
+                  {i18n.more}
                 </div>
               </div>
             </>
@@ -622,7 +620,7 @@ class ProductDetailMain extends React.Component {
           )}
           <SeparateBar />
           <div id="productDescription" style={styles.subTitle}>
-            {formatMessage({ id: 'productDescription' })}
+            {i18n.productDescription}
           </div>
           <div style={styles.imagesDesc}>
             {imageDesc.map((val, key) => (
@@ -639,7 +637,7 @@ class ProductDetailMain extends React.Component {
           {!!goodsProperties && goodsProperties.length > 0 ? (
             <>
               <div id="navparameters" style={styles.subTitle}>
-                {formatMessage({ id: 'detailsInfo' })}
+                {i18n.detailsInfo}
               </div>
 
               <div style={styles.imagesDesc}>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { List, Modal, Toast } from 'antd-mobile';
 import { createForm } from 'rc-form';
-import { formatMessage } from 'umi-plugin-locale';
+import { i18n } from '@src/API';
 import { connect } from 'react-redux';
 
 import ModalRoot from '@src/containers/ModalRoot';
@@ -129,9 +129,9 @@ class AddressModify extends React.Component {
       addressModifyIsTrue === true &&
       isFocus === true
     ) {
-      Modal.alert('', formatMessage({ id: 'success' }), [
+      Modal.alert('', i18n.success, [
         {
-          text: formatMessage({ id: 'confirm' }),
+          text: i18n.confirm,
           style: 'default',
           onPress: () => {
             router.go(-1);
@@ -173,8 +173,8 @@ class AddressModify extends React.Component {
         const { address, name, phone } = value;
 
         if (!division4thID) {
-          Modal.alert('', formatMessage({ id: 'pleaseEnterArea' }), [
-            { text: formatMessage({ id: 'confirm' }), style: 'default' },
+          Modal.alert('', i18n.pleaseEnterArea, [
+            { text: i18n.confirm, style: 'default' },
           ]);
           return false;
         }
@@ -216,58 +216,50 @@ class AddressModify extends React.Component {
         {addressModifyLoading && <Loader />}
         <div style={{ marginBottom: 30 }}>
           <div style={styles.item}>
-            <div style={styles.title}>
-              {formatMessage({ id: 'actualName' })}
-            </div>
+            <div style={styles.title}>{i18n.actualName}</div>
             <InputRight
               pattern={NAME_EXPR}
               getFieldProps={getFieldProps}
               styleWrap={{ flex: 1 }}
               styleInput={{ textAlign: 'right' }}
               style={styles.textInput}
-              placeholder={formatMessage({ id: 'pleaseEnterYourActualName' })}
+              placeholder={i18n.pleaseEnterYourActualName}
               initialValue={query.username}
-              message={formatMessage({
-                id: 'pleaseEnterYourActualName',
-              })}
+              message={i18n.pleaseEnterYourActualName}
               name="name"
               type="text"
             />
           </div>
           <div style={styles.item}>
-            <div style={styles.title}>{formatMessage({ id: 'phone' })}</div>
+            <div style={styles.title}>{i18n.phone}</div>
             <InputRight
               pattern={PHONE_EXPR}
               getFieldProps={getFieldProps}
               styleWrap={{ flex: 1 }}
               styleInput={{ textAlign: 'right' }}
               style={styles.textInput}
-              placeholder={formatMessage({ id: 'pleaseEnterYourPhoneNumber' })}
+              placeholder={i18n.pleaseEnterYourPhoneNumber}
               initialValue={query.msisdn}
-              message={formatMessage({
-                id: 'pleaseEnterCorrectPhoneNumber',
-              })}
+              message={i18n.pleaseEnterCorrectPhoneNumber}
               name="phone"
               type="number"
             />
           </div>
           <div style={styles.item}>
-            <div style={styles.title}>{formatMessage({ id: 'address' })}</div>
+            <div style={styles.title}>{i18n.address}</div>
             <InputRight
               getFieldProps={getFieldProps}
               styleWrap={{ flex: 1 }}
               styleInput={{ textAlign: 'right' }}
               style={styles.textInput}
-              placeholder={formatMessage({ id: 'pleaseEnterAddress' })}
+              placeholder={i18n.pleaseEnterAddress}
               initialValue={query.address}
               name="address"
               type="text"
             />
           </div>
           <div style={styles.item}>
-            <div style={styles.title}>
-              {formatMessage({ id: 'communeDistrictCity' })}
-            </div>
+            <div style={styles.title}>{i18n.communeDistrictCity}</div>
             <div
               style={{
                 flex: 1,
@@ -290,14 +282,14 @@ class AddressModify extends React.Component {
             >
               {division4thName
                 ? `${division4thName}, ${division3rdName}, ${division2ndName}`
-                : formatMessage({ id: 'pleaseChoose' })}
+                : i18n.pleaseChoose}
             </div>
           </div>
         </div>
         <BYButton
           styleWrap={{ marginBottom: 30 }}
           styleText={styles.submit}
-          text={formatMessage({ id: 'save' })}
+          text={i18n.save}
           onClick={() => this.handleOnPressSubmit()}
         />
       </List>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { formatMessage } from 'umi-plugin-locale';
+import { i18n } from '@src/API';
 
 import { HEADER_BACKGROUND_COLOR, BORDER_COLOR } from '@src/styles/variables';
 import {
@@ -68,7 +68,7 @@ const headerRightItem = (isLogin, rightPress) => {
   }
   return (
     <span style={styles.headerLogin} onClick={rightPress}>
-      {formatMessage({ id: 'login' })}
+      {i18n.login}
     </span>
   );
 };

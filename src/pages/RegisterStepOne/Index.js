@@ -1,5 +1,5 @@
 import React from 'react';
-import { formatMessage } from 'umi-plugin-locale';
+import { i18n } from '@src/API';
 import router from 'umi/lib/router';
 // import { WINDOW_HEIGHT } from '@src/common/constants';
 import BYHeader from '@src/components/BYHeader';
@@ -16,10 +16,10 @@ const styles = {
 
 export default () => (
   <div style={styles.container}>
-    <BYHeader title={formatMessage({ id: 'register' })} />
+    <BYHeader title={i18n.register} />
     <Form />
     <NavSidesText
-      textLeft={formatMessage({ id: 'alreadyHaveAnAccount' })}
+      textLeft={i18n.alreadyHaveAnAccount}
       navigateLeft={() => router.go(-1)}
     />
     <div style={{ flex: 1 }} />

@@ -23,10 +23,6 @@ import * as loginActionCreators from '@src/common/actions/login';
 import { getLoginUser } from '@src/common/selectors';
 import { connectLocalization } from '@src/components/Localization';
 
-// const personPng = 'https://oss.buyoo.vn/usercollect/1/20181120125641_E6E.png';
-
-// const aboutPng = 'https://oss.buyoo.vn/usercollect/1/20181120125848_x6L.png';
-
 const styles = {
   container: {
     height: WINDOW_HEIGHT,

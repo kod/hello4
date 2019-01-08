@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
 import { connect } from 'react-redux';
-import { formatMessage } from 'umi-plugin-locale';
+import { i18n } from '@src/API';
 import router from 'umi/lib/router';
 import { Modal } from 'antd-mobile';
 
@@ -47,11 +47,11 @@ class MyCollection extends React.Component {
 
     return (
       <div style={styles.container}>
-        <BYHeader title={formatMessage({ id: 'myCollection' })} />
+        <BYHeader title={i18n.myCollection} />
         <MustLogin
           Modal={Modal}
           visible={!authUser}
-          formatMessage={formatMessage}
+          i18n={i18n}
           router={router}
           SCREENS={SCREENS}
         />
@@ -63,7 +63,7 @@ class MyCollection extends React.Component {
           !loading && (
             <EmptyState
               source={ouhrigdfnjsoeijehrJpg}
-              text={formatMessage({ id: 'noData' })}
+              text={i18n.noData}
               styleText={{ marginBottom: 0 }}
             />
           )

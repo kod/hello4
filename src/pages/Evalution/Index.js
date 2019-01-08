@@ -6,7 +6,7 @@ import Compressor from 'compressorjs';
 
 import BYHeader from '@src/components/BYHeader';
 import { TextareaItem, Modal, ImagePicker } from 'antd-mobile';
-import { formatMessage } from 'umi-plugin-locale';
+import { i18n } from '@src/API';
 import router from 'umi/lib/router';
 
 import Loader from '@src/components/Loader';
@@ -53,9 +53,9 @@ class Evalution extends React.Component {
     // this.screenListener = DeviceEventEmitter.addListener(
     //   SCREENS.Evalution,
     //   () => {
-    //     Alert.alert('', formatMessage({ id: 'success' }), [
+    //     Alert.alert('', i18n.success, [
     //       {
-    //         text: formatMessage({ id: 'confirm' }),
+    //         text: i18n.confirm,
     //         onPress: () => {
     //           pop(1);
     //         },
@@ -73,9 +73,9 @@ class Evalution extends React.Component {
   addEventListenerHandle = ({ detail: { method } }) => {
     switch (method) {
       case 'addEvaluation':
-        Modal.alert('', formatMessage({ id: 'success' }), [
+        Modal.alert('', i18n.success, [
           {
-            text: formatMessage({ id: 'confirm' }),
+            text: i18n.confirm,
             style: 'default',
             onPress: () => {
               router.go(-1);
@@ -102,9 +102,9 @@ class Evalution extends React.Component {
         });
       },
       error(err) {
-        Modal.alert('', formatMessage({ id: 'failed' }), [
+        Modal.alert('', i18n.failed, [
           {
-            text: formatMessage({ id: 'confirm' }),
+            text: i18n.confirm,
             style: 'default',
             onPress: () => {},
           },
@@ -159,9 +159,9 @@ class Evalution extends React.Component {
     } = this.props;
 
     if (textValue.length === 0) {
-      Modal.alert('', formatMessage({ id: 'pleaseEnterYourComment' }), [
+      Modal.alert('', i18n.pleaseEnterYourComment, [
         {
-          text: formatMessage({ id: 'confirm' }),
+          text: i18n.confirm,
           style: 'default',
           onPress: () => {},
         },
@@ -324,7 +324,7 @@ class Evalution extends React.Component {
             <TextareaItem
               style={stylesX.textInput}
               value={textValue}
-              placeholder={formatMessage({ id: 'pleaseEnterYourComment' })}
+              placeholder={i18n.pleaseEnterYourComment}
               onChange={val => this.setState({ textValue: val })}
               rows={3}
               count={100}
@@ -339,15 +339,13 @@ class Evalution extends React.Component {
               multiple={multiple}
             />
           </div>
-          <div style={stylesX.tips}>
-            {formatMessage({ id: 'yourCommentAnonymous' })}
-          </div>
+          <div style={stylesX.tips}>{i18n.yourCommentAnonymous}</div>
           {/* <div style={stylesX.tips}>
-            {formatMessage({ id: 'longPressDeletePicture' })}
+            {i18n.longPressDeletePicture}
           </div> */}
         </div>
         <BYButton
-          text={formatMessage({ id: 'submit' })}
+          text={i18n.submit}
           styleWrap={stylesX.button}
           onClick={() => this.handleOnPressSubmit()}
         />
@@ -360,11 +358,11 @@ class Evalution extends React.Component {
 
     return (
       <div style={styles.container}>
-        <BYHeader title={formatMessage({ id: 'evaluation' })} />
+        <BYHeader title={i18n.evaluation} />
         <MustLogin
           Modal={Modal}
           visible={!authUser}
-          formatMessage={formatMessage}
+          i18n={i18n}
           router={router}
           SCREENS={SCREENS}
         />

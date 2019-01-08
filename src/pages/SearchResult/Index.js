@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
 import { connect } from 'react-redux';
-import { formatMessage } from 'umi-plugin-locale';
+import { i18n } from '@src/API';
 import qs from 'qs';
 import { createForm } from 'rc-form';
 import router from 'umi/lib/router';
@@ -124,20 +124,20 @@ class SearchResult extends React.Component {
 
     return (
       <div style={styles.container}>
-        <BYHeader title={formatMessage({ id: 'search' })} />
+        <BYHeader title={i18n.search} />
         <div style={styles.search}>
           <InputRight
             getFieldProps={getFieldProps}
             style={{ borderBottomWidth: 0 }}
             styleInput={styles.textInput}
-            placeholder={formatMessage({ id: 'search' })}
+            placeholder={i18n.search}
             name="search"
             type="search"
           />
         </div>
         {/* {items.length > 0 && (
           <div style={styles.title}>
-            {formatMessage({ id: 'historicalSearch' })}
+            {i18n.historicalSearch}
           </div>
         )}
         <div style={styles.history}>

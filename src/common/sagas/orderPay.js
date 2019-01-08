@@ -1,4 +1,4 @@
-import { formatMessage } from 'umi-plugin-locale';
+import { i18n } from '@src/API';
 import { takeEvery, apply, put, select } from 'redux-saga/effects';
 import dayjs from 'dayjs';
 import { INTERNET_BANK_PAYWAY } from '@src/common/constants';
@@ -107,9 +107,7 @@ export function* orderPayFetchWatchHandle(action) {
       yield put(orderPayFetchFailure());
       switch (response.code) {
         case 60051:
-          yield put(
-            addError(formatMessage({ id: 'transactionPasswordWrong' })),
-          );
+          yield put(addError(i18n.transactionPasswordWrong));
           break;
 
         default:

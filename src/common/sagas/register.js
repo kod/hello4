@@ -1,4 +1,4 @@
-import { formatMessage } from 'umi-plugin-locale';
+import { i18n } from '@src/API';
 import { Modal } from 'antd-mobile';
 import router from 'umi/lib/router';
 
@@ -110,13 +110,11 @@ export function* registerFetchWatchHandle(action) {
       yield put(registerFetchFailure());
       switch (response.status) {
         case 50008:
-          yield put(addError(formatMessage({ id: 'emailAlreadyRegistered' })));
+          yield put(addError(i18n.emailAlreadyRegistered));
           break;
 
         default:
-          yield put(
-            addError(formatMessage({ id: 'verificationCodeIsIncorrect' })),
-          );
+          yield put(addError(i18n.verificationCodeIsIncorrect));
           break;
       }
     } else {
@@ -144,9 +142,9 @@ export function* registerSuccessWatchHandle(action) {
         },
       });
     } else {
-      Modal.alert('', formatMessage({ id: 'signUpSuccessfully' }), [
+      Modal.alert('', i18n.signUpSuccessfully, [
         {
-          text: formatMessage({ id: 'confirm' }),
+          text: i18n.confirm,
           onPress: () => router.go(-3),
           style: 'default',
         },

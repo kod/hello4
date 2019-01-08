@@ -5,16 +5,14 @@ import {
   put,
   // put,
 } from 'redux-saga/effects';
-import { formatMessage } from 'umi-plugin-locale';
+import { i18n } from '@src/API';
 import { ERROR } from '@src/common/constants/actionTypes';
 
 export function* handleAlertError(action) {
   const error = action.payload;
   // alert(error);
 
-  Modal.alert('', error, [
-    { text: formatMessage({ id: 'cancel' }), style: 'default' },
-  ]);
+  Modal.alert('', error, [{ text: i18n.cancel, style: 'default' }]);
 
   yield put({
     type: ERROR.CLEAR,

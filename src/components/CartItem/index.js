@@ -1,6 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
-import { formatMessage } from 'umi-plugin-locale';
+import { i18n } from '@src/API';
 import router from 'umi/lib/router';
 import { connect } from 'react-redux';
 
@@ -257,7 +257,7 @@ class CartItem extends React.Component {
               ...(status !== 1 || styles.itemDisable),
             }}
           >
-            {formatMessage({ id: 'productShelves' })}
+            {i18n.productShelves}
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { TabBar } from 'antd-mobile';
-import { formatMessage } from 'umi-plugin-locale';
+import { i18n } from '@src/API';
 import { connect } from 'react-redux';
 import router from 'umi/lib/router';
 import qs from 'qs';
@@ -75,7 +75,7 @@ class Index extends React.Component {
           prerenderingSiblingsNumber={0}
         >
           <TabBar.Item
-            title={formatMessage({ id: 'home' })}
+            title={i18n.home}
             key="Home"
             icon={<CustomIcon type="home" style={styles.icon} />}
             selectedIcon={<CustomIcon type="home" style={styles.icon} />}
@@ -100,7 +100,7 @@ class Index extends React.Component {
           {/* <TabBar.Item
             icon={<CustomIcon type="classify" style={styles.icon} />}
             selectedIcon={<CustomIcon type="classify" style={styles.icon} />}
-            title={formatMessage({ id: 'categories' })}
+            title={i18n.categories}
             key="Categories"
             // badge="new"
             selected={tabBarIndex === 1}
@@ -118,7 +118,7 @@ class Index extends React.Component {
           <TabBar.Item
             icon={<CustomIcon type="cart" style={styles.icon} />}
             selectedIcon={<CustomIcon type="cart" style={styles.icon} />}
-            title={formatMessage({ id: 'cart' })}
+            title={i18n.cart}
             key="Cart"
             // dot
             selected={tabBarIndex === 2}
@@ -141,7 +141,7 @@ class Index extends React.Component {
           <TabBar.Item
             icon={<CustomIcon type="user" style={styles.icon} />}
             selectedIcon={<CustomIcon type="user" style={styles.icon} />}
-            title={formatMessage({ id: 'me' })}
+            title={i18n.me}
             key="Me"
             selected={tabBarIndex === 3}
             onPress={() => {

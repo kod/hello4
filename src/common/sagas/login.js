@@ -1,4 +1,4 @@
-import { formatMessage } from 'umi-plugin-locale';
+import { i18n } from '@src/API';
 import { takeEvery, apply, put } from 'redux-saga/effects';
 
 import {
@@ -108,19 +108,15 @@ export function* loginFetchWatchHandle(action) {
 
         case 60050:
           // yield put(loginFetchSuccess(null, screen));
-          yield put(addError(formatMessage({ id: 'userNotExist' })));
+          yield put(addError(i18n.userNotExist));
           break;
 
         case 60051:
-          yield put(
-            addError(formatMessage({ id: 'wrongEmailNumberOrPassword' })),
-          );
+          yield put(addError(i18n.wrongEmailNumberOrPassword));
           break;
 
         case 70002:
-          yield put(
-            addError(formatMessage({ id: 'verificationCodeIsIncorrect' })),
-          );
+          yield put(addError(i18n.verificationCodeIsIncorrect));
           break;
 
         default:

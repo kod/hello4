@@ -1,4 +1,4 @@
-import { formatMessage } from 'umi-plugin-locale';
+import { i18n } from '@src/API';
 import { Modal } from 'antd-mobile';
 import { takeEvery, apply, put, select } from 'redux-saga/effects';
 import dayjs from 'dayjs';
@@ -62,7 +62,7 @@ export function* receiveVoucherFetchWatchHandle(action) {
       yield put(receiveVoucherFetchFailure());
       switch (response.code) {
         case 40003:
-          yield put(addError(formatMessage({ id: 'youHaveReceived' })));
+          yield put(addError(i18n.youHaveReceived));
           break;
 
         default:
@@ -91,9 +91,9 @@ export function* receiveVoucherSuccessWatchHandle(action) {
       });
     } else {
       yield put(getVoucherFetch());
-      Modal.alert('', formatMessage({ id: 'success' }), [
+      Modal.alert('', i18n.success, [
         {
-          text: formatMessage({ id: 'confirm' }),
+          text: i18n.confirm,
           style: 'default',
           onPress: () => {},
         },

@@ -1,5 +1,5 @@
 import React from 'react';
-import { formatMessage } from 'umi-plugin-locale';
+import { i18n } from '@src/API';
 
 import { SIDEINTERVAL } from '@src/common/constants';
 import { addressJoin } from '@src/utils';
@@ -68,9 +68,7 @@ export default ({ addressSelectedItem, onPress, ...restProps }) => (
         <div style={styles.addressText}>{addressJoin(addressSelectedItem)}</div>
       </div>
     ) : (
-      <div style={styles.addressTips}>
-        {formatMessage({ id: 'pleaseSelectShippingAddress' })}
-      </div>
+      <div style={styles.addressTips}>{i18n.pleaseSelectShippingAddress}</div>
     )}
     <div style={styles.addressRight}>
       <CustomIcon type="location" style={styles.addressPin} />

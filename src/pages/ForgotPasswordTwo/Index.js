@@ -1,5 +1,5 @@
 import React from 'react';
-import { formatMessage } from 'umi-plugin-locale';
+import { i18n } from '@src/API';
 import router from 'umi/lib/router';
 import { connect } from 'react-redux';
 
@@ -31,9 +31,9 @@ class Index extends React.Component {
   }
 
   addEventListenerHandle = () => {
-    Modal.alert('', formatMessage({ id: 'success' }), [
+    Modal.alert('', i18n.success, [
       {
-        text: formatMessage({ id: 'confirm' }),
+        text: i18n.confirm,
         onPress: () => router.go(-2),
         style: 'default',
       },

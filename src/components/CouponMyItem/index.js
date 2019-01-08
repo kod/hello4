@@ -1,7 +1,7 @@
 import React from 'react';
 // import router from 'umi/lib/router';
 import { connect } from 'react-redux';
-import { formatMessage } from 'umi-plugin-locale';
+import { i18n } from '@src/API';
 // import { Modal } from 'antd-mobile';
 
 import * as getVoucherListActionCreators from '@src/common/actions/getVoucherList';
@@ -39,7 +39,7 @@ class CouponMyItem extends React.Component {
         ) : (
           <EmptyState
             source={ouhrigdfnjsoeijehrJpg}
-            text={formatMessage({ id: 'noData' })}
+            text={i18n.noData}
             styleText={{ marginBottom: 0 }}
           />
         )}

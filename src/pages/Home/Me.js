@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { formatMessage } from 'umi-plugin-locale';
+import { i18n } from '@src/API';
 import router from 'umi/lib/router';
 import qs from 'qs';
 
@@ -124,17 +124,17 @@ class Index extends PureComponent {
 
     const list = [
       {
-        text: formatMessage({ id: 'pendingPayment' }),
+        text: i18n.pendingPayment,
         iconName: 'toBePaid',
         styleIcon: { fontSize: 25 },
       },
       {
-        text: formatMessage({ id: 'pendingDelivery' }),
+        text: i18n.pendingDelivery,
         iconName: 'toReceiveGoods',
         styleIcon: { fontSize: 23, paddingTop: 2 },
       },
       {
-        text: formatMessage({ id: 'pendingEvaluation' }),
+        text: i18n.pendingEvaluation,
         iconName: 'beEvaluated',
         styleIcon: { fontSize: 22, paddingTop: 3 },
       },
@@ -218,14 +218,12 @@ class Index extends PureComponent {
 
     const headerIconImgSource = aioru09230fPng;
 
-    const username = authUser
-      ? authUser.msisdn
-      : formatMessage({ id: 'loginRegister' });
+    const username = authUser ? authUser.msisdn : i18n.loginRegister;
     const phone = authUser ? authUser.msisdn : '';
 
     const renderCellItem1List1 = [
       {
-        name: formatMessage({ id: 'orders' }),
+        name: i18n.orders,
         func: () => this.handleOnNavBar1Callback(SCREENS.Order),
         tips: '',
       },
@@ -233,37 +231,37 @@ class Index extends PureComponent {
 
     const renderCellItem1List2 = [
       // {
-      //   name: formatMessage({ id: 'inviteFriends' }),
+      //   name: i18n.inviteFriends,
       //   func: () => this.handleOnNavBar1Callback(SCREENS.Invite),
       //   tips: '',
       // },
       {
-        name: formatMessage({ id: 'myBrokerage' }),
+        name: i18n.myBrokerage,
         func: () => this.handleOnNavBar1Callback(SCREENS.Withdraw),
         tips: '',
       },
       {
-        name: formatMessage({ id: 'myCollection' }),
+        name: i18n.myCollection,
         func: () => this.handleOnNavBar1Callback(SCREENS.MyCollection),
         tips: '',
       },
       {
-        name: formatMessage({ id: 'myCoupon' }),
+        name: i18n.myCoupon,
         func: () => this.handleOnNavBar1Callback(SCREENS.CouponMy),
         tips: '',
       },
       // {
-      //   name: formatMessage({ id: 'securityCenter' }),
+      //   name: i18n.securityCenter,
       //   func: () => this.handleOnNavBar1Callback(SCREENS.SecurityCenter),
       //   tips: '',
       // },
       {
-        name: formatMessage({ id: 'shippingAddress' }),
+        name: i18n.shippingAddress,
         func: () => this.handleOnNavBar1Callback(SCREENS.Address),
         tips: '',
       },
       {
-        name: formatMessage({ id: 'settings' }),
+        name: i18n.settings,
         func: () => this.handleOnNavBar1Callback(SCREENS.Settings),
         tips: '',
       },
@@ -271,7 +269,7 @@ class Index extends PureComponent {
 
     if (getUserInfoByIdUserType === 2) {
       renderCellItem1List2.unshift({
-        name: formatMessage({ id: 'myBill' }),
+        name: i18n.myBill,
         navigate: SCREENS.BillMy,
         func: () => this.handleOnNavBar1Callback(SCREENS.BillMy),
         tips: '',
@@ -329,7 +327,7 @@ class Index extends PureComponent {
 
     return (
       <div style={styles.container}>
-        {location && <BYHeader title={formatMessage({ id: 'me' })} />}
+        {location && <BYHeader title={i18n.me} />}
 
         <div style={styles.header}>
           <div

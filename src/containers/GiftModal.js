@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Modal } from 'antd-mobile';
 import { connect } from 'react-redux';
-import { formatMessage } from 'umi-plugin-locale';
+import { i18n } from '@src/API';
 import router from 'umi/lib/router';
 
 import * as receiveVoucherActionCreators from '@src/common/actions/receiveVoucher';
@@ -41,9 +41,9 @@ class AddressAddModal extends Component {
   addEventListenerHandle = ({ detail: { method } }) => {
     switch (method) {
       case 'receiveVoucher':
-        Modal.alert('', formatMessage({ id: 'youGotCoupon' }), [
+        Modal.alert('', i18n.youGotCoupon, [
           {
-            text: formatMessage({ id: 'confirm' }),
+            text: i18n.confirm,
             style: 'default',
             onPress: () => {},
           },
@@ -138,11 +138,9 @@ class AddressAddModal extends Component {
           <div style={styles.close} onClick={() => this.handleOnModalClose()}>
             <CustomIcon type="close" style={styles.closeIcon} />
           </div>
-          <div style={styles.text}>
-            {formatMessage({ id: 'receivedGiftCard' })}
-          </div>
+          <div style={styles.text}>{i18n.receivedGiftCard}</div>
           <BYButton
-            text={formatMessage({ id: 'usedImmediately' })}
+            text={i18n.usedImmediately}
             style={styles.button}
             styleText={styles.buttonText}
             onClick={() => this.handleOnPressSubmit()}

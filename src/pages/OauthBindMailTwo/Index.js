@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal } from 'antd-mobile';
-import { formatMessage } from 'umi-plugin-locale';
+import { i18n } from '@src/API';
 import router from 'umi/lib/router';
 import { connect } from 'react-redux';
 
@@ -57,9 +57,9 @@ class Index extends React.Component {
           }
         } else {
           // 注册失败
-          Modal.alert('', formatMessage({ id: 'failed' }), [
+          Modal.alert('', i18n.failed, [
             {
-              text: formatMessage({ id: 'confirm' }),
+              text: i18n.confirm,
               style: 'default',
               onPress: () => {},
             },
@@ -68,9 +68,9 @@ class Index extends React.Component {
         break;
 
       case 'oauthRequest':
-        Modal.alert('', formatMessage({ id: 'success' }), [
+        Modal.alert('', i18n.success, [
           {
-            text: formatMessage({ id: 'confirm' }),
+            text: i18n.confirm,
             style: 'default',
             onPress: () => {
               localStorageRemoveItem('otherLoginToken');
@@ -100,7 +100,7 @@ class Index extends React.Component {
     };
     return (
       <div style={styles.container}>
-        <BYHeader title={formatMessage({ id: 'linkEmail' })} />
+        <BYHeader title={i18n.linkEmail} />
         {(registerLoading || oauthRequestLoading) && <Loader />}
         <Form query={query} />
       </div>

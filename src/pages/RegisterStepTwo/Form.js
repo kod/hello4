@@ -2,7 +2,7 @@ import React from 'react';
 import { List, Toast, Checkbox } from 'antd-mobile';
 import { connect } from 'react-redux';
 import { createForm } from 'rc-form';
-import { formatMessage } from 'umi-plugin-locale';
+import { i18n } from '@src/API';
 import BYButton from '@src/components/BYButton';
 import { LOGIN_PASSWORD_EXPR, SIDEINTERVAL } from '@src/common/constants';
 import InputRight from '@src/components/InputRight';
@@ -28,7 +28,7 @@ class LoginForm extends React.Component {
         // 提交
         const { otp, password, repassword } = value;
         if (password !== repassword) {
-          Toast.info(formatMessage({ id: 'theWwoPasswordsAreNotSame' }), 1);
+          Toast.info(i18n.theWwoPasswordsAreNotSame, 1);
         } else {
           // 提交
           registerFetch({
@@ -57,8 +57,8 @@ class LoginForm extends React.Component {
           inputRight={<ReadSeconds mail={mail} />}
           getFieldProps={getFieldProps}
           // styleWrap={{ marginBottom: 75 }}
-          placeholder={formatMessage({ id: 'pleaseEnterVerificationCode' })}
-          message={formatMessage({ id: 'pleaseEnterVerificationCode' })}
+          placeholder={i18n.pleaseEnterVerificationCode}
+          message={i18n.pleaseEnterVerificationCode}
           name="otp"
           type="number"
         />
@@ -67,10 +67,8 @@ class LoginForm extends React.Component {
           // inputRight={this.renderInputRight()}
           getFieldProps={getFieldProps}
           // styleWrap={{ marginBottom: 75 }}
-          placeholder={formatMessage({
-            id: 'pleaseEnter820CharactersOrNumbers',
-          })}
-          message={formatMessage({ id: 'pleaseEnter820CharactersOrNumbers' })}
+          placeholder={i18n.pleaseEnter820CharactersOrNumbers}
+          message={i18n.pleaseEnter820CharactersOrNumbers}
           name="password"
           type="password"
         />
@@ -79,8 +77,8 @@ class LoginForm extends React.Component {
           // inputRight={this.renderInputRight()}
           getFieldProps={getFieldProps}
           // styleWrap={{ marginBottom: 75 }}
-          placeholder={formatMessage({ id: 'pleaseEnterPasswordAgain' })}
-          message={formatMessage({ id: 'pleaseEnter820CharactersOrNumbers' })}
+          placeholder={i18n.pleaseEnterPasswordAgain}
+          message={i18n.pleaseEnter820CharactersOrNumbers}
           name="repassword"
           type="password"
         />
@@ -94,7 +92,7 @@ class LoginForm extends React.Component {
             color: FONT_COLOR_THIRD,
           }}
         >
-          {formatMessage({ id: 'emailCodeTips' })}
+          {i18n.emailCodeTips}
         </div>
         <div style={{ marginBottom: 50 }}>
           <Checkbox.AgreeItem
@@ -105,7 +103,7 @@ class LoginForm extends React.Component {
               });
             }}
           >
-            {formatMessage({ id: 'receiveServicesOffers' })}
+            {i18n.receiveServicesOffers}
             {/* <a
                 onClick={e => {
                   e.preventDefault();
@@ -117,7 +115,7 @@ class LoginForm extends React.Component {
           </Checkbox.AgreeItem>
         </div>
         <BYButton
-          text={formatMessage({ id: 'register' })}
+          text={i18n.register}
           style={{ marginBottom: 30 }}
           onClick={this.submit}
         />

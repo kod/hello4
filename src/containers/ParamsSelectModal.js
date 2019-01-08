@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Modal } from 'antd-mobile';
 import { connect } from 'react-redux';
-import { formatMessage } from 'umi-plugin-locale';
+import { i18n } from '@src/API';
 
 import { BORDER_COLOR, PRIMARY_COLOR, RED_COLOR } from '@src/styles/variables';
 import {
@@ -318,18 +318,13 @@ class ParamsSelectModal extends Component {
               price,
             )} ${MONETARY}`}</div>
             <div style={styles.paramHave}>
-              {formatMessage({ id: 'warehouse' })}:{' '}
-              {numbers > 0
-                ? formatMessage({ id: 'inStock' })
-                : formatMessage({ id: 'soldOut' })}
+              {i18n.warehouse}: {numbers > 0 ? i18n.inStock : i18n.soldOut}
             </div>
           </div>
         </div>
         {this.renderPropertiesIds()}
         <div style={styles.paramNumber}>
-          <div style={styles.paramNumberText}>
-            {formatMessage({ id: 'amount' })}
-          </div>
+          <div style={styles.paramNumberText}>{i18n.amount}</div>
           <div style={styles.paramNumberChange}>
             <div
               onClick={() =>
@@ -370,9 +365,7 @@ class ParamsSelectModal extends Component {
             }}
             onClick={() => this.handleOnModalClose()}
           >
-            {numbers > 0
-              ? formatMessage({ id: 'confirm' })
-              : formatMessage({ id: 'soldOut' })}
+            {numbers > 0 ? i18n.confirm : i18n.soldOut}
           </div>
         </div>
       </div>

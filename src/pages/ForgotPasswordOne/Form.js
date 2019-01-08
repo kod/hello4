@@ -1,7 +1,7 @@
 import React from 'react';
 import { List, Toast } from 'antd-mobile';
 import { createForm } from 'rc-form';
-import { formatMessage } from 'umi-plugin-locale';
+import { i18n } from '@src/API';
 import router from 'umi/lib/router';
 import qs from 'qs';
 
@@ -38,11 +38,11 @@ class LoginForm extends React.Component {
           styleWrap={{ marginBottom: 70 }}
           pattern={EMAIL_EXPR}
           getFieldProps={getFieldProps}
-          placeholder={formatMessage({ id: 'pleaseEnterYourEmailAddress' })}
-          message={formatMessage({ id: 'failedEMailPleaseReEnter' })}
+          placeholder={i18n.pleaseEnterYourEmailAddress}
+          message={i18n.failedEMailPleaseReEnter}
         />
         <BYButton
-          text={formatMessage({ id: 'nextStep' })}
+          text={i18n.nextStep}
           style={{ marginBottom: 20 }}
           onClick={this.submit}
         />

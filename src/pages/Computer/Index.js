@@ -2,7 +2,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import BYHeader from '@src/components/BYHeader';
-import { formatMessage } from 'umi-plugin-locale';
+import { i18n } from '@src/API';
 
 import Scrollable2 from '@src/components/Scrollable2';
 
@@ -20,7 +20,7 @@ class Mobile extends React.Component {
   render() {
     return (
       <div style={styles.container}>
-        <BYHeader title={formatMessage({ id: 'computerOffice' })} />
+        <BYHeader title={i18n.computerOffice} />
         <div>
           <Scrollable2 />
         </div>

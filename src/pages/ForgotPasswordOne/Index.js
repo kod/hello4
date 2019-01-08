@@ -1,5 +1,5 @@
 import React from 'react';
-// import { formatMessage } from 'umi-plugin-locale';
+// import { i18n } from '@src/API';
 import BYHeader from '@src/components/BYHeader';
 import { WINDOW_HEIGHT } from '@src/common/constants';
 import Form from './Form';

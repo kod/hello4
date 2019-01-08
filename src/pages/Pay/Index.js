@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
 import { connect } from 'react-redux';
-import { formatMessage } from 'umi-plugin-locale';
+import { i18n } from '@src/API';
 import { Modal, ActionSheet } from 'antd-mobile';
 import qs from 'qs';
 import router from 'umi/lib/router';
@@ -88,9 +88,9 @@ class Pay extends React.Component {
             })}`,
           );
         } else {
-          Modal.alert('', formatMessage({ id: 'success' }), [
+          Modal.alert('', i18n.success, [
             {
-              text: formatMessage({ id: 'confirm' }),
+              text: i18n.confirm,
               style: 'default',
               onPress: () => {
                 router.push(
@@ -113,15 +113,12 @@ class Pay extends React.Component {
 
   showActionSheet = () => {
     const { payWayButtons } = this.state;
-    const BUTTONS = [
-      ...payWayButtons.map(val => val.value),
-      formatMessage({ id: 'cancel' }),
-    ];
+    const BUTTONS = [...payWayButtons.map(val => val.value), i18n.cancel];
     ActionSheet.showActionSheetWithOptions(
       {
         options: BUTTONS,
         cancelButtonIndex: BUTTONS.length - 1,
-        message: formatMessage({ id: 'paymentMethod' }),
+        message: i18n.paymentMethod,
         maskClosable: true,
       },
       buttonIndex => {
@@ -212,20 +209,20 @@ class Pay extends React.Component {
         {orderpayLoading && <Loader />}
         <div style={styles.main}>
           <NavBar2
-            valueLeft={formatMessage({ id: 'totalMoney' })}
+            valueLeft={i18n.totalMoney}
             valueMiddle={`${priceFormat(totalAmount)} ${MONETARY}`}
             isShowRight={false}
           />
           <SeparateBar />
           <NavBar2
             onClick={() => this.showActionSheet()}
-            valueLeft={formatMessage({ id: 'paymentMethod' })}
+            valueLeft={i18n.paymentMethod}
             valueMiddle={payWayToText(payWayIndex)}
             isShowBorderBottom
           />
         </div>
         <BYButton
-          text={formatMessage({ id: 'payment' })}
+          text={i18n.payment}
           styleWrap={{ padding: 0 }}
           onClick={() => this.handleOnPressSubmit()}
         />
@@ -248,7 +245,7 @@ class Pay extends React.Component {
         <MustLogin
           Modal={Modal}
           visible={!authUser}
-          formatMessage={formatMessage}
+          i18n={i18n}
           router={router}
           SCREENS={SCREENS}
         />

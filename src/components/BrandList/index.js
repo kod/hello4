@@ -1,6 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
-// import { formatMessage } from 'umi-plugin-locale';
+// import { i18n } from '@src/API';
 import router from 'umi/lib/router';
 import qs from 'qs';
 

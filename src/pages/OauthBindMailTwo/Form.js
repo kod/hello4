@@ -2,7 +2,7 @@ import React from 'react';
 import { List, Toast, Checkbox } from 'antd-mobile';
 import { connect } from 'react-redux';
 import { createForm } from 'rc-form';
-import { formatMessage } from 'umi-plugin-locale';
+import { i18n } from '@src/API';
 import BYButton from '@src/components/BYButton';
 import { SIDEINTERVAL, SCREENS } from '@src/common/constants';
 import InputRight from '@src/components/InputRight';
@@ -34,7 +34,7 @@ class LoginForm extends React.Component {
         } = value;
 
         if (password !== repassword) {
-          Toast.info(formatMessage({ id: 'theWwoPasswordsAreNotSame' }), 1);
+          Toast.info(i18n.theWwoPasswordsAreNotSame, 1);
         } else {
           // 提交
           registerFetch({
@@ -64,8 +64,8 @@ class LoginForm extends React.Component {
           inputRight={<ReadSeconds mail={mail} />}
           getFieldProps={getFieldProps}
           // styleWrap={{ marginBottom: 75 }}
-          placeholder={formatMessage({ id: 'pleaseEnterVerificationCode' })}
-          message={formatMessage({ id: 'pleaseEnterVerificationCode' })}
+          placeholder={i18n.pleaseEnterVerificationCode}
+          message={i18n.pleaseEnterVerificationCode}
           name="otp"
           type="number"
         />
@@ -79,7 +79,7 @@ class LoginForm extends React.Component {
             color: FONT_COLOR_THIRD,
           }}
         >
-          {formatMessage({ id: 'emailCodeTips' })}
+          {i18n.emailCodeTips}
         </div>
         <div style={{ marginBottom: 50 }}>
           <Checkbox.AgreeItem
@@ -90,11 +90,11 @@ class LoginForm extends React.Component {
               });
             }}
           >
-            {formatMessage({ id: 'receiveServicesOffers' })}
+            {i18n.receiveServicesOffers}
           </Checkbox.AgreeItem>
         </div>
         <BYButton
-          text={formatMessage({ id: 'confirm' })}
+          text={i18n.confirm}
           style={{ marginBottom: 30 }}
           onClick={this.submit}
         />

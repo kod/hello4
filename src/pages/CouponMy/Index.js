@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import BYHeader from '@src/components/BYHeader';
-import { formatMessage } from 'umi-plugin-locale';
+import { i18n } from '@src/API';
 
 import router from 'umi/lib/router';
 
@@ -50,27 +50,27 @@ class CouponMy extends React.Component {
 
     const tabs = [
       {
-        title: `${formatMessage({ id: 'notUsed' })}(${couponMyUnusedLength})`,
+        title: `${i18n.notUsed}(${couponMyUnusedLength})`,
         routeName: 'CouponMyUnused',
       },
       {
-        title: `${formatMessage({ id: 'used' })}(${couponMyUsedLength})`,
+        title: `${i18n.used}(${couponMyUsedLength})`,
         routeName: 'CouponMyUsed',
       },
       {
-        title: `${formatMessage({ id: 'expired' })}(${couponMyPastLength})`,
+        title: `${i18n.expired}(${couponMyPastLength})`,
         routeName: 'CouponMyPast',
       },
     ];
 
     return (
       <div style={styles.container}>
-        <BYHeader title={formatMessage({ id: 'myCoupon' })} />
+        <BYHeader title={i18n.myCoupon} />
         {loading && <Loader />}
         <MustLogin
           Modal={Modal}
           visible={!authUser}
-          formatMessage={formatMessage}
+          i18n={i18n}
           router={router}
           SCREENS={SCREENS}
         />

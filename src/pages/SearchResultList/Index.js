@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import router from 'umi/lib/router';
-import { formatMessage } from 'umi-plugin-locale';
+import { i18n } from '@src/API';
 
 import BYHeader from '@src/components/BYHeader';
 import Loader from '@src/components/Loader';
@@ -90,7 +90,7 @@ class SearchResultList extends React.Component {
         {items.length === 0 && (
           <EmptyState
             source={ouhrigdfnjsoeijehrJpg}
-            text={formatMessage({ id: 'noData' })}
+            text={i18n.noData}
             style={{ paddingTop: WINDOW_HEIGHT * 0.1 }}
           />
         )}

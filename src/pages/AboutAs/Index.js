@@ -1,6 +1,6 @@
 import React from 'react';
 // import { connect } from 'react-redux';
-import { formatMessage } from 'umi-plugin-locale';
+import { i18n } from '@src/API';
 
 // import * as collectionActionCreators from '@src/common/actions/collection';
 import BYHeader from '@src/components/BYHeader';
@@ -72,7 +72,7 @@ class AboutAs extends React.Component {
   render() {
     const navBar1List = [
       {
-        name: formatMessage({ id: 'helpingCenter' }),
+        name: i18n.helpingCenter,
         func: () => {
           window.location.href = SUPPORT_CENTER_URL;
         },
@@ -80,7 +80,7 @@ class AboutAs extends React.Component {
         tips: '',
       },
       // {
-      //   name: formatMessage({ id: 'howToBuy' }),
+      //   name: i18n.howToBuy,
       //   func: () =>
       //     navigate(SCREENS.WebView, {
       //       source: HOW_TO_BUY_URL,
@@ -88,21 +88,21 @@ class AboutAs extends React.Component {
       //   tips: '',
       // },
       // {
-      //   name: formatMessage({ id: 'businessEmail' }),
+      //   name: i18n.businessEmail,
       //   func: () => {
       //     window.location.href = `mailto:${BUSINESS_EMAIL}`;
       //   },
       //   tips: BUSINESS_EMAIL,
       // },
       {
-        name: formatMessage({ id: 'serviceEmail' }),
+        name: i18n.serviceEmail,
         func: () => {
           window.location.href = `mailto:${SERVICE_EMAIL}`;
         },
         tips: SERVICE_EMAIL,
       },
       // {
-      //   name: formatMessage({ id: 'hotline' }),
+      //   name: i18n.hotline,
       //   func: () => {
       //     window.location.href = `tel:${SERVICE_PHONE}`;
       //   },
@@ -134,11 +134,7 @@ class AboutAs extends React.Component {
           <div style={{ flex: 1 }} />
           <div style={styles.copyright}>
             &copy; {`${new Date().getFullYear()} - `}
-            {formatMessage({ id: 'copyright' }).replace(
-              'CompanyName',
-              BUYOOVIP,
-            )}{' '}
-            - {BUYOO_VN}
+            {i18n.copyright.replace('CompanyName', BUYOOVIP)} - {BUYOO_VN}
           </div>
         </div>
       </div>

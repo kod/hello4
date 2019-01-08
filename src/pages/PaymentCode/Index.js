@@ -2,7 +2,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import BYHeader from '@src/components/BYHeader';
-import { formatMessage } from 'umi-plugin-locale';
+import { i18n } from '@src/API';
 
 import Loader from '@src/components/Loader';
 import router from 'umi/lib/router';
@@ -185,9 +185,9 @@ class PaymentCode extends React.Component {
 
     if (authUser) {
       // Clipboard.setString(val);
-      Modal.alert('', formatMessage({ id: 'successfulCopy' }), [
+      Modal.alert('', i18n.successfulCopy, [
         {
-          text: formatMessage({ id: 'confirm' }),
+          text: i18n.confirm,
           style: 'default',
           onPress: () => {},
         },
@@ -202,20 +202,16 @@ class PaymentCode extends React.Component {
     return (
       <div>
         <div style={styles.row1}>
-          <div style={styles.row1Left}>
-            {formatMessage({ id: 'payooPaymentCode' })}
-          </div>
+          <div style={styles.row1Left}>{i18n.payooPaymentCode}</div>
           {/* <SmallButton
-            text={formatMessage({ id: 'copy' })}
+            text={i18n.copy}
             onClick={() => this.handleOnPressCopy(code)}
           /> */}
         </div>
         <div style={styles.row2}>
           <div style={styles.row2Top}>{code}</div>
           <div style={styles.row2Bottom}>
-            {`${formatMessage({ id: 'orderAmount' })} ${priceFormat(
-              payvalue,
-            )} ${MONETARY}`}
+            {`${i18n.orderAmount} ${priceFormat(payvalue)} ${MONETARY}`}
           </div>
         </div>
         <div
@@ -224,7 +220,7 @@ class PaymentCode extends React.Component {
             window.location.href = PAYOO_STORE_MAP;
           }}
         >
-          {formatMessage({ id: 'visitPayooStoreClickHere' })}
+          {i18n.visitPayooStoreClickHere}
         </div>
         <div style={styles.row3}>
           {images.map((val, key) => (
@@ -241,11 +237,11 @@ class PaymentCode extends React.Component {
     const { authUser, loading } = this.props;
     return (
       <div style={styles.container}>
-        <BYHeader title={formatMessage({ id: 'payooPaymentCode' })} />
+        <BYHeader title={i18n.payooPaymentCode} />
         <MustLogin
           Modal={Modal}
           visible={!authUser}
-          formatMessage={formatMessage}
+          i18n={i18n}
           router={router}
           SCREENS={SCREENS}
         />

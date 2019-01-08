@@ -2,7 +2,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import BYHeader from '@src/components/BYHeader';
-import { formatMessage } from 'umi-plugin-locale';
+import { i18n } from '@src/API';
 import router from 'umi/lib/router';
 
 import { WINDOW_HEIGHT, SCREENS, WINDOW_WIDTH } from '@src/common/constants';
@@ -80,7 +80,7 @@ class Address extends React.Component {
           <img alt="" style={styles.image} src={errorJson[msg].icon} />
           <div style={styles.text}>{errorJson[msg].text}</div>
           <BYButton
-            text={formatMessage({ id: 'confirm' })}
+            text={i18n.confirm}
             styleWrap={{
               width: WINDOW_WIDTH,
               paddingBottom: WINDOW_HEIGHT * 0.2,

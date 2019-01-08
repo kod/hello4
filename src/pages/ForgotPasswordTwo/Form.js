@@ -2,7 +2,7 @@ import React from 'react';
 import { List, Toast } from 'antd-mobile';
 import { connect } from 'react-redux';
 import { createForm } from 'rc-form';
-import { formatMessage } from 'umi-plugin-locale';
+import { i18n } from '@src/API';
 import BYButton from '@src/components/BYButton';
 import {
   LOGIN_PASSWORD_EXPR,
@@ -23,7 +23,7 @@ class LoginForm extends React.Component {
         // 提交
         const { otp, password, repassword } = value;
         if (password !== repassword) {
-          Toast.info(formatMessage({ id: 'theWwoPasswordsAreNotSame' }), 1);
+          Toast.info(i18n.theWwoPasswordsAreNotSame, 1);
         } else {
           // 提交
           changePasswordFetch(mail, password, otp, SCREENS.ForgotPasswordTwo);
@@ -45,8 +45,8 @@ class LoginForm extends React.Component {
           inputRight={<ReadSeconds mail={mail} />}
           getFieldProps={getFieldProps}
           // styleWrap={{ marginBottom: 75 }}
-          placeholder={formatMessage({ id: 'pleaseEnterVerificationCode' })}
-          message={formatMessage({ id: 'pleaseEnterVerificationCode' })}
+          placeholder={i18n.pleaseEnterVerificationCode}
+          message={i18n.pleaseEnterVerificationCode}
           name="otp"
           type="number"
         />
@@ -55,10 +55,8 @@ class LoginForm extends React.Component {
           // inputRight={this.renderInputRight()}
           getFieldProps={getFieldProps}
           // styleWrap={{ marginBottom: 75 }}
-          placeholder={formatMessage({
-            id: 'pleaseEnter820CharactersOrNumbers',
-          })}
-          message={formatMessage({ id: 'pleaseEnter820CharactersOrNumbers' })}
+          placeholder={i18n.pleaseEnter820CharactersOrNumbers}
+          message={i18n.pleaseEnter820CharactersOrNumbers}
           name="password"
           type="password"
         />
@@ -67,8 +65,8 @@ class LoginForm extends React.Component {
           // inputRight={this.renderInputRight()}
           getFieldProps={getFieldProps}
           // styleWrap={{ marginBottom: 75 }}
-          placeholder={formatMessage({ id: 'pleaseEnterPasswordAgain' })}
-          message={formatMessage({ id: 'pleaseEnter820CharactersOrNumbers' })}
+          placeholder={i18n.pleaseEnterPasswordAgain}
+          message={i18n.pleaseEnter820CharactersOrNumbers}
           name="repassword"
           type="password"
         />
@@ -83,10 +81,10 @@ class LoginForm extends React.Component {
             marginBottom: 50,
           }}
         >
-          {formatMessage({ id: 'emailCodeTips' })}
+          {i18n.emailCodeTips}
         </div>
         <BYButton
-          text={formatMessage({ id: 'submit' })}
+          text={i18n.submit}
           style={{ marginBottom: 30 }}
           onClick={this.submit}
         />

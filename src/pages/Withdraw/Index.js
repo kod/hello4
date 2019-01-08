@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
 import { connect } from 'react-redux';
-import { formatMessage } from 'umi-plugin-locale';
+import { i18n } from '@src/API';
 import router from 'umi/lib/router';
 import { Modal } from 'antd-mobile';
 import dayjs from 'dayjs';
@@ -60,17 +60,13 @@ class Withdraw extends React.Component {
     if (balance > limit) {
       router.push(`/${SCREENS.Withdrawal}`);
     } else {
-      Modal.alert(
-        '',
-        formatMessage({ id: 'limitWithdrawnTips' }).replace('XXX', limit),
-        [
-          {
-            text: formatMessage({ id: 'confirm' }),
-            style: 'default',
-            // onPress: () => {},
-          },
-        ],
-      );
+      Modal.alert('', i18n.limitWithdrawnTips.replace('XXX', limit), [
+        {
+          text: i18n.confirm,
+          style: 'default',
+          // onPress: () => {},
+        },
+      ]);
     }
   }
 
@@ -177,14 +173,12 @@ class Withdraw extends React.Component {
         <div style={styles.main}>
           <div style={styles.row1}>
             <CustomIcon type="Money" style={styles.row1Icon} />
-            <div style={styles.row1Text}>
-              {formatMessage({ id: 'commission' })}
-            </div>
+            <div style={styles.row1Text}>{i18n.commission}</div>
           </div>
           <div style={styles.row2}>
             <div style={styles.row2Left}>
               <div style={styles.row2LeftTitle}>
-                {formatMessage({ id: 'commissionsNotReceived' })}
+                {i18n.commissionsNotReceived}
               </div>
               <div style={styles.row2LeftPrice}>
                 {enchashmentGetList ? `${priceFormat(balance)} ${MONETARY}` : 0}
@@ -193,12 +187,12 @@ class Withdraw extends React.Component {
                 style={styles.row2LeftButton}
                 onClick={() => this.handleOnPressWithdraw()}
               >
-                {formatMessage({ id: 'withdrawal' })}
+                {i18n.withdrawal}
               </div>
             </div>
             <div style={styles.row2Right}>
               <div style={styles.row2RightTitle}>
-                {formatMessage({ id: 'commissionsReceived' })}
+                {i18n.commissionsReceived}
               </div>
               <div style={styles.row2RightPrice}>
                 {enchashmentGetList && enchashmentGetList.amountSum
@@ -275,7 +269,7 @@ class Withdraw extends React.Component {
           </div>
         ))}
         {inviteRewards.length === 0 && (
-          <div style={styles.noData}>{formatMessage({ id: 'noData' })}</div>
+          <div style={styles.noData}>{i18n.noData}</div>
         )}
       </div>
     );
@@ -346,7 +340,7 @@ class Withdraw extends React.Component {
           </div>
         ))}
         {enchashmentInfo.length === 0 && (
-          <div style={styles.noData}>{formatMessage({ id: 'noData' })}</div>
+          <div style={styles.noData}>{i18n.noData}</div>
         )}
       </div>
     );
@@ -399,7 +393,7 @@ class Withdraw extends React.Component {
                   })
                 }
               >
-                {formatMessage({ id: 'detailedStatisticalTable' })}
+                {i18n.detailedStatisticalTable}
               </div>
               <div
                 style={styles.titleRight}
@@ -409,7 +403,7 @@ class Withdraw extends React.Component {
                   })
                 }
               >
-                {formatMessage({ id: 'moneyWithdrawalHistory' })}
+                {i18n.moneyWithdrawalHistory}
               </div>
             </div>
             {isShowIncome ? this.renderIncome() : this.renderExpend()}
@@ -434,7 +428,7 @@ class Withdraw extends React.Component {
         <MustLogin
           Modal={Modal}
           visible={!authUser}
-          formatMessage={formatMessage}
+          i18n={i18n}
           router={router}
           SCREENS={SCREENS}
         />
@@ -449,7 +443,7 @@ class Withdraw extends React.Component {
           styleTitle={{
             color: FONT_COLOR_FIFTH,
           }}
-          title={formatMessage({ id: 'myBrokerage' })}
+          title={i18n.myBrokerage}
         />
         {enchashmentLoading || getInviteRecordLoading ? (
           <Loader />

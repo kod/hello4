@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 import React from 'react';
 import { connect } from 'react-redux';
-import { formatMessage } from 'umi-plugin-locale';
+import { i18n } from '@src/API';
 // import router from 'umi/lib/router';
 
 import BYHeader from '@src/components/BYHeader';
@@ -107,7 +107,7 @@ class CateList extends React.Component {
         {loaded && items.length === 0 && (
           <EmptyState
             source={ouhrigdfnjsoeijehrJpg}
-            text={formatMessage({ id: 'noData' })}
+            text={i18n.noData}
             styleText={{ marginBottom: 0 }}
           />
         )}

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Modal } from 'antd-mobile';
 import { connect } from 'react-redux';
-import { formatMessage } from 'umi-plugin-locale';
+import { i18n } from '@src/API';
 
 import * as receiveVoucherActionCreators from '@src/common/actions/receiveVoucher';
 import * as modalActionCreators from '@src/common/actions/modal';
@@ -53,9 +53,9 @@ class AddressAddModal extends Component {
   // addEventListenerHandle = ({ detail: { method } }) => {
   //   switch (method) {
   //     case 'receiveVoucher':
-  //       Modal.alert('', formatMessage({ id: 'youGotCoupon' }), [
+  //       Modal.alert('', i18n.youGotCoupon, [
   //         {
-  //           text: formatMessage({ id: 'confirm' }),
+  //           text: i18n.confirm,
   //           style: 'default',
   //           onPress: () => {},
   //         },
@@ -242,17 +242,13 @@ class AddressAddModal extends Component {
               style={styles.headerLeft}
               onClick={() => this.handleOnModalClose()}
             >
-              {formatMessage({ id: 'cancel' })}
+              {i18n.cancel}
             </div>
-            <div style={styles.headerMain}>
-              {formatMessage({ id: 'share' })}
-            </div>
-            <div style={styles.headerRight}>
-              {formatMessage({ id: 'cancel' })}
-            </div>
+            <div style={styles.headerMain}>{i18n.share}</div>
+            <div style={styles.headerRight}>{i18n.cancel}</div>
           </div>
           <div style={styles.tips}>
-            {formatMessage({ id: 'shareGetDiscountedDealsAndMoneyRose' })}
+            {i18n.shareGetDiscountedDealsAndMoneyRose}
           </div>
           <div style={styles.body}>
             <div style={styles.productInfo}>
@@ -269,7 +265,7 @@ class AddressAddModal extends Component {
                 {/* <div style={styles.productInfoRow1}>Voucher giảm giá</div> */}
                 {!!rewardNumber && (
                   <div style={styles.productInfoRow2}>
-                    {`${formatMessage({ id: 'salesCommission' })}: `}
+                    {`${i18n.salesCommission}: `}
                     <span style={styles.productInfoRow2Price}>
                       {`+ ${priceFormat(rewardNumber)} ${MONETARY}`}
                     </span>

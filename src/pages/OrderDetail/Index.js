@@ -2,7 +2,7 @@ import React from 'react';
 import dayjs from 'dayjs';
 import { connect } from 'react-redux';
 import BYHeader from '@src/components/BYHeader';
-import { formatMessage } from 'umi-plugin-locale';
+import { i18n } from '@src/API';
 import { Modal } from 'antd-mobile';
 import router from 'umi/lib/router';
 import qs from 'qs';
@@ -206,22 +206,19 @@ class OrderDetail extends React.Component {
       const remainHours = ~~((remainAllSeconds % (3600 * 24)) / 3600); // 剩余小时数
       const remainMinutes = ~~(((remainAllSeconds % (3600 * 24)) % 3600) / 60); // 剩余分钟数
       if (remainDays > 0) {
-        result = formatMessage({ id: 'remainTime1' })
+        result = i18n.remainTime1
           .replace('$days$', remainDays)
           .replace('$hours$', remainHours)
           .replace('$minutes$', remainMinutes);
       } else if (remainHours > 0) {
-        result = formatMessage({ id: 'remainTime2' })
+        result = i18n.remainTime2
           .replace('$hours$', remainHours)
           .replace('$minutes$', remainMinutes);
       } else if (remainMinutes > 0) {
-        result = formatMessage({ id: 'remainTime3' }).replace(
-          '$minutes$',
-          remainMinutes,
-        );
+        result = i18n.remainTime3.replace('$minutes$', remainMinutes);
       } else {
         // 小于60秒
-        result = formatMessage({ id: 'remainTime3' }).replace('$minutes$', 1);
+        result = i18n.remainTime3.replace('$minutes$', 1);
       }
     } else {
       // 已过期
@@ -234,9 +231,9 @@ class OrderDetail extends React.Component {
 
     if (authUser) {
       // Clipboard.setString(val);
-      Modal.alert('', formatMessage({ id: 'successfulCopy' }), [
+      Modal.alert('', i18n.successfulCopy, [
         {
-          text: formatMessage({ id: 'confirm' }),
+          text: i18n.confirm,
           style: 'default',
           onPress: () => {
             router.go(-1);
@@ -249,12 +246,12 @@ class OrderDetail extends React.Component {
   handleOnPressCancel() {
     const { orderCancelFetch, orderNo, tradeNo } = this.props;
 
-    Modal.alert('', formatMessage({ id: 'confirmDelete' }), [
+    Modal.alert('', i18n.confirmDelete, [
       {
-        text: formatMessage({ id: 'cancel' }),
+        text: i18n.cancel,
       },
       {
-        text: formatMessage({ id: 'confirm' }),
+        text: i18n.confirm,
         style: 'default',
         onPress: () => {
           orderCancelFetch({
@@ -343,9 +340,7 @@ class OrderDetail extends React.Component {
     return (
       <div style={stylesX.nav}>
         <div style={stylesX.navLeft}>
-          <div style={stylesX.navLeftTop}>
-            {formatMessage({ id: 'subtotal' })}
-          </div>
+          <div style={stylesX.navLeftTop}>{i18n.subtotal}</div>
           <div style={stylesX.navLeftBottom}>{`${priceFormat(
             totalAmount,
           )} ${MONETARY}`}</div>
@@ -355,7 +350,7 @@ class OrderDetail extends React.Component {
             style={stylesX.navCancel}
             onClick={() => this.handleOnPressCancel()}
           >
-            {formatMessage({ id: 'cancelOrder' })}
+            {i18n.cancelOrder}
           </div>
         )}
         {tradeStatus === '10000' && (
@@ -381,9 +376,7 @@ class OrderDetail extends React.Component {
                   )
             }
           >
-            {payWay === 5
-              ? formatMessage({ id: 'viewPaymentCode' })
-              : formatMessage({ id: 'payment' })}
+            {payWay === 5 ? i18n.viewPaymentCode : i18n.payment}
           </div>
         )}
       </div>
@@ -456,9 +449,7 @@ class OrderDetail extends React.Component {
           {rechargeCard &&
             rechargeCard.map(val => (
               <div style={stylesX.cardItem} key={val.cardCode}>
-                <div style={stylesX.cardItemText}>
-                  {formatMessage({ id: 'cardNum' })}
-                </div>
+                <div style={stylesX.cardItemText}>{i18n.cardNum}</div>
                 <div style={stylesX.cardItemValue}>
                   <div style={stylesX.cardItemNumber}>{val.cardCode}</div>
                   <div style={stylesX.cardItemCopy}>
@@ -466,13 +457,11 @@ class OrderDetail extends React.Component {
                       style={stylesX.cardItemCopyText}
                       onClick={() => this.handleOnPressCopy(val.cardCode)}
                     >
-                      {formatMessage({ id: 'copy' })}
+                      {i18n.copy}
                     </div>
                   </div>
                 </div>
-                <div style={stylesX.cardItemText}>
-                  {formatMessage({ id: 'password' })}
-                </div>
+                <div style={stylesX.cardItemText}>{i18n.password}</div>
                 <div style={stylesX.cardItemValue}>
                   <div style={stylesX.cardItemNumber}>{val.cardPassword}</div>
                   <div style={stylesX.cardItemCopy}>
@@ -480,14 +469,12 @@ class OrderDetail extends React.Component {
                       style={stylesX.cardItemCopyText}
                       onClick={() => this.handleOnPressCopy(val.cardPassword)}
                     >
-                      {formatMessage({ id: 'copy' })}
+                      {i18n.copy}
                     </div>
                   </div>
                 </div>
                 <div style={stylesX.cardItemTime}>
-                  {`${formatMessage({ id: 'usefulDate' })}: ${dayjs().format(
-                    'DD-MM-YYYY',
-                  )}`}
+                  {`${i18n.usefulDate}: ${dayjs().format('DD-MM-YYYY')}`}
                 </div>
               </div>
             ))}
@@ -520,13 +507,11 @@ class OrderDetail extends React.Component {
     };
     return (
       <div style={stylesX.orderNo}>
-        <div style={stylesX.orderNoTitle}>{`${formatMessage({
-          id: 'orderNumber',
-        })}:`}</div>
+        <div style={stylesX.orderNoTitle}>{`${i18n.orderNumber}:`}</div>
         <div style={stylesX.orderNoMain}>
           <div style={stylesX.orderNoLeft}>{orderNo}</div>
           {/* <SmallButton
-            text={formatMessage({ id: 'copy' })}
+            text={i18n.copy}
             onClick={() => this.handleOnPressCopy(orderNo)}
           /> */}
         </div>
@@ -617,18 +602,18 @@ class OrderDetail extends React.Component {
           {tradeStatus !== '10000' && (
             <NavBar2
               isShowRight={false}
-              valueLeft={formatMessage({ id: 'paymentMethod' })}
+              valueLeft={i18n.paymentMethod}
               valueMiddle={payWayToText(payWayIndex)}
             />
           )}
           <NavBar2
             // onClick={() => this.handleOnPressToggleBottomSheet()}
-            valueLeft={formatMessage({ id: 'couponValue' })}
+            valueLeft={i18n.couponValue}
             valueMiddle={couponValue}
             isShowRight={false}
           />
           <NavBar2
-            valueLeft={formatMessage({ id: 'orderTime' })}
+            valueLeft={i18n.orderTime}
             valueMiddle={`${dayjs(createTime).format('DD-MM-YYYY HH:mm:ss')}`}
             isShowRight={false}
           />
@@ -646,13 +631,13 @@ class OrderDetail extends React.Component {
     return (
       <div style={styles.container}>
         <BYHeader
-          title={formatMessage({ id: 'details' })}
+          title={i18n.details}
           // onPressBackButton={() => this.handleOnPressBack()}
         />
         <MustLogin
           Modal={Modal}
           visible={!authUser}
-          formatMessage={formatMessage}
+          i18n={i18n}
           router={router}
           SCREENS={SCREENS}
         />

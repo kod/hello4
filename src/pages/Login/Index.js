@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal } from 'antd-mobile';
-import { formatMessage } from 'umi-plugin-locale';
+import { i18n } from '@src/API';
 import router from 'umi/lib/router';
 import { connect } from 'react-redux';
 import qs from 'qs';
@@ -97,9 +97,9 @@ class Index extends React.Component {
           // 登录失败（未注册）
           console.log('登录失败（未注册）');
 
-          Modal.alert('', formatMessage({ id: 'tipsLinkEmail' }), [
+          Modal.alert('', i18n.tipsLinkEmail, [
             {
-              text: formatMessage({ id: 'confirm' }),
+              text: i18n.confirm,
               style: 'default',
               onPress: () => {
                 // 去绑定邮箱（实际是注册）
@@ -286,9 +286,7 @@ class Index extends React.Component {
       <div style={styles.container}>
         <div style={styles.separated}>
           <div style={styles.separatedLine} />
-          <div style={styles.separatedText}>
-            {formatMessage({ id: 'orSignInWith' })}
-          </div>
+          <div style={styles.separatedText}>{i18n.orSignInWith}</div>
           <div style={styles.separatedLine} />
         </div>
         <div style={styles.main}>
@@ -298,9 +296,7 @@ class Index extends React.Component {
           >
             <CustomIcon type="facebook-fill" style={styles.itemIcon} />
             {/* <AntDesign name="facebook-square" style={styles.itemIcon} /> */}
-            <div style={styles.itemText}>
-              {formatMessage({ id: 'facebook' })}
-            </div>
+            <div style={styles.itemText}>{i18n.facebook}</div>
           </div>
           <div style={styles.mainSeparated} />
           <div
@@ -309,7 +305,7 @@ class Index extends React.Component {
           >
             <CustomIcon type="google-square-fill" style={styles.itemIcon} />
             {/* <AntDesign name="googleplus" style={styles.itemIcon} /> */}
-            <div style={styles.itemText}>{formatMessage({ id: 'google' })}</div>
+            <div style={styles.itemText}>{i18n.google}</div>
           </div>
         </div>
       </div>
@@ -330,19 +326,19 @@ class Index extends React.Component {
 
     return (
       <div style={styles.container}>
-        <BYHeader title={formatMessage({ id: 'login' })} />
+        <BYHeader title={i18n.login} />
 
         {(loginLoading || isLoadFBSDK === false) && <Loader />}
 
         <Form />
         <NavSidesText
-          textLeft={formatMessage({ id: 'register' })}
-          textRight={formatMessage({ id: 'forgetPassword' })}
+          textLeft={i18n.register}
+          textRight={i18n.forgetPassword}
           navigateLeft={() => router.push('/RegisterStepOne')}
           navigateRight={() =>
             router.push(
               `/${SCREENS.ForgotPasswordOne}?${qs.stringify({
-                title: formatMessage({ id: 'forgetPassword' }),
+                title: i18n.forgetPassword,
               })}`,
             )
           }

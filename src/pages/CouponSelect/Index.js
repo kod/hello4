@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
 import { connect } from 'react-redux';
-import { formatMessage } from 'umi-plugin-locale';
+import { i18n } from '@src/API';
 import router from 'umi/lib/router';
 import { Modal } from 'antd-mobile';
 
@@ -64,11 +64,11 @@ class CouponSelect extends React.Component {
 
     return (
       <div style={styles.container}>
-        <BYHeader title={formatMessage({ id: 'chooseCoupon' })} />
+        <BYHeader title={i18n.chooseCoupon} />
         <MustLogin
           Modal={Modal}
           visible={!authUser}
-          formatMessage={formatMessage}
+          i18n={i18n}
           router={router}
           SCREENS={SCREENS}
         />
@@ -78,7 +78,7 @@ class CouponSelect extends React.Component {
         ) : (
           <EmptyState
             source={ouhrigdfnjsoeijehrJpg}
-            text={formatMessage({ id: 'temporarilyUnableReceiveVoucher' })}
+            text={i18n.temporarilyUnableReceiveVoucher}
             style={{ height: WINDOW_HEIGHT - 45 }}
             styleText={{ marginBottom: 0 }}
           />

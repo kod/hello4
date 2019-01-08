@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import BYHeader from '@src/components/BYHeader';
-import { formatMessage } from 'umi-plugin-locale';
+import { i18n } from '@src/API';
 
 import router from 'umi/lib/router';
 
@@ -36,30 +36,30 @@ class CouponMy extends React.PureComponent {
 
     const tabs = [
       {
-        title: `${formatMessage({ id: 'all' })}`,
+        title: `${i18n.all}`,
         status: '99999',
       },
       {
-        title: `${formatMessage({ id: 'pendingPayment' })}`,
+        title: `${i18n.pendingPayment}`,
         status: '10000',
       },
       {
-        title: `${formatMessage({ id: 'pendingDelivery' })}`,
+        title: `${i18n.pendingDelivery}`,
         status: '30000',
       },
       {
-        title: `${formatMessage({ id: 'pendingEvaluation' })}`,
+        title: `${i18n.pendingEvaluation}`,
         status: '30001',
       },
     ];
 
     return (
       <div style={styles.container}>
-        <BYHeader title={formatMessage({ id: 'myOrder' })} />
+        <BYHeader title={i18n.myOrder} />
         <MustLogin
           Modal={Modal}
           visible={!authUser}
-          formatMessage={formatMessage}
+          i18n={i18n}
           router={router}
           SCREENS={SCREENS}
         />

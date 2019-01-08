@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { formatMessage } from 'umi-plugin-locale';
+import { i18n } from '@src/API';
 
 import * as otpActionCreators from '@src/common/actions/otp';
 
@@ -87,7 +87,7 @@ class ReadSeconds extends React.PureComponent {
           onClick={() => this.handleOnPressSeconds()}
           {...restProps}
         >
-          {ing ? seconds : formatMessage({ id: 'sendCode' })}
+          {ing ? seconds : i18n.sendCode}
         </div>
       </div>
     );

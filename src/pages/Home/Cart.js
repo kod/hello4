@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { formatMessage } from 'umi-plugin-locale';
+import { i18n } from '@src/API';
 import { Modal } from 'antd-mobile';
 import router from 'umi/lib/router';
 import qs from 'qs';
@@ -70,7 +70,7 @@ class Index extends PureComponent {
 
     return (
       <div style={stylesX.container}>
-        <div style={stylesX.title}>{formatMessage({ id: 'cart' })}</div>
+        <div style={stylesX.title}>{i18n.cart}</div>
       </div>
     );
   };
@@ -107,9 +107,7 @@ class Index extends PureComponent {
     return (
       <div style={stylesX.headerRight} onClick={() => onPressHandle()}>
         <div style={stylesX.headerRightText}>
-          {isEdit
-            ? formatMessage({ id: 'save' })
-            : formatMessage({ id: 'edit' })}
+          {isEdit ? i18n.save : i18n.edit}
         </div>
       </div>
     );
@@ -202,10 +200,10 @@ class Index extends PureComponent {
       // delete
       const selectedDelIdStr = getSelectedDelId();
       if (!selectedDelIdStr) return false;
-      Modal.alert('', formatMessage({ id: 'confirmDelete' }), [
-        { text: formatMessage({ id: 'cancel' }), style: 'default' },
+      Modal.alert('', i18n.confirmDelete, [
+        { text: i18n.cancel, style: 'default' },
         {
-          text: formatMessage({ id: 'delete' }),
+          text: i18n.delete,
           onPress: () => {
             cartDeleteRequest(selectedDelIdStr);
           },
@@ -350,9 +348,7 @@ class Index extends PureComponent {
                   />
                 )}
               </div>
-              <div style={styles.overviewSelect}>
-                {formatMessage({ id: 'selectAll' })}
-              </div>
+              <div style={styles.overviewSelect}>{i18n.selectAll}</div>
             </div>
             <div style={styles.overviewPrice}>
               {!isEdit && `${priceFormat(totalMoney)} ${MONETARY}`}
@@ -367,9 +363,7 @@ class Index extends PureComponent {
                   ...(isEdit && styles.overviewSubmitTextDel),
                 }}
               >
-                {isEdit
-                  ? formatMessage({ id: 'delete' })
-                  : formatMessage({ id: 'buy' })}
+                {isEdit ? i18n.delete : i18n.buy}
               </div>
             </div>
           </div>
@@ -377,7 +371,7 @@ class Index extends PureComponent {
         {!loading && isEmptyCart && (
           <EmptyState
             source={ouhrigdfnjsoeijehrJpg}
-            text={formatMessage({ id: 'noData' })}
+            text={i18n.noData}
             styleText={{ marginBottom: 0 }}
           />
         )}

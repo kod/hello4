@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { formatMessage } from 'umi-plugin-locale';
+import { i18n } from '@src/API';
 
 import {
   WINDOW_WIDTH,
@@ -53,7 +53,7 @@ class ProductDetailComment extends React.Component {
     return (
       <div style={styles.container}>
         {loading && <Loader />}
-        <BYHeader title={formatMessage({ id: 'evaluation' })} />
+        <BYHeader title={i18n.evaluation} />
         {comment.length !== 0 && (
           <div>
             <Comment data={comment} style={{ paddingTop: 20 }} />
@@ -70,9 +70,7 @@ class ProductDetailComment extends React.Component {
               )}`}
             />
             {/* <Image style={styles.emptyCommentImage} source={emptycommentPng} /> */}
-            <div style={styles.emptyCommentText}>
-              {formatMessage({ id: 'noCommentYet' })}
-            </div>
+            <div style={styles.emptyCommentText}>{i18n.noCommentYet}</div>
           </div>
         )}
       </div>

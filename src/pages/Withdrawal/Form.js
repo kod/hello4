@@ -3,7 +3,7 @@ import React from 'react';
 import { Toast, Modal } from 'antd-mobile';
 import { connect } from 'react-redux';
 import { createForm } from 'rc-form';
-import { formatMessage } from 'umi-plugin-locale';
+import { i18n } from '@src/API';
 import router from 'umi/lib/router';
 import { SCREENS, SIDEINTERVAL, MONETARY } from '@src/common/constants';
 import InputRight from '@src/components/InputRight';
@@ -71,9 +71,9 @@ class LoginForm extends React.Component {
         break;
 
       case 'enchashmentApply':
-        Modal.alert('', formatMessage({ id: 'withdrawnSuccess' }), [
+        Modal.alert('', i18n.withdrawnSuccess, [
           {
-            text: formatMessage({ id: 'confirm' }),
+            text: i18n.confirm,
             style: 'default',
             onPress: () => {
               router.go(-1);
@@ -109,9 +109,9 @@ class LoginForm extends React.Component {
             screen: SCREENS.Withdrawal,
           });
         } else {
-          Modal.alert('', formatMessage({ id: 'insufficientAmount' }), [
+          Modal.alert('', i18n.insufficientAmount, [
             {
-              text: formatMessage({ id: 'confirm' }),
+              text: i18n.confirm,
               style: 'default',
               onPress: () => {},
             },
@@ -203,75 +203,65 @@ class LoginForm extends React.Component {
         <MustLogin
           Modal={Modal}
           visible={!authUser}
-          formatMessage={formatMessage}
+          i18n={i18n}
           router={router}
           SCREENS={SCREENS}
         />
         <div style={styles.main}>
           <div style={styles.item}>
-            <div style={styles.itemTitle}>
-              {formatMessage({ id: 'actualName' })}
-            </div>
+            <div style={styles.itemTitle}>{i18n.actualName}</div>
             <InputRight
               getFieldProps={getFieldProps}
               style={styles.inputStyle}
               styleWrap={styles.inputStyleWrap}
               styleInput={styles.inputstyleInput}
-              placeholder={formatMessage({ id: 'enterHere' })}
-              message={formatMessage({ id: 'actualName' })}
+              placeholder={i18n.enterHere}
+              message={i18n.actualName}
               name="username"
               type="text"
             />
           </div>
           <div style={styles.item}>
-            <div style={styles.itemTitle}>
-              {formatMessage({ id: 'bankName' })}
-            </div>
+            <div style={styles.itemTitle}>{i18n.bankName}</div>
             <InputRight
               getFieldProps={getFieldProps}
               style={styles.inputStyle}
               styleWrap={styles.inputStyleWrap}
               styleInput={styles.inputstyleInput}
-              placeholder={formatMessage({ id: 'enterHere' })}
-              message={formatMessage({ id: 'bankName' })}
+              placeholder={i18n.enterHere}
+              message={i18n.bankName}
               name="bank_name"
               type="text"
             />
           </div>
           <div style={styles.item}>
-            <div style={styles.itemTitle}>
-              {formatMessage({ id: 'bankBranch' })}
-            </div>
+            <div style={styles.itemTitle}>{i18n.bankBranch}</div>
             <InputRight
               getFieldProps={getFieldProps}
               style={styles.inputStyle}
               styleWrap={styles.inputStyleWrap}
               styleInput={styles.inputstyleInput}
-              placeholder={formatMessage({ id: 'enterHere' })}
-              message={formatMessage({ id: 'bankBranch' })}
+              placeholder={i18n.enterHere}
+              message={i18n.bankBranch}
               name="bank_deposit"
               type="text"
             />
           </div>
           <div style={styles.item}>
-            <div style={styles.itemTitle}>
-              {formatMessage({ id: 'accountNumber' })}
-            </div>
+            <div style={styles.itemTitle}>{i18n.accountNumber}</div>
             <InputRight
               getFieldProps={getFieldProps}
               style={styles.inputStyle}
               styleWrap={styles.inputStyleWrap}
               styleInput={styles.inputstyleInput}
-              placeholder={formatMessage({ id: 'enterHere' })}
-              message={formatMessage({ id: 'accountNumber' })}
+              placeholder={i18n.enterHere}
+              message={i18n.accountNumber}
               name="bank_card_no"
               type="number"
             />
           </div>
           <div style={styles.item}>
-            <div style={styles.itemTitle}>
-              {formatMessage({ id: 'amountWithdrawn' })}
-            </div>
+            <div style={styles.itemTitle}>{i18n.amountWithdrawn}</div>
             <InputRight
               onChange={e => {
                 this.setState({
@@ -287,8 +277,8 @@ class LoginForm extends React.Component {
               style={styles.inputStyle}
               styleWrap={styles.inputStyleWrap}
               styleInput={styles.inputstyleInput}
-              placeholder={formatMessage({ id: 'enterHere' })}
-              message={formatMessage({ id: 'amountWithdrawn' })}
+              placeholder={i18n.enterHere}
+              message={i18n.amountWithdrawn}
               name="amount"
               type="number"
             />
@@ -296,20 +286,18 @@ class LoginForm extends React.Component {
         </div>
         <div style={styles.info}>
           <NavBar2
-            valueLeft={formatMessage({ id: 'serviceFee' })}
+            valueLeft={i18n.serviceFee}
             valueMiddle={`- ${feeRate * 100}%`}
             isShowRight={false}
           />
           <NavBar2
-            valueLeft={formatMessage({ id: 'amountActuallyReceived' })}
+            valueLeft={i18n.amountActuallyReceived}
             valueMiddle={actuallyReceived}
             isShowRight={false}
           />
         </div>
         <div style={styles.submit} onClick={this.submit}>
-          <div style={styles.submitButton}>
-            {formatMessage({ id: 'confirm' })}
-          </div>
+          <div style={styles.submitButton}>{i18n.confirm}</div>
         </div>
       </div>
     );

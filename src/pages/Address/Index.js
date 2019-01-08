@@ -3,7 +3,7 @@ import React from 'react';
 import qs from 'qs';
 import { connect } from 'react-redux';
 import BYHeader from '@src/components/BYHeader';
-import { formatMessage } from 'umi-plugin-locale';
+import { i18n } from '@src/API';
 
 import Loader from '@src/components/Loader';
 import router from 'umi/lib/router';
@@ -59,12 +59,12 @@ class Address extends React.Component {
 
   handleOnPressAddressDel(id) {
     const { addressRemoveFetch } = this.props;
-    Modal.alert('', formatMessage({ id: 'confirmDelete' }), [
+    Modal.alert('', i18n.confirmDelete, [
       {
-        text: formatMessage({ id: 'cancel' }),
+        text: i18n.cancel,
       },
       {
-        text: formatMessage({ id: 'confirm' }),
+        text: i18n.confirm,
         style: 'default',
         onPress: () => {
           addressRemoveFetch(id);
@@ -177,7 +177,7 @@ class Address extends React.Component {
         {loaded === true && items.length === 0 ? (
           <EmptyState
             source={afiasifsdhfsPng}
-            text={formatMessage({ id: 'pleaseAddYourShippingAddress' })}
+            text={i18n.pleaseAddYourShippingAddress}
             style={{ height: WINDOW_HEIGHT - 45 - 50 }}
           />
         ) : (
@@ -214,7 +214,7 @@ class Address extends React.Component {
                             ...(val.isdefault === 'Y' && styles.selected),
                           }}
                         >
-                          {formatMessage({ id: 'defaultAddress' })}
+                          {i18n.defaultAddress}
                         </div>
                       </div>
                       <div style={styles.operateRight}>
@@ -270,7 +270,7 @@ class Address extends React.Component {
           style={styles.add}
           onClick={() => router.push(`/${SCREENS.AddressAdd}`)}
         >
-          {formatMessage({ id: 'addAddress' })}
+          {i18n.addAddress}
         </div>
       </div>
     );
@@ -293,7 +293,7 @@ class Address extends React.Component {
         <MustLogin
           Modal={Modal}
           visible={!authUser}
-          formatMessage={formatMessage}
+          i18n={i18n}
           router={router}
           SCREENS={SCREENS}
         />

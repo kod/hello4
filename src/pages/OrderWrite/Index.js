@@ -1,7 +1,7 @@
 /* eslint-disable no-shadow */
 import React from 'react';
 import { connect } from 'react-redux';
-import { formatMessage } from 'umi-plugin-locale';
+import { i18n } from '@src/API';
 import { Modal, ActionSheet } from 'antd-mobile';
 import BYHeader from '@src/components/BYHeader';
 import { getAddressSelectedItem, getLoginUser } from '@src/common/selectors';
@@ -124,9 +124,9 @@ class OrderWrite extends React.Component {
 
       case 'orderPay':
         // （货到付款）提交订单成功
-        Modal.alert('', formatMessage({ id: 'submitOrderSuccessfully' }), [
+        Modal.alert('', i18n.submitOrderSuccessfully, [
           {
-            text: formatMessage({ id: 'confirm' }),
+            text: i18n.confirm,
             style: 'default',
             onPress: () => {
               router.push(
@@ -149,15 +149,12 @@ class OrderWrite extends React.Component {
   showActionSheet = () => {
     const { payWayButtons } = this.state;
 
-    const BUTTONS = [
-      ...payWayButtons.map(val => val.value),
-      formatMessage({ id: 'cancel' }),
-    ];
+    const BUTTONS = [...payWayButtons.map(val => val.value), i18n.cancel];
     ActionSheet.showActionSheetWithOptions(
       {
         options: BUTTONS,
         cancelButtonIndex: BUTTONS.length - 1,
-        message: formatMessage({ id: 'paymentMethod' }),
+        message: i18n.paymentMethod,
         maskClosable: true,
       },
       buttonIndex => {
@@ -309,8 +306,8 @@ class OrderWrite extends React.Component {
     };
 
     if (addressSelectedId === 0) {
-      Modal.alert('', formatMessage({ id: 'pleaseSelectourShippingAddress' }), [
-        { text: formatMessage({ id: 'confirm' }), style: 'default' },
+      Modal.alert('', i18n.pleaseSelectourShippingAddress, [
+        { text: i18n.confirm, style: 'default' },
       ]);
       return false;
     }
@@ -402,7 +399,7 @@ class OrderWrite extends React.Component {
           style={stylesX.navRight}
           onClick={() => this.handleOnPressSubmit()}
         >
-          {formatMessage({ id: 'submitOrder' })}
+          {i18n.submitOrder}
         </div>
       </div>
     );
@@ -473,12 +470,12 @@ class OrderWrite extends React.Component {
           <SeparateBar />
           <NavBar2
             onClick={() => this.showActionSheet()}
-            valueLeft={formatMessage({ id: 'paymentMethod' })}
+            valueLeft={i18n.paymentMethod}
             valueMiddle={payWayToText(payWayIndex)}
           />
           <NavBar2
             onClick={() => this.handleOnPressCoupon()}
-            valueLeft={formatMessage({ id: 'coupon' })}
+            valueLeft={i18n.coupon}
             valueMiddle={
               couponSelectItem.id ? couponSelectItem.voucherName : ''
             }
@@ -500,11 +497,11 @@ class OrderWrite extends React.Component {
     };
     return (
       <div style={styles.container}>
-        <BYHeader title={formatMessage({ id: 'fillOrder' })} />
+        <BYHeader title={i18n.fillOrder} />
         <MustLogin
           Modal={Modal}
           visible={!authUser}
-          formatMessage={formatMessage}
+          i18n={i18n}
           router={router}
           SCREENS={SCREENS}
         />

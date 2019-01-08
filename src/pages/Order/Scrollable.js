@@ -12,7 +12,7 @@ import {
   MONETARY,
   SCREENS,
 } from '@src/common/constants';
-import { formatMessage } from 'umi-plugin-locale';
+import { i18n } from '@src/API';
 
 import * as queryOrderListActionCreators from '@src/common/actions/queryOrderList';
 import { BORDER_COLOR, PRIMARY_COLOR } from '@src/styles/variables';
@@ -103,7 +103,7 @@ class Scrollable extends React.Component {
 
   handleOnPressOperate = (operateText, val) => {
     switch (operateText) {
-      case formatMessage({ id: 'payment' }):
+      case i18n.payment:
         router.push(
           `/${SCREENS.Pay}?${qs.stringify({
             tradeNo: val.tradeNo,
@@ -112,7 +112,7 @@ class Scrollable extends React.Component {
         );
         break;
 
-      case formatMessage({ id: 'evaluation' }):
+      case i18n.evaluation:
         router.push(
           `/${SCREENS.Evalution}?${qs.stringify({
             tradeNo: val.tradeNo,
@@ -123,7 +123,7 @@ class Scrollable extends React.Component {
 
         break;
 
-      case formatMessage({ id: 'viewPaymentCode' }):
+      case i18n.viewPaymentCode:
         router.push(
           `/${SCREENS.PaymentCode}?${qs.stringify({
             orderNo: val.orderNo,
@@ -169,7 +169,7 @@ class Scrollable extends React.Component {
         <div style={{ height: WINDOW_HEIGHT - 45 - 45 }}>
           <EmptyState
             source={ouhrigdfnjsoeijehrJpg}
-            text={formatMessage({ id: 'noData' })}
+            text={i18n.noData}
             style={{ paddingTop: WINDOW_HEIGHT * 0.1 }}
           />
         </div>
@@ -207,9 +207,9 @@ class Scrollable extends React.Component {
                 <div style={stylesScrollable.payText}>
                   {tradeStatusCodes(val.tradeStatus)}
                 </div>
-                <div style={stylesScrollable.price}>{`${formatMessage({
-                  id: 'subtotal',
-                })}: ${priceFormat(val.totalAmount)} ${MONETARY}`}</div>
+                <div style={stylesScrollable.price}>{`${
+                  i18n.subtotal
+                }: ${priceFormat(val.totalAmount)} ${MONETARY}`}</div>
               </div>
               <div style={stylesScrollable.pay}>
                 {operateForTradeStatusCodes(val.tradeStatus, val.payWay).map(

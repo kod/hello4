@@ -6,6 +6,7 @@ export default ({
   formatMessage,
   router,
   SCREENS,
+  i18n,
   ...restProps
 }) => (
   <Modal
@@ -13,16 +14,16 @@ export default ({
     visible={visible}
     transparent
     maskClosable={false}
-    title={formatMessage({ id: 'pleaseLogIn' })}
+    title={i18n.pleaseLogIn}
     footer={[
       {
-        text: formatMessage({ id: 'cancel' }),
+        text: i18n.cancel,
         onPress: () => {
           router.push(`/`);
         },
       },
       {
-        text: formatMessage({ id: 'login' }),
+        text: i18n.login,
         onPress: () => {
           router.push(`/${SCREENS.Login}`);
         },

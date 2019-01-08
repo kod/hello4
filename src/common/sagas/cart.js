@@ -1,5 +1,4 @@
 import { apply, put, takeEvery, select } from 'redux-saga/effects';
-import { formatMessage } from 'umi-plugin-locale';
 import { Modal } from 'antd-mobile';
 import { normalize } from 'normalizr';
 import dayjs from 'dayjs';
@@ -34,6 +33,7 @@ import buyoo from '@src/services/api';
 import { encryptMD5, signTypeMD5 } from '@src/utils/AuthEncrypt';
 import Schemas from '@src/common/constants/schemas';
 import { getAuthUser } from '@src/common/selectors';
+import { i18n } from '@src/API';
 
 function* cartFetchWatchHandle(/* action */) {
   try {
@@ -359,9 +359,7 @@ export function* cartAddRequestWatch() {
 
 function* cartAddSuccessWatchHandle() {
   try {
-    Modal.alert('', formatMessage({ id: 'success' }), [
-      { text: formatMessage({ id: 'confirm' }), style: 'default' },
-    ]);
+    Modal.alert('', i18n.success, [{ text: i18n.confirm, style: 'default' }]);
   } catch (err) {
     yield put(addError(typeof err === 'string' ? err : err.toString()));
   }

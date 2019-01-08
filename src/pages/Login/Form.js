@@ -2,7 +2,7 @@ import React from 'react';
 import { List, Toast } from 'antd-mobile';
 import { connect } from 'react-redux';
 import { createForm } from 'rc-form';
-import { formatMessage } from 'umi-plugin-locale';
+import { i18n } from '@src/API';
 import BYButton from '@src/components/BYButton';
 import { EMAIL_EXPR, SCREENS } from '@src/common/constants';
 import InputRight from '@src/components/InputRight';
@@ -37,20 +37,20 @@ class LoginForm extends React.Component {
         <InputCountry
           pattern={EMAIL_EXPR}
           getFieldProps={getFieldProps}
-          placeholder={formatMessage({ id: 'pleaseEnterYourEmailAddress' })}
-          message={formatMessage({ id: 'failedEMailPleaseReEnter' })}
+          placeholder={i18n.pleaseEnterYourEmailAddress}
+          message={i18n.failedEMailPleaseReEnter}
         />
         <InputRight
           // inputRight={this.renderInputRight()}
           getFieldProps={getFieldProps}
           styleWrap={{ marginBottom: 75 }}
-          placeholder={formatMessage({ id: 'pleaseEnterThePassword' })}
-          message={formatMessage({ id: 'pleaseEnterThePassword' })}
+          placeholder={i18n.pleaseEnterThePassword}
+          message={i18n.pleaseEnterThePassword}
           name="password"
           type="password"
         />
         <BYButton
-          text={formatMessage({ id: 'login' })}
+          text={i18n.login}
           style={{ marginBottom: 30 }}
           onClick={this.submit}
         />

@@ -1,7 +1,7 @@
 import React from 'react';
 import { List, Toast } from 'antd-mobile';
 import { createForm } from 'rc-form';
-import { formatMessage } from 'umi-plugin-locale';
+import { i18n } from '@src/API';
 import router from 'umi/lib/router';
 import BYButton from '@src/components/BYButton';
 import { EMAIL_EXPR } from '@src/common/constants';
@@ -38,8 +38,8 @@ class LoginForm extends React.Component {
           styleWrap={{ marginBottom: 30 }}
           pattern={EMAIL_EXPR}
           getFieldProps={getFieldProps}
-          placeholder={formatMessage({ id: 'pleaseEnterYourEmailAddress' })}
-          message={formatMessage({ id: 'failedEMailPleaseReEnter' })}
+          placeholder={i18n.pleaseEnterYourEmailAddress}
+          message={i18n.failedEMailPleaseReEnter}
         />
         {/* <InputRight
           // inputRight={this.renderInputRight()}
@@ -47,14 +47,14 @@ class LoginForm extends React.Component {
           styleWrap={{ marginBottom: 75 }}
           style={{ backgroundColor: '#E0E3EF', borderBottomWidth: 0 }}
           styleInput={{ backgroundColor: '#E0E3EF' }}
-          placeholder={formatMessage({ id: 'pleaseEnterInvitationCode' })}
-          message={formatMessage({ id: 'pleaseEnterThePassword' })}
+          placeholder={i18n.pleaseEnterInvitationCode}
+          message={i18n.pleaseEnterThePassword}
           name="inviterno"
           type="text"
           required={false}
         /> */}
         <BYButton
-          text={formatMessage({ id: 'nextStep' })}
+          text={i18n.nextStep}
           style={{ marginBottom: 20 }}
           onClick={this.submit}
         />

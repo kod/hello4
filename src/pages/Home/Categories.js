@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { formatMessage } from 'umi-plugin-locale';
+import { i18n } from '@src/API';
 
 import * as getMenuActionCreators from '@src/common/actions/getMenu';
 import BYHeader from '@src/components/BYHeader';
@@ -45,7 +45,7 @@ class Index extends PureComponent {
 
     return (
       <div style={stylesX.container}>
-        <div style={stylesX.title}>{formatMessage({ id: 'categories' })}</div>
+        <div style={stylesX.title}>{i18n.categories}</div>
       </div>
     );
   };
@@ -143,9 +143,7 @@ class Index extends PureComponent {
               ) : null,
             )}
         </div>
-        <div style={stylesX.rightItemTitle}>
-          {formatMessage({ id: 'brand' })}
-        </div>
+        <div style={stylesX.rightItemTitle}>{i18n.brand}</div>
         <div style={stylesX.rightItemMain}>
           {itemsClassfy.length !== 0 &&
             itemsClassfy[key].map(val1 =>

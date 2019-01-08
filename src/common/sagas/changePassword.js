@@ -1,4 +1,4 @@
-import { formatMessage } from 'umi-plugin-locale';
+import { i18n } from '@src/API';
 import { takeEvery, apply, put } from 'redux-saga/effects';
 
 import {
@@ -54,9 +54,7 @@ export function* changePasswordFetchWatchHandle(action) {
       yield put(changePasswordFetchFailure());
       switch (response.status) {
         case 70002:
-          yield put(
-            addError(formatMessage({ id: 'verificationCodeIsIncorrect' })),
-          );
+          yield put(addError(i18n.verificationCodeIsIncorrect));
           return;
 
         default:

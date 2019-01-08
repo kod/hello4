@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
 import { connect } from 'react-redux';
-import { formatMessage } from 'umi-plugin-locale';
+import { i18n } from '@src/API';
 import router from 'umi/lib/router';
 import { Modal } from 'antd-mobile';
 
@@ -44,13 +44,10 @@ class Coupon extends React.Component {
     if (!authUser) return router.push(`/${SCREENS.Login}`);
 
     if (val.status !== 1) {
-      const title =
-        val.status === 0
-          ? formatMessage({ id: 'received' })
-          : formatMessage({ id: 'haveFinished' });
+      const title = val.status === 0 ? i18n.received : i18n.haveFinished;
       Modal.alert('', title, [
         {
-          text: formatMessage({ id: 'confirm' }),
+          text: i18n.confirm,
           style: 'default',
           onPress: () => {},
         },
@@ -77,14 +74,14 @@ class Coupon extends React.Component {
 
     return (
       <div style={styles.container}>
-        <BYHeader title={formatMessage({ id: 'discountCode' })} />
+        <BYHeader title={i18n.discountCode} />
         {receiveVoucherLoading && <Loader />}
         {items.length > 0 ? (
           this.renderContent()
         ) : (
           <EmptyState
             source={ouhrigdfnjsoeijehrJpg}
-            text={formatMessage({ id: 'temporarilyUnableReceiveVoucher' })}
+            text={i18n.temporarilyUnableReceiveVoucher}
             style={{ height: WINDOW_HEIGHT - 45 }}
             styleText={{ marginBottom: 0 }}
           />
