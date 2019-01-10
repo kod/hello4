@@ -188,7 +188,7 @@ export function* productDetailInfoSuccessWatchHandle(action) {
 
 export function* productDetailInfoSuccessWatch() {
   yield takeEvery(
-    PRODUCT_DETAIL_INFO.REQUEST,
+    PRODUCT_DETAIL_INFO.SUCCESS,
     productDetailInfoSuccessWatchHandle,
   );
 }
