@@ -1,7 +1,7 @@
 export default [
   {
     path: '/',
-    component: './Home/Index',
+    component: './App/App.browser',
   },
   {
     path: '/Me',

@@ -5,7 +5,7 @@ export default function(api) {
     memo = `const rootContainer = window.g_plugins.apply('rootContainer', {
     initialValue: React.createElement(require('${join(
       __dirname,
-      './src/pages/App/Root.js',
+      './src/pages/App/Root.browser.js',
     )}').default,
     null,
     React.createElement(require('./router').default),),

@@ -1,6 +1,6 @@
 import React from 'react';
 import { TabBar } from 'antd-mobile';
-import { i18n } from '@src/API';
+import { i18n, View } from '@src/API';
 import { connect } from 'react-redux';
 import router from 'umi/lib/router';
 import qs from 'qs';
@@ -65,7 +65,7 @@ class Index extends React.Component {
     };
 
     return (
-      <div>
+      <View>
         {/* <ModalRoot /> */}
         <TabBar
           unselectedTintColor="#949494"
@@ -93,9 +93,9 @@ class Index extends React.Component {
             }}
             data-seed="logId"
           >
-            <div style={styles.container} className={stylesLess.container}>
+            <View style={styles.container} className={stylesLess.container}>
               <Home />
-            </div>
+            </View>
           </TabBar.Item>
           {/* <TabBar.Item
             icon={<CustomIcon type="classify" style={styles.icon} />}
@@ -111,9 +111,9 @@ class Index extends React.Component {
             }}
             data-seed="logId1"
           >
-            <div style={styles.container} className={stylesLess.container}>
+            <View style={styles.container} className={stylesLess.container}>
               <Categories />
-            </div>
+            </View>
           </TabBar.Item> */}
           <TabBar.Item
             icon={<CustomIcon type="cart" style={styles.icon} />}
@@ -134,9 +134,9 @@ class Index extends React.Component {
               dispatchEventBuyoo('CartShow');
             }}
           >
-            <div style={styles.container} className={stylesLess.container}>
+            <View style={styles.container} className={stylesLess.container}>
               <Cart />
-            </div>
+            </View>
           </TabBar.Item>
           <TabBar.Item
             icon={<CustomIcon type="user" style={styles.icon} />}
@@ -155,12 +155,12 @@ class Index extends React.Component {
               );
             }}
           >
-            <div style={styles.container} className={stylesLess.container}>
+            <View style={styles.container} className={stylesLess.container}>
               {<Me />}
-            </div>
+            </View>
           </TabBar.Item>
         </TabBar>
-      </div>
+      </View>
     );
   }
 }
