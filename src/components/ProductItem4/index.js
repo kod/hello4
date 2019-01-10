@@ -13,6 +13,7 @@ import {
 import priceFormat from '@src/utils/priceFormat';
 import { RED_COLOR } from '@src/styles/variables';
 import { xOssProcess, analyzeUrlNavigate } from '@src/utils';
+import { View } from '@src/API';
 
 const itemIntervalWidth = SIDEINTERVAL;
 const itemWidth = (WINDOW_WIDTH - itemIntervalWidth * 4) / 3;
@@ -74,9 +75,9 @@ const styles = {
 };
 
 export default ({ data, style, ...restProps }) => (
-  <div style={{ ...styles.itemWrap, ...style }} {...restProps}>
+  <View style={{ ...styles.itemWrap, ...style }} {...restProps}>
     {data.map((val, key) => (
-      <div
+      <View
         style={styles.item}
         key={key}
         onClick={() => {
@@ -92,11 +93,11 @@ export default ({ data, style, ...restProps }) => (
           style={{ ...styles.itemImg }}
           src={`${val.imageUrl}?${xOssProcess(IS_IOS, OSS_IMAGE_QUALITY)}`}
         />
-        <div style={styles.itemText}>{val.name}</div>
-        <div style={styles.itemPrice}>
+        <View style={styles.itemText}>{val.name}</View>
+        <View style={styles.itemPrice}>
           {`${priceFormat(val.price)} ${MONETARY}`}
-        </div>
-      </div>
+        </View>
+      </View>
     ))}
-  </div>
+  </View>
 );

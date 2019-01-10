@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
 import { connect } from 'react-redux';
-import { i18n } from '@src/API';
+import { i18n, View } from '@src/API';
 import router from 'umi/lib/router';
 import { Modal } from 'antd-mobile';
 
@@ -73,7 +73,7 @@ class Coupon extends React.Component {
     if (loading) return <Loader />;
 
     return (
-      <div style={styles.container}>
+      <View style={styles.container}>
         <BYHeader title={i18n.discountCode} />
         {receiveVoucherLoading && <Loader />}
         {items.length > 0 ? (
@@ -86,7 +86,7 @@ class Coupon extends React.Component {
             styleText={{ marginBottom: 0 }}
           />
         )}
-      </div>
+      </View>
     );
   }
 }

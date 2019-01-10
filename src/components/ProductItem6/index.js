@@ -4,6 +4,7 @@ import { WINDOW_WIDTH, IS_IOS, OSS_IMAGE_QUALITY } from '@src/common/constants';
 import ProductItem4 from '@src/components/ProductItem4';
 import SeparateBar from '@src/components/SeparateBar';
 import { xOssProcess, analyzeUrlNavigate } from '@src/utils';
+import { View } from '@src/API';
 
 const styles = {
   itemWrap: {},
@@ -15,14 +16,14 @@ const styles = {
 };
 
 export default ({ data, style, ...restProps }) => (
-  <div style={{ ...styles.itemWrap, ...style }} {...restProps}>
-    <div
+  <View style={{ ...styles.itemWrap, ...style }} {...restProps}>
+    <View
       style={{
         ...styles.itemMain,
       }}
     >
       {data.map((val, key) => (
-        <div style={styles.item} key={key}>
+        <View style={styles.item} key={key}>
           <img
             alt=""
             style={styles.itemImg}
@@ -38,8 +39,8 @@ export default ({ data, style, ...restProps }) => (
           />
           <ProductItem4 data={val.bottom} />
           <SeparateBar />
-        </div>
+        </View>
       ))}
-    </div>
-  </div>
+    </View>
+  </View>
 );

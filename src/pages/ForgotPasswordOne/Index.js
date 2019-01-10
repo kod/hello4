@@ -1,7 +1,8 @@
 import React from 'react';
-// import { i18n } from '@src/API';
+// import { i18n, View } from '@src/API';
 import BYHeader from '@src/components/BYHeader';
 import { WINDOW_HEIGHT } from '@src/common/constants';
+import { View } from '@src/API';
 import Form from './Form';
 
 const styles = {
@@ -12,8 +13,8 @@ const styles = {
 };
 
 export default ({ location: { query = {} } }) => (
-  <div style={styles.container}>
+  <View style={styles.container}>
     <BYHeader title={query.title} />
     <Form title={query.title} />
-  </div>
+  </View>
 );

@@ -1,5 +1,5 @@
 import React from 'react';
-import { i18n } from '@src/API';
+import { i18n, View, Text } from '@src/API';
 import { connect } from 'react-redux';
 import router from 'umi/lib/router';
 import { Modal } from 'antd-mobile';
@@ -173,9 +173,9 @@ class Index extends React.Component {
       },
     };
     return (
-      <div style={styles.container}>
+      <View style={styles.container}>
         <CustomIcon type="gengduo" style={styles.icon} />
-      </div>
+      </View>
     );
   };
 
@@ -222,8 +222,8 @@ class Index extends React.Component {
     };
 
     return (
-      <div style={styles.header}>
-        <div
+      <View style={styles.header}>
+        <View
           style={styles.headerLeft}
           onClick={() => {
             router.go(-1);
@@ -233,14 +233,14 @@ class Index extends React.Component {
           }}
         >
           <CustomIcon type="left" style={styles.backIcon} />
-        </div>
-        {/* <div
+        </View>
+        {/* <View
           style={styles.headerRight}
           onClick={() => this.handleOnModalOperation()}
         >
           <CustomIcon type="gengduo" style={styles.backIcon} />
-        </div> */}
-      </div>
+        </View> */}
+      </View>
     );
   }
 
@@ -307,8 +307,8 @@ class Index extends React.Component {
     };
 
     return (
-      <div data-gumshoe-header data-scroll-header style={styles.navHeader}>
-        <div
+      <View data-gumshoe-header data-scroll-header style={styles.navHeader}>
+        <View
           style={styles.navHeaderLeft}
           onClick={() => {
             router.go(-1);
@@ -318,7 +318,7 @@ class Index extends React.Component {
           }}
         >
           <CustomIcon type="left" style={styles.navHeaderIcon} />
-        </div>
+        </View>
         <ul style={styles.navHeaderWrap} data-gumshoe onClick={() => {}}>
           <li style={styles.navHeaderItem}>
             <p style={styles.navHeaderText} data-scroll href="#navproduct">
@@ -326,7 +326,7 @@ class Index extends React.Component {
                 type="location"
                 style={styles.navHeaderLocationIcon}
               /> */}
-              <span style={styles.navHeaderSpan}>{i18n.overview}</span>
+              <Text style={styles.navHeaderSpan}>{i18n.overview}</Text>
             </p>
           </li>
           <li style={styles.navHeaderItem}>
@@ -335,7 +335,7 @@ class Index extends React.Component {
                 type="location"
                 style={styles.navHeaderLocationIcon}
               /> */}
-              <span style={styles.navHeaderSpan}>{i18n.evaluation}</span>
+              <Text style={styles.navHeaderSpan}>{i18n.evaluation}</Text>
             </p>
           </li>
           <li style={styles.navHeaderItem}>
@@ -348,7 +348,7 @@ class Index extends React.Component {
                 type="location"
                 style={styles.navHeaderLocationIcon}
               /> */}
-              <span style={styles.navHeaderSpan}>{i18n.details}</span>
+              <Text style={styles.navHeaderSpan}>{i18n.details}</Text>
             </p>
           </li>
           <li style={styles.navHeaderItem}>
@@ -357,17 +357,17 @@ class Index extends React.Component {
                 type="location"
                 style={styles.navHeaderLocationIcon}
               /> */}
-              <span style={styles.navHeaderSpan}>{i18n.parameter}</span>
+              <Text style={styles.navHeaderSpan}>{i18n.parameter}</Text>
             </p>
           </li>
         </ul>
-        <div
+        <View
           style={styles.navHeaderRight}
           onClick={() => this.handleOnModalOperation()}
         >
           {/* <CustomIcon type="gengduo" style={styles.navHeaderIcon} /> */}
-        </div>
-      </div>
+        </View>
+      </View>
     );
   }
 
@@ -456,9 +456,9 @@ class Index extends React.Component {
     };
 
     return (
-      <div style={styles.operate}>
-        <div style={styles.operateIcon}>
-          <div
+      <View style={styles.operate}>
+        <View style={styles.operateIcon}>
+          <View
             style={styles.operateIconItem}
             onClick={() => this.handleToggleService()}
             // onClick={() => this.handleToggleCollection()}
@@ -473,36 +473,36 @@ class Index extends React.Component {
             ) : (
               <CustomIcon type="iconmessages" style={styles.favoriteItem} />
             )} */}
-            <div style={styles.operateIconItemSeparate} />
+            <View style={styles.operateIconItemSeparate} />
             <CustomIcon
               type="iconmessages"
               style={styles.operateIconItemIcon}
             />
-            <div
+            <View
               style={{
                 ...styles.operateIconItemText,
                 // ...(isCollection && styles.operateIconItemActive),
               }}
             >
               {i18n.messenger}
-            </div>
-          </div>
-          <div
+            </View>
+          </View>
+          <View
             style={styles.operateIconItem}
             onClick={() => this.handleOnPressAddCart()}
           >
             <CustomIcon type="iconcart" style={styles.operateIconItemIcon} />
 
-            <div style={styles.operateIconItemText}>{i18n.addToCart}</div>
-          </div>
-        </div>
-        {/* <div
+            <View style={styles.operateIconItemText}>{i18n.addToCart}</View>
+          </View>
+        </View>
+        {/* <View
           style={styles.operateLeft}
           onClick={() => this.handleOnPressAddCart()}
         >
           {i18n.addToCart}
-        </div> */}
-        <div
+        </View> */}
+        <View
           style={{
             ...styles.operateRight,
             ...(!(numbers > 0) && styles.disable),
@@ -510,8 +510,8 @@ class Index extends React.Component {
           onClick={() => this.handleOnPressBuy()}
         >
           {numbers > 0 ? i18n.buy : i18n.soldOut}
-        </div>
-      </div>
+        </View>
+      </View>
     );
   }
 
@@ -531,14 +531,14 @@ class Index extends React.Component {
     };
 
     return (
-      <div style={styles.container} className={stylesLess.container}>
+      <View style={styles.container} className={stylesLess.container}>
         {this.renderNavHeader()}
         {this.renderDefaultHeader()}
-        <div style={styles.main}>
+        <View style={styles.main}>
           <ProductDetailMain query={query} pathname={pathname} />
-        </div>
+        </View>
         {this.renderOperate()}
-      </div>
+      </View>
     );
   }
 }

@@ -1,6 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
-import { i18n } from '@src/API';
+import { i18n, View } from '@src/API';
 import router from 'umi/lib/router';
 import { connect } from 'react-redux';
 
@@ -124,13 +124,13 @@ class CartItem extends React.Component {
     };
 
     return (
-      <div style={stylesX.container} onClick={() => onPressHandle()}>
+      <View style={stylesX.container} onClick={() => onPressHandle()}>
         {selected ? (
           <CustomIcon type="roundcheckfill" style={stylesX.iconSelected} />
         ) : (
           <CustomIcon type="round" style={stylesX.icon} />
         )}
-      </div>
+      </View>
     );
   };
 
@@ -213,9 +213,9 @@ class CartItem extends React.Component {
     };
 
     return (
-      <div style={stylesX.container}>
-        <div style={stylesX.number}>
-          <div
+      <View style={stylesX.container}>
+        <View style={stylesX.number}>
+          <View
             onClick={() => onChangeTextHandle(parseInt(quantity, 10) - 1, id)}
           >
             <CustomIcon
@@ -225,8 +225,8 @@ class CartItem extends React.Component {
                 ...(quantity === '1' && stylesX.removeIconDisable),
               }}
             />
-          </div>
-          <div style={stylesX.quantity}>{quantity}</div>
+          </View>
+          <View style={stylesX.quantity}>{quantity}</View>
 
           {/* <BYTextInput
             style={stylesX.textInput}
@@ -235,7 +235,7 @@ class CartItem extends React.Component {
             // onChangeText={(text) => onChangeTextHandle(text, id)}
             editable={false}
           /> */}
-          <div
+          <View
             onClick={() => onChangeTextHandle(parseInt(quantity, 10) + 1, id)}
           >
             <CustomIcon
@@ -246,21 +246,21 @@ class CartItem extends React.Component {
                   stylesX.removeIconDisable),
               }}
             />
-          </div>
-        </div>
-        <div
+          </View>
+        </View>
+        <View
           style={{ ...stylesX.tips, ...(status !== 1 || styles.itemDisable) }}
         >
-          <div
+          <View
             style={{
               ...stylesX.tipsText,
               ...(status !== 1 || styles.itemDisable),
             }}
           >
             {i18n.productShelves}
-          </div>
-        </div>
-      </div>
+          </View>
+        </View>
+      </View>
     );
   };
 
@@ -279,10 +279,10 @@ class CartItem extends React.Component {
     const { items, products, details, isEdit } = data;
 
     return (
-      <div style={{ ...styles.itemWrap, ...style }} {...restProps}>
+      <View style={{ ...styles.itemWrap, ...style }} {...restProps}>
         {items &&
           items.map(val => (
-            <div
+            <View
               style={{ ...styles.item, ...styleItem }}
               key={details[products[val].detail].iconUrl}
             >
@@ -293,7 +293,7 @@ class CartItem extends React.Component {
                 val,
                 isEdit ? products[val].selectedDel : products[val].selected,
               )}
-              <div
+              <View
                 style={{ ...styles.itemLeft, ...styleItemLeft }}
                 onClick={() =>
                   router.push(
@@ -311,28 +311,28 @@ class CartItem extends React.Component {
                     OSS_IMAGE_QUALITY,
                   )}`}
                 />
-              </div>
-              <div style={styles.itemRight}>
-                <div style={styles.itemTitle}>{products[val].subject}</div>
+              </View>
+              <View style={styles.itemRight}>
+                <View style={styles.itemTitle}>{products[val].subject}</View>
                 {/* <Text style={styles.itemPrice}>
                   {`${priceFormat(details[products[val].detail].price)} ${MONETARY}`}
                 </Text> */}
-                <div style={styles.itemRightRow3}>
-                  <div style={styles.itemRightRow3Price}>
+                <View style={styles.itemRightRow3}>
+                  <View style={styles.itemRightRow3Price}>
                     {`${priceFormat(
                       details[products[val].detail].price,
                     )} ${MONETARY}`}
-                  </div>
-                </div>
-              </div>
+                  </View>
+                </View>
+              </View>
               {this.renderCartItemRight(
                 val,
                 products[val].quantity,
                 products[val].status,
               )}
-            </div>
+            </View>
           ))}
-      </div>
+      </View>
     );
   }
 }

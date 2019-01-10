@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
 import { connect } from 'react-redux';
-import { i18n } from '@src/API';
+import { i18n, View } from '@src/API';
 import { Modal, ActionSheet } from 'antd-mobile';
 import qs from 'qs';
 import router from 'umi/lib/router';
@@ -205,9 +205,9 @@ class Pay extends React.Component {
       return <Loader />;
 
     return (
-      <div style={styles.container}>
+      <View style={styles.container}>
         {orderpayLoading && <Loader />}
-        <div style={styles.main}>
+        <View style={styles.main}>
           <NavBar2
             valueLeft={i18n.totalMoney}
             valueMiddle={`${priceFormat(totalAmount)} ${MONETARY}`}
@@ -220,13 +220,13 @@ class Pay extends React.Component {
             valueMiddle={payWayToText(payWayIndex)}
             isShowBorderBottom
           />
-        </div>
+        </View>
         <BYButton
           text={i18n.payment}
           styleWrap={{ padding: 0 }}
           onClick={() => this.handleOnPressSubmit()}
         />
-      </div>
+      </View>
     );
   }
 
@@ -240,7 +240,7 @@ class Pay extends React.Component {
       },
     };
     return (
-      <div style={styles.container}>
+      <View style={styles.container}>
         <BYHeader />
         <MustLogin
           Modal={Modal}
@@ -251,7 +251,7 @@ class Pay extends React.Component {
         />
 
         {this.renderContent()}
-      </div>
+      </View>
     );
   }
 }

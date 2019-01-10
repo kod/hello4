@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
 import { connect } from 'react-redux';
-import { i18n } from '@src/API';
+import { i18n, View } from '@src/API';
 import qs from 'qs';
 import { createForm } from 'rc-form';
 import router from 'umi/lib/router';
@@ -123,9 +123,9 @@ class SearchResult extends React.Component {
     } = this.props;
 
     return (
-      <div style={styles.container}>
+      <View style={styles.container}>
         <BYHeader title={i18n.search} />
-        <div style={styles.search}>
+        <View style={styles.search}>
           <InputRight
             getFieldProps={getFieldProps}
             style={{ borderBottomWidth: 0 }}
@@ -134,29 +134,29 @@ class SearchResult extends React.Component {
             name="search"
             type="search"
           />
-        </div>
+        </View>
         {/* {items.length > 0 && (
-          <div style={styles.title}>
+          <View style={styles.title}>
             {i18n.historicalSearch}
-          </div>
+          </View>
         )}
-        <div style={styles.history}>
+        <View style={styles.history}>
           {items.map(val => (
-            <div
+            <View
               style={styles.historyItem}
               onClick={() => this.handleOnPressHistoryItem(val)}
               key={val}
             >
-              <div style={styles.historyTitle}>{val}</div>
+              <View style={styles.historyTitle}>{val}</View>
               <CustomIcon
                 type="close"
                 style={styles.historyCloseIcon}
                 onClick={() => searchHistoryRemove(val)}
               />
-            </div>
+            </View>
           ))}
-        </div> */}
-      </div>
+        </View> */}
+      </View>
     );
   }
 }

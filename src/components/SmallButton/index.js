@@ -1,5 +1,6 @@
 import React from 'react';
 import { WINDOW_WIDTH } from '@src/common/constants';
+import { View } from '@src/API';
 
 const styles = {
   component: {
@@ -22,7 +23,7 @@ const styles = {
 };
 
 export default ({ text, onPress = () => {}, ...restProps }) => (
-  <div style={styles.component} onPress={() => onPress()} {...restProps}>
-    <div style={styles.componentText}>{text}</div>
-  </div>
+  <View style={styles.component} onPress={() => onPress()} {...restProps}>
+    <View style={styles.componentText}>{text}</View>
+  </View>
 );

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import BYHeader from '@src/components/BYHeader';
-import { i18n } from '@src/API';
+import { i18n, View } from '@src/API';
 
 import router from 'umi/lib/router';
 
@@ -54,7 +54,7 @@ class CouponMy extends React.PureComponent {
     ];
 
     return (
-      <div style={styles.container}>
+      <View style={styles.container}>
         <BYHeader title={i18n.myOrder} />
         <MustLogin
           Modal={Modal}
@@ -70,7 +70,7 @@ class CouponMy extends React.PureComponent {
           couponMyUnused={couponMyUnusedLength}
           couponMyUsed={couponMyUsedLength}
         />
-      </div>
+      </View>
     );
   }
 }

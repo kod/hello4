@@ -1,5 +1,5 @@
 import React from 'react';
-// import { i18n } from '@src/API';
+// import { i18n, View } from '@src/API';
 import router from 'umi/lib/router';
 
 import {
@@ -14,6 +14,7 @@ import { xOssProcess } from '@src/utils';
 import { BORDER_COLOR, RED_COLOR } from '@src/styles/variables';
 import Loader from '@src/components/Loader';
 import priceFormat from '@src/utils/priceFormat';
+import { View } from '@src/API';
 import stylesLess from './index.less';
 
 const itemIntervalWidth = SIDEINTERVAL;
@@ -70,7 +71,7 @@ const styles = {
 
 class ProductItem1A extends React.Component {
   renderItem = ({ item, key }) => (
-    <div
+    <View
       style={styles.item}
       key={key}
       onClick={() =>
@@ -82,18 +83,18 @@ class ProductItem1A extends React.Component {
         style={styles.itemImg}
         src={`${item.imageUrl}?${xOssProcess(IS_IOS, OSS_IMAGE_QUALITY)}`}
       />
-      <div style={styles.itemText} className={stylesLess.itemtext}>
+      <View style={styles.itemText} className={stylesLess.itemtext}>
         {item.name}
-      </div>
+      </View>
       {!!item.orgPrice && (
-        <div style={styles.itemOrgPrice}>
+        <View style={styles.itemOrgPrice}>
           {`${priceFormat(item.orgPrice)} ${MONETARY}`}
-        </div>
+        </View>
       )}
-      <div style={styles.itemPrice}>{`${priceFormat(
+      <View style={styles.itemPrice}>{`${priceFormat(
         item.price,
-      )} ${MONETARY}`}</div>
-    </div>
+      )} ${MONETARY}`}</View>
+    </View>
   );
 
   render() {
@@ -103,7 +104,7 @@ class ProductItem1A extends React.Component {
     } = this.props;
 
     return (
-      <div style={{ ...styles.itemWrap, ...style }}>
+      <View style={{ ...styles.itemWrap, ...style }}>
         {(!items || (!loaded && loading)) && <Loader />}
         {items &&
           items.map((val, key) =>
@@ -112,7 +113,7 @@ class ProductItem1A extends React.Component {
               key,
             }),
           )}
-      </div>
+      </View>
     );
   }
 }

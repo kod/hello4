@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
 import { connect } from 'react-redux';
-import { i18n } from '@src/API';
+import { i18n, View } from '@src/API';
 import router from 'umi/lib/router';
 import { Modal } from 'antd-mobile';
 
@@ -36,9 +36,9 @@ class MyCollection extends React.Component {
     const { items } = this.props;
 
     return (
-      <div style={styles.container}>
+      <View style={styles.container}>
         <ProductItem2 data={items} />
-      </div>
+      </View>
     );
   }
 
@@ -46,7 +46,7 @@ class MyCollection extends React.Component {
     const { items, loading, authUser } = this.props;
 
     return (
-      <div style={styles.container}>
+      <View style={styles.container}>
         <BYHeader title={i18n.myCollection} />
         <MustLogin
           Modal={Modal}
@@ -58,7 +58,7 @@ class MyCollection extends React.Component {
 
         {loading && <Loader absolutePosition />}
         {items.length > 0 ? (
-          <div>{this.renderContenr()}</div>
+          <View>{this.renderContenr()}</View>
         ) : (
           !loading && (
             <EmptyState
@@ -68,7 +68,7 @@ class MyCollection extends React.Component {
             />
           )
         )}
-      </div>
+      </View>
     );
   }
 }

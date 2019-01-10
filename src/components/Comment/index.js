@@ -10,6 +10,7 @@ import {
 import { BORDER_COLOR, PRIMARY_COLOR } from '@src/styles/variables';
 import CustomIcon from '@src/components/CustomIcon';
 import { xOssProcess } from '@src/utils';
+import { View } from '@src/API';
 
 const imageItemWidth = (WINDOW_WIDTH - SIDEINTERVAL * 4) / 3;
 
@@ -85,14 +86,16 @@ const styles = {
 };
 
 export default ({ data, styleWrap, style, ...restProps }) => (
-  <div style={{ ...styles.componentWrap, ...styleWrap }} {...restProps}>
+  <View style={{ ...styles.componentWrap, ...styleWrap }} {...restProps}>
     {data &&
       !!data.length &&
       data.map((val, key) => (
-        <div style={{ ...styles.component, ...style }} key={key}>
-          <div style={styles.componentTitle}>
-            <div style={styles.componentAcount}>{val.username.slice(0, 4)}</div>
-            <div style={styles.componentStar}>
+        <View style={{ ...styles.component, ...style }} key={key}>
+          <View style={styles.componentTitle}>
+            <View style={styles.componentAcount}>
+              {val.username.slice(0, 4)}
+            </View>
+            <View style={styles.componentStar}>
               {[0, 1, 2, 3, 4].map(val1 => (
                 <CustomIcon
                   type="star-fill"
@@ -113,13 +116,13 @@ export default ({ data, styleWrap, style, ...restProps }) => (
                 //   key={val1}
                 // />
               ))}
-            </div>
-            <div style={styles.componentTime}>
+            </View>
+            <View style={styles.componentTime}>
               {dayjs(val.updateTime).format('DD/MM/YYYY')}
-            </div>
-          </div>
-          <div style={styles.componentDesc}>{val.content}</div>
-          <div style={styles.componentimageWrap}>
+            </View>
+          </View>
+          <View style={styles.componentDesc}>{val.content}</View>
+          <View style={styles.componentimageWrap}>
             {val.imageUrls.length > 0 &&
               val.imageUrls.map((val1, key1) => (
                 <img
@@ -133,8 +136,8 @@ export default ({ data, styleWrap, style, ...restProps }) => (
                   // ) * 2}`}
                 />
               ))}
-          </div>
-        </div>
+          </View>
+        </View>
       ))}
-  </div>
+  </View>
 );

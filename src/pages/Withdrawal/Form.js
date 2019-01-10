@@ -3,7 +3,7 @@ import React from 'react';
 import { Toast, Modal } from 'antd-mobile';
 import { connect } from 'react-redux';
 import { createForm } from 'rc-form';
-import { i18n } from '@src/API';
+import { i18n, View } from '@src/API';
 import router from 'umi/lib/router';
 import { SCREENS, SIDEINTERVAL, MONETARY } from '@src/common/constants';
 import InputRight from '@src/components/InputRight';
@@ -194,7 +194,7 @@ class LoginForm extends React.Component {
     } = this.props;
 
     return (
-      <div style={styles.container}>
+      <View style={styles.container}>
         {(enchashmentConfigLoading ||
           addDetailInfoLoading ||
           enchashmentLoading ||
@@ -207,9 +207,9 @@ class LoginForm extends React.Component {
           router={router}
           SCREENS={SCREENS}
         />
-        <div style={styles.main}>
-          <div style={styles.item}>
-            <div style={styles.itemTitle}>{i18n.actualName}</div>
+        <View style={styles.main}>
+          <View style={styles.item}>
+            <View style={styles.itemTitle}>{i18n.actualName}</View>
             <InputRight
               getFieldProps={getFieldProps}
               style={styles.inputStyle}
@@ -220,9 +220,9 @@ class LoginForm extends React.Component {
               name="username"
               type="text"
             />
-          </div>
-          <div style={styles.item}>
-            <div style={styles.itemTitle}>{i18n.bankName}</div>
+          </View>
+          <View style={styles.item}>
+            <View style={styles.itemTitle}>{i18n.bankName}</View>
             <InputRight
               getFieldProps={getFieldProps}
               style={styles.inputStyle}
@@ -233,9 +233,9 @@ class LoginForm extends React.Component {
               name="bank_name"
               type="text"
             />
-          </div>
-          <div style={styles.item}>
-            <div style={styles.itemTitle}>{i18n.bankBranch}</div>
+          </View>
+          <View style={styles.item}>
+            <View style={styles.itemTitle}>{i18n.bankBranch}</View>
             <InputRight
               getFieldProps={getFieldProps}
               style={styles.inputStyle}
@@ -246,9 +246,9 @@ class LoginForm extends React.Component {
               name="bank_deposit"
               type="text"
             />
-          </div>
-          <div style={styles.item}>
-            <div style={styles.itemTitle}>{i18n.accountNumber}</div>
+          </View>
+          <View style={styles.item}>
+            <View style={styles.itemTitle}>{i18n.accountNumber}</View>
             <InputRight
               getFieldProps={getFieldProps}
               style={styles.inputStyle}
@@ -259,9 +259,9 @@ class LoginForm extends React.Component {
               name="bank_card_no"
               type="number"
             />
-          </div>
-          <div style={styles.item}>
-            <div style={styles.itemTitle}>{i18n.amountWithdrawn}</div>
+          </View>
+          <View style={styles.item}>
+            <View style={styles.itemTitle}>{i18n.amountWithdrawn}</View>
             <InputRight
               onChange={e => {
                 this.setState({
@@ -272,7 +272,7 @@ class LoginForm extends React.Component {
                 });
               }}
               // value={actuallyReceived}
-              inputRight={<div>{MONETARY}</div>}
+              inputRight={<View>{MONETARY}</View>}
               getFieldProps={getFieldProps}
               style={styles.inputStyle}
               styleWrap={styles.inputStyleWrap}
@@ -282,9 +282,9 @@ class LoginForm extends React.Component {
               name="amount"
               type="number"
             />
-          </div>
-        </div>
-        <div style={styles.info}>
+          </View>
+        </View>
+        <View style={styles.info}>
           <NavBar2
             valueLeft={i18n.serviceFee}
             valueMiddle={`- ${feeRate * 100}%`}
@@ -295,11 +295,11 @@ class LoginForm extends React.Component {
             valueMiddle={actuallyReceived}
             isShowRight={false}
           />
-        </div>
-        <div style={styles.submit} onClick={this.submit}>
-          <div style={styles.submitButton}>{i18n.confirm}</div>
-        </div>
-      </div>
+        </View>
+        <View style={styles.submit} onClick={this.submit}>
+          <View style={styles.submitButton}>{i18n.confirm}</View>
+        </View>
+      </View>
     );
   }
 }

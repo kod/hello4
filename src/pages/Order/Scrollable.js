@@ -12,7 +12,7 @@ import {
   MONETARY,
   SCREENS,
 } from '@src/common/constants';
-import { i18n } from '@src/API';
+import { i18n, View } from '@src/API';
 
 import * as queryOrderListActionCreators from '@src/common/actions/queryOrderList';
 import { BORDER_COLOR, PRIMARY_COLOR } from '@src/styles/variables';
@@ -166,16 +166,16 @@ class Scrollable extends React.Component {
     const { items } = module;
     if (items.length === 0 && module.loading === false)
       return (
-        <div style={{ height: WINDOW_HEIGHT - 45 - 45 }}>
+        <View style={{ height: WINDOW_HEIGHT - 45 - 45 }}>
           <EmptyState
             source={ouhrigdfnjsoeijehrJpg}
             text={i18n.noData}
             style={{ paddingTop: WINDOW_HEIGHT * 0.1 }}
           />
-        </div>
+        </View>
       );
     return (
-      <div>
+      <View>
         <PullToRefresh
           // damping={60}
           // ref={el => (this.ptr = el)}
@@ -195,7 +195,7 @@ class Scrollable extends React.Component {
           }}
         >
           {items.map(val => (
-            <div key={val.tradeNo}>
+            <View key={val.tradeNo}>
               <ProductItem2
                 data={val.goodList}
                 stylePricePrice={{ color: '#666' }}
@@ -203,32 +203,32 @@ class Scrollable extends React.Component {
                 isShowNumber
                 clickProps={() => this.handleOnPressGoods(val)}
               />
-              <div style={stylesScrollable.totalPrice}>
-                <div style={stylesScrollable.payText}>
+              <View style={stylesScrollable.totalPrice}>
+                <View style={stylesScrollable.payText}>
                   {tradeStatusCodes(val.tradeStatus)}
-                </div>
-                <div style={stylesScrollable.price}>{`${
+                </View>
+                <View style={stylesScrollable.price}>{`${
                   i18n.subtotal
-                }: ${priceFormat(val.totalAmount)} ${MONETARY}`}</div>
-              </div>
-              <div style={stylesScrollable.pay}>
+                }: ${priceFormat(val.totalAmount)} ${MONETARY}`}</View>
+              </View>
+              <View style={stylesScrollable.pay}>
                 {operateForTradeStatusCodes(val.tradeStatus, val.payWay).map(
                   (val1, index1) => (
-                    <div
+                    <View
                       style={stylesScrollable.payButton}
                       onClick={() => this.handleOnPressOperate(val1, val)}
                       key={index1}
                     >
                       {val1}
-                    </div>
+                    </View>
                   ),
                 )}
-              </div>
+              </View>
               <SeparateBar />
-            </div>
+            </View>
           ))}
         </PullToRefresh>
-      </div>
+      </View>
     );
   }
 }

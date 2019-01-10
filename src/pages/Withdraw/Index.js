@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
 import { connect } from 'react-redux';
-import { i18n } from '@src/API';
+import { i18n, View } from '@src/API';
 import router from 'umi/lib/router';
 import { Modal } from 'antd-mobile';
 import dayjs from 'dayjs';
@@ -88,7 +88,7 @@ class Withdraw extends React.Component {
       },
     };
 
-    return <div style={styles.container} />;
+    return <View style={styles.container} />;
   };
 
   renderCard() {
@@ -169,40 +169,40 @@ class Withdraw extends React.Component {
       },
     };
     return (
-      <div style={styles.container}>
-        <div style={styles.main}>
-          <div style={styles.row1}>
+      <View style={styles.container}>
+        <View style={styles.main}>
+          <View style={styles.row1}>
             <CustomIcon type="Money" style={styles.row1Icon} />
-            <div style={styles.row1Text}>{i18n.commission}</div>
-          </div>
-          <div style={styles.row2}>
-            <div style={styles.row2Left}>
-              <div style={styles.row2LeftTitle}>
+            <View style={styles.row1Text}>{i18n.commission}</View>
+          </View>
+          <View style={styles.row2}>
+            <View style={styles.row2Left}>
+              <View style={styles.row2LeftTitle}>
                 {i18n.commissionsNotReceived}
-              </div>
-              <div style={styles.row2LeftPrice}>
+              </View>
+              <View style={styles.row2LeftPrice}>
                 {enchashmentGetList ? `${priceFormat(balance)} ${MONETARY}` : 0}
-              </div>
-              <div
+              </View>
+              <View
                 style={styles.row2LeftButton}
                 onClick={() => this.handleOnPressWithdraw()}
               >
                 {i18n.withdrawal}
-              </div>
-            </div>
-            <div style={styles.row2Right}>
-              <div style={styles.row2RightTitle}>
+              </View>
+            </View>
+            <View style={styles.row2Right}>
+              <View style={styles.row2RightTitle}>
                 {i18n.commissionsReceived}
-              </div>
-              <div style={styles.row2RightPrice}>
+              </View>
+              <View style={styles.row2RightPrice}>
                 {enchashmentGetList && enchashmentGetList.amountSum
                   ? `${priceFormat(enchashmentGetList.amountSum)} ${MONETARY}`
                   : 0}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
     );
   }
 
@@ -254,24 +254,24 @@ class Withdraw extends React.Component {
     const inviteRewards = getInviteRecord ? getInviteRecord.inviteRewards : [];
 
     return (
-      <div style={styles.income}>
+      <View style={styles.income}>
         {inviteRewards.map((val, key) => (
-          <div style={styles.incomeItem} key={key}>
-            <div style={styles.incomeDate}>
+          <View style={styles.incomeItem} key={key}>
+            <View style={styles.incomeDate}>
               {`${dayjs(val.createTime).format('DD-MM-YYYY')}`}
-            </div>
-            <div style={styles.incomeMain}>
-              <div style={styles.incomeTitle}>{val.productName}</div>
-              <div style={styles.incomePrice}>
+            </View>
+            <View style={styles.incomeMain}>
+              <View style={styles.incomeTitle}>{val.productName}</View>
+              <View style={styles.incomePrice}>
                 {`+ ${priceFormat(val.rewardValue)} ${MONETARY}`}
-              </div>
-            </div>
-          </div>
+              </View>
+            </View>
+          </View>
         ))}
         {inviteRewards.length === 0 && (
-          <div style={styles.noData}>{i18n.noData}</div>
+          <View style={styles.noData}>{i18n.noData}</View>
         )}
-      </div>
+      </View>
     );
   }
 
@@ -325,24 +325,24 @@ class Withdraw extends React.Component {
       : [];
 
     return (
-      <div style={styles.income}>
+      <View style={styles.income}>
         {enchashmentInfo.map((val, key) => (
-          <div style={styles.incomeItem} key={key}>
-            <div style={styles.incomeDate}>
+          <View style={styles.incomeItem} key={key}>
+            <View style={styles.incomeDate}>
               {`${dayjs(val.createTime).format('DD-MM-YYYY')}`}
-            </div>
-            <div style={styles.incomeMain}>
-              <div style={styles.incomeTitle}>{val.bankName}</div>
-              <div style={styles.incomePrice}>
+            </View>
+            <View style={styles.incomeMain}>
+              <View style={styles.incomeTitle}>{val.bankName}</View>
+              <View style={styles.incomePrice}>
                 {`- ${priceFormat(val.amount)} ${MONETARY}`}
-              </div>
-            </div>
-          </div>
+              </View>
+            </View>
+          </View>
         ))}
         {enchashmentInfo.length === 0 && (
-          <div style={styles.noData}>{i18n.noData}</div>
+          <View style={styles.noData}>{i18n.noData}</View>
         )}
-      </div>
+      </View>
     );
   }
 
@@ -381,11 +381,11 @@ class Withdraw extends React.Component {
       },
     };
     return (
-      <div style={styles.container}>
-        <div style={styles.wrap}>
-          <div style={styles.main}>
-            <div style={styles.title}>
-              <div
+      <View style={styles.container}>
+        <View style={styles.wrap}>
+          <View style={styles.main}>
+            <View style={styles.title}>
+              <View
                 style={styles.titleLeft}
                 onClick={() =>
                   this.setState({
@@ -394,8 +394,8 @@ class Withdraw extends React.Component {
                 }
               >
                 {i18n.detailedStatisticalTable}
-              </div>
-              <div
+              </View>
+              <View
                 style={styles.titleRight}
                 onClick={() =>
                   this.setState({
@@ -404,12 +404,12 @@ class Withdraw extends React.Component {
                 }
               >
                 {i18n.moneyWithdrawalHistory}
-              </div>
-            </div>
+              </View>
+            </View>
             {isShowIncome ? this.renderIncome() : this.renderExpend()}
-          </div>
-        </div>
-      </div>
+          </View>
+        </View>
+      </View>
     );
   }
 
@@ -424,7 +424,7 @@ class Withdraw extends React.Component {
     };
 
     return (
-      <div style={styles.container}>
+      <View style={styles.container}>
         <MustLogin
           Modal={Modal}
           visible={!authUser}
@@ -454,7 +454,7 @@ class Withdraw extends React.Component {
             {this.renderContent()}
           </>
         )}
-      </div>
+      </View>
     );
   }
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import { SIDEINTERVAL, DEBUG } from '@src/common/constants';
 import { BORDER_COLOR } from '@src/styles/variables';
+import { View } from '@src/API';
 
 const styles = {
   componentWrap: {
@@ -44,8 +45,8 @@ export default ({
   getFieldProps,
   pattern,
 }) => (
-  <div style={{ ...styles.componentWrap, ...styleWrap }}>
-    <div style={{ ...styles.component, ...style }}>
+  <View style={{ ...styles.componentWrap, ...styleWrap }}>
+    <View style={{ ...styles.component, ...style }}>
       <input
         type="email"
         style={{ ...styles.componentInput, ...styleInput }}
@@ -62,6 +63,6 @@ export default ({
         })}
         placeholder={placeholder}
       />
-    </div>
-  </div>
+    </View>
+  </View>
 );

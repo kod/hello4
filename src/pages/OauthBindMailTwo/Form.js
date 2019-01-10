@@ -2,7 +2,7 @@ import React from 'react';
 import { List, Toast, Checkbox } from 'antd-mobile';
 import { connect } from 'react-redux';
 import { createForm } from 'rc-form';
-import { i18n } from '@src/API';
+import { i18n, View } from '@src/API';
 import BYButton from '@src/components/BYButton';
 import { SIDEINTERVAL, SCREENS } from '@src/common/constants';
 import InputRight from '@src/components/InputRight';
@@ -69,7 +69,7 @@ class LoginForm extends React.Component {
           name="otp"
           type="number"
         />
-        <div
+        <View
           style={{
             paddingTop: 10,
             paddingBottom: 5,
@@ -80,8 +80,8 @@ class LoginForm extends React.Component {
           }}
         >
           {i18n.emailCodeTips}
-        </div>
-        <div style={{ marginBottom: 50 }}>
+        </View>
+        <View style={{ marginBottom: 50 }}>
           <Checkbox.AgreeItem
             checked={isReceive}
             onChange={e => {
@@ -92,7 +92,7 @@ class LoginForm extends React.Component {
           >
             {i18n.receiveServicesOffers}
           </Checkbox.AgreeItem>
-        </div>
+        </View>
         <BYButton
           text={i18n.confirm}
           style={{ marginBottom: 30 }}

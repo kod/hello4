@@ -5,6 +5,7 @@ import router from 'umi/lib/router';
 import { SIDEINTERVAL } from '@src/common/constants';
 import CustomIcon from '@src/components/CustomIcon';
 import { BORDER_COLOR, HEADER_BACKGROUND_COLOR } from '@src/styles/variables';
+import { View, Text } from '@src/API';
 
 const styles = {
   container: {
@@ -67,7 +68,7 @@ class BYHeader extends React.PureComponent {
     }
   };
 
-  renderHeaderLeft = () => <div />;
+  renderHeaderLeft = () => <View />;
 
   renderHeaderTitle = () => {
     const { headerRight, styleTitle } = this.props;
@@ -90,16 +91,16 @@ class BYHeader extends React.PureComponent {
     const { title = '' } = this.props;
 
     return (
-      <div style={stylesX.container}>
-        <span
+      <View style={stylesX.container}>
+        <Text
           style={{
             ...stylesX.title,
             ...styleTitle,
           }}
         >
           {title}
-        </span>
-      </div>
+        </Text>
+      </View>
     );
   };
 
@@ -114,13 +115,13 @@ class BYHeader extends React.PureComponent {
     } = this.props;
 
     return (
-      <div
+      <View
         style={{
           ...styles.container,
           ...styleContainer,
         }}
       >
-        <div style={styles.subContainer}>
+        <View style={styles.subContainer}>
           {showBackButton ? (
             <CustomIcon
               type="Back"
@@ -135,8 +136,8 @@ class BYHeader extends React.PureComponent {
           )}
           {headerTitle || this.renderHeaderTitle()}
           {headerRight}
-        </div>
-      </div>
+        </View>
+      </View>
     );
   }
 }

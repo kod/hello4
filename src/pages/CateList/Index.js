@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 import React from 'react';
 import { connect } from 'react-redux';
-import { i18n } from '@src/API';
+import { i18n, View } from '@src/API';
 // import router from 'umi/lib/router';
 
 import BYHeader from '@src/components/BYHeader';
@@ -97,7 +97,7 @@ class CateList extends React.Component {
     const { items, getAllProductInfo, loaded } = this.props;
 
     return (
-      <div style={stylesX.container}>
+      <View style={stylesX.container}>
         <ProductItem1A
           data={{ ...getAllProductInfo, items }}
           onRefresh={this.handleOnRefresh}
@@ -111,16 +111,16 @@ class CateList extends React.Component {
             styleText={{ marginBottom: 0 }}
           />
         )}
-      </div>
+      </View>
     );
   }
 
   render() {
     return (
-      <div style={styles.container}>
+      <View style={styles.container}>
         <BYHeader />
         {this.renderContent()}
-      </div>
+      </View>
     );
   }
 }

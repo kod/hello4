@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { i18n } from '@src/API';
+import { i18n, View } from '@src/API';
 import router from 'umi/lib/router';
 
 import SwiperFlatList from '@src/components/SwiperFlatList';
@@ -88,7 +88,7 @@ class Index extends PureComponent {
     const adverstInfoList = adverstInfo.items;
 
     return (
-      <div>
+      <View>
         <SearchHeader
           text={i18n.search}
           rightOnPress={() => this.handleRightOnPress()}
@@ -116,35 +116,35 @@ class Index extends PureComponent {
         )}
 
         {getNewestInfoItems.length > 0 && (
-          <div>
+          <View>
             <SeparateBar />
-            <div style={styles.hotTittle}>{i18n.hotNewProduct}</div>
+            <View style={styles.hotTittle}>{i18n.hotNewProduct}</View>
 
             <ProductItem5
               data={getNewestInfoItems}
               style={{ backgroundColor: '#fff' }}
             />
-          </div>
+          </View>
         )}
 
         {bannerSwiperList.length > 0 && (
-          <div>
+          <View>
             <SeparateBar />
 
             <PhoneAdBaner data={bannerSwiperList} />
-          </div>
+          </View>
         )}
 
         {initAdverstCommonItems.length > 0 && (
-          <div>
+          <View>
             <SeparateBar />
 
             <ProductItem6 data={initAdverstCommonItems} />
-          </div>
+          </View>
         )}
 
         {adverstInfoList.length > 0 && <ProductItem4 data={adverstInfoList} />}
-      </div>
+      </View>
     );
   }
 }

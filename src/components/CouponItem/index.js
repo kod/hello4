@@ -13,6 +13,7 @@ import {
 import priceFormat from '@src/utils/priceFormat';
 import CustomIcon from '@src/components/CustomIcon';
 import { xOssProcess } from '@src/utils';
+import { View } from '@src/API';
 
 const couponBluePng =
   'https://oss.buyoo.vn/usercollect/1/20181109100835_r2M.png';
@@ -94,10 +95,10 @@ const styles = {
 };
 
 export default ({ isCouponCenter = true, data, onClick, ...restProps }) => (
-  <div style={styles.container} {...restProps}>
+  <View style={styles.container} {...restProps}>
     {data.map((val, key) =>
       val.voucherType === 1 ? (
-        <div
+        <View
           style={{
             ...styles.item,
             ...(isCouponCenter && val.status !== 1 && styles.itemDisable),
@@ -110,24 +111,24 @@ export default ({ isCouponCenter = true, data, onClick, ...restProps }) => (
             style={styles.image}
             src={`${couponBluePng}?${xOssProcess(IS_IOS, OSS_IMAGE_QUALITY)}`}
           />
-          <div style={styles.bottom}>
-            <div style={styles.left}>
-              <div style={styles.price}>
+          <View style={styles.bottom}>
+            <View style={styles.left}>
+              <View style={styles.price}>
                 {`${priceFormat(val.voucherValue)} ${MONETARY}`}
-              </div>
-              <div style={styles.text1}>{val.voucherName}</div>
-              <div style={styles.text2}>{val.voucherDesc}</div>
-            </div>
+              </View>
+              <View style={styles.text1}>{val.voucherName}</View>
+              <View style={styles.text2}>{val.voucherDesc}</View>
+            </View>
             {onClick && <CustomIcon type="right" style={styles.arrow} />}
-            <div style={styles.date}>
+            <View style={styles.date}>
               {`${dayjs(val.startTime).format('DD/MM/YYYY')}-${dayjs(
                 val.expireTime,
               ).format('DD/MM/YYYY')}`}
-            </div>
-          </div>
-        </div>
+            </View>
+          </View>
+        </View>
       ) : (
-        <div
+        <View
           style={{
             ...styles.item,
             ...(isCouponCenter && val.status !== 1 && styles.itemDisable),
@@ -140,21 +141,22 @@ export default ({ isCouponCenter = true, data, onClick, ...restProps }) => (
             style={styles.image}
             src={`${couponRedPng}?${xOssProcess(IS_IOS, OSS_IMAGE_QUALITY)}`}
           />
-          <div style={{ ...styles.bottom, ...styles.bottomRed }}>
-            <div style={styles.left}>
-              <div style={styles.price}>{`${100 - val.voucherValue}% OFF`}</div>
-              <div style={styles.text1}>{val.voucherName}</div>
-              <div style={styles.text2}>{val.voucherDesc}</div>
-            </div>
+          <View style={{ ...styles.bottom, ...styles.bottomRed }}>
+            <View style={styles.left}>
+              <View style={styles.price}>{`${100 -
+                val.voucherValue}% OFF`}</View>
+              <View style={styles.text1}>{val.voucherName}</View>
+              <View style={styles.text2}>{val.voucherDesc}</View>
+            </View>
             {onClick && <CustomIcon type="right" style={styles.arrow} />}
-            <div style={styles.date}>
+            <View style={styles.date}>
               {`${dayjs(val.startTime).format('DD/MM/YYYY')}-${dayjs(
                 val.expireTime,
               ).format('DD/MM/YYYY')}`}
-            </div>
-          </div>
-        </div>
+            </View>
+          </View>
+        </View>
       ),
     )}
-  </div>
+  </View>
 );

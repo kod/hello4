@@ -4,6 +4,7 @@ import React from 'react';
 import { SIDEINTERVAL, IS_IOS, OSS_IMAGE_QUALITY } from '@src/common/constants';
 import CustomIcon from '@src/components/CustomIcon';
 import { xOssProcess } from '@src/utils';
+import { View } from '@src/API';
 
 const styles = {
   cellItem1Wrap: {
@@ -59,9 +60,9 @@ export default ({
   styleIconImg,
   // callback,
 }) => (
-  <div style={{ ...styles.cellItem1Wrap, ...style }}>
+  <View style={{ ...styles.cellItem1Wrap, ...style }}>
     {list.map((val, key) => (
-      <div
+      <View
         style={{ ...styles.cellItem1, ...styleItem }}
         key={key}
         onClick={() => val.func()}
@@ -76,12 +77,12 @@ export default ({
             src={`${val.iconImg}?${xOssProcess(IS_IOS, OSS_IMAGE_QUALITY)}`}
           />
         )}
-        <div style={{ ...styles.cellItem1Left, ...styleItemLeft }}>
+        <View style={{ ...styles.cellItem1Left, ...styleItemLeft }}>
           {val.name}
-        </div>
-        <div style={styles.cellItem1Middle}>{val.tips}</div>
+        </View>
+        <View style={styles.cellItem1Middle}>{val.tips}</View>
         <CustomIcon type="right" style={styles.cellItem1Right} />
-      </div>
+      </View>
     ))}
-  </div>
+  </View>
 );

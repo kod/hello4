@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal } from 'antd-mobile';
-import { i18n } from '@src/API';
+import { i18n, View } from '@src/API';
 import router from 'umi/lib/router';
 import { connect } from 'react-redux';
 
@@ -99,11 +99,11 @@ class Index extends React.Component {
       },
     };
     return (
-      <div style={styles.container}>
+      <View style={styles.container}>
         <BYHeader title={i18n.linkEmail} />
         {(registerLoading || oauthRequestLoading) && <Loader />}
         <Form query={query} />
-      </div>
+      </View>
     );
   }
 }

@@ -2,7 +2,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 // import { Modal } from 'antd-mobile';
-import { Modal } from '@src/API';
+import { Modal, View } from '@src/API';
 import router from 'umi/lib/router';
 import qs from 'qs';
 
@@ -144,24 +144,24 @@ class Settings extends React.Component {
         ];
 
     return (
-      <div style={styles.container}>
+      <View style={styles.container}>
         <BYHeader />
-        <div style={styles.main}>
+        <View style={styles.main}>
           <NavBar1
             list={navBar1List}
             style={{ marginBottom: 30 }}
             styleItemLeft={{ flex: 3 }}
           />
           {authUser && (
-            <div
+            <View
               style={styles.logout}
               onClick={() => this.handleOnPressLogout()}
             >
-              <div style={styles.logoutText}>{i18n.signOut}</div>
-            </div>
+              <View style={styles.logoutText}>{i18n.signOut}</View>
+            </View>
           )}
-        </div>
-      </div>
+        </View>
+      </View>
     );
   }
 }

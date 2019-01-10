@@ -1,5 +1,5 @@
 import React from 'react';
-import { i18n } from '@src/API';
+import { i18n, View } from '@src/API';
 import { connect } from 'react-redux';
 
 import BYHeader from '@src/components/BYHeader';
@@ -20,11 +20,11 @@ import Form from './Form';
 //     };
 
 //     return (
-//       <div style={styles.container}>
+//       <View style={styles.container}>
 //         <BYHeader title={i18n.enterCardInformation} />
 //         <Form />
-//         <div style={{ flex: 1 }} />
-//       </div>
+//         <View style={{ flex: 1 }} />
+//       </View>
 //     );
 //   }
 // }
@@ -40,11 +40,11 @@ const Withdrawal = () => {
   };
 
   return (
-    <div style={styles.container}>
+    <View style={styles.container}>
       <BYHeader title={i18n.enterCardInformation} />
       <Form />
-      <div style={{ flex: 1 }} />
-    </div>
+      <View style={{ flex: 1 }} />
+    </View>
   );
 };
 

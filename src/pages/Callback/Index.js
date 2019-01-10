@@ -2,7 +2,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import BYHeader from '@src/components/BYHeader';
-import { i18n } from '@src/API';
+import { i18n, View } from '@src/API';
 import router from 'umi/lib/router';
 
 import { WINDOW_HEIGHT, SCREENS, WINDOW_WIDTH } from '@src/common/constants';
@@ -75,10 +75,10 @@ class Address extends React.Component {
     };
 
     return (
-      <div style={styles.container}>
-        <div style={styles.main}>
+      <View style={styles.container}>
+        <View style={styles.main}>
           <img alt="" style={styles.image} src={errorJson[msg].icon} />
-          <div style={styles.text}>{errorJson[msg].text}</div>
+          <View style={styles.text}>{errorJson[msg].text}</View>
           <BYButton
             text={i18n.confirm}
             styleWrap={{
@@ -87,8 +87,8 @@ class Address extends React.Component {
             }}
             onClick={() => router.push(`/${SCREENS.Me}`)}
           />
-        </div>
-      </div>
+        </View>
+      </View>
     );
   }
 
@@ -102,11 +102,11 @@ class Address extends React.Component {
       },
     };
     return (
-      <div style={styles.container}>
+      <View style={styles.container}>
         <BYHeader />
 
         {this.renderMainContent()}
-      </div>
+      </View>
     );
   }
 }

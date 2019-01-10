@@ -1,5 +1,5 @@
 import React from 'react';
-import { i18n } from '@src/API';
+import { i18n, View } from '@src/API';
 import BYHeader from '@src/components/BYHeader';
 import { WINDOW_HEIGHT } from '@src/common/constants';
 import Form from './Form';
@@ -12,9 +12,9 @@ const styles = {
 };
 
 export default () => (
-  <div style={styles.container}>
+  <View style={styles.container}>
     <BYHeader title={i18n.linkEmail} />
     <Form />
-    <div style={{ flex: 1 }} />
-  </div>
+    <View style={{ flex: 1 }} />
+  </View>
 );

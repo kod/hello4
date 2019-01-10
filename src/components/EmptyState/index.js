@@ -7,6 +7,7 @@ import {
   OSS_IMAGE_QUALITY,
 } from '@src/common/constants';
 import { xOssProcess } from '@src/utils';
+import { View } from '@src/API';
 
 const styles = {
   empty: {
@@ -37,14 +38,14 @@ export default ({
   text,
   ...restProps
 }) => (
-  // <div style={styles.wrap}>
-  <div style={{ ...styles.empty, ...style }} {...restProps}>
+  // <View style={styles.wrap}>
+  <View style={{ ...styles.empty, ...style }} {...restProps}>
     <img
       alt=""
       style={{ ...styles.emptyImg, ...styleImage }}
       src={`${source}?${xOssProcess(IS_IOS, OSS_IMAGE_QUALITY)}`}
     />
-    <div style={{ ...styles.emptyText, ...styleText }}>{text}</div>
-  </div>
-  // </div>
+    <View style={{ ...styles.emptyText, ...styleText }}>{text}</View>
+  </View>
+  // </View>
 );

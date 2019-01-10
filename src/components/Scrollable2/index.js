@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import qs from 'qs';
 // import router from 'umi/lib/router';
-import { i18n } from '@src/API';
+import { i18n, View } from '@src/API';
 
 import * as bannerSwiperActionCreators from '@src/common/actions/bannerSwiper';
 import * as adPhoneActionCreators from '@src/common/actions/adPhone';
@@ -33,7 +33,7 @@ class Scrollable2 extends Component {
     const { classfyinfo, phoneAdList, phoneAdBanerList } = adPhone;
     const bannerSwiperList = bannerSwiper.items;
     return (
-      <div>
+      <View>
         {bannerSwiperList && bannerSwiperList.length > 0 && (
           <SwiperFlatList
             data={bannerSwiperList}
@@ -58,7 +58,7 @@ class Scrollable2 extends Component {
         <ProductItem4 data={phoneAdList} style={{ backgroundColor: '#fff' }} />
 
         {/* <FeaturedGoodsItem data={bannerHomeRecommend} /> */}
-      </div>
+      </View>
     );
   }
 }

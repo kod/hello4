@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { SIDEINTERVAL } from '@src/common/constants';
+import { View } from '@src/API';
 
 const styles = {
   component: {
@@ -31,12 +32,12 @@ export default ({
   navigateRight,
   ...restProps
 }) => (
-  <div style={styles.component} {...restProps}>
-    <div style={styles.touchable} onClick={navigateLeft}>
-      <div style={styles.componentText}>{textLeft}</div>
-    </div>
-    <div style={styles.touchable} onClick={navigateRight}>
-      <div style={styles.componentText}>{textRight}</div>
-    </div>
-  </div>
+  <View style={styles.component} {...restProps}>
+    <View style={styles.touchable} onClick={navigateLeft}>
+      <View style={styles.componentText}>{textLeft}</View>
+    </View>
+    <View style={styles.touchable} onClick={navigateRight}>
+      <View style={styles.componentText}>{textRight}</View>
+    </View>
+  </View>
 );

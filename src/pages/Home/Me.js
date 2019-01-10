@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { i18n } from '@src/API';
+import { i18n, View } from '@src/API';
 import router from 'umi/lib/router';
 import qs from 'qs';
 
@@ -184,9 +184,9 @@ class Index extends PureComponent {
     };
 
     return (
-      <div style={styles.nav1}>
+      <View style={styles.nav1}>
         {list.map((val, key) => (
-          <div
+          <View
             style={styles.nav1Item}
             key={val.text}
             onClick={() => this.handleOnPressOrderNav(key + 1)}
@@ -195,16 +195,16 @@ class Index extends PureComponent {
               type={val.iconName}
               style={{ ...styles.nav1ItemIcon, ...val.styleIcon }}
             />
-            <div style={styles.nav1ItemText}>{val.text}</div>
+            <View style={styles.nav1ItemText}>{val.text}</View>
             {orderItem[key + 1].items.length > 0 && (
-              <div style={styles.nav1ItemBadge}>
+              <View style={styles.nav1ItemBadge}>
                 {orderItem[key + 1].items.length > 0 &&
                   orderItem[key + 1].items.length}
-              </div>
+              </View>
             )}
-          </div>
+          </View>
         ))}
-      </div>
+      </View>
     );
   }
 
@@ -326,11 +326,11 @@ class Index extends PureComponent {
     };
 
     return (
-      <div style={styles.container}>
+      <View style={styles.container}>
         {location && <BYHeader title={i18n.me} />}
 
-        <div style={styles.header}>
-          <div
+        <View style={styles.header}>
+          <View
             style={styles.headerIcon}
             onClick={() => this.handleOnPressUser()}
           >
@@ -343,9 +343,9 @@ class Index extends PureComponent {
               )}`}
             />
 
-            <div style={styles.headerIconText}>{username || phone}</div>
-          </div>
-        </div>
+            <View style={styles.headerIconText}>{username || phone}</View>
+          </View>
+        </View>
         <NavBar1
           list={renderCellItem1List1}
           // callback={this.handleOnNavBar1Callback}
@@ -357,7 +357,7 @@ class Index extends PureComponent {
           // callback={this.handleOnNavBar1Callback}
           styleItemLeft={{ flex: 3 }}
         />
-      </div>
+      </View>
     );
   }
 }

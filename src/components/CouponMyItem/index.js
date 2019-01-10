@@ -1,7 +1,7 @@
 import React from 'react';
 // import router from 'umi/lib/router';
 import { connect } from 'react-redux';
-import { i18n } from '@src/API';
+import { i18n, View } from '@src/API';
 // import { Modal } from 'antd-mobile';
 
 import * as getVoucherListActionCreators from '@src/common/actions/getVoucherList';
@@ -30,12 +30,12 @@ class CouponMyItem extends React.Component {
     const { items, loading } = this.props;
 
     return (
-      <div style={styles.container}>
+      <View style={styles.container}>
         {loading && <Loader />}
         {items.length > 0 ? (
-          <div>
+          <View>
             <CouponItem data={items} />
-          </div>
+          </View>
         ) : (
           <EmptyState
             source={ouhrigdfnjsoeijehrJpg}
@@ -43,7 +43,7 @@ class CouponMyItem extends React.Component {
             styleText={{ marginBottom: 0 }}
           />
         )}
-      </div>
+      </View>
     );
   }
 }

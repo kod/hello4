@@ -1,7 +1,7 @@
 /* eslint-disable no-shadow */
 import React from 'react';
 import { connect } from 'react-redux';
-import { i18n } from '@src/API';
+import { i18n, View } from '@src/API';
 import { Modal, ActionSheet } from 'antd-mobile';
 import BYHeader from '@src/components/BYHeader';
 import { getAddressSelectedItem, getLoginUser } from '@src/common/selectors';
@@ -389,19 +389,19 @@ class OrderWrite extends React.Component {
     };
 
     return (
-      <div style={stylesX.nav}>
-        <div style={stylesX.navLeft}>
-          <div style={stylesX.navLeftBottom}>
+      <View style={stylesX.nav}>
+        <View style={stylesX.navLeft}>
+          <View style={stylesX.navLeftBottom}>
             {`${this.calcMoney()} ${MONETARY}`}
-          </div>
-        </div>
-        <div
+          </View>
+        </View>
+        <View
           style={stylesX.navRight}
           onClick={() => this.handleOnPressSubmit()}
         >
           {i18n.submitOrder}
-        </div>
-      </div>
+        </View>
+      </View>
     );
   }
 
@@ -452,11 +452,11 @@ class OrderWrite extends React.Component {
       return <Loader />;
 
     return (
-      <div style={styles.container}>
+      <View style={styles.container}>
         {(getUserInfoByIdLoading || orderCreateLoading || orderpayLoading) && (
           <Loader />
         )}
-        <div style={styles.main}>
+        <View style={styles.main}>
           <Address
             addressSelectedItem={addressSelectedItem}
             onClick={() => this.handleOnPressAddress()}
@@ -480,9 +480,9 @@ class OrderWrite extends React.Component {
               couponSelectItem.id ? couponSelectItem.voucherName : ''
             }
           />
-        </div>
+        </View>
         {this.renderBottom()}
-      </div>
+      </View>
     );
   }
 
@@ -496,7 +496,7 @@ class OrderWrite extends React.Component {
       },
     };
     return (
-      <div style={styles.container}>
+      <View style={styles.container}>
         <BYHeader title={i18n.fillOrder} />
         <MustLogin
           Modal={Modal}
@@ -506,7 +506,7 @@ class OrderWrite extends React.Component {
           SCREENS={SCREENS}
         />
         {this.renderContent()}
-      </div>
+      </View>
     );
   }
 }

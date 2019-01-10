@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Modal } from 'antd-mobile';
 import { connect } from 'react-redux';
-import { i18n } from '@src/API';
+import { i18n, View } from '@src/API';
 import router from 'umi/lib/router';
 
 import * as receiveVoucherActionCreators from '@src/common/actions/receiveVoucher';
@@ -133,20 +133,20 @@ class AddressAddModal extends Component {
     };
 
     return (
-      <div style={styles.container}>
-        <div style={styles.main}>
-          <div style={styles.close} onClick={() => this.handleOnModalClose()}>
+      <View style={styles.container}>
+        <View style={styles.main}>
+          <View style={styles.close} onClick={() => this.handleOnModalClose()}>
             <CustomIcon type="close" style={styles.closeIcon} />
-          </div>
-          <div style={styles.text}>{i18n.receivedGiftCard}</div>
+          </View>
+          <View style={styles.text}>{i18n.receivedGiftCard}</View>
           <BYButton
             text={i18n.usedImmediately}
             style={styles.button}
             styleText={styles.buttonText}
             onClick={() => this.handleOnPressSubmit()}
           />
-        </div>
-      </div>
+        </View>
+      </View>
     );
   }
 

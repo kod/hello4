@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
 import { connect } from 'react-redux';
-import { i18n } from '@src/API';
+import { i18n, View } from '@src/API';
 import qs from 'qs';
 import router from 'umi/lib/router';
 import { Modal } from 'antd-mobile';
@@ -432,16 +432,16 @@ class ProductDetailMain extends React.Component {
     };
 
     return (
-      <div style={styles.product}>
-        <div style={styles.titlePrice}>
-          <div style={styles.titlePriceLeft}>
-            <div style={styles.productPrice}>
+      <View style={styles.product}>
+        <View style={styles.titlePrice}>
+          <View style={styles.titlePriceLeft}>
+            <View style={styles.productPrice}>
               {`${priceFormat(price || 0)} ${MONETARY}`}
-            </div>
-            <div style={styles.productTitle}>{name}</div>
-          </div>
-          <div style={styles.titlePriceRight}>
-            <div
+            </View>
+            <View style={styles.productTitle}>{name}</View>
+          </View>
+          <View style={styles.titlePriceRight}>
+            <View
               style={styles.favorite}
               onClick={() => this.handleToggleCollection()}
             >
@@ -456,38 +456,38 @@ class ProductDetailMain extends React.Component {
               ) : (
                 <CustomIcon type="heart" style={styles.favoriteItem} />
               )}
-            </div>
-            <div style={styles.share} onClick={() => this.handlePressShare()}>
+            </View>
+            <View style={styles.share} onClick={() => this.handlePressShare()}>
               <CustomIcon
                 type="ScreenShopping_icon2"
                 style={styles.shareIcon}
               />
               {i18n.share}
-            </div>
-          </div>
-        </div>
-        <div style={styles.serverinfo}>
-          <div style={styles.serverinfoLeft}>
-            <div style={styles.serverinfoLeftSeparate} />
+            </View>
+          </View>
+        </View>
+        <View style={styles.serverinfo}>
+          <View style={styles.serverinfoLeft}>
+            <View style={styles.serverinfoLeftSeparate} />
             <CustomIcon style={styles.serverinfoToBePaid} type="returns" />
-            <div style={styles.serverinfoToBePaidText}>
+            <View style={styles.serverinfoToBePaidText}>
               {i18n.qualityAssurance}
-            </div>
-          </div>
-          <div style={styles.serverinfoRight}>
+            </View>
+          </View>
+          <View style={styles.serverinfoRight}>
             <CustomIcon
               style={styles.serverinfotoReceiveGoods}
               type="toReceiveGoods"
             />
-            <div style={styles.serverinfotoReceiveGoodsText}>
+            <View style={styles.serverinfotoReceiveGoodsText}>
               {i18n.fastDelivery}
-            </div>
-          </div>
-        </div>
+            </View>
+          </View>
+        </View>
         <SeparateBar />
-        <div style={styles.spec}>
-          <div style={styles.specTitle}>{i18n.selected}</div>
-          <div
+        <View style={styles.spec}>
+          <View style={styles.specTitle}>{i18n.selected}</View>
+          <View
             style={styles.specDesc}
             onClick={() => {
               openModal(MODAL_TYPES.PARAMSSELECT, {
@@ -509,10 +509,10 @@ class ProductDetailMain extends React.Component {
                   : '',
               )
               .join('  ')}
-          </div>
+          </View>
           <CustomIcon style={styles.specArrow} type="right" />
-        </div>
-      </div>
+        </View>
+      </View>
     );
   }
 
@@ -575,12 +575,12 @@ class ProductDetailMain extends React.Component {
     };
 
     return (
-      <div style={styles.container}>
+      <View style={styles.container}>
         <ModalRoot />
-        <div id="navproduct" />
+        <View id="navproduct" />
 
-        <div style={styles.statusbarPlaceholder}>
-          <div style={styles.carousel}>
+        <View style={styles.statusbarPlaceholder}>
+          <View style={styles.carousel}>
             {imageUrls && imageUrls.length > 0 && (
               <SwiperFlatList
                 data={imageUrls}
@@ -591,17 +591,17 @@ class ProductDetailMain extends React.Component {
                 }}
               />
             )}
-          </div>
+          </View>
           {this.renderProduct()}
           {comment.length ? (
             <>
               <SeparateBar />
-              <div id="navcomment" style={styles.subTitle}>
+              <View id="navcomment" style={styles.subTitle}>
                 {i18n.evaluation}
-              </div>
+              </View>
               <Comment data={comment} />
-              <div style={styles.commentMore}>
-                <div
+              <View style={styles.commentMore}>
+                <View
                   style={styles.commentMoreText}
                   onClick={() =>
                     router.push(
@@ -612,17 +612,17 @@ class ProductDetailMain extends React.Component {
                   }
                 >
                   {i18n.more}
-                </div>
-              </div>
+                </View>
+              </View>
             </>
           ) : (
-            <div id="navcomment" />
+            <View id="navcomment" />
           )}
           <SeparateBar />
-          <div id="productDescription" style={styles.subTitle}>
+          <View id="productDescription" style={styles.subTitle}>
             {i18n.productDescription}
-          </div>
-          <div style={styles.imagesDesc}>
+          </View>
+          <View style={styles.imagesDesc}>
             {imageDesc.map((val, key) => (
               <img
                 alt=""
@@ -632,15 +632,15 @@ class ProductDetailMain extends React.Component {
                 // src={`${val}?x-oss-process=image/quality,Q_${OSS_IMAGE_QUALITY}`}
               />
             ))}
-          </div>
+          </View>
           <SeparateBar />
           {!!goodsProperties && goodsProperties.length > 0 ? (
             <>
-              <div id="navparameters" style={styles.subTitle}>
+              <View id="navparameters" style={styles.subTitle}>
                 {i18n.detailsInfo}
-              </div>
+              </View>
 
-              <div style={styles.imagesDesc}>
+              <View style={styles.imagesDesc}>
                 {goodsProperties.map((val, key) => (
                   <img
                     alt=""
@@ -650,13 +650,13 @@ class ProductDetailMain extends React.Component {
                     // src={`${val}?x-oss-process=image/quality,Q_${OSS_IMAGE_QUALITY}`}
                   />
                 ))}
-              </div>
+              </View>
             </>
           ) : (
-            <div id="navparameters" />
+            <View id="navparameters" />
           )}
-        </div>
-      </div>
+        </View>
+      </View>
     );
   }
 }

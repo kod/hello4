@@ -1,9 +1,10 @@
 import React from 'react';
 import { ActivityIndicator } from 'antd-mobile';
 import { WINDOW_HEIGHT } from '@src/common/constants';
+import { View } from '@src/API';
 
 export default () => (
-  <div
+  <View
     style={{
       height: WINDOW_HEIGHT,
       display: 'flex',
@@ -12,5 +13,5 @@ export default () => (
     }}
   >
     <ActivityIndicator size="large" />
-  </div>
+  </View>
 );

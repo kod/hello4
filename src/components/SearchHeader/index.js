@@ -1,5 +1,5 @@
 import React from 'react';
-import { i18n } from '@src/API';
+import { i18n, Text, View } from '@src/API';
 
 import { HEADER_BACKGROUND_COLOR, BORDER_COLOR } from '@src/styles/variables';
 import {
@@ -67,9 +67,9 @@ const headerRightItem = (isLogin, rightPress) => {
     );
   }
   return (
-    <span style={styles.headerLogin} onClick={rightPress}>
+    <Text style={styles.headerLogin} onClick={rightPress}>
       {i18n.login}
-    </span>
+    </Text>
   );
 };
 
@@ -80,13 +80,13 @@ export default ({
   middleOnPress = () => {},
   rightOnPress = () => {},
 }) => (
-  <div style={styles.headerContainer}>
-    <div style={styles.headerMiddle} onClick={middleOnPress}>
-      <div style={styles.headerMiddleMain}>
+  <View style={styles.headerContainer}>
+    <View style={styles.headerMiddle} onClick={middleOnPress}>
+      <View style={styles.headerMiddleMain}>
         <CustomIcon type="search" style={styles.headerMiddleIcon} />
-        <div style={styles.headerMiddleText}>{text}</div>
-      </div>
-    </div>
+        <View style={styles.headerMiddleText}>{text}</View>
+      </View>
+    </View>
     {headerRight ? { headerRight } : headerRightItem(isLogin, rightOnPress)}
-  </div>
+  </View>
 );

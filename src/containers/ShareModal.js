@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Modal } from 'antd-mobile';
 import { connect } from 'react-redux';
-import { i18n } from '@src/API';
+import { i18n, Text, View } from '@src/API';
 
 import * as receiveVoucherActionCreators from '@src/common/actions/receiveVoucher';
 import * as modalActionCreators from '@src/common/actions/modal';
@@ -235,63 +235,63 @@ class AddressAddModal extends Component {
     };
 
     return (
-      <div style={styles.container}>
-        <div style={styles.main}>
-          <div style={styles.header}>
-            <div
+      <View style={styles.container}>
+        <View style={styles.main}>
+          <View style={styles.header}>
+            <View
               style={styles.headerLeft}
               onClick={() => this.handleOnModalClose()}
             >
               {i18n.cancel}
-            </div>
-            <div style={styles.headerMain}>{i18n.share}</div>
-            <div style={styles.headerRight}>{i18n.cancel}</div>
-          </div>
-          <div style={styles.tips}>
+            </View>
+            <View style={styles.headerMain}>{i18n.share}</View>
+            <View style={styles.headerRight}>{i18n.cancel}</View>
+          </View>
+          <View style={styles.tips}>
             {i18n.shareGetDiscountedDealsAndMoneyRose}
-          </div>
-          <div style={styles.body}>
-            <div style={styles.productInfo}>
+          </View>
+          <View style={styles.body}>
+            <View style={styles.productInfo}>
               <img
                 alt=""
                 style={styles.productInfoLeft}
                 src={`${iconUrl}?${xOssProcess(IS_IOS, OSS_IMAGE_QUALITY)}`}
               />
-              <div style={styles.productInfoRight}>
-                <div style={styles.productInfoTitle}>{name}</div>
-                <div style={styles.productInfoPrice}>{`${priceFormat(
+              <View style={styles.productInfoRight}>
+                <View style={styles.productInfoTitle}>{name}</View>
+                <View style={styles.productInfoPrice}>{`${priceFormat(
                   price,
-                )} ${MONETARY}`}</div>
-                {/* <div style={styles.productInfoRow1}>Voucher giảm giá</div> */}
+                )} ${MONETARY}`}</View>
+                {/* <View style={styles.productInfoRow1}>Voucher giảm giá</View> */}
                 {!!rewardNumber && (
-                  <div style={styles.productInfoRow2}>
+                  <View style={styles.productInfoRow2}>
                     {`${i18n.salesCommission}: `}
-                    <span style={styles.productInfoRow2Price}>
+                    <Text style={styles.productInfoRow2Price}>
                       {`+ ${priceFormat(rewardNumber)} ${MONETARY}`}
-                    </span>
-                  </div>
+                    </Text>
+                  </View>
                 )}
-              </div>
-            </div>
-          </div>
-          <div style={styles.operate}>
-            <div
+              </View>
+            </View>
+          </View>
+          <View style={styles.operate}>
+            <View
               style={styles.operateMsg}
               onClick={() => this.handleOnPressShare(MESSENGER)}
             >
               <CustomIcon type="messenger" style={styles.operateMsgIcon} />
               share
-            </div>
-            <div
+            </View>
+            <View
               style={styles.operateFB}
               onClick={() => this.handleOnPressShare(FACEBOOK)}
             >
               <CustomIcon type="facebook" style={styles.operateFBIcon} />
               share
-            </div>
-          </div>
-        </div>
-      </div>
+            </View>
+          </View>
+        </View>
+      </View>
     );
   }
 

@@ -12,6 +12,7 @@ import {
 import priceFormat from '@src/utils/priceFormat';
 
 import { xOssProcess } from '@src/utils';
+import { View } from '@src/API';
 
 const styles = {
   itemWrap: {
@@ -127,15 +128,15 @@ class ProductItem2 extends React.Component {
     } = this.props;
 
     return (
-      <div style={{ ...styles.itemWrap, ...style }} {...restProps}>
+      <View style={{ ...styles.itemWrap, ...style }} {...restProps}>
         {data &&
           data.map((val, key) => (
-            <div
+            <View
               style={{ ...styles.item, ...styleItem }}
               key={key}
               onClick={() => this.onPressHandle(val)}
             >
-              <div style={{ ...styles.itemLeft, ...styleItemLeft }}>
+              <View style={{ ...styles.itemLeft, ...styleItemLeft }}>
                 <img
                   alt=""
                   style={styles.itemImage}
@@ -145,26 +146,28 @@ class ProductItem2 extends React.Component {
                   )}`}
                   // src={`${val.imageUrl}?x-oss-process=image/resize,w_240,h_240`}
                 />
-              </div>
-              <div style={styles.itemRight}>
-                <div style={styles.itemTitle}>{val.name}</div>
-                {/* <div style={styles.itemPrice}>
+              </View>
+              <View style={styles.itemRight}>
+                <View style={styles.itemTitle}>{val.name}</View>
+                {/* <View style={styles.itemPrice}>
                   {`${priceFormat(val.price)} ${MONETARY}`}
-                </div> */}
-                <div style={styles.itemRightRow3}>
-                  <div
+                </View> */}
+                <View style={styles.itemRightRow3}>
+                  <View
                     style={{ ...styles.itemRightRow3Price, ...stylePricePrice }}
                   >
                     {`${priceFormat(val.price)} ${MONETARY}`}
-                  </div>
+                  </View>
                   {isShowNumber && (
-                    <div style={styles.itemRightRow3Number}>x{val.number}</div>
+                    <View style={styles.itemRightRow3Number}>
+                      x{val.number}
+                    </View>
                   )}
-                </div>
-              </div>
-            </div>
+                </View>
+              </View>
+            </View>
           ))}
-      </div>
+      </View>
     );
   }
 }

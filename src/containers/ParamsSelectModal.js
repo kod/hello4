@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Modal } from 'antd-mobile';
 import { connect } from 'react-redux';
-import { i18n } from '@src/API';
+import { i18n, View } from '@src/API';
 
 import { BORDER_COLOR, PRIMARY_COLOR, RED_COLOR } from '@src/styles/variables';
 import {
@@ -135,13 +135,13 @@ class ParamsSelectModal extends Component {
     } = this.props;
 
     return (
-      <div style={styles.wrap}>
+      <View style={styles.wrap}>
         {propertiesArray.map(val => (
-          <div style={styles.item} key={val}>
-            <div style={styles.title}>{val}</div>
-            <div style={styles.properties}>
+          <View style={styles.item} key={val}>
+            <View style={styles.title}>{val}</View>
+            <View style={styles.properties}>
               {propertiesObject[val].map(val1 => (
-                <div
+                <View
                   style={{
                     ...styles.propertiesItem,
                     ...(propertiesIdsObject.indexOf(val1.id) !== -1 &&
@@ -151,12 +151,12 @@ class ParamsSelectModal extends Component {
                   key={val1.value}
                 >
                   {val1.value}
-                </div>
+                </View>
               ))}
-            </div>
-          </div>
+            </View>
+          </View>
         ))}
-      </div>
+      </View>
     );
   }
 
@@ -294,15 +294,15 @@ class ParamsSelectModal extends Component {
     };
 
     return (
-      <div style={styles.container}>
-        <div style={styles.paramClose}>
+      <View style={styles.container}>
+        <View style={styles.paramClose}>
           <CustomIcon
             type="close"
             style={styles.paramCloseIcon}
             onClick={() => this.handleOnModalClose()}
           />
-        </div>
-        <div style={styles.paramInfo}>
+        </View>
+        <View style={styles.paramInfo}>
           {imageUrls[0] && (
             <img
               alt=""
@@ -313,20 +313,20 @@ class ParamsSelectModal extends Component {
               )}`}
             />
           )}
-          <div style={styles.paramInfoLeft}>
-            <div style={styles.paramPrice}>{`${priceFormat(
+          <View style={styles.paramInfoLeft}>
+            <View style={styles.paramPrice}>{`${priceFormat(
               price,
-            )} ${MONETARY}`}</div>
-            <div style={styles.paramHave}>
+            )} ${MONETARY}`}</View>
+            <View style={styles.paramHave}>
               {i18n.warehouse}: {numbers > 0 ? i18n.inStock : i18n.soldOut}
-            </div>
-          </div>
-        </div>
+            </View>
+          </View>
+        </View>
         {this.renderPropertiesIds()}
-        <div style={styles.paramNumber}>
-          <div style={styles.paramNumberText}>{i18n.amount}</div>
-          <div style={styles.paramNumberChange}>
-            <div
+        <View style={styles.paramNumber}>
+          <View style={styles.paramNumberText}>{i18n.amount}</View>
+          <View style={styles.paramNumberChange}>
+            <View
               onClick={() =>
                 this.handleOnPresschangeNumber(productDetailNumber - 1)
               }
@@ -339,9 +339,11 @@ class ParamsSelectModal extends Component {
                     styles.paramNumberIconDisable),
                 }}
               />
-            </div>
-            <div style={styles.paramNumberTextInput}>{productDetailNumber}</div>
-            <div
+            </View>
+            <View style={styles.paramNumberTextInput}>
+              {productDetailNumber}
+            </View>
+            <View
               onClick={() =>
                 this.handleOnPresschangeNumber(productDetailNumber + 1)
               }
@@ -354,11 +356,11 @@ class ParamsSelectModal extends Component {
                     styles.paramNumberIconDisable),
                 }}
               />
-            </div>
-          </div>
-        </div>
-        <div style={styles.buttonWrap}>
-          <div
+            </View>
+          </View>
+        </View>
+        <View style={styles.buttonWrap}>
+          <View
             style={{
               ...styles.button,
               ...(!(numbers > 0) && styles.buttonDisable),
@@ -366,9 +368,9 @@ class ParamsSelectModal extends Component {
             onClick={() => this.handleOnModalClose()}
           >
             {numbers > 0 ? i18n.confirm : i18n.soldOut}
-          </div>
-        </div>
-      </div>
+          </View>
+        </View>
+      </View>
     );
   }
 

@@ -2,7 +2,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import BYHeader from '@src/components/BYHeader';
-import { i18n } from '@src/API';
+import { i18n, View } from '@src/API';
 
 import Loader from '@src/components/Loader';
 import router from 'umi/lib/router';
@@ -200,43 +200,43 @@ class PaymentCode extends React.Component {
     const { code, payvalue } = this.props;
 
     return (
-      <div>
-        <div style={styles.row1}>
-          <div style={styles.row1Left}>{i18n.payooPaymentCode}</div>
+      <View>
+        <View style={styles.row1}>
+          <View style={styles.row1Left}>{i18n.payooPaymentCode}</View>
           {/* <SmallButton
             text={i18n.copy}
             onClick={() => this.handleOnPressCopy(code)}
           /> */}
-        </div>
-        <div style={styles.row2}>
-          <div style={styles.row2Top}>{code}</div>
-          <div style={styles.row2Bottom}>
+        </View>
+        <View style={styles.row2}>
+          <View style={styles.row2Top}>{code}</View>
+          <View style={styles.row2Bottom}>
             {`${i18n.orderAmount} ${priceFormat(payvalue)} ${MONETARY}`}
-          </div>
-        </div>
-        <div
+          </View>
+        </View>
+        <View
           style={styles.row4}
           onClick={() => {
             window.location.href = PAYOO_STORE_MAP;
           }}
         >
           {i18n.visitPayooStoreClickHere}
-        </div>
-        <div style={styles.row3}>
+        </View>
+        <View style={styles.row3}>
           {images.map((val, key) => (
             <img alt="" style={styles.row3Image} src={`${val}`} key={key} />
 
             // <Image style={styles.row3Image} source={val} key={key} />
           ))}
-        </div>
-      </div>
+        </View>
+      </View>
     );
   }
 
   render() {
     const { authUser, loading } = this.props;
     return (
-      <div style={styles.container}>
+      <View style={styles.container}>
         <BYHeader title={i18n.payooPaymentCode} />
         <MustLogin
           Modal={Modal}
@@ -247,7 +247,7 @@ class PaymentCode extends React.Component {
         />
         {loading && <Loader />}
         {this.renderContent()}
-      </div>
+      </View>
     );
   }
 }

@@ -11,6 +11,7 @@ import {
   OSS_IMAGE_QUALITY,
 } from '@src/common/constants';
 import { xOssProcess } from '@src/utils';
+import { View } from '@src/API';
 
 const styles = {
   nav1: {
@@ -39,9 +40,9 @@ const styles = {
 };
 
 export default ({ data, style, ...restProps }) => (
-  <div style={{ ...styles.itemWrap, ...style }} {...restProps}>
+  <View style={{ ...styles.itemWrap, ...style }} {...restProps}>
     {data.map((val, key) => (
-      <div
+      <View
         style={styles.touchable}
         key={key}
         onClick={() => {
@@ -57,7 +58,7 @@ export default ({ data, style, ...restProps }) => (
           style={{ ...styles.nav1ItemImg }}
           src={`${val.imageUrl}?${xOssProcess(IS_IOS, OSS_IMAGE_QUALITY)}`}
         />
-      </div>
+      </View>
     ))}
-  </div>
+  </View>
 );

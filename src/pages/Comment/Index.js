@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { i18n } from '@src/API';
+import { i18n, View } from '@src/API';
 
 import {
   WINDOW_WIDTH,
@@ -51,16 +51,16 @@ class ProductDetailComment extends React.Component {
     };
 
     return (
-      <div style={styles.container}>
+      <View style={styles.container}>
         {loading && <Loader />}
         <BYHeader title={i18n.evaluation} />
         {comment.length !== 0 && (
-          <div>
+          <View>
             <Comment data={comment} style={{ paddingTop: 20 }} />
-          </div>
+          </View>
         )}
         {comment.length === 0 && (
-          <div style={styles.emptyComment}>
+          <View style={styles.emptyComment}>
             <img
               alt=""
               style={styles.emptyCommentImage}
@@ -70,10 +70,10 @@ class ProductDetailComment extends React.Component {
               )}`}
             />
             {/* <Image style={styles.emptyCommentImage} source={emptycommentPng} /> */}
-            <div style={styles.emptyCommentText}>{i18n.noCommentYet}</div>
-          </div>
+            <View style={styles.emptyCommentText}>{i18n.noCommentYet}</View>
+          </View>
         )}
-      </div>
+      </View>
     );
   }
 }

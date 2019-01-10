@@ -1,5 +1,5 @@
 import React from 'react';
-import { i18n } from '@src/API';
+import { i18n, View } from '@src/API';
 import router from 'umi/lib/router';
 // import { WINDOW_HEIGHT } from '@src/common/constants';
 import BYHeader from '@src/components/BYHeader';
@@ -15,13 +15,13 @@ const styles = {
 };
 
 export default () => (
-  <div style={styles.container}>
+  <View style={styles.container}>
     <BYHeader title={i18n.register} />
     <Form />
     <NavSidesText
       textLeft={i18n.alreadyHaveAnAccount}
       navigateLeft={() => router.go(-1)}
     />
-    <div style={{ flex: 1 }} />
-  </div>
+    <View style={{ flex: 1 }} />
+  </View>
 );

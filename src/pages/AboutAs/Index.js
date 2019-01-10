@@ -1,6 +1,6 @@
 import React from 'react';
 // import { connect } from 'react-redux';
-import { i18n } from '@src/API';
+import { i18n, View } from '@src/API';
 
 // import * as collectionActionCreators from '@src/common/actions/collection';
 import BYHeader from '@src/components/BYHeader';
@@ -110,34 +110,34 @@ class AboutAs extends React.Component {
       // },
     ];
     return (
-      <div style={styles.WrapContainer}>
+      <View style={styles.WrapContainer}>
         <BYHeader />
-        <div style={styles.main}>
-          <div style={styles.appMsgWrap2}>
-            <div style={styles.appMsgWrap}>
+        <View style={styles.main}>
+          <View style={styles.appMsgWrap2}>
+            <View style={styles.appMsgWrap}>
               <img
                 alt=""
                 style={styles.appIcon}
                 src={`${icAvatarPng}?${xOssProcess(IS_IOS, OSS_IMAGE_QUALITY)}`}
               />
-              <div style={styles.appVersion}>{`${BUYOOVIP} v${VERSION}`}</div>
-            </div>
-          </div>
+              <View style={styles.appVersion}>{`${BUYOOVIP} v${VERSION}`}</View>
+            </View>
+          </View>
           <SeparateBar />
-          <div style={styles.container}>
+          <View style={styles.container}>
             <NavBar1
               list={navBar1List}
               style={{ marginBottom: 30 }}
               styleItemLeft={{ flex: 2 }}
             />
-          </div>
-          <div style={{ flex: 1 }} />
-          <div style={styles.copyright}>
+          </View>
+          <View style={{ flex: 1 }} />
+          <View style={styles.copyright}>
             &copy; {`${new Date().getFullYear()} - `}
             {i18n.copyright.replace('CompanyName', BUYOOVIP)} - {BUYOO_VN}
-          </div>
-        </div>
-      </div>
+          </View>
+        </View>
+      </View>
     );
   }
 }

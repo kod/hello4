@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import router from 'umi/lib/router';
-import { i18n } from '@src/API';
+import { i18n, View } from '@src/API';
 
 import BYHeader from '@src/components/BYHeader';
 import Loader from '@src/components/Loader';
@@ -68,14 +68,14 @@ class SearchResultList extends React.Component {
     const { findcontent } = this.props;
 
     return (
-      <div style={stylesX.container}>
-        <div style={stylesX.header}>
+      <View style={stylesX.container}>
+        <View style={stylesX.header}>
           <CustomIcon type="search" style={stylesX.addressPin} />
-          <div style={stylesX.textInput} onClick={() => router.go(-1)}>
+          <View style={stylesX.textInput} onClick={() => router.go(-1)}>
             {findcontent}
-          </div>
-        </div>
-      </div>
+          </View>
+        </View>
+      </View>
     );
   };
 
@@ -83,7 +83,7 @@ class SearchResultList extends React.Component {
     const { items, loading } = this.props;
 
     return (
-      <div style={styles.container}>
+      <View style={styles.container}>
         <BYHeader headerTitle={this.renderHeaderTitle()} />
         {loading && <Loader />}
         {items.length > 0 && <ProductItem4 data={items} />}
@@ -100,7 +100,7 @@ class SearchResultList extends React.Component {
           !loading && (
           )
         )} */}
-      </div>
+      </View>
     );
   }
 }

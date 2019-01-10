@@ -1,4 +1,5 @@
 import React from 'react';
+import { View } from '@src/API';
 
 const styles = {
   separateBar: {
@@ -8,7 +9,7 @@ const styles = {
 };
 
 export default ({ style = {} }) => (
-  <div
+  <View
     style={{
       ...styles.separateBar,
       ...style,

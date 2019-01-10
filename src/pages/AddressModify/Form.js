@@ -1,7 +1,7 @@
 import React from 'react';
 import { List, Modal, Toast } from 'antd-mobile';
 import { createForm } from 'rc-form';
-import { i18n } from '@src/API';
+import { i18n, View } from '@src/API';
 import { connect } from 'react-redux';
 
 import ModalRoot from '@src/containers/ModalRoot';
@@ -214,9 +214,9 @@ class AddressModify extends React.Component {
       <List>
         <ModalRoot />
         {addressModifyLoading && <Loader />}
-        <div style={{ marginBottom: 30 }}>
-          <div style={styles.item}>
-            <div style={styles.title}>{i18n.actualName}</div>
+        <View style={{ marginBottom: 30 }}>
+          <View style={styles.item}>
+            <View style={styles.title}>{i18n.actualName}</View>
             <InputRight
               pattern={NAME_EXPR}
               getFieldProps={getFieldProps}
@@ -229,9 +229,9 @@ class AddressModify extends React.Component {
               name="name"
               type="text"
             />
-          </div>
-          <div style={styles.item}>
-            <div style={styles.title}>{i18n.phone}</div>
+          </View>
+          <View style={styles.item}>
+            <View style={styles.title}>{i18n.phone}</View>
             <InputRight
               pattern={PHONE_EXPR}
               getFieldProps={getFieldProps}
@@ -244,9 +244,9 @@ class AddressModify extends React.Component {
               name="phone"
               type="number"
             />
-          </div>
-          <div style={styles.item}>
-            <div style={styles.title}>{i18n.address}</div>
+          </View>
+          <View style={styles.item}>
+            <View style={styles.title}>{i18n.address}</View>
             <InputRight
               getFieldProps={getFieldProps}
               styleWrap={{ flex: 1 }}
@@ -257,10 +257,10 @@ class AddressModify extends React.Component {
               name="address"
               type="text"
             />
-          </div>
-          <div style={styles.item}>
-            <div style={styles.title}>{i18n.communeDistrictCity}</div>
-            <div
+          </View>
+          <View style={styles.item}>
+            <View style={styles.title}>{i18n.communeDistrictCity}</View>
+            <View
               style={{
                 flex: 1,
                 textAlign: 'right',
@@ -283,9 +283,9 @@ class AddressModify extends React.Component {
               {division4thName
                 ? `${division4thName}, ${division3rdName}, ${division2ndName}`
                 : i18n.pleaseChoose}
-            </div>
-          </div>
-        </div>
+            </View>
+          </View>
+        </View>
         <BYButton
           styleWrap={{ marginBottom: 30 }}
           styleText={styles.submit}

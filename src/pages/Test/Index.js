@@ -41,10 +41,10 @@ class AboutAs extends React.Component {
 
   render() {
     return (
-      <div>
+      <View>
         <BYHeader />
-        <div>123</div>
-      </div>
+        <View>123</View>
+      </View>
     );
   }
 }

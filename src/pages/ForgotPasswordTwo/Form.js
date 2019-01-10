@@ -2,7 +2,7 @@ import React from 'react';
 import { List, Toast } from 'antd-mobile';
 import { connect } from 'react-redux';
 import { createForm } from 'rc-form';
-import { i18n } from '@src/API';
+import { i18n, View } from '@src/API';
 import BYButton from '@src/components/BYButton';
 import {
   LOGIN_PASSWORD_EXPR,
@@ -70,7 +70,7 @@ class LoginForm extends React.Component {
           name="repassword"
           type="password"
         />
-        <div
+        <View
           style={{
             paddingTop: 10,
             paddingBottom: 5,
@@ -82,7 +82,7 @@ class LoginForm extends React.Component {
           }}
         >
           {i18n.emailCodeTips}
-        </div>
+        </View>
         <BYButton
           text={i18n.submit}
           style={{ marginBottom: 30 }}

@@ -2,7 +2,7 @@ import React from 'react';
 import dayjs from 'dayjs';
 import { connect } from 'react-redux';
 import BYHeader from '@src/components/BYHeader';
-import { i18n } from '@src/API';
+import { i18n, View } from '@src/API';
 import { Modal } from 'antd-mobile';
 import router from 'umi/lib/router';
 import qs from 'qs';
@@ -338,23 +338,23 @@ class OrderDetail extends React.Component {
     } = this.props;
 
     return (
-      <div style={stylesX.nav}>
-        <div style={stylesX.navLeft}>
-          <div style={stylesX.navLeftTop}>{i18n.subtotal}</div>
-          <div style={stylesX.navLeftBottom}>{`${priceFormat(
+      <View style={stylesX.nav}>
+        <View style={stylesX.navLeft}>
+          <View style={stylesX.navLeftTop}>{i18n.subtotal}</View>
+          <View style={stylesX.navLeftBottom}>{`${priceFormat(
             totalAmount,
-          )} ${MONETARY}`}</div>
-        </div>
+          )} ${MONETARY}`}</View>
+        </View>
         {tradeStatus === '10000' && (
-          <div
+          <View
             style={stylesX.navCancel}
             onClick={() => this.handleOnPressCancel()}
           >
             {i18n.cancelOrder}
-          </div>
+          </View>
         )}
         {tradeStatus === '10000' && (
-          <div
+          <View
             style={stylesX.navRight}
             onClick={() =>
               payWay === 5
@@ -377,9 +377,9 @@ class OrderDetail extends React.Component {
             }
           >
             {payWay === 5 ? i18n.viewPaymentCode : i18n.payment}
-          </div>
+          </View>
         )}
-      </div>
+      </View>
     );
   }
 
@@ -444,42 +444,42 @@ class OrderDetail extends React.Component {
     } = this.props;
 
     return (
-      <div style={stylesX.card}>
-        <div style={stylesX.cardMain}>
+      <View style={stylesX.card}>
+        <View style={stylesX.cardMain}>
           {rechargeCard &&
             rechargeCard.map(val => (
-              <div style={stylesX.cardItem} key={val.cardCode}>
-                <div style={stylesX.cardItemText}>{i18n.cardNum}</div>
-                <div style={stylesX.cardItemValue}>
-                  <div style={stylesX.cardItemNumber}>{val.cardCode}</div>
-                  <div style={stylesX.cardItemCopy}>
-                    <div
+              <View style={stylesX.cardItem} key={val.cardCode}>
+                <View style={stylesX.cardItemText}>{i18n.cardNum}</View>
+                <View style={stylesX.cardItemValue}>
+                  <View style={stylesX.cardItemNumber}>{val.cardCode}</View>
+                  <View style={stylesX.cardItemCopy}>
+                    <View
                       style={stylesX.cardItemCopyText}
                       onClick={() => this.handleOnPressCopy(val.cardCode)}
                     >
                       {i18n.copy}
-                    </div>
-                  </div>
-                </div>
-                <div style={stylesX.cardItemText}>{i18n.password}</div>
-                <div style={stylesX.cardItemValue}>
-                  <div style={stylesX.cardItemNumber}>{val.cardPassword}</div>
-                  <div style={stylesX.cardItemCopy}>
-                    <div
+                    </View>
+                  </View>
+                </View>
+                <View style={stylesX.cardItemText}>{i18n.password}</View>
+                <View style={stylesX.cardItemValue}>
+                  <View style={stylesX.cardItemNumber}>{val.cardPassword}</View>
+                  <View style={stylesX.cardItemCopy}>
+                    <View
                       style={stylesX.cardItemCopyText}
                       onClick={() => this.handleOnPressCopy(val.cardPassword)}
                     >
                       {i18n.copy}
-                    </div>
-                  </div>
-                </div>
-                <div style={stylesX.cardItemTime}>
+                    </View>
+                  </View>
+                </View>
+                <View style={stylesX.cardItemTime}>
                   {`${i18n.usefulDate}: ${dayjs().format('DD-MM-YYYY')}`}
-                </div>
-              </div>
+                </View>
+              </View>
             ))}
-        </div>
-      </div>
+        </View>
+      </View>
     );
   }
 
@@ -506,16 +506,16 @@ class OrderDetail extends React.Component {
       },
     };
     return (
-      <div style={stylesX.orderNo}>
-        <div style={stylesX.orderNoTitle}>{`${i18n.orderNumber}:`}</div>
-        <div style={stylesX.orderNoMain}>
-          <div style={stylesX.orderNoLeft}>{orderNo}</div>
+      <View style={stylesX.orderNo}>
+        <View style={stylesX.orderNoTitle}>{`${i18n.orderNumber}:`}</View>
+        <View style={stylesX.orderNoMain}>
+          <View style={stylesX.orderNoLeft}>{orderNo}</View>
           {/* <SmallButton
             text={i18n.copy}
             onClick={() => this.handleOnPressCopy(orderNo)}
           /> */}
-        </div>
-      </div>
+        </View>
+      </View>
     );
   }
 
@@ -573,18 +573,18 @@ class OrderDetail extends React.Component {
     };
 
     return (
-      <div style={styles.container}>
-        <div style={styles.main}>
-          <div style={stylesX.status}>
-            <div style={stylesX.statusText}>
+      <View style={styles.container}>
+        <View style={styles.main}>
+          <View style={stylesX.status}>
+            <View style={stylesX.statusText}>
               {tradeStatusCodes(tradeStatus)}
-            </div>
+            </View>
             {parseInt(tradeStatus, 10) === 10000 && (
-              <div style={stylesX.statusTime}>
+              <View style={stylesX.statusTime}>
                 {this.makeRemainTimeText(timeoutExpress)}
-              </div>
+              </View>
             )}
-          </div>
+          </View>
           {sourceOrderType !== 3 && (
             <Address addressSelectedItem={addressSelectedItem} />
           )}
@@ -595,9 +595,9 @@ class OrderDetail extends React.Component {
             isShowNumber
             isPress={sourceOrderType !== 3}
           />
-          <div style={styles.totalPrice}>
+          <View style={styles.totalPrice}>
             {`${priceFormat(totalAmount + couponValue)} ${MONETARY}`}
-          </div>
+          </View>
           <SeparateBar />
           {tradeStatus !== '10000' && (
             <NavBar2
@@ -618,18 +618,18 @@ class OrderDetail extends React.Component {
             isShowRight={false}
           />
           {this.renderOrderNo()}
-          <div style={{ height: 5 }} />
+          <View style={{ height: 5 }} />
           {/* {this.renderCard()} */}
-        </div>
+        </View>
         {this.renderBottom()}
-      </div>
+      </View>
     );
   }
 
   render() {
     const { authUser } = this.props;
     return (
-      <div style={styles.container}>
+      <View style={styles.container}>
         <BYHeader
           title={i18n.details}
           // onPressBackButton={() => this.handleOnPressBack()}
@@ -643,7 +643,7 @@ class OrderDetail extends React.Component {
         />
 
         {this.renderContent()}
-      </div>
+      </View>
     );
   }
 }

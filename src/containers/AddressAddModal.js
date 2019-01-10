@@ -13,6 +13,7 @@ import { BORDER_COLOR, PRIMARY_COLOR } from '@src/styles/variables';
 import CustomIcon from '@src/components/CustomIcon';
 import Loader from '@src/components/Loader';
 import { dispatchEventBuyoo } from '@src/utils';
+import { View } from '@src/API';
 
 const styles = {
   container: {
@@ -251,7 +252,7 @@ class AddressAddModal extends Component {
       };
 
       return (
-        <div
+        <View
           style={{
             ...styles.scrollView,
             ...(addressIndex === scrollViewKey && styles.ScrollViewShow),
@@ -259,7 +260,7 @@ class AddressAddModal extends Component {
           key={scrollViewKey}
         >
           {item.map(val => (
-            <div
+            <View
               style={styles.scrollViewItem}
               key={val.id}
               onClick={() =>
@@ -271,7 +272,7 @@ class AddressAddModal extends Component {
                 )
               }
             >
-              <div
+              <View
                 style={{
                   ...styles.scrollViewItemText,
                   ...(divisionObject(scrollViewKey) === val.id &&
@@ -279,7 +280,7 @@ class AddressAddModal extends Component {
                 }}
               >
                 {val.name}
-              </div>
+              </View>
               <CustomIcon
                 style={{
                   ...styles.scrollViewItemIcon,
@@ -288,9 +289,9 @@ class AddressAddModal extends Component {
                 }}
                 type="radioboxfill"
               />
-            </div>
+            </View>
           ))}
-        </div>
+        </View>
       );
     };
 
@@ -312,22 +313,22 @@ class AddressAddModal extends Component {
     } = this.props;
 
     return (
-      <div style={styles.container}>
-        {/* <div style={styles.mask} /> */}
-        <div style={styles.closeWrap}>
+      <View style={styles.container}>
+        {/* <View style={styles.mask} /> */}
+        <View style={styles.closeWrap}>
           <CustomIcon
             style={styles.close}
             type="close"
             onClick={() => this.handleOnModalClose()}
           />
-        </div>
-        <div
+        </View>
+        <View
           style={styles.nav}
           // horizontal
           // showsHorizontalScrollIndicator={false}
         >
-          <div style={styles.navMain}>
-            <div
+          <View style={styles.navMain}>
+            <View
               style={{
                 ...styles.navItem,
                 ...(addressIndex === 0 && styles.navActive),
@@ -335,9 +336,9 @@ class AddressAddModal extends Component {
               onClick={() => this.setState({ addressIndex: 0 })}
             >
               {division2ndName || 'Tỉnh/Thành'}
-            </div>
+            </View>
             {division2ndID && (
-              <div
+              <View
                 style={{
                   ...styles.navItem,
                   ...(addressIndex === 1 && styles.navActive),
@@ -345,10 +346,10 @@ class AddressAddModal extends Component {
                 onClick={() => this.setState({ addressIndex: 1 })}
               >
                 {division3rdName || 'Quận/huyện'}
-              </div>
+              </View>
             )}
             {division3rdID && (
-              <div
+              <View
                 style={{
                   ...styles.navItem,
                   ...(addressIndex === 2 && styles.navActive),
@@ -356,17 +357,17 @@ class AddressAddModal extends Component {
                 onClick={() => this.setState({ addressIndex: 2 })}
               >
                 {division4thName || 'Phường, xã'}
-              </div>
+              </View>
             )}
-          </div>
-        </div>
-        <div style={styles.scrollViewWrap}>
+          </View>
+        </View>
+        <View style={styles.scrollViewWrap}>
           {[division2ndItems, division3rdItems, division4thItems].map(
             (val, key) => renderScrollView(val, key),
           )}
           {loading && <Loader absolutePosition />}
-        </div>
-      </div>
+        </View>
+      </View>
     );
   }
 
@@ -393,10 +394,10 @@ class AddressAddModal extends Component {
   //       visible
   //       onRequestClose={this.handleOnModalClose}
   //     >
-  //       <div style={{ flex: 1 }}>
-  //         <div style={styles.mask} />
+  //       <View style={{ flex: 1 }}>
+  //         <View style={styles.mask} />
   //         {this.renderContent()}
-  //       </div>
+  //       </View>
   //     </Modal>
   //   );
   // }

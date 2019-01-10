@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal } from 'antd-mobile';
-import { i18n } from '@src/API';
+import { i18n, View } from '@src/API';
 import router from 'umi/lib/router';
 import { connect } from 'react-redux';
 import qs from 'qs';
@@ -283,32 +283,32 @@ class Index extends React.Component {
     };
 
     return (
-      <div style={styles.container}>
-        <div style={styles.separated}>
-          <div style={styles.separatedLine} />
-          <div style={styles.separatedText}>{i18n.orSignInWith}</div>
-          <div style={styles.separatedLine} />
-        </div>
-        <div style={styles.main}>
-          <div
+      <View style={styles.container}>
+        <View style={styles.separated}>
+          <View style={styles.separatedLine} />
+          <View style={styles.separatedText}>{i18n.orSignInWith}</View>
+          <View style={styles.separatedLine} />
+        </View>
+        <View style={styles.main}>
+          <View
             style={{ ...styles.item, ...styles.itemFacebook }}
             onClick={() => this.handleOnPressOtherLogin(SOCIALBIND_FACEBOOK)}
           >
             <CustomIcon type="facebook-fill" style={styles.itemIcon} />
             {/* <AntDesign name="facebook-square" style={styles.itemIcon} /> */}
-            <div style={styles.itemText}>{i18n.facebook}</div>
-          </div>
-          <div style={styles.mainSeparated} />
-          <div
+            <View style={styles.itemText}>{i18n.facebook}</View>
+          </View>
+          <View style={styles.mainSeparated} />
+          <View
             style={{ ...styles.item, ...styles.itemGoogle }}
             onClick={() => this.handleOnPressOtherLogin(SOCIALBIND_GOOGLE)}
           >
             <CustomIcon type="google-square-fill" style={styles.itemIcon} />
             {/* <AntDesign name="googleplus" style={styles.itemIcon} /> */}
-            <div style={styles.itemText}>{i18n.google}</div>
-          </div>
-        </div>
-      </div>
+            <View style={styles.itemText}>{i18n.google}</View>
+          </View>
+        </View>
+      </View>
     );
   }
 
@@ -325,7 +325,7 @@ class Index extends React.Component {
     };
 
     return (
-      <div style={styles.container}>
+      <View style={styles.container}>
         <BYHeader title={i18n.login} />
 
         {(loginLoading || isLoadFBSDK === false) && <Loader />}
@@ -343,9 +343,9 @@ class Index extends React.Component {
             )
           }
         />
-        <div style={{ flex: 1 }} />
+        <View style={{ flex: 1 }} />
         {this.renderOtherLogin()}
-      </div>
+      </View>
     );
   }
 }

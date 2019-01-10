@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { i18n } from '@src/API';
+import { i18n, View } from '@src/API';
 import { Modal } from 'antd-mobile';
 import router from 'umi/lib/router';
 import qs from 'qs';
@@ -69,9 +69,9 @@ class Index extends PureComponent {
     };
 
     return (
-      <div style={stylesX.container}>
-        <div style={stylesX.title}>{i18n.cart}</div>
-      </div>
+      <View style={stylesX.container}>
+        <View style={stylesX.title}>{i18n.cart}</View>
+      </View>
     );
   };
 
@@ -105,11 +105,11 @@ class Index extends PureComponent {
     };
 
     return (
-      <div style={stylesX.headerRight} onClick={() => onPressHandle()}>
-        <div style={stylesX.headerRightText}>
+      <View style={stylesX.headerRight} onClick={() => onPressHandle()}>
+        <View style={stylesX.headerRightText}>
           {isEdit ? i18n.save : i18n.edit}
-        </div>
-      </div>
+        </View>
+      </View>
     );
   };
 
@@ -294,16 +294,16 @@ class Index extends PureComponent {
 
     const isEmptyCart = cart.items.length === 0;
     return (
-      <div style={styles.container}>
+      <View style={styles.container}>
         <BYHeader
           headerTitle={this.renderHeaderTitle()}
           headerRight={!isEmptyCart && this.renderHeaderRight()}
           showBackButton={false}
         />
         {!isEmptyCart && (
-          <div style={styles.main}>
+          <View style={styles.main}>
             {!isEmptyCart && (
-              <div>
+              <View>
                 <CartItem
                   data={cart}
                   styleItem={{
@@ -318,18 +318,18 @@ class Index extends PureComponent {
                     paddingBottom: 15,
                   }}
                 />
-              </div>
+              </View>
             )}
-            {!isEmptyCart && <div style={{ flex: 1 }} />}
-          </div>
+            {!isEmptyCart && <View style={{ flex: 1 }} />}
+          </View>
         )}
         {!isEmptyCart && (
-          <div style={styles.overview}>
-            <div
+          <View style={styles.overview}>
+            <View
               style={styles.overviewSelectAll}
               onClick={() => this.onPressSelectAllHandle()}
             >
-              <div style={styles.overviewIconWrap}>
+              <View style={styles.overviewIconWrap}>
                 {isEdit ? (
                   <CustomIcon
                     type={allSelectedDel ? 'roundcheckfill' : 'round'}
@@ -347,26 +347,26 @@ class Index extends PureComponent {
                     }}
                   />
                 )}
-              </div>
-              <div style={styles.overviewSelect}>{i18n.selectAll}</div>
-            </div>
-            <div style={styles.overviewPrice}>
+              </View>
+              <View style={styles.overviewSelect}>{i18n.selectAll}</View>
+            </View>
+            <View style={styles.overviewPrice}>
               {!isEdit && `${priceFormat(totalMoney)} ${MONETARY}`}
-            </div>
-            <div
+            </View>
+            <View
               style={styles.overviewSubmit}
               onClick={() => this.onPressSubmitHandle()}
             >
-              <div
+              <View
                 style={{
                   ...styles.overviewSubmitText,
                   ...(isEdit && styles.overviewSubmitTextDel),
                 }}
               >
                 {isEdit ? i18n.delete : i18n.buy}
-              </div>
-            </div>
-          </div>
+              </View>
+            </View>
+          </View>
         )}
         {!loading && isEmptyCart && (
           <EmptyState
@@ -375,7 +375,7 @@ class Index extends PureComponent {
             styleText={{ marginBottom: 0 }}
           />
         )}
-      </div>
+      </View>
     );
   }
 }

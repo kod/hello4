@@ -2,6 +2,7 @@ import React from 'react';
 
 import { WINDOW_WIDTH, IS_IOS, OSS_IMAGE_QUALITY } from '@src/common/constants';
 import { xOssProcess } from '@src/utils';
+import { View } from '@src/API';
 
 const styles = {
   nav1: {
@@ -38,7 +39,7 @@ export default ({
   authUser,
   ...restProps
 }) => (
-  <div
+  <View
     style={{
       ...styles.nav1,
       ...style,
@@ -46,7 +47,7 @@ export default ({
     {...restProps}
   >
     {data.map(val => (
-      <div
+      <View
         style={{
           ...styles.nav1Item,
           ...val.styleItem,
@@ -66,10 +67,10 @@ export default ({
           style={{ ...styles.nav1ItemImg, ...val.styleImg }}
           src={`${val.iconUrl}?${xOssProcess(IS_IOS, OSS_IMAGE_QUALITY)}`}
         />
-        <div style={{ ...styles.nav1ItemText, ...val.styleText }}>
+        <View style={{ ...styles.nav1ItemText, ...val.styleText }}>
           {val.name}
-        </div>
-      </div>
+        </View>
+      </View>
     ))}
-  </div>
+  </View>
 );

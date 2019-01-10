@@ -6,7 +6,7 @@ import Compressor from 'compressorjs';
 
 import BYHeader from '@src/components/BYHeader';
 import { TextareaItem, Modal, ImagePicker } from 'antd-mobile';
-import { i18n } from '@src/API';
+import { i18n, View } from '@src/API';
 import router from 'umi/lib/router';
 
 import Loader from '@src/components/Loader';
@@ -306,8 +306,8 @@ class Evalution extends React.Component {
     const { images } = this.props;
 
     return (
-      <div style={stylesX.container}>
-        <div style={stylesX.startWrap}>
+      <View style={stylesX.container}>
+        <View style={stylesX.startWrap}>
           {[0, 1, 2, 3, 4].map(val => (
             <CustomIcon
               style={
@@ -318,9 +318,9 @@ class Evalution extends React.Component {
               onClick={() => this.handleOnPressStar(val + 1)}
             />
           ))}
-        </div>
-        <div style={stylesX.mainWrap}>
-          <div style={stylesX.main}>
+        </View>
+        <View style={stylesX.mainWrap}>
+          <View style={stylesX.main}>
             <TextareaItem
               style={stylesX.textInput}
               value={textValue}
@@ -338,18 +338,18 @@ class Evalution extends React.Component {
               selectable={images.length < 4}
               multiple={multiple}
             />
-          </div>
-          <div style={stylesX.tips}>{i18n.yourCommentAnonymous}</div>
-          {/* <div style={stylesX.tips}>
+          </View>
+          <View style={stylesX.tips}>{i18n.yourCommentAnonymous}</View>
+          {/* <View style={stylesX.tips}>
             {i18n.longPressDeletePicture}
-          </div> */}
-        </div>
+          </View> */}
+        </View>
         <BYButton
           text={i18n.submit}
           styleWrap={stylesX.button}
           onClick={() => this.handleOnPressSubmit()}
         />
-      </div>
+      </View>
     );
   }
 
@@ -357,7 +357,7 @@ class Evalution extends React.Component {
     const { addEvaluationLoading, loading, authUser } = this.props;
 
     return (
-      <div style={styles.container}>
+      <View style={styles.container}>
         <BYHeader title={i18n.evaluation} />
         <MustLogin
           Modal={Modal}
@@ -367,9 +367,9 @@ class Evalution extends React.Component {
           SCREENS={SCREENS}
         />
 
-        <div>{this.renderContent()}</div>
+        <View>{this.renderContent()}</View>
         {(loading || addEvaluationLoading) && <Loader />}
-      </div>
+      </View>
     );
   }
 }

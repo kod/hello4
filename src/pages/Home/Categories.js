@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { i18n } from '@src/API';
+import { i18n, View } from '@src/API';
 
 import * as getMenuActionCreators from '@src/common/actions/getMenu';
 import BYHeader from '@src/components/BYHeader';
@@ -44,9 +44,9 @@ class Index extends PureComponent {
     };
 
     return (
-      <div style={stylesX.container}>
-        <div style={stylesX.title}>{i18n.categories}</div>
-      </div>
+      <View style={stylesX.container}>
+        <View style={stylesX.title}>{i18n.categories}</View>
+      </View>
     );
   };
 
@@ -64,14 +64,14 @@ class Index extends PureComponent {
     const { items, itemsIndex } = this.props;
 
     return (
-      <div style={stylesX.scrollViewRight}>
-        <div style={stylesX.main}>
+      <View style={stylesX.scrollViewRight}>
+        <View style={stylesX.main}>
           {items.map(
             (val, key) =>
               itemsIndex === key && this.renderScrollViewRightItem(key),
           )}
-        </div>
-      </div>
+        </View>
+      </View>
     );
   }
 
@@ -114,13 +114,13 @@ class Index extends PureComponent {
     const { itemsList, itemsClassfy } = this.props;
 
     return (
-      <div style={stylesX.rightItem} key={key}>
-        <div style={stylesX.rightItemTitle} />
-        <div style={stylesX.rightItemMain}>
+      <View style={stylesX.rightItem} key={key}>
+        <View style={stylesX.rightItemTitle} />
+        <View style={stylesX.rightItemMain}>
           {itemsList.length !== 0 &&
             itemsList[key].map(val1 =>
               val1.status === '1' ? (
-                <div
+                <View
                   style={stylesX.rightItemSubItem}
                   key={val1.image}
                   onClick={() => {
@@ -138,17 +138,17 @@ class Index extends PureComponent {
                       OSS_IMAGE_QUALITY,
                     )}`}
                   />
-                  <div style={stylesX.rightItemSubItemText}>{val1.name}</div>
-                </div>
+                  <View style={stylesX.rightItemSubItemText}>{val1.name}</View>
+                </View>
               ) : null,
             )}
-        </div>
-        <div style={stylesX.rightItemTitle}>{i18n.brand}</div>
-        <div style={stylesX.rightItemMain}>
+        </View>
+        <View style={stylesX.rightItemTitle}>{i18n.brand}</View>
+        <View style={stylesX.rightItemMain}>
           {itemsClassfy.length !== 0 &&
             itemsClassfy[key].map(val1 =>
               val1.status === '1' ? (
-                <div
+                <View
                   style={stylesX.rightItemSubItem}
                   key={val1.imageUrl}
                   onClick={() => {
@@ -166,12 +166,12 @@ class Index extends PureComponent {
                       OSS_IMAGE_QUALITY,
                     )}`}
                   />
-                  <div style={stylesX.rightItemSubItemText}>{val1.name}</div>
-                </div>
+                  <View style={stylesX.rightItemSubItemText}>{val1.name}</View>
+                </View>
               ) : null,
             )}
-        </div>
-      </div>
+        </View>
+      </View>
     );
   }
 
@@ -223,11 +223,11 @@ class Index extends PureComponent {
     const { items, getMenuIndexFetch, itemsIndex } = this.props;
 
     return (
-      <div style={stylesX.content}>
-        <div style={stylesX.scrollViewLeft}>
-          <div style={stylesX.main}>
+      <View style={stylesX.content}>
+        <View style={stylesX.scrollViewLeft}>
+          <View style={stylesX.main}>
             {items.map((val, key) => (
-              <div
+              <View
                 style={stylesX.item}
                 key={val.image}
                 onClick={() => getMenuIndexFetch(key)}
@@ -238,27 +238,27 @@ class Index extends PureComponent {
                   src={`${val.image}?${xOssProcess(IS_IOS, OSS_IMAGE_QUALITY)}`}
                 />
 
-                <div style={stylesX.itemText}>{val.name}</div>
+                <View style={stylesX.itemText}>{val.name}</View>
 
-                {itemsIndex === key && <div style={stylesX.itemActive} />}
-              </div>
+                {itemsIndex === key && <View style={stylesX.itemActive} />}
+              </View>
             ))}
-          </div>
-        </div>
+          </View>
+        </View>
         {this.renderScrollViewRight()}
-      </div>
+      </View>
     );
   }
 
   render() {
     return (
-      <div>
+      <View>
         <BYHeader
           headerTitle={this.renderHeaderTitle()}
           showBackButton={false}
         />
         {this.renderContent()}
-      </div>
+      </View>
     );
   }
 }

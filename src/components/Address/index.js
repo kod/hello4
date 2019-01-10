@@ -1,5 +1,5 @@
 import React from 'react';
-import { i18n } from '@src/API';
+import { i18n, View } from '@src/API';
 
 import { SIDEINTERVAL } from '@src/common/constants';
 import { addressJoin } from '@src/utils';
@@ -58,21 +58,23 @@ const styles = {
 };
 
 export default ({ addressSelectedItem, onPress, ...restProps }) => (
-  <div style={styles.address} onPress={onPress} {...restProps}>
+  <View style={styles.address} onPress={onPress} {...restProps}>
     {addressSelectedItem.id > 0 ? (
-      <div style={styles.addressLeft}>
-        <div style={styles.addressTop}>
-          <div style={styles.addressName}>{addressSelectedItem.username}</div>
-          <div style={styles.addressPhone}>{addressSelectedItem.msisdn}</div>
-        </div>
-        <div style={styles.addressText}>{addressJoin(addressSelectedItem)}</div>
-      </div>
+      <View style={styles.addressLeft}>
+        <View style={styles.addressTop}>
+          <View style={styles.addressName}>{addressSelectedItem.username}</View>
+          <View style={styles.addressPhone}>{addressSelectedItem.msisdn}</View>
+        </View>
+        <View style={styles.addressText}>
+          {addressJoin(addressSelectedItem)}
+        </View>
+      </View>
     ) : (
-      <div style={styles.addressTips}>{i18n.pleaseSelectShippingAddress}</div>
+      <View style={styles.addressTips}>{i18n.pleaseSelectShippingAddress}</View>
     )}
-    <div style={styles.addressRight}>
+    <View style={styles.addressRight}>
       <CustomIcon type="location" style={styles.addressPin} />
       {onPress && <CustomIcon type="right" style={styles.addressForward} />}
-    </div>
-  </div>
+    </View>
+  </View>
 );

@@ -3,6 +3,7 @@ import React from 'react';
 
 import { SIDEINTERVAL } from '@src/common/constants';
 import CustomIcon from '@src/components/CustomIcon';
+import { View, Text } from '@src/API';
 
 const styles = {
   component: {
@@ -42,15 +43,15 @@ const styles = {
 };
 
 export default ({ title, isMore, textMore, ...restProps }) => (
-  <div {...restProps}>
-    <div style={styles.component}>
-      <span style={styles.componentText}>{title}</span>
+  <View {...restProps}>
+    <View style={styles.component}>
+      <Text style={styles.componentText}>{title}</Text>
       {isMore && (
-        <div style={styles.componentMore}>
-          <span style={styles.componentMoreText}>{textMore}</span>
+        <View style={styles.componentMore}>
+          <Text style={styles.componentMoreText}>{textMore}</Text>
           <CustomIcon type="right" style={styles.componentMoreIcon} />
-        </div>
+        </View>
       )}
-    </div>
-  </div>
+    </View>
+  </View>
 );

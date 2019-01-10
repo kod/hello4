@@ -12,6 +12,7 @@ import { RED_COLOR } from '@src/styles/variables';
 import priceFormat from '@src/utils/priceFormat';
 import router from 'umi/lib/router';
 import { xOssProcess } from '@src/utils';
+import { View } from '@src/API';
 
 const itemIntervalWidth = SIDEINTERVAL;
 const itemWidth = parseInt(
@@ -69,20 +70,20 @@ const styles = {
 };
 
 export default ({ data, style, ...restProps }) => (
-  <div
+  <View
     // horizontal
     // showsHorizontalScrollIndicator={false}
     style={{ ...styles.itemWrap, ...style }}
     {...restProps}
   >
-    <div
+    <View
       style={{
         ...styles.itemMain,
         width: `${105 * data.length}px`,
       }}
     >
       {data.map((val, key) => (
-        <div
+        <View
           style={styles.item}
           key={key}
           onClick={() => {
@@ -95,12 +96,12 @@ export default ({ data, style, ...restProps }) => (
             src={`${val.imageUrl}?${xOssProcess(IS_IOS, OSS_IMAGE_QUALITY)}`}
           />
 
-          <div style={styles.itemText}>{val.name}</div>
-          <div style={styles.itemPrice}>
+          <View style={styles.itemText}>{val.name}</View>
+          <View style={styles.itemPrice}>
             {`${priceFormat(val.price)} ${MONETARY}`}
-          </div>
-        </div>
+          </View>
+        </View>
       ))}
-    </div>
-  </div>
+    </View>
+  </View>
 );

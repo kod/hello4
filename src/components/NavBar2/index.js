@@ -3,6 +3,7 @@ import React from 'react';
 import { BORDER_COLOR_FIRST } from '@src/styles/variables';
 import { SIDEINTERVAL } from '@src/common/constants';
 import CustomIcon from '@src/components/CustomIcon';
+import { View } from '@src/API';
 
 const styles = {
   component: {
@@ -55,23 +56,25 @@ export default ({
   isShowBorderBottom = false,
   ...restProps
 }) => (
-  <div style={{ ...styles.component, ...style }} {...restProps}>
-    <div
+  <View style={{ ...styles.component, ...style }} {...restProps}>
+    <View
       style={{
         ...styles.componentMain,
         ...(isShowBorderBottom && styles.componentBorderBottom),
       }}
     >
       {isShowLeft && (
-        <div style={{ ...styles.componentLeft, ...styleLeft }}>{valueLeft}</div>
+        <View style={{ ...styles.componentLeft, ...styleLeft }}>
+          {valueLeft}
+        </View>
       )}
       {isShowMiddle &&
         (componentMiddle ? (
           { componentMiddle }
         ) : (
-          <div style={{ ...styles.componentMiddle, ...styleMiddle }}>
+          <View style={{ ...styles.componentMiddle, ...styleMiddle }}>
             {valueMiddle}
-          </div>
+          </View>
         ))}
       {isShowRight &&
         (componentRight || (
@@ -80,6 +83,6 @@ export default ({
             style={{ ...styles.componentRight, ...styleRight }}
           />
         ))}
-    </div>
-  </div>
+    </View>
+  </View>
 );

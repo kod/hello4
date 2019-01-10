@@ -2,6 +2,7 @@ import React from 'react';
 
 import { PRIMARY_COLOR } from '@src/styles/variables';
 import { SIDEINTERVAL } from '@src/common/constants';
+import { View } from '@src/API';
 
 const styles = {
   componentWrap: {
@@ -24,9 +25,9 @@ const styles = {
 };
 
 export default ({ data, styleWrap, style, styleText, text, ...restProps }) => (
-  <div style={{ ...styles.componentWrap, ...styleWrap }}>
-    <div style={{ ...styles.component, ...style }} {...restProps}>
-      <div style={{ ...styles.componentText, ...styleText }}>{text}</div>
-    </div>
-  </div>
+  <View style={{ ...styles.componentWrap, ...styleWrap }}>
+    <View style={{ ...styles.component, ...style }} {...restProps}>
+      <View style={{ ...styles.componentText, ...styleText }}>{text}</View>
+    </View>
+  </View>
 );

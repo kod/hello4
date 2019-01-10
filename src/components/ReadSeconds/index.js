@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { i18n } from '@src/API';
+import { i18n, View } from '@src/API';
 
 import * as otpActionCreators from '@src/common/actions/otp';
 
@@ -81,15 +81,15 @@ class ReadSeconds extends React.PureComponent {
     const { ...restProps } = this.props;
 
     return (
-      <div style={styles.second}>
-        <div
+      <View style={styles.second}>
+        <View
           style={styles.secondText}
           onClick={() => this.handleOnPressSeconds()}
           {...restProps}
         >
           {ing ? seconds : i18n.sendCode}
-        </div>
-      </div>
+        </View>
+      </View>
     );
   }
 }

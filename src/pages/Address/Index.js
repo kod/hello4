@@ -3,7 +3,7 @@ import React from 'react';
 import qs from 'qs';
 import { connect } from 'react-redux';
 import BYHeader from '@src/components/BYHeader';
-import { i18n } from '@src/API';
+import { i18n, View } from '@src/API';
 
 import Loader from '@src/components/Loader';
 import router from 'umi/lib/router';
@@ -173,7 +173,7 @@ class Address extends React.Component {
     console.log(isSelect);
 
     return (
-      <div style={styles.container}>
+      <View style={styles.container}>
         {loaded === true && items.length === 0 ? (
           <EmptyState
             source={afiasifsdhfsPng}
@@ -181,23 +181,23 @@ class Address extends React.Component {
             style={{ height: WINDOW_HEIGHT - 45 - 50 }}
           />
         ) : (
-          <div style={styles.containerMain}>
+          <View style={styles.containerMain}>
             {loading && !refreshing && <Loader />}
             {items.map((val, key) => (
-              <div
+              <View
                 style={styles.item}
                 key={key}
                 onClick={() => this.handleOnPressItem(val)}
               >
-                <div style={styles.main}>
-                  <div style={styles.namePhone}>
-                    <div style={styles.name}>{val.username}</div>
-                    <div style={styles.phone}>{val.msisdn}</div>
-                  </div>
-                  <div style={styles.address}>{this.editAddress(val)}</div>
+                <View style={styles.main}>
+                  <View style={styles.namePhone}>
+                    <View style={styles.name}>{val.username}</View>
+                    <View style={styles.phone}>{val.msisdn}</View>
+                  </View>
+                  <View style={styles.address}>{this.editAddress(val)}</View>
                   {!isSelect && (
-                    <div style={styles.operate}>
-                      <div
+                    <View style={styles.operate}>
+                      <View
                         style={styles.operateLeft}
                         onClick={() => this.handleOnPressAddressDefault(val)}
                       >
@@ -208,16 +208,16 @@ class Address extends React.Component {
                             ...(val.isdefault === 'Y' && styles.selected),
                           }}
                         />
-                        <div
+                        <View
                           style={{
                             ...styles.selectText,
                             ...(val.isdefault === 'Y' && styles.selected),
                           }}
                         >
                           {i18n.defaultAddress}
-                        </div>
-                      </div>
-                      <div style={styles.operateRight}>
+                        </View>
+                      </View>
+                      <View style={styles.operateRight}>
                         <CustomIcon
                           style={styles.editIcon}
                           type="edit_light"
@@ -258,21 +258,21 @@ class Address extends React.Component {
                           style={styles.trashIcon}
                           onClick={() => this.handleOnPressAddressDel(val.id)}
                         />
-                      </div>
-                    </div>
+                      </View>
+                    </View>
                   )}
-                </div>
-              </div>
+                </View>
+              </View>
             ))}
-          </div>
+          </View>
         )}
-        <div
+        <View
           style={styles.add}
           onClick={() => router.push(`/${SCREENS.AddressAdd}`)}
         >
           {i18n.addAddress}
-        </div>
-      </div>
+        </View>
+      </View>
     );
   }
 
@@ -288,7 +288,7 @@ class Address extends React.Component {
       },
     };
     return (
-      <div style={styles.container}>
+      <View style={styles.container}>
         <BYHeader />
         <MustLogin
           Modal={Modal}
@@ -299,7 +299,7 @@ class Address extends React.Component {
         />
 
         {this.renderMainContent()}
-      </div>
+      </View>
     );
   }
 }
