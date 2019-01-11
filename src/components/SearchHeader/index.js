@@ -1,5 +1,5 @@
 import React from 'react';
-import { i18n, Text, View } from '@src/API';
+import { i18n, Text, View, BYTouchable } from '@src/API';
 
 import CustomIcon from '@src/components/CustomIcon';
 import { STATUSBAR_HEIGHT } from '@src/common/constants';
@@ -36,7 +36,7 @@ export default ({
       paddingTop: STATUSBAR_HEIGHT,
     }}
   >
-    <View className={styles.headerMiddle} onClick={middleOnPress}>
+    <BYTouchable className={styles.headerMiddle} onPress={middleOnPress}>
       <View className={styles.headerMiddleMain}>
         <CustomIcon
           name="search"
@@ -45,7 +45,7 @@ export default ({
         />
         <Text className={styles.headerMiddleText}>{text}</Text>
       </View>
-    </View>
+    </BYTouchable>
     {headerRight ? { headerRight } : headerRightItem(isLogin, rightOnPress)}
   </View>
 );
