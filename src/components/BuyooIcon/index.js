@@ -1,7 +1,8 @@
 import React from 'react';
+import classNames from 'classnames';
 import styles from './index.less';
 
-const CustomIcon = ({ children, ...restProps }) => {
+const CustomIcon = ({ children, className, ...restProps }) => {
   let innerNode;
 
   const svgBaseProps = {
@@ -17,8 +18,9 @@ const CustomIcon = ({ children, ...restProps }) => {
     };
     innerNode = <svg {...innerSvgProps}>{children}</svg>;
   }
+
   return (
-    <i {...restProps} className={styles.action}>
+    <i {...restProps} className={classNames(styles.action, className)}>
       {innerNode}
     </i>
   );
