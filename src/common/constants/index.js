@@ -1,3 +1,5 @@
+export * from './index.browser';
+
 export const DEBUG = true;
 export const API_DEBUG = DEBUG;
 export const IS_SHOW_LOG = DEBUG;
@@ -70,13 +72,6 @@ export const THIRDCLASSFYID_REGEX = /thirdClassfyId=(\d+)/;
 export const SHAREID_REGEX = /userID=([A-Z0-9]+)/;
 export const PRIVATE_URL_REGEX = /(.*)\?/;
 export const INVITATION_CODE_REGEX = /₫ ([A-Z0-9]+) ₫/; // 邀请码
-
-export const WINDOW_WIDTH = document.documentElement.clientWidth;
-export const WINDOW_HEIGHT = document.documentElement.clientHeight;
-export const SIDEINTERVAL = WINDOW_WIDTH * 0.04;
-
-export const APPBAR_HEIGHT = 0;
-export const STATUSBAR_HEIGHT = 0;
 
 export const FIRST_PAYMENT_RATE = [0, 0.1, 0.2, 0.3, 0.4, 0.5]; // 首付比例
 export const REPAYMENT_MONTH = [3, 6, 9, 12]; // 分期数
