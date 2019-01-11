@@ -294,7 +294,11 @@ class Index extends React.Component {
             style={{ ...styles.item, ...styles.itemFacebook }}
             onClick={() => this.handleOnPressOtherLogin(SOCIALBIND_FACEBOOK)}
           >
-            <CustomIcon type="facebook-fill" style={styles.itemIcon} />
+            <CustomIcon
+              name="facebook-fill"
+              type="facebook-fill"
+              style={styles.itemIcon}
+            />
             {/* <AntDesign name="facebook-square" style={styles.itemIcon} /> */}
             <View style={styles.itemText}>{i18n.facebook}</View>
           </View>
@@ -303,7 +307,11 @@ class Index extends React.Component {
             style={{ ...styles.item, ...styles.itemGoogle }}
             onClick={() => this.handleOnPressOtherLogin(SOCIALBIND_GOOGLE)}
           >
-            <CustomIcon type="google-square-fill" style={styles.itemIcon} />
+            <CustomIcon
+              name="google-square-fill"
+              type="google-square-fill"
+              style={styles.itemIcon}
+            />
             {/* <AntDesign name="googleplus" style={styles.itemIcon} /> */}
             <View style={styles.itemText}>{i18n.google}</View>
           </View>

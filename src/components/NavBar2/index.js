@@ -79,6 +79,7 @@ export default ({
       {isShowRight &&
         (componentRight || (
           <CustomIcon
+            name="right"
             type="right"
             style={{ ...styles.componentRight, ...styleRight }}
           />

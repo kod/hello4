@@ -126,9 +126,13 @@ class CartItem extends React.Component {
     return (
       <View style={stylesX.container} onClick={() => onPressHandle()}>
         {selected ? (
-          <CustomIcon type="roundcheckfill" style={stylesX.iconSelected} />
+          <CustomIcon
+            name="roundcheckfill"
+            type="roundcheckfill"
+            style={stylesX.iconSelected}
+          />
         ) : (
-          <CustomIcon type="round" style={stylesX.icon} />
+          <CustomIcon name="round" type="round" style={stylesX.icon} />
         )}
       </View>
     );
@@ -219,6 +223,7 @@ class CartItem extends React.Component {
             onClick={() => onChangeTextHandle(parseInt(quantity, 10) - 1, id)}
           >
             <CustomIcon
+              name="minus"
               type="minus"
               style={{
                 ...stylesX.removeIcon,
@@ -239,6 +244,7 @@ class CartItem extends React.Component {
             onClick={() => onChangeTextHandle(parseInt(quantity, 10) + 1, id)}
           >
             <CustomIcon
+              name="plus"
               type="plus"
               style={{
                 ...stylesX.addIcon,

@@ -310,10 +310,11 @@ class Evalution extends React.Component {
         <View style={stylesX.startWrap}>
           {[0, 1, 2, 3, 4].map(val => (
             <CustomIcon
+              name="star-fill"
+              type="star-fill"
               style={
                 starNumber > val ? stylesX.starIconActive : stylesX.starIcon
               }
-              type="star-fill"
               key={val}
               onClick={() => this.handleOnPressStar(val + 1)}
             />

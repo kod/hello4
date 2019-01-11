@@ -49,7 +49,11 @@ export default ({ title, isMore, textMore, ...restProps }) => (
       {isMore && (
         <View style={styles.componentMore}>
           <Text style={styles.componentMoreText}>{textMore}</Text>
-          <CustomIcon type="right" style={styles.componentMoreIcon} />
+          <CustomIcon
+            name="right"
+            type="right"
+            style={styles.componentMoreIcon}
+          />
         </View>
       )}
     </View>

@@ -174,7 +174,7 @@ class Index extends React.Component {
     };
     return (
       <View style={styles.container}>
-        <CustomIcon type="gengduo" style={styles.icon} />
+        <CustomIcon name="gengduo" type="gengduo" style={styles.icon} />
       </View>
     );
   };
@@ -232,13 +232,13 @@ class Index extends React.Component {
             }, 300);
           }}
         >
-          <CustomIcon type="left" style={styles.backIcon} />
+          <CustomIcon name="left" type="left" style={styles.backIcon} />
         </View>
         {/* <View
           style={styles.headerRight}
           onClick={() => this.handleOnModalOperation()}
         >
-          <CustomIcon type="gengduo" style={styles.backIcon} />
+          <CustomIcon name="gengduo" type="gengduo" style={styles.backIcon} />
         </View> */}
       </View>
     );
@@ -317,12 +317,13 @@ class Index extends React.Component {
             }, 300);
           }}
         >
-          <CustomIcon type="left" style={styles.navHeaderIcon} />
+          <CustomIcon name="left" type="left" style={styles.navHeaderIcon} />
         </View>
         <ul style={styles.navHeaderWrap} data-gumshoe onClick={() => {}}>
           <li style={styles.navHeaderItem}>
             <p style={styles.navHeaderText} data-scroll href="#navproduct">
               {/* <CustomIcon
+                name="location"
                 type="location"
                 style={styles.navHeaderLocationIcon}
               /> */}
@@ -332,6 +333,7 @@ class Index extends React.Component {
           <li style={styles.navHeaderItem}>
             <p style={styles.navHeaderText} data-scroll href="#navcomment">
               {/* <CustomIcon
+                name="location"
                 type="location"
                 style={styles.navHeaderLocationIcon}
               /> */}
@@ -345,6 +347,7 @@ class Index extends React.Component {
               href="#productDescription"
             >
               {/* <CustomIcon
+                name="location"
                 type="location"
                 style={styles.navHeaderLocationIcon}
               /> */}
@@ -354,6 +357,7 @@ class Index extends React.Component {
           <li style={styles.navHeaderItem}>
             <p style={styles.navHeaderText} data-scroll href="#navparameters">
               {/* <CustomIcon
+                name="location"
                 type="location"
                 style={styles.navHeaderLocationIcon}
               /> */}
@@ -365,7 +369,7 @@ class Index extends React.Component {
           style={styles.navHeaderRight}
           onClick={() => this.handleOnModalOperation()}
         >
-          {/* <CustomIcon type="gengduo" style={styles.navHeaderIcon} /> */}
+          {/* <CustomIcon name="gengduo" type="gengduo" style={styles.navHeaderIcon} /> */}
         </View>
       </View>
     );
@@ -465,16 +469,18 @@ class Index extends React.Component {
           >
             {/* {isCollection ? (
               <CustomIcon
+                name="heart-fill"
                 type="heart-fill"
                 style={{
                   ...styles.favoriteItem,
                 }}
               />
             ) : (
-              <CustomIcon type="iconmessages" style={styles.favoriteItem} />
+              <CustomIcon name="iconmessages" type="iconmessages" style={styles.favoriteItem} />
             )} */}
             <View style={styles.operateIconItemSeparate} />
             <CustomIcon
+              name="iconmessages"
               type="iconmessages"
               style={styles.operateIconItemIcon}
             />
@@ -491,7 +497,11 @@ class Index extends React.Component {
             style={styles.operateIconItem}
             onClick={() => this.handleOnPressAddCart()}
           >
-            <CustomIcon type="iconcart" style={styles.operateIconItemIcon} />
+            <CustomIcon
+              name="iconcart"
+              type="iconcart"
+              style={styles.operateIconItemIcon}
+            />
 
             <View style={styles.operateIconItemText}>{i18n.addToCart}</View>
           </View>

@@ -68,7 +68,11 @@ export default ({
         onClick={() => val.func()}
       >
         {!!val.iconName && (
-          <CustomIcon style={styles.cellItem1Icon} name={val.iconName} />
+          <CustomIcon
+            name={val.iconName}
+            type={val.iconName}
+            style={styles.cellItem1Icon}
+          />
         )}
         {!!val.iconImg && (
           <img
@@ -81,7 +85,7 @@ export default ({
           {val.name}
         </View>
         <View style={styles.cellItem1Middle}>{val.tips}</View>
-        <CustomIcon type="right" style={styles.cellItem1Right} />
+        <CustomIcon name="right" type="right" style={styles.cellItem1Right} />
       </View>
     ))}
   </View>

@@ -124,6 +124,7 @@ class BYHeader extends React.PureComponent {
         <View style={styles.subContainer}>
           {showBackButton ? (
             <CustomIcon
+              name="Back"
               type="Back"
               style={{
                 ...styles.headerBack,

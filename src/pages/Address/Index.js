@@ -202,6 +202,7 @@ class Address extends React.Component {
                         onClick={() => this.handleOnPressAddressDefault(val)}
                       >
                         <CustomIcon
+                          name="radioboxfill"
                           type="radioboxfill"
                           style={{
                             ...styles.selectIcon,
@@ -219,8 +220,9 @@ class Address extends React.Component {
                       </View>
                       <View style={styles.operateRight}>
                         <CustomIcon
-                          style={styles.editIcon}
+                          name="edit_light"
                           type="edit_light"
+                          style={styles.editIcon}
                           onClick={
                             () =>
                               router.push(
@@ -254,6 +256,7 @@ class Address extends React.Component {
                           }
                         />
                         <CustomIcon
+                          name="delete_light"
                           type="delete_light"
                           style={styles.trashIcon}
                           onClick={() => this.handleOnPressAddressDel(val.id)}

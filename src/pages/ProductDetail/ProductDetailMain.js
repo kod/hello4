@@ -447,6 +447,7 @@ class ProductDetailMain extends React.Component {
             >
               {isCollection ? (
                 <CustomIcon
+                  name="heart-fill"
                   type="heart-fill"
                   style={{
                     ...styles.favoriteItem,
@@ -454,11 +455,16 @@ class ProductDetailMain extends React.Component {
                   }}
                 />
               ) : (
-                <CustomIcon type="heart" style={styles.favoriteItem} />
+                <CustomIcon
+                  name="heart"
+                  type="heart"
+                  style={styles.favoriteItem}
+                />
               )}
             </View>
             <View style={styles.share} onClick={() => this.handlePressShare()}>
               <CustomIcon
+                name="ScreenShopping_icon2"
                 type="ScreenShopping_icon2"
                 style={styles.shareIcon}
               />
@@ -469,13 +475,18 @@ class ProductDetailMain extends React.Component {
         <View style={styles.serverinfo}>
           <View style={styles.serverinfoLeft}>
             <View style={styles.serverinfoLeftSeparate} />
-            <CustomIcon style={styles.serverinfoToBePaid} type="returns" />
+            <CustomIcon
+              name="returns"
+              type="returns"
+              style={styles.serverinfoToBePaid}
+            />
             <View style={styles.serverinfoToBePaidText}>
               {i18n.qualityAssurance}
             </View>
           </View>
           <View style={styles.serverinfoRight}>
             <CustomIcon
+              name={styles.serverinfotoReceiveGoods}
               style={styles.serverinfotoReceiveGoods}
               type="toReceiveGoods"
             />
@@ -510,7 +521,7 @@ class ProductDetailMain extends React.Component {
               )
               .join('  ')}
           </View>
-          <CustomIcon style={styles.specArrow} type="right" />
+          <CustomIcon name="right" type="right" style={styles.specArrow} />
         </View>
       </View>
     );

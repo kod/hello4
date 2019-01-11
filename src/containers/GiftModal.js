@@ -136,7 +136,7 @@ class AddressAddModal extends Component {
       <View style={styles.container}>
         <View style={styles.main}>
           <View style={styles.close} onClick={() => this.handleOnModalClose()}>
-            <CustomIcon type="close" style={styles.closeIcon} />
+            <CustomIcon name="close" type="close" style={styles.closeIcon} />
           </View>
           <View style={styles.text}>{i18n.receivedGiftCard}</View>
           <BYButton

@@ -70,7 +70,7 @@ class SearchResultList extends React.Component {
     return (
       <View style={stylesX.container}>
         <View style={stylesX.header}>
-          <CustomIcon type="search" style={stylesX.addressPin} />
+          <CustomIcon name="search" type="search" style={stylesX.addressPin} />
           <View style={stylesX.textInput} onClick={() => router.go(-1)}>
             {findcontent}
           </View>

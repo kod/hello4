@@ -279,14 +279,22 @@ class AddressAddModal extends Component {
               style={styles.operateMsg}
               onClick={() => this.handleOnPressShare(MESSENGER)}
             >
-              <CustomIcon type="messenger" style={styles.operateMsgIcon} />
+              <CustomIcon
+                name="messenger"
+                type="messenger"
+                style={styles.operateMsgIcon}
+              />
               share
             </View>
             <View
               style={styles.operateFB}
               onClick={() => this.handleOnPressShare(FACEBOOK)}
             >
-              <CustomIcon type="facebook" style={styles.operateFBIcon} />
+              <CustomIcon
+                name="facebook"
+                type="facebook"
+                style={styles.operateFBIcon}
+              />
               share
             </View>
           </View>

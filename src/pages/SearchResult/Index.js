@@ -149,6 +149,7 @@ class SearchResult extends React.Component {
             >
               <View style={styles.historyTitle}>{val}</View>
               <CustomIcon
+                name="close"
                 type="close"
                 style={styles.historyCloseIcon}
                 onClick={() => searchHistoryRemove(val)}

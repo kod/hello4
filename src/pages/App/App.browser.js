@@ -77,8 +77,10 @@ class Index extends React.Component {
           <TabBar.Item
             title={i18n.home}
             key="Home"
-            icon={<CustomIcon type="home" style={styles.icon} />}
-            selectedIcon={<CustomIcon type="home" style={styles.icon} />}
+            icon={<CustomIcon name="home" type="home" style={styles.icon} />}
+            selectedIcon={
+              <CustomIcon name="home" type="home" style={styles.icon} />
+            }
             selected={tabBarIndex === 0}
             // badge={1}
             onPress={() => {
@@ -98,8 +100,8 @@ class Index extends React.Component {
             </View>
           </TabBar.Item>
           {/* <TabBar.Item
-            icon={<CustomIcon type="classify" style={styles.icon} />}
-            selectedIcon={<CustomIcon type="classify" style={styles.icon} />}
+            icon={<CustomIcon name="classify" type="classify" style={styles.icon} />}
+            selectedIcon={<CustomIcon name="classify" type="classify" style={styles.icon} />}
             title={i18n.categories}
             key="Categories"
             // badge="new"
@@ -116,8 +118,10 @@ class Index extends React.Component {
             </View>
           </TabBar.Item> */}
           <TabBar.Item
-            icon={<CustomIcon type="cart" style={styles.icon} />}
-            selectedIcon={<CustomIcon type="cart" style={styles.icon} />}
+            icon={<CustomIcon name="cart" type="cart" style={styles.icon} />}
+            selectedIcon={
+              <CustomIcon name="cart" type="cart" style={styles.icon} />
+            }
             title={i18n.cart}
             key="Cart"
             // dot
@@ -139,8 +143,10 @@ class Index extends React.Component {
             </View>
           </TabBar.Item>
           <TabBar.Item
-            icon={<CustomIcon type="user" style={styles.icon} />}
-            selectedIcon={<CustomIcon type="user" style={styles.icon} />}
+            icon={<CustomIcon name="user" type="user" style={styles.icon} />}
+            selectedIcon={
+              <CustomIcon name="user" type="user" style={styles.icon} />
+            }
             title={i18n.me}
             key="Me"
             selected={tabBarIndex === 3}

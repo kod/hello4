@@ -73,8 +73,10 @@ export default ({ addressSelectedItem, onPress, ...restProps }) => (
       <View style={styles.addressTips}>{i18n.pleaseSelectShippingAddress}</View>
     )}
     <View style={styles.addressRight}>
-      <CustomIcon type="location" style={styles.addressPin} />
-      {onPress && <CustomIcon type="right" style={styles.addressForward} />}
+      <CustomIcon name="location" type="location" style={styles.addressPin} />
+      {onPress && (
+        <CustomIcon name="right" type="right" style={styles.addressForward} />
+      )}
     </View>
   </View>
 );

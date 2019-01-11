@@ -282,12 +282,13 @@ class AddressAddModal extends Component {
                 {val.name}
               </View>
               <CustomIcon
+                name="radioboxfill"
+                type="radioboxfill"
                 style={{
                   ...styles.scrollViewItemIcon,
                   ...(divisionObject(scrollViewKey) === val.id &&
                     styles.scrollViewActive),
                 }}
-                type="radioboxfill"
               />
             </View>
           ))}
@@ -317,8 +318,9 @@ class AddressAddModal extends Component {
         {/* <View style={styles.mask} /> */}
         <View style={styles.closeWrap}>
           <CustomIcon
-            style={styles.close}
+            name="close"
             type="close"
+            style={styles.close}
             onClick={() => this.handleOnModalClose()}
           />
         </View>

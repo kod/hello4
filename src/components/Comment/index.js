@@ -98,6 +98,7 @@ export default ({ data, styleWrap, style, ...restProps }) => (
             <View style={styles.componentStar}>
               {[0, 1, 2, 3, 4].map(val1 => (
                 <CustomIcon
+                  name="star-fill"
                   type="star-fill"
                   key={val1}
                   style={

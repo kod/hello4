@@ -172,7 +172,7 @@ class Withdraw extends React.Component {
       <View style={styles.container}>
         <View style={styles.main}>
           <View style={styles.row1}>
-            <CustomIcon type="Money" style={styles.row1Icon} />
+            <CustomIcon name="Money" type="Money" style={styles.row1Icon} />
             <View style={styles.row1Text}>{i18n.commission}</View>
           </View>
           <View style={styles.row2}>

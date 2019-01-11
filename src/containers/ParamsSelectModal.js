@@ -297,6 +297,7 @@ class ParamsSelectModal extends Component {
       <View style={styles.container}>
         <View style={styles.paramClose}>
           <CustomIcon
+            name="close"
             type="close"
             style={styles.paramCloseIcon}
             onClick={() => this.handleOnModalClose()}
@@ -332,6 +333,7 @@ class ParamsSelectModal extends Component {
               }
             >
               <CustomIcon
+                name="minus"
                 type="minus"
                 style={{
                   ...styles.paramNumberRemoveIcon,
@@ -349,6 +351,7 @@ class ParamsSelectModal extends Component {
               }
             >
               <CustomIcon
+                name="plus"
                 type="plus"
                 style={{
                   ...styles.paramNumberAddIcon,

@@ -192,6 +192,7 @@ class Index extends PureComponent {
             onClick={() => this.handleOnPressOrderNav(key + 1)}
           >
             <CustomIcon
+              name={val.iconName}
               type={val.iconName}
               style={{ ...styles.nav1ItemIcon, ...val.styleIcon }}
             />

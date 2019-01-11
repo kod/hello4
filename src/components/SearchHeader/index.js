@@ -9,6 +9,7 @@ const headerRightItem = (isLogin, rightPress) => {
   if (isLogin) {
     return (
       <CustomIcon
+        name="user1"
         type="user1"
         className={styles.headerIcon}
         onClick={rightPress}

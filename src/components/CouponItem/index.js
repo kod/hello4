@@ -119,7 +119,9 @@ export default ({ isCouponCenter = true, data, onClick, ...restProps }) => (
               <View style={styles.text1}>{val.voucherName}</View>
               <View style={styles.text2}>{val.voucherDesc}</View>
             </View>
-            {onClick && <CustomIcon type="right" style={styles.arrow} />}
+            {onClick && (
+              <CustomIcon name="right" type="right" style={styles.arrow} />
+            )}
             <View style={styles.date}>
               {`${dayjs(val.startTime).format('DD/MM/YYYY')}-${dayjs(
                 val.expireTime,
@@ -148,7 +150,9 @@ export default ({ isCouponCenter = true, data, onClick, ...restProps }) => (
               <View style={styles.text1}>{val.voucherName}</View>
               <View style={styles.text2}>{val.voucherDesc}</View>
             </View>
-            {onClick && <CustomIcon type="right" style={styles.arrow} />}
+            {onClick && (
+              <CustomIcon name="right" type="right" style={styles.arrow} />
+            )}
             <View style={styles.date}>
               {`${dayjs(val.startTime).format('DD/MM/YYYY')}-${dayjs(
                 val.expireTime,

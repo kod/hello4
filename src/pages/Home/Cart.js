@@ -332,6 +332,7 @@ class Index extends PureComponent {
               <View style={styles.overviewIconWrap}>
                 {isEdit ? (
                   <CustomIcon
+                    name={allSelectedDel ? 'roundcheckfill' : 'round'}
                     type={allSelectedDel ? 'roundcheckfill' : 'round'}
                     style={{
                       ...styles.overviewIcon,
@@ -340,6 +341,7 @@ class Index extends PureComponent {
                   />
                 ) : (
                   <CustomIcon
+                    name={allSelected ? 'roundcheckfill' : 'round'}
                     type={allSelected ? 'roundcheckfill' : 'round'}
                     style={{
                       ...styles.overviewIcon,
