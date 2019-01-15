@@ -16,7 +16,7 @@ import {
   removeEventListenerBuyoo,
   dispatchEventBuyoo,
 } from '@src/utils';
-import stylesLess from './index.less';
+import styles from './App.less';
 
 class Index extends React.Component {
   constructor(props) {
@@ -47,23 +47,6 @@ class Index extends React.Component {
   render() {
     const { hidden, tabBarIndex } = this.state;
 
-    const styles = {
-      container: {
-        position: 'relative',
-        display: 'flex',
-        flexDirection: 'column',
-        height: WINDOW_HEIGHT - 50,
-      },
-      // wrap: {
-      //   height: WINDOW_HEIGHT - 50,
-      // },
-      icon: {
-        fontSize: 16,
-        width: 22,
-        height: 22,
-      },
-    };
-
     return (
       <View>
         {/* <ModalRoot /> */}
@@ -77,9 +60,11 @@ class Index extends React.Component {
           <TabBar.Item
             title={i18n.home}
             key="Home"
-            icon={<CustomIcon name="home" type="home" style={styles.icon} />}
+            icon={
+              <CustomIcon name="home" type="home" className={styles.icon} />
+            }
             selectedIcon={
-              <CustomIcon name="home" type="home" style={styles.icon} />
+              <CustomIcon name="home" type="home" className={styles.icon} />
             }
             selected={tabBarIndex === 0}
             // badge={1}
@@ -95,13 +80,18 @@ class Index extends React.Component {
             }}
             data-seed="logId"
           >
-            <View style={styles.container} className={stylesLess.container}>
+            <View
+              style={{
+                height: WINDOW_HEIGHT - 50,
+              }}
+              className={styles.containerIos}
+            >
               <Home />
             </View>
           </TabBar.Item>
           {/* <TabBar.Item
-            icon={<CustomIcon name="classify" type="classify" style={styles.icon} />}
-            selectedIcon={<CustomIcon name="classify" type="classify" style={styles.icon} />}
+            icon={<CustomIcon name="classify" type="classify" className={styles.icon} />}
+            selectedIcon={<CustomIcon name="classify" type="classify" className={styles.icon} />}
             title={i18n.categories}
             key="Categories"
             // badge="new"
@@ -113,14 +103,16 @@ class Index extends React.Component {
             }}
             data-seed="logId1"
           >
-            <View style={styles.container} className={stylesLess.container}>
+            <View className={styles.container}>
               <Categories />
             </View>
           </TabBar.Item> */}
           <TabBar.Item
-            icon={<CustomIcon name="cart" type="cart" style={styles.icon} />}
+            icon={
+              <CustomIcon name="cart" type="cart" className={styles.icon} />
+            }
             selectedIcon={
-              <CustomIcon name="cart" type="cart" style={styles.icon} />
+              <CustomIcon name="cart" type="cart" className={styles.icon} />
             }
             title={i18n.cart}
             key="Cart"
@@ -138,14 +130,16 @@ class Index extends React.Component {
               dispatchEventBuyoo('CartShow');
             }}
           >
-            <View style={styles.container} className={stylesLess.container}>
+            <View className={styles.container}>
               <Cart />
             </View>
           </TabBar.Item>
           <TabBar.Item
-            icon={<CustomIcon name="user" type="user" style={styles.icon} />}
+            icon={
+              <CustomIcon name="user" type="user" className={styles.icon} />
+            }
             selectedIcon={
-              <CustomIcon name="user" type="user" style={styles.icon} />
+              <CustomIcon name="user" type="user" className={styles.icon} />
             }
             title={i18n.me}
             key="Me"
@@ -161,9 +155,7 @@ class Index extends React.Component {
               );
             }}
           >
-            <View style={styles.container} className={stylesLess.container}>
-              {<Me />}
-            </View>
+            <View className={styles.container}>{<Me />}</View>
           </TabBar.Item>
         </TabBar>
       </View>

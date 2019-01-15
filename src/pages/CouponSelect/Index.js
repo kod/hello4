@@ -17,15 +17,10 @@ import CouponItem from '@src/components/CouponItem';
 import MustLogin from '@src/components/MustLogin';
 import { getLoginUser } from '@src/common/selectors';
 
+import styles from './index.less';
+
 const ouhrigdfnjsoeijehrJpg =
   'https://oss.buyoo.vn/usercollect/1/20181101180309_67w.jpg';
-
-const styles = {
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-};
 
 class CouponSelect extends React.Component {
   constructor(props) {
@@ -63,7 +58,7 @@ class CouponSelect extends React.Component {
     if (loading) return <Loader />;
 
     return (
-      <View style={styles.container}>
+      <View className={styles.container}>
         <BYHeader title={i18n.chooseCoupon} />
         <MustLogin
           Modal={Modal}

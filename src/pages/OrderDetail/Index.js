@@ -13,7 +13,6 @@ import * as orderPayActionCreators from '@src/common/actions/orderPay';
 import * as getUserInfoByIdActionCreators from '@src/common/actions/getUserInfoById';
 import * as orderCancelActionCreators from '@src/common/actions/orderCancel';
 import * as modalActionCreators from '@src/common/actions/modal';
-import { RED_COLOR, PRIMARY_COLOR, BORDER_COLOR } from '@src/styles/variables';
 import {
   SIDEINTERVAL,
   WINDOW_WIDTH,
@@ -37,69 +36,10 @@ import Loader from '@src/components/Loader';
 import Address from '@src/components/Address';
 import { getAddressSelectedItem, getLoginUser } from '@src/common/selectors';
 
-const styles = {
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  main: {
-    overflowX: 'auto',
-    height: WINDOW_HEIGHT - 45 - 55,
-  },
-  totalPrice: {
-    height: 40,
-    lineHeight: '40px',
-    textAlign: 'right',
-    color: RED_COLOR,
-    fontSize: 14,
-    paddingLeft: SIDEINTERVAL,
-    paddingRight: SIDEINTERVAL,
-  },
-  title: {
-    height: 40,
-    lineHeight: '40px',
-    paddingLeft: SIDEINTERVAL,
-    color: '#333',
-  },
-  payment: {
-    display: 'flex',
-    flexDirection: 'row',
-    paddingLeft: SIDEINTERVAL,
-    flexWrap: 'wrap',
-  },
-  paymentItem: {
-    width: (WINDOW_WIDTH - SIDEINTERVAL * 4) / 3,
-    height: 40,
-    lineHeight: '40px',
-    textAlign: 'center',
-    color: '#777',
-    fontSize: 14,
-    marginRight: SIDEINTERVAL,
-    marginBottom: SIDEINTERVAL,
-    borderColor: '#eee',
-    borderWidth: 1,
-    borderStyle: 'solid',
-  },
-  paymentItemActive: {
-    color: '#fff',
-    backgroundColor: PRIMARY_COLOR,
-    borderWidth: 0,
-  },
-  alertIcon: {
-    color: RED_COLOR,
-    // backgroundColor: RED_COLOR,
-    fontSize: 16,
-  },
-  status: {
-    paddingLeft: SIDEINTERVAL,
-    paddingRight: SIDEINTERVAL,
-    paddingTop: SIDEINTERVAL,
-    paddingBottom: SIDEINTERVAL,
-    backgroundColor: '#E0E3EF',
-    color: '#666',
-    lineHeight: '24px',
-  },
-};
+import styles from './index.less';
+import navStyles from './nav.less';
+import cardStyles from './card.less';
+import orderNoStyles from './orderNo.less';
 
 class OrderDetail extends React.Component {
   constructor(props) {
@@ -283,48 +223,6 @@ class OrderDetail extends React.Component {
   }
 
   renderBottom() {
-    const stylesX = {
-      nav: {
-        display: 'flex',
-        flexDirection: 'row',
-        borderTopWidth: 1,
-        borderTopColor: BORDER_COLOR,
-        borderTopStyle: 'solid',
-      },
-      navLeft: {
-        flex: 1,
-        height: 54,
-      },
-      navLeftTop: {
-        color: RED_COLOR,
-        fontSize: 11,
-        textAlign: 'center',
-        paddingTop: 5,
-      },
-      navLeftBottom: {
-        color: RED_COLOR,
-        fontSize: 14,
-        textAlign: 'center',
-        fontWeight: '700',
-      },
-      navCancel: {
-        flex: 1,
-        height: 55,
-        lineHeight: '55px',
-        textAlign: 'center',
-        color: '#fff',
-        backgroundColor: '#ccc',
-      },
-      navRight: {
-        flex: 1,
-        height: 55,
-        lineHeight: '55px',
-        textAlign: 'center',
-        color: '#fff',
-        backgroundColor: PRIMARY_COLOR,
-      },
-    };
-
     const {
       queryOrderItem: {
         tradeStatus,
@@ -338,16 +236,16 @@ class OrderDetail extends React.Component {
     } = this.props;
 
     return (
-      <View style={stylesX.nav}>
-        <View style={stylesX.navLeft}>
-          <View style={stylesX.navLeftTop}>{i18n.subtotal}</View>
-          <View style={stylesX.navLeftBottom}>{`${priceFormat(
+      <View className={navStyles.nav}>
+        <View className={navStyles.navLeft}>
+          <View className={navStyles.navLeftTop}>{i18n.subtotal}</View>
+          <View className={navStyles.navLeftBottom}>{`${priceFormat(
             totalAmount,
           )} ${MONETARY}`}</View>
         </View>
         {tradeStatus === '10000' && (
           <View
-            style={stylesX.navCancel}
+            className={navStyles.navCancel}
             onClick={() => this.handleOnPressCancel()}
           >
             {i18n.cancelOrder}
@@ -355,7 +253,7 @@ class OrderDetail extends React.Component {
         )}
         {tradeStatus === '10000' && (
           <View
-            style={stylesX.navRight}
+            className={navStyles.navRight}
             onClick={() =>
               payWay === 5
                 ? router.push(
@@ -384,96 +282,65 @@ class OrderDetail extends React.Component {
   }
 
   renderCard() {
-    const stylesX = {
-      card: {
-        paddingLeft: SIDEINTERVAL,
-        paddingRight: SIDEINTERVAL,
-        marginBottom: 15,
-      },
-      cardMain: {
-        backgroundColor: '#f5f6f7',
-      },
-      cardItem: {
-        paddingLeft: SIDEINTERVAL,
-        paddingRight: SIDEINTERVAL,
-        paddingTop: 10,
-        paddingBottom: 5,
-      },
-      cardItemText: {
-        fontSize: 12,
-      },
-      cardItemValue: {
-        display: 'flex',
-        flexDirection: 'row',
-        marginBottom: 10,
-      },
-      cardItemNumber: {
-        flex: 1,
-        height: 25,
-        lineHeight: '25px',
-        color: '#333',
-        fontWeight: '700',
-      },
-      cardItemCopy: {
-        display: 'flex',
-        height: 25,
-        minWidth: WINDOW_WIDTH * 0.1,
-        paddingLeft: WINDOW_WIDTH * 0.03,
-        paddingRight: WINDOW_WIDTH * 0.03,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 14,
-        borderWidth: 1,
-        borderColor: '#0076F7',
-        borderStyle: 'solid',
-        marginRight: 1,
-      },
-      cardItemCopyText: {
-        color: '#0076F7',
-        fontSize: 11,
-      },
-      cardItemTime: {
-        color: '#aaa',
-        fontSize: 12,
-        marginBottom: 10,
-      },
-    };
-
     const {
       queryOrderItem: { rechargeCard },
     } = this.props;
 
     return (
-      <View style={stylesX.card}>
-        <View style={stylesX.cardMain}>
+      <View
+        style={{
+          paddingLeft: SIDEINTERVAL,
+          paddingRight: SIDEINTERVAL,
+        }}
+        className={cardStyles.card}
+      >
+        <View className={cardStyles.cardMain}>
           {rechargeCard &&
             rechargeCard.map(val => (
-              <View style={stylesX.cardItem} key={val.cardCode}>
-                <View style={stylesX.cardItemText}>{i18n.cardNum}</View>
-                <View style={stylesX.cardItemValue}>
-                  <View style={stylesX.cardItemNumber}>{val.cardCode}</View>
-                  <View style={stylesX.cardItemCopy}>
+              <View
+                style={{
+                  paddingLeft: SIDEINTERVAL,
+                  paddingRight: SIDEINTERVAL,
+                }}
+                className={cardStyles.cardItem}
+                key={val.cardCode}
+              >
+                <View className={cardStyles.cardItemText}>{i18n.cardNum}</View>
+                <View className={cardStyles.cardItemValue}>
+                  <View className={cardStyles.cardItemNumber}>
+                    {val.cardCode}
+                  </View>
+                  <View
+                    style={{
+                      minWidth: WINDOW_WIDTH * 0.1,
+                      paddingLeft: WINDOW_WIDTH * 0.03,
+                      paddingRight: WINDOW_WIDTH * 0.03,
+                    }}
+                    className={cardStyles.cardItemCopy}
+                  >
                     <View
-                      style={stylesX.cardItemCopyText}
+                      className={cardStyles.cardItemCopyText}
                       onClick={() => this.handleOnPressCopy(val.cardCode)}
                     >
                       {i18n.copy}
                     </View>
                   </View>
                 </View>
-                <View style={stylesX.cardItemText}>{i18n.password}</View>
-                <View style={stylesX.cardItemValue}>
-                  <View style={stylesX.cardItemNumber}>{val.cardPassword}</View>
-                  <View style={stylesX.cardItemCopy}>
+                <View className={cardStyles.cardItemText}>{i18n.password}</View>
+                <View className={cardStyles.cardItemValue}>
+                  <View className={cardStyles.cardItemNumber}>
+                    {val.cardPassword}
+                  </View>
+                  <View className={cardStyles.cardItemCopy}>
                     <View
-                      style={stylesX.cardItemCopyText}
+                      className={cardStyles.cardItemCopyText}
                       onClick={() => this.handleOnPressCopy(val.cardPassword)}
                     >
                       {i18n.copy}
                     </View>
                   </View>
                 </View>
-                <View style={stylesX.cardItemTime}>
+                <View className={cardStyles.cardItemTime}>
                   {`${i18n.usefulDate}: ${dayjs().format('DD-MM-YYYY')}`}
                 </View>
               </View>
@@ -487,29 +354,22 @@ class OrderDetail extends React.Component {
     const {
       queryOrderItem: { orderNo },
     } = this.props;
-    const stylesX = {
-      orderNo: {},
-      orderNoTitle: {
-        paddingLeft: SIDEINTERVAL,
-        paddingTop: 10,
-      },
-      orderNoMain: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        paddingLeft: SIDEINTERVAL,
-        paddingRight: SIDEINTERVAL,
-      },
-      orderNoLeft: {
-        height: 35,
-        lineHeight: '35px',
-      },
-    };
     return (
-      <View style={stylesX.orderNo}>
-        <View style={stylesX.orderNoTitle}>{`${i18n.orderNumber}:`}</View>
-        <View style={stylesX.orderNoMain}>
-          <View style={stylesX.orderNoLeft}>{orderNo}</View>
+      <View className={orderNoStyles.orderNo}>
+        <View
+          style={{
+            paddingLeft: SIDEINTERVAL,
+          }}
+          className={orderNoStyles.orderNoTitle}
+        >{`${i18n.orderNumber}:`}</View>
+        <View
+          style={{
+            paddingLeft: SIDEINTERVAL,
+            paddingRight: SIDEINTERVAL,
+          }}
+          className={orderNoStyles.orderNoMain}
+        >
+          <View className={orderNoStyles.orderNoLeft}>{orderNo}</View>
           {/* <SmallButton
             text={i18n.copy}
             onClick={() => this.handleOnPressCopy(orderNo)}
@@ -555,32 +415,28 @@ class OrderDetail extends React.Component {
 
     if (getUserInfoByIdLoading) return <Loader />;
 
-    const stylesX = {
-      status: {
-        paddingLeft: SIDEINTERVAL,
-        paddingRight: SIDEINTERVAL,
-        paddingTop: SIDEINTERVAL,
-        paddingBottom: SIDEINTERVAL,
-        backgroundColor: '#E0E3EF',
-      },
-      statusText: {
-        color: '#333',
-        marginBottom: 5,
-      },
-      statusTime: {
-        color: '#666',
-      },
-    };
-
     return (
-      <View style={styles.container}>
-        <View style={styles.main}>
-          <View style={stylesX.status}>
-            <View style={stylesX.statusText}>
+      <View className={styles.container}>
+        <View
+          style={{
+            height: WINDOW_HEIGHT - 45 - 55,
+          }}
+          className={styles.main}
+        >
+          <View
+            style={{
+              paddingLeft: SIDEINTERVAL,
+              paddingRight: SIDEINTERVAL,
+              paddingTop: SIDEINTERVAL,
+              paddingBottom: SIDEINTERVAL,
+            }}
+            className={styles.status}
+          >
+            <View className={styles.statusText}>
               {tradeStatusCodes(tradeStatus)}
             </View>
             {parseInt(tradeStatus, 10) === 10000 && (
-              <View style={stylesX.statusTime}>
+              <View className={styles.statusTime}>
                 {this.makeRemainTimeText(timeoutExpress)}
               </View>
             )}
@@ -595,7 +451,13 @@ class OrderDetail extends React.Component {
             isShowNumber
             isPress={sourceOrderType !== 3}
           />
-          <View style={styles.totalPrice}>
+          <View
+            style={{
+              paddingLeft: SIDEINTERVAL,
+              paddingRight: SIDEINTERVAL,
+            }}
+            className={styles.totalPrice}
+          >
             {`${priceFormat(totalAmount + couponValue)} ${MONETARY}`}
           </View>
           <SeparateBar />
@@ -629,7 +491,7 @@ class OrderDetail extends React.Component {
   render() {
     const { authUser } = this.props;
     return (
-      <View style={styles.container}>
+      <View className={styles.container}>
         <BYHeader
           title={i18n.details}
           // onPressBackButton={() => this.handleOnPressBack()}

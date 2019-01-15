@@ -38,8 +38,9 @@ import {
   LOCALSTORAGE_INVITE,
 } from '@src/common/constants';
 import priceFormat from '@src/utils/priceFormat';
-import { BORDER_COLOR, RED_COLOR, PRIMARY_COLOR } from '@src/styles/variables';
 import MustLogin from '@src/components/MustLogin';
+
+import styles from './index.less';
 
 class OrderWrite extends React.Component {
   constructor(props) {
@@ -359,44 +360,49 @@ class OrderWrite extends React.Component {
   }
 
   renderBottom() {
-    const stylesX = {
-      nav: {
-        display: 'flex',
-        flexDirection: 'row',
-        borderTopWidth: 1,
-        borderTopColor: BORDER_COLOR,
-        borderTopStyle: 'solid',
-      },
-      navLeft: {
-        flex: 2,
-      },
-      navLeftBottom: {
-        color: RED_COLOR,
-        fontSize: 18,
-        paddingLeft: SIDEINTERVAL,
-        fontWeight: '700',
-        height: 50,
-        lineHeight: '50px',
-      },
-      navRight: {
-        flex: 1,
-        height: 50,
-        lineHeight: '50px',
-        textAlign: 'center',
-        color: '#fff',
-        backgroundColor: PRIMARY_COLOR,
-      },
-    };
+    // const stylesX = {
+    //   nav: {
+    //     display: 'flex',
+    //     flex-direction: row,
+    //     border-top-width: 1,
+    //     border-top-color: BORDER_COLOR,
+    //     border-top-style: 'solid',
+    //   },
+    //   navLeft: {
+    //     flex: 2,
+    //   },
+    //   navLeftBottom: {
+    //     color: RED_COLOR,
+    //     font-size: 18,
+    //     padding-left: SIDEINTERVAL,
+    //     font-weight: 700,
+    //     height: 50,
+    //     line-height: '50px',
+    //   },
+    //   navRight: {
+    //     flex: 1,
+    //     height: 50,
+    //     line-height: '50px',
+    //     text-align: center,
+    //     color: #fff,
+    //     background-color: PRIMARY_COLOR,
+    //   },
+    // };
 
     return (
-      <View style={stylesX.nav}>
-        <View style={stylesX.navLeft}>
-          <View style={stylesX.navLeftBottom}>
+      <View className={styles.nav}>
+        <View className={styles.navLeft}>
+          <View
+            style={{
+              paddingLeft: SIDEINTERVAL,
+            }}
+            className={styles.navLeftBottom}
+          >
             {`${this.calcMoney()} ${MONETARY}`}
           </View>
         </View>
         <View
-          style={stylesX.navRight}
+          className={styles.navRight}
           onClick={() => this.handleOnPressSubmit()}
         >
           {i18n.submitOrder}
@@ -436,27 +442,20 @@ class OrderWrite extends React.Component {
           },
         ];
 
-    const styles = {
-      container: {
-        display: 'flex',
-        flexDirection: 'column',
-        height: WINDOW_HEIGHT - 45,
-      },
-      main: {
-        flex: 1,
-        overflowX: 'auto',
-      },
-    };
-
     if (addressLoaded === false || getUserInfoByIdLoaded === false)
       return <Loader />;
 
     return (
-      <View style={styles.container}>
+      <View
+        style={{
+          height: WINDOW_HEIGHT - 45,
+        }}
+        className={styles.container}
+      >
         {(getUserInfoByIdLoading || orderCreateLoading || orderpayLoading) && (
           <Loader />
         )}
-        <View style={styles.main}>
+        <View className={styles.main}>
           <Address
             addressSelectedItem={addressSelectedItem}
             onClick={() => this.handleOnPressAddress()}
@@ -488,15 +487,8 @@ class OrderWrite extends React.Component {
 
   render() {
     const { authUser } = this.props;
-    const styles = {
-      container: {
-        flex: 1,
-        position: 'relative',
-        backgroundColor: '#fff',
-      },
-    };
     return (
-      <View style={styles.container}>
+      <View className={styles.containerRender}>
         <BYHeader title={i18n.fillOrder} />
         <MustLogin
           Modal={Modal}

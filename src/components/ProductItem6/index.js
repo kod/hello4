@@ -6,27 +6,16 @@ import SeparateBar from '@src/components/SeparateBar';
 import { xOssProcess, analyzeUrlNavigate } from '@src/utils';
 import { View } from '@src/API';
 
-const styles = {
-  itemWrap: {},
-  itemMain: {},
-  item: {},
-  itemImg: {
-    width: WINDOW_WIDTH,
-  },
-};
-
 export default ({ data, style, ...restProps }) => (
-  <View style={{ ...styles.itemWrap, ...style }} {...restProps}>
-    <View
-      style={{
-        ...styles.itemMain,
-      }}
-    >
+  <View style={style} {...restProps}>
+    <View>
       {data.map((val, key) => (
-        <View style={styles.item} key={key}>
+        <View key={key}>
           <img
             alt=""
-            style={styles.itemImg}
+            style={{
+              width: WINDOW_WIDTH,
+            }}
             onClick={() => {
               if (val.top.actionUrl) {
                 analyzeUrlNavigate({ linkUrl: val.top.actionUrl });

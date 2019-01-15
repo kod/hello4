@@ -8,11 +8,12 @@ import {
   OSS_IMAGE_QUALITY,
   // OSS_IMAGE_QUALITY,
 } from '@src/common/constants';
-import { RED_COLOR } from '@src/styles/variables';
 import priceFormat from '@src/utils/priceFormat';
 import router from 'umi/lib/router';
 import { xOssProcess } from '@src/utils';
 import { View } from '@src/API';
+
+import styles from './index.less';
 
 const itemIntervalWidth = SIDEINTERVAL;
 const itemWidth = parseInt(
@@ -20,71 +21,28 @@ const itemWidth = parseInt(
   10,
 );
 
-const styles = {
-  itemWrap: {
-    overflowX: 'auto',
-    height: 'auto',
-    paddingLeft: SIDEINTERVAL,
-    marginBottom: 5,
-  },
-  itemMain: {
-    display: 'flex',
-    flexDirection: 'row',
-  },
-  item: {
-    width: itemWidth,
-    marginRight: SIDEINTERVAL,
-    paddingTop: 4,
-    backgroundColor: '#fff',
-    // borderColor: BORDER_COLOR,
-    // borderWidth: 1,
-    marginBottom: itemIntervalWidth,
-  },
-  itemImg: {
-    width: itemWidth,
-    height: itemWidth,
-    marginBottom: 5,
-  },
-  itemText: {
-    color: '#666',
-    fontSize: 10,
-    lineHeight: `${10 * 1.5}px`,
-    marginBottom: 3,
-  },
-  itemOrgPrice: {
-    color: '#999',
-    fontSize: 11,
-    // paddingLeft: paddingInerval,
-    // paddingRight: paddingInerval,
-    textDecorationLine: 'line-through',
-    textDecorationStyle: 'solid',
-  },
-  itemPrice: {
-    color: RED_COLOR,
-    fontSize: 10,
-    // paddingLeft: paddingInerval,
-    // paddingRight: paddingInerval,
-    fontWeight: '700',
-    // marginBottom: 15,
-  },
-};
-
 export default ({ data, style, ...restProps }) => (
   <View
     // horizontal
     // showsHorizontalScrollIndicator={false}
-    style={{ ...styles.itemWrap, ...style }}
+    style={{ paddingLeft: SIDEINTERVAL, ...style }}
+    className={styles.itemWrap}
     {...restProps}
   >
     <View
       style={{
-        ...styles.itemMain,
         width: `${105 * data.length}px`,
       }}
+      className={styles.itemMain}
     >
       {data.map((val, key) => (
         <View
-          style={styles.item}
+          style={{
+            width: itemWidth,
+            marginRight: SIDEINTERVAL,
+            marginBottom: itemIntervalWidth,
+          }}
+          className={styles.item}
           key={key}
           onClick={() => {
             router.push(`/ProductDetail?brandId=${val.brandId}`);
@@ -92,12 +50,16 @@ export default ({ data, style, ...restProps }) => (
         >
           <img
             alt=""
-            style={styles.itemImg}
+            style={{
+              width: itemWidth,
+              height: itemWidth,
+            }}
+            className={styles.itemImg}
             src={`${val.imageUrl}?${xOssProcess(IS_IOS, OSS_IMAGE_QUALITY)}`}
           />
 
-          <View style={styles.itemText}>{val.name}</View>
-          <View style={styles.itemPrice}>
+          <View className={styles.itemText}>{val.name}</View>
+          <View className={styles.itemPrice}>
             {`${priceFormat(val.price)} ${MONETARY}`}
           </View>
         </View>

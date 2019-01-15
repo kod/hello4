@@ -6,25 +6,7 @@ import * as otpActionCreators from '@src/common/actions/otp';
 
 import { WINDOW_WIDTH, VERIFICATION_CODE_SECONDS } from '@src/common/constants';
 
-const styles = {
-  second: {
-    display: 'flex',
-    height: 20,
-    minWidth: WINDOW_WIDTH * 0.1,
-    paddingLeft: WINDOW_WIDTH * 0.02,
-    paddingRight: WINDOW_WIDTH * 0.02,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 14,
-    borderWidth: 1,
-    borderColor: '#0076F7',
-    marginRight: 1,
-  },
-  secondText: {
-    color: '#0076F7',
-    fontSize: 11,
-  },
-};
+import styles from './index.less';
 
 class ReadSeconds extends React.PureComponent {
   constructor(props) {
@@ -81,9 +63,16 @@ class ReadSeconds extends React.PureComponent {
     const { ...restProps } = this.props;
 
     return (
-      <View style={styles.second}>
+      <View
+        style={{
+          minWidth: WINDOW_WIDTH * 0.1,
+          paddingLeft: WINDOW_WIDTH * 0.02,
+          paddingRight: WINDOW_WIDTH * 0.02,
+        }}
+        className={styles.second}
+      >
         <View
-          style={styles.secondText}
+          className={styles.secondText}
           onClick={() => this.handleOnPressSeconds()}
           {...restProps}
         >

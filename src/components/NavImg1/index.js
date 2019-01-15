@@ -4,32 +4,7 @@ import { WINDOW_WIDTH, IS_IOS, OSS_IMAGE_QUALITY } from '@src/common/constants';
 import { xOssProcess } from '@src/utils';
 import { View } from '@src/API';
 
-const styles = {
-  nav1: {
-    display: 'flex',
-    flexDirection: 'row',
-    backgroundColor: '#fff',
-    flexWrap: 'wrap',
-  },
-  nav1Item: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    width: WINDOW_WIDTH / 5,
-    paddingTop: 10,
-    paddingBottom: 10,
-  },
-  nav1ItemImg: {
-    height: 30,
-    width: 30,
-    marginBottom: 5,
-  },
-  nav1ItemText: {
-    fontSize: 10,
-    color: '#666',
-    textAlign: 'center',
-  },
-};
+import styles from './index.less';
 
 export default ({
   data,
@@ -39,24 +14,15 @@ export default ({
   authUser,
   ...restProps
 }) => (
-  <View
-    style={{
-      ...styles.nav1,
-      ...style,
-    }}
-    {...restProps}
-  >
+  <View style={style} className={styles.nav1} {...restProps}>
     {data.map(val => (
       <View
         style={{
-          ...styles.nav1Item,
           ...val.styleItem,
-          ...{
-            width:
-              WINDOW_WIDTH /
-              (data.length > 5 ? data.length * 0.5 : data.length),
-          },
+          width:
+            WINDOW_WIDTH / (data.length > 5 ? data.length * 0.5 : data.length),
         }}
+        className={styles.nav1Item}
         key={val.id}
         onClick={() => {
           onClick({ linkUrl: val.linkUrl, navigation, authUser });
@@ -64,10 +30,11 @@ export default ({
       >
         <img
           alt=""
-          style={{ ...styles.nav1ItemImg, ...val.styleImg }}
+          style={val.styleImg}
+          className={styles.nav1ItemImg}
           src={`${val.iconUrl}?${xOssProcess(IS_IOS, OSS_IMAGE_QUALITY)}`}
         />
-        <View style={{ ...styles.nav1ItemText, ...val.styleText }}>
+        <View style={val.styleText} className={styles.nav1ItemText}>
           {val.name}
         </View>
       </View>

@@ -4,19 +4,6 @@ import Icon from './index';
 
 const customCache = new Set();
 
-// class Iconfont extends React.Component {
-//   displayName = 'Iconfont';
-
-//   render() {
-
-//     return (
-//       <i {...restProps} className={styles.action}>
-//         {innerNode}
-//       </i>
-//     );
-//   }
-// }
-
 const create = ({ scriptUrl }) => {
   /**
    * DOM API required.

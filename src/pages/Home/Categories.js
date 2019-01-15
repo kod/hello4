@@ -13,8 +13,8 @@ import {
   OSS_IMAGE_QUALITY,
   IS_IOS,
 } from '@src/common/constants';
-import { BORDER_COLOR, PRIMARY_COLOR } from '@src/styles/variables';
 import { xOssProcess } from '@src/utils';
+import styles from './Categories.less';
 
 class Index extends PureComponent {
   constructor(props) {
@@ -27,45 +27,57 @@ class Index extends PureComponent {
     getMenuFetch();
   }
 
-  renderHeaderTitle = () => {
-    const stylesX = {
-      container: {
-        width: WINDOW_WIDTH,
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-      },
-      title: {
-        fontSize: 16,
-        color: '#333',
-        height: 45,
-        lineHeight: '45px',
-      },
-    };
+  renderHeaderTitle = () => (
+    // const stylesX = {
+    //   container: {
+    //     width: WINDOW_WIDTH,
+    //     display: 'flex',
+    //     flex-direction: 'column',
+    //     align-items: 'center',
+    //   },
+    //   title: {
+    //     font-size: 16,
+    //     color: '#333',
+    //     height: 45,
+    //     line-height: '45px',
+    //   },
+    // };
 
-    return (
-      <View style={stylesX.container}>
-        <View style={stylesX.title}>{i18n.categories}</View>
-      </View>
-    );
-  };
+    <View
+      style={{
+        width: WINDOW_WIDTH,
+      }}
+      className={styles.containerHeaderTitle}
+    >
+      <View className={styles.titleHeaderTitle}>{i18n.categories}</View>
+    </View>
+  );
 
   renderScrollViewRight() {
-    const stylesX = {
-      scrollViewRight: {
-        width: WINDOW_WIDTH * 0.75,
-      },
-      main: {
-        paddingTop: SIDEINTERVAL,
-        paddingBottom: SIDEINTERVAL,
-      },
-    };
+    // const stylesX = {
+    //   scrollViewRight: {
+    //     width: WINDOW_WIDTH * 0.75,
+    //   },
+    //   main: {
+    //     padding-top: SIDEINTERVAL,
+    //     padding-bottom: SIDEINTERVAL,
+    //   },
+    // };
 
     const { items, itemsIndex } = this.props;
 
     return (
-      <View style={stylesX.scrollViewRight}>
-        <View style={stylesX.main}>
+      <View
+        style={{
+          width: WINDOW_WIDTH * 0.75,
+        }}
+      >
+        <View
+          style={{
+            paddingLeft: SIDEINTERVAL,
+            paddingRight: SIDEINTERVAL,
+          }}
+        >
           {items.map(
             (val, key) =>
               itemsIndex === key && this.renderScrollViewRightItem(key),
@@ -76,52 +88,27 @@ class Index extends PureComponent {
   }
 
   renderScrollViewRightItem(key) {
-    const stylesX = {
-      rightItemTitle: {
-        fontSize: 11,
-        color: '#ccc',
-        textAlign: 'center',
-        marginBottom: 15,
-      },
-      rightItemMain: {
-        display: 'flex',
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        paddingLeft: SIDEINTERVAL,
-        paddingRight: SIDEINTERVAL,
-      },
-      rightItemSubItem: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        width: (WINDOW_WIDTH * 0.74 - SIDEINTERVAL * 2) / 3,
-        minHeight: (WINDOW_WIDTH * 0.74 - SIDEINTERVAL * 2) / 3,
-        marginBottom: 25,
-      },
-      rightItemSubItemImage: {
-        resizeMode: 'contain',
-        width: (WINDOW_WIDTH * 0.75 - SIDEINTERVAL * 8) / 3,
-        height: (WINDOW_WIDTH * 0.75 - SIDEINTERVAL * 8) / 3,
-        marginBottom: 3,
-      },
-      rightItemSubItemText: {
-        textAlign: 'center',
-        fontSize: 11,
-        color: '#666',
-      },
-    };
-
     const { itemsList, itemsClassfy } = this.props;
 
     return (
-      <View style={stylesX.rightItem} key={key}>
-        <View style={stylesX.rightItemTitle} />
-        <View style={stylesX.rightItemMain}>
+      <View className={styles.rightItem} key={key}>
+        <View className={styles.rightItemTitle} />
+        <View
+          style={{
+            paddingLeft: SIDEINTERVAL,
+            paddingRight: SIDEINTERVAL,
+          }}
+          className={styles.rightItemMain}
+        >
           {itemsList.length !== 0 &&
             itemsList[key].map(val1 =>
               val1.status === '1' ? (
                 <View
-                  style={stylesX.rightItemSubItem}
+                  style={{
+                    width: (WINDOW_WIDTH * 0.74 - SIDEINTERVAL * 2) / 3,
+                    minHeight: (WINDOW_WIDTH * 0.74 - SIDEINTERVAL * 2) / 3,
+                  }}
+                  className={styles.rightItemSubItem}
                   key={val1.image}
                   onClick={() => {
                     // navigate(SCREENS.CateList, {
@@ -132,24 +119,29 @@ class Index extends PureComponent {
                 >
                   <img
                     alt=""
-                    style={stylesX.rightItemSubItemImage}
+                    style={{
+                      width: (WINDOW_WIDTH * 0.75 - SIDEINTERVAL * 8) / 3,
+                    }}
+                    className={styles.rightItemSubItemImage}
                     src={`${val1.image}?${xOssProcess(
                       IS_IOS,
                       OSS_IMAGE_QUALITY,
                     )}`}
                   />
-                  <View style={stylesX.rightItemSubItemText}>{val1.name}</View>
+                  <View className={styles.rightItemSubItemText}>
+                    {val1.name}
+                  </View>
                 </View>
               ) : null,
             )}
         </View>
-        <View style={stylesX.rightItemTitle}>{i18n.brand}</View>
-        <View style={stylesX.rightItemMain}>
+        <View className={styles.rightItemTitle}>{i18n.brand}</View>
+        <View className={styles.rightItemMain}>
           {itemsClassfy.length !== 0 &&
             itemsClassfy[key].map(val1 =>
               val1.status === '1' ? (
                 <View
-                  style={stylesX.rightItemSubItem}
+                  className={styles.rightItemSubItem}
                   key={val1.imageUrl}
                   onClick={() => {
                     // navigate(SCREENS.CateList, {
@@ -160,13 +152,18 @@ class Index extends PureComponent {
                 >
                   <img
                     alt=""
-                    style={stylesX.rightItemSubItemImage}
+                    style={{
+                      height: (WINDOW_WIDTH * 0.75 - SIDEINTERVAL * 8) / 3,
+                    }}
+                    className={styles.rightItemSubItemImage}
                     src={`${val1.imageUrl}?${xOssProcess(
                       IS_IOS,
                       OSS_IMAGE_QUALITY,
                     )}`}
                   />
-                  <View style={stylesX.rightItemSubItemText}>{val1.name}</View>
+                  <View className={styles.rightItemSubItemText}>
+                    {val1.name}
+                  </View>
                 </View>
               ) : null,
             )}
@@ -176,71 +173,82 @@ class Index extends PureComponent {
   }
 
   renderContent() {
-    const stylesX = {
-      content: {
-        display: 'flex',
-        overflowX: 'auto',
-        height: WINDOW_HEIGHT - 45 - 50,
-        flexDirection: 'row',
-        backgroundColor: '#fff',
-      },
-      scrollViewLeft: {
-        width: WINDOW_WIDTH * 0.25,
-        height: WINDOW_HEIGHT - APPBAR_HEIGHT - STATUSBAR_HEIGHT - 55,
-        borderRightColor: BORDER_COLOR,
-        borderRightWidth: 1,
-      },
-      main: {},
-      item: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        position: 'relative',
-        paddingTop: 15,
-        paddingBottom: 15,
-      },
-      itemImage: {
-        height: 30,
-        width: 30,
-        resizeMode: 'contain',
-      },
-      itemText: {
-        fontSize: 11,
-        lineHeight: `${11 * 1.618}px`,
-        color: '#333',
-        textAlign: 'center',
-      },
-      itemActive: {
-        position: 'absolute',
-        top: 0,
-        bottom: 0,
-        left: 0,
-        width: 5,
-        backgroundColor: PRIMARY_COLOR,
-      },
-    };
+    // const stylesX = {
+    //   content: {
+    //     display: 'flex',
+    //     overflow-x: 'auto',
+    //     height: WINDOW_HEIGHT - 45 - 50,
+    //     flex-direction: row,
+    //     background-color: #fff,
+    //   },
+    //   scrollViewLeft: {
+    //     width: WINDOW_WIDTH * 0.25,
+    //     height: WINDOW_HEIGHT - APPBAR_HEIGHT - STATUSBAR_HEIGHT - 55,
+    //     borderRightColor: BORDER_COLOR,
+    //     borderRightWidth: 1,
+    //   },
+    //   main: {},
+    //   item: {
+    //     display: 'flex',
+    //     flex-direction: 'column',
+    //     align-items: 'center',
+    //     position: 'relative',
+    //     padding-top: 15,
+    //     padding-bottom: 15,
+    //   },
+    //   itemImage: {
+    //     height: 30,
+    //     width: 30,
+    //     // resizeMode: 'contain',
+    //   },
+    //   itemText: {
+    //     font-size: 11,
+    //     line-height: `${11 * 1.618}px`,
+    //     color: '#333',
+    //     text-align: center,
+    //   },
+    //   itemActive: {
+    //     position: 'absolute',
+    //     top: 0,
+    //     bottom: 0,
+    //     left: 0,
+    //     width: 5,
+    //     background-color: PRIMARY_COLOR,
+    //   },
+    // };
 
     const { items, getMenuIndexFetch, itemsIndex } = this.props;
 
     return (
-      <View style={stylesX.content}>
-        <View style={stylesX.scrollViewLeft}>
-          <View style={stylesX.main}>
+      <View
+        style={{
+          height: WINDOW_HEIGHT - 45 - 50,
+        }}
+        className={styles.content}
+      >
+        <View
+          style={{
+            width: WINDOW_WIDTH * 0.25,
+            height: WINDOW_HEIGHT - APPBAR_HEIGHT - STATUSBAR_HEIGHT - 55,
+          }}
+          className={styles.scrollViewLeft}
+        >
+          <View className={styles.main}>
             {items.map((val, key) => (
               <View
-                style={stylesX.item}
+                className={styles.item}
                 key={val.image}
                 onClick={() => getMenuIndexFetch(key)}
               >
                 <img
                   alt=""
-                  style={stylesX.itemImage}
+                  className={styles.itemImage}
                   src={`${val.image}?${xOssProcess(IS_IOS, OSS_IMAGE_QUALITY)}`}
                 />
 
-                <View style={stylesX.itemText}>{val.name}</View>
+                <View className={styles.itemText}>{val.name}</View>
 
-                {itemsIndex === key && <View style={stylesX.itemActive} />}
+                {itemsIndex === key && <View className={styles.itemActive} />}
               </View>
             ))}
           </View>

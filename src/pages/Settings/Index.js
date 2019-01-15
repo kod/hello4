@@ -1,7 +1,6 @@
 /* eslint-disable arrow-body-style */
 import React from 'react';
 import { connect } from 'react-redux';
-// import { Modal } from 'antd-mobile';
 import { Modal, View } from '@src/API';
 import router from 'umi/lib/router';
 import qs from 'qs';
@@ -17,34 +16,12 @@ import {
   LOCALE_ZH_CN,
 } from '@src/common/constants';
 import NavBar1 from '@src/components/NavBar1';
-import { RED_COLOR } from '@src/styles/variables';
 import * as i18nActionCreators from '@src/common/actions/i18n';
 import * as loginActionCreators from '@src/common/actions/login';
 import { getLoginUser } from '@src/common/selectors';
 import { connectLocalization } from '@src/components/Localization';
 
-const styles = {
-  container: {
-    height: WINDOW_HEIGHT,
-    backgroundColor: '#fff',
-  },
-  main: {
-    height: WINDOW_HEIGHT - 45,
-    backgroundColor: '#fff',
-  },
-  logout: {
-    paddingRight: SIDEINTERVAL,
-    paddingLeft: SIDEINTERVAL,
-  },
-  logoutText: {
-    height: 50,
-    lineHeight: '50px',
-    textAlign: 'center',
-    backgroundColor: '#F5F5F5',
-    color: RED_COLOR,
-    fontSize: 14,
-  },
-};
+import styles from './index.less';
 
 class Settings extends React.Component {
   // componentDidMount() {
@@ -144,9 +121,19 @@ class Settings extends React.Component {
         ];
 
     return (
-      <View style={styles.container}>
+      <View
+        style={{
+          height: WINDOW_HEIGHT,
+        }}
+        className={styles.container}
+      >
         <BYHeader />
-        <View style={styles.main}>
+        <View
+          style={{
+            height: WINDOW_HEIGHT - 45,
+          }}
+          className={styles.main}
+        >
           <NavBar1
             list={navBar1List}
             style={{ marginBottom: 30 }}
@@ -154,10 +141,13 @@ class Settings extends React.Component {
           />
           {authUser && (
             <View
-              style={styles.logout}
+              style={{
+                paddingLeft: SIDEINTERVAL,
+                paddingRight: SIDEINTERVAL,
+              }}
               onClick={() => this.handleOnPressLogout()}
             >
-              <View style={styles.logoutText}>{i18n.signOut}</View>
+              <View className={styles.logoutText}>{i18n.signOut}</View>
             </View>
           )}
         </View>

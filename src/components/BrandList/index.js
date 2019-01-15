@@ -13,29 +13,10 @@ import {
 import { xOssProcess } from '@src/utils';
 import { View } from '@src/API';
 
+import styles from './index.less';
+
 const marginWidth = WINDOW_WIDTH * 0.015;
 const width = (WINDOW_WIDTH - marginWidth * 2 * 4 - marginWidth * 2) / 4;
-
-const styles = {
-  itemWrap: {
-    display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    backgroundColor: '#fff',
-    paddingLeft: marginWidth,
-    paddingRight: marginWidth,
-  },
-  touchable: {
-    height: width,
-    width,
-    marginLeft: marginWidth,
-    marginRight: marginWidth,
-  },
-  itemImg: {
-    height: width,
-    width,
-  },
-};
 
 class BrandList extends React.Component {
   componentDidMount() {
@@ -46,10 +27,24 @@ class BrandList extends React.Component {
     const { data, style, ...restProps } = this.props;
 
     return (
-      <View style={{ ...styles.itemWrap, ...style }} {...restProps}>
+      <View
+        className={styles.itemWrap}
+        style={{
+          paddingLeft: marginWidth,
+          paddingRight: marginWidth,
+
+          ...style,
+        }}
+        {...restProps}
+      >
         {data.map((val, key) => (
           <View
-            style={styles.touchable}
+            style={{
+              height: width,
+              width,
+              marginLeft: marginWidth,
+              marginRight: marginWidth,
+            }}
             key={key}
             onClick={() =>
               router.push(
@@ -62,7 +57,10 @@ class BrandList extends React.Component {
           >
             <img
               alt=""
-              style={styles.itemImg}
+              style={{
+                height: width,
+                width,
+              }}
               src={`${val.imageUrl}?${xOssProcess(IS_IOS, OSS_IMAGE_QUALITY)}`}
             />
           </View>

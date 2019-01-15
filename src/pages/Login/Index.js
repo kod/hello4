@@ -27,15 +27,13 @@ import {
   loadFbLoginApi,
   loadGoogleLoginApi,
 } from '@src/utils';
-import {
-  FONT_SIZE_FOURTH,
-  BACKGROUND_COLOR_FOURTH,
-  FONT_COLOR_FIFTH,
-} from '@src/styles/variables';
 import CustomIcon from '@src/components/CustomIcon';
 
 import * as loginActionCreators from '@src/common/actions/login';
+import classNames from 'classnames';
 import Form from './Form';
+
+import styles from './index.less';
 
 class Index extends React.Component {
   constructor(props) {
@@ -215,105 +213,66 @@ class Index extends React.Component {
   };
 
   renderOtherLogin() {
-    const styles = {
-      container: {
-        marginBottom: 30,
-      },
-      separated: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingLeft: SIDEINTERVAL,
-        paddingRight: SIDEINTERVAL,
-        marginBottom: 10,
-      },
-      separatedLine: {
-        display: 'flex',
-        flex: 1,
-        height: 1,
-        backgroundColor: BACKGROUND_COLOR_FOURTH,
-      },
-      separatedText: {
-        paddingLeft: SIDEINTERVAL / 4,
-        paddingRight: SIDEINTERVAL / 4,
-        // paddingTop: 10,
-        // paddingBottom: 10,
-      },
-      main: {
-        display: 'flex',
-        flexDirection: 'row',
-        paddingLeft: SIDEINTERVAL,
-        paddingRight: SIDEINTERVAL,
-      },
-      item: {
-        display: 'flex',
-        flex: 1,
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingLeft: SIDEINTERVAL / 2,
-        paddingTop: 8,
-        paddingBottom: 8,
-        borderRadius: 1,
-      },
-      itemIcon: {
-        fontSize: FONT_SIZE_FOURTH,
-        color: FONT_COLOR_FIFTH,
-        marginRight: SIDEINTERVAL / 2,
-      },
-      itemText: {
-        display: 'flex',
-        flex: 1,
-        textAlign: 'center',
-        fontWeight: '700',
-        color: FONT_COLOR_FIFTH,
-      },
-      mainSeparated: {
-        width: WINDOW_WIDTH * 0.02,
-      },
-      itemFacebook: {
-        backgroundColor: '#4369b0',
-      },
-      itemGoogle: {
-        backgroundColor: '#d14a3c',
-      },
-      itemLinkedin: {
-        backgroundColor: '#1275b1',
-      },
-    };
-
     return (
-      <View style={styles.container}>
-        <View style={styles.separated}>
-          <View style={styles.separatedLine} />
-          <View style={styles.separatedText}>{i18n.orSignInWith}</View>
-          <View style={styles.separatedLine} />
-        </View>
-        <View style={styles.main}>
+      <View className={styles.container}>
+        <View
+          style={{
+            paddingLeft: SIDEINTERVAL,
+            paddingRight: SIDEINTERVAL,
+          }}
+          className={styles.separated}
+        >
+          <View className={styles.separatedLine} />
           <View
-            style={{ ...styles.item, ...styles.itemFacebook }}
+            style={{
+              paddingLeft: SIDEINTERVAL / 4,
+              paddingRight: SIDEINTERVAL / 4,
+            }}
+          >
+            {i18n.orSignInWith}
+          </View>
+          <View className={styles.separatedLine} />
+        </View>
+        <View
+          style={{
+            paddingLeft: SIDEINTERVAL,
+            paddingRight: SIDEINTERVAL,
+          }}
+          className={styles.main}
+        >
+          <View
+            style={{ paddingLeft: SIDEINTERVAL / 2 }}
+            className={classNames(styles.item, styles.itemFacebook)}
             onClick={() => this.handleOnPressOtherLogin(SOCIALBIND_FACEBOOK)}
           >
             <CustomIcon
               name="facebook-fill"
               type="facebook-fill"
-              style={styles.itemIcon}
+              style={{
+                marginRight: SIDEINTERVAL / 2,
+              }}
+              className={styles.itemIcon}
             />
             {/* <AntDesign name="facebook-square" style={styles.itemIcon} /> */}
-            <View style={styles.itemText}>{i18n.facebook}</View>
+            <View className={styles.itemText}>{i18n.facebook}</View>
           </View>
-          <View style={styles.mainSeparated} />
           <View
-            style={{ ...styles.item, ...styles.itemGoogle }}
+            style={{
+              width: WINDOW_WIDTH * 0.02,
+            }}
+          />
+          <View
+            style={{ paddingLeft: SIDEINTERVAL / 2 }}
+            className={classNames(styles.item, styles.itemGoogle)}
             onClick={() => this.handleOnPressOtherLogin(SOCIALBIND_GOOGLE)}
           >
             <CustomIcon
               name="google-square-fill"
               type="google-square-fill"
-              style={styles.itemIcon}
+              className={styles.itemIcon}
             />
-            {/* <AntDesign name="googleplus" style={styles.itemIcon} /> */}
-            <View style={styles.itemText}>{i18n.google}</View>
+            {/* <AntDesign name="googleplus" className={styles.itemIcon} /> */}
+            <View className={styles.itemText}>{i18n.google}</View>
           </View>
         </View>
       </View>
@@ -323,17 +282,14 @@ class Index extends React.Component {
   render() {
     const { isLoadFBSDK } = this.state;
     const { loginLoading } = this.props;
-    const styles = {
-      container: {
-        display: 'flex',
-        flexDirection: 'column',
-        height: WINDOW_HEIGHT,
-        backgroundColor: '#fff',
-      },
-    };
 
     return (
-      <View style={styles.container}>
+      <View
+        style={{
+          height: WINDOW_HEIGHT,
+        }}
+        className={styles.container}
+      >
         <BYHeader title={i18n.login} />
 
         {(loginLoading || isLoadFBSDK === false) && <Loader />}

@@ -13,37 +13,12 @@ import {
 import { xOssProcess } from '@src/utils';
 import { View } from '@src/API';
 
-const styles = {
-  nav1: {
-    display: 'flex',
-    flexDirection: 'row',
-    backgroundColor: '#fff',
-    flexWrap: 'wrap',
-  },
-  nav1Item: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    width: WINDOW_WIDTH / 5,
-    paddingTop: 10,
-    paddingBottom: 10,
-  },
-  nav1ItemImg: {
-    width: WINDOW_WIDTH,
-    marginBottom: 10,
-  },
-  nav1ItemText: {
-    fontSize: 10,
-    color: '#666',
-    textAlign: 'center',
-  },
-};
+import styles from './index.less';
 
 export default ({ data, style, ...restProps }) => (
   <View style={{ ...styles.itemWrap, ...style }} {...restProps}>
     {data.map((val, key) => (
       <View
-        style={styles.touchable}
         key={key}
         onClick={() => {
           router.push(
@@ -55,7 +30,8 @@ export default ({ data, style, ...restProps }) => (
       >
         <img
           alt=""
-          style={{ ...styles.nav1ItemImg }}
+          style={{ width: WINDOW_WIDTH }}
+          className={styles.nav1ItemImg}
           src={`${val.imageUrl}?${xOssProcess(IS_IOS, OSS_IMAGE_QUALITY)}`}
         />
       </View>

@@ -18,51 +18,9 @@ import NavBar1 from '@src/components/NavBar1';
 import SeparateBar from '@src/components/SeparateBar';
 import { xOssProcess } from '@src/utils';
 
-const icAvatarPng = 'https://oss.buyoo.vn/usercollect/1/20181130132407_o46.png';
+import styles from './index.less';
 
-const styles = {
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  WrapContainer: {
-    height: WINDOW_HEIGHT,
-    backgroundColor: '#fff',
-  },
-  main: {
-    display: 'flex',
-    height: WINDOW_HEIGHT - 45,
-    flexDirection: 'column',
-  },
-  appMsgWrap2: {
-    paddingTop: 20,
-    paddingBottom: 20,
-  },
-  appMsgWrap: {
-    height: 80,
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  appVersion: {
-    color: '#666',
-    fontSize: 14,
-  },
-  appIcon: {
-    height: 50,
-    width: 50,
-    marginBottom: 5,
-  },
-  copyright: {
-    textAlign: 'center',
-    color: '#CCCCCC',
-    marginBottom: '9%',
-    fontSize: 12,
-  },
-};
+const icAvatarPng = 'https://oss.buyoo.vn/usercollect/1/20181130132407_o46.png';
 
 class AboutAs extends React.Component {
   componentDidMount() {
@@ -110,21 +68,33 @@ class AboutAs extends React.Component {
       // },
     ];
     return (
-      <View style={styles.WrapContainer}>
+      <View
+        style={{
+          height: WINDOW_HEIGHT,
+        }}
+        className={styles.WrapContainer}
+      >
         <BYHeader />
-        <View style={styles.main}>
-          <View style={styles.appMsgWrap2}>
-            <View style={styles.appMsgWrap}>
+        <View
+          style={{
+            height: WINDOW_HEIGHT - 45,
+          }}
+          className={styles.main}
+        >
+          <View className={styles.appMsgWrap2}>
+            <View className={styles.appMsgWrap}>
               <img
                 alt=""
-                style={styles.appIcon}
+                className={styles.appIcon}
                 src={`${icAvatarPng}?${xOssProcess(IS_IOS, OSS_IMAGE_QUALITY)}`}
               />
-              <View style={styles.appVersion}>{`${BUYOOVIP} v${VERSION}`}</View>
+              <View
+                className={styles.appVersion}
+              >{`${BUYOOVIP} v${VERSION}`}</View>
             </View>
           </View>
           <SeparateBar />
-          <View style={styles.container}>
+          <View className={styles.container}>
             <NavBar1
               list={navBar1List}
               style={{ marginBottom: 30 }}
@@ -132,7 +102,7 @@ class AboutAs extends React.Component {
             />
           </View>
           <View style={{ flex: 1 }} />
-          <View style={styles.copyright}>
+          <View className={styles.copyright}>
             &copy; {`${new Date().getFullYear()} - `}
             {i18n.copyright.replace('CompanyName', BUYOOVIP)} - {BUYOO_VN}
           </View>

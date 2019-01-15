@@ -16,6 +16,8 @@ import {
 import * as oauthRequestActionCreators from '@src/common/actions/oauthRequest';
 import Form from './Form';
 
+import styles from './index.less';
+
 class Index extends React.Component {
   constructor(props) {
     super(props);
@@ -92,14 +94,13 @@ class Index extends React.Component {
       location: { query = {} },
     } = this.props;
 
-    const styles = {
-      container: {
-        height: WINDOW_HEIGHT,
-        backgroundColor: '#fff',
-      },
-    };
     return (
-      <View style={styles.container}>
+      <View
+        style={{
+          height: WINDOW_HEIGHT,
+        }}
+        className={styles.container}
+      >
         <BYHeader title={i18n.linkEmail} />
         {(registerLoading || oauthRequestLoading) && <Loader />}
         <Form query={query} />

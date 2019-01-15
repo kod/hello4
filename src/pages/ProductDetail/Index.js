@@ -13,14 +13,7 @@ import {
   MESSAGE_URL,
   LOCALSTORAGE_INVITE,
 } from '@src/common/constants';
-import {
-  BORDER_COLOR,
-  PRIMARY_COLOR,
-  FONT_COLOR_FIFTH,
-  FONT_COLOR_SECOND,
-  FONT_COLOR_FIRST,
-  FONT_SIZE_SECOND,
-} from '@src/styles/variables';
+import classNames from 'classnames';
 
 import * as collectionActionCreators from '@src/common/actions/collection';
 import * as modalActionCreators from '@src/common/actions/modal';
@@ -32,7 +25,11 @@ import {
 } from '@src/utils';
 import { getLoginUser } from '@src/common/selectors';
 import ProductDetailMain from './ProductDetailMain';
-import stylesLess from './index.less';
+import styles from './index.less';
+import headerStyles from './header.less';
+import headerRightStyles from './headerRight.less';
+import navHeaderStyles from './navHeader.less';
+import operateStyles from './operate.less';
 
 class Index extends React.Component {
   constructor(props) {
@@ -160,71 +157,30 @@ class Index extends React.Component {
     window.location.href = linkStr;
   }
 
-  renderHeaderRight = () => {
-    const styles = {
-      container: {
+  renderHeaderRight = () => (
+    <View
+      style={{
         paddingLeft: SIDEINTERVAL / 2,
         paddingRight: SIDEINTERVAL,
-        paddingTop: 10,
-        paddingBottom: 10,
-      },
-      icon: {
-        fontSize: 16,
-      },
-    };
-    return (
-      <View style={styles.container}>
-        <CustomIcon name="gengduo" type="gengduo" style={styles.icon} />
-      </View>
-    );
-  };
+      }}
+      className={headerRightStyles.container}
+    >
+      <CustomIcon
+        name="gengduo"
+        type="gengduo"
+        className={headerRightStyles.icon}
+      />
+    </View>
+  );
 
   renderDefaultHeader() {
-    const styles = {
-      header: {
-        display: 'flex',
-        justifyContent: 'space-between',
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 99,
-        height: 50,
-      },
-      headerLeft: {
-        marginTop: 10,
-        marginLeft: 10,
-        left: SIDEINTERVAL / 2,
-        backgroundColor: 'rgba(0,0,0,.4)',
-        height: 30,
-        width: 30,
-        borderRadius: 15,
-      },
-      headerRight: {
-        marginTop: 10,
-        marginRight: 10,
-        left: SIDEINTERVAL / 2,
-        backgroundColor: 'rgba(0,0,0,.4)',
-        height: 30,
-        width: 30,
-        borderRadius: 15,
-      },
-      backIcon: {
-        height: '20px',
-        width: '20px',
-        marginTop: '5px',
-        marginBottom: '5px',
-        marginLeft: '5px',
-        marginRight: '5px',
-        fontSize: 20,
-        color: FONT_COLOR_FIFTH,
-      },
-    };
-
     return (
-      <View style={styles.header}>
+      <View className={headerStyles.header}>
         <View
-          style={styles.headerLeft}
+          style={{
+            left: SIDEINTERVAL / 2,
+          }}
+          className={headerStyles.headerLeft}
           onClick={() => {
             router.go(-1);
             this.setTimeoutId = setTimeout(() => {
@@ -232,13 +188,20 @@ class Index extends React.Component {
             }, 300);
           }}
         >
-          <CustomIcon name="left" type="left" style={styles.backIcon} />
+          <CustomIcon
+            name="left"
+            type="left"
+            className={headerStyles.backIcon}
+          />
         </View>
         {/* <View
-          style={styles.headerRight}
+          style={{
+            left: SIDEINTERVAL / 2,
+          }}
+          className={headerStyles.headerRight}
           onClick={() => this.handleOnModalOperation()}
         >
-          <CustomIcon name="gengduo" type="gengduo" style={styles.backIcon} />
+          <CustomIcon name="gengduo" type="gengduo" className={headerStyles.backIcon} />
         </View> */}
       </View>
     );
@@ -246,70 +209,19 @@ class Index extends React.Component {
 
   renderNavHeader() {
     const { isShowNavHeader } = this.state;
-    const styles = {
-      navHeader: {
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 99,
-        height: isShowNavHeader ? 45 : 0,
-        overflow: isShowNavHeader ? 'auto' : 'hidden',
-        backgroundColor: '#fff',
-        borderBottomColor: BORDER_COLOR,
-        borderBottomWidth: 1,
-        borderBottomStyle: 'solid',
-      },
-      navHeaderWrap: {
-        display: 'flex',
-        flex: 1,
-        padding: 0,
-      },
-      navHeaderItem: {
-        display: 'flex',
-        flex: 1,
-        listStyle: 'none',
-      },
-      navHeaderText: {
-        flex: 1,
-        textAlign: 'center',
-        color: FONT_COLOR_FIRST,
-        fontSize: FONT_SIZE_SECOND,
-      },
-      navHeaderLeft: {
-        // paddingRight: SIDEINTERVAL,
-      },
-      navHeaderIcon: {
-        color: FONT_COLOR_SECOND,
-        width: WINDOW_WIDTH * 0.12,
-        height: 45,
-        lineHeight: '45px',
-        fontSize: 20,
-      },
-      navHeaderRight: {
-        height: 45,
-        width: 45,
-        // paddingLeft: SIDEINTERVAL,
-      },
-      navHeaderLocationIcon: {
-        display: 'none',
-        marginRight: SIDEINTERVAL * 0.1,
-        fontSize: 12,
-      },
-      navHeaderSpan: {
-        display: 'inline-block',
-        height: 45,
-        lineHeight: '45px',
-      },
-    };
 
     return (
-      <View data-gumshoe-header data-scroll-header style={styles.navHeader}>
+      <View
+        data-gumshoe-header
+        data-scroll-header
+        style={{
+          height: isShowNavHeader ? 45 : 0,
+          overflow: isShowNavHeader ? 'auto' : 'hidden',
+        }}
+        className={navHeaderStyles.navHeader}
+      >
         <View
-          style={styles.navHeaderLeft}
+          className={navHeaderStyles.navHeaderLeft}
           onClick={() => {
             router.go(-1);
             this.setTimeoutId = setTimeout(() => {
@@ -317,59 +229,102 @@ class Index extends React.Component {
             }, 300);
           }}
         >
-          <CustomIcon name="left" type="left" style={styles.navHeaderIcon} />
+          <CustomIcon
+            name="left"
+            type="left"
+            style={{
+              width: WINDOW_WIDTH * 0.12,
+            }}
+            className={navHeaderStyles.navHeaderIcon}
+          />
         </View>
-        <ul style={styles.navHeaderWrap} data-gumshoe onClick={() => {}}>
-          <li style={styles.navHeaderItem}>
-            <p style={styles.navHeaderText} data-scroll href="#navproduct">
-              {/* <CustomIcon
-                name="location"
-                type="location"
-                style={styles.navHeaderLocationIcon}
-              /> */}
-              <Text style={styles.navHeaderSpan}>{i18n.overview}</Text>
-            </p>
-          </li>
-          <li style={styles.navHeaderItem}>
-            <p style={styles.navHeaderText} data-scroll href="#navcomment">
-              {/* <CustomIcon
-                name="location"
-                type="location"
-                style={styles.navHeaderLocationIcon}
-              /> */}
-              <Text style={styles.navHeaderSpan}>{i18n.evaluation}</Text>
-            </p>
-          </li>
-          <li style={styles.navHeaderItem}>
+        <ul
+          className={navHeaderStyles.navHeaderWrap}
+          data-gumshoe
+          onClick={() => {}}
+        >
+          <li className={navHeaderStyles.navHeaderItem}>
             <p
-              style={styles.navHeaderText}
+              className={navHeaderStyles.navHeaderText}
+              data-scroll
+              href="#navproduct"
+            >
+              {/* <CustomIcon
+                name="location"
+                type="location"
+                style={{
+                  margin-right: SIDEINTERVAL * 0.1
+                }}
+                className={navHeaderStyles.navHeaderLocationIcon}
+              /> */}
+              <Text className={navHeaderStyles.navHeaderSpan}>
+                {i18n.overview}
+              </Text>
+            </p>
+          </li>
+          <li className={navHeaderStyles.navHeaderItem}>
+            <p
+              className={navHeaderStyles.navHeaderText}
+              data-scroll
+              href="#navcomment"
+            >
+              {/* <CustomIcon
+                name="location"
+                type="location"
+                style={{
+                  margin-right: SIDEINTERVAL * 0.1
+                }}
+                className={navHeaderStyles.navHeaderLocationIcon}
+              /> */}
+              <Text className={navHeaderStyles.navHeaderSpan}>
+                {i18n.evaluation}
+              </Text>
+            </p>
+          </li>
+          <li className={navHeaderStyles.navHeaderItem}>
+            <p
+              className={navHeaderStyles.navHeaderText}
               data-scroll
               href="#productDescription"
             >
               {/* <CustomIcon
                 name="location"
                 type="location"
-                style={styles.navHeaderLocationIcon}
+                style={{
+                  margin-right: SIDEINTERVAL * 0.1
+                }}
+                className={navHeaderStyles.navHeaderLocationIcon}
               /> */}
-              <Text style={styles.navHeaderSpan}>{i18n.details}</Text>
+              <Text className={navHeaderStyles.navHeaderSpan}>
+                {i18n.details}
+              </Text>
             </p>
           </li>
-          <li style={styles.navHeaderItem}>
-            <p style={styles.navHeaderText} data-scroll href="#navparameters">
+          <li className={navHeaderStyles.navHeaderItem}>
+            <p
+              className={navHeaderStyles.navHeaderText}
+              data-scroll
+              href="#navparameters"
+            >
               {/* <CustomIcon
                 name="location"
                 type="location"
-                style={styles.navHeaderLocationIcon}
+                style={{
+                  margin-right: SIDEINTERVAL * 0.1
+                }}
+                className={navHeaderStyles.navHeaderLocationIcon}
               /> */}
-              <Text style={styles.navHeaderSpan}>{i18n.parameter}</Text>
+              <Text className={navHeaderStyles.navHeaderSpan}>
+                {i18n.parameter}
+              </Text>
             </p>
           </li>
         </ul>
         <View
-          style={styles.navHeaderRight}
+          className={navHeaderStyles.navHeaderRight}
           onClick={() => this.handleOnModalOperation()}
         >
-          {/* <CustomIcon name="gengduo" type="gengduo" style={styles.navHeaderIcon} /> */}
+          {/* <CustomIcon name="gengduo" type="gengduo" style={navHeaderStyles.navHeaderIcon} /> */}
         </View>
       </View>
     );
@@ -378,92 +333,16 @@ class Index extends React.Component {
   renderOperate() {
     const { numbers } = this.props;
 
-    const styles = {
-      operate: {
-        position: 'fixed',
-        bottom: 0,
-        left: 0,
-        right: 0,
-        zIndex: 99,
-        height: 50,
-        display: 'flex',
-        flexDirection: 'row',
-        borderTopColor: BORDER_COLOR,
-        borderTopWidth: 1,
-        borderTopStyle: 'solid',
-      },
-      operateIcon: {
-        display: 'flex',
-        width: (WINDOW_WIDTH * 12) / 24,
-        backgroundColor: '#fff',
-        flexDirection: 'row',
-      },
-      operateIconItem: {
-        position: 'relative',
-        display: 'flex',
-        flexDirection: 'column',
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-      },
-      operateIconItemSeparate: {
-        position: 'absolute',
-        right: 0,
-        top: 10,
-        bottom: 10,
-        width: 1,
-        backgroundColor: BORDER_COLOR,
-      },
-      operateIconItemIcon: {
-        fontSize: 21,
-      },
-      operateIconItemActive: {
-        color: PRIMARY_COLOR,
-      },
-      // favoriteItem: {
-      //   fontSize: 21,
-      // },
-      // favoriteIconActive: {
-      //   color: PRIMARY_COLOR,
-      // },
-      operateIconItemText: {
-        fontSize: 10,
-        lineHeight: 1,
-        paddingTop: 2,
-        textAlign: 'center',
-      },
-      operateLeft: {
-        width: (WINDOW_WIDTH * 6) / 24,
-        height: 49,
-        lineHeight: `${10 * 1.618}px`,
-        textAlign: 'center',
-        fontSize: 10,
-        paddingTop: 10,
-        paddingLeft: SIDEINTERVAL,
-        paddingRight: SIDEINTERVAL,
-        color: '#fff',
-        backgroundColor: '#81bbf9',
-        flexWrap: 'wrap',
-      },
-      operateRight: {
-        width: (WINDOW_WIDTH * 12) / 24,
-        height: 49,
-        lineHeight: `${49}px`,
-        textAlign: 'center',
-        fontSize: 14,
-        color: '#fff',
-        backgroundColor: PRIMARY_COLOR,
-      },
-      disable: {
-        opacity: 0.5,
-      },
-    };
-
     return (
-      <View style={styles.operate}>
-        <View style={styles.operateIcon}>
+      <View className={operateStyles.operate}>
+        <View
+          style={{
+            width: (WINDOW_WIDTH * 12) / 24,
+          }}
+          className={operateStyles.operateIcon}
+        >
           <View
-            style={styles.operateIconItem}
+            className={operateStyles.operateIconItem}
             onClick={() => this.handleToggleService()}
             // onClick={() => this.handleToggleCollection()}
           >
@@ -472,51 +351,55 @@ class Index extends React.Component {
                 name="heart-fill"
                 type="heart-fill"
                 style={{
-                  ...styles.favoriteItem,
+                  ...operateStyles.favoriteItem,
                 }}
               />
             ) : (
-              <CustomIcon name="iconmessages" type="iconmessages" style={styles.favoriteItem} />
+              <CustomIcon name="iconmessages" type="iconmessages" style={operateStyles.favoriteItem} />
             )} */}
-            <View style={styles.operateIconItemSeparate} />
+            <View className={operateStyles.operateIconItemSeparate} />
             <CustomIcon
               name="iconmessages"
               type="iconmessages"
-              style={styles.operateIconItemIcon}
+              className={operateStyles.operateIconItemIcon}
             />
-            <View
-              style={{
-                ...styles.operateIconItemText,
-                // ...(isCollection && styles.operateIconItemActive),
-              }}
-            >
+            <View className={operateStyles.operateIconItemText}>
               {i18n.messenger}
             </View>
           </View>
           <View
-            style={styles.operateIconItem}
+            className={operateStyles.operateIconItem}
             onClick={() => this.handleOnPressAddCart()}
           >
             <CustomIcon
               name="iconcart"
               type="iconcart"
-              style={styles.operateIconItemIcon}
+              className={operateStyles.operateIconItemIcon}
             />
 
-            <View style={styles.operateIconItemText}>{i18n.addToCart}</View>
+            <View className={operateStyles.operateIconItemText}>
+              {i18n.addToCart}
+            </View>
           </View>
         </View>
         {/* <View
-          style={styles.operateLeft}
+          style={{
+              width: (WINDOW_WIDTH * 6) / 24,
+              paddingLeft: SIDEINTERVAL,
+              paddingRight: SIDEINTERVAL,
+          }}
+          className={operateStyles.operateLeft}
           onClick={() => this.handleOnPressAddCart()}
         >
           {i18n.addToCart}
         </View> */}
         <View
           style={{
-            ...styles.operateRight,
-            ...(!(numbers > 0) && styles.disable),
+            width: (WINDOW_WIDTH * 12) / 24,
           }}
+          className={classNames(styles.operateRight, {
+            [operateStyles.disable]: !(numbers > 0),
+          })}
           onClick={() => this.handleOnPressBuy()}
         >
           {numbers > 0 ? i18n.buy : i18n.soldOut}
@@ -528,23 +411,11 @@ class Index extends React.Component {
   render() {
     const { query, pathname } = this.props;
 
-    const styles = {
-      container: {
-        position: 'relative',
-        display: 'flex',
-        flexDirection: 'column',
-      },
-      main: {
-        position: 'relative',
-        paddingBottom: 50,
-      },
-    };
-
     return (
-      <View style={styles.container} className={stylesLess.container}>
+      <View className={styles.container}>
         {this.renderNavHeader()}
         {this.renderDefaultHeader()}
-        <View style={styles.main}>
+        <View className={styles.main}>
           <ProductDetailMain query={query} pathname={pathname} />
         </View>
         {this.renderOperate()}

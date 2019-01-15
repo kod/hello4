@@ -16,15 +16,10 @@ import ProductItem2 from '@src/components/ProductItem2';
 import MustLogin from '@src/components/MustLogin';
 import { getLoginUser } from '@src/common/selectors';
 
+import styles from './index.less';
+
 const ouhrigdfnjsoeijehrJpg =
   'https://oss.buyoo.vn/usercollect/1/20181101180309_67w.jpg';
-
-const styles = {
-  container: {
-    height: WINDOW_HEIGHT - 45,
-    position: 'relative',
-  },
-};
 
 class MyCollection extends React.Component {
   componentDidMount() {
@@ -36,7 +31,12 @@ class MyCollection extends React.Component {
     const { items } = this.props;
 
     return (
-      <View style={styles.container}>
+      <View
+        style={{
+          height: WINDOW_HEIGHT - 45,
+        }}
+        className={styles.container}
+      >
         <ProductItem2 data={items} />
       </View>
     );
@@ -46,7 +46,7 @@ class MyCollection extends React.Component {
     const { items, loading, authUser } = this.props;
 
     return (
-      <View style={styles.container}>
+      <View className={styles.container}>
         <BYHeader title={i18n.myCollection} />
         <MustLogin
           Modal={Modal}

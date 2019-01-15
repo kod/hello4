@@ -2,6 +2,7 @@
 import React from 'react';
 import qs from 'qs';
 import { connect } from 'react-redux';
+import classNames from 'classnames';
 import BYHeader from '@src/components/BYHeader';
 import { i18n, View } from '@src/API';
 
@@ -14,7 +15,6 @@ import * as getUserInfoByIdActionCreators from '@src/common/actions/getUserInfoB
 import * as orderCreateActionCreators from '@src/common/actions/orderCreate';
 import * as couponSelectActionCreators from '@src/common/actions/couponSelect';
 import * as modalActionCreators from '@src/common/actions/modal';
-import { PRIMARY_COLOR, BORDER_COLOR } from '@src/styles/variables';
 import {
   SIDEINTERVAL,
   WINDOW_WIDTH,
@@ -27,6 +27,8 @@ import EmptyState from '@src/components/EmptyState';
 import MustLogin from '@src/components/MustLogin';
 import { getLoginUser } from '@src/common/selectors';
 import CustomIcon from '@src/components/CustomIcon';
+
+import styles from './index.less';
 
 const afiasifsdhfsPng =
   'https://oss.buyoo.vn/usercollect/1/20181109084840_7R8.png';
@@ -84,96 +86,14 @@ class Address extends React.Component {
   renderMainContent() {
     const { items, loading, loaded, refreshing, isSelect } = this.props;
 
-    const styles = {
-      container: {
-        height: WINDOW_HEIGHT - 45,
-      },
-      containerMain: {
-        height: WINDOW_HEIGHT - 45 - 50,
-        overflowY: 'auto',
-      },
-      wrap: {},
-      add: {
-        height: 50,
-        lineHeight: '50px',
-        textAlign: 'center',
-        backgroundColor: PRIMARY_COLOR,
-        color: '#fff',
-      },
-      item: {
-        paddingLeft: SIDEINTERVAL,
-      },
-      main: {
-        marginTop: 25,
-        paddingBottom: 25,
-        borderBottomWidth: 1,
-        borderBottomColor: BORDER_COLOR,
-      },
-      namePhone: {
-        display: 'flex',
-        flexDirection: 'row',
-        marginBottom: 10,
-      },
-      name: {
-        color: '#333',
-        marginRight: 15,
-        fontWeight: '700',
-      },
-      phone: {
-        color: '#333',
-        fontWeight: '700',
-      },
-      address: {
-        color: '#999',
-        paddingRight: SIDEINTERVAL,
-        marginBottom: 20,
-        fontSize: 14,
-        lineHeight: `${14 + 14 * 0.618}px`,
-      },
-      operate: {
-        display: 'flex',
-        flexDirection: 'row',
-      },
-      operateLeft: {
-        display: 'flex',
-        flexDirection: 'row',
-        flex: 1,
-      },
-      selectIcon: {
-        fontSize: 18,
-        color: '#666',
-        marginRight: WINDOW_WIDTH * 0.02,
-        paddingTop: 1,
-      },
-      selectText: {
-        color: '#666',
-      },
-      operateRight: {
-        display: 'flex',
-        flexDirection: 'row',
-        paddingRight: SIDEINTERVAL,
-      },
-      editIcon: {
-        fontSize: 24,
-        color: '#666',
-        paddingLeft: WINDOW_WIDTH * 0.02,
-        paddingRight: WINDOW_WIDTH * 0.02,
-      },
-      trashIcon: {
-        fontSize: 24,
-        color: '#666',
-        paddingLeft: WINDOW_WIDTH * 0.02,
-        paddingRight: WINDOW_WIDTH * 0.02,
-      },
-      selected: {
-        color: PRIMARY_COLOR,
-      },
-    };
-
     console.log(isSelect);
 
     return (
-      <View style={styles.container}>
+      <View
+        style={{
+          height: WINDOW_HEIGHT - 45,
+        }}
+      >
         {loaded === true && items.length === 0 ? (
           <EmptyState
             source={afiasifsdhfsPng}
@@ -181,48 +101,72 @@ class Address extends React.Component {
             style={{ height: WINDOW_HEIGHT - 45 - 50 }}
           />
         ) : (
-          <View style={styles.containerMain}>
+          <View
+            style={{
+              height: WINDOW_HEIGHT - 45 - 50,
+            }}
+            className={styles.containerMain}
+          >
             {loading && !refreshing && <Loader />}
             {items.map((val, key) => (
               <View
-                style={styles.item}
+                style={{
+                  paddingLeft: SIDEINTERVAL,
+                }}
                 key={key}
                 onClick={() => this.handleOnPressItem(val)}
               >
-                <View style={styles.main}>
-                  <View style={styles.namePhone}>
-                    <View style={styles.name}>{val.username}</View>
-                    <View style={styles.phone}>{val.msisdn}</View>
+                <View className={styles.main}>
+                  <View className={styles.namePhone}>
+                    <View className={styles.name}>{val.username}</View>
+                    <View className={styles.phone}>{val.msisdn}</View>
                   </View>
-                  <View style={styles.address}>{this.editAddress(val)}</View>
+                  <View
+                    style={{
+                      paddingRight: SIDEINTERVAL,
+                    }}
+                    className={styles.address}
+                  >
+                    {this.editAddress(val)}
+                  </View>
                   {!isSelect && (
-                    <View style={styles.operate}>
+                    <View className={styles.operate}>
                       <View
-                        style={styles.operateLeft}
+                        className={styles.operateLeft}
                         onClick={() => this.handleOnPressAddressDefault(val)}
                       >
                         <CustomIcon
                           name="radioboxfill"
                           type="radioboxfill"
                           style={{
-                            ...styles.selectIcon,
-                            ...(val.isdefault === 'Y' && styles.selected),
+                            marginRight: WINDOW_WIDTH * 0.02,
                           }}
+                          className={classNames(styles.selectIcon, {
+                            [styles.selected]: val.isdefault === 'Y',
+                          })}
                         />
                         <View
-                          style={{
-                            ...styles.selectText,
-                            ...(val.isdefault === 'Y' && styles.selected),
-                          }}
+                          className={classNames(styles.selectText, {
+                            [styles.selected]: val.isdefault === 'Y',
+                          })}
                         >
                           {i18n.defaultAddress}
                         </View>
                       </View>
-                      <View style={styles.operateRight}>
+                      <View
+                        style={{
+                          paddingRight: SIDEINTERVAL,
+                        }}
+                        className={styles.operateRight}
+                      >
                         <CustomIcon
                           name="edit_light"
                           type="edit_light"
-                          style={styles.editIcon}
+                          style={{
+                            paddingLeft: WINDOW_WIDTH * 0.02,
+                            paddingRight: WINDOW_WIDTH * 0.02,
+                          }}
+                          className={styles.editIcon}
                           onClick={
                             () =>
                               router.push(
@@ -258,7 +202,11 @@ class Address extends React.Component {
                         <CustomIcon
                           name="delete_light"
                           type="delete_light"
-                          style={styles.trashIcon}
+                          style={{
+                            paddingLeft: WINDOW_WIDTH * 0.02,
+                            paddingRight: WINDOW_WIDTH * 0.02,
+                          }}
+                          className={styles.trashIcon}
                           onClick={() => this.handleOnPressAddressDel(val.id)}
                         />
                       </View>
@@ -270,7 +218,7 @@ class Address extends React.Component {
           </View>
         )}
         <View
-          style={styles.add}
+          className={styles.add}
           onClick={() => router.push(`/${SCREENS.AddressAdd}`)}
         >
           {i18n.addAddress}
@@ -282,16 +230,13 @@ class Address extends React.Component {
   render() {
     const { authUser } = this.props;
 
-    const styles = {
-      container: {
-        display: 'flex',
-        flexDirection: 'column',
-        height: WINDOW_HEIGHT,
-        backgroundColor: '#fff',
-      },
-    };
     return (
-      <View style={styles.container}>
+      <View
+        style={{
+          height: WINDOW_HEIGHT,
+        }}
+        className={styles.renderContainer}
+      >
         <BYHeader />
         <MustLogin
           Modal={Modal}

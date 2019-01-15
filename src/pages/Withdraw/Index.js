@@ -20,15 +20,18 @@ import {
   MONETARY,
 } from '@src/common/constants';
 
-import {
-  FONT_COLOR_FIFTH,
-  BACKGROUND_COLOR_THIRD,
-  FONT_SIZE_FIRST,
-} from '@src/styles/variables';
+import { FONT_COLOR_FIFTH } from '@src/styles/variables';
 import CustomIcon from '@src/components/CustomIcon';
 import MustLogin from '@src/components/MustLogin';
 import priceFormat from '@src/utils/priceFormat';
 import { getLoginUser } from '@src/common/selectors';
+
+import styles from './index.less';
+import backgroundStyles from './background.less';
+import cardStyles from './card.less';
+import incomeStyles from './income.less';
+import expendStyles from './expend.less';
+import contentStyles from './content.less';
 
 class Withdraw extends React.Component {
   constructor(props) {
@@ -70,131 +73,77 @@ class Withdraw extends React.Component {
     }
   }
 
-  renderBackground = () => {
-    const styles = {
-      container: {
-        position: 'absolute',
-        zIndex: -10,
-        top: 0,
-        left: 0,
-        right: 0,
+  renderBackground = () => (
+    <View
+      style={{
         width: WINDOW_WIDTH,
-        height: 190,
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center',
-        backgroundSize: 'cover',
-        backgroundImage:
-          'url(https://oss.buyoo.vn/buyoo_vip/usercollect/1/20181220102322_44H.jpg)',
-      },
-    };
-
-    return <View style={styles.container} />;
-  };
+      }}
+      className={backgroundStyles.container}
+    />
+  );
 
   renderCard() {
     const { balance, enchashmentGetList } = this.props;
-    const styles = {
-      container: {
-        position: 'absolute',
-        top: 45,
-        left: SIDEINTERVAL,
-        right: SIDEINTERVAL,
-      },
-      main: {
-        backgroundColor: BACKGROUND_COLOR_THIRD,
-        borderRadius: 5,
-        height: 153,
-        boxShadow: '1px 0 5px rgba(0,0,0,.14), 0 6px 5px rgba(0,0,0,.14)',
-      },
-      row1: {
-        display: 'flex',
-        flexDivection: 'row',
-        // justifyContent: 'center',
-        alignItems: 'center',
-        height: 60,
-        paddingLeft: SIDEINTERVAL,
-        paddingRight: SIDEINTERVAL,
-      },
-      row1Icon: {
-        fontSize: 24,
-        marginRight: SIDEINTERVAL * 0.5,
-      },
-      row1Text: {
-        fontSize: 16,
-        fontWeight: '700',
-        color: '#5E5E5E',
-      },
-      row2: {
-        display: 'flex',
-        flexDivection: 'row',
-        paddingLeft: SIDEINTERVAL,
-        paddingRight: SIDEINTERVAL,
-      },
-      row2Left: {
-        marginRight: WINDOW_WIDTH * 0.08,
-      },
-      row2LeftTitle: {
-        fontSize: FONT_SIZE_FIRST,
-        color: '#9B9B9B',
-        marginBottom: 5,
-      },
-      row2LeftPrice: {
-        fontSize: FONT_SIZE_FIRST,
-        color: '#FF424E',
-        fontWeight: '700',
-        marginBottom: 10,
-      },
-      row2LeftButton: {
-        display: 'inline-block',
-        fontSize: 10,
-        color: '#FF424E',
-        paddingTop: 3,
-        paddingBottom: 3,
-        paddingLeft: SIDEINTERVAL * 0.8,
-        paddingRight: SIDEINTERVAL * 0.8,
-        borderColor: '#FF424E',
-        borderWidth: 1,
-        borderStyle: 'solid',
-        borderRadius: 3,
-      },
-      row2RightTitle: {
-        fontSize: FONT_SIZE_FIRST,
-        color: '#9B9B9B',
-        marginBottom: 5,
-      },
-      row2RightPrice: {
-        fontSize: FONT_SIZE_FIRST,
-        color: '#72BE20',
-        fontWeight: '700',
-      },
-    };
     return (
-      <View style={styles.container}>
-        <View style={styles.main}>
-          <View style={styles.row1}>
-            <CustomIcon name="Money" type="Money" style={styles.row1Icon} />
-            <View style={styles.row1Text}>{i18n.commission}</View>
+      <View
+        style={{
+          left: SIDEINTERVAL,
+          right: SIDEINTERVAL,
+        }}
+        className={cardStyles.container}
+      >
+        <View className={cardStyles.main}>
+          <View
+            style={{
+              paddingLeft: SIDEINTERVAL,
+              paddingRight: SIDEINTERVAL,
+            }}
+            className={cardStyles.row1}
+          >
+            <CustomIcon
+              name="Money"
+              type="Money"
+              style={{
+                marginRight: SIDEINTERVAL * 0.5,
+              }}
+              className={cardStyles.row1Icon}
+            />
+            <View className={cardStyles.row1Text}>{i18n.commission}</View>
           </View>
-          <View style={styles.row2}>
-            <View style={styles.row2Left}>
-              <View style={styles.row2LeftTitle}>
+          <View
+            style={{
+              paddingLeft: SIDEINTERVAL,
+              paddingRight: SIDEINTERVAL,
+            }}
+            className={cardStyles.row2}
+          >
+            <View
+              style={{
+                marginRight: WINDOW_WIDTH * 0.08,
+              }}
+            >
+              <View className={cardStyles.row2LeftTitle}>
                 {i18n.commissionsNotReceived}
               </View>
-              <View style={styles.row2LeftPrice}>
+              <View className={cardStyles.row2LeftPrice}>
                 {enchashmentGetList ? `${priceFormat(balance)} ${MONETARY}` : 0}
               </View>
               <View
-                style={styles.row2LeftButton}
+                style={{
+                  paddingLeft: SIDEINTERVAL * 0.8,
+                  paddingRight: SIDEINTERVAL * 0.8,
+                }}
+                className={cardStyles.row2LeftButton}
                 onClick={() => this.handleOnPressWithdraw()}
               >
                 {i18n.withdrawal}
               </View>
             </View>
-            <View style={styles.row2Right}>
-              <View style={styles.row2RightTitle}>
+            <View>
+              <View className={cardStyles.row2RightTitle}>
                 {i18n.commissionsReceived}
               </View>
-              <View style={styles.row2RightPrice}>
+              <View className={cardStyles.row2RightPrice}>
                 {enchashmentGetList && enchashmentGetList.amountSum
                   ? `${priceFormat(enchashmentGetList.amountSum)} ${MONETARY}`
                   : 0}
@@ -208,68 +157,38 @@ class Withdraw extends React.Component {
 
   renderIncome() {
     const { getInviteRecord } = this.props;
-    const styles = {
-      incomeItem: {
-        marginBottom: 5,
-      },
-      incomeDate: {
-        paddingTop: 10,
-        paddingBottom: 10,
-        color: '#A6A6A6',
-        fontSize: 10,
-        marginBottom: 10,
-        borderBottomColor: '#e5e5e5',
-        borderBottomWidth: 1,
-        borderBottomStyle: 'solid',
-      },
-      incomeMain: {
-        display: 'flex',
-        flexDivection: 'row',
-        justifyContent: 'space-between',
-        paddingLeft: SIDEINTERVAL,
-        paddingRight: SIDEINTERVAL,
-        paddingTop: 15,
-        paddingBottom: 15,
-        backgroundColor: '#fff',
-      },
-      incomeTitle: {
-        width: WINDOW_WIDTH * 0.55,
-        overflow: 'hidden',
-        whiteSpace: 'nowrap',
-        textOverflow: 'ellipsis',
-        color: '#848484',
-      },
-      incomePrice: {
-        color: '#F55830',
-      },
-      noData: {
-        textAlign: 'center',
-        color: '#9b9b9b',
-        fontSize: FONT_SIZE_FIRST,
-        paddingTop: 15,
-        paddingBottom: 15,
-      },
-    };
-
     const inviteRewards = getInviteRecord ? getInviteRecord.inviteRewards : [];
 
     return (
-      <View style={styles.income}>
+      <View>
         {inviteRewards.map((val, key) => (
-          <View style={styles.incomeItem} key={key}>
-            <View style={styles.incomeDate}>
+          <View className={incomeStyles.incomeItem} key={key}>
+            <View className={incomeStyles.incomeDate}>
               {`${dayjs(val.createTime).format('DD-MM-YYYY')}`}
             </View>
-            <View style={styles.incomeMain}>
-              <View style={styles.incomeTitle}>{val.productName}</View>
-              <View style={styles.incomePrice}>
+            <View
+              style={{
+                paddingLeft: SIDEINTERVAL,
+                paddingRight: SIDEINTERVAL,
+              }}
+              className={incomeStyles.incomeMain}
+            >
+              <View
+                style={{
+                  width: WINDOW_WIDTH * 0.55,
+                }}
+                className={incomeStyles.incomeTitle}
+              >
+                {val.productName}
+              </View>
+              <View className={incomeStyles.incomePrice}>
                 {`+ ${priceFormat(val.rewardValue)} ${MONETARY}`}
               </View>
             </View>
           </View>
         ))}
         {inviteRewards.length === 0 && (
-          <View style={styles.noData}>{i18n.noData}</View>
+          <View className={incomeStyles.noData}>{i18n.noData}</View>
         )}
       </View>
     );
@@ -277,70 +196,40 @@ class Withdraw extends React.Component {
 
   renderExpend() {
     const { enchashmentGetList } = this.props;
-    const styles = {
-      incomeItem: {
-        marginBottom: 5,
-      },
-      incomeDate: {
-        paddingTop: 10,
-        paddingBottom: 10,
-        color: '#A6A6A6',
-        fontSize: 10,
-        marginBottom: 10,
-        borderBottomColor: '#e5e5e5',
-        borderBottomWidth: 1,
-        borderBottomStyle: 'solid',
-      },
-      incomeMain: {
-        display: 'flex',
-        flexDivection: 'row',
-        justifyContent: 'space-between',
-        paddingLeft: SIDEINTERVAL,
-        paddingRight: SIDEINTERVAL,
-        paddingTop: 15,
-        paddingBottom: 15,
-        backgroundColor: '#fff',
-      },
-      incomeTitle: {
-        color: '#848484',
-        width: WINDOW_WIDTH * 0.55,
-        overflow: 'hidden',
-        whiteSpace: 'nowrap',
-        textOverflow: 'ellipsis',
-      },
-      incomePrice: {
-        color: '#72BE20',
-      },
-      noData: {
-        textAlign: 'center',
-        color: '#9b9b9b',
-        fontSize: FONT_SIZE_FIRST,
-        paddingTop: 15,
-        paddingBottom: 15,
-      },
-    };
-
     const enchashmentInfo = enchashmentGetList
       ? enchashmentGetList.enchashmentInfo
       : [];
 
     return (
-      <View style={styles.income}>
+      <View>
         {enchashmentInfo.map((val, key) => (
-          <View style={styles.incomeItem} key={key}>
-            <View style={styles.incomeDate}>
+          <View className={expendStyles.incomeItem} key={key}>
+            <View className={expendStyles.incomeDate}>
               {`${dayjs(val.createTime).format('DD-MM-YYYY')}`}
             </View>
-            <View style={styles.incomeMain}>
-              <View style={styles.incomeTitle}>{val.bankName}</View>
-              <View style={styles.incomePrice}>
+            <View
+              style={{
+                paddingLeft: SIDEINTERVAL,
+                paddingRight: SIDEINTERVAL,
+              }}
+              className={expendStyles.incomeMain}
+            >
+              <View
+                style={{
+                  width: WINDOW_WIDTH * 0.55,
+                }}
+                className={expendStyles.incomeTitle}
+              >
+                {val.bankName}
+              </View>
+              <View className={expendStyles.incomePrice}>
                 {`- ${priceFormat(val.amount)} ${MONETARY}`}
               </View>
             </View>
           </View>
         ))}
         {enchashmentInfo.length === 0 && (
-          <View style={styles.noData}>{i18n.noData}</View>
+          <View className={expendStyles.noData}>{i18n.noData}</View>
         )}
       </View>
     );
@@ -348,45 +237,28 @@ class Withdraw extends React.Component {
 
   renderContent() {
     const { isShowIncome } = this.state;
-    const styles = {
-      container: {
-        paddingTop: 190 - 45,
-      },
-      wrap: {
-        backgroundColor: '#f2f2f2',
-        minHeight: WINDOW_HEIGHT - 190,
-      },
-      main: {
-        paddingLeft: SIDEINTERVAL,
-        paddingRight: SIDEINTERVAL,
-        paddingTop: 20,
-      },
-      title: {
-        display: 'flex',
-        flexDivection: 'row',
-      },
-      titleLeft: {
-        paddingRight: SIDEINTERVAL * 2,
-        color: isShowIncome ? '#0076F7' : '#4B4B4B',
-        fontSize: FONT_SIZE_FIRST,
-        paddingTop: 10,
-        paddingBottom: 10,
-      },
-      titleRight: {
-        paddingRight: SIDEINTERVAL * 2,
-        color: isShowIncome ? '#4B4B4B' : '#0076F7',
-        fontSize: FONT_SIZE_FIRST,
-        paddingTop: 10,
-        paddingBottom: 10,
-      },
-    };
     return (
-      <View style={styles.container}>
-        <View style={styles.wrap}>
-          <View style={styles.main}>
-            <View style={styles.title}>
+      <View className={contentStyles.container}>
+        <View
+          style={{
+            minHeight: WINDOW_HEIGHT - 190,
+          }}
+          className={contentStyles.wrap}
+        >
+          <View
+            style={{
+              paddingLeft: SIDEINTERVAL,
+              paddingRight: SIDEINTERVAL,
+            }}
+            className={contentStyles.main}
+          >
+            <View className={contentStyles.title}>
               <View
-                style={styles.titleLeft}
+                style={{
+                  paddingRight: SIDEINTERVAL * 2,
+                  color: isShowIncome ? '#0076F7' : '#4B4B4B',
+                }}
+                className={contentStyles.titleLeft}
                 onClick={() =>
                   this.setState({
                     isShowIncome: true,
@@ -396,7 +268,11 @@ class Withdraw extends React.Component {
                 {i18n.detailedStatisticalTable}
               </View>
               <View
-                style={styles.titleRight}
+                style={{
+                  paddingRight: SIDEINTERVAL * 2,
+                  color: isShowIncome ? '#4B4B4B' : '#0076F7',
+                }}
+                className={contentStyles.titleRight}
                 onClick={() =>
                   this.setState({
                     isShowIncome: false,
@@ -416,15 +292,8 @@ class Withdraw extends React.Component {
   render() {
     const { enchashmentLoading, getInviteRecordLoading, authUser } = this.props;
 
-    const styles = {
-      container: {
-        position: 'relative',
-        // backgroundColor: '#fff',
-      },
-    };
-
     return (
-      <View style={styles.container}>
+      <View className={styles.container}>
         <MustLogin
           Modal={Modal}
           visible={!authUser}

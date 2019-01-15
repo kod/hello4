@@ -15,6 +15,8 @@ import MustLogin from '@src/components/MustLogin';
 import { getLoginUser } from '@src/common/selectors';
 import OrderTabNavigator from './OrderTabNavigator';
 
+import styles from './index.less';
+
 class CouponMy extends React.PureComponent {
   render() {
     const {
@@ -24,15 +26,6 @@ class CouponMy extends React.PureComponent {
       couponMyUnusedLength,
       couponMyUsedLength,
     } = this.props;
-
-    const styles = {
-      container: {
-        display: 'flex',
-        flexDirection: 'column',
-        height: WINDOW_HEIGHT,
-        backgroundColor: '#fff',
-      },
-    };
 
     const tabs = [
       {
@@ -54,7 +47,12 @@ class CouponMy extends React.PureComponent {
     ];
 
     return (
-      <View style={styles.container}>
+      <View
+        style={{
+          height: WINDOW_HEIGHT,
+        }}
+        className={styles.container}
+      >
         <BYHeader title={i18n.myOrder} />
         <MustLogin
           Modal={Modal}

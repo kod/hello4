@@ -5,8 +5,6 @@ import { connectLocalization } from '@src/components/Localization';
 import AppNavigator from '@src/navigations/AppNavigator';
 // import { Modal } from '@src/API';
 
-// import styles from './styles.less';
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -37,7 +35,7 @@ class App extends React.Component {
     const { i18n } = this.props;
     const renderComponent = <AppNavigator screenProps={{ i18n }} />;
 
-    return <View style={styles.container}>{renderComponent}</View>;
+    return <View className={styles.container}>{renderComponent}</View>;
   }
 }
 

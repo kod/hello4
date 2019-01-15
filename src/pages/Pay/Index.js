@@ -35,6 +35,8 @@ import BYButton from '@src/components/BYButton';
 import MustLogin from '@src/components/MustLogin';
 import { getLoginUser } from '@src/common/selectors';
 
+import styles from './index.less';
+
 class Pay extends React.Component {
   constructor(props) {
     super(props);
@@ -182,17 +184,6 @@ class Pay extends React.Component {
   }
 
   renderContent() {
-    const styles = {
-      container: {
-        display: 'flex',
-        flexDirection: 'column',
-        height: WINDOW_HEIGHT - 45,
-      },
-      main: {
-        flex: 1,
-      },
-    };
-
     const { payWayIndex } = this.state;
     const {
       queryOrderItem: { totalAmount },
@@ -205,9 +196,14 @@ class Pay extends React.Component {
       return <Loader />;
 
     return (
-      <View style={styles.container}>
+      <View
+        style={{
+          height: WINDOW_HEIGHT - 45,
+        }}
+        className={styles.container}
+      >
         {orderpayLoading && <Loader />}
-        <View style={styles.main}>
+        <View className={styles.main}>
           <NavBar2
             valueLeft={i18n.totalMoney}
             valueMiddle={`${priceFormat(totalAmount)} ${MONETARY}`}
@@ -233,14 +229,8 @@ class Pay extends React.Component {
   render() {
     const { authUser } = this.props;
 
-    const styles = {
-      container: {
-        flex: 1,
-        backgroundColor: '#fff',
-      },
-    };
     return (
-      <View style={styles.container}>
+      <View className={styles.containerRender}>
         <BYHeader />
         <MustLogin
           Modal={Modal}

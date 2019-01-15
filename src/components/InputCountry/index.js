@@ -1,40 +1,8 @@
 import React from 'react';
 import { SIDEINTERVAL, DEBUG } from '@src/common/constants';
-import { BORDER_COLOR } from '@src/styles/variables';
 import { View } from '@src/API';
 
-const styles = {
-  componentWrap: {
-    paddingLeft: SIDEINTERVAL,
-    paddingRight: SIDEINTERVAL,
-  },
-  component: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderBottomColor: BORDER_COLOR,
-    borderBottomStyle: 'solid',
-    borderBottomWidth: 5,
-  },
-  componentFlag: {
-    width: 18,
-    marginLeft: SIDEINTERVAL,
-  },
-  componentCode: {
-    marginLeft: 5,
-    color: '#ccc',
-    paddingRight: 5,
-    borderRightWidth: 1,
-    borderRightColor: '#eee',
-  },
-  componentInput: {
-    flex: 1,
-    marginLeft: 15,
-    paddingTop: 15,
-    paddingBottom: 10,
-    border: 0,
-  },
-};
+import styles from './index.less';
 
 export default ({
   style,
@@ -45,11 +13,18 @@ export default ({
   getFieldProps,
   pattern,
 }) => (
-  <View style={{ ...styles.componentWrap, ...styleWrap }}>
-    <View style={{ ...styles.component, ...style }}>
+  <View
+    style={{
+      paddingLeft: SIDEINTERVAL,
+      paddingRight: SIDEINTERVAL,
+      ...styleWrap,
+    }}
+  >
+    <View style={style} className={styles.component}>
       <input
         type="email"
-        style={{ ...styles.componentInput, ...styleInput }}
+        style={styleInput}
+        className={styles.componentInput}
         {...getFieldProps('mail', {
           initialValue: DEBUG ? 'q@q.q' : '',
           rules: [

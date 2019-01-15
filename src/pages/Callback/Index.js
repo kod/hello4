@@ -7,6 +7,7 @@ import router from 'umi/lib/router';
 
 import { WINDOW_HEIGHT, SCREENS, WINDOW_WIDTH } from '@src/common/constants';
 import BYButton from '@src/components/BYButton';
+import styles from './index.less';
 
 class Address extends React.Component {
   constructor(props) {
@@ -51,34 +52,23 @@ class Address extends React.Component {
     const { errorJson } = this.state;
     const { msg } = this.props;
 
-    const styles = {
-      container: {
-        height: WINDOW_HEIGHT - 45,
-        display: 'flex',
-      },
-      main: {
-        flex: 1,
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'column',
-      },
-      image: {
-        width: 150,
-        height: 150,
-        marginBottom: 30,
-      },
-      text: {
-        fontSize: 18,
-        paddingBottom: WINDOW_HEIGHT * 0.1,
-      },
-    };
-
     return (
-      <View style={styles.container}>
-        <View style={styles.main}>
-          <img alt="" style={styles.image} src={errorJson[msg].icon} />
-          <View style={styles.text}>{errorJson[msg].text}</View>
+      <View
+        style={{
+          height: WINDOW_HEIGHT - 45,
+        }}
+        className={styles.container}
+      >
+        <View className={styles.main}>
+          <img alt="" className={styles.image} src={errorJson[msg].icon} />
+          <View
+            style={{
+              paddingBottom: WINDOW_HEIGHT * 0.1,
+            }}
+            className={styles.text}
+          >
+            {errorJson[msg].text}
+          </View>
           <BYButton
             text={i18n.confirm}
             styleWrap={{
@@ -93,16 +83,13 @@ class Address extends React.Component {
   }
 
   render() {
-    const styles = {
-      container: {
-        display: 'flex',
-        flexDirection: 'column',
-        height: WINDOW_HEIGHT,
-        backgroundColor: '#fff',
-      },
-    };
     return (
-      <View style={styles.container}>
+      <View
+        style={{
+          height: WINDOW_HEIGHT,
+        }}
+        className={styles.containerRender}
+      >
         <BYHeader />
 
         {this.renderMainContent()}

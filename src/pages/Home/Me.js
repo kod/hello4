@@ -6,7 +6,6 @@ import qs from 'qs';
 
 import * as queryOrderListActionCreators from '@src/common/actions/queryOrderList';
 import * as cardQueryActionCreators from '@src/common/actions/cardQuery';
-// import * as userCertificateInfoActionCreators from '@src/common/actions/userCertificateInfo';
 import * as getUserInfoByIdActionCreators from '@src/common/actions/getUserInfoById';
 
 import SeparateBar from '@src/components/SeparateBar';
@@ -18,12 +17,14 @@ import {
   IS_IOS,
   OSS_IMAGE_QUALITY,
 } from '@src/common/constants';
-import { PRIMARY_COLOR, RED_COLOR } from '@src/styles/variables';
+import { RED_COLOR } from '@src/styles/variables';
 import NavBar1 from '@src/components/NavBar1';
 import CustomIcon from '@src/components/CustomIcon';
 import BYHeader from '@src/components/BYHeader';
 import { xOssProcess } from '@src/utils';
 import { getLoginUser } from '@src/common/selectors';
+
+import styles from './Me.less';
 
 const aioru09230fPng =
   'https://oss.buyoo.vn/usercollect/1/20181102094215_995.png';
@@ -140,65 +141,37 @@ class Index extends PureComponent {
       },
     ];
 
-    const styles = {
-      nav1: {
-        display: 'flex',
-        flexDirection: 'row',
-        backgroundColor: '#fff',
-        marginBottom: 5,
-      },
-      nav1Item: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        flex: 1,
-        position: 'relative',
-        paddingTop: 10,
-        paddingBottom: 10,
-      },
-      nav1ItemIcon: {
-        fontSize: 22,
-        color: '#ccc',
-        marginBottom: 5,
-      },
-      nav1ItemText: {
-        fontSize: 11,
-        color: '#ccc',
-        textAlign: 'center',
-        paddingLeft: WINDOW_WIDTH * 0.01,
-        paddingRight: WINDOW_WIDTH * 0.01,
-      },
-      nav1ItemBadge: {
-        position: 'absolute',
-        top: 5,
-        right: WINDOW_WIDTH * 0.1,
-        backgroundColor: RED_COLOR,
-        color: '#fff',
-        fontSize: 10,
-        paddingLeft: 5,
-        paddingRight: 5,
-        paddingBottom: 1,
-        borderRadius: 100,
-      },
-    };
-
     return (
-      <View style={styles.nav1}>
+      <View className={styles.nav1}>
         {list.map((val, key) => (
           <View
-            style={styles.nav1Item}
+            className={styles.nav1Item}
             key={val.text}
             onClick={() => this.handleOnPressOrderNav(key + 1)}
           >
             <CustomIcon
               name={val.iconName}
               type={val.iconName}
-              style={{ ...styles.nav1ItemIcon, ...val.styleIcon }}
+              style={val.styleIcon}
+              className={styles.nav1ItemIcon}
             />
-            <View style={styles.nav1ItemText}>{val.text}</View>
+            <View
+              style={{
+                paddingLeft: WINDOW_WIDTH * 0.01,
+                paddingRight: WINDOW_WIDTH * 0.01,
+              }}
+              className={styles.nav1ItemText}
+            >
+              {val.text}
+            </View>
             {orderItem[key + 1].items.length > 0 && (
-              <View style={styles.nav1ItemBadge}>
+              <View
+                style={{
+                  right: WINDOW_WIDTH * 0.1,
+                  backgroundColor: RED_COLOR,
+                }}
+                className={styles.nav1ItemBadge}
+              >
                 {orderItem[key + 1].items.length > 0 &&
                   orderItem[key + 1].items.length}
               </View>
@@ -277,74 +250,30 @@ class Index extends PureComponent {
       });
     }
 
-    const styles = {
-      container: {
-        flex: 1,
-      },
-      header: {
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: PRIMARY_COLOR,
-        paddingTop: STATUSBAR_HEIGHT,
-      },
-      headerIcon: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        paddingTop: 40,
-        paddingBottom: 30,
-      },
-      headerIconImg: {
-        height: 40,
-        width: 40,
-        borderRadius: 100,
-        marginBottom: 5,
-      },
-      headerIconText: {
-        fontSize: 11,
-        color: '#fff',
-      },
-      headerBottom: {
-        flexDirection: 'row',
-        paddingTop: 20,
-        paddingBottom: 15,
-      },
-      headerItem: {
-        flex: 1,
-        alignItems: 'center',
-      },
-      headerItemPrice: {
-        color: '#fff',
-        fontSize: 18,
-        fontWeight: '700',
-      },
-      headerItemText: {
-        color: '#fff',
-        fontSize: 11,
-      },
-    };
-
     return (
-      <View style={styles.container}>
+      <View className={styles.container}>
         {location && <BYHeader title={i18n.me} />}
 
-        <View style={styles.header}>
+        <View
+          style={{
+            paddingTop: STATUSBAR_HEIGHT,
+          }}
+          className={styles.header}
+        >
           <View
-            style={styles.headerIcon}
+            className={styles.headerIcon}
             onClick={() => this.handleOnPressUser()}
           >
             <img
               alt=""
-              style={styles.headerIconImg}
+              className={styles.headerIconImg}
               src={`${headerIconImgSource}?${xOssProcess(
                 IS_IOS,
                 OSS_IMAGE_QUALITY,
               )}`}
             />
 
-            <View style={styles.headerIconText}>{username || phone}</View>
+            <View className={styles.headerIconText}>{username || phone}</View>
           </View>
         </View>
         <NavBar1
@@ -388,6 +317,5 @@ export default connect(
     ...getUserInfoByIdActionCreators,
     ...queryOrderListActionCreators,
     ...cardQueryActionCreators,
-    // ...userCertificateInfoActionCreators,
   },
 )(Index);

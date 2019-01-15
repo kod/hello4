@@ -3,26 +3,7 @@ import React from 'react';
 import { SIDEINTERVAL } from '@src/common/constants';
 import { View } from '@src/API';
 
-const styles = {
-  component: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingLeft: SIDEINTERVAL,
-    paddingRight: SIDEINTERVAL,
-  },
-  componentText: {
-    fontSize: 11,
-    color: '#0076F7',
-    borderBottomColor: '#0076F7',
-    borderBottomStyle: 'solid',
-    borderBottomWidth: 1,
-  },
-  touchable: {
-    paddingTop: SIDEINTERVAL,
-    paddingBottom: SIDEINTERVAL,
-  },
-};
+import styles from './index.less';
 
 export default ({
   style,
@@ -32,12 +13,31 @@ export default ({
   navigateRight,
   ...restProps
 }) => (
-  <View style={styles.component} {...restProps}>
-    <View style={styles.touchable} onClick={navigateLeft}>
-      <View style={styles.componentText}>{textLeft}</View>
+  <View
+    style={{
+      paddingLeft: SIDEINTERVAL,
+      paddingRight: SIDEINTERVAL,
+    }}
+    className={styles.component}
+    {...restProps}
+  >
+    <View
+      style={{
+        paddingLeft: SIDEINTERVAL,
+        paddingRight: SIDEINTERVAL,
+      }}
+      onClick={navigateLeft}
+    >
+      <View className={styles.componentText}>{textLeft}</View>
     </View>
-    <View style={styles.touchable} onClick={navigateRight}>
-      <View style={styles.componentText}>{textRight}</View>
+    <View
+      style={{
+        paddingLeft: SIDEINTERVAL,
+        paddingRight: SIDEINTERVAL,
+      }}
+      onClick={navigateRight}
+    >
+      <View className={styles.componentText}>{textRight}</View>
     </View>
   </View>
 );

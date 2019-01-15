@@ -56,7 +56,7 @@ class LoginForm extends React.Component {
         <InputRight
           inputRight={<ReadSeconds mail={mail} />}
           getFieldProps={getFieldProps}
-          // styleWrap={{ marginBottom: 75 }}
+          // styleWrap={{ margin-bottom: 75 }}
           placeholder={i18n.pleaseEnterVerificationCode}
           message={i18n.pleaseEnterVerificationCode}
           name="otp"
@@ -66,7 +66,7 @@ class LoginForm extends React.Component {
           pattern={LOGIN_PASSWORD_EXPR}
           // inputRight={this.renderInputRight()}
           getFieldProps={getFieldProps}
-          // styleWrap={{ marginBottom: 75 }}
+          // styleWrap={{ margin-bottom: 75 }}
           placeholder={i18n.pleaseEnter820CharactersOrNumbers}
           message={i18n.pleaseEnter820CharactersOrNumbers}
           name="password"
@@ -76,7 +76,7 @@ class LoginForm extends React.Component {
           pattern={LOGIN_PASSWORD_EXPR}
           // inputRight={this.renderInputRight()}
           getFieldProps={getFieldProps}
-          // styleWrap={{ marginBottom: 75 }}
+          // styleWrap={{ margin-bottom: 75 }}
           placeholder={i18n.pleaseEnterPasswordAgain}
           message={i18n.pleaseEnter820CharactersOrNumbers}
           name="repassword"

@@ -10,14 +10,6 @@ import { Modal } from 'antd-mobile';
 
 import * as orderPayActionCreators from '@src/common/actions/orderPay';
 import {
-  BACKGROUND_COLOR_THIRD,
-  BACKGROUND_COLOR_PRIMARY,
-  FONT_SIZE_SIXTH,
-  FONT_COLOR_FIFTH,
-  FONT_SIZE_FIRST,
-  FONT_COLOR_PRIMARY,
-} from '@src/styles/variables';
-import {
   SIDEINTERVAL,
   WINDOW_WIDTH,
   SCREENS,
@@ -29,6 +21,8 @@ import priceFormat from '@src/utils/priceFormat';
 import MustLogin from '@src/components/MustLogin';
 import { addEventListenerBuyoo, removeEventListenerBuyoo } from '@src/utils';
 import { getLoginUser } from '@src/common/selectors';
+
+import styles from './index.less';
 
 const icStore1 = 'https://oss.buyoo.vn/usercollect/1/20181121153540_gOd.jpg';
 const icStore2 = 'https://oss.buyoo.vn/usercollect/1/20181121153705_f57.jpg';
@@ -48,59 +42,6 @@ const icStore15 = 'https://oss.buyoo.vn/usercollect/1/20181121154159_w98.jpg';
 const icStore16 = 'https://oss.buyoo.vn/usercollect/1/20181121154214_L80.jpg';
 const icStore17 = 'https://oss.buyoo.vn/usercollect/1/20181121154232_6Bc.jpg';
 const icStore18 = 'https://oss.buyoo.vn/usercollect/1/20181121154248_182.jpg';
-
-const styles = {
-  container: {
-    flex: 1,
-    backgroundColor: BACKGROUND_COLOR_THIRD,
-  },
-  row1: {
-    paddingTop: 20,
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingLeft: SIDEINTERVAL,
-    paddingRight: SIDEINTERVAL,
-    marginBottom: 10,
-  },
-  row2: {
-    backgroundColor: BACKGROUND_COLOR_PRIMARY,
-    paddingTop: 20,
-    marginBottom: 15,
-  },
-  row2Top: {
-    fontSize: FONT_SIZE_SIXTH,
-    color: FONT_COLOR_FIFTH,
-    fontWeight: '700',
-    textAlign: 'center',
-    marginBottom: 5,
-  },
-  row2Bottom: {
-    fontSize: FONT_SIZE_FIRST,
-    color: FONT_COLOR_FIFTH,
-    textAlign: 'center',
-    paddingBottom: 35,
-  },
-  row3: {
-    display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    paddingLeft: SIDEINTERVAL,
-  },
-  row3Image: {
-    width: (WINDOW_WIDTH - SIDEINTERVAL * 4) / 3,
-    height: 45,
-    marginRight: SIDEINTERVAL,
-    marginBottom: 10,
-    resizeMode: 'cover',
-  },
-  row4: {
-    paddingLeft: SIDEINTERVAL,
-    paddingRight: SIDEINTERVAL,
-    marginBottom: 15,
-    color: FONT_COLOR_PRIMARY,
-  },
-};
 
 class PaymentCode extends React.Component {
   constructor(props) {
@@ -201,30 +142,54 @@ class PaymentCode extends React.Component {
 
     return (
       <View>
-        <View style={styles.row1}>
-          <View style={styles.row1Left}>{i18n.payooPaymentCode}</View>
+        <View
+          style={{
+            paddingLeft: SIDEINTERVAL,
+            paddingRight: SIDEINTERVAL,
+          }}
+          className={styles.row1}
+        >
+          <View>{i18n.payooPaymentCode}</View>
           {/* <SmallButton
             text={i18n.copy}
             onClick={() => this.handleOnPressCopy(code)}
           /> */}
         </View>
-        <View style={styles.row2}>
-          <View style={styles.row2Top}>{code}</View>
-          <View style={styles.row2Bottom}>
+        <View className={styles.row2}>
+          <View className={styles.row2Top}>{code}</View>
+          <View className={styles.row2Bottom}>
             {`${i18n.orderAmount} ${priceFormat(payvalue)} ${MONETARY}`}
           </View>
         </View>
         <View
-          style={styles.row4}
+          style={{
+            paddingLeft: SIDEINTERVAL,
+            paddingRight: SIDEINTERVAL,
+          }}
+          className={styles.row4}
           onClick={() => {
             window.location.href = PAYOO_STORE_MAP;
           }}
         >
           {i18n.visitPayooStoreClickHere}
         </View>
-        <View style={styles.row3}>
+        <View
+          style={{
+            paddingLeft: SIDEINTERVAL,
+          }}
+          className={styles.row3}
+        >
           {images.map((val, key) => (
-            <img alt="" style={styles.row3Image} src={`${val}`} key={key} />
+            <img
+              alt=""
+              style={{
+                width: (WINDOW_WIDTH - SIDEINTERVAL * 4) / 3,
+                marginRight: SIDEINTERVAL,
+              }}
+              className={styles.row3Image}
+              src={`${val}`}
+              key={key}
+            />
 
             // <Image style={styles.row3Image} source={val} key={key} />
           ))}
@@ -236,7 +201,7 @@ class PaymentCode extends React.Component {
   render() {
     const { authUser, loading } = this.props;
     return (
-      <View style={styles.container}>
+      <View className={styles.container}>
         <BYHeader title={i18n.payooPaymentCode} />
         <MustLogin
           Modal={Modal}

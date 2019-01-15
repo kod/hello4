@@ -11,68 +11,24 @@ import {
   OSS_IMAGE_QUALITY,
 } from '@src/common/constants';
 import { xOssProcess } from '@src/utils';
-import { BORDER_COLOR, RED_COLOR } from '@src/styles/variables';
 import Loader from '@src/components/Loader';
 import priceFormat from '@src/utils/priceFormat';
 import { View } from '@src/API';
-import stylesLess from './index.less';
+import styles from './index.less';
 
 const itemIntervalWidth = SIDEINTERVAL;
 const itemWidth = (WINDOW_WIDTH - itemIntervalWidth * 4) / 3;
 const paddingInerval = SIDEINTERVAL / 2;
 
-const styles = {
-  itemWrap: {
-    display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    paddingLeft: SIDEINTERVAL,
-    marginBottom: 5,
-  },
-  item: {
-    width: itemWidth,
-    marginRight: SIDEINTERVAL,
-    paddingTop: 4,
-    backgroundColor: '#fff',
-    borderColor: BORDER_COLOR,
-    borderWidth: 1,
-    marginBottom: itemIntervalWidth,
-  },
-  itemImg: {
-    width: itemWidth - 2,
-    height: itemWidth - 2,
-    marginBottom: 5,
-  },
-  itemText: {
-    paddingLeft: paddingInerval,
-    paddingRight: paddingInerval,
-    color: '#666',
-    fontSize: 11,
-    marginBottom: 6,
-    height: 28.8,
-  },
-  itemOrgPrice: {
-    color: '#999',
-    fontSize: 11,
-    paddingLeft: paddingInerval,
-    paddingRight: paddingInerval,
-    textDecorationLine: 'line-through',
-    textDecorationStyle: 'solid',
-  },
-  itemPrice: {
-    color: RED_COLOR,
-    fontSize: 14,
-    paddingLeft: paddingInerval,
-    paddingRight: paddingInerval,
-    fontWeight: '700',
-    marginBottom: 10,
-  },
-};
-
 class ProductItem1A extends React.Component {
   renderItem = ({ item, key }) => (
     <View
-      style={styles.item}
+      style={{
+        width: itemWidth,
+        marginRight: SIDEINTERVAL,
+        marginBottom: itemIntervalWidth,
+      }}
+      className={styles.item}
       key={key}
       onClick={() =>
         router.push(`/${SCREENS.ProductDetail}?brandId=${item.brandId}`)
@@ -80,20 +36,40 @@ class ProductItem1A extends React.Component {
     >
       <img
         alt=""
-        style={styles.itemImg}
+        style={{
+          width: itemWidth - 2,
+          height: itemWidth - 2,
+        }}
+        className={styles.itemImg}
         src={`${item.imageUrl}?${xOssProcess(IS_IOS, OSS_IMAGE_QUALITY)}`}
       />
-      <View style={styles.itemText} className={stylesLess.itemtext}>
+      <View
+        style={{
+          paddingLeft: paddingInerval,
+          paddingRight: paddingInerval,
+        }}
+        className={styles.itemtext}
+      >
         {item.name}
       </View>
       {!!item.orgPrice && (
-        <View style={styles.itemOrgPrice}>
+        <View
+          style={{
+            paddingLeft: paddingInerval,
+            paddingRight: paddingInerval,
+          }}
+          className={styles.itemOrgPrice}
+        >
           {`${priceFormat(item.orgPrice)} ${MONETARY}`}
         </View>
       )}
-      <View style={styles.itemPrice}>{`${priceFormat(
-        item.price,
-      )} ${MONETARY}`}</View>
+      <View
+        style={{
+          paddingLeft: paddingInerval,
+          paddingRight: paddingInerval,
+        }}
+        className={styles.itemPrice}
+      >{`${priceFormat(item.price)} ${MONETARY}`}</View>
     </View>
   );
 
@@ -104,7 +80,10 @@ class ProductItem1A extends React.Component {
     } = this.props;
 
     return (
-      <View style={{ ...styles.itemWrap, ...style }}>
+      <View
+        style={{ paddingLeft: SIDEINTERVAL, ...style }}
+        className={styles.itemWrap}
+      >
         {(!items || (!loaded && loading)) && <Loader />}
         {items &&
           items.map((val, key) =>

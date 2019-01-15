@@ -6,11 +6,7 @@ import { i18n, View } from '@src/API';
 
 import Scrollable2 from '@src/components/Scrollable2';
 
-const styles = {
-  container: {
-    flex: 1,
-  },
-};
+import styles from './index.less';
 
 class Mobile extends React.Component {
   componentDidMount() {
@@ -19,7 +15,7 @@ class Mobile extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View className={styles.container}>
         <BYHeader title={i18n.computerOffice} />
         <View>
           <Scrollable2 />

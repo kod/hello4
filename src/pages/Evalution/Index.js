@@ -17,22 +17,16 @@ import {
 } from '@src/utils';
 
 import * as collectFilesActionCreators from '@src/common/actions/collectFiles';
-// import * as modalActionCreators from '@src/common/actions/modal';
 import * as addEvaluationActionCreators from '@src/common/actions/addEvaluation';
-import { PRIMARY_COLOR } from '@src/styles/variables';
-import { SIDEINTERVAL, WINDOW_WIDTH, SCREENS } from '@src/common/constants';
+import classNames from 'classnames';
+import { SIDEINTERVAL, SCREENS } from '@src/common/constants';
 
 import MustLogin from '@src/components/MustLogin';
 import BYButton from '@src/components/BYButton';
 import CustomIcon from '@src/components/CustomIcon';
 import { getLoginUser } from '@src/common/selectors';
 
-const styles = {
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-};
+import styles from './index.less';
 
 class Evalution extends React.Component {
   constructor(props) {
@@ -195,135 +189,43 @@ class Evalution extends React.Component {
   }
 
   renderContent() {
-    const stylesX = {
-      container: {
-        flex: 1,
-      },
-      startWrap: {
-        display: 'flex',
-        flexDirection: 'row',
-        height: 40,
-        alignItems: 'center',
-        paddingRight: SIDEINTERVAL,
-        paddingLeft: SIDEINTERVAL,
-      },
-      starIcon: {
-        color: '#ccc',
-        fontSize: 18,
-        marginRight: 5,
-      },
-      starIconActive: {
-        color: PRIMARY_COLOR,
-        fontSize: 18,
-        marginRight: 5,
-      },
-      mainWrap: {
-        paddingRight: SIDEINTERVAL,
-        paddingLeft: SIDEINTERVAL,
-        marginBottom: 70,
-      },
-      main: {
-        // backgroundColor: '#f5f5f5',
-        marginBottom: 10,
-        borderColor: '#e0e0e0',
-        borderWidth: 1,
-        borderStyle: 'solid',
-      },
-      textInput: {
-        // paddingLeft: SIDEINTERVAL,
-        // paddingRight: SIDEINTERVAL,
-        // paddingBottom: SIDEINTERVAL,
-        // marginBottom: 50,
-        // backgroundColor: '#f5f5f5',
-      },
-      pics: {
-        display: 'flex',
-        flexDirection: 'row',
-        paddingLeft: SIDEINTERVAL,
-        paddingRight: SIDEINTERVAL,
-        paddingTop: SIDEINTERVAL,
-        paddingBottom: SIDEINTERVAL,
-      },
-      imageItem: {
-        position: 'relative',
-        height: (WINDOW_WIDTH - SIDEINTERVAL * 9) / 6,
-        width: (WINDOW_WIDTH - SIDEINTERVAL * 9) / 6,
-        backgroundColor: '#e5e5e5',
-        marginRight: SIDEINTERVAL,
-      },
-      imageItemOnLongPress: {
-        position: 'absolute',
-        // top: 0,
-        // bottom: 0,
-        // left: 0,
-        // right: 0,
-        height: (WINDOW_WIDTH - SIDEINTERVAL * 9) / 6,
-        width: (WINDOW_WIDTH - SIDEINTERVAL * 9) / 6,
-        // backgroundColor: '#ff0',
-        zIndex: 888,
-      },
-      imageItemImage: {
-        height: (WINDOW_WIDTH - SIDEINTERVAL * 9) / 6,
-        width: (WINDOW_WIDTH - SIDEINTERVAL * 9) / 6,
-      },
-      selectPics: {
-        display: 'flex',
-        position: 'relative',
-        alignItems: 'center',
-        borderColor: '#e0e0e0',
-        borderWidth: 1,
-        borderStyle: 'solid',
-        height: (WINDOW_WIDTH - SIDEINTERVAL * 9) / 6,
-        width: (WINDOW_WIDTH - SIDEINTERVAL * 9) / 6,
-      },
-      cameraIcon: {
-        color: '#999',
-        fontSize: 16,
-        // marginBottom: 5,
-        paddingTop: 7,
-      },
-      cameraText: {
-        color: '#ccc',
-        fontSize: 8,
-      },
-      cameraInput: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        bottom: 0,
-        right: 0,
-        opacity: 0,
-      },
-      tips: {
-        fontSize: 11,
-        color: '#ccc',
-        lineHeight: `${11 * 1.618}px`,
-      },
-    };
-
     const { starNumber, textValue, multiple } = this.state;
 
     const { images } = this.props;
 
     return (
-      <View style={stylesX.container}>
-        <View style={stylesX.startWrap}>
+      <View className={styles.container}>
+        <View
+          style={{
+            paddingLeft: SIDEINTERVAL,
+            paddingRight: SIDEINTERVAL,
+          }}
+          className={styles.startWrap}
+        >
           {[0, 1, 2, 3, 4].map(val => (
             <CustomIcon
               name="star-fill"
               type="star-fill"
-              style={
-                starNumber > val ? stylesX.starIconActive : stylesX.starIcon
-              }
+              // style={starNumber > val ? styles.starIconActive : styles.starIcon}
+              className={classNames({
+                [styles.starIcon]: starNumber > val,
+                [styles.starIconActive]: starNumber > val,
+              })}
               key={val}
               onClick={() => this.handleOnPressStar(val + 1)}
             />
           ))}
         </View>
-        <View style={stylesX.mainWrap}>
-          <View style={stylesX.main}>
+        <View
+          style={{
+            paddingLeft: SIDEINTERVAL,
+            paddingRight: SIDEINTERVAL,
+          }}
+          className={styles.mainWrap}
+        >
+          <View className={styles.main}>
             <TextareaItem
-              style={stylesX.textInput}
+              className={styles.textInput}
               value={textValue}
               placeholder={i18n.pleaseEnterYourComment}
               onChange={val => this.setState({ textValue: val })}
@@ -340,14 +242,14 @@ class Evalution extends React.Component {
               multiple={multiple}
             />
           </View>
-          <View style={stylesX.tips}>{i18n.yourCommentAnonymous}</View>
-          {/* <View style={stylesX.tips}>
+          <View className={styles.tips}>{i18n.yourCommentAnonymous}</View>
+          {/* <View className={styles.tips}>
             {i18n.longPressDeletePicture}
           </View> */}
         </View>
         <BYButton
           text={i18n.submit}
-          styleWrap={stylesX.button}
+          styleWrap={styles.button}
           onClick={() => this.handleOnPressSubmit()}
         />
       </View>
@@ -358,7 +260,7 @@ class Evalution extends React.Component {
     const { addEvaluationLoading, loading, authUser } = this.props;
 
     return (
-      <View style={styles.container}>
+      <View className={styles.container}>
         <BYHeader title={i18n.evaluation} />
         <MustLogin
           Modal={Modal}
@@ -398,7 +300,6 @@ export default connect(
   },
   {
     ...collectFilesActionCreators,
-    // ...modalActionCreators,
     ...addEvaluationActionCreators,
   },
 )(Evalution);

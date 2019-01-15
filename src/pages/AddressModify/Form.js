@@ -9,12 +9,10 @@ import Loader from '@src/components/Loader';
 import router from 'umi/lib/router';
 import {
   SIDEINTERVAL,
-  WINDOW_HEIGHT,
   NAME_EXPR,
   PHONE_EXPR,
   MODAL_TYPES,
 } from '@src/common/constants';
-import { PRIMARY_COLOR } from '@src/styles/variables';
 
 import * as cityInfosActionCreators from '@src/common/actions/cityInfos';
 import * as addressActionCreators from '@src/common/actions/address';
@@ -29,57 +27,7 @@ import {
 import InputRight from '@src/components/InputRight';
 import BYButton from '@src/components/BYButton';
 
-const styles = {
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  item: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingLeft: SIDEINTERVAL,
-    paddingRight: SIDEINTERVAL,
-  },
-  title: {
-    height: 45,
-    lineHeight: '45px',
-    color: '#666',
-    paddingRight: SIDEINTERVAL / 2,
-  },
-  textInput: {
-    flex: 1,
-    color: '#333',
-    textAlign: 'right',
-    borderBottomWidth: 0,
-  },
-  address: {
-    flex: 1,
-    textAlign: 'right',
-    paddingRight: 5,
-    color: '#333',
-  },
-  arrow: {
-    fontSize: 10,
-    color: '#ccc',
-    paddingTop: 1,
-  },
-  submitWrap: {
-    paddingLeft: SIDEINTERVAL,
-    paddingRight: SIDEINTERVAL,
-    paddingTop: WINDOW_HEIGHT * 0.1,
-  },
-  submit: {
-    height: 50,
-    lineHeight: '50px',
-    textAlign: 'center',
-    color: '#fff',
-    backgroundColor: PRIMARY_COLOR,
-  },
-  submitActive: {
-    // backgroundColor: PRIMARY_COLOR,
-  },
-};
+import styles from './Form.less';
 
 class AddressModify extends React.Component {
   constructor(props) {
@@ -215,14 +163,27 @@ class AddressModify extends React.Component {
         <ModalRoot />
         {addressModifyLoading && <Loader />}
         <View style={{ marginBottom: 30 }}>
-          <View style={styles.item}>
-            <View style={styles.title}>{i18n.actualName}</View>
+          <View
+            style={{
+              paddingLeft: SIDEINTERVAL,
+              paddingRight: SIDEINTERVAL,
+            }}
+            className={styles.item}
+          >
+            <View
+              style={{
+                paddingRight: SIDEINTERVAL / 2,
+              }}
+              className={styles.title}
+            >
+              {i18n.actualName}
+            </View>
             <InputRight
               pattern={NAME_EXPR}
               getFieldProps={getFieldProps}
               styleWrap={{ flex: 1 }}
               styleInput={{ textAlign: 'right' }}
-              style={styles.textInput}
+              className={styles.textInput}
               placeholder={i18n.pleaseEnterYourActualName}
               initialValue={query.username}
               message={i18n.pleaseEnterYourActualName}
@@ -230,14 +191,27 @@ class AddressModify extends React.Component {
               type="text"
             />
           </View>
-          <View style={styles.item}>
-            <View style={styles.title}>{i18n.phone}</View>
+          <View
+            style={{
+              paddingLeft: SIDEINTERVAL,
+              paddingRight: SIDEINTERVAL,
+            }}
+            className={styles.item}
+          >
+            <View
+              style={{
+                paddingRight: SIDEINTERVAL / 2,
+              }}
+              className={styles.title}
+            >
+              {i18n.phone}
+            </View>
             <InputRight
               pattern={PHONE_EXPR}
               getFieldProps={getFieldProps}
               styleWrap={{ flex: 1 }}
               styleInput={{ textAlign: 'right' }}
-              style={styles.textInput}
+              className={styles.textInput}
               placeholder={i18n.pleaseEnterYourPhoneNumber}
               initialValue={query.msisdn}
               message={i18n.pleaseEnterCorrectPhoneNumber}
@@ -245,21 +219,47 @@ class AddressModify extends React.Component {
               type="number"
             />
           </View>
-          <View style={styles.item}>
-            <View style={styles.title}>{i18n.address}</View>
+          <View
+            style={{
+              paddingLeft: SIDEINTERVAL,
+              paddingRight: SIDEINTERVAL,
+            }}
+            className={styles.item}
+          >
+            <View
+              style={{
+                paddingRight: SIDEINTERVAL / 2,
+              }}
+              className={styles.title}
+            >
+              {i18n.address}
+            </View>
             <InputRight
               getFieldProps={getFieldProps}
               styleWrap={{ flex: 1 }}
               styleInput={{ textAlign: 'right' }}
-              style={styles.textInput}
+              className={styles.textInput}
               placeholder={i18n.pleaseEnterAddress}
               initialValue={query.address}
               name="address"
               type="text"
             />
           </View>
-          <View style={styles.item}>
-            <View style={styles.title}>{i18n.communeDistrictCity}</View>
+          <View
+            style={{
+              paddingLeft: SIDEINTERVAL,
+              paddingRight: SIDEINTERVAL,
+            }}
+            className={styles.item}
+          >
+            <View
+              style={{
+                paddingRight: SIDEINTERVAL / 2,
+              }}
+              className={styles.title}
+            >
+              {i18n.communeDistrictCity}
+            </View>
             <View
               style={{
                 flex: 1,
@@ -288,7 +288,13 @@ class AddressModify extends React.Component {
         </View>
         <BYButton
           styleWrap={{ marginBottom: 30 }}
-          styleText={styles.submit}
+          styleText={{
+            height: 50,
+            lineHeight: 50,
+            textAlign: 'center',
+            color: '#fff',
+            backgroundColor: '#0076F7',
+          }}
           text={i18n.save}
           onClick={() => this.handleOnPressSubmit()}
         />

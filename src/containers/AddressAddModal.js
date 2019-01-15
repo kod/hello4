@@ -9,84 +9,13 @@ import {
   SIDEINTERVAL,
   WINDOW_HEIGHT,
 } from '@src/common/constants';
-import { BORDER_COLOR, PRIMARY_COLOR } from '@src/styles/variables';
 import CustomIcon from '@src/components/CustomIcon';
 import Loader from '@src/components/Loader';
 import { dispatchEventBuyoo } from '@src/utils';
 import { View } from '@src/API';
+import classNames from 'classnames';
 
-const styles = {
-  container: {
-    backgroundColor: '#fff',
-  },
-  mask: {
-    flex: 1,
-    backgroundColor: 'rgba(0,0,0, .3)',
-  },
-  closeWrap: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'flex-end',
-    justifyContent: 'center',
-    height: 45,
-    paddingRight: WINDOW_WIDTH * 0.02,
-  },
-  close: {
-    fontSize: 24,
-    color: '#666',
-  },
-  nav: {
-    overflowY: 'auto',
-  },
-  navMain: {
-    display: 'flex',
-    flexDirection: 'row',
-    width: WINDOW_WIDTH * 1.5,
-    paddingLeft: SIDEINTERVAL,
-    borderBottomColor: BORDER_COLOR,
-    borderBottomWidth: 1,
-    borderBottomStyle: 'solid',
-  },
-  navItem: {
-    height: 45,
-    lineHeight: '45px',
-    textAlign: 'center',
-    color: '#666',
-    borderBottomWidth: 2,
-    borderBottomColor: 'transparent',
-    borderBottomStyle: 'solid',
-    marginRight: SIDEINTERVAL * 2,
-  },
-  navActive: {
-    color: PRIMARY_COLOR,
-    borderBottomColor: PRIMARY_COLOR,
-  },
-  scrollView: {
-    height: WINDOW_HEIGHT * 0.6,
-    overflowY: 'auto',
-    display: 'none',
-  },
-  ScrollViewShow: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  scrollViewItem: {
-    display: 'flex',
-    paddingTop: 12,
-    paddingBottom: 12,
-    paddingLeft: SIDEINTERVAL,
-    paddingRight: SIDEINTERVAL,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  scrollViewActive: {
-    color: PRIMARY_COLOR,
-  },
-  scrollViewWrap: {
-    position: 'relative',
-  },
-};
+import styles from './AddressAddModal.less';
 
 class AddressAddModal extends Component {
   constructor(props) {
@@ -254,14 +183,20 @@ class AddressAddModal extends Component {
       return (
         <View
           style={{
-            ...styles.scrollView,
-            ...(addressIndex === scrollViewKey && styles.ScrollViewShow),
+            height: WINDOW_HEIGHT * 0.6,
           }}
+          className={classNames(styles.scrollView, {
+            [styles.ScrollViewShow]: addressIndex === scrollViewKey,
+          })}
           key={scrollViewKey}
         >
           {item.map(val => (
             <View
-              style={styles.scrollViewItem}
+              style={{
+                paddingLeft: SIDEINTERVAL,
+                paddingRight: SIDEINTERVAL,
+              }}
+              className={styles.scrollViewItem}
               key={val.id}
               onClick={() =>
                 this.handleOnPressCitySelect(
@@ -273,22 +208,20 @@ class AddressAddModal extends Component {
               }
             >
               <View
-                style={{
-                  ...styles.scrollViewItemText,
-                  ...(divisionObject(scrollViewKey) === val.id &&
-                    styles.scrollViewActive),
-                }}
+                className={classNames({
+                  [styles.scrollViewActive]:
+                    divisionObject(scrollViewKey) === val.id,
+                })}
               >
                 {val.name}
               </View>
               <CustomIcon
                 name="radioboxfill"
                 type="radioboxfill"
-                style={{
-                  ...styles.scrollViewItemIcon,
-                  ...(divisionObject(scrollViewKey) === val.id &&
-                    styles.scrollViewActive),
-                }}
+                className={classNames({
+                  [styles.scrollViewActive]:
+                    divisionObject(scrollViewKey) === val.id,
+                })}
               />
             </View>
           ))}
@@ -314,37 +247,49 @@ class AddressAddModal extends Component {
     } = this.props;
 
     return (
-      <View style={styles.container}>
-        {/* <View style={styles.mask} /> */}
-        <View style={styles.closeWrap}>
+      <View className={styles.container}>
+        {/* <View className={styles.mask} /> */}
+        <View
+          style={{
+            paddingRight: WINDOW_WIDTH * 0.02,
+          }}
+          className={styles.closeWrap}
+        >
           <CustomIcon
             name="close"
             type="close"
-            style={styles.close}
+            className={styles.close}
             onClick={() => this.handleOnModalClose()}
           />
         </View>
         <View
-          style={styles.nav}
+          className={styles.nav}
           // horizontal
           // showsHorizontalScrollIndicator={false}
         >
-          <View style={styles.navMain}>
+          <View
+            style={{
+              width: WINDOW_WIDTH * 1.5,
+              paddingLeft: SIDEINTERVAL,
+            }}
+            className={styles.navMain}
+          >
             <View
               style={{
-                ...styles.navItem,
-                ...(addressIndex === 0 && styles.navActive),
+                marginRight: SIDEINTERVAL * 2,
               }}
+              className={classNames(styles.navItem, {
+                [styles.navActive]: addressIndex === 0,
+              })}
               onClick={() => this.setState({ addressIndex: 0 })}
             >
               {division2ndName || 'Tỉnh/Thành'}
             </View>
             {division2ndID && (
               <View
-                style={{
-                  ...styles.navItem,
-                  ...(addressIndex === 1 && styles.navActive),
-                }}
+                className={classNames(styles.navItem, {
+                  [styles.navActive]: addressIndex === 1,
+                })}
                 onClick={() => this.setState({ addressIndex: 1 })}
               >
                 {division3rdName || 'Quận/huyện'}
@@ -352,10 +297,9 @@ class AddressAddModal extends Component {
             )}
             {division3rdID && (
               <View
-                style={{
-                  ...styles.navItem,
-                  ...(addressIndex === 2 && styles.navActive),
-                }}
+                className={classNames(styles.navItem, {
+                  [styles.navActive]: addressIndex === 2,
+                })}
                 onClick={() => this.setState({ addressIndex: 2 })}
               >
                 {division4thName || 'Phường, xã'}
@@ -363,7 +307,7 @@ class AddressAddModal extends Component {
             )}
           </View>
         </View>
-        <View style={styles.scrollViewWrap}>
+        <View className={styles.scrollViewWrap}>
           {[division2ndItems, division3rdItems, division4thItems].map(
             (val, key) => renderScrollView(val, key),
           )}
@@ -387,22 +331,6 @@ class AddressAddModal extends Component {
       </Modal>
     );
   }
-
-  // render() {
-  //   return (
-  //     <Modal
-  //       animationType="fade"
-  //       transparent
-  //       visible
-  //       onRequestClose={this.handleOnModalClose}
-  //     >
-  //       <View style={{ flex: 1 }}>
-  //         <View style={styles.mask} />
-  //         {this.renderContent()}
-  //       </View>
-  //     </Modal>
-  //   );
-  // }
 }
 
 export default connect(

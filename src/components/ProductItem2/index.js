@@ -2,7 +2,6 @@
 import React from 'react';
 import router from 'umi/lib/router';
 
-import { BORDER_COLOR, RED_COLOR } from '@src/styles/variables';
 import {
   SIDEINTERVAL,
   MONETARY,
@@ -14,79 +13,7 @@ import priceFormat from '@src/utils/priceFormat';
 import { xOssProcess } from '@src/utils';
 import { View } from '@src/API';
 
-const styles = {
-  itemWrap: {
-    backgroundColor: '#fff',
-  },
-  item: {
-    display: 'flex',
-    position: 'relative',
-    flexDirection: 'row',
-    borderBottomColor: BORDER_COLOR,
-    borderBottomStyle: 'solid',
-    borderBottomWidth: 1,
-    zIndex: 100,
-  },
-  disable: {
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    right: 0,
-    left: 0,
-    backgroundColor: 'rgba(0,0,0,.1)',
-    zIndex: 999,
-  },
-  itemLeft: {
-    display: 'flex',
-    alignItems: 'center',
-    paddingLeft: SIDEINTERVAL,
-    paddingTop: 18,
-    paddingBottom: 18,
-  },
-  itemImage: {
-    width: 60,
-    height: 60,
-    // backgroundColor: '#0f0',
-    borderColor: BORDER_COLOR,
-    borderWidth: 1,
-  },
-  itemRight: {
-    flex: 1,
-    paddingTop: 18,
-    // paddingBottom: 18,
-    paddingLeft: SIDEINTERVAL,
-    paddingRight: SIDEINTERVAL,
-  },
-  itemTitle: {
-    fontSize: 14,
-    color: '#333',
-    marginBottom: 6,
-    lineHeight: '18px',
-
-    overflow: 'hidden',
-    whiteSpace: 'nowrap',
-    textOverflow: 'ellipsis',
-  },
-  itemPrice: {
-    fontSize: 11,
-    color: '#999',
-    marginBottom: 6,
-  },
-  itemRightRow3: {
-    display: 'flex',
-    flexDirection: 'row',
-  },
-  itemRightRow3Price: {
-    fontSize: 14,
-    color: RED_COLOR,
-    marginRight: 9,
-  },
-  itemRightRow3Number: {
-    fontSize: 11,
-    color: '#666',
-    paddingTop: 2,
-  },
-};
+import styles from './index.less';
 
 class ProductItem2 extends React.Component {
   onPressHandle(val) {
@@ -128,18 +55,22 @@ class ProductItem2 extends React.Component {
     } = this.props;
 
     return (
-      <View style={{ ...styles.itemWrap, ...style }} {...restProps}>
+      <View style={style} className={styles.itemWrap} {...restProps}>
         {data &&
           data.map((val, key) => (
             <View
-              style={{ ...styles.item, ...styleItem }}
+              style={styleItem}
+              className={styles.item}
               key={key}
               onClick={() => this.onPressHandle(val)}
             >
-              <View style={{ ...styles.itemLeft, ...styleItemLeft }}>
+              <View
+                style={{ paddingLeft: SIDEINTERVAL, ...styleItemLeft }}
+                className={styles.itemLeft}
+              >
                 <img
                   alt=""
-                  style={styles.itemImage}
+                  className={styles.itemImage}
                   src={`${val.imageUrl}?${xOssProcess(
                     IS_IOS,
                     OSS_IMAGE_QUALITY,
@@ -147,19 +78,26 @@ class ProductItem2 extends React.Component {
                   // src={`${val.imageUrl}?x-oss-process=image/resize,w_240,h_240`}
                 />
               </View>
-              <View style={styles.itemRight}>
-                <View style={styles.itemTitle}>{val.name}</View>
-                {/* <View style={styles.itemPrice}>
+              <View
+                style={{
+                  paddingLeft: SIDEINTERVAL,
+                  paddingRight: SIDEINTERVAL,
+                }}
+                className={styles.itemRight}
+              >
+                <View className={styles.itemTitle}>{val.name}</View>
+                {/* <View className={styles.itemPrice}>
                   {`${priceFormat(val.price)} ${MONETARY}`}
                 </View> */}
-                <View style={styles.itemRightRow3}>
+                <View className={styles.itemRightRow3}>
                   <View
-                    style={{ ...styles.itemRightRow3Price, ...stylePricePrice }}
+                    style={stylePricePrice}
+                    className={styles.itemRightRow3Price}
                   >
                     {`${priceFormat(val.price)} ${MONETARY}`}
                   </View>
                   {isShowNumber && (
-                    <View style={styles.itemRightRow3Number}>
+                    <View className={styles.itemRightRow3Number}>
                       x{val.number}
                     </View>
                   )}

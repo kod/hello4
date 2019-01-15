@@ -16,6 +16,8 @@ import Loader from '@src/components/Loader';
 import { getLoginUser } from '@src/common/selectors';
 import CouponMyTabNavigator from './CouponMyTabNavigator';
 
+import styles from './index.less';
+
 class CouponMy extends React.Component {
   componentDidMount() {
     const { getVoucherListFetch } = this.props;
@@ -39,15 +41,6 @@ class CouponMy extends React.Component {
       loading,
     } = this.props;
 
-    const styles = {
-      container: {
-        display: 'flex',
-        flexDirection: 'column',
-        height: WINDOW_HEIGHT,
-        backgroundColor: '#fff',
-      },
-    };
-
     const tabs = [
       {
         title: `${i18n.notUsed}(${couponMyUnusedLength})`,
@@ -64,7 +57,12 @@ class CouponMy extends React.Component {
     ];
 
     return (
-      <View style={styles.container}>
+      <View
+        style={{
+          height: WINDOW_HEIGHT,
+        }}
+        className={styles.container}
+      >
         <BYHeader title={i18n.myCoupon} />
         {loading && <Loader />}
         <MustLogin

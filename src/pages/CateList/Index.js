@@ -12,15 +12,10 @@ import EmptyState from '@src/components/EmptyState';
 import ProductItem1A from '@src/components/ProductItem1A';
 import { getGetAllProductInfoItems } from '@src/common/selectors';
 
+import styles from './index.less';
+
 const ouhrigdfnjsoeijehrJpg =
   'https://oss.buyoo.vn/usercollect/1/20181101180309_67w.jpg';
-
-const styles = {
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-};
 
 class CateList extends React.Component {
   componentDidMount() {
@@ -85,19 +80,17 @@ class CateList extends React.Component {
   };
 
   renderContent() {
-    const stylesX = {
-      container: {
-        height: WINDOW_HEIGHT - 45,
-        overflowY: 'auto',
-        paddingTop: SIDEINTERVAL,
-        paddingBottom: SIDEINTERVAL,
-      },
-    };
-
     const { items, getAllProductInfo, loaded } = this.props;
 
     return (
-      <View style={stylesX.container}>
+      <View
+        style={{
+          paddingTop: SIDEINTERVAL,
+          paddingBottom: SIDEINTERVAL,
+          height: WINDOW_HEIGHT - 45,
+        }}
+        className={styles.containerContent}
+      >
         <ProductItem1A
           data={{ ...getAllProductInfo, items }}
           onRefresh={this.handleOnRefresh}
@@ -117,7 +110,7 @@ class CateList extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View className={styles.container}>
         <BYHeader />
         {this.renderContent()}
       </View>

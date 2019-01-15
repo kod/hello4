@@ -1,0 +1,83 @@
+.container {
+  background-color: #fff;
+}
+
+.mask {
+  flex: 1;
+  background-color: rgba(0,0,0, .3);
+}
+
+.closeWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  height: 45px;
+  // padding-right: WINDOW_WIDTH * 0.02;
+}
+
+.close {
+  font-size: 24px;
+  color: #666;
+}
+
+.nav {
+  overflow-y: auto;
+}
+
+.navMain {
+  display: flex;
+  flex-direction: row;
+  // width: WINDOW_WIDTH * 1.5;
+  // padding-left: SIDEINTERVAL;
+  border-bottom-color: #f5f5f5;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+}
+
+.navItem {
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+  color: #666;
+  border-bottom-width: 2px;
+  border-bottom-color: transparent;
+  border-bottom-style: solid;
+  // margin-right: SIDEINTERVAL * 2;
+}
+
+.navActive {
+  color: #0076F7;
+  border-bottom-color: #0076F7;
+}
+
+.scrollView {
+  // height: WINDOW_HEIGHT * 0.6;
+  overflow-y: auto;
+  display: none;
+}
+
+.ScrollViewShow {
+  display: flex;
+  flex-direction: column;
+}
+
+.scrollViewItem {
+  display: flex;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  // padding-left: SIDEINTERVAL;
+  // padding-right: SIDEINTERVAL;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.scrollViewActive {
+  color: #0076F7;
+}
+
+.scrollViewWrap {
+  position: relative;
+}
+

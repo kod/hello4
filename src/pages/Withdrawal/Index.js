@@ -8,45 +8,20 @@ import { WINDOW_HEIGHT } from '@src/common/constants';
 import * as loginActionCreators from '@src/common/actions/login';
 import Form from './Form';
 
-// class Withdrawal extends React.Component {
-//   render() {
-//     const styles = {
-//       container: {
-//         display: 'flex',
-//         flexDirection: 'column',
-//         height: WINDOW_HEIGHT,
-//         backgroundColor: '#f2f2f2',
-//       },
-//     };
+import styles from './index.less';
 
-//     return (
-//       <View style={styles.container}>
-//         <BYHeader title={i18n.enterCardInformation} />
-//         <Form />
-//         <View style={{ flex: 1 }} />
-//       </View>
-//     );
-//   }
-// }
-
-const Withdrawal = () => {
-  const styles = {
-    container: {
-      display: 'flex',
-      flexDirection: 'column',
+const Withdrawal = () => (
+  <View
+    style={{
       height: WINDOW_HEIGHT,
-      backgroundColor: '#f2f2f2',
-    },
-  };
-
-  return (
-    <View style={styles.container}>
-      <BYHeader title={i18n.enterCardInformation} />
-      <Form />
-      <View style={{ flex: 1 }} />
-    </View>
-  );
-};
+    }}
+    className={styles.container}
+  >
+    <BYHeader title={i18n.enterCardInformation} />
+    <Form />
+    <View style={{ flex: 1 }} />
+  </View>
+);
 
 export default connect(
   state => {

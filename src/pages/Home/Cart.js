@@ -14,13 +14,19 @@ import {
   WINDOW_HEIGHT,
   SCREENS,
 } from '@src/common/constants';
-import { BORDER_COLOR, RED_COLOR, PRIMARY_COLOR } from '@src/styles/variables';
+import { BORDER_COLOR } from '@src/styles/variables';
 import CartItem from '@src/components/CartItem';
 import CustomIcon from '@src/components/CustomIcon';
 import priceFormat from '@src/utils/priceFormat';
 import EmptyState from '@src/components/EmptyState';
 import { getCartTotalMoney, getLoginUser } from '@src/common/selectors';
 import { addEventListenerBuyoo, removeEventListenerBuyoo } from '@src/utils';
+
+import classNames from 'classnames';
+
+import styles from './Cart.less';
+import renderHeaderTitleStyles from './renderHeaderTitle.less';
+import renderHeaderRightStyles from './renderHeaderRight.less';
 
 const ouhrigdfnjsoeijehrJpg =
   'https://oss.buyoo.vn/usercollect/1/20181101180309_67w.jpg';
@@ -50,47 +56,52 @@ class Index extends PureComponent {
 
   renderHeaderTitle = () => {
     const { cart } = this.props;
-    const stylesX = {
-      container: {
-        display: 'flex',
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        flexDirection: 'row',
-        paddingLeft: cart.items.length === 0 ? 0 : 60,
-        // paddingRight: cart.items.length === 0 ? 25 : 0,
-        height: '100%',
-      },
-      title: {
-        fontSize: 16,
-        color: '#333',
-        marginRight: 5,
-      },
-    };
+    // const stylesX = {
+    //   container: {
+    //     display: 'flex',
+    //     flex: 1,
+    //     align-items: 'center',
+    //     justify-content: 'center',
+    //     flex-direction: row,
+    //     padding-left: cart.items.length === 0 ? 0 : 60,
+    //     // padding-right: cart.items.length === 0 ? 25 : 0,
+    //     height: '100%',
+    //   },
+    //   title: {
+    //     font-size: 16,
+    //     color: '#333',
+    //     margin-right: 5,
+    //   },
+    // };
 
     return (
-      <View style={stylesX.container}>
-        <View style={stylesX.title}>{i18n.cart}</View>
+      <View
+        style={{
+          paddingLeft: cart.items.length === 0 ? 0 : 60,
+        }}
+        className={renderHeaderTitleStyles.container}
+      >
+        <View className={renderHeaderTitleStyles.title}>{i18n.cart}</View>
       </View>
     );
   };
 
   renderHeaderRight = () => {
-    const stylesX = {
-      headerRight: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: '100%',
-      },
-      headerRightText: {
-        fontSize: 14,
-        color: '#666',
-        // height: '100%',
-        paddingLeft: SIDEINTERVAL,
-        paddingRight: SIDEINTERVAL,
-      },
-    };
+    // const stylesX = {
+    //   headerRight: {
+    //     display: 'flex',
+    //     align-items: 'center',
+    //     justify-content: 'center',
+    //     height: '100%',
+    //   },
+    //   headerRightText: {
+    //     font-size: 14,
+    //     color: '#666',
+    //     // height: '100%',
+    //     padding-left: SIDEINTERVAL,
+    //     padding-right: SIDEINTERVAL,
+    //   },
+    // };
 
     const {
       isEdit,
@@ -105,8 +116,17 @@ class Index extends PureComponent {
     };
 
     return (
-      <View style={stylesX.headerRight} onClick={() => onPressHandle()}>
-        <View style={stylesX.headerRightText}>
+      <View
+        className={renderHeaderRightStyles.headerRight}
+        onClick={() => onPressHandle()}
+      >
+        <View
+          style={{
+            paddingLeft: SIDEINTERVAL,
+            paddingRight: SIDEINTERVAL,
+          }}
+          className={renderHeaderRightStyles.headerRightText}
+        >
           {isEdit ? i18n.save : i18n.edit}
         </View>
       </View>
@@ -223,85 +243,21 @@ class Index extends PureComponent {
       totalMoney,
     } = this.props;
 
-    const styles = {
-      container: {
-        backgroundColor: '#fff',
-      },
-      main: {
-        display: 'flex',
-        flexDirection: 'column',
-        height: WINDOW_HEIGHT - 45 - 50 - 50,
-        overflowY: 'auto',
-      },
-      overview: {
-        display: 'flex',
-        flexDirection: 'row',
-        backgroundColor: '#fff',
-        borderTopColor: BORDER_COLOR,
-        borderTopWidth: 1,
-        borderTopStyle: 'solid',
-      },
-      overviewIconWrap: {
-        paddingLeft: WINDOW_WIDTH * 0.045,
-      },
-      overviewSelectAll: {
-        display: 'flex',
-        flexDirection: 'row',
-      },
-      overviewIcon: {
-        height: 50,
-        lineHeight: '50px',
-        fontSize: 20,
-        color: '#666',
-        marginRight: WINDOW_WIDTH * 0.02,
-      },
-      overviewIconSelected: {
-        color: PRIMARY_COLOR,
-      },
-      overviewIconSelectedDel: {
-        color: RED_COLOR,
-      },
-      overviewSelect: {
-        height: 49,
-        lineHeight: '49px',
-        fontSize: 16,
-        color: '#666',
-        paddingRight: WINDOW_WIDTH * 0.02,
-      },
-      overviewPrice: {
-        ddisplay: 'flex',
-        flex: 1,
-        height: 50,
-        lineHeight: '50px',
-        textAlign: 'center',
-        fontSize: 16,
-        color: RED_COLOR,
-        fontWeight: '700',
-      },
-      overviewSubmitText: {
-        height: 50,
-        lineHeight: '50px',
-        textAlign: 'center',
-        width: WINDOW_WIDTH * 0.25,
-        color: '#fff',
-        fontSize: 14,
-        backgroundColor: PRIMARY_COLOR,
-      },
-      overviewSubmitTextDel: {
-        backgroundColor: RED_COLOR,
-      },
-    };
-
     const isEmptyCart = cart.items.length === 0;
     return (
-      <View style={styles.container}>
+      <View className={styles.container}>
         <BYHeader
           headerTitle={this.renderHeaderTitle()}
           headerRight={!isEmptyCart && this.renderHeaderRight()}
           showBackButton={false}
         />
         {!isEmptyCart && (
-          <View style={styles.main}>
+          <View
+            style={{
+              height: WINDOW_HEIGHT - 45 - 50 - 50,
+            }}
+            className={styles.main}
+          >
             {!isEmptyCart && (
               <View>
                 <CartItem
@@ -324,46 +280,60 @@ class Index extends PureComponent {
           </View>
         )}
         {!isEmptyCart && (
-          <View style={styles.overview}>
+          <View className={styles.overview}>
             <View
-              style={styles.overviewSelectAll}
+              className={styles.overviewSelectAll}
               onClick={() => this.onPressSelectAllHandle()}
             >
-              <View style={styles.overviewIconWrap}>
+              <View
+                style={{
+                  paddingLeft: WINDOW_WIDTH * 0.045,
+                }}
+              >
                 {isEdit ? (
                   <CustomIcon
                     name={allSelectedDel ? 'roundcheckfill' : 'round'}
                     type={allSelectedDel ? 'roundcheckfill' : 'round'}
                     style={{
-                      ...styles.overviewIcon,
-                      ...(allSelectedDel && styles.overviewIconSelectedDel),
+                      marginRight: WINDOW_WIDTH * 0.02,
                     }}
+                    className={classNames(styles.overviewIcon, {
+                      [styles.overviewIconSelectedDel]: !!allSelectedDel,
+                    })}
                   />
                 ) : (
                   <CustomIcon
                     name={allSelected ? 'roundcheckfill' : 'round'}
                     type={allSelected ? 'roundcheckfill' : 'round'}
                     style={{
-                      ...styles.overviewIcon,
-                      ...(allSelected && styles.overviewIconSelected),
+                      marginRight: WINDOW_WIDTH * 0.02,
                     }}
+                    className={classNames(styles.overviewIcon, {
+                      [styles.overviewIconSelected]: !!allSelectedDel,
+                    })}
                   />
                 )}
               </View>
-              <View style={styles.overviewSelect}>{i18n.selectAll}</View>
-            </View>
-            <View style={styles.overviewPrice}>
-              {!isEdit && `${priceFormat(totalMoney)} ${MONETARY}`}
-            </View>
-            <View
-              style={styles.overviewSubmit}
-              onClick={() => this.onPressSubmitHandle()}
-            >
               <View
                 style={{
-                  ...styles.overviewSubmitText,
-                  ...(isEdit && styles.overviewSubmitTextDel),
+                  paddingRight: WINDOW_WIDTH * 0.02,
                 }}
+                className={styles.overviewSelect}
+              >
+                {i18n.selectAll}
+              </View>
+            </View>
+            <View className={styles.overviewPrice}>
+              {!isEdit && `${priceFormat(totalMoney)} ${MONETARY}`}
+            </View>
+            <View onClick={() => this.onPressSubmitHandle()}>
+              <View
+                style={{
+                  width: WINDOW_WIDTH * 0.25,
+                }}
+                className={classNames(styles.overviewSubmitText, {
+                  [styles.overviewSubmitTextDel]: !!isEdit,
+                })}
               >
                 {isEdit ? i18n.delete : i18n.buy}
               </View>

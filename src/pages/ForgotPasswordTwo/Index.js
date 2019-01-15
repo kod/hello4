@@ -10,6 +10,8 @@ import Loader from '@src/components/Loader';
 import { removeEventListenerBuyoo, addEventListenerBuyoo } from '@src/utils';
 import Form from './Form';
 
+import styles from './index.less';
+
 class Index extends React.Component {
   constructor(props) {
     super(props);
@@ -46,15 +48,13 @@ class Index extends React.Component {
       location: { query = {} },
     } = this.props;
 
-    const styles = {
-      container: {
-        height: WINDOW_HEIGHT,
-        backgroundColor: '#fff',
-      },
-    };
-
     return (
-      <View style={styles.container}>
+      <View
+        style={{
+          height: WINDOW_HEIGHT,
+        }}
+        className={styles.container}
+      >
         <BYHeader title={query.title} />
         {changePasswordLoading && <Loader />}
         <Form query={query} />

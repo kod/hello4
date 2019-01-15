@@ -11,15 +11,12 @@ import {
   SIDEINTERVAL,
   WINDOW_HEIGHT,
 } from '@src/common/constants';
-import {
-  FONT_COLOR_PRIMARY,
-  FONT_SIZE_THIRD,
-  FONT_COLOR_FIRST,
-} from '@src/styles/variables';
 import CustomIcon from '@src/components/CustomIcon';
 import BYButton from '@src/components/BYButton';
 import { addEventListenerBuyoo, removeEventListenerBuyoo } from '@src/utils';
 import { getLoginUser } from '@src/common/selectors';
+
+import styles from './GiftModal.less';
 
 class AddressAddModal extends Component {
   constructor(props) {
@@ -85,64 +82,53 @@ class AddressAddModal extends Component {
   };
 
   renderContent() {
-    const styles = {
-      container: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: WINDOW_HEIGHT,
-      },
-      main: {
-        backgroundColor: '#fff',
-        width: WINDOW_WIDTH * 0.8,
-        height: WINDOW_WIDTH * 0.8,
-        borderRadius: 10,
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center',
-        backgroundSize: 'cover',
-        backgroundImage:
-          'url(https://oss.buyoo.vn/buyoo_vip/usercollect/1/20181217182121_p8Z.png)',
-      },
-      close: {
-        textAlign: 'right',
-      },
-      closeIcon: {
-        color: FONT_COLOR_PRIMARY,
-        fontSize: FONT_SIZE_THIRD,
-        fontWeight: 700,
-        paddingTop: SIDEINTERVAL / 2,
-        paddingRight: SIDEINTERVAL / 2,
-        paddingBottom: SIDEINTERVAL / 2,
-        paddingLeft: SIDEINTERVAL / 2,
-      },
-      text: {
-        textAlign: 'center',
-        paddingTop: WINDOW_WIDTH * 0.35,
-        paddingLeft: WINDOW_WIDTH * 0.1,
-        paddingRight: WINDOW_WIDTH * 0.1,
-        color: FONT_COLOR_FIRST,
-        marginBottom: WINDOW_WIDTH * 0.06,
-      },
-      button: {
-        borderRadius: 3,
-      },
-      buttonText: {
-        height: 40,
-      },
-    };
-
     return (
-      <View style={styles.container}>
-        <View style={styles.main}>
-          <View style={styles.close} onClick={() => this.handleOnModalClose()}>
-            <CustomIcon name="close" type="close" style={styles.closeIcon} />
+      <View
+        style={{
+          height: WINDOW_HEIGHT,
+        }}
+        className={styles.container}
+      >
+        <View
+          style={{
+            width: WINDOW_WIDTH * 0.8,
+            height: WINDOW_WIDTH * 0.8,
+          }}
+          className={styles.main}
+        >
+          <View
+            className={styles.close}
+            onClick={() => this.handleOnModalClose()}
+          >
+            <CustomIcon
+              name="close"
+              type="close"
+              style={{
+                paddingTop: SIDEINTERVAL / 2,
+                paddingRight: SIDEINTERVAL / 2,
+                paddingBottom: SIDEINTERVAL / 2,
+                paddingLeft: SIDEINTERVAL / 2,
+              }}
+              className={styles.closeIcon}
+            />
           </View>
-          <View style={styles.text}>{i18n.receivedGiftCard}</View>
+          <View
+            style={{
+              paddingTop: WINDOW_WIDTH * 0.35,
+              paddingLeft: WINDOW_WIDTH * 0.1,
+              paddingRight: WINDOW_WIDTH * 0.1,
+              marginBottom: WINDOW_WIDTH * 0.06,
+            }}
+            className={styles.text}
+          >
+            {i18n.receivedGiftCard}
+          </View>
           <BYButton
             text={i18n.usedImmediately}
-            style={styles.button}
-            styleText={styles.buttonText}
+            className={styles.button}
+            styleText={{
+              height: 40,
+            }}
             onClick={() => this.handleOnPressSubmit()}
           />
         </View>

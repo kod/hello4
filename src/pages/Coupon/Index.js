@@ -17,15 +17,10 @@ import EmptyState from '@src/components/EmptyState';
 import CouponItem from '@src/components/CouponItem';
 import { getLoginUser } from '@src/common/selectors';
 
+import styles from './index.less';
+
 const ouhrigdfnjsoeijehrJpg =
   'https://oss.buyoo.vn/usercollect/1/20181101180309_67w.jpg';
-
-const styles = {
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-};
 
 class Coupon extends React.Component {
   constructor(props) {
@@ -73,7 +68,7 @@ class Coupon extends React.Component {
     if (loading) return <Loader />;
 
     return (
-      <View style={styles.container}>
+      <View className={styles.container}>
         <BYHeader title={i18n.discountCode} />
         {receiveVoucherLoading && <Loader />}
         {items.length > 0 ? (

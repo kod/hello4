@@ -5,15 +5,15 @@ import { WINDOW_HEIGHT } from '@src/common/constants';
 import { View } from '@src/API';
 import Form from './Form';
 
-const styles = {
-  container: {
-    height: WINDOW_HEIGHT,
-    backgroundColor: '#fff',
-  },
-};
+import styles from './index.less';
 
 export default ({ location: { query = {} } }) => (
-  <View style={styles.container}>
+  <View
+    style={{
+      height: WINDOW_HEIGHT,
+    }}
+    className={styles.container}
+  >
     <BYHeader title={query.title} />
     <Form title={query.title} />
   </View>

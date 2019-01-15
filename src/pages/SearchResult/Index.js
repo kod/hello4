@@ -13,54 +13,7 @@ import { SIDEINTERVAL, SCREENS } from '@src/common/constants';
 
 import InputRight from '@src/components/InputRight';
 
-const styles = {
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  search: {
-    paddingTop: SIDEINTERVAL,
-    paddingBottom: SIDEINTERVAL,
-    paddingLeft: SIDEINTERVAL,
-    paddingRight: SIDEINTERVAL,
-  },
-  textInput: {
-    backgroundColor: '#f5f5f5',
-    height: 40,
-    paddingLeft: SIDEINTERVAL * 0.8,
-    paddingRight: SIDEINTERVAL * 0.8,
-    marginLeft: 0,
-  },
-  title: {
-    fontSize: 11,
-    color: '#ccc',
-    paddingLeft: SIDEINTERVAL,
-    paddingRight: SIDEINTERVAL,
-    marginBottom: 10,
-  },
-  history: {
-    paddingLeft: SIDEINTERVAL,
-  },
-  historyItem: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    height: 40,
-    borderBottomColor: '#f5f5f5',
-    borderBottomWidth: 1,
-  },
-  historyTitle: {
-    fontSize: 11,
-    color: '#666',
-  },
-  historyCloseIcon: {
-    fontSize: 14,
-    height: 40,
-    lineHeight: 40,
-    paddingLeft: SIDEINTERVAL,
-    paddingRight: SIDEINTERVAL,
-  },
-};
+import styles from './index.less';
 
 class SearchResult extends React.Component {
   constructor(props) {
@@ -123,35 +76,57 @@ class SearchResult extends React.Component {
     } = this.props;
 
     return (
-      <View style={styles.container}>
+      <View className={styles.container}>
         <BYHeader title={i18n.search} />
-        <View style={styles.search}>
+        <View
+          style={{
+            paddingTop: SIDEINTERVAL,
+            paddingBottom: SIDEINTERVAL,
+            paddingLeft: SIDEINTERVAL,
+            paddingRight: SIDEINTERVAL,
+          }}
+        >
           <InputRight
             getFieldProps={getFieldProps}
             style={{ borderBottomWidth: 0 }}
-            styleInput={styles.textInput}
+            styleInput={{
+              backgroundColor: '#f5f5f5',
+              height: 40,
+              paddingLeft: SIDEINTERVAL * 0.8,
+              paddingRight: SIDEINTERVAL * 0.8,
+              marginLeft: 0,
+            }}
             placeholder={i18n.search}
             name="search"
             type="search"
           />
         </View>
         {/* {items.length > 0 && (
-          <View style={styles.title}>
+          <View style={{
+            paddingLeft: SIDEINTERVAL,
+            paddingRight: SIDEINTERVAL,
+          }} className={styles.title}>
             {i18n.historicalSearch}
           </View>
         )}
-        <View style={styles.history}>
+        <View style={{
+          paddingLeft: SIDEINTERVAL,
+        }}>
           {items.map(val => (
             <View
-              style={styles.historyItem}
+              className={styles.historyItem}
               onClick={() => this.handleOnPressHistoryItem(val)}
               key={val}
             >
-              <View style={styles.historyTitle}>{val}</View>
+              <View className={styles.historyTitle}>{val}</View>
               <CustomIcon
                 name="close"
                 type="close"
-                style={styles.historyCloseIcon}
+                style={{
+                  paddingLeft: SIDEINTERVAL,
+                  paddingRight: SIDEINTERVAL,
+                }}
+                className={styles.historyCloseIcon}
                 onClick={() => searchHistoryRemove(val)}
               />
             </View>

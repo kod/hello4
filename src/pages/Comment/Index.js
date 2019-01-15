@@ -15,6 +15,8 @@ import BYHeader from '@src/components/BYHeader';
 import { xOssProcess } from '@src/utils';
 import Loader from '@src/components/Loader';
 
+import styles from './index.less';
+
 const emptycommentPng =
   'https://oss.buyoo.vn/usercollect/1/20181107170628_nI0.png';
 
@@ -27,31 +29,13 @@ class ProductDetailComment extends React.Component {
   render() {
     const { comment, loading } = this.props;
 
-    const styles = {
-      container: {
-        position: 'relative',
-        height: WINDOW_HEIGHT,
-        backgroundColor: '#fff',
-      },
-      emptyComment: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        paddingTop: WINDOW_WIDTH * 0.3,
-      },
-      emptyCommentImage: {
-        height: 160,
-        width: 160,
-        marginBottom: WINDOW_WIDTH * 0.06,
-      },
-      emptyCommentText: {
-        fontSize: 11,
-        color: '#ccc',
-      },
-    };
-
     return (
-      <View style={styles.container}>
+      <View
+        style={{
+          height: WINDOW_HEIGHT,
+        }}
+        className={styles.container}
+      >
         {loading && <Loader />}
         <BYHeader title={i18n.evaluation} />
         {comment.length !== 0 && (
@@ -60,17 +44,25 @@ class ProductDetailComment extends React.Component {
           </View>
         )}
         {comment.length === 0 && (
-          <View style={styles.emptyComment}>
+          <View
+            style={{
+              paddingTop: WINDOW_WIDTH * 0.3,
+            }}
+            className={styles.emptyComment}
+          >
             <img
               alt=""
-              style={styles.emptyCommentImage}
+              style={{
+                marginBottom: WINDOW_WIDTH * 0.06,
+              }}
+              className={styles.emptyCommentImage}
               src={`${emptycommentPng}?${xOssProcess(
                 IS_IOS,
                 OSS_IMAGE_QUALITY,
               )}`}
             />
             {/* <Image style={styles.emptyCommentImage} source={emptycommentPng} /> */}
-            <View style={styles.emptyCommentText}>{i18n.noCommentYet}</View>
+            <View className={styles.emptyCommentText}>{i18n.noCommentYet}</View>
           </View>
         )}
       </View>

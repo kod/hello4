@@ -11,15 +11,10 @@ import Loader from '@src/components/Loader';
 import EmptyState from '@src/components/EmptyState';
 import CouponItem from '@src/components/CouponItem';
 
+import styles from './index.less';
+
 const ouhrigdfnjsoeijehrJpg =
   'https://oss.buyoo.vn/usercollect/1/20181101180309_67w.jpg';
-
-const styles = {
-  container: {
-    height: WINDOW_HEIGHT - 45 - 45,
-    backgroundColor: '#fff',
-  },
-};
 
 class CouponMyItem extends React.Component {
   componentDidMount() {
@@ -30,7 +25,12 @@ class CouponMyItem extends React.Component {
     const { items, loading } = this.props;
 
     return (
-      <View style={styles.container}>
+      <View
+        style={{
+          height: WINDOW_HEIGHT - 45 - 45,
+        }}
+        className={styles.container}
+      >
         {loading && <Loader />}
         {items.length > 0 ? (
           <View>

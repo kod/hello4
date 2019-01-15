@@ -1,8 +1,8 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
 import dayjs from 'dayjs';
+import classNames from 'classnames';
 
-import { PRIMARY_COLOR, RED_COLOR } from '@src/styles/variables';
 import {
   SIDEINTERVAL,
   MONETARY,
@@ -15,114 +15,66 @@ import CustomIcon from '@src/components/CustomIcon';
 import { xOssProcess } from '@src/utils';
 import { View } from '@src/API';
 
+import styles from './index.less';
+
 const couponBluePng =
   'https://oss.buyoo.vn/usercollect/1/20181109100835_r2M.png';
 const couponRedPng =
   'https://oss.buyoo.vn/usercollect/1/20181109101238_V41.png';
 
-const styles = {
-  container: {
-    paddingLeft: SIDEINTERVAL,
-    paddingRight: SIDEINTERVAL,
-    paddingTop: 15,
-  },
-  item: {
-    marginBottom: 30,
-  },
-  itemDisable: {
-    opacity: 0.5,
-  },
-  image: {
-    display: 'flex',
-    height: 5,
-    width: WINDOW_WIDTH - SIDEINTERVAL * 2,
-    resizeMode: 'cover',
-  },
-  bottom: {
-    display: 'flex',
-    position: 'relative',
-    flexDirection: 'row',
-    backgroundColor: PRIMARY_COLOR,
-  },
-  bottomRed: {
-    backgroundColor: RED_COLOR,
-  },
-  bottomGrey: {
-    backgroundColor: '#7b7b7b',
-  },
-  date: {
-    position: 'absolute',
-    zIndex: 555,
-    bottom: 0,
-    left: 0,
-    right: 0,
-    height: 30,
-    lineHeight: '30px',
-    color: '#fff',
-    fontSize: 11,
-    paddingLeft: SIDEINTERVAL * 2,
-    backgroundColor: 'rgba(66, 66, 66, 0.5)',
-  },
-  left: {
-    flex: 1,
-    height: 160,
-    paddingLeft: SIDEINTERVAL * 2,
-    paddingTop: SIDEINTERVAL * 1.5,
-  },
-  price: {
-    fontSize: 30,
-    color: '#fff',
-    fontWeight: '700',
-    marginBottom: 1,
-  },
-  text1: {
-    fontSize: 14,
-    color: '#fff',
-    marginBottom: 5,
-  },
-  text2: {
-    fontSize: 11,
-    color: 'rgba(255, 255, 255, 0.5)',
-  },
-  arrow: {
-    height: 160,
-    lineHeight: '160px',
-    paddingLeft: SIDEINTERVAL,
-    paddingRight: SIDEINTERVAL * 1.8,
-    color: '#fff',
-    fontSize: 16,
-  },
-};
-
 export default ({ isCouponCenter = true, data, onClick, ...restProps }) => (
-  <View style={styles.container} {...restProps}>
+  <View
+    style={{
+      paddingLeft: SIDEINTERVAL,
+      paddingRight: SIDEINTERVAL,
+    }}
+    className={styles.container}
+    {...restProps}
+  >
     {data.map((val, key) =>
       val.voucherType === 1 ? (
         <View
           style={{
-            ...styles.item,
-            ...(isCouponCenter && val.status !== 1 && styles.itemDisable),
+            ...(isCouponCenter && val.status !== 1 && { opacity: 0.5 }),
           }}
+          className={styles.item}
           key={key}
           onClick={() => onClick && onClick(val)}
         >
           <img
             alt=""
-            style={styles.image}
+            style={{
+              width: WINDOW_WIDTH - SIDEINTERVAL * 2,
+            }}
+            className={styles.image}
             src={`${couponBluePng}?${xOssProcess(IS_IOS, OSS_IMAGE_QUALITY)}`}
           />
-          <View style={styles.bottom}>
-            <View style={styles.left}>
-              <View style={styles.price}>
+          <View className={styles.bottom}>
+            <View
+              style={{
+                paddingLeft: SIDEINTERVAL * 2,
+                paddingTop: SIDEINTERVAL * 1.5,
+              }}
+              className={styles.left}
+            >
+              <View className={styles.price}>
                 {`${priceFormat(val.voucherValue)} ${MONETARY}`}
               </View>
-              <View style={styles.text1}>{val.voucherName}</View>
-              <View style={styles.text2}>{val.voucherDesc}</View>
+              <View className={styles.text1}>{val.voucherName}</View>
+              <View className={styles.text2}>{val.voucherDesc}</View>
             </View>
             {onClick && (
-              <CustomIcon name="right" type="right" style={styles.arrow} />
+              <CustomIcon
+                name="right"
+                type="right"
+                style={{
+                  paddingLeft: SIDEINTERVAL,
+                  paddingRight: SIDEINTERVAL * 1.8,
+                }}
+                className={styles.arrow}
+              />
             )}
-            <View style={styles.date}>
+            <View className={styles.date}>
               {`${dayjs(val.startTime).format('DD/MM/YYYY')}-${dayjs(
                 val.expireTime,
               ).format('DD/MM/YYYY')}`}
@@ -140,20 +92,25 @@ export default ({ isCouponCenter = true, data, onClick, ...restProps }) => (
         >
           <img
             alt=""
-            style={styles.image}
+            className={styles.image}
             src={`${couponRedPng}?${xOssProcess(IS_IOS, OSS_IMAGE_QUALITY)}`}
           />
-          <View style={{ ...styles.bottom, ...styles.bottomRed }}>
-            <View style={styles.left}>
-              <View style={styles.price}>{`${100 -
+          <View className={classNames(styles.bottom, styles.bottomRed)}>
+            <View className={styles.left}>
+              <View className={styles.price}>{`${100 -
                 val.voucherValue}% OFF`}</View>
-              <View style={styles.text1}>{val.voucherName}</View>
-              <View style={styles.text2}>{val.voucherDesc}</View>
+              <View className={styles.text1}>{val.voucherName}</View>
+              <View className={styles.text2}>{val.voucherDesc}</View>
             </View>
             {onClick && (
-              <CustomIcon name="right" type="right" style={styles.arrow} />
+              <CustomIcon name="right" type="right" className={styles.arrow} />
             )}
-            <View style={styles.date}>
+            <View
+              style={{
+                paddingLeft: SIDEINTERVAL * 2,
+              }}
+              className={styles.date}
+            >
               {`${dayjs(val.startTime).format('DD/MM/YYYY')}-${dayjs(
                 val.expireTime,
               ).format('DD/MM/YYYY')}`}

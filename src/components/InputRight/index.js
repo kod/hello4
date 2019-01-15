@@ -1,30 +1,8 @@
 import React from 'react';
 import { SIDEINTERVAL } from '@src/common/constants';
-import { BORDER_COLOR } from '@src/styles/variables';
 import { View } from '@src/API';
 
-const styles = {
-  componentWrap: {
-    paddingLeft: SIDEINTERVAL,
-    paddingRight: SIDEINTERVAL,
-  },
-  component: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderBottomColor: BORDER_COLOR,
-    borderBottomStyle: 'solid',
-    borderBottomWidth: 5,
-  },
-  componentInput: {
-    flex: 1,
-    marginLeft: SIDEINTERVAL,
-    paddingTop: 15,
-    paddingBottom: 15,
-    fontSize: 14,
-    border: 0,
-  },
-};
+import styles from './index.less';
 
 export default ({
   inputRight,
@@ -43,12 +21,20 @@ export default ({
   onChange = () => {},
   required = true,
 }) => (
-  <View style={{ ...styles.componentWrap, ...styleWrap }}>
-    <View style={{ ...styles.component, ...style }}>
+  <View
+    style={{
+      paddingLeft: SIDEINTERVAL,
+      paddingRight: SIDEINTERVAL,
+
+      ...styleWrap,
+    }}
+  >
+    <View style={style} className={styles.component}>
       <input
         type={type}
         value={value}
-        style={{ ...styles.componentInput, ...styleInput }}
+        style={{ marginLeft: SIDEINTERVAL, ...styleInput }}
+        className={styles.componentInput}
         {...getFieldProps(name, {
           onChange,
           initialValue,

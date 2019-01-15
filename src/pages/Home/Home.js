@@ -14,13 +14,14 @@ import * as initAdverstCommonActionCreators from '@src/common/actions/initAdvers
 import { dispatchEventBuyoo, analyzeUrlNavigate } from '@src/utils';
 import NavImg1 from '@src/components/NavImg1';
 import SeparateBar from '@src/components/SeparateBar';
-import { RED_COLOR } from '@src/styles/variables';
 import { SIDEINTERVAL, WINDOW_WIDTH, SCREENS } from '@src/common/constants';
 import ProductItem5 from '@src/components/ProductItem5';
 import PhoneAdBaner from '@src/components/PhoneAdBaner';
 import ProductItem4 from '@src/components/ProductItem4';
 import ProductItem6 from '@src/components/ProductItem6';
 import { getLoginUser } from '@src/common/selectors';
+
+import styles from './Home.less';
 
 class Index extends PureComponent {
   componentDidMount() {
@@ -75,15 +76,6 @@ class Index extends PureComponent {
       initAdverstCommonItems,
       authUser,
     } = this.props;
-    const styles = {
-      hotTittle: {
-        color: RED_COLOR,
-        paddingLeft: SIDEINTERVAL,
-        paddingTop: SIDEINTERVAL,
-        paddingBottom: SIDEINTERVAL,
-        backgroundColor: '#fff',
-      },
-    };
     const bannerSwiperList = bannerSwiper.items;
     const adverstInfoList = adverstInfo.items;
 
@@ -118,7 +110,16 @@ class Index extends PureComponent {
         {getNewestInfoItems.length > 0 && (
           <View>
             <SeparateBar />
-            <View style={styles.hotTittle}>{i18n.hotNewProduct}</View>
+            <View
+              style={{
+                paddingLeft: SIDEINTERVAL,
+                paddingTop: SIDEINTERVAL,
+                paddingBottom: SIDEINTERVAL,
+              }}
+              className={styles.hotTittle}
+            >
+              {i18n.hotNewProduct}
+            </View>
 
             <ProductItem5
               data={getNewestInfoItems}
@@ -127,23 +128,23 @@ class Index extends PureComponent {
           </View>
         )}
 
-        {bannerSwiperList.length > 0 && (
+        {/* {bannerSwiperList.length > 0 && (
           <View>
             <SeparateBar />
 
             <PhoneAdBaner data={bannerSwiperList} />
           </View>
-        )}
+        )} */}
 
-        {initAdverstCommonItems.length > 0 && (
+        {/* {initAdverstCommonItems.length > 0 && (
           <View>
             <SeparateBar />
 
             <ProductItem6 data={initAdverstCommonItems} />
           </View>
-        )}
+        )} */}
 
-        {adverstInfoList.length > 0 && <ProductItem4 data={adverstInfoList} />}
+        {/* {adverstInfoList.length > 0 && <ProductItem4 data={adverstInfoList} />} */}
       </View>
     );
   }

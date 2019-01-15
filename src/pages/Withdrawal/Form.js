@@ -14,11 +14,12 @@ import * as enchashmentApplyActionCreators from '@src/common/actions/enchashment
 import * as userAddDetailInfoActionCreators from '@src/common/actions/userAddDetailInfo';
 import * as userCertificateInfoActionCreators from '@src/common/actions/userCertificateInfo';
 import * as enchashmentGetListActionCreators from '@src/common/actions/enchashmentGetList';
-import { FONT_SIZE_FIRST, FONT_SIZE_THIRD } from '@src/styles/variables';
 import MustLogin from '@src/components/MustLogin';
 import { addEventListenerBuyoo, removeEventListenerBuyoo } from '@src/utils';
 import Loader from '@src/components/Loader';
 import { getLoginUser } from '@src/common/selectors';
+
+import styles from './Form.less';
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -124,63 +125,6 @@ class LoginForm extends React.Component {
   };
 
   render() {
-    const styles = {
-      container: {},
-      main: {
-        paddingTop: 15,
-        paddingLeft: SIDEINTERVAL,
-        paddingRight: SIDEINTERVAL,
-        backgroundColor: '#fff',
-      },
-      item: {
-        marginBottom: 15,
-      },
-      itemTitle: {
-        fontSize: FONT_SIZE_FIRST,
-        color: '#9B9B9B',
-      },
-      inputStyle: {
-        borderBottomWidth: 1,
-        borderBottomColor: '#e5e5e5',
-      },
-      inputStyleWrap: {
-        // marginBottom: 50,
-        paddingLeft: 0,
-        paddingRight: 0,
-      },
-      inputstyleInput: {
-        margin: 0,
-        fontSize: FONT_SIZE_THIRD,
-        color: '#4D4D4D',
-        paddingTop: 10,
-        paddingBottom: 10,
-      },
-      info: {
-        backgroundColor: '#fff',
-      },
-      submit: {
-        position: 'fixed',
-        left: 0,
-        right: 0,
-        bottom: 15,
-        paddingLeft: SIDEINTERVAL,
-        paddingRight: SIDEINTERVAL,
-      },
-      submitButton: {
-        height: 45,
-        lineHeight: '45px',
-        color: '#fff',
-        fontSize: 18,
-        textAlign: 'center',
-        borderRadius: 3,
-        backgroundRepeat: 'repeat',
-        backgroundPosition: 'center',
-        backgroundSize: 'contain',
-        backgroundImage:
-          'url(https://oss.buyoo.vn/buyoo_vip/usercollect/1/20181224174458_40M.png)',
-      },
-    };
-
     const { actuallyReceived } = this.state;
     const {
       form: { getFieldProps },
@@ -194,7 +138,7 @@ class LoginForm extends React.Component {
     } = this.props;
 
     return (
-      <View style={styles.container}>
+      <View>
         {(enchashmentConfigLoading ||
           addDetailInfoLoading ||
           enchashmentLoading ||
@@ -207,25 +151,40 @@ class LoginForm extends React.Component {
           router={router}
           SCREENS={SCREENS}
         />
-        <View style={styles.main}>
-          <View style={styles.item}>
-            <View style={styles.itemTitle}>{i18n.actualName}</View>
+        <View
+          style={{
+            paddingLeft: SIDEINTERVAL,
+            paddingRight: SIDEINTERVAL,
+          }}
+          className={styles.main}
+        >
+          <View className={styles.item}>
+            <View className={styles.itemTitle}>{i18n.actualName}</View>
             <InputRight
               getFieldProps={getFieldProps}
-              style={styles.inputStyle}
-              styleWrap={styles.inputStyleWrap}
-              styleInput={styles.inputstyleInput}
+              className={styles.inputStyle}
+              styleWrap={{
+                paddingLeft: 0,
+                paddingRight: 0,
+              }}
+              styleInput={{
+                margin: 0,
+                fontSize: 16,
+                color: '#4D4D4D',
+                paddingTop: 10,
+                paddingBottom: 10,
+              }}
               placeholder={i18n.enterHere}
               message={i18n.actualName}
               name="username"
               type="text"
             />
           </View>
-          <View style={styles.item}>
-            <View style={styles.itemTitle}>{i18n.bankName}</View>
+          <View className={styles.item}>
+            <View className={styles.itemTitle}>{i18n.bankName}</View>
             <InputRight
               getFieldProps={getFieldProps}
-              style={styles.inputStyle}
+              className={styles.inputStyle}
               styleWrap={styles.inputStyleWrap}
               styleInput={styles.inputstyleInput}
               placeholder={i18n.enterHere}
@@ -234,11 +193,11 @@ class LoginForm extends React.Component {
               type="text"
             />
           </View>
-          <View style={styles.item}>
-            <View style={styles.itemTitle}>{i18n.bankBranch}</View>
+          <View className={styles.item}>
+            <View className={styles.itemTitle}>{i18n.bankBranch}</View>
             <InputRight
               getFieldProps={getFieldProps}
-              style={styles.inputStyle}
+              className={styles.inputStyle}
               styleWrap={styles.inputStyleWrap}
               styleInput={styles.inputstyleInput}
               placeholder={i18n.enterHere}
@@ -247,11 +206,11 @@ class LoginForm extends React.Component {
               type="text"
             />
           </View>
-          <View style={styles.item}>
-            <View style={styles.itemTitle}>{i18n.accountNumber}</View>
+          <View className={styles.item}>
+            <View className={styles.itemTitle}>{i18n.accountNumber}</View>
             <InputRight
               getFieldProps={getFieldProps}
-              style={styles.inputStyle}
+              className={styles.inputStyle}
               styleWrap={styles.inputStyleWrap}
               styleInput={styles.inputstyleInput}
               placeholder={i18n.enterHere}
@@ -260,8 +219,8 @@ class LoginForm extends React.Component {
               type="number"
             />
           </View>
-          <View style={styles.item}>
-            <View style={styles.itemTitle}>{i18n.amountWithdrawn}</View>
+          <View className={styles.item}>
+            <View className={styles.itemTitle}>{i18n.amountWithdrawn}</View>
             <InputRight
               onChange={e => {
                 this.setState({
@@ -274,7 +233,7 @@ class LoginForm extends React.Component {
               // value={actuallyReceived}
               inputRight={<View>{MONETARY}</View>}
               getFieldProps={getFieldProps}
-              style={styles.inputStyle}
+              className={styles.inputStyle}
               styleWrap={styles.inputStyleWrap}
               styleInput={styles.inputstyleInput}
               placeholder={i18n.enterHere}
@@ -284,7 +243,7 @@ class LoginForm extends React.Component {
             />
           </View>
         </View>
-        <View style={styles.info}>
+        <View className={styles.info}>
           <NavBar2
             valueLeft={i18n.serviceFee}
             valueMiddle={`- ${feeRate * 100}%`}
@@ -296,8 +255,15 @@ class LoginForm extends React.Component {
             isShowRight={false}
           />
         </View>
-        <View style={styles.submit} onClick={this.submit}>
-          <View style={styles.submitButton}>{i18n.confirm}</View>
+        <View
+          style={{
+            paddingLeft: SIDEINTERVAL,
+            paddingRight: SIDEINTERVAL,
+          }}
+          className={styles.submit}
+          onClick={this.submit}
+        >
+          <View className={styles.submitButton}>{i18n.confirm}</View>
         </View>
       </View>
     );

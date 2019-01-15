@@ -3,7 +3,6 @@ import { Modal } from 'antd-mobile';
 import { connect } from 'react-redux';
 import { i18n, View } from '@src/API';
 
-import { BORDER_COLOR, PRIMARY_COLOR, RED_COLOR } from '@src/styles/variables';
 import {
   WINDOW_WIDTH,
   SIDEINTERVAL,
@@ -17,6 +16,10 @@ import CustomIcon from '@src/components/CustomIcon';
 import * as modalActionCreators from '@src/common/actions/modal';
 import * as productDetailInfoActionCreators from '@src/common/actions/productDetailInfo';
 import { xOssProcess } from '@src/utils';
+
+import classNames from 'classnames';
+
+import styles from './ParamsSelectModal.less';
 
 class ParamsSelectModal extends Component {
   constructor(props) {
@@ -91,43 +94,6 @@ class ParamsSelectModal extends Component {
   }
 
   renderPropertiesIds() {
-    const styles = {
-      wrap: {},
-      item: {},
-      title: {
-        color: '#666',
-        paddingLeft: SIDEINTERVAL,
-        paddingTop: 15,
-        marginBottom: 8,
-        textAlign: 'left',
-      },
-      properties: {
-        display: 'flex',
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        paddingLeft: SIDEINTERVAL,
-        // marginBottom: 20,
-      },
-      propertiesItem: {
-        // width: (WINDOW_WIDTH - SIDEINTERVAL * 4) / 3,
-        height: 35,
-        lineHeight: '35px',
-        textAlign: 'center',
-        marginRight: SIDEINTERVAL,
-        marginBottom: SIDEINTERVAL,
-        color: '#999',
-        borderColor: BORDER_COLOR,
-        borderWidth: 1,
-        borderStyle: 'solid',
-        paddingLeft: WINDOW_WIDTH * 0.05,
-        paddingRight: WINDOW_WIDTH * 0.05,
-      },
-      propertiesItemAcitve: {
-        borderColor: PRIMARY_COLOR,
-        color: PRIMARY_COLOR,
-      },
-    };
-
     const {
       propertiesArray,
       propertiesObject,
@@ -135,18 +101,35 @@ class ParamsSelectModal extends Component {
     } = this.props;
 
     return (
-      <View style={styles.wrap}>
+      <View>
         {propertiesArray.map(val => (
-          <View style={styles.item} key={val}>
-            <View style={styles.title}>{val}</View>
-            <View style={styles.properties}>
+          <View key={val}>
+            <View
+              style={{
+                paddingLeft: SIDEINTERVAL,
+              }}
+              className={styles.title}
+            >
+              {val}
+            </View>
+            <View
+              style={{
+                paddingLeft: SIDEINTERVAL,
+              }}
+              className={styles.properties}
+            >
               {propertiesObject[val].map(val1 => (
                 <View
                   style={{
-                    ...styles.propertiesItem,
-                    ...(propertiesIdsObject.indexOf(val1.id) !== -1 &&
-                      styles.propertiesItemAcitve),
+                    marginRight: SIDEINTERVAL,
+                    marginBottom: SIDEINTERVAL,
+                    paddingLeft: WINDOW_WIDTH * 0.05,
+                    paddingRight: WINDOW_WIDTH * 0.05,
                   }}
+                  className={classNames(styles.propertiesItem, {
+                    [styles.propertiesItemAcitve]:
+                      propertiesIdsObject.indexOf(val1.id) !== -1,
+                  })}
                   onClick={() => this.handleOnChangeProperties(val1.id)}
                   key={val1.value}
                 >
@@ -169,164 +152,61 @@ class ParamsSelectModal extends Component {
       // propertiesIdsObject,
     } = this.props;
 
-    const styles = {
-      container: {
-        display: 'flex',
-        flexDirection: 'column',
-        position: 'relative',
-        backgroundColor: '#fff',
-      },
-      mask: {
-        display: 'flex',
-        flex: 1,
-        backgroundColor: 'rgba(0,0,0,.3)',
-      },
-      paramClose: {
-        paddingTop: WINDOW_WIDTH * 0.03,
-        paddingRight: WINDOW_WIDTH * 0.03,
-        textAlign: 'right',
-      },
-      paramCloseIcon: {
-        color: '#ccc',
-        fontSize: 20,
-      },
-      paramInfo: {
-        display: 'flex',
-        paddingLeft: SIDEINTERVAL,
-        paddingRight: SIDEINTERVAL,
-        flexDirection: 'row',
-      },
-      paramImage: {
-        height: 60,
-        width: 60,
-        borderColor: BORDER_COLOR,
-        borderWidth: 1,
-        borderStyle: 'solid',
-        marginRight: SIDEINTERVAL,
-      },
-      paramPrice: {
-        color: RED_COLOR,
-        fontSize: 18,
-        paddingTop: 10,
-        fontWeight: '700',
-      },
-      paramHave: {
-        color: '#999',
-        fontSize: 11,
-      },
-      paramNumber: {
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingLeft: SIDEINTERVAL,
-        paddingRight: SIDEINTERVAL,
-        paddingTop: 10,
-        marginBottom: 50,
-      },
-      paramNumberText: {
-        flex: 1,
-        color: '#666',
-        textAlign: 'left',
-      },
-      paramNumberChange: {
-        display: 'flex',
-        flexDirection: 'row',
-      },
-      paramNumberRemoveIcon: {
-        height: 30,
-        lineHeight: '30px',
-        width: 30,
-        textAlign: 'center',
-        fontSize: 18,
-        color: '#999',
-        backgroundColor: '#fff',
-        fontWeight: '900',
-        borderColor: BORDER_COLOR,
-        borderWidth: 1,
-        borderStyle: 'solid',
-      },
-      paramNumberAddIcon: {
-        height: 30,
-        lineHeight: '30px',
-        width: 30,
-        textAlign: 'center',
-        fontSize: 18,
-        color: '#999',
-        backgroundColor: '#fff',
-        fontWeight: '900',
-        borderColor: BORDER_COLOR,
-        borderStyle: 'solid',
-        borderWidth: 1,
-      },
-      paramNumberIconDisable: {
-        opacity: 0.5,
-      },
-      paramNumberTextInput: {
-        height: 30,
-        lineHeight: '30px',
-        width: 30,
-        backgroundColor: '#fff',
-        textAlign: 'center',
-        fontSize: 12,
-        color: '#666',
-        borderTopColor: BORDER_COLOR,
-        borderBottomColor: BORDER_COLOR,
-        borderTopWidth: 1,
-        borderBottomWidth: 1,
-        borderTopStyle: 'solid',
-        borderBottomStyle: 'solid',
-      },
-      buttonWrap: {
-        paddingLeft: SIDEINTERVAL,
-        paddingRight: SIDEINTERVAL,
-        paddingBottom: SIDEINTERVAL * 2,
-      },
-      button: {
-        height: 50,
-        lineHeight: '50px',
-        textAlign: 'center',
-        color: '#fff',
-        backgroundColor: PRIMARY_COLOR,
-      },
-      buttonDisable: {
-        opacity: 0.5,
-      },
-    };
-
     return (
-      <View style={styles.container}>
-        <View style={styles.paramClose}>
+      <View className={styles.container}>
+        <View
+          style={{
+            paddingTop: WINDOW_WIDTH * 0.03,
+            paddingRight: WINDOW_WIDTH * 0.03,
+          }}
+          className={styles.paramClose}
+        >
           <CustomIcon
             name="close"
             type="close"
-            style={styles.paramCloseIcon}
+            className={styles.paramCloseIcon}
             onClick={() => this.handleOnModalClose()}
           />
         </View>
-        <View style={styles.paramInfo}>
+        <View
+          style={{
+            paddingLeft: SIDEINTERVAL,
+            paddingRight: SIDEINTERVAL,
+          }}
+          className={styles.paramInfo}
+        >
           {imageUrls[0] && (
             <img
               alt=""
-              style={styles.paramImage}
+              style={{
+                marginRight: SIDEINTERVAL,
+              }}
+              className={styles.paramImage}
               src={`${imageUrls[0].imageUrl}?${xOssProcess(
                 IS_IOS,
                 OSS_IMAGE_QUALITY,
               )}`}
             />
           )}
-          <View style={styles.paramInfoLeft}>
-            <View style={styles.paramPrice}>{`${priceFormat(
+          <View>
+            <View className={styles.paramPrice}>{`${priceFormat(
               price,
             )} ${MONETARY}`}</View>
-            <View style={styles.paramHave}>
+            <View className={styles.paramHave}>
               {i18n.warehouse}: {numbers > 0 ? i18n.inStock : i18n.soldOut}
             </View>
           </View>
         </View>
         {this.renderPropertiesIds()}
-        <View style={styles.paramNumber}>
-          <View style={styles.paramNumberText}>{i18n.amount}</View>
-          <View style={styles.paramNumberChange}>
+        <View
+          style={{
+            paddingLeft: SIDEINTERVAL,
+            paddingRight: SIDEINTERVAL,
+          }}
+          className={styles.paramNumber}
+        >
+          <View className={styles.paramNumberText}>{i18n.amount}</View>
+          <View className={styles.paramNumberChange}>
             <View
               onClick={() =>
                 this.handleOnPresschangeNumber(productDetailNumber - 1)
@@ -335,14 +215,12 @@ class ParamsSelectModal extends Component {
               <CustomIcon
                 name="minus"
                 type="minus"
-                style={{
-                  ...styles.paramNumberRemoveIcon,
-                  ...(productDetailNumber === 1 &&
-                    styles.paramNumberIconDisable),
-                }}
+                className={classNames(styles.paramNumberRemoveIcon, {
+                  [styles.paramNumberIconDisable]: productDetailNumber === 1,
+                })}
               />
             </View>
-            <View style={styles.paramNumberTextInput}>
+            <View className={styles.paramNumberTextInput}>
               {productDetailNumber}
             </View>
             <View
@@ -353,21 +231,25 @@ class ParamsSelectModal extends Component {
               <CustomIcon
                 name="plus"
                 type="plus"
-                style={{
-                  ...styles.paramNumberAddIcon,
-                  ...(parseInt(productDetailNumber, 10) === numbers &&
-                    styles.paramNumberIconDisable),
-                }}
+                className={classNames(styles.paramNumberAddIcon, {
+                  [styles.paramNumberIconDisable]:
+                    parseInt(productDetailNumber, 10) === numbers,
+                })}
               />
             </View>
           </View>
         </View>
-        <View style={styles.buttonWrap}>
+        <View
+          style={{
+            paddingLeft: SIDEINTERVAL,
+            paddingRight: SIDEINTERVAL,
+            paddingBottom: SIDEINTERVAL * 2,
+          }}
+        >
           <View
-            style={{
-              ...styles.button,
-              ...(!(numbers > 0) && styles.buttonDisable),
-            }}
+            className={classNames(styles.button, {
+              [styles.buttonDisable]: !(numbers > 0),
+            })}
             onClick={() => this.handleOnModalClose()}
           >
             {numbers > 0 ? i18n.confirm : i18n.soldOut}

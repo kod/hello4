@@ -4,7 +4,7 @@ import { i18n, View } from '@src/API';
 import router from 'umi/lib/router';
 import { connect } from 'react-redux';
 
-import { BORDER_COLOR, RED_COLOR, PRIMARY_COLOR } from '@src/styles/variables';
+import { RED_COLOR, PRIMARY_COLOR } from '@src/styles/variables';
 import {
   WINDOW_WIDTH,
   SIDEINTERVAL,
@@ -21,118 +21,41 @@ import { xOssProcess } from '@src/utils';
 import { getLoginUser } from '@src/common/selectors';
 // import { getCartTotalMoney } from '@src/common/selectors';
 
-const styles = {
-  itemWrap: {
-    backgroundColor: '#fff',
-  },
-  item: {
-    display: 'flex',
-    position: 'relative',
-    flexDirection: 'row',
-    borderBottomColor: BORDER_COLOR,
-    borderBottomStyle: 'solid',
-    borderBottomWidth: 1,
-    zIndex: 100,
-  },
-  disable: {
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    right: 0,
-    left: 0,
-    backgroundColor: 'rgba(0,0,0,.1)',
-    zIndex: 999,
-  },
-  itemLeft: {
-    display: 'flex',
-    width: WINDOW_WIDTH * 0.15,
-    alignItems: 'center',
-    paddingLeft: SIDEINTERVAL,
-    paddingTop: 18,
-    paddingBottom: 18,
-  },
-  itemImage: {
-    width: 60,
-    height: 60,
-    // backgroundColor: '#0f0',
-    borderColor: BORDER_COLOR,
-    borderWidth: 1,
-    borderStyle: 'solid',
-  },
-  itemRight: {
-    width: WINDOW_WIDTH * 0.6,
-    // flex: 1,
-    paddingTop: 18,
-    // paddingBottom: 18,
-    paddingLeft: SIDEINTERVAL,
-    paddingRight: SIDEINTERVAL,
-  },
-  itemTitle: {
-    fontSize: 14,
-    color: '#333',
-    marginBottom: 6,
-    lineHeight: '18px',
-
-    overflow: 'hidden',
-    whiteSpace: 'nowrap',
-    textOverflow: 'ellipsis',
-  },
-  itemPrice: {
-    fontSize: 11,
-    color: '#999',
-    marginBottom: 6,
-  },
-  itemRightRow3: {
-    display: 'flex',
-    flexDirection: 'row',
-  },
-  itemRightRow3Price: {
-    fontSize: 14,
-    color: RED_COLOR,
-    marginRight: 9,
-  },
-  itemRightRow3Number: {
-    fontSize: 11,
-    color: '#666',
-    paddingTop: 2,
-  },
-};
+import styles from './index.less';
+import renderCartItemLeftStyles from './renderCartItemLeft.less';
+import renderCartItemRightStyles from './renderCartItemRight.less';
 
 class CartItem extends React.Component {
   renderCartItemLeft = (id, selected) => {
     const { isEdit } = this.props;
-    const stylesX = {
-      container: {
-        display: 'flex',
-        width: WINDOW_WIDTH * 0.13,
-        justifyContent: 'center',
-        alignItems: 'center',
-      },
-      icon: {
-        fontSize: 20,
-        color: '#666',
-      },
-      iconSelected: {
-        fontSize: 20,
-        color: isEdit ? RED_COLOR : PRIMARY_COLOR,
-      },
-    };
-
     const onPressHandle = () => {
       const { cartSelectRequest } = this.props;
       cartSelectRequest(id, !selected);
     };
 
     return (
-      <View style={stylesX.container} onClick={() => onPressHandle()}>
+      <View
+        style={{
+          width: WINDOW_WIDTH * 0.13,
+        }}
+        className={renderCartItemLeftStyles.container}
+        onClick={() => onPressHandle()}
+      >
         {selected ? (
           <CustomIcon
             name="roundcheckfill"
             type="roundcheckfill"
-            style={stylesX.iconSelected}
+            style={{
+              color: isEdit ? RED_COLOR : PRIMARY_COLOR,
+            }}
+            className={renderCartItemLeftStyles.iconSelected}
           />
         ) : (
-          <CustomIcon name="round" type="round" style={stylesX.icon} />
+          <CustomIcon
+            name="round"
+            type="round"
+            className={renderCartItemLeftStyles.icon}
+          />
         )}
       </View>
     );
@@ -141,74 +64,6 @@ class CartItem extends React.Component {
   renderCartItemRight = (id, quantity, status) => {
     id = id.toString();
     quantity = quantity.toString();
-    const stylesX = {
-      container: {
-        position: 'relative',
-        width: WINDOW_WIDTH * 0.12,
-        paddingRight: SIDEINTERVAL,
-      },
-      number: {
-        // display: 'none',
-      },
-      addIcon: {
-        height: 30,
-        lineHeight: '30px',
-        width: 30,
-        textAlign: 'center',
-        fontSize: 18,
-        color: '#999',
-        backgroundColor: '#f5f5f5',
-        fontWeight: '900',
-      },
-      removeIcon: {
-        height: 30,
-        lineHeight: '30px',
-        width: 30,
-        textAlign: 'center',
-        fontSize: 18,
-        color: '#999',
-        backgroundColor: '#f5f5f5',
-        fontWeight: '900',
-      },
-      removeIconDisable: {
-        opacity: 0.5,
-      },
-      textInput: {
-        height: 30,
-        width: 30,
-        backgroundColor: '#ccc',
-        textAlign: 'center',
-        fontSize: 11,
-        color: '#fff',
-      },
-      tips: {
-        position: 'absolute',
-        top: 30,
-        left: -15 - SIDEINTERVAL,
-        backgroundColor: RED_COLOR,
-        transform: [{ rotate: '90deg' }],
-        display: 'none',
-      },
-      tipsText: {
-        height: 30,
-        lineHeight: '30px',
-        width: 90,
-        textAlign: 'center',
-        fontSize: 11,
-        color: '#fff',
-        display: 'none',
-      },
-      itemDisable: {
-        display: 'flex',
-      },
-      quantity: {
-        textAlign: 'center',
-        width: 30,
-        height: 35,
-        lineHeight: '35px',
-      },
-    };
-
     const onChangeTextHandle = text => {
       if (text < 1 || text > CARMAXNUMBER) return false;
       const { cartNumberRequest, authUser } = this.props;
@@ -217,8 +72,14 @@ class CartItem extends React.Component {
     };
 
     return (
-      <View style={stylesX.container}>
-        <View style={stylesX.number}>
+      <View
+        style={{
+          width: WINDOW_WIDTH * 0.12,
+          paddingRight: SIDEINTERVAL,
+        }}
+        className={renderCartItemRightStyles.container}
+      >
+        <View>
           <View
             onClick={() => onChangeTextHandle(parseInt(quantity, 10) - 1, id)}
           >
@@ -226,15 +87,15 @@ class CartItem extends React.Component {
               name="minus"
               type="minus"
               style={{
-                ...stylesX.removeIcon,
-                ...(quantity === '1' && stylesX.removeIconDisable),
+                ...(quantity === '1' && { opacity: 0.5 }),
               }}
+              className={renderCartItemRightStyles.removeIcon}
             />
           </View>
-          <View style={stylesX.quantity}>{quantity}</View>
+          <View className={renderCartItemRightStyles.quantity}>{quantity}</View>
 
           {/* <BYTextInput
-            style={stylesX.textInput}
+            className={renderCartItemRightStyles.textInput}
             keyboardType="numeric"
             value={quantity}
             // onChangeText={(text) => onChangeTextHandle(text, id)}
@@ -247,20 +108,30 @@ class CartItem extends React.Component {
               name="plus"
               type="plus"
               style={{
-                ...stylesX.addIcon,
-                ...(parseInt(quantity, 10) === CARMAXNUMBER &&
-                  stylesX.removeIconDisable),
+                ...(parseInt(quantity, 10) === CARMAXNUMBER && {
+                  opacity: 0.5,
+                }),
               }}
+              className={renderCartItemRightStyles.addIcon}
             />
           </View>
         </View>
         <View
-          style={{ ...stylesX.tips, ...(status !== 1 || styles.itemDisable) }}
+          style={{
+            left: -15 - SIDEINTERVAL,
+            transform: [{ rotate: '90deg' }],
+            ...(status !== 1 || {
+              display: 'flex',
+            }),
+          }}
+          className={renderCartItemRightStyles.tips}
         >
           <View
             style={{
-              ...stylesX.tipsText,
-              ...(status !== 1 || styles.itemDisable),
+              ...renderCartItemRightStyles.tipsText,
+              ...(status !== 1 || {
+                display: 'flex',
+              }),
             }}
           >
             {i18n.productShelves}
@@ -285,22 +156,25 @@ class CartItem extends React.Component {
     const { items, products, details, isEdit } = data;
 
     return (
-      <View style={{ ...styles.itemWrap, ...style }} {...restProps}>
+      <View style={style} className={styles.itemWrap} {...restProps}>
         {items &&
           items.map(val => (
             <View
-              style={{ ...styles.item, ...styleItem }}
+              style={styleItem}
+              className={styles.item}
               key={details[products[val].detail].iconUrl}
             >
-              {/* {products[val].status !== 1 && (
-                <TouchableOpacity style={styles.disable} activeOpacity={1} />
-              )} */}
               {this.renderCartItemLeft(
                 val,
                 isEdit ? products[val].selectedDel : products[val].selected,
               )}
               <View
-                style={{ ...styles.itemLeft, ...styleItemLeft }}
+                style={{
+                  ...styleItemLeft,
+                  width: WINDOW_WIDTH * 0.15,
+                  paddingLeft: SIDEINTERVAL,
+                }}
+                className={styles.itemLeft}
                 onClick={() =>
                   router.push(
                     `/ProductDetail?brandId=${
@@ -311,20 +185,29 @@ class CartItem extends React.Component {
               >
                 <img
                   alt=""
-                  style={styles.itemImage}
+                  className={styles.itemImage}
                   src={`${details[products[val].detail].iconUrl}?${xOssProcess(
                     IS_IOS,
                     OSS_IMAGE_QUALITY,
                   )}`}
                 />
               </View>
-              <View style={styles.itemRight}>
-                <View style={styles.itemTitle}>{products[val].subject}</View>
-                {/* <Text style={styles.itemPrice}>
+              <View
+                style={{
+                  width: WINDOW_WIDTH * 0.6,
+                  paddingLeft: SIDEINTERVAL,
+                  paddingRight: SIDEINTERVAL,
+                }}
+                className={styles.itemRight}
+              >
+                <View className={styles.itemTitle}>
+                  {products[val].subject}
+                </View>
+                {/* <Text className={styles.itemPrice}>
                   {`${priceFormat(details[products[val].detail].price)} ${MONETARY}`}
                 </Text> */}
-                <View style={styles.itemRightRow3}>
-                  <View style={styles.itemRightRow3Price}>
+                <View className={styles.itemRightRow3}>
+                  <View className={styles.itemRightRow3Price}>
                     {`${priceFormat(
                       details[products[val].detail].price,
                     )} ${MONETARY}`}

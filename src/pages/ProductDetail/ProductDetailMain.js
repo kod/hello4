@@ -16,7 +16,6 @@ import {
   WINDOW_WIDTH,
   MONETARY,
   SIDEINTERVAL,
-  WINDOW_HEIGHT,
   MODAL_TYPES,
   IS_IOS,
   OSS_IMAGE_QUALITY,
@@ -31,13 +30,6 @@ import priceFormat from '@src/utils/priceFormat';
 import smoothScroll from '@src/utils/smoothScroll';
 import gumshoe from '@src/utils/gumshoe';
 import CustomIcon from '@src/components/CustomIcon';
-import {
-  BORDER_COLOR,
-  RED_COLOR,
-  PRIMARY_COLOR,
-  FONT_COLOR_THIRD,
-  FONT_COLOR_SECOND,
-} from '@src/styles/variables';
 import Comment from '@src/components/Comment';
 import SeparateBar from '@src/components/SeparateBar';
 import {
@@ -47,6 +39,9 @@ import {
   loadFbLoginApi,
 } from '@src/utils';
 import { getIsCollection, getLoginUser } from '@src/common/selectors';
+import classNames from 'classnames';
+
+import styles from './ProductDetailMain.less';
 
 class ProductDetailMain extends React.Component {
   constructor(props) {
@@ -292,214 +287,98 @@ class ProductDetailMain extends React.Component {
       isCollection,
     } = this.props;
 
-    const styles = {
-      product: {
-        // paddingLeft: SIDEINTERVAL,
-        backgroundColor: '#fff',
-      },
-      productTitle: {
-        color: '#333',
-        fontSize: 14,
-        paddingBottom: 10,
-      },
-      productPrice: {
-        fontSize: 18,
-        color: RED_COLOR,
-        marginBottom: 3,
-        paddingTop: 10,
-        fontWeight: '700',
-      },
-      serverinfo: {
-        display: 'flex',
-        flexDirection: 'row',
-        height: 45,
-        borderBottomColor: BORDER_COLOR,
-        borderBottomWidth: 1,
-        borderBottomStyle: 'solid',
-      },
-      serverinfoLeft: {
-        position: 'relative',
-        display: 'flex',
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-      },
-      serverinfoLeftSeparate: {
-        position: 'absolute',
-        right: 0,
-        top: 10,
-        bottom: 10,
-        width: 1,
-        backgroundColor: BORDER_COLOR,
-      },
-      serverinfoRight: {
-        display: 'flex',
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-      },
-      serverinfoToBePaid: {
-        fontSize: 11,
-        color: FONT_COLOR_THIRD,
-        // paddingTop: 2,
-        marginRight: 5,
-      },
-      serverinfoToBePaidText: {
-        color: FONT_COLOR_THIRD,
-        fontSize: 12,
-        marginRight: 15,
-      },
-      serverinfotoReceiveGoods: {
-        fontSize: 12,
-        color: FONT_COLOR_THIRD,
-        // paddingTop: 3,
-        marginRight: 5,
-      },
-      serverinfotoReceiveGoodsText: {
-        color: FONT_COLOR_THIRD,
-        fontSize: 12,
-      },
-      spec: {
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
-        borderBottomColor: BORDER_COLOR,
-        borderBottomWidth: 1,
-        borderBottomStyle: 'solid',
-        height: 50,
-        paddingLeft: SIDEINTERVAL,
-      },
-      specTitle: {
-        fontSize: 14,
-        color: FONT_COLOR_THIRD,
-        paddingRight: 15,
-      },
-      specDesc: {
-        fontSize: 14,
-        color: FONT_COLOR_SECOND,
-        flex: 1,
-      },
-      specArrow: {
-        fontSize: 10,
-        color: FONT_COLOR_THIRD,
-        paddingRight: SIDEINTERVAL,
-      },
-      titlePrice: {
-        display: 'flex',
-        // marginBottom: 8,
-        borderBottomColor: BORDER_COLOR,
-        borderBottomWidth: 1,
-        borderBottomStyle: 'solid',
-        paddingLeft: SIDEINTERVAL,
-      },
-      titlePriceLeft: {
-        flex: 3,
-      },
-      titlePriceRight: {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flex: 2,
-      },
-      favorite: {
-        paddingTop: 8,
-        paddingBottom: 8,
-        paddingRight: WINDOW_WIDTH * 0.03,
-      },
-      favoriteItem: {
-        fontSize: 21,
-      },
-      favoriteIconActive: {
-        color: PRIMARY_COLOR,
-      },
-      share: {
-        borderWidth: 1,
-        borderColor: RED_COLOR,
-        borderStyle: 'solid',
-        borderRadius: 3,
-        paddingLeft: WINDOW_WIDTH * 0.025,
-        paddingRight: WINDOW_WIDTH * 0.025,
-        paddingTop: 8,
-        paddingBottom: 8,
-        lineHeight: 1,
-        color: RED_COLOR,
-        fontSize: 14,
-      },
-      shareIcon: {
-        fontSize: 18,
-        marginRight: WINDOW_WIDTH * 0.021,
-      },
-    };
-
     return (
-      <View style={styles.product}>
-        <View style={styles.titlePrice}>
-          <View style={styles.titlePriceLeft}>
-            <View style={styles.productPrice}>
+      <View className={styles.product}>
+        <View
+          style={{
+            paddingLeft: SIDEINTERVAL,
+          }}
+          className={styles.titlePrice}
+        >
+          <View className={styles.titlePriceLeft}>
+            <View className={styles.productPrice}>
               {`${priceFormat(price || 0)} ${MONETARY}`}
             </View>
-            <View style={styles.productTitle}>{name}</View>
+            <View className={styles.productTitle}>{name}</View>
           </View>
-          <View style={styles.titlePriceRight}>
+          <View className={styles.titlePriceRight}>
             <View
-              style={styles.favorite}
+              style={{
+                paddingRight: WINDOW_WIDTH * 0.03,
+              }}
+              className={styles.favorite}
               onClick={() => this.handleToggleCollection()}
             >
               {isCollection ? (
                 <CustomIcon
                   name="heart-fill"
                   type="heart-fill"
-                  style={{
-                    ...styles.favoriteItem,
-                    ...styles.favoriteIconActive,
-                  }}
+                  className={classNames(
+                    styles.favoriteItem,
+                    styles.favoriteIconActive,
+                  )}
                 />
               ) : (
                 <CustomIcon
                   name="heart"
                   type="heart"
-                  style={styles.favoriteItem}
+                  className={styles.favoriteItem}
                 />
               )}
             </View>
-            <View style={styles.share} onClick={() => this.handlePressShare()}>
+            <View
+              style={{
+                paddingLeft: WINDOW_WIDTH * 0.025,
+                paddingRight: WINDOW_WIDTH * 0.025,
+              }}
+              className={styles.share}
+              onClick={() => this.handlePressShare()}
+            >
               <CustomIcon
                 name="ScreenShopping_icon2"
                 type="ScreenShopping_icon2"
-                style={styles.shareIcon}
+                style={{
+                  marginRight: WINDOW_WIDTH * 0.021,
+                }}
+                className={styles.shareIcon}
               />
               {i18n.share}
             </View>
           </View>
         </View>
-        <View style={styles.serverinfo}>
-          <View style={styles.serverinfoLeft}>
-            <View style={styles.serverinfoLeftSeparate} />
+        <View className={styles.serverinfo}>
+          <View className={styles.serverinfoLeft}>
+            <View className={styles.serverinfoLeftSeparate} />
             <CustomIcon
               name="returns"
               type="returns"
-              style={styles.serverinfoToBePaid}
+              className={styles.serverinfoToBePaid}
             />
-            <View style={styles.serverinfoToBePaidText}>
+            <View className={styles.serverinfoToBePaidText}>
               {i18n.qualityAssurance}
             </View>
           </View>
-          <View style={styles.serverinfoRight}>
+          <View className={styles.serverinfoRight}>
             <CustomIcon
-              name={styles.serverinfotoReceiveGoods}
-              style={styles.serverinfotoReceiveGoods}
+              name="toReceiveGoods"
               type="toReceiveGoods"
+              className={styles.serverinfotoReceiveGoods}
             />
-            <View style={styles.serverinfotoReceiveGoodsText}>
+            <View className={styles.serverinfotoReceiveGoodsText}>
               {i18n.fastDelivery}
             </View>
           </View>
         </View>
         <SeparateBar />
-        <View style={styles.spec}>
-          <View style={styles.specTitle}>{i18n.selected}</View>
+        <View
+          style={{
+            paddingLeft: SIDEINTERVAL,
+          }}
+          className={styles.spec}
+        >
+          <View className={styles.specTitle}>{i18n.selected}</View>
           <View
-            style={styles.specDesc}
+            className={styles.specDesc}
             onClick={() => {
               openModal(MODAL_TYPES.PARAMSSELECT, {
                 productDetailNumber,
@@ -521,7 +400,14 @@ class ProductDetailMain extends React.Component {
               )
               .join('  ')}
           </View>
-          <CustomIcon name="right" type="right" style={styles.specArrow} />
+          <CustomIcon
+            name="right"
+            type="right"
+            style={{
+              paddingRight: SIDEINTERVAL,
+            }}
+            className={styles.specArrow}
+          />
         </View>
       </View>
     );
@@ -536,62 +422,18 @@ class ProductDetailMain extends React.Component {
       goodsProperties,
     } = this.props;
 
-    const styles = {
-      container: {
-        position: 'relative',
-      },
-      statusbarPlaceholder: {
-        backgroundColor: '#fff',
-      },
-      commentMore: {
-        paddingLeft: SIDEINTERVAL,
-        paddingRight: SIDEINTERVAL,
-        paddingBottom: 15,
-        marginBottom: 10,
-        backgroundColor: '#fff',
-      },
-      commentMoreText: {
-        height: 40,
-        lineHeight: '40px',
-        textAlign: 'center',
-        borderColor: BORDER_COLOR,
-        borderWidth: 1,
-        borderStyle: 'solid',
-        color: FONT_COLOR_THIRD,
-      },
-      productImageItem: {
-        width: WINDOW_WIDTH,
-        height: 800,
-        resizeMode: 'contain',
-      },
-      WebView: {
-        height: WINDOW_HEIGHT,
-      },
-      imagesDescItem: {
-        width: WINDOW_WIDTH,
-      },
-      carousel: {
-        height: WINDOW_WIDTH,
-        width: WINDOW_WIDTH,
-      },
-      subTitle: {
-        paddingLeft: SIDEINTERVAL,
-        paddingRight: SIDEINTERVAL,
-        paddingTop: 10,
-        paddingBottom: 10,
-        borderBottomColor: BORDER_COLOR,
-        borderBottomWidth: 1,
-        borderBottomStyle: 'solid',
-      },
-    };
-
     return (
-      <View style={styles.container}>
+      <View className={styles.container}>
         <ModalRoot />
         <View id="navproduct" />
 
-        <View style={styles.statusbarPlaceholder}>
-          <View style={styles.carousel}>
+        <View className={styles.statusbarPlaceholder}>
+          <View
+            style={{
+              height: WINDOW_WIDTH,
+              width: WINDOW_WIDTH,
+            }}
+          >
             {imageUrls && imageUrls.length > 0 && (
               <SwiperFlatList
                 data={imageUrls}
@@ -607,13 +449,26 @@ class ProductDetailMain extends React.Component {
           {comment.length ? (
             <>
               <SeparateBar />
-              <View id="navcomment" style={styles.subTitle}>
+              <View
+                id="navcomment"
+                style={{
+                  paddingLeft: SIDEINTERVAL,
+                  paddingRight: SIDEINTERVAL,
+                }}
+                className={styles.subTitle}
+              >
                 {i18n.evaluation}
               </View>
               <Comment data={comment} />
-              <View style={styles.commentMore}>
+              <View
+                style={{
+                  paddingLeft: SIDEINTERVAL,
+                  paddingRight: SIDEINTERVAL,
+                }}
+                className={styles.commentMore}
+              >
                 <View
-                  style={styles.commentMoreText}
+                  className={styles.commentMoreText}
                   onClick={() =>
                     router.push(
                       `/Comment?${qs.stringify({
@@ -630,15 +485,17 @@ class ProductDetailMain extends React.Component {
             <View id="navcomment" />
           )}
           <SeparateBar />
-          <View id="productDescription" style={styles.subTitle}>
+          <View id="productDescription" className={styles.subTitle}>
             {i18n.productDescription}
           </View>
-          <View style={styles.imagesDesc}>
+          <View>
             {imageDesc.map((val, key) => (
               <img
                 alt=""
                 key={key}
-                style={styles.imagesDescItem}
+                style={{
+                  width: WINDOW_WIDTH,
+                }}
                 src={`${val}?${xOssProcess(IS_IOS, OSS_IMAGE_QUALITY)}`}
                 // src={`${val}?x-oss-process=image/quality,Q_${OSS_IMAGE_QUALITY}`}
               />
@@ -647,16 +504,15 @@ class ProductDetailMain extends React.Component {
           <SeparateBar />
           {!!goodsProperties && goodsProperties.length > 0 ? (
             <>
-              <View id="navparameters" style={styles.subTitle}>
+              <View id="navparameters" className={styles.subTitle}>
                 {i18n.detailsInfo}
               </View>
 
-              <View style={styles.imagesDesc}>
+              <View>
                 {goodsProperties.map((val, key) => (
                   <img
                     alt=""
                     key={key}
-                    style={styles.imagesDescItem}
                     src={`${val}?${xOssProcess(IS_IOS, OSS_IMAGE_QUALITY)}`}
                     // src={`${val}?x-oss-process=image/quality,Q_${OSS_IMAGE_QUALITY}`}
                   />

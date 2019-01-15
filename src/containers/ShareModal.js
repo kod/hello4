@@ -15,20 +15,12 @@ import {
   MESSENGER,
   FACEBOOK,
 } from '@src/common/constants';
-import {
-  FONT_COLOR_FIRST,
-  BORDER_COLOR_FIRST,
-  BACKGROUND_COLOR_THIRD,
-  FONT_COLOR_SIXTH,
-  FONT_SIZE_FIRST,
-  FONT_COLOR_FIFTH,
-  FONT_SIZE_SECOND,
-  FONT_SIZE_THIRD,
-} from '@src/styles/variables';
 import CustomIcon from '@src/components/CustomIcon';
 import { xOssProcess, dispatchEventBuyoo } from '@src/utils';
 import priceFormat from '@src/utils/priceFormat';
 import { getLoginUser } from '@src/common/selectors';
+
+import styles from './ShareModal.less';
 
 class AddressAddModal extends Component {
   constructor(props) {
@@ -94,179 +86,82 @@ class AddressAddModal extends Component {
     } = this.props;
     const { iconUrl, name, price, rewardNumber } = params;
 
-    const styles = {
-      container: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: WINDOW_HEIGHT,
-      },
-      main: {
-        backgroundColor: '#fff',
-        width: WINDOW_WIDTH * 0.95,
-        borderRadius: 5,
-      },
-      header: {
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
-        height: 40,
-        backgroundColor: '#f7f7f7',
-        borderTopLeftRadius: 5,
-        borderTopRightRadius: 5,
-        borderBottomWidth: 1,
-        borderBottomColor: BORDER_COLOR_FIRST,
-        borderBottomStyle: 'solid',
-      },
-      headerLeft: {
-        paddingLeft: SIDEINTERVAL,
-        paddingRight: SIDEINTERVAL,
-        color: '#aaa',
-      },
-      headerMain: {
-        flex: 1,
-        textAlign: 'center',
-        color: FONT_COLOR_FIRST,
-        fontWeight: '700',
-      },
-      headerRight: {
-        paddingLeft: SIDEINTERVAL,
-        paddingRight: SIDEINTERVAL,
-        opacity: 0,
-      },
-      body: {
-        backgroundColor: BACKGROUND_COLOR_THIRD,
-        borderBottomLeftRadius: 5,
-        borderBottomRightRadius: 5,
-        paddingLeft: SIDEINTERVAL * 0.8,
-        paddingRight: SIDEINTERVAL * 0.8,
-        paddingTop: 8,
-        paddingBottom: 8,
-        marginBottom: 10,
-      },
-      productInfo: {
-        display: 'flex',
-        flexDirection: 'row',
-        backgroundColor: '#f3f4f7',
-        borderWidth: 1,
-        borderColor: '#d4d4d4',
-        borderStyle: 'solid',
-        borderRadius: 3,
-        padding: SIDEINTERVAL * 0.5,
-      },
-      productInfoLeft: {
-        width: WINDOW_WIDTH * 0.16,
-        height: WINDOW_WIDTH * 0.16,
-        marginRight: SIDEINTERVAL * 0.5,
-      },
-      productInfoRight: {
-        textAlign: 'left',
-      },
-      productInfoTitle: {
-        color: FONT_COLOR_FIRST,
-        marginBottom: 3,
-      },
-      productInfoPrice: {
-        color: FONT_COLOR_SIXTH,
-        fontSize: FONT_SIZE_FIRST,
-        marginBottom: 3,
-      },
-      productInfoRow1: {
-        color: '#7c7c7c',
-        fontSize: FONT_SIZE_FIRST,
-        marginBottom: 3,
-      },
-      productInfoRow2: {
-        color: '#7c7c7c',
-        fontSize: FONT_SIZE_FIRST,
-        marginBottom: 3,
-      },
-      productInfoRow2Price: {
-        fontSize: FONT_SIZE_FIRST,
-      },
-      operate: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'flex-end',
-        marginBottom: 15,
-      },
-      operateMsg: {
-        marginRight: SIDEINTERVAL,
-        backgroundColor: '#147af3',
-        color: FONT_COLOR_FIFTH,
-        borderRadius: 3,
-        paddingRight: SIDEINTERVAL * 0.5,
-        paddingTop: 4,
-        paddingBottom: 4,
-        fontSize: FONT_SIZE_FIRST,
-        textAlign: 'top',
-      },
-      operateFB: {
-        marginRight: SIDEINTERVAL,
-        backgroundColor: '#3a5394',
-        color: FONT_COLOR_FIFTH,
-        borderRadius: 3,
-        paddingRight: SIDEINTERVAL * 0.5,
-        paddingTop: 4,
-        paddingBottom: 4,
-        fontSize: FONT_SIZE_FIRST,
-        textAlign: 'top',
-      },
-      operateMsgIcon: {
-        paddingLeft: SIDEINTERVAL * 0.6,
-        paddingRight: SIDEINTERVAL * 0.6,
-        fontSize: FONT_SIZE_SECOND,
-      },
-      operateFBIcon: {
-        paddingLeft: SIDEINTERVAL * 0.6,
-        paddingRight: SIDEINTERVAL * 0.6,
-        fontSize: FONT_SIZE_SECOND,
-      },
-      tips: {
-        color: '#3A3A3A',
-        fontSize: FONT_SIZE_THIRD,
-        textAlign: 'left',
-        paddingLeft: SIDEINTERVAL,
-        paddingRight: SIDEINTERVAL,
-        paddingTop: 10,
-        paddingBottom: 5,
-      },
-    };
-
     return (
-      <View style={styles.container}>
-        <View style={styles.main}>
-          <View style={styles.header}>
+      <View
+        style={{
+          height: WINDOW_HEIGHT,
+        }}
+        className={styles.container}
+      >
+        <View
+          style={{
+            width: WINDOW_WIDTH * 0.95,
+          }}
+          className={styles.main}
+        >
+          <View className={styles.header}>
             <View
-              style={styles.headerLeft}
+              style={{
+                paddingLeft: SIDEINTERVAL,
+                paddingRight: SIDEINTERVAL,
+              }}
+              className={styles.headerLeft}
               onClick={() => this.handleOnModalClose()}
             >
               {i18n.cancel}
             </View>
-            <View style={styles.headerMain}>{i18n.share}</View>
-            <View style={styles.headerRight}>{i18n.cancel}</View>
+            <View className={styles.headerMain}>{i18n.share}</View>
+            <View
+              style={{
+                paddingLeft: SIDEINTERVAL,
+                paddingRight: SIDEINTERVAL,
+              }}
+              className={styles.headerRight}
+            >
+              {i18n.cancel}
+            </View>
           </View>
-          <View style={styles.tips}>
+          <View
+            style={{
+              paddingLeft: SIDEINTERVAL,
+              paddingRight: SIDEINTERVAL,
+            }}
+            className={styles.tips}
+          >
             {i18n.shareGetDiscountedDealsAndMoneyRose}
           </View>
-          <View style={styles.body}>
-            <View style={styles.productInfo}>
+          <View
+            style={{
+              paddingLeft: SIDEINTERVAL * 0.8,
+              paddingRight: SIDEINTERVAL * 0.8,
+            }}
+            className={styles.body}
+          >
+            <View
+              style={{
+                padding: SIDEINTERVAL * 0.5,
+              }}
+              className={styles.productInfo}
+            >
               <img
                 alt=""
-                style={styles.productInfoLeft}
+                style={{
+                  width: WINDOW_WIDTH * 0.16,
+                  height: WINDOW_WIDTH * 0.16,
+                  marginRight: SIDEINTERVAL * 0.5,
+                }}
                 src={`${iconUrl}?${xOssProcess(IS_IOS, OSS_IMAGE_QUALITY)}`}
               />
-              <View style={styles.productInfoRight}>
-                <View style={styles.productInfoTitle}>{name}</View>
-                <View style={styles.productInfoPrice}>{`${priceFormat(
+              <View className={styles.productInfoRight}>
+                <View className={styles.productInfoTitle}>{name}</View>
+                <View className={styles.productInfoPrice}>{`${priceFormat(
                   price,
                 )} ${MONETARY}`}</View>
-                {/* <View style={styles.productInfoRow1}>Voucher giảm giá</View> */}
+                {/* <View className={styles.productInfoRow1}>Voucher giảm giá</View> */}
                 {!!rewardNumber && (
-                  <View style={styles.productInfoRow2}>
+                  <View className={styles.productInfoRow2}>
                     {`${i18n.salesCommission}: `}
-                    <Text style={styles.productInfoRow2Price}>
+                    <Text className={styles.productInfoRow2Price}>
                       {`+ ${priceFormat(rewardNumber)} ${MONETARY}`}
                     </Text>
                   </View>
@@ -274,26 +169,42 @@ class AddressAddModal extends Component {
               </View>
             </View>
           </View>
-          <View style={styles.operate}>
+          <View className={styles.operate}>
             <View
-              style={styles.operateMsg}
+              style={{
+                marginRight: SIDEINTERVAL,
+                paddingRight: SIDEINTERVAL * 0.5,
+              }}
+              className={styles.operateMsg}
               onClick={() => this.handleOnPressShare(MESSENGER)}
             >
               <CustomIcon
                 name="messenger"
                 type="messenger"
-                style={styles.operateMsgIcon}
+                style={{
+                  paddingLeft: SIDEINTERVAL * 0.6,
+                  paddingRight: SIDEINTERVAL * 0.6,
+                }}
+                className={styles.operateMsgIcon}
               />
               share
             </View>
             <View
-              style={styles.operateFB}
+              style={{
+                marginRight: SIDEINTERVAL,
+                paddingRight: SIDEINTERVAL * 0.5,
+              }}
+              className={styles.operateFB}
               onClick={() => this.handleOnPressShare(FACEBOOK)}
             >
               <CustomIcon
                 name="facebook"
                 type="facebook"
-                style={styles.operateFBIcon}
+                style={{
+                  paddingLeft: SIDEINTERVAL * 0.6,
+                  paddingRight: SIDEINTERVAL * 0.6,
+                }}
+                className={styles.operateFBIcon}
               />
               share
             </View>
